@@ -1,0 +1,22 @@
+# 2026-27 schedule and results. Add each event when the schedule is released.
+# For a result, fill in result = "W" or "L" and the score (or place for tournaments).
+#
+# [[event]]
+# date = 2026-12-16
+# time = "7:00 PM"
+# opponent = "Easton"            # or the tournament name
+# kind = "dual"                  # dual | tournament
+# home = true
+# location = "Pete Schneider Gym"
+# result = ""                    # W / L, or a place like "3rd"
+# score = ""                     # e.g. "36-25"
+
+season = "2026–27"
+
+# Shown on the home page until the first 2026-27 result is posted.
+[last_result]
+date = 2026-03-07
+event = "PIAA Class AAA Championships"
+location = "Giant Center, Hershey"
+result = "3rd place"
+note = "Two state champions: Brayden Wenrich (114) and Gabe Ballard (152)."

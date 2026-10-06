@@ -1,0 +1,95 @@
+# Returning varsity wrestlers for 2026-27, from the 2025-26 roster (seniors removed).
+# Update after wrestle-offs: add new wrestlers, remove anyone not returning.
+# class = grade in 2026-27. stats_name = the name used in data/stats-2025-26.csv.
+# weight = the 2025-26 postseason weight, when known.
+
+season = "2026–27"
+
+[[wrestler]]
+name = "Gabe Ballard"
+class = "Senior"
+weight = "152"
+photo = "portrait-ballard-2026"
+stats_name = "Gabe Ballard"
+hall_name = "Gabriel Ballard"
+
+[[wrestler]]
+name = "Brayden Wenrich"
+class = "Junior"
+weight = "114"
+photo = "portrait-wenrich-2026"
+stats_name = "Brayden Wenrich"
+
+[[wrestler]]
+name = "Carter Chlebove"
+class = "Junior"
+weight = "160"
+photo = "portrait-chlebove-2026"
+stats_name = "Carter Chlebove"
+
+[[wrestler]]
+name = "Joell Small"
+class = "Senior"
+stats_name = "Joell Small"
+
+[[wrestler]]
+name = "Ben Schoeneberger"
+class = "Sophomore"
+stats_name = "Ben Schoeneberger"
+
+[[wrestler]]
+name = "Davi Glykas"
+class = "Senior"
+stats_name = "Davi Glykas"
+
+[[wrestler]]
+name = "Cade Strauss"
+class = "Senior"
+stats_name = "Cade Strauss"
+
+[[wrestler]]
+name = "Logan Rusnock"
+class = "Junior"
+stats_name = "Logan Rusnock"
+
+[[wrestler]]
+name = "Giuliano Labbadia"
+class = "Junior"
+stats_name = "Giuliano Labbadia"
+
+[[wrestler]]
+name = "Mason Frisoli"
+class = "Sophomore"
+stats_name = "Mason Frisoli"
+
+[[wrestler]]
+name = "Zach Hartzell"
+class = "Senior"
+stats_name = "Zachary Hartzell"
+
+[[wrestler]]
+name = "Robert Wambold"
+class = "Senior"
+stats_name = "Robert Wambold"
+
+[[wrestler]]
+name = "Nick Harding"
+class = "Junior"
+stats_name = "Nick Harding"
+
+[[wrestler]]
+name = "Johan Santana"
+class = "Senior"
+stats_name = "Johan Santana"
+
+[[wrestler]]
+name = "Riggins O’Grady"
+class = "Senior"
+
+[[wrestler]]
+name = "Ramond Evangelista"
+class = "Junior"
+
+[[wrestler]]
+name = "Nour Zohir"
+class = "Junior"

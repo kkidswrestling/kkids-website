@@ -1,0 +1,38 @@
+# News posts, newest first. Each post gets its own page at news/<slug>/.
+# Only post things that happened; keep each one short.
+
+[[post]]
+slug = "new-website"
+date = 2026-10-06
+title = "Northampton Wrestling launches its new home online"
+summary = "Results, rosters, the Hall of Champions, and every state champion since 1955, all in one place."
+photo = "hero-circle"
+body = [
+  "Northampton Wrestling has a new website. It brings the whole program, from the youth room to the varsity lineup, into one place.",
+  "The Hall of Champions lists every District XI champion since 1948, every Northeast Regional champion, all 27 PIAA state champions, and every state medalist, along with the program's seven PIAA team titles and the 100-Win Club. Search any name to see that wrestler's titles, medals, and records.",
+  "During the season, the site will carry the schedule, results after every match, and news from the varsity, junior high, and youth programs.",
+]
+
+[[post]]
+slug = "2026-banquet"
+date = 2026-04-02
+title = "Banquet honors the 2025–26 Konkrete Kids"
+summary = "Wenrich and Ballard named Outstanding Wrestlers; five seniors receive Charlie Lerch Memorial Scholarships."
+photo = "senior-night"
+body = [
+  "The Northampton Area Wrestling Club honored the 2025–26 team at its annual awards banquet on April 2, 2026.",
+  "State champions Brayden Wenrich and Gabe Ballard shared the Outstanding Wrestler award. Ben Schoeneberger was named Rookie of the Year, Zach Hartzell received the Future Star award, and Carter Chlebove was named Most Improved and Most Courageous.",
+  "Chase Grabfelder, Daniel Herritt, Brandon McEntire, Matthew Sommer, and Trey Wagner received Charlie Lerch Memorial Scholarships. Wagner, who finished his career with 140 wins, earned the 40 Point Club's fourth-year scholarship.",
+]
+
+[[post]]
+slug = "two-state-champions"
+date = 2026-03-07
+title = "Wenrich and Ballard win state titles as Northampton finishes 3rd in the state"
+summary = "Two PIAA champions in the same year for the first time since 2004."
+photo = "ballard-raised"
+body = [
+  "Brayden Wenrich won the PIAA Class AAA title at 114 pounds and Gabe Ballard won at 152 at the Giant Center in Hershey, the first time since 2004 that Northampton crowned two state champions in the same year.",
+  "Wenrich finished the season 36–1 as a sophomore. Ballard went 41–5 as a junior, with 114 takedowns and 238 team points. Senior Trey Wagner placed 7th at 139 for his third state medal, and Matthew Sommer (133) and Carter Chlebove (160) also qualified for states.",
+  "Northampton finished 3rd in the team standings, after 3rd-place finishes at the District XI and Northeast Regional tournaments.",
+]

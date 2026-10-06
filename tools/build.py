@@ -41,16 +41,21 @@ HUNDRED = load_csv("hall/hundred-wins.csv")
 TEAM_TITLES = load_csv("hall/team-titles.csv")
 CUR = SEASONS[0]
 
-NAV = [
-    ("", "Home"),
-    ("high-school/", "High School"),
-    ("schedule/", "Schedule"),
-    ("junior-high/", "Junior High"),
-    ("youth/", "Youth"),
-    ("coaching-staff/", "Coaches"),
-    ("champions/", "Hall of Champions"),
-    ("seasons/", "Past Seasons"),
+NAV_GROUPS = [
+    ("Program", [("story/", "Our Story"), ("coaching-staff/", "Coaches"), ("facilities/", "Our Home"),
+                 ("high-school/", "Varsity"), ("junior-high/", "Junior High"), ("youth/", "Youth")]),
+    ("Team", [("roster/", "Roster"), ("schedule/", "Schedule"), ("results/", "Results"), ("high-school/#stats-title", "Stats")]),
+    ("Tradition", [("champions/", "Hall of Champions"), ("champions/#team-title", "Team Titles"),
+                   ("champions/#hundred-title", "100-Win Club"), ("champions/#lists-title", "Record Book"),
+                   ("timeline/", "Timeline"), ("seasons/", "Past Seasons")]),
+    ("Media", [("news/", "News"), ("photos/", "Photos"), ("videos/", "Videos"), ("follow/", "Coach’s Corner")]),
+    ("Family", [("family/", "Parent Information"), ("family/#faq", "FAQs"), ("family/#booster", "Booster Club")]),
+    ("Alumni", [("alumni/", "Where Are They Now"), ("alumni/#update", "Update Your Information"), ("alumni/#support", "Support the Program")]),
+    ("Join", [("join/", "Why Northampton"), ("join/#path", "The Path"), ("youth/", "Youth Wrestling"), ("join/#start", "Start Wrestling")]),
 ]
+NAV = [("", "Home")] + [(h, l) for _, items in NAV_GROUPS for h, l in items if "#" not in h]
+NAV = list(dict.fromkeys(NAV))
+
 
 # Display-name aliases so one wrestler collects every honor in the Hall search
 ALIASES = {"Gabe Ballard": "Gabriel Ballard"}
@@ -141,9 +146,13 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
     R = "../" * depth
     url = SITE["domain"] + "/" + (path[:-len("index.html")] if path.endswith("index.html") else path)
     full_title = f"{SITE['name']} | {SITE['nickname']}" if path == "index.html" else f"{title} | {SITE['name']}"
-    nav = "".join(
-        f'<li><a href="{R}{href}"{" aria-current=\"page\"" if href == active else ""}>{label}</a></li>'
-        for href, label in NAV)
+    groups = []
+    for gi, (glabel, items) in enumerate(NAV_GROUPS):
+        on = any(h.split("#")[0] == active for h, _ in items)
+        links = "".join(f'<li><a href="{R}{h}"{" aria-current=\"page\"" if h == active else ""}>{l}</a></li>' for h, l in items)
+        groups.append(f'<li class="has-sub{" is-active" if on else ""}"><button type="button" class="sub-btn" aria-expanded="false" aria-controls="sub-{gi}">{glabel}</button>'
+                      f'<ul class="sub" id="sub-{gi}" role="list">{links}</ul></li>')
+    nav = "".join(groups)
     og = SITE["domain"] + "/" + largest("", og_image)
     js = "".join(f'<script src="{R}assets/js/{s}" defer></script>' for s in scripts)
     head_cls = " is-over-hero" if hero_header else ""
@@ -176,7 +185,7 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
   <div class="wrap head-row">
     <a class="brand" href="{R}" aria-label="{SITE['name']} home"><img class="mark" src="{R}assets/img/logo-96.png" srcset="{R}assets/img/logo-96.png 1x, {R}assets/img/logo-192.png 2x" width="56" height="48" alt=""><span>Northampton<br>Wrestling</span></a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="bars" aria-hidden="true"></span><span class="label">Menu</span></button>
-    <nav class="site-nav" id="site-nav" aria-label="Main"><ul role="list">{nav}</ul></nav>
+    <nav class="site-nav" id="site-nav" aria-label="Main"><ul class="top" role="list">{nav}</ul><a class="follow-btn" href="{R}follow/">Follow</a></nav>
   </div>
 </header>
 <main id="main">
@@ -196,8 +205,8 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
       <p>{SITE['gym']}, {SITE['school']}<br>{'<br>'.join(SITE['address'])}</p>
     </div>
     <div>
-      <h2>Program</h2>
-      <ul role="list">{''.join(f'<li><a href="{R}{h}">{l}</a></li>' for h, l in NAV[1:])}</ul>
+      <h2>Explore</h2>
+      <ul role="list" class="foot-links">{''.join(f'<li><a href="{R}{items[0][0]}">{g}</a></li>' for g, items in NAV_GROUPS)}<li><a href="{R}follow/">Follow</a></li></ul>
     </div>
   </div>
   <div class="wrap foot-base">
@@ -961,7 +970,8 @@ def build_404():
     p = os.path.join(ROOT, "404.html")
     s = open(p).read().replace('href="assets/', 'href="/assets/').replace('src="assets/', 'src="/assets/') \
         .replace('href="site.webmanifest"', 'href="/site.webmanifest"').replace('<a class="brand" href=""', '<a class="brand" href="/"')
-    s = re.sub(r'href="((?:high-school|schedule|junior-high|youth|coaching-staff|champions|seasons)/)"', r'href="/\1"', s)
+    s = re.sub(r'href="((?:high-school|schedule|junior-high|youth|coaching-staff|champions|seasons|story|facilities|roster|results|timeline|news|photos|videos|follow|family|alumni|join)/[^"]*)"', r'href="/\1"', s)
+    s = re.sub(r'(?<=[" ,])assets/', '/assets/', s).replace('//assets/', '/assets/')
     s = s.replace('<li><a href="">Home</a></li>', '<li><a href="/">Home</a></li>')
     open(p, "w").write(s)
     return None
@@ -980,8 +990,13 @@ def redirect(path, target):
 
 
 def main():
-    urls = [build_home(), build_high_school(), build_schedule(), build_junior_high(), build_youth(),
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import v2
+    v2.M = sys.modules[__name__]
+    urls = [v2.build_home(), build_high_school(), build_schedule(), build_junior_high(), build_youth(),
             build_coaches(), build_champions(), build_seasons()]
+    urls += v2.build_all(sys.modules[__name__])
     build_404()
     # Old Wix addresses keep working
     redirect("schedule-1/index.html", "schedule/")

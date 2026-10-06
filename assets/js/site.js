@@ -22,6 +22,83 @@
     window.matchMedia("(min-width: 1061px)").addEventListener("change", function (m) { if (m.matches) setOpen(false); });
   }
 
+
+  // Dropdown menus (click/tap; hover handled in CSS on desktop)
+  var subBtns = Array.prototype.slice.call(document.querySelectorAll(".sub-btn"));
+  subBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var open = b.getAttribute("aria-expanded") === "true";
+      subBtns.forEach(function (x) { x.setAttribute("aria-expanded", "false"); });
+      b.setAttribute("aria-expanded", String(!open));
+    });
+  });
+  document.addEventListener("click", function (ev) {
+    if (!ev.target.closest(".has-sub")) subBtns.forEach(function (x) { x.setAttribute("aria-expanded", "false"); });
+  });
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape") {
+      var openBtn = subBtns.filter(function (x) { return x.getAttribute("aria-expanded") === "true"; })[0];
+      if (openBtn) { openBtn.setAttribute("aria-expanded", "false"); openBtn.focus(); }
+    }
+  });
+
+  // Roster carousel buttons
+  document.querySelectorAll("[data-carousel]").forEach(function (c) {
+    var track = c.querySelector(".car-track");
+    c.querySelectorAll(".car-btn").forEach(function (b) {
+      b.addEventListener("click", function () {
+        track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth * 0.8, behavior: "smooth" });
+      });
+    });
+  });
+
+  // Count-up numbers (once, when they scroll into view)
+  var counts = document.querySelectorAll(".count");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (counts.length && "IntersectionObserver" in window && !reduce) {
+    counts.forEach(function (el) { el.textContent = "0"; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        io.unobserve(en.target);
+        var el = en.target, to = Number(el.dataset.to), t0 = null, dur = 1400;
+        var step = function (ts) {
+          if (!t0) t0 = ts;
+          var p = Math.min(1, (ts - t0) / dur), eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(to * eased).toLocaleString();
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.4 });
+    counts.forEach(function (el) { io.observe(el); });
+  }
+
+  // YouTube playlist: load the player only when asked
+  document.querySelectorAll(".video-facade").forEach(function (v) {
+    var b = v.querySelector(".vf-play");
+    b.addEventListener("click", function () {
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/videoseries?list=" + encodeURIComponent(v.dataset.yt) + "&autoplay=1";
+      f.title = "Northampton Wrestling video playlist";
+      f.allow = "autoplay; encrypted-media; picture-in-picture";
+      f.allowFullscreen = true;
+      v.innerHTML = "";
+      v.appendChild(f);
+    });
+  });
+
+  // Timeline: highlight the decade in view
+  var tlLinks = document.querySelectorAll(".tl-nav a");
+  if (tlLinks.length && "IntersectionObserver" in window) {
+    var tio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) tlLinks.forEach(function (a) { a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id); });
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    document.querySelectorAll(".tl-decade").forEach(function (d) { tio.observe(d); });
+  }
+
   // Lightbox for [data-lightbox] galleries
   var links = Array.prototype.slice.call(document.querySelectorAll("a[data-lightbox]"));
   if (links.length && "HTMLDialogElement" in window) {

@@ -87,5 +87,5 @@
   var t = null;
   q.addEventListener("input", function () { clearTimeout(t); t = setTimeout(run, 120); });
   var param = new URLSearchParams(location.search).get("q");
-  if (param) q.value = param;
+  if (param) { q.value = param; }
 })();

@@ -1,0 +1,107 @@
+# Program timeline. Every entry is backed by the banquet programs, the gym banners,
+# or PA-Wrestling team history. Add new entries at the end of a season.
+
+[[event]]
+year = 1945
+title = "Northampton Wrestling begins"
+text = "Harry Wall builds the program and coaches it for 26 seasons, through 1970–71, winning 180 dual meets."
+
+[[event]]
+year = 1948
+title = "The first champions"
+text = "Albert Billy (95) and Eugene Susko (165) win the program's first District XI and Northeast Regional titles."
+
+[[event]]
+year = 1955
+title = "Northampton's first state champions"
+text = "Steve Micio (133) and Edward Keglovits (154) win PIAA titles. Micio, a state runner-up in 1954, becomes the program's first three-time District XI champion."
+
+[[event]]
+year = 1982
+title = "The Don Rohn era begins"
+text = "Donald Rohn takes over in 1982–83. In 18 seasons his teams go 309–59 and produce 51 District XI champions, 35 Regional champions, and 8 state champions."
+
+[[event]]
+year = 1984
+title = "The streak starts"
+text = "Sean Finkbeiner wins the state title at 145. Northampton has had at least one state medalist every year since."
+streak = true
+
+[[event]]
+year = 1993
+title = "The first team state title"
+text = "Northampton wins the PIAA Class AAA team title, and Mike Tomsic wins at 112. It's the first of three straight team championships."
+team = true
+
+[[event]]
+year = 1995
+title = "Three in a row"
+text = "A third straight team state title. Whitey Chlebove (1994) and Dennis Liberto (1995) win individual crowns along the way."
+team = true
+
+[[event]]
+year = 1998
+title = "Team title number four"
+text = "Christian Luciano (171) and John Hard (275) win state titles. Luciano finishes as a four-time state placewinner."
+team = true
+
+[[event]]
+year = 2000
+title = "Team title number five"
+text = "Ryan McCallum wins at 130, and Tommy Rohn sets the single-season takedown record with 147. Terry Daubert takes over the program the next season."
+team = true
+
+[[event]]
+year = 2003
+title = "Four state champions"
+text = "Jeff Ecklof, Joey Ecklof, Josh Haines, and Jon Oplinger all win state titles, and Northampton wins its sixth team championship."
+team = true
+
+[[event]]
+year = 2004
+title = "A seventh team title"
+text = "Joey Ecklof, Josh Haines, and Jon Oplinger repeat as state champions. Haines finishes with 157 career wins, still the school record."
+team = true
+
+[[event]]
+year = 2005
+title = "Joey Ecklof's third title"
+text = "Joey Ecklof wins at 152 for his third straight state championship."
+
+[[event]]
+year = 2011
+title = "Seth Lisa takes over"
+text = "Seth Lisa, a three-time state placewinner for Northampton, becomes head coach in 2011–12."
+
+[[event]]
+year = 2019
+title = "Julian Chlebove, three-time champion"
+text = "Julian Chlebove wins his third state title (2016, 2017, 2019) and sets the single-season wins record with 49."
+
+[[event]]
+year = 2021
+title = "Jagger Condomitti wins at 160"
+text = "A state runner-up in 2020, Jagger Condomitti wins the PIAA title at 160."
+
+[[event]]
+year = 2022
+title = "Joe Provini named head coach"
+text = "Joe Provini becomes the eighth head coach in program history in May 2022."
+
+[[event]]
+year = 2023
+title = "Two careers for the record book"
+text = "Dagen Condomitti becomes just the second four-time Northeast Regional champion in school history. Carson Wagner finishes as a four-time state placewinner after his last-second upset of a former state champion sends him to the state finals."
+photo = "coach-embrace"
+
+[[event]]
+year = 2024
+title = "Trey Wagner, state champion"
+text = "Trey Wagner wins at 127, the first state title of Coach Provini's head coaching career."
+photo = "showcase-arms-up"
+
+[[event]]
+year = 2026
+title = "Two champions and a trip to the podium"
+text = "Brayden Wenrich (114) and Gabe Ballard (152) win state titles, and Northampton finishes 3rd in the state with a 14–3 dual record."
+photo = "ballard-raised"
