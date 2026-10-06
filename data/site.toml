@@ -1,0 +1,25 @@
+# Site-wide settings and contact details.
+name = "Northampton Wrestling"
+nickname = "Konkrete Kids"
+established = 1945
+conference = "Eastern Pennsylvania Conference"
+district = "PIAA District XI"
+domain = "https://www.northamptonwrestling.org"
+owner = "Northampton Area Wrestling Club"
+current_season = "2026–27"
+
+email = "northamptonareawrestlingclub@gmail.com"
+phone = "610-262-7812"
+phone_label = "Athletic office"
+school = "Northampton Area High School"
+address = ["1619 Laubach Ave", "Northampton, PA 18067"]
+
+[social]
+instagram = "https://instagram.com/kkids_wrestling"
+x = "https://twitter.com/KKidWrestling"
+facebook = "https://www.facebook.com/profile.php?id=100063592206225"
+youtube = "https://www.youtube.com/playlist?list=PLYJb_GgZKkU__A1iExzMBQgJrTBayur-0"
+
+[links]
+district_athletics = "https://nasdathletics.org"
+district_calendar = "https://arbiterlive.com/School/Calendar/16413"

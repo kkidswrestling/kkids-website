@@ -1,0 +1,75 @@
+# Coaching staff and club officers. Order here is the order on the page.
+
+[head]
+name = "Joe Provini"
+role = "Head Coach"
+photo = "coach-provini"
+since = "May 2022"
+bio = [
+  "Joe Provini was named the eighth head coach in Northampton history in May 2022. A 2003 graduate of Nazareth Area High School, he won more than 100 matches as a four-year varsity starter, was a District XI champion, placed 6th at the PIAA Championships, and was named District XI AAA Scholar Athlete as a senior. At Shippensburg University he was a Division II national qualifier on a Red Raiders team that set school records with five national qualifiers and an 8th-place NCAA finish, and crowned the program’s first national champion.",
+  "He earned his degree in Secondary Education Social Studies from East Stroudsburg University in 2012 and teaches AP English Language and Composition and AP U.S. Government & Politics at Northampton Area High School.",
+  "Before taking over at Northampton, he spent 12 seasons as a varsity assistant at his alma mater. Those teams won three PIAA AAA State Tournament championships (2017, 2018, 2022) and two PIAA AAA State Dual championships (2017, 2020), and finished in the state’s top three in six of his 12 seasons. Over that stretch he coached 10 PIAA AAA state champions, 15 state finalists, 56 state placewinners, 36 Northeast Regional champions, and 36 District XI champions.",
+]
+# Head-coach results at Northampton through the 2025-26 season
+record = "46–15"
+seasons = 4
+district_champs = 7
+regional_champs = 7
+state_champs = 3
+placewinners = 11
+
+[[varsity]]
+name = "Mike Sommer"
+role = "Varsity Assistant"
+photo = "coach-sommer"
+bio = "A 1997 Northampton graduate who started in the NAA youth program, Coach Sommer capped his Konkrete Kid career with a 4th-place finish at the PIAA AAA Championships. At Lycoming College he was a three-time conference placewinner and two-year captain with 97 career wins. After several years coaching at Whitehall, he came home as a volunteer assistant in 2012, became a varsity assistant in 2014, and was named District XI AAA Assistant Coach of the Year in 2019. He teaches 8th grade science at Whitehall Middle School and produces the program’s season highlight video."
+
+[[varsity]]
+name = "Jim Derr"
+role = "Varsity Assistant"
+photo = "coach-derr"
+bio = "Coach Derr has coached in the Northampton program since 2001. A 1977 Milton Area graduate, he was a two-time sectional champion, regional runner-up, and PIAA state qualifier. He joined the junior high staff under Keith Venanzi in 2015, when the junior high won two District titles and was ranked No. 1 in Pennsylvania. As junior high head coach from 2020, he led the team to a District title and the No. 1 ranking among Pennsylvania boundary schools, and was named 2022 District XI and PIAA AAA Junior High Coach of the Year."
+
+[[varsity]]
+name = "Marcus Newsom"
+role = "Varsity Assistant"
+photo = "coach-newsom"
+bio = "A Northampton alumnus with deep roots in the black and orange, Coach Newsom was a three-year varsity starter under Don Rohn, Terry Daubert, and Seth Lisa. He wants to make athletes better wrestlers and to teach them lessons that last well beyond the mat, and he has been integral to the development of Northampton’s upper weights."
+
+[[varsity]]
+name = "Kyle Rusnock"
+role = "Varsity Assistant"
+photo = "coach-rusnock"
+bio = "A 1992 Catasauqua graduate, Coach Rusnock was a four-time state qualifier, three-time state placewinner, and 1992 PIAA state champion before wrestling at the Division I level for the University of Toledo. He is a member of the District XI Wrestling Hall of Fame and the Catasauqua Sports Hall of Fame. He coached at Maumee (Ohio), Pen Argyl, Allen, Parkland, and Catasauqua before joining Northampton. He teaches middle school in the Catasauqua Area School District, where he is also head cross country and track and field coach."
+
+[[varsity]]
+name = "John Paukovits"
+role = "Varsity Assistant"
+photo = ""
+bio = "A Northampton alumnus, Coach Paukovits was a three-time District XI champion (2002, 2004, 2005), the 2004 Northeast Regional champion, and a two-time PIAA state placewinner. He joins the varsity staff for 2026–27 and has served as vice president of the Northampton Area Wrestling Club."
+
+[[varsity]]
+name = "Ethan Szerencsits"
+role = "Varsity Assistant"
+photo = "coach-szerencsits"
+bio = "A 2020 Northampton graduate and state qualifier as a senior, Coach Szerencsits wrestled at American University, where he earned a degree in physics. He trains with the team regularly and has been an integral part of its recent success."
+
+[junior_high]
+staff = [
+  ["Craig Israel", "Head Coach"],
+  ["Braden Turner", "Assistant"],
+  ["Ryan Werkheiser", "Assistant"],
+  ["Brandon Szoke", "Assistant"],
+  ["Justin Haupt", "Assistant"],
+  ["Keith Turner", "Assistant"],
+]
+
+[officers]
+season = "2025–26"
+list = [
+  ["Chris Wagner", "President"],
+  ["John Paukovits", "Vice President"],
+  ["Elizabeth Ballard", "Treasurer"],
+  ["Kristen Wenrich", "Secretary"],
+  ["Steph Szoke", "Member at Large"],
+]

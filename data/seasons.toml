@@ -1,0 +1,208 @@
+# Season-by-season results, newest first. Taken from the banquet programs.
+# postseason rows: [wrestler, weight, District XI, NE Regional, PIAA]  ("" = did not compete)
+
+[[season]]
+id = "2025-26"
+label = "2025–26"
+dual_record = "14–3"
+team_photo = "team-mayhem"
+headline = "Two state champions and a 3rd-place finish at Hershey."
+team_finishes = [
+  ["Parkland Duals", "Champion"],
+  ["PIAA State Tournament", "3rd"],
+  ["PIAA Northeast Regional AAA", "3rd"],
+  ["PIAA District XI AAA", "3rd"],
+  ["Mid-Winter Mayhem", "3rd"],
+  ["King of the Mountain", "4th"],
+  ["Ironman", "45th"],
+]
+postseason = [
+  ["Brayden Wenrich", "114", "1st", "1st", "Champion"],
+  ["Gabe Ballard", "152", "1st", "1st", "Champion"],
+  ["Trey Wagner", "139", "3rd", "1st", "7th"],
+  ["Matthew Sommer", "133", "5th", "5th", "Qualifier"],
+  ["Carter Chlebove", "160", "4th", "4th", "Qualifier"],
+  ["Chase Grabfelder", "145", "3rd", "6th", ""],
+  ["Ben Schoeneberger", "", "5th", "Qualifier", ""],
+  ["Joell Small", "", "6th", "Qualifier", ""],
+]
+jv_title = "Ray Nunamaker JV District Tournament"
+jv = [
+  ["Zach Hartzell", "Champion"],
+  ["Danny Herritt", "Champion"],
+  ["Nick Harding", "Runner-up"],
+  ["Robert Wambold", "6th"],
+]
+awards = [
+  ["Outstanding Wrestler", "Brayden Wenrich and Gabe Ballard"],
+  ["Rookie of the Year", "Ben Schoeneberger"],
+  ["Future Star", "Zach Hartzell"],
+  ["Most Improved", "Carter Chlebove"],
+  ["Most Courageous", "Carter Chlebove (+60 third-period points)"],
+  ["Hardest Working Senior", "Matthew Sommer and Landon Tworkowsky"],
+  ["Scholar Athlete", "Trey Wagner"],
+  ["Best Comeback Victory", "Matthew Sommer"],
+  ["Most Pins", "Chase Grabfelder (18)"],
+  ["Fastest Pin", "Brayden Wenrich (9 seconds)"],
+  ["Most Takedowns", "Gabe Ballard (114)"],
+  ["Most Team Points", "Gabe Ballard (238)"],
+]
+never_pinned = ["Ben Schoeneberger", "Chase Grabfelder", "Cade Strauss", "Trey Wagner", "Brayden Wenrich", "Gabe Ballard"]
+epc = [
+  ["1st Team", "Brayden Wenrich, Gabe Ballard"],
+  ["2nd Team", "Trey Wagner, Carter Chlebove"],
+  ["3rd Team", "Chase Grabfelder"],
+]
+lerch = ["Chase Grabfelder", "Daniel Herritt", "Brandon McEntire", "Matthew Sommer", "Trey Wagner"]
+forty_point = [
+  ["1st year", "Ben Schoeneberger, Cade Strauss, Davi Glykas, Joell Small, Brandon McEntire"],
+  ["2nd year", "Brayden Wenrich, Matthew Sommer, Carter Chlebove"],
+  ["3rd year", "Chase Grabfelder, Gabe Ballard"],
+  ["4th year", "Trey Wagner"],
+]
+roster = [
+  ["Seniors", "Chase Grabfelder, Daniel Herritt, Brandon McEntire, Matthew Sommer, Landon Tworkowsky, Trey Wagner"],
+  ["Juniors", "Gabriel Ballard, Davi Glykas, Zachary Hartzell, Riggins O’Grady, Johan Santana, Joell Small, Cade Strauss, Robert Wambold"],
+  ["Sophomores", "Carter Chlebove, Ramond Evangelista, Nick Harding, Giuliano Labbadia, Logan Rusnock, Brayden Wenrich, Nour Zohir"],
+  ["Freshmen", "Mason Frisoli, Ben Schoeneberger"],
+]
+# Class of 2026: [name, weight, next stop, a Coach Provini saying they won't forget]
+seniors = [
+  ["Trey Wagner", "139", "U.S. Air Force Academy", ""],
+  ["Chase Grabfelder", "145", "Penn State", "Never leave bullets in your chamber."],
+  ["Matthew Sommer", "133", "Elizabethtown College (wrestling)", "Don’t worry about the score. Just keep scoring."],
+  ["Brandon McEntire", "285", "King’s College (wrestling)", ""],
+  ["Danny Herritt", "172", "East Stroudsburg University", "Keep chopping at the tree. Eventually it will fall."],
+  ["Landon Tworkowsky", "152", "Northampton Community College", "Drive."],
+]
+gallery = ["ballard-raised", "wenrich-celebrates", "ballard-attack", "dark-stance", "wenrich-final", "ballard-coaches", "states-control", "coaches-embrace", "postseason-roar", "dark-shot", "ballard-100", "senior-night", "hershey", "celebration", "practice-room", "bowling", "jv-districts", "piaa-third"]
+
+[season.junior_high]
+record = "11–3"
+finishes = [
+  ["District XI Junior High Tournament", "5th"],
+  ["Northern Invitational", "18th"],
+  ["Bellefonte Invitational", "19th"],
+]
+placewinners = [
+  ["Nathan Bunda", "3rd"], ["Thayer Ebert", "3rd"], ["Rocco Bara", "4th"], ["Jeyhis Kirk", "4th"],
+  ["Wyatt Breidinger", "6th"], ["Cooper Haupt", "6th"], ["Kaydon Swanson", "6th"], ["Anthony Giron", "8th"],
+]
+
+[[season]]
+id = "2024-25"
+label = "2024–25"
+dual_record = "14–3"
+team_photo = "team-2025"
+headline = "Two state finalists and a 5th-place team finish at states."
+team_finishes = [
+  ["Parkland Duals", "Champion"],
+  ["Bethlehem Holiday Wrestling Classic", "2nd"],
+  ["PIAA District XI AAA", "4th"],
+  ["PIAA Northeast Regional AAA", "4th"],
+  ["PIAA State Tournament", "5th"],
+  ["Ironman", "16th"],
+  ["Beast of the East", "19th"],
+]
+postseason = [
+  ["Brayden Wenrich", "107", "1st", "1st", "2nd"],
+  ["Gabe Ballard", "127", "2nd", "2nd", "2nd"],
+  ["Trey Wagner", "133", "1st", "2nd", "5th"],
+  ["Gavin Grell", "285", "2nd", "3rd", "6th"],
+  ["Ryan Marano", "114", "4th", "4th", "Qualifier"],
+  ["Chase Grabfelder", "152", "2nd", "3rd", "Qualifier"],
+  ["Devlin Chevere", "", "6th", "", ""],
+]
+portraits = [
+  ["portrait-wenrich-2025", "Brayden Wenrich", "State runner-up, 107"],
+  ["portrait-ballard-2025", "Gabe Ballard", "State runner-up, 127"],
+  ["portrait-wagner-2025", "Trey Wagner", "State 5th, 133"],
+  ["portrait-grell-2025", "Gavin Grell", "State 6th, 285"],
+  ["portrait-ryan-marano-2025", "Ryan Marano", "State qualifier, 114"],
+  ["portrait-grabfelder-2025", "Chase Grabfelder", "State qualifier, 152"],
+]
+awards = [
+  ["Outstanding Wrestler", "Brayden Wenrich"],
+  ["Rookie of the Year", "Brayden Wenrich"],
+  ["Most Team Points", "Brayden Wenrich (220)"],
+  ["Most Takedowns", "Gabe Ballard (114)"],
+  ["Fastest Pin", "Gabe Ballard (0:17)"],
+  ["Most Pins", "Chase Grabfelder (16)"],
+  ["Most Courageous", "Trey Wagner (+41 third-period points)"],
+  ["Best Comeback", "Gavin Grell (state consolation, round 1)"],
+  ["Scholar Athlete", "Colin Marano"],
+  ["Hardest Working Senior", "Nicholas DiSante"],
+  ["Future Star", "Logan Rusnock"],
+  ["Most Improved", "Luke Rogan"],
+]
+epc = [
+  ["1st Team", "Brayden Wenrich, Trey Wagner, Gavin Grell"],
+  ["2nd Team", "Gabe Ballard, Chase Grabfelder"],
+  ["3rd Team", "Ryan Marano"],
+]
+jv_title = "JV District Tournament"
+jv = [
+  ["Davi Glykas", "Champion"], ["Gursilar “G” Sidhu", "Champion"], ["Giuliano Labbadia", "Champion"],
+  ["Danny Herritt", "Champion"], ["Logan Rusnock", "Champion"],
+]
+seniors_list = "Kyle Biondo, Devlin Chevere, Nicholas DiSante, Gavin Grell, Colin Marano, Ryan Marano, Felix Ramos, Gursilar Sidhu, Colin Turner"
+junior_high = "6–4 in duals and 10th at the District XI Junior High Tournament under head coach Craig Israel. District placewinners: Ashton Szoke (4th), Mason Frisoli (5th), Nick Harding (6th)."
+
+[[season]]
+id = "2023-24"
+label = "2023–24"
+dual_record = "9–6"
+team_photo = "team-2024"
+headline = "Trey Wagner becomes Coach Provini’s first state champion."
+team_finishes = [
+  ["PIAA District XI AAA", "4th"],
+  ["PIAA Northeast Regional AAA", "4th"],
+  ["PIAA State Tournament", "13th"],
+]
+postseason = [
+  ["Trey Wagner", "127", "1st", "1st", "Champion"],
+  ["Gabe Ballard", "114", "1st", "1st", "4th"],
+  ["Austin Noe", "", "3rd", "2nd", "Qualifier"],
+  ["Gavin Grell", "", "2nd", "4th", "Qualifier"],
+  ["Chase Grabfelder", "", "4th", "5th", ""],
+  ["Colin Marano", "", "4th", "6th", ""],
+  ["Landon Roland", "", "6th", "", ""],
+]
+portraits = [
+  ["portrait-wagner-2024", "Trey Wagner", "State champion, 127"],
+  ["portrait-ballard-2024", "Gabe Ballard", "State 4th, 114"],
+  ["portrait-noe-2024", "Austin Noe", "State qualifier"],
+  ["portrait-grell-2024", "Gavin Grell", "State qualifier"],
+]
+awards = [
+  ["Outstanding Wrestler", "Trey Wagner"],
+  ["Rookie of the Year", "Gabe Ballard"],
+  ["Most Team Points", "Gabe Ballard (232)"],
+  ["Most Takedowns", "Trey Wagner (94)"],
+  ["Most Courageous", "Trey Wagner (+54 third-period points)"],
+  ["Most Pins", "Austin Noe (24)"],
+  ["Fastest Pin", "Austin Noe (0:19)"],
+  ["Hardest Working Senior", "Austin Noe"],
+  ["Scholar Athlete", "Austin Noe"],
+  ["Future Star", "Luke Rogan"],
+  ["Most Improved", "Colin Turner"],
+]
+jv_title = "JV District Tournament"
+jv = [
+  ["Joell Small", "2nd"], ["Brandon McEntire", "2nd"], ["Luke Rogan", "3rd"],
+  ["Kody Ziegenfus", "4th"], ["Colin Turner", "5th"], ["Aaden Clough", "6th"],
+]
+seniors_list = "Austin Noe, Landon Roland, Kody Ziegenfus"
+junior_high = "District XI Junior High Tournament team champions with a 13–1 dual record under head coach Joe Tocci. District champions: Brayden Wenrich, Davi Glykas, Carter Chlebove."
+
+[[season]]
+id = "2022-23"
+label = "2022–23"
+dual_record = ""
+team_photo = ""
+headline = "Coach Provini’s first season, and the end of two great careers."
+summary = [
+  "Dagen Condomitti finished with 118 career wins, three District XI titles, four Northeast Regional titles (just the second four-time regional champion in school history), and three state medals, including 3rd as a senior.",
+  "Carson Wagner finished with 115 career wins, District and Regional titles, and a state runner-up finish, becoming just the fourth four-time state placewinner in Northampton history.",
+  "Condomitti and freshman Trey Wagner won Holiday Classic titles, Wagner and Condomitti repeated as Top Hat champions, and Condomitti was runner-up at the Beast of the East.",
+]

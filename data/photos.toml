@@ -1,0 +1,474 @@
+# Photo catalog. Every photo on the site is listed here once.
+#   id       name used in pages (assets/img/photos/<id>-<width>.webp)
+#   source   where the original came from, so it can be re-pulled later
+#   season   the season the photo is from (only used for season-specific spots)
+#   alt      description for screen readers
+#   caption  short line shown under the photo or in the gallery (optional)
+#   credit   photographer, when the photo carries a watermark or credit
+#   crop     [left, top, right, bottom] in source pixels (optional)
+#   focus    CSS object-position used when the photo is cropped to fit (optional)
+#   file     working path used when (re)processing; ignored when missing
+
+# ---------------------------------------------------------------- 2025-26
+[[photo]]
+id = "hero-circle"
+source = "2025-26 banquet program, page 23"
+season = "2025-26"
+alt = "Northampton wrestlers lie in a circle with their heads together on the orange home mat before a match"
+caption = "The pre-match circle on the home mat."
+focus = "50% 62%"
+widths = [640, 1200, 1800, 2400]
+file = "img26/p-023-089.png"
+
+[[photo]]
+id = "program-family"
+source = "2025-26 banquet program, cover"
+season = "2025-26"
+alt = "The whole Northampton wrestling program, from youth wrestlers to varsity, seated together in the gym bleachers"
+caption = "The 2025–26 Konkrete Kids, youth through varsity."
+widths = [640, 1200, 1800, 2400]
+file = "img26/p-001-001.png"
+
+[[photo]]
+id = "team-mayhem"
+source = "2025-26 banquet program, page 30"
+season = "2025-26"
+alt = "The Northampton varsity team and coaches pose together at the Mid-Winter Mayhem tournament"
+caption = "The varsity at the Mid-Winter Mayhem, where the team finished 3rd."
+widths = [640, 1200, 1800, 2400]
+file = "img26/p-030-116.png"
+
+[[photo]]
+id = "piaa-third"
+source = "2025-26 banquet program, page 17"
+season = "2025-26"
+alt = "Northampton wrestlers hold a hand-painted sign that reads KKid Wrestling 3rd in PIAA"
+caption = "Third in the state at the 2026 PIAA Championships."
+widths = [640, 1200, 1800]
+file = "img26/p-017-050.png"
+
+[[photo]]
+id = "senior-night"
+source = "2025-26 banquet program, page 27"
+season = "2025-26"
+alt = "Northampton seniors and their families on the orange mat for Senior Night"
+caption = "Senior Night 2026."
+widths = [640, 1200, 1800]
+file = "img26/p-027-103.png"
+
+[[photo]]
+id = "ballard-100"
+source = "2025-26 banquet program, page 27"
+season = "2025-26"
+alt = "Gabe Ballard holds a banner marking his 100th career win, flanked by his coaches"
+caption = "Gabe Ballard is honored for his 100th career win."
+widths = [640, 1200, 1800]
+file = "img26/p-027-100.png"
+
+[[photo]]
+id = "jv-districts"
+source = "2025-26 banquet program, page 31"
+season = "2025-26"
+alt = "Northampton JV wrestlers and coaches at the JV district tournament"
+caption = "The JV squad at the 2026 Ray Nunamaker JV District Tournament."
+widths = [640, 1200, 1800]
+file = "img26/p-031-121.png"
+
+[[photo]]
+id = "jh-districts"
+source = "2025-26 banquet program, page 32"
+season = "2025-26"
+alt = "Northampton junior high wrestlers with medals and certificates, with their coaches"
+caption = "The junior high team at the 2026 District XI Junior High Tournament."
+widths = [640, 1200, 1800]
+file = "img26/p-032-125.png"
+
+[[photo]]
+id = "youth-champs"
+source = "2025-26 banquet program, page 16"
+season = "2025-26"
+alt = "Three Northampton youth wrestlers hold VEWL champion trophies"
+caption = "Youth league champions."
+widths = [640, 1200]
+file = "img26/p-016-040.png"
+
+[[photo]]
+id = "youth-autographs"
+source = "2025-26 banquet program, page 25"
+season = "2025-26"
+alt = "Varsity wrestlers sign autographs for young fans at a long table"
+caption = "Varsity wrestlers sign autographs for the next generation."
+widths = [640, 1200]
+focus = "50% 40%"
+file = "img26/p-025-096.png"
+
+[[photo]]
+id = "youth-mat"
+source = "2025-26 banquet program, page 25"
+season = "2025-26"
+alt = "Young wrestlers sit on the mat and listen to a coach"
+caption = "Youth wrestlers on the mat."
+widths = [640, 1200]
+file = "img26/p-025-092.png"
+
+[[photo]]
+id = "hershey"
+source = "2025-26 banquet program, page 39"
+season = "2025-26"
+alt = "Northampton wrestlers and coaches stand in front of Hershey's Chocolate World"
+caption = "In Hershey for the 2026 PIAA Championships."
+widths = [640, 1200]
+file = "img26/p-039-197.png"
+
+[[photo]]
+id = "celebration"
+source = "2025-26 banquet program, page 44"
+season = "2025-26"
+alt = "Wrestlers in K-Kids shirts pose in front of a State Champion Wenrich banner"
+caption = "Celebrating two state champions."
+widths = [640, 1200, 1800]
+file = "img26/p-044-246.png"
+
+[[photo]]
+id = "practice-room"
+source = "2025-26 banquet program, page 36"
+season = "2025-26"
+alt = "Wrestlers work through a drill in the Northampton wrestling room"
+caption = "Work in the room."
+widths = [640, 1200]
+file = "img26/p-036-177.png"
+
+[[photo]]
+id = "bowling"
+source = "2025-26 banquet program, page 37"
+season = "2025-26"
+alt = "Teammates gather at a bowling lane during a team outing"
+caption = "Team bowling night."
+widths = [640, 1200]
+file = "img26/p-037-184.png"
+
+[[photo]]
+id = "wenrich-celebrates"
+source = "2025-26 banquet program, page 9"
+season = "2025-26"
+alt = "Brayden Wenrich yells and clenches his fists after a win"
+caption = "Brayden Wenrich celebrates a win."
+widths = [640, 960]
+file = "img26/p-009-014.png"
+
+[[photo]]
+id = "wenrich-medal"
+source = "2025-26 banquet program, page 41"
+season = "2025-26"
+alt = "Brayden Wenrich wears his PIAA state championship gold medal"
+caption = "Brayden Wenrich, 2026 PIAA champion at 114 pounds."
+widths = [640, 1050]
+focus = "50% 30%"
+file = "img26/p-041-213.png"
+
+[[photo]]
+id = "wenrich-final"
+source = "2025-26 banquet program, page 41"
+season = "2025-26"
+alt = "Brayden Wenrich, wearing a gold medal, stands with three men in suits in front of a green screen"
+caption = "Brayden Wenrich after the 114-pound final."
+widths = [640, 1200, 1655]
+file = "img26/p-041-215.png"
+
+[[photo]]
+id = "coaches-embrace"
+source = "2025-26 banquet program, page 41"
+season = "2025-26"
+alt = "Two Northampton coaches embrace on the arena floor at the Giant Center"
+caption = "The corner celebrates at the Giant Center."
+widths = [640, 1284]
+file = "img26/p-041-219.png"
+
+[[photo]]
+id = "states-control"
+source = "2025-26 banquet program, page 41"
+season = "2025-26"
+alt = "A Northampton wrestler in white headgear controls his opponent's leg"
+caption = "PIAA Championships action."
+widths = [640, 1229]
+file = "img26/p-041-221.png"
+
+[[photo]]
+id = "ballard-medal"
+source = "2025-26 banquet program, page 42"
+season = "2025-26"
+alt = "Gabe Ballard wears his PIAA state championship gold medal"
+caption = "Gabe Ballard, 2026 PIAA champion at 152 pounds."
+widths = [640, 984]
+focus = "50% 30%"
+file = "img26/p-042-224.png"
+
+[[photo]]
+id = "ballard-ride"
+source = "2025-26 banquet program, page 42"
+season = "2025-26"
+alt = "Gabe Ballard smiles while controlling his opponent from behind"
+caption = "Gabe Ballard at the 2026 PIAA Championships."
+widths = [640, 926]
+file = "img26/p-042-226.png"
+
+[[photo]]
+id = "ballard-coaches"
+source = "2025-26 banquet program, page 42"
+season = "2025-26"
+alt = "Coaches embrace Gabe Ballard after a win"
+caption = "Gabe Ballard celebrates with his coaches."
+widths = [640, 1280]
+file = "img26/p-042-229.png"
+
+[[photo]]
+id = "ballard-attack"
+source = "2025-26 banquet program, page 42"
+season = "2025-26"
+alt = "Gabe Ballard drives through his opponent's legs toward the mat"
+caption = "Gabe Ballard on the attack."
+credit = "Aaron Morekin"
+widths = [640, 1200, 1624]
+file = "img26/p-042-232.png"
+
+[[photo]]
+id = "ballard-raised"
+source = "2025-26 banquet program, page 42"
+season = "2025-26"
+alt = "A referee raises Gabe Ballard's hand as he points one finger in the air"
+caption = "Gabe Ballard, state champion."
+credit = "Aaron Morekin"
+widths = [640, 1152]
+file = "img26/p-042-233.png"
+
+[[photo]]
+id = "dark-stance"
+source = "2025-26 banquet program, page 21"
+season = "2025-26"
+alt = "Two wrestlers square off under dramatic lighting on the orange home mat"
+credit = "Aaron Morekin"
+widths = [640, 1280]
+file = "img26/p-021-074.png"
+
+[[photo]]
+id = "dark-shot"
+source = "2025-26 banquet program, page 21"
+season = "2025-26"
+alt = "A Northampton wrestler drives into his opponent under dramatic lighting"
+credit = "Aaron Morekin"
+widths = [640, 1170]
+file = "img26/p-021-078.png"
+
+[[photo]]
+id = "postseason-roar"
+source = "2025-26 banquet program, page 38"
+season = "2025-26"
+alt = "A Northampton wrestler roars with his fists clenched after a win"
+caption = "Postseason intensity."
+widths = [640, 1044]
+file = "img26/p-038-190.png"
+
+# Studio portraits from the 2026 picture plaque awards
+[[photo]]
+id = "portrait-wenrich-2026"
+source = "2025-26 banquet program, page 9"
+season = "2025-26"
+alt = "Brayden Wenrich in his Northampton singlet wearing his postseason medals"
+widths = [480, 918]
+file = "img26/p-009-012.png"
+
+[[photo]]
+id = "portrait-ballard-2026"
+source = "2025-26 banquet program, page 10"
+season = "2025-26"
+alt = "Gabe Ballard in his Northampton singlet wearing his postseason medals"
+widths = [480, 1027]
+file = "img26/p-010-015.png"
+
+[[photo]]
+id = "portrait-wagner-2026"
+source = "2025-26 banquet program, page 8"
+season = "2025-26"
+alt = "Trey Wagner in his Northampton singlet wearing his postseason medals"
+widths = [480, 841]
+file = "img26/p-008-010.png"
+
+[[photo]]
+id = "portrait-sommer-2026"
+source = "2025-26 banquet program, page 7"
+season = "2025-26"
+alt = "Matthew Sommer in his Northampton singlet wearing his postseason medals"
+widths = [480, 871]
+file = "img26/p-007-008.png"
+
+[[photo]]
+id = "portrait-chlebove-2026"
+source = "2025-26 banquet program, page 7"
+season = "2025-26"
+alt = "Carter Chlebove in his Northampton singlet wearing his postseason medals"
+widths = [480, 872]
+file = "img26/p-007-009.png"
+
+# ---------------------------------------------------------------- coaches
+[[photo]]
+id = "coach-provini"
+source = "2025-26 banquet program, page 11"
+alt = "Head coach Joe Provini claps from the corner during a match"
+crop = [250, 0, 707, 572]
+widths = [457]
+file = "img26/p-011-019.png"
+
+[[photo]]
+id = "coach-sommer"
+source = "2025-26 banquet program, page 12"
+alt = "Coach Mike Sommer"
+crop = [513, 110, 1113, 860]
+widths = [480, 600]
+file = "img26/p-012-020.png"
+
+[[photo]]
+id = "coach-derr"
+source = "2025-26 banquet program, page 12"
+alt = "Coach Jim Derr"
+crop = [500, 100, 1100, 850]
+widths = [480, 600]
+file = "img26/p-012-021.png"
+
+[[photo]]
+id = "coach-newsom"
+source = "2025-26 banquet program, page 13"
+alt = "Coach Marcus Newsom"
+crop = [840, 110, 1640, 1110]
+widths = [480, 800]
+file = "img26/p-013-022.png"
+
+[[photo]]
+id = "coach-rusnock"
+source = "2024-25 team photo (2025-26 banquet program, page 13)"
+alt = "Coach Kyle Rusnock"
+widths = [191]
+file = "img26/rusnock_hi.png"
+
+[[photo]]
+id = "coach-szerencsits"
+source = "2024-25 team photo (2025-26 banquet program, page 13)"
+alt = "Coach Ethan Szerencsits"
+widths = [158]
+file = "img26/szerencsits_hi.png"
+
+[[photo]]
+id = "coach-embrace"
+source = "Head coach page header, 2023-24 through 2025-26 banquet programs"
+alt = "Coach Joe Provini hugs a wrestler as another coach cheers behind them"
+caption = "Coach Provini celebrates with a wrestler."
+widths = [640, 1070]
+file = "img26/p-011-018.png"
+
+# ---------------------------------------------------------------- texture
+[[photo]]
+id = "concrete"
+source = "2025-26 banquet program, cover background"
+alt = ""
+widths = [1600]
+gray = true
+file = "img26/p-001-000.png"
+
+# ---------------------------------------------------------------- 2024-25
+[[photo]]
+id = "team-2025"
+source = "2024-25 banquet program, cover"
+season = "2024-25"
+alt = "The 2024-25 Northampton varsity team and coaches in front of the regional and state champions banners"
+caption = "The 2024–25 Konkrete Kids."
+widths = [640, 1200, 2369]
+file = "p25/p-001-001.png"
+
+[[photo]]
+id = "portrait-wenrich-2025"
+source = "2024-25 banquet program, page 7"
+season = "2024-25"
+alt = "Brayden Wenrich in an orange Northampton singlet wearing his postseason medals"
+widths = [480, 900]
+file = "p25/p-007-008.png"
+
+[[photo]]
+id = "portrait-ryan-marano-2025"
+source = "2024-25 banquet program, page 7"
+season = "2024-25"
+alt = "Ryan Marano in his Northampton singlet wearing his postseason medals"
+widths = [480, 900]
+file = "p25/p-007-009.png"
+
+[[photo]]
+id = "portrait-ballard-2025"
+source = "2024-25 banquet program, page 8"
+season = "2024-25"
+alt = "Gabe Ballard in his Northampton singlet wearing his postseason medals"
+widths = [480, 900]
+file = "p25/p-008-010.png"
+
+[[photo]]
+id = "portrait-wagner-2025"
+source = "2024-25 banquet program, page 8"
+season = "2024-25"
+alt = "Trey Wagner in a gray Northampton singlet wearing his postseason medals"
+widths = [480, 900]
+file = "p25/p-008-011.png"
+
+[[photo]]
+id = "portrait-grabfelder-2025"
+source = "2024-25 banquet program, page 9"
+season = "2024-25"
+alt = "Chase Grabfelder in his Northampton singlet wearing his postseason medals"
+widths = [480, 900]
+file = "p25/p-009-012.png"
+
+[[photo]]
+id = "portrait-grell-2025"
+source = "2024-25 banquet program, page 9"
+season = "2024-25"
+alt = "Gavin Grell in his Northampton singlet wearing his postseason medals"
+widths = [480, 900]
+file = "p25/p-009-013.png"
+
+# ---------------------------------------------------------------- 2023-24
+[[photo]]
+id = "team-2024"
+source = "2023-24 banquet program, page 5"
+season = "2023-24"
+alt = "The 2023-24 Northampton varsity team and coaches seated on the mat in the wrestling room"
+caption = "The 2023–24 Konkrete Kids."
+widths = [640, 1200, 1616]
+file = "p24/p-005-014.png"
+
+[[photo]]
+id = "portrait-wagner-2024"
+source = "2023-24 banquet program, page 10"
+season = "2023-24"
+alt = "Trey Wagner in his Northampton singlet wearing his 2024 state championship medals"
+widths = [480, 900]
+file = "p24/p-010-020.png"
+
+[[photo]]
+id = "portrait-ballard-2024"
+source = "2023-24 banquet program, page 8"
+season = "2023-24"
+alt = "Gabe Ballard in a white Northampton singlet wearing his postseason medals"
+widths = [480, 900]
+file = "p24/p-008-016.png"
+
+[[photo]]
+id = "portrait-noe-2024"
+source = "2023-24 banquet program, page 8"
+season = "2023-24"
+alt = "Austin Noe in his Northampton singlet wearing his postseason medals"
+widths = [480, 900]
+file = "p24/p-008-017.png"
+
+[[photo]]
+id = "portrait-grell-2024"
+source = "2023-24 banquet program, page 9"
+season = "2023-24"
+alt = "Gavin Grell in his Northampton singlet wearing his postseason medals"
+widths = [480, 900]
+file = "p24/p-009-019.png"
