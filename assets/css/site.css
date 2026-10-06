@@ -431,3 +431,11 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 .moment-cap { padding: 22px 0 28px; max-width: none; font-size: clamp(26px, 3.4vw, 44px); }
 .moment-cap { padding-bottom: 6px; }
 .moment-sub { color: var(--on-dark-2); font-size: 15px; margin: 0; padding-bottom: 28px; }
+
+/* moment band v2: contained photo */
+.moment { padding: clamp(40px, 6vw, 72px) 0; }
+.moment-fig { max-width: 1070px; margin: 0 auto; }
+.moment-fig img { width: 100%; height: auto; }
+.moment-fig figcaption { margin-top: 18px; color: var(--on-dark-2); }
+.moment-fig .moment-cap { display: block; color: var(--on-dark); padding: 0 0 6px; }
+.moment-fig .moment-sub { display: block; padding: 0; }
