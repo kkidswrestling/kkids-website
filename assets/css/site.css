@@ -439,3 +439,21 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 .moment-fig figcaption { margin-top: 18px; color: var(--on-dark-2); }
 .moment-fig .moment-cap { display: block; color: var(--on-dark); padding: 0 0 6px; }
 .moment-fig .moment-sub { display: block; padding: 0; }
+
+/* official logo */
+.brand .mark { width: 56px; height: auto; }
+.foot-logo { width: 120px; height: auto; margin-bottom: 14px; }
+.natural-fig img { width: 100%; height: auto; }
+/* hero v2: copy at the top over the dark gym, the circle stays visible at the bottom */
+.hero { align-items: flex-start; }
+.hero::after { background: linear-gradient(180deg, rgba(20,20,20,.92) 0%, rgba(20,20,20,.55) 38%, rgba(20,20,20,0) 62%, rgba(20,20,20,0) 88%, rgba(20,20,20,.6) 100%); }
+.hero-copy { padding-top: clamp(48px, 7vw, 88px); padding-bottom: 0; }
+@media (max-width: 700px) { .hero { min-height: 92vh; } .hero::after { background: linear-gradient(180deg, rgba(20,20,20,.94) 0%, rgba(20,20,20,.7) 45%, rgba(20,20,20,0) 72%); } }
+@media (min-width: 701px) {
+  .hero { min-height: 0; aspect-ratio: 2000 / 1429; max-height: none; }
+  .hero h1 { font-size: clamp(60px, 8vw, 132px); }
+  .hero .script { font-size: clamp(44px, 5.6vw, 92px); }
+  .hero-sub { margin: 12px 0 20px; }
+  .hero::after { background: linear-gradient(180deg, rgba(20,20,20,.9) 0%, rgba(20,20,20,.5) 40%, rgba(20,20,20,0) 58%, rgba(20,20,20,0) 90%, rgba(20,20,20,.55) 100%); }
+}
+.program-fig { margin-top: clamp(28px, 4vw, 48px); }

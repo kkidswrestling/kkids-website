@@ -12,22 +12,22 @@
 # ---------------------------------------------------------------- 2025-26
 [[photo]]
 id = "hero-circle"
-source = "2025-26 banquet program, page 23"
+source = "Coach Provini, batch 2"
 season = "2025-26"
-alt = "Northampton wrestlers lie in a circle with their heads together on the orange home mat before a match"
+alt = "Northampton wrestlers lie in a circle on the orange home mat with their fists together before a match"
 caption = "The pre-match circle on the home mat."
-focus = "50% 62%"
-widths = [640, 1200, 1800, 2400]
-file = "img26/p-023-089.png"
+focus = "50% 100%"
+widths = [640, 1200, 1800, 2000]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/hero.png"
 
 [[photo]]
 id = "program-family"
-source = "2025-26 banquet program, cover"
+source = "Coach Provini, batch 2"
 season = "2025-26"
-alt = "The whole Northampton wrestling program, from youth wrestlers to varsity, seated together in the gym bleachers"
-caption = "The 2025–26 Konkrete Kids, youth through varsity."
-widths = [640, 1200, 1800, 2400]
-file = "img26/p-001-001.png"
+alt = "The whole Northampton wrestling program, from the youngest youth wrestlers to the varsity, with coaches, in the gym bleachers below the state championship banners"
+caption = "The Konkrete Kids family, from the youngest youth wrestlers to the varsity."
+widths = [640, 1200, 1800, 2576]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/program.jpg"
 
 [[photo]]
 id = "team-mayhem"

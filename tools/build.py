@@ -131,9 +131,7 @@ def social_links():
         for k in ("instagram", "x", "facebook", "youtube"))
 
 
-LOGO = ('<svg class="mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false">'
-        '<rect width="40" height="40" rx="3" fill="#f26a1b"/>'
-        '<path d="M9 31V9h6.4l9 12.6V9H31v22h-6.3l-9.1-12.7V31z" fill="#141414"/></svg>')
+LOGO = ''
 
 
 def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js",), og_image="hero-circle", hero_header=False):
@@ -163,7 +161,6 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
 <meta property="og:image" content="{og}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#141414">
-<link rel="icon" href="{R}assets/img/icon.svg" type="image/svg+xml">
 <link rel="icon" href="{R}assets/img/icon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="{R}assets/img/apple-touch-icon.png">
 <link rel="manifest" href="{R}site.webmanifest">
@@ -175,7 +172,7 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-head{head_cls}">
   <div class="wrap head-row">
-    <a class="brand" href="{R}" aria-label="{SITE['name']} home">{LOGO}<span>Northampton<br>Wrestling</span></a>
+    <a class="brand" href="{R}" aria-label="{SITE['name']} home"><img class="mark" src="{R}assets/img/logo-96.png" srcset="{R}assets/img/logo-96.png 1x, {R}assets/img/logo-192.png 2x" width="56" height="48" alt=""><span>Northampton<br>Wrestling</span></a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="bars" aria-hidden="true"></span><span class="label">Menu</span></button>
     <nav class="site-nav" id="site-nav" aria-label="Main"><ul role="list">{nav}</ul></nav>
   </div>
@@ -186,7 +183,7 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
 <footer class="site-foot">
   <div class="wrap foot-grid">
     <div class="foot-brand">
-      <p class="script" aria-hidden="true">Konkrete Kids</p>
+      <img class="foot-logo" src="{R}assets/img/logo-192.png" srcset="{R}assets/img/logo-192.png 1x, {R}assets/img/logo-400.png 2x" width="120" height="103" alt="Northampton Konkrete Kids logo" loading="lazy">
       <p>Northampton wrestling since {SITE['established']}. {SITE['conference']}, {SITE['district']}.</p>
       <div class="social">{social_links()}</div>
     </div>
@@ -378,14 +375,14 @@ def build_home():
 </section>
 
 <section class="band" aria-labelledby="about-title">
-  <div class="wrap split">
+  <div class="wrap">
     <div class="prose">
       <h2 id="about-title">History, tradition, community</h2>
       <p>Northampton Wrestling began in 1945. More than 80 seasons later, the program runs from kindergarten through varsity, and every Konkrete Kid comes through the same room, the same expectations, and the same black and orange.</p>
       <p>Our mission is to give young people a supportive, demanding place to grow as wrestlers and as responsible, resilient, respectful members of the community. We never sacrifice goodness for greatness. Integrity and honor come first, and winning is the byproduct.</p>
       <p><a class="text-link" href="coaching-staff/">Meet the coaching staff</a></p>
     </div>
-    {figure(R, "program-family", "(min-width: 900px) 50vw, 100vw", "wide-fig")}
+    {figure(R, "program-family", "(min-width: 1180px) 1100px, 100vw", "natural-fig program-fig")}
   </div>
 </section>
 
@@ -434,7 +431,7 @@ def build_home():
         "sport": "Wrestling", "url": SITE["domain"] + "/", "foundingDate": "1945",
         "memberOf": {"@type": "SportsOrganization", "name": SITE["owner"]},
         "location": {"@type": "Place", "name": SITE["school"], "address": {"@type": "PostalAddress", "streetAddress": SITE["address"][0], "addressLocality": "Northampton", "addressRegion": "PA", "postalCode": "18067", "addressCountry": "US"}},
-        "email": SITE["email"], "sameAs": list(SITE["social"].values()),
+        "logo": SITE["domain"] + "/assets/img/logo-400.png", "email": SITE["email"], "sameAs": list(SITE["social"].values()),
     }
     head = f'<script type="application/ld+json">{json.dumps(ld)}</script>\n'
     return page("index.html", "Home", "Northampton Area High School wrestling, the Konkrete Kids: results, rosters, schedules, and every champion since 1945.", body, "", head, hero_header=True)

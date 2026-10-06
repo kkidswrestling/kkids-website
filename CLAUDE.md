@@ -8,6 +8,7 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Photos: catalog in `data/photos.toml`, processed by `tools/images.py` into `assets/img/photos/` (WebP sizes + one JPEG). Only use a photo in a season-specific spot if its `season` matches. Several banquet-program photos were reused from earlier programs; check before using any new one.
 - Credit watermarked photos (Aaron Morekin). Don't use newspaper photos or social-media screenshots.
 - Youth (K-6): no names next to faces.
+- Official logo: assets/img/logo-*.png (orange N with KONKRETE KIDS bar). Use it for the brand mark and icons; never redraw it.
 - Hall of Champions counts and multi-time honors are computed from the CSV lists. The banquet program's coach table says 145 District / 97 Regional titles; the lists total 143 / 98. Ask Joe for missing names rather than changing totals.
 - Girls wrestling is a separate program; leave it out.
 - Before pushing: build, preview with `python3 -m http.server`, check phone and desktop widths, no sideways scrolling, no console errors.
