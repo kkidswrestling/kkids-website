@@ -14,4 +14,5 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Before pushing: build, preview with `python3 -m http.server`, check phone and desktop widths, no sideways scrolling, no console errors.
 - Home gym: Pete Schneider Gym (confirmed via Morning Call, Jan. 5, 2024).
 - Team titles (data/hall/team-titles.csv) come from PA-Wrestling team history (id=189): PIAA AAA state-tournament team titles 1993, 1994, 1995, 1998, 2000, 2003, 2004. 100-Win Club (data/hall/hundred-wins.csv) is transcribed from the gym banners; active wrestlers are marked `active` and need their win total updated each season.
-- PA-Wrestling shows some state medals the banquet program lists omit (e.g., Finkbeiner 1982-83, Whitey Chlebove 1992-93, McCallum 1999, Kevin Smith 1987). Not added until Joe confirms.
+- Only accomplishments earned while wrestling for Northampton count. PA-Wrestling lists earlier medals for Finkbeiner (1982-83), Whitey Chlebove (1992-93), McCallum (1999), and Kevin Smith (1987); all four transferred in for senior year, so those medals stay off the site (Joe, Oct. 2026). Don't add medals from PA-Wrestling without checking this.
+- Zach Valley's 2014 state runner-up was at 126 (the banquet program says 120; Joe confirmed 126).
