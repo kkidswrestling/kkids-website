@@ -351,11 +351,10 @@ file = "img26/rusnock_hi.png"
 
 [[photo]]
 id = "coach-szerencsits"
-crop = [140, 60, 330, 250]
-source = "Staff photo, showcase batch 1"
+source = "2024-25 team photo (2025-26 banquet program, page 13)"
 alt = "Coach Ethan Szerencsits"
-widths = [190]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/12-fd262792-image.jpg"
+widths = [158]
+file = "img26/szerencsits_hi.png"
 
 [[photo]]
 id = "coach-embrace"
@@ -529,8 +528,8 @@ file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8
 id = "staff-corner"
 source = "Coach Provini, showcase batch 1 (also in 2025-26 banquet program, page 19)"
 season = "2025-26"
-alt = "Coach Ethan Szerencsits and the Northampton coaching staff watch a match from the corner"
-caption = "Coach Ethan Szerencsits (front) and the staff in the corner."
+alt = "Coach Joe Provini and Coach Mike Sommer watch a match from the corner"
+caption = "Coach Provini (front) and Coach Sommer in the corner."
 widths = [640, 768]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/12-fd262792-image.jpg"
 
