@@ -141,6 +141,12 @@ def social_links():
 LOGO = ''
 
 
+def asset_ver(rel):
+    """Short content hash so browsers fetch new CSS/JS whenever it changes."""
+    import hashlib
+    return hashlib.md5(open(os.path.join(ROOT, rel), "rb").read()).hexdigest()[:8]
+
+
 def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js",), og_image="hero-circle", hero_header=False):
     depth = path.count("/")
     R = "../" * depth
@@ -154,7 +160,7 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
                       f'<ul class="sub" id="sub-{gi}" role="list">{links}</ul></li>')
     nav = "".join(groups)
     og = SITE["domain"] + "/" + largest("", og_image)
-    js = "".join(f'<script src="{R}assets/js/{s}" defer></script>' for s in scripts)
+    js = "".join(f'<script src="{R}assets/js/{s}?v={asset_ver("assets/js/" + s)}" defer></script>' for s in scripts)
     head_cls = " is-over-hero" if hero_header else ""
     out = f"""<!doctype html>
 <html lang="en">
@@ -177,13 +183,13 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
 <link rel="manifest" href="{R}site.webmanifest">
 <link rel="preload" href="{R}assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{R}assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{R}assets/css/site.css">
+<link rel="stylesheet" href="{R}assets/css/site.css?v={asset_ver("assets/css/site.css")}">
 {extra_head}</head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-head{head_cls}">
   <div class="wrap head-row">
-    <a class="brand" href="{R}" aria-label="{SITE['name']} home"><img class="mark" src="{R}assets/img/logo-96.png" srcset="{R}assets/img/logo-96.png 1x, {R}assets/img/logo-192.png 2x" width="56" height="48" alt=""><span>Northampton<br>Wrestling</span></a>
+    <a class="brand" href="{R or './'}" aria-label="{SITE['name']} home"><img class="mark" src="{R}assets/img/logo-96.png" srcset="{R}assets/img/logo-96.png 1x, {R}assets/img/logo-192.png 2x" width="56" height="48" alt=""><span>Northampton<br>Wrestling</span></a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="bars" aria-hidden="true"></span><span class="label">Menu</span></button>
     <nav class="site-nav" id="site-nav" aria-label="Main"><ul class="top" role="list">{nav}</ul><a class="follow-btn" href="{R}follow/">Follow</a></nav>
   </div>
@@ -969,7 +975,7 @@ def build_404():
     out = page("404.html", "Page not found", "Page not found.", body)
     p = os.path.join(ROOT, "404.html")
     s = open(p).read().replace('href="assets/', 'href="/assets/').replace('src="assets/', 'src="/assets/') \
-        .replace('href="site.webmanifest"', 'href="/site.webmanifest"').replace('<a class="brand" href=""', '<a class="brand" href="/"')
+        .replace('href="site.webmanifest"', 'href="/site.webmanifest"').replace('<a class="brand" href="./"', '<a class="brand" href="/"')
     s = re.sub(r'href="((?:high-school|schedule|junior-high|youth|coaching-staff|champions|seasons|story|facilities|roster|results|timeline|news|photos|videos|follow|family|alumni|join)/[^"]*)"', r'href="/\1"', s)
     s = re.sub(r'(?<=[" ,])assets/', '/assets/', s).replace('//assets/', '/assets/')
     s = s.replace('<li><a href="">Home</a></li>', '<li><a href="/">Home</a></li>')

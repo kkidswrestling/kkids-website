@@ -20,3 +20,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Recurring updates: results/schedule in data/results.toml; news posts in data/news.toml (real events only); roster in data/roster.toml (update after wrestle-offs); timeline in data/timeline.toml.
 - Newsletter: set newsletter_url in data/site.toml once the club creates an email list account; until then sign-up opens an email to the club.
 - Youth practice-room and attendance rules are Joe's youth-program rules; don't present them as varsity rules.
+- CSS/JS links carry a content-hash ?v= stamp (asset_ver in build.py) so browsers never mix new pages with an old cached stylesheet. Always rebuild after editing CSS/JS.

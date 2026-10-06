@@ -30,7 +30,7 @@
   var out = document.getElementById("results");
   if (!q || !out) return;
   var people = [];
-  var src = document.querySelector('script[src$="hall.js"]').getAttribute("src").replace(/assets\/js\/hall\.js$/, "");
+  var src = document.querySelector('script[src*="hall.js"]').getAttribute("src").replace(/assets\/js\/hall\.js.*$/, "");
   fetch(src + "assets/data/hall.json").then(function (r) { return r.json(); }).then(function (d) { people = d; run(); });
 
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
