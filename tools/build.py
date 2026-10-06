@@ -372,8 +372,8 @@ def build_home():
 
 <section class="moment" aria-label="Photo">
   <div class="wrap">
-    <figure class="moment-fig">{picture(R, "coach-embrace", "(min-width: 1180px) 1100px, 100vw")}
-      <figcaption><span class="moment-cap">The moment it all pays off.</span><span class="moment-sub">{e(PHOTOS["coach-embrace"]["caption"])}</span></figcaption></figure>
+    <figure class="moment-fig">{picture(R, "provini-celebrates", "(min-width: 1180px) 1100px, 100vw")}
+      <figcaption><span class="moment-cap">The moment it all pays off.</span><span class="moment-sub">{e(PHOTOS["provini-celebrates"]["caption"])}</span></figcaption></figure>
   </div>
 </section>
 
@@ -745,7 +745,7 @@ def build_coaches():
 <section class="band">
   <div class="wrap">
     <div class="trio">
-      {figure(R, "provini-celebrates", "(min-width: 900px) 30vw, 100vw")}
+      {figure(R, "coach-embrace", "(min-width: 900px) 30vw, 100vw")}
       {figure(R, "bench-final-seconds", "(min-width: 900px) 30vw, 100vw")}
       {figure(R, "staff-corner", "(min-width: 900px) 30vw, 100vw")}
     </div>
