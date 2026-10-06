@@ -370,6 +370,11 @@ def build_home():
   </div>
 </section>
 
+<section class="moment" aria-label="Photo">
+  {picture(R, "showcase-tears", "100vw", "moment-img")}
+  <div class="wrap"><p class="moment-cap">{e(PHOTOS["showcase-tears"]["caption"])}</p></div>
+</section>
+
 <section class="band" aria-labelledby="about-title">
   <div class="wrap split">
     <div class="prose">
@@ -465,7 +470,7 @@ def build_high_school():
     medal_card = lambda pid, name, line: (f'<article class="medalist">{picture(R, pid, "(min-width: 900px) 18vw, 45vw")}'
                                          f'<h3>{name}</h3><p>{line}</p></article>')
     body = f"""
-{page_head(R, "High School", "Northampton Area High School boys wrestling: varsity and JV.", "team-mayhem", "50% 40%")}
+{page_head(R, "High School", "Northampton Area High School boys wrestling: varsity and JV.", "showcase-arms-up", "40% 28%")}
 
 <section class="band" aria-labelledby="now-title">
   <div class="wrap split narrow-right">
@@ -475,7 +480,7 @@ def build_high_school():
       <p>Both of last season’s state champions were underclassmen: Brayden Wenrich wrestled 2025–26 as a sophomore and Gabe Ballard as a junior.</p>
       <p class="actions"><a class="btn" href="../schedule/">Schedule</a><a class="btn ghost dark-ink" href="../coaching-staff/">Coaching staff</a></p>
     </div>
-    {figure(R, "piaa-third", "(min-width: 900px) 40vw, 100vw", "wide-fig")}
+    {figure(R, "showcase-roar", "(min-width: 900px) 40vw, 100vw", "tall-fig")}
   </div>
 </section>
 
@@ -695,7 +700,7 @@ def build_coaches():
 
     off = COACHES["officers"]
     body = f"""
-{page_head(R, "Coaching Staff", "The coaches who run the room, from the varsity to the junior high.")}
+{page_head(R, "Coaching Staff", "The coaches who run the room, from the varsity to the junior high.", "coaches-embrace", "60% 30%")}
 <section class="band">
   <div class="wrap head-coach">
     <figure class="hc-photo">{picture(R, h['photo'], "(min-width: 900px) 30vw, 70vw")}</figure>
@@ -738,9 +743,9 @@ def build_coaches():
 <section class="band">
   <div class="wrap">
     <div class="trio">
-      {figure(R, "coaches-embrace", "(min-width: 900px) 30vw, 100vw")}
-      {figure(R, "ballard-coaches", "(min-width: 900px) 30vw, 100vw")}
-      {figure(R, "coach-embrace", "(min-width: 900px) 30vw, 100vw")}
+      {figure(R, "provini-celebrates", "(min-width: 900px) 30vw, 100vw")}
+      {figure(R, "bench-final-seconds", "(min-width: 900px) 30vw, 100vw")}
+      {figure(R, "staff-corner", "(min-width: 900px) 30vw, 100vw")}
     </div>
   </div>
 </section>
@@ -834,7 +839,7 @@ def build_champions():
                      for i, (k, _, c) in enumerate(tabs))
     open(os.path.join(ROOT, "assets", "data", "hall.json"), "w").write(json.dumps(hall_json(), separators=(",", ":")))
     body = f"""
-{page_head(R, "Hall of Champions", f"Every Konkrete Kid who has won a District XI, Northeast Regional, or PIAA title or medaled at the state tournament, from 1948 to today.")}
+{page_head(R, "Hall of Champions", "Every Konkrete Kid who has won a District XI, Northeast Regional, or PIAA title or medaled at the state tournament, from 1948 to today.")}
 <section class="band dark wall-band" aria-labelledby="wall-title">
   <div class="wrap">
     {section_head(f'<span id="wall-title">{TOTALS["state"]} state champions</span>', "The banner wall, newest first.")}

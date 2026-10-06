@@ -177,12 +177,12 @@ file = "img26/p-041-215.png"
 
 [[photo]]
 id = "coaches-embrace"
-source = "2025-26 banquet program, page 41"
+source = "Coach Provini, showcase batch 1 (also in 2025-26 banquet program, page 41)"
 season = "2025-26"
 alt = "Two Northampton coaches embrace on the arena floor at the Giant Center"
 caption = "The corner celebrates at the Giant Center."
-widths = [640, 1284]
-file = "img26/p-041-219.png"
+widths = [640, 1200, 1800, 2400]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/06-d133656c-image.jpg"
 
 [[photo]]
 id = "states-control"
@@ -472,3 +472,57 @@ season = "2023-24"
 alt = "Gavin Grell in his Northampton singlet wearing his postseason medals"
 widths = [480, 900]
 file = "p24/p-009-019.png"
+
+# ---------------------------------------------------------------- showcase batch 1 (from Coach Provini)
+[[photo]]
+id = "showcase-arms-up"
+source = "Coach Provini, showcase batch 1"
+alt = "A Northampton wrestler in orange headgear throws both arms in the air after a win at the Giant Center"
+caption = "A win on the biggest stage, at the PIAA Championships in Hershey."
+focus = "40% 30%"
+widths = [640, 1200, 2000]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/01-f17cd701-image.jpg"
+
+[[photo]]
+id = "showcase-tears"
+source = "Coach Provini, showcase batch 1"
+alt = "A Northampton wrestler cries with joy as two coaches wrap him in a hug on the arena floor"
+caption = "The moment it all pays off."
+focus = "50% 40%"
+widths = [640, 1200, 1800, 2576]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/03-bda95548-image.jpg"
+
+[[photo]]
+id = "showcase-roar"
+source = "Coach Provini, showcase batch 1"
+alt = "A Northampton wrestler in a gray Northampton singlet roars and flexes after a win"
+focus = "50% 22%"
+widths = [640, 1179]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/05-b6a5c44a-image.jpg"
+
+[[photo]]
+id = "bench-final-seconds"
+source = "Coach Provini, showcase batch 1 (Dec. 29, 2024; also in 2024-25 banquet program)"
+season = "2024-25"
+alt = "Northampton coaches and wrestlers rise from the bench and signal with the clock at one second"
+caption = "The Northampton bench in the final second, December 2024."
+credit = "Aaron Morekin"
+widths = [640, 1280]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/04-0eb79c60-image.jpg"
+
+[[photo]]
+id = "provini-celebrates"
+source = "Coach Provini, showcase batch 1"
+alt = "Coach Joe Provini grins as a Northampton wrestler runs to him with a fist in the air"
+caption = "Coach Provini meets a winner coming off the mat."
+widths = [640, 1179]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/11-56c94a05-image.jpg"
+
+[[photo]]
+id = "staff-corner"
+source = "Coach Provini, showcase batch 1 (also in 2025-26 banquet program, page 19)"
+season = "2025-26"
+alt = "Northampton coaches sit in a row in the corner, watching a match"
+caption = "The staff in the corner."
+widths = [640, 768]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/12-fd262792-image.jpg"

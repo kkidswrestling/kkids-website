@@ -416,3 +416,16 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
 @media print { .site-head, .site-foot, .hero-actions, .tabs, .finder { display: none; } .panel[hidden] { display: block !important; } }
+
+/* full-bleed photo moment */
+.moment { position: relative; background: var(--mat); color: var(--on-dark); isolation: isolate; min-height: min(80vh, 760px); display: flex; align-items: flex-end; overflow: hidden; }
+.moment picture { display: contents; }
+.moment-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.moment::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(20,20,20,0) 55%, rgba(20,20,20,.75)); }
+.moment-cap { font-family: var(--display); text-transform: uppercase; font-size: clamp(30px, 4.5vw, 60px); line-height: 1; margin: 0; padding: 0 0 clamp(28px, 5vw, 56px); max-width: 16ch; }
+.tall-fig img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: 50% 25%; }
+@media (max-width: 860px) { .tall-fig { max-width: 460px; } }
+.moment { display: block; min-height: 0; }
+.moment-img { position: relative; inset: auto; z-index: auto; height: min(80vh, 760px); }
+.moment::after { content: none; }
+.moment-cap { padding: 22px 0 28px; max-width: none; font-size: clamp(26px, 3.4vw, 44px); }
