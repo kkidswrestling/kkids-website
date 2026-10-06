@@ -351,10 +351,11 @@ file = "img26/rusnock_hi.png"
 
 [[photo]]
 id = "coach-szerencsits"
-source = "2024-25 team photo (2025-26 banquet program, page 13)"
+crop = [140, 60, 330, 250]
+source = "Staff photo, showcase batch 1"
 alt = "Coach Ethan Szerencsits"
-widths = [158]
-file = "img26/szerencsits_hi.png"
+widths = [190]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/12-fd262792-image.jpg"
 
 [[photo]]
 id = "coach-embrace"
@@ -476,26 +477,30 @@ file = "p24/p-009-019.png"
 # ---------------------------------------------------------------- showcase batch 1 (from Coach Provini)
 [[photo]]
 id = "showcase-arms-up"
+season = "2023-24"
 source = "Coach Provini, showcase batch 1"
-alt = "A Northampton wrestler in orange headgear throws both arms in the air after a win at the Giant Center"
-caption = "A win on the biggest stage, at the PIAA Championships in Hershey."
+alt = "Trey Wagner throws both arms in the air after winning the 2024 PIAA championship at 127 pounds"
+caption = "Trey Wagner wins the 2024 PIAA title at 127, the first state championship of Coach Provini’s head coaching career."
 focus = "40% 30%"
 widths = [640, 1200, 2000]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/01-f17cd701-image.jpg"
 
 [[photo]]
 id = "showcase-tears"
+season = "2023-24"
 source = "Coach Provini, showcase batch 1"
-alt = "A Northampton wrestler cries with joy as two coaches wrap him in a hug on the arena floor"
-caption = "The moment it all pays off."
+alt = "Freshman Gabe Ballard cries with joy as two coaches hug him after a state quarterfinal win"
+caption = "Freshman Gabe Ballard after his state quarterfinal win in 2024."
 focus = "50% 40%"
 widths = [640, 1200, 1800, 2576]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/03-bda95548-image.jpg"
 
 [[photo]]
 id = "showcase-roar"
+caption = "Carson Wagner after his last-second upset of a former state champion sent him to the 2023 state finals."
+season = "2022-23"
 source = "Coach Provini, showcase batch 1"
-alt = "A Northampton wrestler in a gray Northampton singlet roars and flexes after a win"
+alt = "Carson Wagner roars and flexes after a last-second win at the PIAA Championships"
 focus = "50% 22%"
 widths = [640, 1179]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/05-b6a5c44a-image.jpg"
@@ -512,9 +517,10 @@ file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8
 
 [[photo]]
 id = "provini-celebrates"
+season = "2023-24"
 source = "Coach Provini, showcase batch 1"
-alt = "Coach Joe Provini grins as a Northampton wrestler runs to him with a fist in the air"
-caption = "Coach Provini meets a winner coming off the mat."
+alt = "Trey Wagner runs to Coach Joe Provini after winning the 2024 state title"
+caption = "Trey Wagner and Coach Provini after the 2024 state title, a first for both."
 widths = [640, 1179]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/11-56c94a05-image.jpg"
 
@@ -522,7 +528,7 @@ file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8
 id = "staff-corner"
 source = "Coach Provini, showcase batch 1 (also in 2025-26 banquet program, page 19)"
 season = "2025-26"
-alt = "Northampton coaches sit in a row in the corner, watching a match"
-caption = "The staff in the corner."
+alt = "Coach Ethan Szerencsits and the Northampton coaching staff watch a match from the corner"
+caption = "Coach Ethan Szerencsits (front) and the staff in the corner."
 widths = [640, 768]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/12-fd262792-image.jpg"

@@ -372,7 +372,7 @@ def build_home():
 
 <section class="moment" aria-label="Photo">
   {picture(R, "showcase-tears", "100vw", "moment-img")}
-  <div class="wrap"><p class="moment-cap">{e(PHOTOS["showcase-tears"]["caption"])}</p></div>
+  <div class="wrap"><p class="moment-cap">The moment it all pays off.</p><p class="moment-sub">{e(PHOTOS["showcase-tears"]["caption"])}</p></div>
 </section>
 
 <section class="band" aria-labelledby="about-title">

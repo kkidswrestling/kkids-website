@@ -429,3 +429,5 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 .moment-img { position: relative; inset: auto; z-index: auto; height: min(80vh, 760px); }
 .moment::after { content: none; }
 .moment-cap { padding: 22px 0 28px; max-width: none; font-size: clamp(26px, 3.4vw, 44px); }
+.moment-cap { padding-bottom: 6px; }
+.moment-sub { color: var(--on-dark-2); font-size: 15px; margin: 0; padding-bottom: 28px; }
