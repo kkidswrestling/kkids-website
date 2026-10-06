@@ -37,6 +37,8 @@ HALL = {
 }
 RECORDS = load_csv("hall/season-records.csv")
 HEAD_COACHES = load_csv("hall/head-coaches.csv")
+HUNDRED = load_csv("hall/hundred-wins.csv")
+TEAM_TITLES = load_csv("hall/team-titles.csv")
 CUR = SEASONS[0]
 
 NAV = [
@@ -191,7 +193,7 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
       <h2>Contact</h2>
       <p><a href="mailto:{SITE['email']}">{SITE['email']}</a></p>
       <p>{SITE['phone_label']}: <a href="tel:+1{SITE['phone'].replace('-', '')}">{SITE['phone']}</a></p>
-      <p>{SITE['school']}<br>{'<br>'.join(SITE['address'])}</p>
+      <p>{SITE['gym']}, {SITE['school']}<br>{'<br>'.join(SITE['address'])}</p>
     </div>
     <div>
       <h2>Program</h2>
@@ -294,7 +296,28 @@ TOTALS = {
     "district": len(HALL["district"]),
     "wins": sum(int(r["wins"]) for r in HEAD_COACHES),
     "seasons": sum(int(r["years"]) for r in HEAD_COACHES),
+    "team_titles": len(TEAM_TITLES),
+    "hundred": len(HUNDRED),
 }
+
+
+def medal_streak():
+    yrs = {int(r["year"]) for k in ("state", "medals") for r in HALL[k]}
+    end = max(yrs); y = end
+    while y - 1 in yrs:
+        y -= 1
+    return y, end, end - y + 1
+
+
+def end_year(span):
+    tail = span.split("-")[-1]
+    if not tail:
+        return None
+    yy = int(tail)
+    return (1900 if yy >= 40 else 2000) + yy
+
+
+TOTALS["streak"] = medal_streak()
 
 
 def hall_json():
@@ -307,6 +330,10 @@ def hall_json():
         n = norm(r["wrestler"])
         p = int(r["place"])
         people[n]["honors"].append([int(r["year"]), f"PIAA {p}{ordinal_suffix(p)} place", r["weight"]])
+    for r in HUNDRED:
+        n = norm(r["wrestler"])
+        y = end_year(r["years"]) or 2026
+        people[n]["honors"].append([y, f"100-Win Club: {r['wins']} career wins" + (" and counting" if r["status"] == "active" else ""), ""])
     for r in RECORDS:
         n = norm(r["wrestler"])
         people[n]["honors"].append([int(r["year"]), f"School record list: {r['category'].lower()} ({r['value']})", ""])
@@ -391,10 +418,12 @@ def build_home():
     {section_head('<span id="wall-title">The banner wall</span>', f'{TOTALS["state"]} PIAA state champions since 1955. These are the last ten.')}
     <ol class="pennants" role="list" reversed>{''.join(pennant(r['year'], norm(r['wrestler']), r['weight']) for r in recent[:10])}</ol>
     <div class="numbers">
-      <p><b>{TOTALS['state']}</b> state titles</p>
+      <p><b>{TOTALS['team_titles']}</b> PIAA team titles</p>
+      <p><b>{TOTALS['state']}</b> individual state titles</p>
       <p><b>{TOTALS['medals']}</b> state medals</p>
       <p><b>{TOTALS['regional']}</b> regional titles</p>
       <p><b>{TOTALS['district']}</b> District XI titles</p>
+      <p><b>{TOTALS['hundred']}</b> 100-win wrestlers</p>
       <p><b>{TOTALS['wins']}</b> dual meet wins</p>
     </div>
     <p><a class="btn" href="champions/">See every champion</a></p>
@@ -839,6 +868,12 @@ def build_champions():
     open(os.path.join(ROOT, "assets", "data", "hall.json"), "w").write(json.dumps(hall_json(), separators=(",", ":")))
     body = f"""
 {page_head(R, "Hall of Champions", "Every Konkrete Kid who has won a District XI, Northeast Regional, or PIAA title or medaled at the state tournament, from 1948 to today.")}
+<section class="band" aria-labelledby="team-title">
+  <div class="wrap">
+    {section_head(f'<span id="team-title">{TOTALS["team_titles"]} PIAA team titles</span>', f'Northampton won the team title at the PIAA Class AAA championships seven times between 1993 and 2004. The program has also had at least one state medalist every year since {TOTALS["streak"][0]}, {TOTALS["streak"][2]} straight seasons.')}
+    <ol class="team-banners" role="list">{"".join(f'<li class="tbanner"><span class="t1">Northampton Wrestling</span><span class="t2">PIAA State Champions</span><span class="t3">AAA</span><span class="yr">{e(r["season"])}</span></li>' for r in TEAM_TITLES)}</ol>
+  </div>
+</section>
 <section class="band dark wall-band" aria-labelledby="wall-title">
   <div class="wrap">
     {section_head(f'<span id="wall-title">{TOTALS["state"]} state champions</span>', "The banner wall, newest first.")}
@@ -857,12 +892,19 @@ def build_champions():
     {medals_chart()}
   </div>
 </section>
+<section class="band" aria-labelledby="hundred-title">
+  <div class="wrap">
+    {section_head(f'<span id="hundred-title">The 100-Win Club</span>', f'{TOTALS["hundred"]} Konkrete Kids have won at least 100 varsity matches, as listed on the banners in the gym. Josh Haines holds the career record with 157.')}
+    <ol class="hundred" role="list">{"".join(f'<li{" class=\"active\"" if r["status"] == "active" else ""}><span class="nm">{e(r["wrestler"])}</span><span class="yrs">{e(r["years"].replace("-", "–")) + ("present" if r["status"] == "active" else "")}</span><b>{r["wins"]}{"<sup>*</sup>" if r["status"] == "active" else ""}</b></li>' for r in HUNDRED)}</ol>
+    <p class="fine">* Still wrestling. Career wins through the 2025–26 season.</p>
+  </div>
+</section>
 <section class="band concrete" aria-labelledby="lists-title">
   <div class="wrap">
     <h2 id="lists-title">The record book</h2>
     <div class="tabs" role="tablist" aria-label="Record book">{tablist}</div>
     {panels}
-    <p class="fine">Lists come from the Northampton Wrestling banquet program. Missing or misspelled names? Email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p>
+    <p class="fine">Lists come from the Northampton Wrestling banquet programs, the banners in the gym, and PA-Wrestling.com team history. Missing or misspelled names? Email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p>
   </div>
 </section>
 """
