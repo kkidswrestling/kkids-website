@@ -1017,6 +1017,20 @@
    ]
   ]
  },
+ "trey-embrace": {
+  "fallback": [
+   500,
+   613
+  ],
+  "h": 613,
+  "w": 500,
+  "widths": [
+   [
+    500,
+    613
+   ]
+  ]
+ },
  "wenrich-celebrates": {
   "fallback": [
    911,

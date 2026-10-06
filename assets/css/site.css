@@ -474,3 +474,9 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 .hundred .yrs { color: var(--ink-2); font-size: 14px; font-variant-numeric: tabular-nums; }
 .hundred b { font-family: var(--display); font-weight: 400; font-size: 24px; min-width: 2.2em; text-align: right; color: var(--ink); }
 .hundred li.active b { color: var(--blaze-ink); }
+/* moment band v3: photo at native size beside the headline */
+.moment-split { display: grid; grid-template-columns: minmax(0, 440px) 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+.moment-photo img { width: 100%; height: auto; border-bottom: 5px solid var(--blaze); }
+.moment-text .moment-cap { font-size: clamp(40px, 6vw, 84px); line-height: .95; padding: 0 0 18px; max-width: 10ch; color: var(--on-dark); }
+.moment-text .moment-sub { font-size: 17px; max-width: 40ch; padding: 0; }
+@media (max-width: 760px) { .moment-split { grid-template-columns: 1fr; } .moment-photo { max-width: 440px; } }

@@ -395,9 +395,12 @@ def build_home():
 </section>
 
 <section class="moment" aria-label="Photo">
-  <div class="wrap">
-    <figure class="moment-fig">{picture(R, "provini-celebrates", "(min-width: 1180px) 1100px, 100vw")}
-      <figcaption><span class="moment-cap">The moment it all pays off.</span><span class="moment-sub">{e(PHOTOS["provini-celebrates"]["caption"])}</span></figcaption></figure>
+  <div class="wrap moment-split">
+    <figure class="moment-photo">{picture(R, "trey-embrace", "(min-width: 760px) 440px, 90vw")}</figure>
+    <div class="moment-text">
+      <p class="moment-cap">The moment it all pays off.</p>
+      <p class="moment-sub">{e(PHOTOS["trey-embrace"]["caption"])}</p>
+    </div>
   </div>
 </section>
 
