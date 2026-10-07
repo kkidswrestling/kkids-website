@@ -115,6 +115,60 @@
    ]
   ]
  },
+ "banner-brayden-wenrich": {
+  "fallback": [
+   404,
+   428
+  ],
+  "h": 428,
+  "w": 404,
+  "widths": [
+   [
+    240,
+    254
+   ],
+   [
+    404,
+    428
+   ]
+  ]
+ },
+ "banner-gabriel-ballard": {
+  "fallback": [
+   473,
+   493
+  ],
+  "h": 493,
+  "w": 473,
+  "widths": [
+   [
+    240,
+    250
+   ],
+   [
+    473,
+    493
+   ]
+  ]
+ },
+ "banner-trey-wagner": {
+  "fallback": [
+   540,
+   540
+  ],
+  "h": 540,
+  "w": 540,
+  "widths": [
+   [
+    240,
+    240
+   ],
+   [
+    540,
+    540
+   ]
+  ]
+ },
  "bench-final-seconds": {
   "fallback": [
    1200,

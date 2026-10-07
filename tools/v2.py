@@ -64,6 +64,42 @@ def avatar(R, w, sizes="200px"):
 
 
 # ------------------------------------------------------------------ roster data
+def honors_for(name, hn=None):
+    """Every honor for a wrestler: hall titles/medals/records plus season finishes and awards."""
+    hn = hn or name
+    hall = {p['name']: p for p in M.hall_json()}
+    honors = list(hall.get(hn, {"honors": []})["honors"]) if hn in hall else []
+    # postseason finishes and awards from the season files
+    for s in M.SEASONS:
+        for row in s.get("postseason", []):
+            if row[0] in (name, hn):
+                for lvl, v in (("District XI", row[2]), ("Northeast Regional", row[3]), ("PIAA", row[4])):
+                    if v and not (lvl == "PIAA" and v != "Qualifier") and not (v == "1st" and lvl != "PIAA"):
+                        yr = int("20" + s["id"][-2:])
+                        label = f"{lvl} {v.lower() if v in ('Qualifier',) else v}"
+                        honors.append([yr, label.replace("PIAA Qualifier", "PIAA state qualifier").replace("Northeast Regional Qualifier", "Northeast Regional qualifier"), (row[1] + " lbs") if row[1] else ""])
+        for a, who in s.get("awards", []):
+            if name in who or hn in who:
+                honors.append([int("20" + s["id"][-2:]), a, ""])
+        for team, who in s.get("epc", []):
+            if name in who or hn in who:
+                honors.append([int("20" + s["id"][-2:]), f"EPC all-star, {team.lower()}", ""])
+        for who, place in s.get("jv", []):
+            if who in (name, hn) or (name.split()[-1] in who and name.split()[0][:3] in who):
+                honors.append([int("20" + s["id"][-2:]), f"JV District {place.lower() if place != 'Champion' else 'champion'}", ""])
+    seen = set(); clean = []
+    def rank(label):
+        for i, key in enumerate(("PIAA champion", "PIAA", "Northeast Regional", "District XI", "100-Win", "Outstanding", "EPC")):
+            if label.startswith(key):
+                return i
+        return 9 if label.startswith("School record") else 8
+    for h in sorted(honors, key=lambda h: (-h[0], rank(h[1]), h[1])):
+        k = (h[0], h[1])
+        if k not in seen:
+            seen.add(k); clean.append(h)
+    return clean
+
+
 def roster_data():
     r = load("roster.toml")
     stats = {s["wrestler"]: s for s in M.STATS}
@@ -73,35 +109,7 @@ def roster_data():
         w = dict(w)
         w["stats"] = stats.get(w.get("stats_name", ""))
         hn = w.get("hall_name", w["name"])
-        honors = list(hall.get(hn, {"honors": []})["honors"]) if hn in hall else []
-        # postseason finishes and awards from the season files
-        for s in M.SEASONS:
-            for row in s.get("postseason", []):
-                if row[0] in (w["name"], hn):
-                    for lvl, v in (("District XI", row[2]), ("Northeast Regional", row[3]), ("PIAA", row[4])):
-                        if v and not (lvl == "PIAA" and v != "Qualifier") and not (v == "1st" and lvl != "PIAA"):
-                            yr = int("20" + s["id"][-2:])
-                            label = f"{lvl} {v.lower() if v in ('Qualifier',) else v}"
-                            honors.append([yr, label.replace("PIAA Qualifier", "PIAA state qualifier").replace("Northeast Regional Qualifier", "Northeast Regional qualifier"), (row[1] + " lbs") if row[1] else ""])
-            for a, who in s.get("awards", []):
-                if w["name"] in who or hn in who:
-                    honors.append([int("20" + s["id"][-2:]), a, ""])
-            for team, who in s.get("epc", []):
-                if w["name"] in who or hn in who:
-                    honors.append([int("20" + s["id"][-2:]), f"EPC all-star, {team.lower()}", ""])
-            for who, place in s.get("jv", []):
-                if who in (w["name"], hn) or (w["name"].split()[-1] in who and w["name"].split()[0][:3] in who):
-                    honors.append([int("20" + s["id"][-2:]), f"JV District {place.lower() if place != 'Champion' else 'champion'}", ""])
-        seen = set(); clean = []
-        def rank(label):
-            for i, key in enumerate(("PIAA champion", "PIAA", "Northeast Regional", "District XI", "100-Win", "Outstanding", "EPC")):
-                if label.startswith(key):
-                    return i
-            return 9 if label.startswith("School record") else 8
-        for h in sorted(honors, key=lambda h: (-h[0], rank(h[1]), h[1])):
-            k = (h[0], h[1])
-            if k not in seen:
-                seen.add(k); clean.append(h)
+        clean = honors_for(w["name"], hn)
         w["honors"] = clean
         out.append(w)
     order = {"Senior": 0, "Junior": 1, "Sophomore": 2, "Freshman": 3}
@@ -234,7 +242,7 @@ def build_home():
 <section class="band concrete" aria-labelledby="wall-title">
   <div class="wrap">
     <div class="sec-row"><h2 id="wall-title">The banner wall</h2><a class="text-link" href="champions/">Hall of Champions</a></div>
-    <ol class="pennants" role="list" reversed>{''.join(S.pennant(r['year'], S.norm(r['wrestler']), r['weight']) for r in recent[:10])}</ol>
+    <ol class="pennants" role="list" reversed>{''.join(S.pennant(r['year'], S.norm(r['wrestler']), r['weight'], R=R) for r in recent[:10])}</ol>
   </div>
 </section>
 
@@ -634,9 +642,86 @@ def build_follow():
     return M.page("follow/index.html", "Follow", "Follow Northampton Wrestling: Coach’s Corner newsletter and social media.", body, "follow/")
 
 
+# ------------------------------------------------------------------ state champion pages
+def yt_id(url):
+    import re
+    m = re.search(r"(?:v=|youtu\.be/|embed/|shorts/)([A-Za-z0-9_-]{11})", url)
+    return m.group(1) if m else None
+
+
+def build_champion_pages():
+    R = "../../"
+    display = {v: k for k, v in M.ALIASES.items()}
+    by = {}
+    for r in M.HALL["state"]:
+        by.setdefault(M.norm(r["wrestler"]), []).append(r)
+    order = sorted(by, key=lambda n: -max(int(r["year"]) for r in by[n]))
+    for i, name in enumerate(order):
+        titles = sorted(by[name], key=lambda r: int(r["year"]))
+        c = M.CHAMPS.get(name, {})
+        finals = {str(f[0]): f for f in c.get("finals", [])}
+        hon = honors_for(display.get(name, name), name)
+        tcards = []
+        for r in titles:
+            f = finals.get(r["year"])
+            det = (f'<p class="final">Final: {e(f[3])} over {e(f[1])}{", " + e(f[2]) if f[2] else ""}</p>') if f else ""
+            tcards.append(f'<li><span class="ty">{r["year"]}</span><span class="tw">{e(r["weight"])}</span><span class="tt">PIAA Class AAA champion</span>{det}</li>')
+        n = len(titles)
+        headline = f"{n}x PIAA state champion" if n > 1 else "PIAA state champion"
+        hero = c.get("hero")
+        if hero:
+            head = (f'<header class="page-head has-photo champ-head">{M.picture(R, hero, "100vw", "bg", True, alt="")}'
+                    f'<div class="wrap"><p class="kicker"><a href="{R}champions/">Hall of Champions</a></p><h1>{e(name)}</h1><p class="lede">{headline} · {", ".join(r["year"] for r in titles)}</p></div></header>')
+        else:
+            head = (f'<header class="page-head concrete champ-head"><div class="wrap"><p class="kicker"><a href="{R}champions/">Hall of Champions</a></p>'
+                    f'<h1>{e(name)}</h1><p class="lede">{headline} · {", ".join(r["year"] for r in titles)}</p></div></header>')
+        face = M.picture(R, c["banner"], "(min-width: 900px) 260px, 50vw", "cp-face", alt=f"{display.get(name, name)}") if c.get("banner") else ""
+        story = "".join(f"<p>{e(p)}</p>" for p in c.get("story", []))
+        if not story:
+            story = (f'<p>{e(name)} is one of {M.TOTALS["state"]} Konkrete Kids to win a PIAA state title. His full record is below.</p>'
+                     f'<p class="ask">Photos, the story of this title, and the state final are coming. Have something to share? Email '
+                     f'<a href="mailto:{M.SITE["email"]}?subject=State%20champion%3A%20{e(name)}">{M.SITE["email"]}</a>.</p>')
+        vids = [yt_id(u) for u in c.get("video", []) if yt_id(u)]
+        video = "".join(
+            f'<div class="video-facade single" data-ytv="{v}"><img class="vf-img" src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><button type="button" class="vf-play"><span aria-hidden="true">▶</span> Watch the state final</button></div>'
+            for v in vids)
+        if not video:
+            video = f'<div class="empty-state small"><h3>State final video</h3><p>Have video of this final? Send a YouTube link to <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a>.</p></div>'
+        gal = M.gallery(R, c["gallery"], "champ") if c.get("gallery") else ""
+        honors = "".join(f'<li><b>{h[0]}</b><span>{e(h[1])}</span>{(W_OPEN + e(h[2]) + "</span>") if h[2] else ""}</li>' for h in hon)
+        prev = order[i - 1] if i > 0 else None
+        nxt = order[i + 1] if i + 1 < len(order) else None
+        pn = ('<nav class="champ-nav wrap" aria-label="More champions">'
+              + (f'<a href="{R}champions/{M.slug(prev)}/">‹ {e(prev)}</a>' if prev else "<span></span>")
+              + f'<a href="{R}champions/#wall-title">All champions</a>'
+              + (f'<a href="{R}champions/{M.slug(nxt)}/">{e(nxt)} ›</a>' if nxt else "<span></span>") + "</nav>")
+        body = f"""
+{head}
+<section class="band">
+  <div class="wrap cp-grid">
+    <aside class="cp-side">{face}<ol class="title-cards" role="list">{''.join(tcards)}</ol></aside>
+    <div class="prose cp-story"><h2>The story</h2>{story}</div>
+  </div>
+</section>
+<section class="band dark"><div class="wrap"><h2>The state final</h2>{video}</div></section>
+{f'<section class="band"><div class="wrap"><h2>Photos</h2>{gal}</div></section>' if gal else ''}
+<section class="band concrete">
+  <div class="wrap">
+    <h2>Career at Northampton</h2>
+    {(UL_OPEN + honors + "</ul>") if honors else ""}
+    <p class="fine">From Northampton banquet programs, the gym banners, and season results.</p>
+  </div>
+</section>
+{pn}
+"""
+        M.page(f"champions/{M.slug(name)}/index.html", name, f"{name}, {headline} for Northampton ({', '.join(r['year'] for r in titles)}).", body, "champions/", og_image=hero or "showcase-arms-up")
+    return [M.SITE["domain"] + f"/champions/{M.slug(n)}/" for n in order]
+
+
 def build_all(module):
     global M
     M = module
     urls = [build_roster(), build_results(), build_news(), build_photos(), build_videos(), build_timeline(),
             build_story(), build_facilities(), build_join(), build_family(), build_alumni(), build_follow()]
+    urls += build_champion_pages()
     return urls

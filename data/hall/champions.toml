@@ -1,0 +1,40 @@
+# One entry per state champion (not per title). The key is the name exactly as it
+# appears in data/hall/state-champions.csv. Every field is optional; champions with
+# no entry still get a page with their full record filled in automatically.
+#
+#   banner   = photo id for the banner headshot (data/photos.toml)
+#   hero     = photo id for the big photo at the top of the page
+#   story    = paragraphs about the wrestler and the title run
+#   finals   = one row per title: [year, "opponent", "opponent school", "result"]
+#   gallery  = more photo ids
+#   video    = YouTube links to the state final (only videos posted publicly by their owner)
+
+["Gabriel Ballard"]
+banner = "banner-gabriel-ballard"
+hero = "ballard-raised"
+story = [
+  "Gabe Ballard won the 2026 PIAA Class AAA title at 152 pounds as a junior, finishing the season 41–5 with 15 pins.",
+  "It capped a steady climb at Hershey: 4th at 114 as a freshman, runner-up at 127 as a sophomore, and champion at 152. He led the team in takedowns (114) and team points (238), and his 41 wins matched his freshman total on the school's single-season wins list.",
+  "Ballard enters his senior season with 121 career wins, already a member of the 100-Win Club.",
+]
+gallery = ["ballard-attack", "ballard-coaches", "ballard-100", "ballard-ride"]
+
+["Brayden Wenrich"]
+banner = "banner-brayden-wenrich"
+hero = "wenrich-final"
+story = [
+  "Brayden Wenrich won the 2026 PIAA Class AAA title at 114 pounds as a sophomore, finishing the season 36–1.",
+  "A year earlier he reached the state final at 107 as a freshman, placing 2nd after a 44-win season that put him on the school's single-season wins list. In 2026 he swept the District XI, Northeast Regional, and PIAA titles, recorded the team's fastest pin of the season at 9 seconds, and was never pinned.",
+  "He enters his junior season with an 80–7 career record.",
+]
+gallery = ["wenrich-celebrates", "wenrich-medal", "celebration"]
+
+["Trey Wagner"]
+banner = "banner-trey-wagner"
+hero = "showcase-arms-up"
+story = [
+  "Trey Wagner won the 2024 PIAA Class AAA title at 127 pounds as a sophomore, the first state championship of Coach Joe Provini's head coaching career.",
+  "He swept the District XI, Northeast Regional, and state titles that season and was named the team's Outstanding Wrestler. Wagner went on to place 5th at 133 in 2025 and 7th at 139 in 2026, finishing as a three-time state medalist and a two-time Northeast Regional champion.",
+  "He finished his career with 140 wins and is headed to the U.S. Air Force Academy.",
+]
+gallery = ["trey-embrace"]

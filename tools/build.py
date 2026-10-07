@@ -264,9 +264,23 @@ def postseason_table(rows, caption):
             f'<tbody>{body}</tbody></table></div>')
 
 
-def pennant(year, name, weight, small=False):
-    return (f'<li class="pennant{" sm" if small else ""}"><span class="yr">{year}</span>'
-            f'<span class="nm">{e(name)}</span><span class="wt">{e(weight)}</span></li>')
+CHAMPS = load_toml("hall/champions.toml")
+
+
+def pennant(year, name, weight, small=False, R=None):
+    """A state-champion banner. With R (path prefix) it links to the champion's page
+    and shows the banner headshot when one is set in data/hall/champions.toml."""
+    if R is None:
+        return (f'<li class="pennant{" sm" if small else ""}"><span class="yr">{year}</span>'
+                f'<span class="nm">{e(name)}</span><span class="wt">{e(weight)}</span></li>')
+    c = CHAMPS.get(name, {})
+    if c.get("banner"):
+        face = picture(R, c["banner"], "160px", "pn-face", alt="")
+    else:
+        face = f'<span class="pn-face pn-logo"><img src="{R}assets/img/logo-96.png" alt="" width="56" height="48" loading="lazy"></span>'
+    return (f'<li class="pennant linked{" has-face" if c.get("banner") else ""}"><a href="{R}champions/{slug(name)}/">'
+            f'<span class="yr">{year}</span>{face}<span class="nm">{e(name)}</span><span class="wt">{e(weight)}</span>'
+            f'<span class="visually-hidden">: read the story</span></a></li>')
 
 
 # ------------------------------------------------------------------ hall math
@@ -434,7 +448,7 @@ def build_home():
 <section class="band concrete" aria-labelledby="wall-title">
   <div class="wrap">
     {section_head('<span id="wall-title">The banner wall</span>', f'{TOTALS["state"]} PIAA state champions since 1955. These are the last ten.')}
-    <ol class="pennants" role="list" reversed>{''.join(pennant(r['year'], norm(r['wrestler']), r['weight']) for r in recent[:10])}</ol>
+    <ol class="pennants" role="list" reversed>{''.join(pennant(r['year'], norm(r['wrestler']), r['weight'], R=R) for r in recent[:10])}</ol>
     <div class="numbers">
       <p><b>{TOTALS['team_titles']}</b> PIAA team titles</p>
       <p><b>{TOTALS['state']}</b> individual state titles</p>
@@ -894,8 +908,8 @@ def build_champions():
 </section>
 <section class="band dark wall-band" aria-labelledby="wall-title">
   <div class="wrap">
-    {section_head(f'<span id="wall-title">{TOTALS["state"]} state champions</span>', "The banner wall, newest first.")}
-    <ol class="pennants full" role="list" reversed>{''.join(pennant(r['year'], r['wrestler'], r['weight']) for r in st)}</ol>
+    {section_head(f'<span id="wall-title">{TOTALS["state"]} state champions</span>', "The banner wall, newest first. Select a banner for that champion’s story.")}
+    <ol class="pennants full" role="list" reversed>{''.join(pennant(r['year'], norm(r['wrestler']), r['weight'], R=R) for r in st)}</ol>
   </div>
 </section>
 <section class="band" aria-labelledby="find-title">

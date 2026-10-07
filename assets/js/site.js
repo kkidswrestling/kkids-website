@@ -75,12 +75,25 @@
   }
 
   // YouTube playlist: load the player only when asked
-  document.querySelectorAll(".video-facade").forEach(function (v) {
+  document.querySelectorAll(".video-facade[data-yt]").forEach(function (v) {
     var b = v.querySelector(".vf-play");
     b.addEventListener("click", function () {
       var f = document.createElement("iframe");
       f.src = "https://www.youtube-nocookie.com/embed/videoseries?list=" + encodeURIComponent(v.dataset.yt) + "&autoplay=1";
       f.title = "Northampton Wrestling video playlist";
+      f.allow = "autoplay; encrypted-media; picture-in-picture";
+      f.allowFullscreen = true;
+      v.innerHTML = "";
+      v.appendChild(f);
+    });
+  });
+
+  // Single YouTube video (champion pages)
+  document.querySelectorAll(".video-facade[data-ytv]").forEach(function (v) {
+    v.querySelector(".vf-play").addEventListener("click", function () {
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.dataset.ytv) + "?autoplay=1";
+      f.title = "State final video";
       f.allow = "autoplay; encrypted-media; picture-in-picture";
       f.allowFullscreen = true;
       v.innerHTML = "";

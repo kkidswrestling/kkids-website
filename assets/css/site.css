@@ -686,3 +686,37 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 @media (max-width: 1060px) { .site-nav a.follow-btn { font-size: 18px; padding: 14px; } }
 .empty-state h2 { font-size: clamp(26px, 3vw, 36px); }
 @media (max-width: 1060px) { .site-nav .sub a { font-family: var(--body); text-transform: none; font-weight: 500; font-size: 18px; color: var(--on-dark-2); border-bottom: 0; padding: 10px 8px; } .site-nav .sub a[aria-current="page"] { color: var(--blaze); } }
+
+/* ---- clickable champion banners ---- */
+.pennant.linked { padding: 0; }
+.pennant.linked a { display: flex; flex-direction: column; align-items: center; width: 100%; height: 100%; padding: 18px 12px 48px; color: var(--on-dark); text-decoration: none; }
+.pennant.linked:hover::before, .pennant.linked:focus-within::before { background: var(--on-dark); }
+.pennant.linked a:hover .nm, .pennant.linked a:focus-visible .nm { color: var(--blaze); }
+.pennant.linked a:focus-visible { outline: 3px solid var(--blaze); outline-offset: -10px; }
+.pn-face { display: block; width: 72%; aspect-ratio: 1; object-fit: cover; object-position: 50% 30%; border-radius: 50%; margin: 10px 0 2px; border: 3px solid var(--blaze); background: var(--slab-2); }
+.pn-face.pn-logo { display: flex; align-items: center; justify-content: center; border-color: var(--line-dark); }
+.pn-face.pn-logo img { width: 52%; height: auto; opacity: .85; }
+.pennants .pennant.linked { min-height: 280px; }
+.pennant.linked .yr { font-size: 34px; }
+@media (prefers-reduced-motion: no-preference) { .pennant.linked { transition: transform .2s ease; } .pennant.linked:hover { transform: translateY(-4px); } }
+@media (max-width: 520px) { .pennants .pennant.linked { min-height: 250px; } }
+
+/* ---- champion page ---- */
+.champ-head h1 { font-size: clamp(54px, 9vw, 120px); }
+.cp-grid { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+.cp-face { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 30%; border-bottom: 5px solid var(--gold); margin-bottom: 18px; }
+.title-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.title-cards li { background: var(--mat); color: var(--on-dark); padding: 14px 16px; border-left: 5px solid var(--gold); display: grid; grid-template-columns: auto 1fr; gap: 0 12px; align-items: baseline; }
+.title-cards .ty { font-family: var(--display); font-size: 34px; color: var(--gold); line-height: 1; grid-row: span 2; }
+.title-cards .tw { font-weight: 700; }
+.title-cards .tt { font-size: 14px; color: var(--on-dark-2); }
+.title-cards .final { grid-column: 1 / -1; margin: 8px 0 0; font-size: 15px; color: var(--on-dark); }
+.cp-story p { font-size: 19px; line-height: 1.65; }
+.cp-story .ask { font-size: 16px; color: var(--ink-2); border-left: 4px solid var(--blaze); padding-left: 14px; }
+.video-facade.single { max-width: 960px; }
+.video-facade.single .vf-img { opacity: .6; }
+.empty-state.small { background: var(--slab); border-color: var(--line-dark); color: var(--on-dark-2); max-width: 760px; text-align: left; }
+.empty-state.small h3 { color: var(--on-dark); }
+.champ-nav { display: flex; justify-content: space-between; gap: 12px; padding-top: 28px; padding-bottom: 28px; font-weight: 700; flex-wrap: wrap; }
+@media (max-width: 760px) { .cp-grid { grid-template-columns: 1fr; } .cp-side { max-width: 320px; } }
+a[href^="mailto:"] { overflow-wrap: anywhere; }

@@ -541,3 +541,28 @@ alt = "Coach Joe Provini hugs Trey Wagner, eyes shut and smiling, after Wagner's
 caption = "Trey Wagner and Coach Provini after the 2024 state title, a first for both."
 widths = [500]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/trey-embrace.jpg"
+
+# ---------------------------------------------------------------- champion banner headshots
+[[photo]]
+id = "banner-gabriel-ballard"
+source = "2025-26 banquet program, page 10 (studio portrait)"
+alt = "Gabe Ballard"
+crop = [277, 154, 750, 647]
+widths = [240, 473]
+file = "img26/p-010-015.png"
+
+[[photo]]
+id = "banner-brayden-wenrich"
+source = "2025-26 banquet program, page 9 (studio portrait)"
+alt = "Brayden Wenrich"
+crop = [257, 165, 661, 593]
+widths = [240, 404]
+file = "img26/p-009-012.png"
+
+[[photo]]
+id = "banner-trey-wagner"
+source = "2023-24 banquet program, page 10 (studio portrait)"
+alt = "Trey Wagner"
+crop = [270, 67, 810, 607]
+widths = [240, 540]
+file = "p24/p-010-020.png"
