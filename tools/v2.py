@@ -190,7 +190,7 @@ def build_home():
   <div class="wrap hero-copy">
     <p class="script" aria-hidden="true">Konkrete Kids</p>
     <h1 id="hero-title">Northampton<br>Wrestling</h1>
-    <p class="hero-sub">We never sacrifice goodness for greatness.</p>
+    <p class="hero-sub">Better people first. Better wrestlers along the way.</p>
     <p class="hero-actions"><a class="btn" href="roster/">Meet the team</a><a class="btn ghost" href="schedule/">View schedule</a></p>
   </div>
 </section>
