@@ -675,7 +675,7 @@ def build_champion_pages():
         else:
             head = (f'<header class="page-head concrete champ-head"><div class="wrap"><p class="kicker"><a href="{R}champions/">Hall of Champions</a></p>'
                     f'<h1>{e(name)}</h1><p class="lede">{headline} · {", ".join(r["year"] for r in titles)}</p></div></header>')
-        face = M.picture(R, c["banner"], "(min-width: 900px) 260px, 50vw", "cp-face", alt=f"{display.get(name, name)}") if c.get("banner") else ""
+        face = M.picture(R, c["portrait"], "(min-width: 900px) 300px, 70vw", "cp-face", alt=f"{display.get(name, name)} wearing his state championship medals") if c.get("portrait") else ""
         story = "".join(f"<p>{e(p)}</p>" for p in c.get("story", []))
         if not story:
             story = (f'<p>{e(name)} is one of {M.TOTALS["state"]} Konkrete Kids to win a PIAA state title. His full record is below.</p>'

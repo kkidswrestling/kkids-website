@@ -2,7 +2,8 @@
 # appears in data/hall/state-champions.csv. Every field is optional; champions with
 # no entry still get a page with their full record filled in automatically.
 #
-#   banner   = photo id for the banner headshot (data/photos.toml)
+#   banner   = photo id for the banner (an action shot)
+#   portrait = photo id for the full medal portrait on the champion page
 #   hero     = photo id for the big photo at the top of the page
 #   story    = paragraphs about the wrestler and the title run
 #   finals   = one row per title: [year, "opponent", "opponent school", "result"]
@@ -11,6 +12,7 @@
 
 ["Gabriel Ballard"]
 banner = "banner-gabriel-ballard"
+portrait = "portrait-ballard-2026"
 hero = "ballard-raised"
 story = [
   "Gabe Ballard won the 2026 PIAA Class AAA title at 152 pounds as a junior, finishing the season 41–5 with 15 pins.",
@@ -21,6 +23,7 @@ gallery = ["ballard-attack", "ballard-coaches", "ballard-100", "ballard-ride"]
 
 ["Brayden Wenrich"]
 banner = "banner-brayden-wenrich"
+portrait = "portrait-wenrich-2026"
 hero = "wenrich-final"
 story = [
   "Brayden Wenrich won the 2026 PIAA Class AAA title at 114 pounds as a sophomore, finishing the season 36–1.",
@@ -31,6 +34,7 @@ gallery = ["wenrich-celebrates", "wenrich-medal", "celebration"]
 
 ["Trey Wagner"]
 banner = "banner-trey-wagner"
+portrait = "portrait-wagner-2024"
 hero = "showcase-arms-up"
 story = [
   "Trey Wagner won the 2024 PIAA Class AAA title at 127 pounds as a sophomore, the first state championship of Coach Joe Provini's head coaching career.",

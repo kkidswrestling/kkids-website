@@ -542,27 +542,28 @@ caption = "Trey Wagner and Coach Provini after the 2024 state title, a first for
 widths = [500]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/trey-embrace.jpg"
 
-# ---------------------------------------------------------------- champion banner headshots
+# ---------------------------------------------------------------- champion banner action shots
 [[photo]]
 id = "banner-gabriel-ballard"
-source = "2025-26 banquet program, page 10 (studio portrait)"
-alt = "Gabe Ballard"
-crop = [277, 154, 750, 647]
-widths = [240, 473]
-file = "img26/p-010-015.png"
+source = "Coach Provini, batch 3"
+alt = "Gabe Ballard roars and flexes after a win at the PIAA Championships"
+focus = "50% 30%"
+widths = [300, 500]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/ballard-roar.webp"
 
 [[photo]]
 id = "banner-brayden-wenrich"
-source = "2025-26 banquet program, page 9 (studio portrait)"
-alt = "Brayden Wenrich"
-crop = [257, 165, 661, 593]
-widths = [240, 404]
-file = "img26/p-009-012.png"
+source = "2025-26 banquet program, page 9"
+alt = "Brayden Wenrich celebrates a win"
+focus = "48% 35%"
+widths = [300, 600]
+file = "img26/p-009-014.png"
 
 [[photo]]
 id = "banner-trey-wagner"
-source = "2023-24 banquet program, page 10 (studio portrait)"
-alt = "Trey Wagner"
-crop = [270, 67, 810, 607]
-widths = [240, 540]
-file = "p24/p-010-020.png"
+source = "Coach Provini, showcase batch 1"
+alt = "Trey Wagner throws his arms up after winning the 2024 state title"
+crop = [500, 0, 1300, 1000]
+focus = "50% 30%"
+widths = [300, 600]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/01-f17cd701-image.jpg"

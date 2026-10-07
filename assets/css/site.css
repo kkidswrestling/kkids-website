@@ -720,3 +720,10 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 .champ-nav { display: flex; justify-content: space-between; gap: 12px; padding-top: 28px; padding-bottom: 28px; font-weight: 700; flex-wrap: wrap; }
 @media (max-width: 760px) { .cp-grid { grid-template-columns: 1fr; } .cp-side { max-width: 320px; } }
 a[href^="mailto:"] { overflow-wrap: anywhere; }
+/* banner v2: rectangular action shot, no circle */
+.pn-face { width: 100%; aspect-ratio: 4/5; border-radius: 0; border: 0; margin: 10px 0 8px; object-fit: cover; }
+.pn-face.pn-logo { border: 0; background: var(--slab-2); }
+.pn-face.pn-logo img { width: 46%; }
+.pennant.linked a { padding: 16px 16px 52px; }
+.pennants .pennant.linked { min-height: 0; }
+.cp-face { aspect-ratio: auto; height: auto; object-fit: contain; }
