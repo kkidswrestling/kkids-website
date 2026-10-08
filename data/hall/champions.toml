@@ -52,9 +52,23 @@ gallery = ["julian-2017", "julian-2019"]
 
 ["Jeff Ecklof"]
 banner = "banner-jeff-ecklof"
+story = [
+  "Jeff Ecklof won two PIAA Class AAA titles: 125 pounds as a sophomore in 2001 and 145 pounds as a senior in 2003. He placed at states all four years and won four District XI and four Northeast Regional titles.",
+  "His first title came in Terry Daubert's first season as head coach. Ecklof went 40–3, edged Easton's Mike Rogers and Stroudsburg's Joey Rivera, each 3–2, at districts, and pinned Rivera in the regional final. At Hershey he beat Jarrod King of Connellsville 11–8 and Brad Forbes of Downingtown 2–1 in a tiebreaker, survived Brian Baglio of Red Land 10–9 in overtime in the semifinal, and beat Pat O'Brien of Garnet Valley 12–6 in the final.",
+  "After a 3rd-place finish at 130 as a junior, the year he won his 100th match, he went 42–2 as a senior. He beat Mike Ferrara 4–3 for his fourth district title and 5–3 for his fourth regional title, won his state semifinal 9–3, and beat Kirk Main of McGuffey 3–2 in the final. That night brother Joey, Josh Haines, and Jon Oplinger also won titles, and Northampton won the 2003 PIAA team title 98–80.5 over Easton. Jeff finished with 154 career wins.",
+]
+finals = [[2001, "Pat O'Brien", "Garnet Valley", "Won 12–6"], [2003, "Kirk Main", "McGuffey", "Won 3–2"]]
+sources = [["Lehigh Valley Wrestling History, \u201c2000-01: Rover Revival, Warrior Arrival\u201d", "https://lehighvalleywrestlinghistory.com/2000-01-rover-revival-warrior-arrival/"], ["Lehigh Valley Wrestling History, \u201c2001-02: It\u2019s Crowell & Powell, State Champs in Town\u201d", "https://lehighvalleywrestlinghistory.com/2001-02-its-crowell-powell-state-champs-in-town/"], ["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a Final Goodbye\u201d", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Josh Haines"]
 banner = "banner-josh-haines"
+story = [
+  "Josh Haines won back-to-back PIAA Class AAA titles at 189 pounds in 2003 and 2004, losing a total of two matches in those two seasons.",
+  "After placing 3rd at 171 as a sophomore, he went 44–1 as a junior, one of the best win totals in school history. He swept the district and regional titles and went 4–0 at Hershey: Andy Bateman of Owen J. Roberts 15–2, Bret Caldwell of Solanco 8–1, a 9–7 overtime semifinal over Harrisburg's Philip Davis, and a 2–0 final over Kyle Narkiewicz of Warwick, one of four Northampton champions that night.",
+  "As a senior he went 40–1 with 21 falls. He beat Honesdale's Josh Arnone 2–0 in the regional final, pinned two of his first three opponents at states, and met Arnone again in the state final, winning 3–1. Haines finished with 157 career wins, and Northampton won the PIAA team title both years.",
+]
+finals = [[2003, "Kyle Narkiewicz", "Warwick", "Won 2–0"], [2004, "Josh Arnone", "Honesdale", "Won 3–1"]]
+sources = [["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a Final Goodbye\u201d", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"], ["Lehigh Valley Wrestling History, \u201c2003-04: The More Things Change, the More They Stay the Same\u201d", "https://lehighvalleywrestlinghistory.com/2003-04-the-more-things-change-the-more-they-stay-the-same/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Dennis Liberto"]
 banner = "banner-dennis-liberto"
@@ -68,6 +82,13 @@ sources = [["Lehigh Valley Wrestling History, \u201c1994-95: The Year of the Big
 
 ["Ryan McCallum"]
 banner = "banner-ryan-mccallum"
+story = [
+  "Ryan McCallum won the 2000 PIAA Class AAA title at 130 pounds in Don Rohn's final season as head coach. He finished the year 40–5.",
+  "He came to Northampton from Berks County for his senior season, a year after placing 2nd at states for Wilson (West Lawn). He won the Holiday Classic, beat Easton's Gino Fortebuono 3–1 in overtime at the District Duals for Fortebuono's first loss, and edged defending champion Christian Franco of Whitehall 6–5 for the District XI title. Fortebuono pinned him in the regional semifinal, but McCallum came back for 3rd. At Hershey he beat Rick Bauer of McGuffey 11–6, Mark Maney of Bald Eagle Area 11–3, Franco again 2–1 in the semifinal, and Chris Graber of Greater Latrobe 9–4 in the final.",
+  "It was a fitting send-off for Rohn. The 2000 Kids went 23–1, won the first PIAA team duals title 31–19 over Connellsville, set a state record with eight place winners, and won the program's fifth PIAA team title. Rohn finished 309–59 with five team titles and eight individual state champions.",
+]
+finals = [[2000, "Chris Graber", "Greater Latrobe", "Won 9–4"]]
+sources = [["Lehigh Valley Wrestling History, \u201c1999-00: Going Out on Top\u201d", "https://lehighvalleywrestlinghistory.com/1999-00-going-out-on-top/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Mike Tomsic"]
 banner = "banner-mike-tomsic"
@@ -81,19 +102,47 @@ sources = [["Lehigh Valley Wrestling History, \u201c1992-93: The Cement Job\u201
 
 ["John Hard"]
 banner = "banner-john-hard"
+story = [
+  "John Hard won the 1998 PIAA Class AAA heavyweight title at 275 pounds, riding out Dave Armstrong of Central Bucks West for a 2–1 overtime win in the final. He finished his senior season 38–3.",
+  "He was a three-time Northeast Regional champion and two-time District XI champion, and he placed 4th at states as a junior. In 1998 he won the district title 6–4 over Mike Moya. At regionals the team title came down to him: his pin of Nazareth's Steve Itterly in the last bout gave Northampton a 94–93 win over Parkland. At Hershey he beat Brian Williams of Methacton 6–2, Brian Cartwright of Plum 4–1, and Steve Kovach of West Chester East 4–3 in the semifinal before the overtime win in the final.",
+  "Hard finished with 107 career wins. The 1998 Kids went 21–0 in duals and won the District XI, Northeast Regional, and PIAA team titles, with Christian Luciano winning at 171 the same night.",
+]
+finals = [[1998, "Dave Armstrong", "Central Bucks West", "Won 2–1 (OT)"]]
+sources = [["Lehigh Valley Wrestling History, \u201c1997-98: Bulldogs Blossom, Kids Triumph over Trojans\u201d", "https://lehighvalleywrestlinghistory.com/1997-98-bulldogs-blossom-kids-triumph-over-trojans/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Christian Luciano"]
 banner = "banner-christian-luciano"
 portrait = "portrait-luciano"
+story = [
+  "Christian Luciano capped a four-medal career with the 1998 PIAA Class AAA title at 171 pounds, finishing his senior season a perfect 40–0.",
+  "He climbed the podium one step at a time: 6th at 140 as a freshman, 4th at 152 as a sophomore, runner-up at 171 as a junior, and champion as a senior. In 1998 he won the Beast of the East, took Outstanding Wrestler and the pin award at the Hurricane Classic, and set the school's single-season record for falls with 29. He won his third District XI title with a fall and the Northeast Regional title, then went 4–0 at Hershey: Jacob Lininger of Lower Dauphin 5–3, Mike Minella of Chartiers Valley 17–6, Steve Foote of Dallastown 10–3 in the semifinal, and Nick Richmond of McGuffey 7–3 in the final, built on three takedowns.",
+  "Luciano finished with 143 career wins. The 1998 Kids went 21–0 in duals and swept the District XI, Northeast Regional, and PIAA team titles, and teammate John Hard won the heavyweight title the same night.",
+]
+finals = [[1998, "Nick Richmond", "McGuffey", "Won 7–3"]]
+sources = [["Lehigh Valley Wrestling History, \u201c1997-98: Bulldogs Blossom, Kids Triumph over Trojans\u201d", "https://lehighvalleywrestlinghistory.com/1997-98-bulldogs-blossom-kids-triumph-over-trojans/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Jagger Condomitti"]
 banner = "banner-jagger-condomitti"
 
 ["Joey Ecklof"]
 banner = "banner-joey-ecklof"
+story = [
+  "Joey Ecklof is one of Northampton's three-time state champions, winning PIAA Class AAA titles at 135 (2003), 145 (2004), and 152 (2005).",
+  "His first came as a sophomore on the same night as his brother Jeff's second. He placed 3rd at districts, won the Northeast Regional title, and at Hershey beat Archie McConnell of Solanco 10–5, Chad George of Erie McDowell 11–6, and Joe Ortiz of Reading 11–3 before a 5–3 overtime win over Tom Picarsic of Penn-Trafford in the final. As a junior he went 39–2, won his 100th match at districts, majored Liberty's Dan Horwath 19–7 for the district title, pinned his first three opponents at states, and beat Andrew Sherry of Pittsburgh Central Catholic 7–3 in the final as the Kids won another team title.",
+  "As a senior he went 31–3. He won the District XI final 2–1 in overtime over Pleasant Valley's Bryan Farley and the regional final 12–3 over Nazareth's Thad Frick. At Hershey he beat Bill Trimble of Pennsbury 10–6, Travis Uncapher of Greensburg Central Catholic 2–1 in overtime, and Brent Fiorito of Upper Perkiomen 5–2. The final matched two two-time state champions, and Ecklof took control early with a takedown and tilt to beat Donnie Jones of Greensburg Salem 10–3. He finished with 140 career wins.",
+]
+finals = [[2003, "Tom Picarsic", "Penn-Trafford", "Won 5–3 (OT)"], [2004, "Andrew Sherry", "Pittsburgh Central Catholic", "Won 7–3"], [2005, "Donnie Jones", "Greensburg Salem", "Won 10–3"]]
+sources = [["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a Final Goodbye\u201d", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"], ["Lehigh Valley Wrestling History, \u201c2003-04: The More Things Change, the More They Stay the Same\u201d", "https://lehighvalleywrestlinghistory.com/2003-04-the-more-things-change-the-more-they-stay-the-same/"], ["Lehigh Valley Wrestling History, \u201c2004-05: Broken Streaks, Brotherly Feats\u201d", "https://lehighvalleywrestlinghistory.com/2004-05-broken-streaks-brotherly-feats/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Jon Oplinger"]
 banner = "banner-jon-oplinger"
+story = [
+  "Jon Oplinger won back-to-back PIAA Class AAA titles at 215 pounds in 2003 and 2004, going 41–1 and 40–1.",
+  "He reached the state final at 189 as a sophomore and placed 2nd. As a junior his decision clinched a 31–29 win at Easton, Coach Terry Daubert's first win over the Rovers as head coach. He won the district and regional titles, then went 4–0 at Hershey: Ryan Collins of Council Rock North 19–6, Nic San Doval of Pittsburgh Central Catholic 5–2, Kyle Sprenkle of Spring Grove 15–7 in the semifinal, and Adam LoPiccolo of Susquehannock 3–2 in overtime in the final.",
+  "As a senior he beat Easton's Marcus Millen 6–1 for the district title and Pittston Area's John Laboranti 3–1 for the regional title. At states he beat Brad Neu of Canon-McMillan 9–3, Steve Funk of Pennridge 9–1, and Nick Hursky of Chartiers Valley 7–2, then won the final 6–4 over Kiski Area's Scott McKillop on a takedown with 14 seconds left. He finished with 119 career wins, and Northampton won the PIAA team title both years.",
+]
+finals = [[2003, "Adam LoPiccolo", "Susquehannock", "Won 3–2 (OT)"], [2004, "Scott McKillop", "Kiski Area", "Won 6–4"]]
+sources = [["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a Final Goodbye\u201d", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"], ["Lehigh Valley Wrestling History, \u201c2003-04: The More Things Change, the More They Stay the Same\u201d", "https://lehighvalleywrestlinghistory.com/2003-04-the-more-things-change-the-more-they-stay-the-same/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Justin Wieller"]
 banner = "banner-justin-wieller"
