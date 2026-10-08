@@ -81,6 +81,7 @@ finals = [[2003, "Kyle Narkiewicz", "Warwick", "Won 2–0"], [2004, "Josh Arnone
 sources = [["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a Final Goodbye\u201d", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"], ["Lehigh Valley Wrestling History, \u201c2003-04: The More Things Change, the More They Stay the Same\u201d", "https://lehighvalleywrestlinghistory.com/2003-04-the-more-things-change-the-more-they-stay-the-same/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Dennis Liberto"]
+video = [{ url = "https://www.youtube.com/watch?v=7JUBUS2InI0", start = "0:00", end = "8:30" }]
 banner = "banner-dennis-liberto"
 story = [
   "Denny Liberto won the 1995 PIAA Class AAA title at 103 pounds as a senior, beating Mike Khan of Harrisburg 13–5 in the final. He finished the season 37–1.",
