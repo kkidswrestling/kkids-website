@@ -25,3 +25,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Don't list club board/officer names on the site (Joe, Oct. 2026). Officer data stays in coaches.toml but isn't displayed.
 - Never use AI-generated images (e.g., ChatGPT gpt-image, C2PA 'trainedAlgorithmicMedia') as photos of real wrestlers without Joe confirming; check uploads for that marker.
 - Joe labels photos in the IPTC caption field (iptc 2:120), not EXIF. Read it with PIL IptcImagePlugin.getiptcinfo before asking who's in a photo.
+- PIAA wrestling had one combined state tournament through 1972-73 and split into two classes in 1973-74 (Lehigh Valley Wrestling History). Title cards say "PIAA state champion" before 1974 and "PIAA Class AAA champion" from 1974.

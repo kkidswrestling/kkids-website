@@ -664,7 +664,7 @@ def build_champion_pages():
         for r in titles:
             f = finals.get(r["year"])
             det = (f'<p class="final">Final: {e(f[3])}{(" over " + e(f[1])) if f[1] else ""}{(", " + e(f[2])) if f[2] else ""}</p>') if f else ""
-            tcards.append(f'<li><span class="ty">{r["year"]}</span><span class="tw">{e(r["weight"])}</span><span class="tt">PIAA Class AAA champion</span>{det}</li>')
+            tcards.append(f'<li><span class="ty">{r["year"]}</span><span class="tw">{e(r["weight"])}</span><span class="tt">{"PIAA Class AAA champion" if int(r["year"]) >= 1974 else "PIAA state champion"}</span>{det}</li>')
         n = len(titles)
         headline = f"{n}x PIAA state champion" if n > 1 else "PIAA state champion"
         hero = c.get("hero")
