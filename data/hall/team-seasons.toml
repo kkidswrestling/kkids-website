@@ -1,0 +1,188 @@
+# One entry per PIAA team-title season, keyed by the year the season ended.
+# Each builds a page at champions/team/<year>/ linked from the team-title banners.
+# Place winners and District XI / Northeast Regional champions are filled in
+# automatically from the Hall of Champions lists, so they are not repeated here.
+#
+#   record     = dual record          league = league finish
+#   coach      = head coach           story  = paragraphs (our own words)
+#   highlights = [["when", "what happened"], ...]   regular season
+#   postseason = [["stage", "result"], ...]
+#   sources    = [["title", "url"], ...]
+
+["1993"]
+record = "24–0"
+league = "East Penn Conference champions, 11–0"
+coach = "Don Rohn"
+story = [
+  "Northampton won its first PIAA team title in 1993, finishing a perfect 24–0 season ranked No. 1 in the nation. Coach Don Rohn was named PIAA Coach of the Year.",
+  "The Kids opened the year ranked No. 2 in the state behind Canon-McMillan, with 11 starters back. On opening weekend they beat New York's top-ranked Longwood 42–26 at the Valley Youth House Elite Duals, and they won the Cedar Cliff Duals when Jason Grim's fall decided a 32–26 final with Pine Grove. The biggest regular-season night came Jan. 23 in front of about 3,600 fans at Liberty: a 26–23 win over Nazareth, built on Denny Liberto's major decision at 103, Rich Kutzler's cradle for a fall at 152, and Grim's fall at heavyweight. A 69–3 win over Whitehall clinched the East Penn title.",
+  "The postseason was a sweep. Northampton won the District XI Duals 37–12 over Easton, the District XI team title 216–194 over Nazareth with a record 11 semifinalists, and the Northeast Regional team title with four champions. At Hershey, Mike Tomsic pinned Conestoga's Jason LaMotta in 45 seconds for the 112-pound title, and three more Kids placed. The town welcomed the team home with a parade on March 21, and Superintendent Ralph Tarola called it one of the greatest moments in Northampton sports history.",
+]
+highlights = [
+  ["Dec.", "Beat No. 1 Longwood (N.Y.) 42–26 at the Valley Youth House Elite Duals"],
+  ["Dec.", "Won the Christmas City Tournament with eight finalists and six champions"],
+  ["Jan.", "Won the Cedar Cliff Duals, 32–26 over Pine Grove in the final"],
+  ["Jan. 23", "Beat Nazareth 26–23 before about 3,600 fans at Liberty"],
+  ["Jan. 27", "Beat Easton 48–9"],
+  ["Feb.", "Beat Whitehall 69–3 to clinch the East Penn title"],
+]
+postseason = [
+  ["District XI Duals", "Champions, 37–12 over Easton"],
+  ["District XI tournament", "Champions, 216–194 over Nazareth"],
+  ["Northeast Regional", "Champions"],
+  ["PIAA tournament", "State champions"],
+]
+sources = [["Lehigh Valley Wrestling History, “1992-93: The Cement Job”", "https://lehighvalleywrestlinghistory.com/1992-93-the-cement-job/"]]
+
+["1994"]
+record = "24–0"
+league = "East Penn Conference champions, 11–0"
+coach = "Don Rohn"
+story = [
+  "Northampton repeated as PIAA team champion in 1994 with a second straight 24–0 season, running its dual winning streak to 48. Coach Don Rohn won his 200th match at Northampton and was named AAA Coach of the Year.",
+  "The Kids had graduated eight starters but still opened ranked No. 2 in the state. They won the Christmas City Tournament with 12 of 13 wrestlers placing and six champions, won the Cedar Cliff Duals 43–15 over Dallastown in the final, and beat Canon-McMillan 45–16. Easton fell 29–22 on Jan. 26. On Feb. 14 the Kids beat Nazareth 22–18 at Stabler Arena in front of about 3,600 fans, a dual decided by Whitey Chlebove's 3–2 win over unbeaten Sean Topping, Jason Davis's five-point move at 145, Ryan Gumlock's 6–5 win at 160, and wins by Craig Fenstermaker, Rick Umstead, and heavyweight Zach Musselman.",
+  "Rohn's 200th win came in the District XI Duals final, 35–12 over Easton. The Kids won the District XI team title by 76 points with five champions, won the Northeast Regional team title with four champions, and won the state title with four place winners, led by Chlebove's championship at 130.",
+]
+highlights = [
+  ["Dec.", "Won the Christmas City Tournament: 12 of 13 placed, six champions"],
+  ["Jan.", "Won the Cedar Cliff Duals, 43–15 over Dallastown in the final"],
+  ["Jan. 13", "Beat Phillipsburg 40–15"],
+  ["Jan. 26", "Beat Easton 29–22"],
+  ["Jan.", "Beat Canon-McMillan 45–16"],
+  ["Feb. 14", "Beat Nazareth 22–18 at Stabler Arena before about 3,600 fans"],
+]
+postseason = [
+  ["District XI Duals", "Champions, 35–12 over Easton (Rohn's 200th win)"],
+  ["District XI tournament", "Champions by 76 points"],
+  ["Northeast Regional", "Champions"],
+  ["PIAA tournament", "State champions"],
+]
+sources = [["Lehigh Valley Wrestling History, “1993-94: The Kids Are Hot Tonite”", "https://lehighvalleywrestlinghistory.com/1993-94-the-kids-are-hot-tonite/"]]
+
+["1995"]
+record = "16–4"
+league = "Mountain Valley Conference, 2nd (5–1)"
+coach = "Don Rohn"
+story = [
+  "Northampton completed a three-peat in 1995, winning its third straight PIAA team title in a season that tested the Kids more than the two before it.",
+  "In their first year in the new Mountain Valley Conference, the Kids opened ranked No. 2 in the nation behind Walsh Jesuit and riding a 48-dual winning streak. The streak reached 50 at the Valley Youth House Elite Duals, including a 31–29 win over Canon-McMillan, before Walsh Jesuit ended it 28–27 the same day. Northampton finished 2nd to Walsh at the Ironman Classic in Ohio, won the Liberty holiday tournament with seven champions and the Bethlehem Holiday Classic, and won the Cedar Cliff Duals again. Nazareth (28–23) and Easton (28–23, then 25–24 in the District Duals semifinals) handed the Kids their other losses.",
+  "The postseason belonged to Northampton. The Kids crowned six District XI champions, the most of any team, while finishing 2nd to Nazareth in the team race, then won the Northeast Regional team title with five champions. At Hershey six Kids reached the podium and Northampton won the team title again, led by Denny Liberto's championship at 103.",
+]
+highlights = [
+  ["Dec. 10", "Beat Canon-McMillan 31–29 for a 50th straight dual win; lost 28–27 to No. 1 Walsh Jesuit"],
+  ["Dec.", "2nd at the Ironman Classic (Ohio); won the Liberty holiday tournament with seven champions"],
+  ["Dec.", "Won the Bethlehem Holiday Classic"],
+  ["Jan. 7", "Won the Cedar Cliff Duals"],
+  ["Jan. 11", "Beat Phillipsburg 35–18"],
+  ["Jan. 20", "Lost to Nazareth 28–23 before 3,000-plus fans at Liberty"],
+]
+postseason = [
+  ["District XI Duals", "Semifinalist (lost 25–24 to Easton)"],
+  ["District XI tournament", "2nd, with a district-high six champions"],
+  ["Northeast Regional", "Champions"],
+  ["PIAA tournament", "State champions"],
+]
+sources = [["Lehigh Valley Wrestling History, “1994-95: The Year of the Big Three”", "https://lehighvalleywrestlinghistory.com/1994-95-the-year-of-the-big-three/"]]
+
+["1998"]
+record = "21–0"
+league = "Mountain Valley Conference champions, 6–0"
+coach = "Don Rohn"
+story = [
+  "Northampton won its fourth PIAA team title in 1998, finishing an unbeaten 21–0 dual season and sweeping the District XI, Northeast Regional, and state team titles. It was the program's third unbeaten dual season of the 1990s.",
+  "With ten starters back, including state place winners Christian Luciano and John Hard, the Kids won the Mountain Valley Conference at 6–0 and the Cedar Cliff Duals for the seventh straight year, 42–15 over Dallastown in the final. Two duals nearly got away. Easton tied Northampton 24–24 on Jan. 24, and the Kids won on criteria. Parkland was tied 27–27 before John Hard's pin in the last bout gave Northampton a 33–27 win. On Jan. 31, Luciano's 22nd fall of the season set a school record.",
+  "Parkland pushed the Kids all postseason. Northampton won the District XI Duals final 26–23 over Parkland and the District XI team title 223.5–203 over Parkland with six champions. At regionals the team title came down to the last bout, and Hard's pin of Nazareth's Steve Itterly gave Northampton a 94–93 win over Parkland. At Hershey, Luciano (171) and Hard (275) won state titles, Phil Hard placed 3rd, and Seth Lisa placed 5th. Rohn was named District XI Coach of the Year.",
+]
+highlights = [
+  ["Dec. 6", "Beat Shamokin 46–13"],
+  ["Dec.", "Luciano won the Beast of the East; 2nd as a team at the Hurricane Classic"],
+  ["Jan.", "Won the Cedar Cliff Duals for the seventh straight year, 42–15 over Dallastown"],
+  ["Jan. 17", "Beat Nazareth 38–13"],
+  ["Jan. 24", "Tied Easton 24–24, won on criteria"],
+  ["Jan.", "Beat Parkland 33–27 on John Hard's last-bout pin"],
+  ["Jan. 31", "Beat Shikellamy 60–6; Luciano set the school record for falls"],
+]
+postseason = [
+  ["District XI Duals", "Champions, 26–23 over Parkland"],
+  ["District XI tournament", "Champions, 223.5–203 over Parkland"],
+  ["Northeast Regional", "Champions, 94–93 over Parkland"],
+  ["PIAA tournament", "State champions"],
+]
+sources = [["Lehigh Valley Wrestling History, “1997-98: Bulldogs Blossom, Kids Triumph over Trojans”", "https://lehighvalleywrestlinghistory.com/1997-98-bulldogs-blossom-kids-triumph-over-trojans/"]]
+
+["2000"]
+record = "23–1"
+league = "Mountain Valley Conference champions, 7–0"
+coach = "Don Rohn"
+story = [
+  "In Don Rohn's final season as head coach, Northampton won its fifth PIAA team title and its first PIAA team duals championship. The Kids scored 137.5 points at Hershey, the most in program history, and set a state record with eight place winners.",
+  "Their only loss came against Ohio's St. Edward's, 32–18, at the Easton-Phillipsburg Duals, where they also beat Walsh Jesuit 41–21 and Connellsville 49–12. They won the Bethlehem Holiday Classic over Blair Academy and the Cedar Cliff Duals, beat Easton 29–21 on the road, and clinched the Mountain Valley Conference with a 34–15 win over Nazareth on Feb. 5.",
+  "Then they won everything. Northampton took the District XI Duals (31–15 over Easton in the final), the District XI team title with six champions, and the Northeast Regional team title with four champions. At the PIAA team duals the Kids beat Dallastown and Upper Perkiomen, then Connellsville 31–19 in the final, clinched by Marty Limpar's technical fall at 171. At the state tournament Ryan McCallum won the 130-pound title, Jeff Ecklof and Tommy Rohn were runners-up, and five more Kids placed.",
+  "Rohn finished 309–59 in 18 seasons at Northampton, with five state team titles, eight individual state champions, and four PIAA Coach of the Year awards.",
+]
+highlights = [
+  ["Dec.", "Won the Bethlehem Holiday Classic over Blair Academy"],
+  ["Jan.", "Won the Cedar Cliff Duals, 51–9 over the host in the final"],
+  ["Jan. 14–15", "Beat Walsh Jesuit 41–21 and Connellsville 49–12; lost 32–18 to St. Edward's"],
+  ["Jan. 22", "Beat Easton 29–21 at Easton"],
+  ["Jan. 29", "Beat Parkland 43–15 without three starters"],
+  ["Feb. 5", "Beat Nazareth 34–15 to clinch the MVC title"],
+]
+postseason = [
+  ["District XI Duals", "Champions, 31–15 over Easton"],
+  ["District XI tournament", "Champions, six individual champions"],
+  ["Northeast Regional", "Champions"],
+  ["PIAA team duals", "State champions, 31–19 over Connellsville"],
+  ["PIAA tournament", "State champions, 137.5 points"],
+]
+sources = [["Lehigh Valley Wrestling History, “1999-00: Going Out on Top”", "https://lehighvalleywrestlinghistory.com/1999-00-going-out-on-top/"]]
+
+["2003"]
+record = "21–2"
+league = "Lehigh Valley Conference champions, 7–0"
+coach = "Terry Daubert"
+story = [
+  "Northampton won its sixth PIAA team title in 2003 on one of the great nights in program history: four Kids won state championships, the most Northampton has ever had in one year.",
+  "Coach Terry Daubert's team returned ten starters, including 2001 champion Jeff Ecklof, Josh Haines, and Jon Oplinger. The Kids won the Bethlehem Holiday Classic 232–221.5 over Blair Academy, the Cedar Cliff Duals (58–15 over Boyertown in the final), and the Parkland Duals (43–21 over Connellsville after trailing late). On Jan. 25 at Liberty's Memorial Gym, Oplinger's decision sealed a 31–29 win over Easton, Daubert's first over the Rovers as head coach, and the Kids won the new Lehigh Valley Conference at 7–0. Their losses came against Blair Academy (35–24) and Easton in the District Duals final (34–23).",
+  "Easton edged Northampton for the District XI and Northeast Regional team titles, but at Hershey the Kids turned it around. Joey Ecklof (135), Jeff Ecklof (145), Josh Haines (189), and Jon Oplinger (215) all won titles, and Northampton beat Easton 98–80.5 for the team championship. “Times like this come once in a lifetime,” Daubert said.",
+]
+highlights = [
+  ["Dec.", "Won the Bethlehem Holiday Classic, 232–221.5 over Blair Academy"],
+  ["Jan.", "Won the Cedar Cliff Duals, 58–15 over Boyertown in the final"],
+  ["Jan. 8", "Beat Nazareth 43–15"],
+  ["Jan.", "Won the Parkland Duals, 43–21 over Connellsville"],
+  ["Jan. 25", "Beat Easton 31–29 at Liberty's Memorial Gym"],
+  ["Feb. 9", "Lost to Blair Academy 35–24"],
+]
+postseason = [
+  ["District XI Duals", "Runner-up (lost 34–23 to Easton)"],
+  ["District XI tournament", "2nd, five champions"],
+  ["Northeast Regional", "2nd, four champions"],
+  ["PIAA tournament", "State champions, 98–80.5 over Easton"],
+]
+sources = [["Lehigh Valley Wrestling History, “2002-03: Four of a Kind, a Final Goodbye”", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"]]
+
+["2004"]
+record = "20–1"
+league = "Lehigh Valley Conference champions, 7–0"
+coach = "Terry Daubert"
+story = [
+  "Northampton repeated as PIAA team champion in 2004, scoring 132.5 points to Easton's 83.5 and putting ten wrestlers on the podium, the most in program history. Terry Daubert was named PIAA Coach of the Year and then National Coach of the Year by the NHSCA.",
+  "With three state champions back in Joey Ecklof, Josh Haines, and Jon Oplinger, the Kids won the Virginia Duals (37–23 over Great Bridge in the final) and the Cedar Cliff Duals, finished 6.5 points behind Blair Academy at the Bethlehem Holiday Classic, and placed 3rd at the Beast of the East. They clinched the Lehigh Valley Conference with a 31–30 win over Easton on Jan. 23 and closed the dual season with a 36–24 win over Nazareth. Their only loss came against Easton, 29–25, in the District XI Duals final.",
+  "At the District XI tournament the Kids scored a record 281 points with six champions. They won the Northeast Regional team title with four champions and sent 11 wrestlers to Hershey, where Ecklof (145), Haines (189), and Oplinger (215) all won titles again and seven more Kids placed.",
+]
+highlights = [
+  ["Dec.", "2nd at the Bethlehem Holiday Classic with six champions; 3rd at the Beast of the East"],
+  ["Jan. 9–11", "Won the Virginia Duals, 37–23 over Great Bridge in the final"],
+  ["Jan.", "Won the Cedar Cliff Duals"],
+  ["Jan. 17", "Beat Phillipsburg 51–18"],
+  ["Jan. 23", "Beat Easton 31–30 to clinch the LVC title"],
+  ["Feb. 11", "Beat Nazareth 36–24"],
+]
+postseason = [
+  ["District XI Duals", "Runner-up (lost 29–25 to Easton)"],
+  ["District XI tournament", "Champions, record 281 points"],
+  ["Northeast Regional", "Champions"],
+  ["PIAA tournament", "State champions, 132.5–83.5 over Easton"],
+]
+sources = [["Lehigh Valley Wrestling History, “2003-04: The More Things Change, the More They Stay the Same”", "https://lehighvalleywrestlinghistory.com/2003-04-the-more-things-change-the-more-they-stay-the-same/"]]

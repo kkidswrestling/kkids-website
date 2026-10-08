@@ -721,10 +721,98 @@ def build_champion_pages():
     return [M.SITE["domain"] + f"/champions/{M.slug(n)}/" for n in order]
 
 
+def team_year(season):
+    """'1992–93' -> 1993"""
+    return int(season[:4]) + 1
+
+
+def build_team_title_pages():
+    """One page per PIAA team-title season: champions/team/<year>/."""
+    R = "../../../"
+    seasons = load_hall_toml("team-seasons.toml")
+    years = [team_year(r["season"]) for r in M.TEAM_TITLES]
+    champ_names = {M.norm(r["wrestler"]) for r in M.HALL["state"]}
+    def who(n):
+        n = M.norm(n)
+        return f'<a href="{R}champions/{M.slug(n)}/">{e(n)}</a>' if n in champ_names else e(n)
+    def wt(w):
+        return int("".join(ch for ch in w if ch.isdigit()) or 0)
+    urls = []
+    for i, (row, y) in enumerate(zip(M.TEAM_TITLES, years)):
+        s = seasons.get(str(y), {})
+        ys = str(y)
+        champs = sorted([r for r in M.HALL["state"] if r["year"] == ys], key=lambda r: wt(r["weight"]))
+        medals = sorted([r for r in M.HALL["medals"] if r["year"] == ys], key=lambda r: (int(r["place"]), wt(r["weight"])))
+        dist = sorted([r for r in M.HALL["district"] if r["year"] == ys], key=lambda r: wt(r["weight"]))
+        reg = sorted([r for r in M.HALL["regional"] if r["year"] == ys], key=lambda r: wt(r["weight"]))
+        podium = [(1, r) for r in champs] + [(int(r["place"]), r) for r in medals]
+        place_label = lambda p: "Champion" if p == 1 else f"{p}{M.ordinal_suffix(p)}"
+        pod = "".join(f'<li class="pl-{min(p, 4)}"><span class="pp">{place_label(p)}</span><span class="pn">{who(r["wrestler"])}</span><span class="pw">{e(r["weight"])}</span></li>' for p, r in podium)
+        stats = [(s.get("record", ""), "dual record"), (str(len(champs)), "state champion" + ("s" if len(champs) != 1 else "")),
+                 (str(len(podium)), "state place winners"), (str(len(dist)), "District XI champions"), (str(len(reg)), "Regional champions")]
+        stat_html = "".join(f'<li><b>{e(v)}</b><span>{e(l)}</span></li>' for v, l in stats if v)
+        story = "".join("<p>" + re.sub(r"(\d+(?:\.\d+)?[–-]\d+(?:\.\d+)?)", r'<span class="nw">\1</span>', e(x)) + "</p>" for x in s.get("story", []))
+        if not story:
+            story = f'<p>Northampton won the PIAA Class AAA team title in {e(row["season"])}. The full story of this season is coming.</p>'
+        if s.get("sources"):
+            story += '<p class="cp-source">' + ("Sources: " if len(s["sources"]) > 1 else "Source: ") + "; ".join(f'<a href="{x[1]}" rel="noopener">{e(x[0])}</a>' for x in s["sources"]) + "</p>"
+        post = "".join(f'<li><span class="ps">{e(a)}</span><span class="pr">{e(b)}</span></li>' for a, b in s.get("postseason", []))
+        hl = "".join(f'<li><span class="hd">{e(a)}</span><span>{e(b)}</span></li>' for a, b in s.get("highlights", []))
+        lst = lambda rows: "".join(f'<li>{who(r["wrestler"])} <span class="w">{e(r["weight"])}</span></li>' for r in rows)
+        prev = years[i - 1] if i > 0 else None
+        nxt = years[i + 1] if i + 1 < len(years) else None
+        nav = ('<nav class="champ-nav wrap" aria-label="More team titles">'
+               + (f'<a href="{R}champions/team/{prev}/">‹ {prev}</a>' if prev else "<span></span>")
+               + f'<a href="{R}champions/#team-title">All team titles</a>'
+               + (f'<a href="{R}champions/team/{nxt}/">{nxt} ›</a>' if nxt else "<span></span>") + "</nav>")
+        coach = s.get("coach", "")
+        lede = f'PIAA Class AAA team champions · {e(row["season"])}' + (f' · Coach {e(coach)}' if coach else "")
+        body = f"""
+<header class="page-head concrete champ-head team-head"><div class="wrap"><p class="kicker"><a href="{R}champions/">Hall of Champions</a></p>
+<h1>{y} State Champions</h1><p class="lede">{lede}</p>
+<p class="tt-count">Team title {i + 1} of {len(years)}</p></div></header>
+<section class="band tight"><div class="wrap"><ul class="ts-stats" role="list">{stat_html}</ul></div></section>
+<section class="band">
+  <div class="wrap cp-grid">
+    <aside class="cp-side">
+      {f'<h2 class="side-h">Postseason</h2><ol class="post-list" role="list">{post}</ol>' if post else ''}
+      {f'<p class="side-note">{e(s["league"])}</p>' if s.get("league") else ''}
+    </aside>
+    <div class="prose cp-story"><h2>The season</h2>{story}</div>
+  </div>
+</section>
+<section class="band dark">
+  <div class="wrap">
+    <h2>On the podium at Hershey</h2>
+    <ol class="podium" role="list">{pod}</ol>
+  </div>
+</section>
+<section class="band concrete">
+  <div class="wrap split even">
+    <div>{f'<h2>Season highlights</h2><ol class="hl-list" role="list">{hl}</ol>' if hl else ''}</div>
+    <div>
+      {f'<h2>District XI champions</h2><ul class="mini-list" role="list">{lst(dist)}</ul>' if dist else ''}
+      {f'<h2>Northeast Regional champions</h2><ul class="mini-list" role="list">{lst(reg)}</ul>' if reg else ''}
+    </div>
+  </div>
+</section>
+{nav}
+"""
+        M.page(f"champions/team/{y}/index.html", f"{y} PIAA team champions", f"Northampton's {row['season']} PIAA Class AAA team championship season: record, story, state place winners, and postseason.", body, "champions/")
+        urls.append(M.SITE["domain"] + f"/champions/team/{y}/")
+    return urls
+
+
+def load_hall_toml(name):
+    with open(os.path.join(M.ROOT, "data", "hall", name), "rb") as f:
+        return tomllib.load(f)
+
+
 def build_all(module):
     global M
     M = module
     urls = [build_roster(), build_results(), build_news(), build_photos(), build_videos(), build_timeline(),
             build_story(), build_facilities(), build_join(), build_family(), build_alumni(), build_follow()]
     urls += build_champion_pages()
+    urls += build_team_title_pages()
     return urls

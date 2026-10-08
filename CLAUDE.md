@@ -26,3 +26,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Never use AI-generated images (e.g., ChatGPT gpt-image, C2PA 'trainedAlgorithmicMedia') as photos of real wrestlers without Joe confirming; check uploads for that marker.
 - Joe labels photos in the IPTC caption field (iptc 2:120), not EXIF. Read it with PIL IptcImagePlugin.getiptcinfo before asking who's in a photo.
 - PIAA wrestling had one combined state tournament through 1972-73 and split into two classes in 1973-74 (Lehigh Valley Wrestling History). Title cards say "PIAA state champion" before 1974 and "PIAA Class AAA champion" from 1974.
+- Team-title season pages: champions/team/<year>/ built by build_team_title_pages in tools/v2.py from data/hall/team-seasons.toml (record, league, coach, story, highlights, postseason, sources). Place winners and district/regional champions fill in from the Hall CSVs. The team-title banners on the Hall of Champions page link to them.
