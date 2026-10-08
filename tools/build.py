@@ -983,8 +983,8 @@ def season_archive(R):
             summ.append("PIAA team champions")
         facts = [("Head coach", e(coach(y)))] if coach(y) else []
         if s["record"]:
-            facts.append(("Duals listed", s["record"] + (f' ({s["league_record"]} league)' if s["league_record"] else "")))
-            summ.append(f'{s["record"]} listed')
+            facts.append(("Dual record", s["record"] + (f' ({s["league_record"]} league)' if s["league_record"] else "")))
+            summ.append(s["record"])
         for st, p in s["finishes"]:
             facts.append((st, e(p)))
         for n, p in s["tournaments"]:
