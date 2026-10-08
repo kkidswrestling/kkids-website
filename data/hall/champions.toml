@@ -113,6 +113,7 @@ finals = [[1993, "Jason LaMotta", "Conestoga", "Won by fall, 0:45"]]
 sources = [["Lehigh Valley Wrestling History, \u201c1992-93: The Cement Job\u201d", "https://lehighvalleywrestlinghistory.com/1992-93-the-cement-job/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["John Hard"]
+video = [{ url = "https://www.youtube.com/watch?v=zCCGSPL2qxg", start = "1:04:02", end = "1:17:30" }]
 banner = "banner-john-hard"
 story = [
   "John Hard won the 1998 PIAA Class AAA heavyweight title at 275 pounds, riding out Dave Armstrong of Central Bucks West for a 2–1 overtime win in the final. He finished his senior season 38–3.",
