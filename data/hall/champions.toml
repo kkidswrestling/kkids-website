@@ -25,6 +25,7 @@ story = [
 gallery = ["ballard-attack", "ballard-coaches", "ballard-100", "ballard-ride"]
 
 ["Brayden Wenrich"]
+video = [{ url = "https://www.youtube.com/watch?v=3Jym9NVDEZw", start = "1:02:20", end = "1:10:15" }]
 banner = "banner-brayden-wenrich"
 portrait = "portrait-wenrich-2026"
 hero = "wenrich-final"
