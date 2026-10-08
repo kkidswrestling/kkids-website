@@ -671,3 +671,13 @@ crop = [12, 10, 290, 357]
 focus = "50% 30%"
 widths = [278]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/tomsic.jpg"
+
+[[photo]]
+id = "banner-john-hard"
+source = "Northampton yearbook, via Coach Provini"
+alt = "John Hard has his hand raised by the referee after a win"
+credit = "Northampton yearbook"
+crop = [172, 8, 364, 248]
+focus = "50% 35%"
+widths = [192]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/heavyweight.jpg"

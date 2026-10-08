@@ -227,6 +227,20 @@
    ]
   ]
  },
+ "banner-john-hard": {
+  "fallback": [
+   192,
+   240
+  ],
+  "h": 240,
+  "w": 192,
+  "widths": [
+   [
+    192,
+    240
+   ]
+  ]
+ },
  "banner-josh-haines": {
   "fallback": [
    620,
