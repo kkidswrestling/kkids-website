@@ -681,7 +681,7 @@ def build_champion_pages():
                      f'<p class="ask">Photos, the story of this title, and the state final are coming. Have something to share? Email '
                      f'<a href="mailto:{M.SITE["email"]}?subject=State%20champion%3A%20{e(name)}">{M.SITE["email"]}</a>.</p>')
         if c.get("sources"):
-            story += '<p class="cp-source">Source: ' + "; ".join(f'<a href="{s[1]}" rel="noopener">{e(s[0])}</a>' for s in c["sources"]) + "</p>"
+            story += '<p class="cp-source">' + ("Sources: " if len(c["sources"]) > 1 else "Source: ") + "; ".join(f'<a href="{s[1]}" rel="noopener">{e(s[0])}</a>' for s in c["sources"]) + "</p>"
         vids = [yt_id(u) for u in c.get("video", []) if yt_id(u)]
         video = "".join(
             f'<div class="video-facade single" data-ytv="{v}"><img class="vf-img" src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><button type="button" class="vf-play"><span aria-hidden="true">▶</span> Watch the state final</button></div>'
