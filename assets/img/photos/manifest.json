@@ -287,6 +287,24 @@
    ]
   ]
  },
+ "banner-jon-oplinger": {
+  "fallback": [
+   633,
+   791
+  ],
+  "h": 791,
+  "w": 633,
+  "widths": [
+   [
+    480,
+    600
+   ],
+   [
+    633,
+    791
+   ]
+  ]
+ },
  "banner-josh-haines": {
   "fallback": [
    620,
