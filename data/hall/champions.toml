@@ -123,6 +123,7 @@ finals = [[1998, "Dave Armstrong", "Central Bucks West", "Won 2–1 (OT)"]]
 sources = [["Lehigh Valley Wrestling History, \u201c1997-98: Bulldogs Blossom, Kids Triumph over Trojans\u201d", "https://lehighvalleywrestlinghistory.com/1997-98-bulldogs-blossom-kids-triumph-over-trojans/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Christian Luciano"]
+video = [{ url = "https://www.youtube.com/watch?v=zCCGSPL2qxg", start = "39:10", end = "51:50" }]
 banner = "banner-christian-luciano"
 portrait = "portrait-luciano"
 story = [
