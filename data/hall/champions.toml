@@ -147,6 +147,7 @@ finals = [[2021, "Jack McGill", "Spring-Ford", "Won 7–3 (SV)"]]
 sources = [["PA-Wrestling, Jagger Condomitti career stats", "https://www.pa-wrestling.com/hs/teams/northampton/athlete_stats.htm?id=139551"]]
 
 ["Joey Ecklof"]
+video = [{ url = "https://www.youtube.com/watch?v=AOSs6LyVmDY", start = "55:33", end = "1:10:20", year = 2003 }]
 banner = "banner-joey-ecklof"
 story = [
   "Joey Ecklof is one of Northampton's three-time state champions, winning PIAA Class AAA titles at 135 (2003), 145 (2004), and 152 (2005).",
