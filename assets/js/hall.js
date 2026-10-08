@@ -39,6 +39,7 @@
   var summary = function (p) {
     var c = { state: 0, medal: 0, reg: 0, dist: 0 };
     p.honors.forEach(function (h) {
+      if (h[3]) return; // medals for another school: listed, not counted
       if (h[1] === "PIAA champion") { c.state++; c.medal++; }
       else if (/^PIAA \d/.test(h[1])) c.medal++;
       else if (h[1] === "Northeast Regional champion") c.reg++;
@@ -78,7 +79,7 @@
     }
     out.innerHTML = hits.map(function (p) {
       var items = p.honors.map(function (h) {
-        return "<li><b>" + h[0] + "</b><span>" + esc(h[1]) + "</span>" + (h[2] ? '<span class="w">' + esc(h[2]) + "</span>" : "") + "</li>";
+        return "<li><b>" + h[0] + "</b><span>" + esc(h[1]) + (h[3] ? '<span class="sch">for ' + esc(h[3]) + "</span>" : "") + "</span>" + (h[2] ? '<span class="w">' + esc(h[2]) + "</span>" : "") + "</li>";
       }).join("");
       var s = summary(p);
       return '<article class="profile"><h3>' + esc(p.name) + "</h3>" + (s ? '<p class="sum">' + esc(s) + "</p>" : "") + "<ul>" + items + "</ul></article>";

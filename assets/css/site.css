@@ -733,3 +733,6 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 .cp-source { margin-top: 18px; font-size: 14px; color: #6b6760; }
 .cp-source a { color: var(--blaze-ink); }
 .nw { white-space: nowrap; }
+
+/* Medals won for another school before transferring: listed quietly, school named */
+.honor-list .sch, .profile li .sch { display: block; margin-top: 1px; font-size: 13px; font-style: italic; color: var(--ink-2); }

@@ -38,6 +38,9 @@ HALL = {
 RECORDS = load_csv("hall/season-records.csv")
 HEAD_COACHES = load_csv("hall/head-coaches.csv")
 HUNDRED = load_csv("hall/hundred-wins.csv")
+# State medals won for other schools before transferring in. Shown on profiles with the
+# school named; never counted in program totals, lists, or streaks.
+OTHER = load_csv("hall/other-schools.csv")
 TEAM_TITLES = load_csv("hall/team-titles.csv")
 CUR = SEASONS[0]
 
@@ -360,6 +363,9 @@ def hall_json():
         n = norm(r["wrestler"])
         p = int(r["place"])
         people[n]["honors"].append([int(r["year"]), f"PIAA {p}{ordinal_suffix(p)} place", r["weight"]])
+    for r in OTHER:
+        p = int(r["place"])
+        people[norm(r["wrestler"])]["honors"].append([int(r["year"]), f"PIAA {p}{ordinal_suffix(p)} place", r["weight"], r["school"]])
     for r in HUNDRED:
         n = norm(r["wrestler"])
         y = end_year(r["years"]) or 2026

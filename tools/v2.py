@@ -9,6 +9,7 @@ import tomllib
 
 e = html.escape
 M = None  # the build module, set in build_all()
+SCH_OPEN = '<span class="sch">'
 W_OPEN = '<span class="w">'
 UL_OPEN = '<ul class="honor-list" role="list">'
 TL_TAG = '<p class="tl-tag">PIAA team champions</p>'
@@ -316,7 +317,7 @@ def build_profile(w, season):
         cells = [("2025–26 record", f'{st["wins"]}–{st["losses"]}'), ("Career record", f'{st["career_wins"]}–{st["career_losses"]}'),
                  ("Pins", st["falls"]), ("Tech falls", st["tech_falls"]), ("Takedowns", st["takedowns"]), ("Dual team points", st["team_points_duals"])]
         statrow = '<div class="facts-row light pf-stats">' + "".join(f"<p><b>{v}</b>{k}</p>" for k, v in cells) + "</div>"
-    honors = "".join(f'<li><b>{h[0]}</b><span>{e(h[1])}</span>{(W_OPEN + e(h[2]) + "</span>") if h[2] else ""}</li>' for h in w["honors"])
+    honors = "".join(f'<li><b>{h[0]}</b><span>{e(h[1])}{(SCH_OPEN + "for " + e(h[3]) + "</span>") if len(h) > 3 else ""}</span>{(W_OPEN + e(h[2]) + "</span>") if h[2] else ""}</li>' for h in w["honors"])
     body = f"""
 <section class="band profile-hero dark">
   <div class="wrap pf-grid">
@@ -690,7 +691,7 @@ def build_champion_pages():
         if not video:
             video = f'<div class="empty-state small"><h3>State final video</h3><p>Have video of this final? Send a YouTube link to <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a>.</p></div>'
         gal = M.gallery(R, c["gallery"], "champ") if c.get("gallery") else ""
-        honors = "".join(f'<li><b>{h[0]}</b><span>{e(h[1])}</span>{(W_OPEN + e(h[2]) + "</span>") if h[2] else ""}</li>' for h in hon)
+        honors = "".join(f'<li><b>{h[0]}</b><span>{e(h[1])}{(SCH_OPEN + "for " + e(h[3]) + "</span>") if len(h) > 3 else ""}</span>{(W_OPEN + e(h[2]) + "</span>") if h[2] else ""}</li>' for h in hon)
         prev = order[i - 1] if i > 0 else None
         nxt = order[i + 1] if i + 1 < len(order) else None
         pn = ('<nav class="champ-nav wrap" aria-label="More champions">'
