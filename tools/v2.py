@@ -589,13 +589,12 @@ def build_family():
   <div class="wrap"><h2 id="faq-title">FAQs</h2><div class="faq">{''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in faq)}</div></div>
 </section>
 <section class="band dark" id="booster" aria-labelledby="booster-title">
-  <div class="wrap split even">
+  <div class="wrap">
     <div class="prose">
       <h2 id="booster-title">Booster club</h2>
       <p>The {M.SITE['owner']} supports the program from youth to varsity: the awards banquet, the Charlie Lerch Memorial and Brandon M. Sommer Memorial scholarships, team gear, and more. Volunteers keep it all running.</p>
       <p><a class="btn" href="mailto:{M.SITE['email']}?subject=Volunteer">Volunteer with the club</a></p>
     </div>
-    <div><h3 class="sub">Club officers</h3><ul class="results on-dark" role="list">{M.result_rows(off)}</ul></div>
   </div>
 </section>
 """

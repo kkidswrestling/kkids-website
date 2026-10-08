@@ -727,3 +727,4 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 .pennant.linked a { padding: 16px 16px 52px; }
 .pennants .pennant.linked { min-height: 0; }
 .cp-face { aspect-ratio: auto; height: auto; object-fit: contain; }
+.jh-staff { max-width: 640px; }

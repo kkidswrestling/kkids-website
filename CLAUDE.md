@@ -22,3 +22,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Youth practice-room and attendance rules are Joe's youth-program rules; don't present them as varsity rules.
 - CSS/JS links carry a content-hash ?v= stamp (asset_ver in build.py) so browsers never mix new pages with an old cached stylesheet. Always rebuild after editing CSS/JS.
 - State champion pages: champions/<slug>/ built by build_champion_pages in tools/v2.py from data/hall/champions.toml (banner action shot, full medal portrait, hero, story, finals, gallery, YouTube video links). One page per champion; multi-time champs share a page. Missing fields fall back to the auto-filled record and a request for material.
+- Don't list club board/officer names on the site (Joe, Oct. 2026). Officer data stays in coaches.toml but isn't displayed.

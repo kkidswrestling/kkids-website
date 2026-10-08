@@ -788,16 +788,9 @@ def build_coaches():
   </div>
 </section>
 <section class="band dark">
-  <div class="wrap split even">
-    <div>
-      <h2>Junior high staff</h2>
-      <ul class="results on-dark" role="list">{result_rows(COACHES['junior_high']['staff'])}</ul>
-    </div>
-    <div>
-      <h2>Wrestling club officers</h2>
-      <ul class="results on-dark" role="list">{result_rows(off['list'])}</ul>
-      <p class="fine on-dark">{off['season']} officers of the {SITE['owner']}.</p>
-    </div>
+  <div class="wrap">
+    <h2>Junior high staff</h2>
+    <ul class="results on-dark jh-staff" role="list">{result_rows(COACHES['junior_high']['staff'])}</ul>
   </div>
 </section>
 <section class="band">
@@ -810,7 +803,7 @@ def build_coaches():
   </div>
 </section>
 """
-    return page("coaching-staff/index.html", "Coaching Staff", "Northampton wrestling coaching staff: head coach Joe Provini, varsity assistants, junior high coaches, and club officers.", body, "coaching-staff/", og_image="coaches-embrace")
+    return page("coaching-staff/index.html", "Coaching Staff", "Northampton wrestling coaching staff: head coach Joe Provini, varsity assistants, and junior high coaches.", body, "coaching-staff/", og_image="coaches-embrace")
 
 
 def medals_chart():
