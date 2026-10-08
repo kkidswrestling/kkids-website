@@ -537,7 +537,7 @@ def build_high_school():
     medal_card = lambda pid, name, line: (f'<article class="medalist">{picture(R, pid, "(min-width: 900px) 18vw, 45vw")}'
                                          f'<h3>{name}</h3><p>{line}</p></article>')
     body = f"""
-{page_head(R, "High School", "Northampton Area High School boys wrestling: varsity and JV.", "showcase-arms-up", "40% 28%")}
+{page_head(R, "High School", "Northampton Area High School boys wrestling: varsity and JV.", "showcase-arms-up", "45% 12%")}
 
 <section class="band" aria-labelledby="now-title">
   <div class="wrap split narrow-right">
@@ -714,7 +714,7 @@ def build_junior_high():
 def build_youth():
     R = "../"
     body = f"""
-{page_head(R, "Youth Wrestling", "Grades K–6. Where every Konkrete Kid starts.", "youth-champs", "50% 30%")}
+{page_head(R, "Youth Wrestling", "Grades K–6. Where every Konkrete Kid starts.", "youth-champs", "50% 18%")}
 <section class="band">
   <div class="wrap split narrow-right">
     <div class="prose">
@@ -767,7 +767,7 @@ def build_coaches():
 
     off = COACHES["officers"]
     body = f"""
-{page_head(R, "Coaching Staff", "The coaches who run the room, from the varsity to the junior high.", "coaches-embrace", "60% 30%")}
+{page_head(R, "Coaching Staff", "The coaches who run the room, from the varsity to the junior high.", "coaches-embrace", "60% 8%")}
 <section class="band">
   <div class="wrap head-coach">
     <figure class="hc-photo">{picture(R, h['photo'], "(min-width: 900px) 30vw, 70vw")}</figure>

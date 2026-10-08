@@ -527,7 +527,7 @@ def build_join():
             ("Varsity", "High school", "District XI, Northeast Regional, and the PIAA Championships in Hershey.", "../high-school/"),
             ("College", "Next level", "Members of the Class of 2026 are headed to wrestle at Elizabethtown and King’s College.", "../alumni/")]
     body = f"""
-{M.page_head(R, "Become a Konkrete Kid", "Why Northampton, our home, the path, and how to start.", "showcase-arms-up", "40% 28%")}
+{M.page_head(R, "Become a Konkrete Kid", "Why Northampton, our home, the path, and how to start.", "showcase-arms-up", "45% 12%")}
 <section class="band">
   <div class="wrap">
     <h2>Why Northampton</h2>
@@ -609,7 +609,7 @@ def build_alumni():
             ("John Paukovits", "3x District XI champion · varsity assistant"), ("Ethan Szerencsits", "Class of 2020 · varsity assistant"),
             ("Braden Turner", "2008 District and Regional champion · junior high assistant"), ("Justin Haupt", "1998–99 District XI champion · junior high assistant")]
     body = f"""
-{M.page_head(R, "Alumni", "Once a Konkrete Kid, always a Konkrete Kid.", "coaches-embrace", "60% 30%")}
+{M.page_head(R, "Alumni", "Once a Konkrete Kid, always a Konkrete Kid.", "coaches-embrace", "60% 8%")}
 <section class="band">
   <div class="wrap split even">
     <div class="prose">

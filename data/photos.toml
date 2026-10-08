@@ -85,6 +85,7 @@ file = "img26/p-032-125.png"
 
 [[photo]]
 id = "youth-champs"
+focus = "50% 18%"
 source = "2025-26 banquet program, page 16"
 season = "2025-26"
 alt = "Three Northampton youth wrestlers hold VEWL champion trophies"
@@ -168,6 +169,7 @@ file = "img26/p-041-213.png"
 
 [[photo]]
 id = "wenrich-final"
+focus = "50% 5%"
 source = "2025-26 banquet program, page 41"
 season = "2025-26"
 alt = "Brayden Wenrich, wearing a gold medal, stands with three men in suits in front of a green screen"
@@ -177,6 +179,7 @@ file = "img26/p-041-215.png"
 
 [[photo]]
 id = "coaches-embrace"
+focus = "60% 8%"
 source = "Coach Provini, showcase batch 1 (also in 2025-26 banquet program, page 41)"
 season = "2025-26"
 alt = "Two Northampton coaches embrace on the arena floor at the Giant Center"
@@ -233,6 +236,7 @@ file = "img26/p-042-232.png"
 
 [[photo]]
 id = "ballard-raised"
+focus = "45% 8%"
 source = "2025-26 banquet program, page 42"
 season = "2025-26"
 alt = "A referee raises Gabe Ballard's hand as he points one finger in the air"
@@ -481,7 +485,7 @@ season = "2023-24"
 source = "Coach Provini, showcase batch 1"
 alt = "Trey Wagner throws both arms in the air after winning the 2024 PIAA championship at 127 pounds"
 caption = "Trey Wagner wins the 2024 PIAA title at 127, the first state championship of Coach Provini’s head coaching career."
-focus = "40% 30%"
+focus = "45% 12%"
 widths = [640, 1200, 2000]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/01-f17cd701-image.jpg"
 
@@ -759,6 +763,7 @@ file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8
 
 [[photo]]
 id = "two-champs-2026"
+focus = "50% 10%"
 source = "Combined: Wenrich photo from Coach Provini (Oct. 2026) and ballard-raised"
 season = "2025-26"
 alt = "2026 state champions side by side: Brayden Wenrich and Gabe Ballard each have a hand raised by the referee"
