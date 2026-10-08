@@ -14,6 +14,7 @@
 #              YouTube links to the state final (only videos posted publicly by their owner)
 
 ["Gabriel Ballard"]
+video = [{ url = "https://www.youtube.com/watch?v=3Jym9NVDEZw", start = "0:00", end = "10:18" }]
 banner = "banner-gabriel-ballard"
 portrait = "portrait-ballard-2026"
 hero = "ballard-raised"
