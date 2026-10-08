@@ -728,3 +728,7 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 .pennants .pennant.linked { min-height: 0; }
 .cp-face { aspect-ratio: auto; height: auto; object-fit: contain; }
 .jh-staff { max-width: 640px; }
+
+/* Story source credit on champion pages */
+.cp-source { margin-top: 18px; font-size: 14px; color: #6b6760; }
+.cp-source a { color: var(--blaze-ink); }

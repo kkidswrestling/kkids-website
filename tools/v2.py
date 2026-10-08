@@ -663,7 +663,7 @@ def build_champion_pages():
         tcards = []
         for r in titles:
             f = finals.get(r["year"])
-            det = (f'<p class="final">Final: {e(f[3])} over {e(f[1])}{", " + e(f[2]) if f[2] else ""}</p>') if f else ""
+            det = (f'<p class="final">Final: {e(f[3])}{(" over " + e(f[1])) if f[1] else ""}{(", " + e(f[2])) if f[2] else ""}</p>') if f else ""
             tcards.append(f'<li><span class="ty">{r["year"]}</span><span class="tw">{e(r["weight"])}</span><span class="tt">PIAA Class AAA champion</span>{det}</li>')
         n = len(titles)
         headline = f"{n}x PIAA state champion" if n > 1 else "PIAA state champion"
@@ -680,6 +680,8 @@ def build_champion_pages():
             story = (f'<p>{e(name)} is one of {M.TOTALS["state"]} Konkrete Kids to win a PIAA state title. His full record is below.</p>'
                      f'<p class="ask">Photos, the story of this title, and the state final are coming. Have something to share? Email '
                      f'<a href="mailto:{M.SITE["email"]}?subject=State%20champion%3A%20{e(name)}">{M.SITE["email"]}</a>.</p>')
+        if c.get("sources"):
+            story += '<p class="cp-source">Source: ' + "; ".join(f'<a href="{s[1]}" rel="noopener">{e(s[0])}</a>' for s in c["sources"]) + "</p>"
         vids = [yt_id(u) for u in c.get("video", []) if yt_id(u)]
         video = "".join(
             f'<div class="video-facade single" data-ytv="{v}"><img class="vf-img" src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><button type="button" class="vf-play"><span aria-hidden="true">▶</span> Watch the state final</button></div>'

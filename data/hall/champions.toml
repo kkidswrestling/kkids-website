@@ -9,6 +9,7 @@
 #   story    = paragraphs about the wrestler and the title run
 #   finals   = one row per title: [year, "opponent", "opponent school", "result"]
 #   gallery  = more photo ids
+#   sources  = [["title", "url"], ...] where the story came from (shown under the story)
 #   video    = YouTube links to the state final (only videos posted publicly by their owner)
 
 ["Gabriel Ballard"]
@@ -94,6 +95,20 @@ banner = "banner-sean-finkbeiner"
 
 ["Steve Micio"]
 banner = "banner-steve-micio"
+story = [
+  "Steve Micio became Northampton's first state champion in March 1955, winning the PIAA title at 133 pounds with a 5–4 decision over Bill Milligan of Washington at Penn State's Rec Hall.",
+  "He had been building toward it. Micio won District XI titles in 1953 (120) and 1954 (127), and in 1954 he added a Northeast Regional title and finished runner-up at states. He went more than two years unbeaten in Lehigh Valley League duals until late January 1955, when he moved up to 139 and lost 10–6 to Easton's Nido Collina.",
+  "Back at 133 for the postseason, he swept the District XI and Northeast Regional titles. Under coach Harry Wall, Northampton sent Micio and Ed Keglovits to the state finals that March, and both won. The Kids placed 2nd in the state, the best finish by a District XI team since 1940.",
+]
+finals = [[1955, "Bill Milligan", "Washington", "Won 5–4"]]
+sources = [["Lehigh Valley Wrestling History, \u201c1954-55: Return of the Rovers\u201d", "https://lehighvalleywrestlinghistory.com/the-1950s/1954-55-return-of-the-rovers/"]]
 
 ["Edward Keglovits"]
 banner = "banner-edward-keglovits"
+story = [
+  "Ed Keglovits became Northampton's second state champion on the same March 1955 day at Penn State's Rec Hall that teammate Steve Micio won the program's first. Keglovits took the PIAA title at 154 pounds with a 3–2 decision.",
+  "His postseason run was strong from the start. He won the District XI final 8–0 over Easton's Gino DiLorenzo, won the Northeast Regional title at Wilkes-Barre, and won a close bout at states to reach the final.",
+  "During the season he won at 154 in Northampton's 24–16 win over Bethlehem, a match for second place in the Lehigh Valley League. Under coach Harry Wall, the Kids went 7–3 in the league and finished 2nd in District XI and 2nd in the state.",
+]
+finals = [[1955, "", "", "Won 3–2"]]
+sources = [["Lehigh Valley Wrestling History, \u201c1954-55: Return of the Rovers\u201d", "https://lehighvalleywrestlinghistory.com/the-1950s/1954-55-return-of-the-rovers/"]]
