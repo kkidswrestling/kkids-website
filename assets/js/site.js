@@ -209,3 +209,14 @@
     if (svg) svg.addEventListener("mouseleave", function () { tip.hidden = true; });
   });
 })();
+
+/* Open a collapsed season when a link or the address points at it */
+(function () {
+  var openHash = function () {
+    var id = decodeURIComponent(location.hash.slice(1));
+    var el = id && document.getElementById(id);
+    if (el && el.tagName === "DETAILS") { el.open = true; el.scrollIntoView(); }
+  };
+  window.addEventListener("hashchange", openHash);
+  if (location.hash) openHash();
+})();

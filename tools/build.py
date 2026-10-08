@@ -972,7 +972,7 @@ def season_archive(R):
                 out.append((lab, ", ".join(f'{e(r["wrestler"])} ({e(r["weight"])})' for r in rows)))
         return out
 
-    decades = {}
+    decades, decades_ids = {}, {}
     for s in src["seasons"]:
         a, b = s["season"].split("-")
         sid, label, y = f"{a}-{b[2:]}", f"{a}–{b[2:]}", int(b)
@@ -1002,22 +1002,19 @@ def season_archive(R):
             body.append('<h4>Individual honors</h4><dl class="awards compact">' + "".join(f"<div><dt>{a_}</dt><dd>{b_}</dd></div>" for a_, b_ in h) + "</dl>")
         if y in titles:
             body.append(f'<p><a href="{R}champions/team/{y}/">The {label} PIAA team title season ›</a></p>')
+        decades_ids.setdefault(y - 1 - (y - 1) % 10, []).append((sid, label))
         decades.setdefault(y - 1 - (y - 1) % 10, []).append(
             f'<details class="arch" id="season-{sid}"><summary><span class="as-yr">{label}</span>'
             f'<span class="as-sum">{e(" · ".join(x for x in summ if x))}</span></summary><div class="arch-body">{"".join(body)}</div></details>')
     order = sorted(decades, reverse=True)
-    first = min(src["seasons"], key=lambda s: s["season"])["season"]
-    first = f'{first[:4]}–{first[7:]}'
-    nav = "".join(f'<a href="#d{d}s">{d}s</a>' for d in order)
     out = (f'<section class="band archive" id="every-season" aria-labelledby="h-every"><div class="wrap">'
            + section_head('<span id="h-every">Every season</span>',
                           "Every Northampton season before 2021–22: head coach, team results, and each year’s champions and state medalists. "
                           "Scores show the winner’s score first.")
-           + f'<nav class="jump decades" aria-label="Decades">{nav}</nav>'
            + "".join(f'<h3 class="sub" id="d{d}s">{d}<span class="lc">s</span></h3><div class="arch-list">{"".join(decades[d][::-1])}</div>' for d in order)
            + '<p class="cp-source">Source: <a href="https://www.pa-wrestling.com/hs/teams/northampton/schedule.htm">PA-Wrestling, Northampton team schedules</a>, captured October 2026.</p>'
            + "</div></section>")
-    return out, first
+    return out, order, decades_ids
 
 
 def build_seasons():
@@ -1087,12 +1084,17 @@ def build_seasons():
                 parts.append(f'<h3 class="sub">Photos</h3>{gallery(R, s["gallery"], "season-" + s["id"])}')
         parts.append("</div></section>")
         blocks.append("".join(parts))
-    archive, first = season_archive(R)
-    jump = "".join(f'<a href="#{s["id"]}">{s["label"]}</a>' for s in SEASONS)
-    jump += f'<a href="#every-season">{first} to 2020–21</a>'
+    archive, order, ids = season_archive(R)
+    # Seasons of the current decade get their own buttons; earlier decades get one button each.
+    cur_dec = order[0]
+    recent = [(s["id"], s["label"]) for s in SEASONS] + [(f"season-{i}", l) for i, l in ids[cur_dec][::-1]]
+    jump = (f'<div class="jump-row"><span class="jump-lab">{cur_dec}<span class="lc">s</span></span>'
+            + "".join(f'<a href="#{i}">{l}</a>' for i, l in recent) + "</div>"
+            + '<div class="jump-row"><span class="jump-lab">Earlier</span>'
+            + "".join(f'<a href="#d{d}s">{d}<span class="lc">s</span></a>' for d in order[1:]) + "</div>")
     body = f"""
 {page_head(R, "Past Seasons", "Season-by-season results for the Konkrete Kids.")}
-<nav class="jump wrap" aria-label="Seasons">{jump}</nav>
+<nav class="jump seasons-jump wrap" aria-label="Seasons">{jump}</nav>
 {''.join(blocks)}
 {archive}
 """

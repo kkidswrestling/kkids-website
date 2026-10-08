@@ -814,3 +814,9 @@ h3.sub { display: block; position: static; min-width: 0; background: none; borde
 .arch-facts dt { font-weight: 600; }
 .arch-facts dd { margin: 0; text-align: right; }
 .archive h3 .lc { text-transform: none; }
+.seasons-jump { display: block; }
+.seasons-jump .jump-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; margin-bottom: 14px; }
+.seasons-jump .jump-lab { grid-column: 1 / -1; font-weight: 800; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.seasons-jump .jump-lab .lc, .seasons-jump a .lc { text-transform: none; }
+.seasons-jump a { text-align: center; padding: 10px 6px; }
+@media (hover: none) { .jump a:hover { background: none; color: var(--ink); } }
