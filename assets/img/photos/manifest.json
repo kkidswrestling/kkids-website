@@ -345,6 +345,20 @@
    ]
   ]
  },
+ "banner-justin-wieller": {
+  "fallback": [
+   282,
+   353
+  ],
+  "h": 353,
+  "w": 282,
+  "widths": [
+   [
+    282,
+    353
+   ]
+  ]
+ },
  "banner-mike-tomsic": {
   "fallback": [
    278,
@@ -414,6 +428,20 @@
    [
     920,
     1150
+   ]
+  ]
+ },
+ "banner-whitey-chlebove": {
+  "fallback": [
+   220,
+   275
+  ],
+  "h": 275,
+  "w": 220,
+  "widths": [
+   [
+    220,
+    275
    ]
   ]
  },

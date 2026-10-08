@@ -724,3 +724,23 @@ crop = [300, 0, 933, 791]
 focus = "30% 40%"
 widths = [480, 633]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/oplinger-2004.jpg"
+
+[[photo]]
+id = "banner-justin-wieller"
+source = "Northampton yearbook, via Coach Provini"
+alt = "Justin Wieller rides his opponent from the top position"
+credit = "Marty Fella (yearbook)"
+crop = [110, 12, 392, 365]
+focus = "40% 30%"
+widths = [282]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/wieller-yb.jpg"
+
+[[photo]]
+id = "banner-whitey-chlebove"
+source = "Northampton yearbook, via Coach Provini"
+alt = "Whitey Chlebove keeps his opponent controlled on the mat"
+credit = "Northampton yearbook"
+crop = [30, 8, 250, 283]
+focus = "40% 30%"
+widths = [220]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/whitey-yb.jpg"
