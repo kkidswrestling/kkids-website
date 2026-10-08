@@ -49,7 +49,7 @@ story = [
 gallery = ["trey-embrace"]
 
 ["Julian Chlebove"]
-video = [{ url = "https://www.youtube.com/watch?v=kJpFY4KdLkE", year = 2017 }]
+video = [{ url = "https://www.youtube.com/watch?v=kJpFY4KdLkE", year = 2017 }, { url = "https://www.flowrestling.org/video/6390273-132-lbs-final-julian-chlebove-northampton-vs-kenny-herrmann-becahi", year = 2019, site = "FloWrestling" }]
 banner = "banner-julian-chlebove"
 banners = { "2017" = "julian-2017", "2019" = "julian-2019" }
 gallery = ["julian-2017", "julian-2019"]

@@ -691,13 +691,20 @@ def build_champion_pages():
             for part in str(x).split(":"): n = n * 60 + int(part)
             return n
         vids = []
+        links = []  # non-YouTube videos (e.g. FloWrestling) get a link card instead of an embed
         for item in c.get("video", []):
             u = item if isinstance(item, str) else item.get("url", "")
+            if u and not yt_id(u):
+                links.append((u, "" if isinstance(item, str) else str(item.get("year", "")), "" if isinstance(item, str) else item.get("site", "")))
             if yt_id(u):
                 vids.append((yt_id(u), 0 if isinstance(item, str) else secs(item.get("start")), 0 if isinstance(item, str) else secs(item.get("end")), "" if isinstance(item, str) else str(item.get("year", ""))))
         video = "".join(
             f'<div class="video-facade single" data-ytv="{v}"{f' data-start="{s0}"' if s0 else ""}{f' data-end="{s1}"' if s1 else ""}><img class="vf-img" src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><button type="button" class="vf-play"><span aria-hidden="true">▶</span> Watch the {(yr + " ") if yr else ""}state final</button></div>'
             for v, s0, s1, yr in vids)
+        for u, yr, site in links:
+            site = site or ("FloWrestling" if "flowrestling" in u else "the web")
+            note = " (FloWrestling subscription required)" if "flowrestling" in u else ""
+            video += f'<a class="video-link" href="{e(u)}" rel="noopener" target="_blank"><span class="vl-play" aria-hidden="true">▶</span><span><b>Watch the {(yr + " ") if yr else ""}state final on {e(site)}</b><small>Opens in a new tab{note}</small></span></a>'
         if not video:
             video = f'<div class="empty-state small"><h3>State final video</h3><p>Have video of this final? Send a YouTube link to <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a>.</p></div>'
         gal = M.gallery(R, c["gallery"], "champ") if c.get("gallery") else ""
@@ -716,7 +723,7 @@ def build_champion_pages():
     <div class="prose cp-story"><h2>The story</h2>{story}</div>
   </div>
 </section>
-<section class="band dark"><div class="wrap"><h2>The state final{"s" if len(vids) > 1 else ""}</h2><div class="vid-stack">{video}</div></div></section>
+<section class="band dark"><div class="wrap"><h2>The state final{"s" if len(vids) + len(links) > 1 else ""}</h2><div class="vid-stack">{video}</div></div></section>
 {f'<section class="band"><div class="wrap"><h2>Photos</h2>{gal}</div></section>' if gal else ''}
 <section class="band concrete">
   <div class="wrap">
