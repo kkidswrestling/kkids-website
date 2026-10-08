@@ -545,141 +545,153 @@ file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8
 # ---------------------------------------------------------------- champion banner action shots
 [[photo]]
 id = "banner-gabriel-ballard"
+crop = [25, 12, 475, 574]
+focus = "50% 50%"
+widths = [450]
 source = "Coach Provini, batch 3"
 alt = "Gabe Ballard roars and flexes after a win at the PIAA Championships"
-focus = "50% 30%"
-widths = [300, 500]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/ballard-roar.webp"
 
 [[photo]]
 id = "banner-brayden-wenrich"
+crop = [233, 0, 715, 602]
+focus = "50% 50%"
+widths = [480, 482]
 source = "2025-26 banquet program, page 9"
 alt = "Brayden Wenrich celebrates a win"
-focus = "48% 35%"
-widths = [300, 600]
 file = "img26/p-009-014.png"
 
 [[photo]]
 id = "banner-julian-chlebove"
+crop = [333, 30, 773, 580]
+focus = "50% 50%"
+widths = [440]
 source = "Coach Provini, batch 4 (2016 state championship)"
 alt = "Julian Chlebove points to the crowd after winning the 2016 state title"
-focus = "50% 35%"
-widths = [300, 600, 1024]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/julian-2016.jpg"
 
 [[photo]]
 id = "julian-2017"
+crop = [43, 51, 477, 593]
+focus = "50% 50%"
+widths = [434]
 source = "Coach Provini, batch 4"
 alt = "Julian Chlebove holds up two fingers after his second state title in 2017"
 caption = "Julian Chlebove after his second state title, 2017."
-focus = "45% 25%"
-widths = [300, 620]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/julian-2017.jpg"
 
 [[photo]]
 id = "julian-2019"
+crop = [52, 16, 260, 276]
+focus = "50% 50%"
+widths = [208]
 source = "Coach Provini, batch 4"
 alt = "Julian Chlebove in his stance in the 2019 state tournament"
 caption = "Julian Chlebove on his way to a third state title, 2019."
-focus = "40% 30%"
-widths = [346]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/julian-2019.jpg"
 
 [[photo]]
 id = "banner-jeff-ecklof"
+crop = [53, 11, 343, 374]
+focus = "50% 50%"
+widths = [290]
 source = "Coach Provini, batch 4 (2001 state championship)"
 alt = "Jeff Ecklof in his stance at the state tournament"
-focus = "30% 40%"
-widths = [300, 620]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/jeff-ecklof.jpg"
 
 [[photo]]
 id = "banner-josh-haines"
+crop = [110, 30, 534, 560]
+focus = "50% 50%"
+widths = [424]
 source = "Coach Provini, batch 4 (2003 state championship)"
 alt = "Josh Haines throws both arms up after winning the 2003 state title"
-focus = "50% 30%"
-widths = [300, 620]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/josh-haines.jpg"
 
 [[photo]]
 id = "banner-dennis-liberto"
+crop = [150, 10, 330, 235]
+focus = "50% 50%"
+widths = [180]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Dennis Liberto controls an opponent"
 credit = "Marty Fella (yearbook)"
-crop = [0, 0, 357, 285]
-focus = "50% 40%"
-widths = [357]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/liberto.webp"
 
 [[photo]]
 id = "banner-ryan-mccallum"
+crop = [40, 14, 269, 300]
+focus = "50% 50%"
+widths = [229]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Ryan McCallum works for points on the mat"
 credit = "Heather Rispol (yearbook)"
-crop = [0, 0, 516, 312]
-focus = "45% 50%"
-widths = [516]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/mccallum.jpg"
 
 [[photo]]
 id = "banner-chad-billy"
+crop = [157, 210, 1001, 1265]
+focus = "50% 50%"
+widths = [480, 844]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Chad Billy wearing his state championship medal"
-crop = [80, 180, 1000, 1330]
-widths = [300, 600, 920]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/chad-billy.jpg"
 
 [[photo]]
 id = "banner-sean-finkbeiner"
+crop = [151, 349, 1055, 1479]
+focus = "50% 50%"
+widths = [480, 900]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Sean Finkbeiner wearing his state championship medal"
-crop = [130, 250, 1050, 1400]
-widths = [300, 600, 920]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/finkbeiner.jpg"
 
 [[photo]]
 id = "banner-steve-micio"
+crop = [146, 97, 990, 1152]
+focus = "50% 50%"
+widths = [480, 900]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Steve Micio holding his state championship trophy"
-crop = [50, 100, 970, 1250]
-widths = [300, 600, 920]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/micio.jpg"
 
 [[photo]]
 id = "banner-edward-keglovits"
+crop = [175, 268, 1079, 1398]
+focus = "50% 50%"
+widths = [480, 900]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Edward Keglovits holding his state championship trophy"
-crop = [100, 150, 1020, 1300]
-widths = [300, 600, 920]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/keglovits.jpg"
 
 [[photo]]
 id = "trey-hug"
+crop = [189, 275, 849, 1100]
+focus = "50% 50%"
+widths = [480, 660]
 source = "Coach Provini, batch 4"
 season = "2023-24"
 alt = "Trey Wagner hugs Coach Joe Provini after winning the 2024 state title"
-focus = "60% 35%"
-widths = [300, 600, 1179]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/trey-hug.jpg"
 
 [[photo]]
 id = "banner-mike-tomsic"
+crop = [62, 17, 287, 298]
+focus = "50% 50%"
+widths = [225]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Mike Tomsic sets up the Cement Job on his opponent"
 credit = "Marty Fella (yearbook)"
-crop = [12, 10, 290, 357]
-focus = "50% 30%"
-widths = [278]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/tomsic.jpg"
 
 [[photo]]
 id = "banner-john-hard"
+crop = [200, 14, 360, 214]
+focus = "50% 50%"
+widths = [160]
 source = "Northampton yearbook, via Coach Provini"
 alt = "John Hard has his hand raised by the referee after a win"
 credit = "Northampton yearbook"
-crop = [172, 8, 364, 248]
-focus = "50% 35%"
-widths = [192]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/heavyweight.jpg"
 
 [[photo]]
@@ -700,47 +712,47 @@ file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8
 
 [[photo]]
 id = "banner-jagger-condomitti"
+crop = [178, 67, 541, 521]
+focus = "50% 50%"
+widths = [363]
 source = "Coach Provini"
 alt = "Jagger Condomitti works for a fall at the state tournament"
-crop = [150, 0, 577, 534]
-focus = "45% 45%"
-widths = [427]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/condomitti.jpg"
 
 [[photo]]
 id = "banner-joey-ecklof"
+crop = [215, 128, 929, 1021]
+focus = "50% 50%"
+widths = [480, 714]
 source = "Coach Provini"
 alt = "Joey Ecklof holds up three fingers for his third state title"
-crop = [180, 0, 1201, 1276]
-focus = "35% 30%"
-widths = [480, 900]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/joey-ecklof.jpg"
 
 [[photo]]
 id = "banner-jon-oplinger"
+crop = [237, 20, 776, 694]
+focus = "50% 50%"
+widths = [480, 539]
 source = "Coach Provini"
 alt = "Jon Oplinger (white) works on top in the 2004 state tournament"
-crop = [300, 0, 933, 791]
-focus = "30% 40%"
-widths = [480, 633]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/oplinger-2004.jpg"
 
 [[photo]]
 id = "banner-justin-wieller"
+crop = [98, 14, 350, 329]
+focus = "50% 50%"
+widths = [252]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Justin Wieller rides his opponent from the top position"
 credit = "Marty Fella (yearbook)"
-crop = [110, 12, 392, 365]
-focus = "40% 30%"
-widths = [282]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/wieller-yb.jpg"
 
 [[photo]]
 id = "banner-whitey-chlebove"
+crop = [30, 12, 212, 240]
+focus = "50% 50%"
+widths = [182]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Whitey Chlebove keeps his opponent controlled on the mat"
 credit = "Northampton yearbook"
-crop = [30, 8, 250, 283]
-focus = "40% 30%"
-widths = [220]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/whitey-yb.jpg"
