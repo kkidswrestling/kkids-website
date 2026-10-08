@@ -684,10 +684,20 @@ def build_champion_pages():
                      f'<a href="mailto:{M.SITE["email"]}?subject=State%20champion%3A%20{e(name)}">{M.SITE["email"]}</a>.</p>')
         if c.get("sources"):
             story += '<p class="cp-source">' + ("Sources: " if len(c["sources"]) > 1 else "Source: ") + "; ".join(f'<a href="{s[1]}" rel="noopener">{e(s[0])}</a>' for s in c["sources"]) + "</p>"
-        vids = [yt_id(u) for u in c.get("video", []) if yt_id(u)]
+        # video entries: a YouTube URL, or {url, start, end} with times like "15:30" to play just one match
+        def secs(x):
+            if not x: return 0
+            n = 0
+            for part in str(x).split(":"): n = n * 60 + int(part)
+            return n
+        vids = []
+        for item in c.get("video", []):
+            u = item if isinstance(item, str) else item.get("url", "")
+            if yt_id(u):
+                vids.append((yt_id(u), 0 if isinstance(item, str) else secs(item.get("start")), 0 if isinstance(item, str) else secs(item.get("end"))))
         video = "".join(
-            f'<div class="video-facade single" data-ytv="{v}"><img class="vf-img" src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><button type="button" class="vf-play"><span aria-hidden="true">▶</span> Watch the state final</button></div>'
-            for v in vids)
+            f'<div class="video-facade single" data-ytv="{v}"{f' data-start="{s0}"' if s0 else ""}{f' data-end="{s1}"' if s1 else ""}><img class="vf-img" src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><button type="button" class="vf-play"><span aria-hidden="true">▶</span> Watch the state final</button></div>'
+            for v, s0, s1 in vids)
         if not video:
             video = f'<div class="empty-state small"><h3>State final video</h3><p>Have video of this final? Send a YouTube link to <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a>.</p></div>'
         gal = M.gallery(R, c["gallery"], "champ") if c.get("gallery") else ""

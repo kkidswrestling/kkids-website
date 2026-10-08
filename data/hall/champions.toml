@@ -10,7 +10,8 @@
 #   finals   = one row per title: [year, "opponent", "opponent school", "result"]
 #   gallery  = more photo ids
 #   sources  = [["title", "url"], ...] where the story came from (shown under the story)
-#   video    = YouTube links to the state final (only videos posted publicly by their owner)
+#   video    = YouTube links, or { url = "...", start = "15:30", end = "18:30" } to play one match from a longer video.
+#              YouTube links to the state final (only videos posted publicly by their owner)
 
 ["Gabriel Ballard"]
 banner = "banner-gabriel-ballard"
@@ -98,6 +99,7 @@ finals = [[2000, "Chris Graber", "Greater Latrobe", "Won 9–4"]]
 sources = [["Lehigh Valley Wrestling History, \u201c1999-00: Going Out on Top\u201d", "https://lehighvalleywrestlinghistory.com/1999-00-going-out-on-top/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Mike Tomsic"]
+video = [{ url = "https://www.youtube.com/watch?v=ljqIW4sDCT0", start = "15:30", end = "18:30" }]
 banner = "banner-mike-tomsic"
 story = [
   "Mike Tomsic won the 1993 PIAA Class AAA title at 112 pounds the Northampton way: with a cement job. In the final he put favored Jason LaMotta of Conestoga on his back and pinned him in 45 seconds.",
@@ -179,6 +181,7 @@ finals = [[1994, "Dana Weber", "Waynesboro", "Won 10–4"]]
 sources = [["Lehigh Valley Wrestling History, \u201c1993-94: The Kids Are Hot Tonite\u201d", "https://lehighvalleywrestlinghistory.com/1993-94-the-kids-are-hot-tonite/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Chad Billy"]
+video = ["https://www.youtube.com/watch?v=6H1IXhzIlOc"]
 banner = "banner-chad-billy"
 story = [
   "Chad Billy won the 1991 PIAA Class AAA title at 112 pounds, the only state champion from the Lehigh Valley that year. He finished his senior season 37–1.",

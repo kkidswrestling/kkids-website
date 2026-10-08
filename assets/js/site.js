@@ -92,7 +92,8 @@
   document.querySelectorAll(".video-facade[data-ytv]").forEach(function (v) {
     v.querySelector(".vf-play").addEventListener("click", function () {
       var f = document.createElement("iframe");
-      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.dataset.ytv) + "?autoplay=1";
+      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.dataset.ytv) + "?autoplay=1&rel=0" +
+        (v.dataset.start ? "&start=" + Number(v.dataset.start) : "") + (v.dataset.end ? "&end=" + Number(v.dataset.end) : "");
       f.title = "State final video";
       f.allow = "autoplay; encrypted-media; picture-in-picture";
       f.allowFullscreen = true;
