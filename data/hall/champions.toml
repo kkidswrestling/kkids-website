@@ -146,6 +146,13 @@ sources = [["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a F
 
 ["Justin Wieller"]
 banner = "banner-justin-wieller"
+story = [
+  "Justin Wieller won the 2007 PIAA Class AAA title at 215 pounds with the move Northampton is known for. Early in the final he hit a flying cement job on Jordan Enck of Manheim Central, and the points held up for a 6–4 win.",
+  "He was a three-time Northeast Regional champion. As a sophomore he won the regional title at 215, and as a junior he swept the district and regional titles at 189 and placed 5th at states. As a senior he wrestled much of the season at 189, beating Easton's Corey Rutt 7–2 at the District Duals, then moved up to 215 for the postseason. He finished 2nd at districts, won the regional final 13–1 over Scranton's Jason Dominick, and went 4–0 at Hershey: John Mangol of Corry Area 9–2, Brandon Miller of Middletown 7–4, Dan Utchel of Chartiers Valley 8–3 in the semifinal, and Enck 6–4 in the final.",
+  "He finished his senior season 36–6 and his career 98–22, then won his bout for Pennsylvania at the Easton Lions Classic.",
+]
+finals = [[2007, "Jordan Enck", "Manheim Central", "Won 6–4"]]
+sources = [["Lehigh Valley Wrestling History, \u201c2006-07: Eye of the Tiger\u201d", "https://lehighvalleywrestlinghistory.com/2006-07-eye-of-the-tiger/"], ["PA-Wrestling, Justin Wieller career stats", "https://www.pa-wrestling.com/hs/teams/northampton/athlete_stats.htm?id=10009"]]
 
 ["Whitey Chlebove"]
 banner = "banner-whitey-chlebove"
