@@ -49,6 +49,13 @@ gallery = ["trey-embrace"]
 banner = "banner-julian-chlebove"
 banners = { "2017" = "julian-2017", "2019" = "julian-2019" }
 gallery = ["julian-2017", "julian-2019"]
+story = [
+  "Julian Chlebove is one of Northampton's three-time state champions, winning PIAA Class AAA titles at 113 (2016), 120 (2017), and 132 (2019).",
+  "He won his first as a freshman, going 43–2, which put him on the school's single-season wins list. He beat Nazareth's Ryan O'Grady 7–1 for the District XI title and 6–5 for the Northeast Regional title, then won four straight at Hershey: Aidan Burke of Council Rock North 4–0, Logan Macri of Canon-McMillan 5–1, Devin Schnupp of Warwick 8–1 in the semifinal, and Matt Parker of Pennridge 3–0 in the final. As a sophomore he went 37–1, losing only to New Jersey's Nick Raimo. He beat Liberty's Luke Werner 9–2 in both the district and regional finals, did not give up a point in his first three state matches, and majored Werner 13–3 in an all-District XI state final.",
+  "He did not wrestle in the 2017-18 postseason, then came back as a senior and went 49–3, the school record for wins in a season, wrestling at 132 and 138. He pinned Bethlehem Catholic's Kenny Herrmann in the district final and beat him 9–2 in the regional final. At Hershey he pinned Hayden Butterfield of Erie McDowell, teched Michael Cassidy of Cedar Cliff, edged Sam Hillegas of North Hills 2–1 in the semifinal, and beat Herrmann 6–2 in the final, his fifth win over Herrmann that season. He lost only six matches in his career and finished with 130 wins.",
+]
+finals = [[2016, "Matt Parker", "Pennridge", "Won 3–0"], [2017, "Luke Werner", "Bethlehem Liberty", "Won 13–3 (major decision)"], [2019, "Kenny Herrmann", "Bethlehem Catholic", "Won 6–2"]]
+sources = [["PA-Wrestling, Julian Chlebove career stats", "https://www.pa-wrestling.com/hs/teams/northampton/athlete_stats.htm?id=112357"]]
 
 ["Jeff Ecklof"]
 banner = "banner-jeff-ecklof"
@@ -123,6 +130,13 @@ sources = [["Lehigh Valley Wrestling History, \u201c1997-98: Bulldogs Blossom, K
 
 ["Jagger Condomitti"]
 banner = "banner-jagger-condomitti"
+story = [
+  "Jagger Condomitti won the 2021 PIAA Class AAA title at 160 pounds, finishing a pandemic-shortened senior season a perfect 16–0.",
+  "It was the end of a four-year climb. As a freshman at 126 he went 36–12 and placed 3rd at districts and regionals. As a sophomore at 145 he went 48–10 with 25 pins, one of the best totals in school history, and placed 4th at states. As a junior he went 39–4, won the District XI title 7–3 in sudden victory over Bethlehem Catholic's Cole Handlovic, and reached the state final, where Handlovic won a 3–2 rematch.",
+  "As a senior he moved up to 160. He won the District XI title with a pin of Bethlehem Catholic's Landon Muth and the regional title with a technical fall over Muth, then won three more matches to reach states. At Hershey he beat Chase Kranitz of Norwin 5–3 and Matt Colajezzi of Council Rock South 6–4, then won the final 7–3 in sudden victory over Spring-Ford's Jack McGill. He finished his career with 141 wins and 64 pins.",
+]
+finals = [[2021, "Jack McGill", "Spring-Ford", "Won 7–3 (SV)"]]
+sources = [["PA-Wrestling, Jagger Condomitti career stats", "https://www.pa-wrestling.com/hs/teams/northampton/athlete_stats.htm?id=139551"]]
 
 ["Joey Ecklof"]
 banner = "banner-joey-ecklof"
