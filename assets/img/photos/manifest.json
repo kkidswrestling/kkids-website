@@ -267,6 +267,20 @@
    ]
   ]
  },
+ "banner-mike-tomsic": {
+  "fallback": [
+   278,
+   347
+  ],
+  "h": 347,
+  "w": 278,
+  "widths": [
+   [
+    278,
+    347
+   ]
+  ]
+ },
  "banner-ryan-mccallum": {
   "fallback": [
    516,
