@@ -10,7 +10,7 @@
 #   finals   = one row per title: [year, "opponent", "opponent school", "result"]
 #   gallery  = more photo ids
 #   sources  = [["title", "url"], ...] where the story came from (shown under the story)
-#   video    = YouTube links, or { url = "...", start = "15:30", end = "18:30" } to play one match from a longer video.
+#   video    = YouTube links, or { url = "...", start = "15:30", end = "18:30", year = 2001 } to play one match from a longer video.
 #              YouTube links to the state final (only videos posted publicly by their owner)
 
 ["Gabriel Ballard"]
@@ -61,6 +61,7 @@ finals = [[2016, "Matt Parker", "Pennridge", "Won 3–0"], [2017, "Luke Werner",
 sources = [["PA-Wrestling, Julian Chlebove career stats", "https://www.pa-wrestling.com/hs/teams/northampton/athlete_stats.htm?id=112357"]]
 
 ["Jeff Ecklof"]
+video = [{ url = "https://www.youtube.com/watch?v=ksHel46QOs8", start = "34:06", end = "44:20", year = 2001 }]
 banner = "banner-jeff-ecklof"
 story = [
   "Jeff Ecklof won two PIAA Class AAA titles: 125 pounds as a sophomore in 2001 and 145 pounds as a senior in 2003. He placed at states all four years and won four District XI and four Northeast Regional titles.",

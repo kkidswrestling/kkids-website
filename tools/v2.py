@@ -694,10 +694,10 @@ def build_champion_pages():
         for item in c.get("video", []):
             u = item if isinstance(item, str) else item.get("url", "")
             if yt_id(u):
-                vids.append((yt_id(u), 0 if isinstance(item, str) else secs(item.get("start")), 0 if isinstance(item, str) else secs(item.get("end"))))
+                vids.append((yt_id(u), 0 if isinstance(item, str) else secs(item.get("start")), 0 if isinstance(item, str) else secs(item.get("end")), "" if isinstance(item, str) else str(item.get("year", ""))))
         video = "".join(
-            f'<div class="video-facade single" data-ytv="{v}"{f' data-start="{s0}"' if s0 else ""}{f' data-end="{s1}"' if s1 else ""}><img class="vf-img" src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><button type="button" class="vf-play"><span aria-hidden="true">▶</span> Watch the state final</button></div>'
-            for v, s0, s1 in vids)
+            f'<div class="video-facade single" data-ytv="{v}"{f' data-start="{s0}"' if s0 else ""}{f' data-end="{s1}"' if s1 else ""}><img class="vf-img" src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><button type="button" class="vf-play"><span aria-hidden="true">▶</span> Watch the {(yr + " ") if yr else ""}state final</button></div>'
+            for v, s0, s1, yr in vids)
         if not video:
             video = f'<div class="empty-state small"><h3>State final video</h3><p>Have video of this final? Send a YouTube link to <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a>.</p></div>'
         gal = M.gallery(R, c["gallery"], "champ") if c.get("gallery") else ""
