@@ -681,3 +681,37 @@ crop = [172, 8, 364, 248]
 focus = "50% 35%"
 widths = [192]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/heavyweight.jpg"
+
+[[photo]]
+id = "banner-christian-luciano"
+source = "Coach Provini"
+alt = "Christian Luciano wearing his state medals"
+crop = [33, 0, 257, 280]
+focus = "50% 25%"
+widths = [224]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/luciano.jpg"
+
+[[photo]]
+id = "portrait-luciano"
+source = "Coach Provini"
+alt = "Christian Luciano in his Northampton singlet wearing his state medals"
+widths = [280]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/luciano.jpg"
+
+[[photo]]
+id = "banner-jagger-condomitti"
+source = "Coach Provini"
+alt = "Jagger Condomitti works for a fall at the state tournament"
+crop = [150, 0, 577, 534]
+focus = "45% 45%"
+widths = [427]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/condomitti.jpg"
+
+[[photo]]
+id = "banner-joey-ecklof"
+source = "Coach Provini"
+alt = "Joey Ecklof holds up three fingers for his third state title"
+crop = [180, 0, 1201, 1276]
+focus = "35% 30%"
+widths = [480, 900]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/joey-ecklof.jpg"
