@@ -943,6 +943,84 @@ def build_champions():
     return page("champions/index.html", "Hall of Champions", "Northampton wrestling’s PIAA champions, state medalists, regional and District XI champions, season records, and head coaches since 1945.", body, "champions/", scripts=("site.js", "hall.js"), og_image="portrait-ballard-2026")
 
 
+def season_archive(R):
+    """Baseline entry for every season without a detailed write-up: PA-Wrestling's schedule
+    page facts (data/hall/pawrestling-seasons.json) plus that year's honors from the Hall lists.
+    Only what the sources show; empty seasons say so."""
+    src = json.load(open(os.path.join(DATA, "hall", "pawrestling-seasons.json")))
+    detailed = {s["id"] for s in SEASONS}
+    champ_pages = {r["wrestler"] for r in HALL["state"]}
+    titles = {int(r["season"][:4]) + 1 for r in TEAM_TITLES}
+
+    def coach(y):
+        for c in HEAD_COACHES:
+            if int(c["first_year"]) <= y <= int(c["last_year"] or 9999):
+                return c["coach"]
+        return ""
+
+    def honors(y):
+        out = []
+        st = [r for r in HALL["state"] if int(r["year"]) == y]
+        if st:
+            out.append(("PIAA champions", ", ".join(f'<a href="{R}champions/{slug(r["wrestler"])}/">{e(r["wrestler"])}</a> ({e(r["weight"])})' for r in st)))
+        md = sorted((r for r in HALL["medals"] if int(r["year"]) == y), key=lambda r: int(r["place"]))
+        if md:
+            out.append(("State medalists", ", ".join(f'{e(r["wrestler"])} ({PLACE[r["place"]]}, {e(r["weight"])})' for r in md)))
+        for k, lab in (("regional", "Regional champions"), ("district", "District XI champions")):
+            rows = [r for r in HALL[k] if int(r["year"]) == y]
+            if rows:
+                out.append((lab, ", ".join(f'{e(r["wrestler"])} ({e(r["weight"])})' for r in rows)))
+        return out
+
+    decades = {}
+    for s in src["seasons"]:
+        a, b = s["season"].split("-")
+        sid, label, y = f"{a}-{b[2:]}", f"{a}–{b[2:]}", int(b)
+        if sid in detailed:
+            continue
+        body, summ = [], [coach(y)]
+        if y in titles:
+            summ.append("PIAA team champions")
+        facts = [("Head coach", e(coach(y)))] if coach(y) else []
+        if s["record"]:
+            facts.append(("Duals listed", s["record"] + (f' ({s["league_record"]} league)' if s["league_record"] else "")))
+            summ.append(f'{s["record"]} listed')
+        for st, p in s["finishes"]:
+            facts.append((st, e(p)))
+        for n, p in s["tournaments"]:
+            facts.append((e(n), e(p)))
+        body.append('<dl class="arch-facts">' + "".join(f"<div><dt>{a_}</dt><dd>{b_}</dd></div>" for a_, b_ in facts) + "</dl>")
+        if s["duals"]:
+            body.append('<h4>Duals as listed</h4><ul class="arch-duals" role="list">' + "".join(
+                f'<li><span class="ad-date">{e(d["date"])}</span><span class="ad-opp">{e(d["opponent"])}'
+                + (f' <small>{e(d["event"])}</small>' if d["event"] else "") + (' <small>league</small>' if d["league"] else "")
+                + f'</span><b class="nw">{e(d["result"])}</b></li>' for d in s["duals"]) + "</ul>")
+        if not (s["record"] or s["finishes"] or s["tournaments"] or s["duals"]):
+            body.append('<p class="arch-none">PA-Wrestling has no team results listed for this season.</p>')
+        h = honors(y)
+        if h:
+            body.append('<h4>Individual honors</h4><dl class="awards compact">' + "".join(f"<div><dt>{a_}</dt><dd>{b_}</dd></div>" for a_, b_ in h) + "</dl>")
+        if y in titles:
+            body.append(f'<p><a href="{R}champions/team/{y}/">The {label} PIAA team title season ›</a></p>')
+        decades.setdefault(y - 1 - (y - 1) % 10, []).append(
+            f'<details class="arch" id="season-{sid}"><summary><span class="as-yr">{label}</span>'
+            f'<span class="as-sum">{e(" · ".join(x for x in summ if x))}</span></summary><div class="arch-body">{"".join(body)}</div></details>')
+    order = sorted(decades, reverse=True)
+    first = min(src["seasons"], key=lambda s: s["season"])["season"]
+    first = f'{first[:4]}–{first[7:]}'
+    nav = "".join(f'<a href="#d{d}s">{d}s</a>' for d in order)
+    out = (f'<section class="band archive" id="every-season" aria-labelledby="h-every"><div class="wrap">'
+           + section_head('<span id="h-every">Every season</span>',
+                          "A baseline for every season before 2021–22: team results from PA-Wrestling’s Northampton schedule pages, "
+                          "and each year’s champions and state medalists from the program’s lists. Records count only the duals PA-Wrestling lists, "
+                          "so some are partial, and many older seasons have no results posted. Scores show the winner’s score first.")
+           + f'<nav class="jump decades" aria-label="Decades">{nav}</nav>'
+           + "".join(f'<h3 class="sub" id="d{d}s">{d}<span class="lc">s</span></h3><div class="arch-list">{"".join(decades[d][::-1])}</div>' for d in order)
+           + '<p class="cp-source">Source: <a href="https://www.pa-wrestling.com/hs/teams/northampton/schedule.htm">PA-Wrestling, Northampton team schedules</a>, captured October 2026.</p>'
+           + "</div></section>")
+    return out, first
+
+
 def build_seasons():
     R = "../"
     blocks = []
@@ -1010,11 +1088,14 @@ def build_seasons():
                 parts.append(f'<h3 class="sub">Photos</h3>{gallery(R, s["gallery"], "season-" + s["id"])}')
         parts.append("</div></section>")
         blocks.append("".join(parts))
+    archive, first = season_archive(R)
     jump = "".join(f'<a href="#{s["id"]}">{s["label"]}</a>' for s in SEASONS)
+    jump += f'<a href="#every-season">{first} to 2020–21</a>'
     body = f"""
 {page_head(R, "Past Seasons", "Season-by-season results for the Konkrete Kids.")}
 <nav class="jump wrap" aria-label="Seasons">{jump}</nav>
 {''.join(blocks)}
+{archive}
 """
     return page("seasons/index.html", "Past Seasons", "Northampton wrestling season archive: results, state medalists, and awards by season.", body, "seasons/", og_image="team-2025")
 

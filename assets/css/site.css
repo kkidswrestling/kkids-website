@@ -793,3 +793,24 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 
 /* h3.sub headings share the "sub" class name with the dropdown menus; keep them visible */
 h3.sub { display: block; position: static; min-width: 0; background: none; border: 0; padding: 0; box-shadow: none; z-index: auto; }
+
+/* Past Seasons: every-season archive */
+.archive .decades { padding: 0 0 8px; }
+.archive .decades a { padding: 6px 12px; }
+.arch-list { border-top: 1px solid var(--line); margin-bottom: 24px; }
+.arch { border-bottom: 1px solid var(--line); }
+.arch summary { cursor: pointer; display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; padding: 12px 0; }
+.arch summary .as-yr { font-weight: 800; min-width: 5.5em; }
+.arch summary .as-sum { color: var(--ink-2); font-size: .95rem; }
+.arch-body { padding: 0 0 18px; max-width: 760px; }
+.arch-body h4 { margin: 16px 0 6px; font-size: 1rem; }
+.arch-none { color: var(--ink-2); font-style: italic; }
+.arch-duals { list-style: none; padding: 0; margin: 0; }
+.arch-duals li { display: grid; grid-template-columns: 7.5em 1fr auto; gap: 4px 12px; padding: 6px 0; border-bottom: 1px dotted var(--line); }
+.arch-duals small { display: inline-block; color: var(--ink-2); font-size: .8rem; margin-left: 4px; }
+@media (max-width: 520px) { .arch-duals li { grid-template-columns: 1fr auto; } .arch-duals .ad-date { grid-column: 1 / -1; font-size: .85rem; color: var(--ink-2); } }
+.arch-facts { margin: 0; }
+.arch-facts > div { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px dotted var(--line); }
+.arch-facts dt { font-weight: 600; }
+.arch-facts dd { margin: 0; text-align: right; }
+.archive h3 .lc { text-transform: none; }
