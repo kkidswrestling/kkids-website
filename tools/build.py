@@ -274,8 +274,9 @@ def pennant(year, name, weight, small=False, R=None):
         return (f'<li class="pennant{" sm" if small else ""}"><span class="yr">{year}</span>'
                 f'<span class="nm">{e(name)}</span><span class="wt">{e(weight)}</span></li>')
     c = CHAMPS.get(name, {})
-    if c.get("banner"):
-        face = picture(R, c["banner"], "160px", "pn-face", alt="")
+    bid = c.get("banners", {}).get(str(year)) or c.get("banner")
+    if bid:
+        face = picture(R, bid, "160px", "pn-face", alt="")
     else:
         face = f'<span class="pn-face pn-logo"><img src="{R}assets/img/logo-96.png" alt="" width="56" height="48" loading="lazy"></span>'
     return (f'<li class="pennant linked{" has-face" if c.get("banner") else ""}"><a href="{R}champions/{slug(name)}/">'

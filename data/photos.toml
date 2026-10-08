@@ -560,10 +560,104 @@ widths = [300, 600]
 file = "img26/p-009-014.png"
 
 [[photo]]
-id = "banner-trey-wagner"
-source = "Coach Provini, showcase batch 1"
-alt = "Trey Wagner throws his arms up after winning the 2024 state title"
-crop = [500, 0, 1300, 1000]
+id = "banner-julian-chlebove"
+source = "Coach Provini, batch 4 (2016 state championship)"
+alt = "Julian Chlebove points to the crowd after winning the 2016 state title"
+focus = "50% 35%"
+widths = [300, 600, 1024]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/julian-2016.jpg"
+
+[[photo]]
+id = "julian-2017"
+source = "Coach Provini, batch 4"
+alt = "Julian Chlebove holds up two fingers after his second state title in 2017"
+caption = "Julian Chlebove after his second state title, 2017."
+focus = "45% 25%"
+widths = [300, 620]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/julian-2017.jpg"
+
+[[photo]]
+id = "julian-2019"
+source = "Coach Provini, batch 4"
+alt = "Julian Chlebove in his stance in the 2019 state tournament"
+caption = "Julian Chlebove on his way to a third state title, 2019."
+focus = "40% 30%"
+widths = [346]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/julian-2019.jpg"
+
+[[photo]]
+id = "banner-jeff-ecklof"
+source = "Coach Provini, batch 4 (2001 state championship)"
+alt = "Jeff Ecklof in his stance at the state tournament"
+focus = "30% 40%"
+widths = [300, 620]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/jeff-ecklof.jpg"
+
+[[photo]]
+id = "banner-josh-haines"
+source = "Coach Provini, batch 4 (2003 state championship)"
+alt = "Josh Haines throws both arms up after winning the 2003 state title"
 focus = "50% 30%"
-widths = [300, 600]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/01-f17cd701-image.jpg"
+widths = [300, 620]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/josh-haines.jpg"
+
+[[photo]]
+id = "banner-dennis-liberto"
+source = "Northampton yearbook, via Coach Provini"
+alt = "Dennis Liberto controls an opponent"
+credit = "Marty Fella (yearbook)"
+crop = [0, 0, 357, 285]
+focus = "50% 40%"
+widths = [357]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/liberto.webp"
+
+[[photo]]
+id = "banner-ryan-mccallum"
+source = "Northampton yearbook, via Coach Provini"
+alt = "Ryan McCallum works for points on the mat"
+credit = "Heather Rispol (yearbook)"
+crop = [0, 0, 516, 312]
+focus = "45% 50%"
+widths = [516]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/mccallum.jpg"
+
+[[photo]]
+id = "banner-chad-billy"
+source = "Northampton yearbook, via Coach Provini"
+alt = "Chad Billy wearing his state championship medal"
+crop = [80, 180, 1000, 1330]
+widths = [300, 600, 920]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/chad-billy.jpg"
+
+[[photo]]
+id = "banner-sean-finkbeiner"
+source = "Northampton yearbook, via Coach Provini"
+alt = "Sean Finkbeiner wearing his state championship medal"
+crop = [130, 250, 1050, 1400]
+widths = [300, 600, 920]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/finkbeiner.jpg"
+
+[[photo]]
+id = "banner-steve-micio"
+source = "Northampton yearbook, via Coach Provini"
+alt = "Steve Micio holding his state championship trophy"
+crop = [50, 100, 970, 1250]
+widths = [300, 600, 920]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/micio.jpg"
+
+[[photo]]
+id = "banner-edward-keglovits"
+source = "Northampton yearbook, via Coach Provini"
+alt = "Edward Keglovits holding his state championship trophy"
+crop = [100, 150, 1020, 1300]
+widths = [300, 600, 920]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/keglovits.jpg"
+
+[[photo]]
+id = "trey-hug"
+source = "Coach Provini, batch 4"
+season = "2023-24"
+alt = "Trey Wagner hugs Coach Joe Provini after winning the 2024 state title"
+focus = "60% 35%"
+widths = [300, 600, 1179]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/trey-hug.jpg"

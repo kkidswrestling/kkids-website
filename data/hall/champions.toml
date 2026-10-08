@@ -3,6 +3,7 @@
 # no entry still get a page with their full record filled in automatically.
 #
 #   banner   = photo id for the banner (an action shot)
+#   banners  = per-year banner photos for multi-time champions, e.g. { "2017" = "photo-id" }
 #   portrait = photo id for the full medal portrait on the champion page
 #   hero     = photo id for the big photo at the top of the page
 #   story    = paragraphs about the wrestler and the title run
@@ -33,7 +34,7 @@ story = [
 gallery = ["wenrich-celebrates", "wenrich-medal", "celebration"]
 
 ["Trey Wagner"]
-banner = "banner-trey-wagner"
+banner = "trey-hug"
 portrait = "portrait-wagner-2024"
 hero = "showcase-arms-up"
 story = [
@@ -42,3 +43,32 @@ story = [
   "He finished his career with 140 wins and is headed to the U.S. Air Force Academy.",
 ]
 gallery = ["trey-embrace"]
+
+["Julian Chlebove"]
+banner = "banner-julian-chlebove"
+banners = { "2017" = "julian-2017", "2019" = "julian-2019" }
+gallery = ["julian-2017", "julian-2019"]
+
+["Jeff Ecklof"]
+banner = "banner-jeff-ecklof"
+
+["Josh Haines"]
+banner = "banner-josh-haines"
+
+["Dennis Liberto"]
+banner = "banner-dennis-liberto"
+
+["Ryan McCallum"]
+banner = "banner-ryan-mccallum"
+
+["Chad Billy"]
+banner = "banner-chad-billy"
+
+["Sean Finkbeiner"]
+banner = "banner-sean-finkbeiner"
+
+["Steve Micio"]
+banner = "banner-steve-micio"
+
+["Edward Keglovits"]
+banner = "banner-edward-keglovits"
