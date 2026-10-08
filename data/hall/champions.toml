@@ -49,6 +49,7 @@ story = [
 gallery = ["trey-embrace"]
 
 ["Julian Chlebove"]
+video = [{ url = "https://www.youtube.com/watch?v=kJpFY4KdLkE", year = 2017 }]
 banner = "banner-julian-chlebove"
 banners = { "2017" = "julian-2017", "2019" = "julian-2019" }
 gallery = ["julian-2017", "julian-2019"]
