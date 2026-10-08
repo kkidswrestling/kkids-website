@@ -783,3 +783,4 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 .video-link .vl-play { flex: none; width: 52px; height: 52px; display: grid; place-items: center; background: var(--blaze); color: var(--mat); font-size: 20px; }
 .video-link b { display: block; font-size: 18px; }
 .video-link small { display: block; margin-top: 4px; color: var(--on-dark-2); font-size: 14px; }
+.vl-note { margin: 10px 0 0; font-size: 15px; font-weight: 700; color: var(--gold); }

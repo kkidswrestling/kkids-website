@@ -703,8 +703,8 @@ def build_champion_pages():
             for v, s0, s1, yr in vids)
         for u, yr, site in links:
             site = site or ("FloWrestling" if "flowrestling" in u else "the web")
-            note = " (FloWrestling subscription required)" if "flowrestling" in u else ""
-            video += f'<a class="video-link" href="{e(u)}" rel="noopener" target="_blank"><span class="vl-play" aria-hidden="true">▶</span><span><b>Watch the {(yr + " ") if yr else ""}state final on {e(site)}</b><small>Opens in a new tab{note}</small></span></a>'
+            note = '<p class="vl-note">FloWrestling subscription required to watch</p>' if "flowrestling" in u else ""
+            video += f'<div class="vl-wrap"><a class="video-link" href="{e(u)}" rel="noopener" target="_blank"><span class="vl-play" aria-hidden="true">▶</span><span><b>Watch the {(yr + " ") if yr else ""}state final on {e(site)}</b><small>Opens in a new tab</small></span></a>{note}</div>'
         if not video:
             video = f'<div class="empty-state small"><h3>State final video</h3><p>Have video of this final? Send a YouTube link to <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a>.</p></div>'
         gal = M.gallery(R, c["gallery"], "champ") if c.get("gallery") else ""
