@@ -1,6 +1,7 @@
 """Second-generation pages: new home page, roster and wrestler profiles, results,
 news, photos, videos, timeline, Our Story, Our Home, Become a Konkrete Kid,
 Family, Alumni, and Follow. Called from build.py main() with the build module."""
+import re
 import datetime as dt
 import html
 import os
@@ -675,7 +676,7 @@ def build_champion_pages():
             head = (f'<header class="page-head concrete champ-head"><div class="wrap"><p class="kicker"><a href="{R}champions/">Hall of Champions</a></p>'
                     f'<h1>{e(name)}</h1><p class="lede">{headline} · {", ".join(r["year"] for r in titles)}</p></div></header>')
         face = M.picture(R, c["portrait"], "(min-width: 900px) 300px, 70vw", "cp-face", alt=f"{display.get(name, name)} wearing his state championship medals") if c.get("portrait") else ""
-        story = "".join(f"<p>{e(p)}</p>" for p in c.get("story", []))
+        story = "".join("<p>" + re.sub(r"(\d+[\u2013-]\d+(?:[\u2013-]\d+)?)", r'<span class="nw">\1</span>', e(p)) + "</p>" for p in c.get("story", []))
         if not story:
             story = (f'<p>{e(name)} is one of {M.TOTALS["state"]} Konkrete Kids to win a PIAA state title. His full record is below.</p>'
                      f'<p class="ask">Photos, the story of this title, and the state final are coming. Have something to share? Email '

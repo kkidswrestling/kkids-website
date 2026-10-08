@@ -58,12 +58,26 @@ banner = "banner-josh-haines"
 
 ["Dennis Liberto"]
 banner = "banner-dennis-liberto"
+story = [
+  "Denny Liberto won the 1995 PIAA Class AAA title at 103 pounds as a senior, beating Mike Kahn of Harrisburg in the final. He finished the season 37–1.",
+  "He placed at states three straight years: 6th as a sophomore, 3rd as a junior, and champion as a senior, all at 103. He also won three straight District XI and Northeast Regional titles, beating Easton's Bryan Snyder 9–5 in the 1995 district final. At Hershey he won by forfeit, beat Brian Kubistek of Derry Area 13–5, beat Brad Fralic of Cathedral Prep 15–6 in the semifinal, and then won the final.",
+  "During his senior season he won the Ironman Classic in Ohio and earned his 100th career win at the Bethlehem Holiday Classic. He finished with 128 wins. His title opened a big night for the Kids, who won their third straight PIAA team title in 1995.",
+]
+finals = [[1995, "Mike Kahn", "Harrisburg", "Won"]]
+sources = [["Lehigh Valley Wrestling History, \u201c1994-95: The Year of the Big Three\u201d", "https://lehighvalleywrestlinghistory.com/1994-95-the-year-of-the-big-three/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Ryan McCallum"]
 banner = "banner-ryan-mccallum"
 
 ["Mike Tomsic"]
 banner = "banner-mike-tomsic"
+story = [
+  "Mike Tomsic won the 1993 PIAA Class AAA title at 112 pounds the Northampton way: with a cement job. In the final he put favored Jason LaMotta of Conestoga on his back and pinned him in 45 seconds.",
+  "He won the District XI title by fall over Freedom's Jon Horvath and then the Northeast Regional title. At Hershey he beat Scott Bacco of Moon 6–5 and Randall Braunfeld of Radnor 12–9, pinned Eric Steppe of Williamsport in the semifinal, and then pinned LaMotta for the title. He finished his senior season 32–5.",
+  "His title came in one of the greatest seasons in program history. Northampton went 24–0 in duals, was ranked No. 1 in the nation, won the District XI and Northeast Regional team titles, and won its first PIAA team championship. Coach Don Rohn was named Coach of the Year.",
+]
+finals = [[1993, "Jason LaMotta", "Conestoga", "Won by fall, 0:45"]]
+sources = [["Lehigh Valley Wrestling History, \u201c1992-93: The Cement Job\u201d", "https://lehighvalleywrestlinghistory.com/1992-93-the-cement-job/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["John Hard"]
 banner = "banner-john-hard"
@@ -86,12 +100,33 @@ banner = "banner-justin-wieller"
 
 ["Whitey Chlebove"]
 banner = "banner-whitey-chlebove"
+story = [
+  "Ian \"Whitey\" Chlebove won the 1994 PIAA Class AAA title at 130 pounds and finished his senior season a perfect 38–0.",
+  "He was tested along the way. At the Christmas City Tournament he edged AA state place winner Placido Salamone of Pen Argyl 5–3, and in February he beat fellow unbeaten Sean Topping 3–2 in the dual with Nazareth. He won the District XI final 8–4 over Easton's Brad Weaver, beat Weaver again for the Northeast Regional title, and went 4–0 at Hershey: a technical fall over Randy Dischner of Shaler, a major decision over Ryan Abbott of DuBois, a 2–1 semifinal over Chuck Murdy of Canon-McMillan, and a 10–4 win over Dana Weber of Waynesboro in the final.",
+  "Northampton went 24–0 for the second straight year and won its second straight PIAA team title. Coach Don Rohn won his 200th match at Northampton that season and was named AAA Coach of the Year.",
+]
+finals = [[1994, "Dana Weber", "Waynesboro", "Won 10–4"]]
+sources = [["Lehigh Valley Wrestling History, \u201c1993-94: The Kids Are Hot Tonite\u201d", "https://lehighvalleywrestlinghistory.com/1993-94-the-kids-are-hot-tonite/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Chad Billy"]
 banner = "banner-chad-billy"
+story = [
+  "Chad Billy won the 1991 PIAA Class AAA title at 112 pounds, the only state champion from the Lehigh Valley that year. He finished his senior season 37–1.",
+  "It was the last step of a three-year climb at states: 4th at 103 as a sophomore, 6th at 112 as a junior, and champion as a senior. In 1991 he won the Christmas City Tournament, where Northampton edged Nazareth for the team title by half a point, and swept the District XI and Northeast Regional titles. At Hershey he went 4–0, beating John Bryan of State College 7–4, Gabe Miller of Canon-McMillan 12–6, Jim Gority of Hollidaysburg 5–4 in the semifinal, and Jeff Cervone of Meadville 7–4 in the final.",
+  "That season Northampton went 21–2 and won the East Penn Conference at 11–0. Billy finished his career with 102 wins and a spot in the 100-Win Club, and he added a fall for Pennsylvania in its 24–22 win over the USA team at the Pittsburgh Classic.",
+]
+finals = [[1991, "Jeff Cervone", "Meadville", "Won 7–4"]]
+sources = [["Lehigh Valley Wrestling History, \u201c1990-91: Fierce Competition\u201d", "https://lehighvalleywrestlinghistory.com/1990-91-fierce-competition/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Sean Finkbeiner"]
 banner = "banner-sean-finkbeiner"
+story = [
+  "Sean Finkbeiner ended a 29-year wait in 1984, becoming Northampton's first state champion since 1955. He won the PIAA title at 145 pounds and finished his senior season a perfect 35–0.",
+  "He set the tone early, pinning Northern Lehigh's Greg Parsons at 155 to win the Christmas City Tournament and its Outstanding Wrestler award. In the postseason he edged Allen's Scott Schleicher 3–2 for the District XI title, won the Northeast Regional at Bloomsburg, and then went 4–0 at states: major decisions over Mark Nichols of Canon-McMillan (15–3) and Mario Harpel of Neshaminy (16–3), a 3–2 semifinal over Brad Lloyd of Red Lion, and a 7–2 win over Kurt Bowman of Waynesboro in the final.",
+  "He kept winning after the season. At the Easton Lions Classic he beat New Jersey state champion Mike Barna 9–3, he won at the AAA-AA Challenge of Champions, and he was named Outstanding Wrestler at the Pittsburgh Press Classic after a 14–5 win over future Iowa State star Tim Krieger. It was Don Rohn's second season as head coach. Rohn went on to win five PIAA team titles.",
+]
+finals = [[1984, "Kurt Bowman", "Waynesboro", "Won 7–2"]]
+sources = [["Lehigh Valley Wrestling History, \u201c1983-84: Canary Resurgence, Matty Catty\u201d", "https://lehighvalleywrestlinghistory.com/1980s-beyond/1983-84-canary-resurgence-matty-catty/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Steve Micio"]
 banner = "banner-steve-micio"

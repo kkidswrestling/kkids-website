@@ -732,3 +732,4 @@ a[href^="mailto:"] { overflow-wrap: anywhere; }
 /* Story source credit on champion pages */
 .cp-source { margin-top: 18px; font-size: 14px; color: #6b6760; }
 .cp-source a { color: var(--blaze-ink); }
+.nw { white-space: nowrap; }
