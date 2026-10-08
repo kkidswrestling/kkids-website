@@ -801,7 +801,7 @@ def build_team_title_pages():
 <section class="band dark">
   <div class="wrap">
     <h2>On the podium at Hershey</h2>
-    <ol class="podium" role="list">{pod}</ol>
+    <ol class="tt-podium" role="list">{pod}</ol>
   </div>
 </section>
 <section class="band concrete">

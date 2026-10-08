@@ -9,7 +9,7 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Credit watermarked photos (Aaron Morekin). Don't use newspaper photos or social-media screenshots.
 - Youth (K-6): no names next to faces.
 - Official logo: assets/img/logo-*.png (orange N with KONKRETE KIDS bar). Use it for the brand mark and icons; never redraw it.
-- Hall of Champions counts and multi-time honors are computed from the CSV lists. The banquet program's coach table says 145 District / 97 Regional titles; the lists total 143 / 98. Ask Joe for missing names rather than changing totals.
+- Hall of Champions counts and multi-time honors are computed from the CSV lists. The lists match the programs' own district/regional/state lists line for line (checked against the 2021-22 program in Oct. 2026). The programs' "champions by coach" table doesn't add up to their own lists (e.g., it gives Seth Lisa 14 district / 14 regional; the lists show 16 / 15), so don't use that table's totals. Dave Gilio (8th, 130, 2004) was missing and was added from the 2021-22 and 2022-23 programs.
 - Girls wrestling is a separate program; leave it out.
 - Before pushing: build, preview with `python3 -m http.server`, check phone and desktop widths, no sideways scrolling, no console errors.
 - Home gym: Pete Schneider Gym (confirmed via Morning Call, Jan. 5, 2024).
@@ -27,3 +27,5 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Joe labels photos in the IPTC caption field (iptc 2:120), not EXIF. Read it with PIL IptcImagePlugin.getiptcinfo before asking who's in a photo.
 - PIAA wrestling had one combined state tournament through 1972-73 and split into two classes in 1973-74 (Lehigh Valley Wrestling History). Title cards say "PIAA state champion" before 1974 and "PIAA Class AAA champion" from 1974.
 - Team-title season pages: champions/team/<year>/ built by build_team_title_pages in tools/v2.py from data/hall/team-seasons.toml (record, league, coach, story, highlights, postseason, sources). Place winners and district/regional champions fill in from the Hall CSVs. The team-title banners on the Hall of Champions page link to them.
+
+- Past Seasons (data/seasons.toml) now covers 2021-22 through 2025-26. Older seasons can have summary, team_finishes, portraits, postseason, awards, leaders (stat leaders from the program's stats page), never_pinned, forty_point, lerch, seniors_list, roster, coaches, junior_high, gallery. Program sources live in the scratchpad (p22 = 2021-22 PDF, z23 = 2022-23 page images).

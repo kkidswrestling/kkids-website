@@ -262,7 +262,7 @@ def postseason_table(rows, caption):
     body = "".join(
         f"<tr><th scope=\"row\">{e(n)}{f' <span class=\"wt\">{w}</span>' if w else ''}</th>{place_cell(d)}{place_cell(r)}{place_cell(s)}</tr>"
         for n, w, d, r, s in rows)
-    return (f'<div class="table-wrap"><table class="path"><caption>{caption}</caption>'
+    return (f'<div class="table-wrap" tabindex="0" role="region" aria-label="{e(caption)}"><table class="path"><caption>{caption}</caption>'
             f'<thead><tr><th scope="col">Wrestler</th><th scope="col">District XI</th><th scope="col">NE Regional</th><th scope="col">PIAA</th></tr></thead>'
             f'<tbody>{body}</tbody></table></div>')
 
@@ -952,22 +952,54 @@ def build_seasons():
         if s["id"] == CUR["id"]:
             parts.append(f'<div class="split narrow-right"><div class="prose"><p>{s["dual_record"]} in duals, Parkland Duals champions, and 3rd at the District XI, Northeast Regional, and PIAA tournaments. Brayden Wenrich (114) and Gabe Ballard (152) won state titles, and Trey Wagner won a regional title at 139.</p>'
                          f'<p><a class="btn" href="../high-school/">Full 2025–26 recap</a></p></div>{figure(R, s["team_photo"], "(min-width: 900px) 40vw, 100vw", "wide-fig")}</div>')
-        elif s.get("summary"):
-            parts.append('<div class="prose cols">' + "".join(f"<p>{e(p)}</p>" for p in s["summary"]) + "</div>")
         else:
-            parts.append(f'<div class="split narrow-right"><div><ul class="results{" on-dark" if len(blocks) % 2 else ""}" role="list"><li><span>Dual meet record</span><b>{s["dual_record"]}</b></li>{result_rows(s["team_finishes"])}</ul></div>'
-                         f'{figure(R, s["team_photo"], "(min-width: 900px) 40vw, 100vw", "wide-fig")}</div>')
-            parts.append('<div class="portraits">' + "".join(
-                f'<article class="medalist">{picture(R, pid, "(min-width: 900px) 15vw, 45vw")}<h3>{e(n)}</h3><p>{e(l)}</p></article>'
-                for pid, n, l in s["portraits"]) + "</div>")
-            parts.append(f'<div class="split even top"><div><h3 class="sub">Postseason</h3>{postseason_table(s["postseason"], s["label"] + " postseason results by wrestler")}</div>'
-                         f'<div><h3 class="sub">Season awards</h3><dl class="awards compact">{"".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in s["awards"])}</dl></div></div>')
+            dark = len(blocks) % 2
+            od = " on-dark" if dark else ""
+            if s.get("summary"):
+                parts.append('<div class="prose cols">' + "".join(f"<p>{e(p)}</p>" for p in s["summary"]) + "</div>")
+            if s.get("team_finishes"):
+                parts.append(f'<div class="split narrow-right"><div><ul class="results{od}" role="list"><li><span>Dual meet record</span><b>{s["dual_record"]}</b></li>{result_rows(s["team_finishes"])}</ul>'
+                             + (f'<p class="season-coaches">{e(s["coaches"])}</p>' if s.get("coaches") else "") + '</div>'
+                             + (figure(R, s["team_photo"], "(min-width: 900px) 40vw, 100vw", "wide-fig") if s.get("team_photo") else "") + '</div>')
+            if s.get("portraits"):
+                parts.append('<div class="portraits">' + "".join(
+                    f'<article class="medalist">{picture(R, pid, "(min-width: 900px) 15vw, 45vw")}<h3>{e(n)}</h3><p>{e(l)}</p></article>'
+                    for pid, n, l in s["portraits"]) + "</div>")
+            if s.get("postseason"):
+                right = ""
+                if s.get("awards"):
+                    right += f'<h3 class="sub">Season awards</h3><dl class="awards compact">{"".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in s["awards"])}</dl>'
+                if s.get("leaders"):
+                    right += f'<h3 class="sub">Team leaders</h3><dl class="awards compact">{"".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in s["leaders"])}</dl>'
+                parts.append(f'<div class="split even top"><div><h3 class="sub">Postseason</h3>{postseason_table(s["postseason"], s["label"] + " postseason results by wrestler")}</div><div>{right}</div></div>')
             extra = []
             if s.get("epc"):
-                extra.append(f'<div><h3 class="sub">EPC all-stars</h3><ul class="results{" on-dark" if len(blocks) % 2 else ""}" role="list">{result_rows(s["epc"])}</ul></div>')
-            extra.append(f'<div><h3 class="sub">{s["jv_title"]}</h3><ul class="results{" on-dark" if len(blocks) % 2 else ""}" role="list">{result_rows(s["jv"])}</ul></div>')
-            extra.append(f'<div class="prose"><h3 class="sub">Seniors</h3><p>{e(s["seniors_list"])}</p><h3 class="sub">Junior high</h3><p>{e(s["junior_high"])}</p></div>')
-            parts.append(f'<div class="trio-text">{"".join(extra)}</div>')
+                extra.append(f'<div><h3 class="sub">EPC all-stars</h3><ul class="results{od}" role="list">{result_rows(s["epc"])}</ul></div>')
+            if s.get("jv"):
+                extra.append(f'<div><h3 class="sub">{s["jv_title"]}</h3><ul class="results{od}" role="list">{result_rows(s["jv"])}</ul></div>')
+            honors = []
+            if s.get("never_pinned"):
+                honors.append(f'<h3 class="sub">Never pinned</h3><p>{e(", ".join(s["never_pinned"]))}</p>')
+            if s.get("forty_point"):
+                honors.append('<h3 class="sub">“40” Point Club</h3><p>' + "<br>".join(f"<b>{e(a)}:</b> {e(b)}" for a, b in s["forty_point"]) + "</p>")
+            if s.get("lerch"):
+                honors.append(f'<h3 class="sub">Charlie Lerch Memorial Scholarships</h3><p>{e(", ".join(s["lerch"]))}</p>')
+            if honors:
+                extra.append('<div class="prose">' + "".join(honors) + "</div>")
+            tail = ""
+            if s.get("seniors_list"):
+                tail += f'<h3 class="sub">Seniors</h3><p>{e(s["seniors_list"])}</p>'
+            if s.get("junior_high"):
+                tail += f'<h3 class="sub">Junior high</h3><p>{e(s["junior_high"])}</p>'
+            if tail:
+                extra.append(f'<div class="prose">{tail}</div>')
+            if extra:
+                parts.append(f'<div class="trio-text">{"".join(extra)}</div>')
+            if s.get("roster"):
+                parts.append('<details class="season-roster"><summary>Full ' + e(s["label"]) + ' roster</summary><dl class="awards compact">'
+                             + "".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in s["roster"]) + "</dl></details>")
+            if s.get("gallery"):
+                parts.append(f'<h3 class="sub">Photos</h3>{gallery(R, s["gallery"], "season-" + s["id"])}')
         parts.append("</div></section>")
         blocks.append("".join(parts))
     jump = "".join(f'<a href="#{s["id"]}">{s["label"]}</a>' for s in SEASONS)
