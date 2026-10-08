@@ -991,12 +991,12 @@ def season_archive(R):
             facts.append((e(n), e(p)))
         body.append('<dl class="arch-facts">' + "".join(f"<div><dt>{a_}</dt><dd>{b_}</dd></div>" for a_, b_ in facts) + "</dl>")
         if s["duals"]:
-            body.append('<h4>Duals as listed</h4><ul class="arch-duals" role="list">' + "".join(
+            body.append('<h4>Duals</h4><ul class="arch-duals" role="list">' + "".join(
                 f'<li><span class="ad-date">{e(d["date"])}</span><span class="ad-opp">{e(d["opponent"])}'
                 + (f' <small>{e(d["event"])}</small>' if d["event"] else "") + (' <small>league</small>' if d["league"] else "")
                 + f'</span><b class="nw">{e(d["result"])}</b></li>' for d in s["duals"]) + "</ul>")
         if not (s["record"] or s["finishes"] or s["tournaments"] or s["duals"]):
-            body.append('<p class="arch-none">PA-Wrestling has no team results listed for this season.</p>')
+            body.append('<p class="arch-none">No stats available.</p>')
         h = honors(y)
         if h:
             body.append('<h4>Individual honors</h4><dl class="awards compact">' + "".join(f"<div><dt>{a_}</dt><dd>{b_}</dd></div>" for a_, b_ in h) + "</dl>")
@@ -1011,9 +1011,8 @@ def season_archive(R):
     nav = "".join(f'<a href="#d{d}s">{d}s</a>' for d in order)
     out = (f'<section class="band archive" id="every-season" aria-labelledby="h-every"><div class="wrap">'
            + section_head('<span id="h-every">Every season</span>',
-                          "A baseline for every season before 2021–22: team results from PA-Wrestling’s Northampton schedule pages, "
-                          "and each year’s champions and state medalists from the program’s lists. Records count only the duals PA-Wrestling lists, "
-                          "so some are partial, and many older seasons have no results posted. Scores show the winner’s score first.")
+                          "Every Northampton season before 2021–22: head coach, team results, and each year’s champions and state medalists. "
+                          "Scores show the winner’s score first.")
            + f'<nav class="jump decades" aria-label="Decades">{nav}</nav>'
            + "".join(f'<h3 class="sub" id="d{d}s">{d}<span class="lc">s</span></h3><div class="arch-list">{"".join(decades[d][::-1])}</div>' for d in order)
            + '<p class="cp-source">Source: <a href="https://www.pa-wrestling.com/hs/teams/northampton/schedule.htm">PA-Wrestling, Northampton team schedules</a>, captured October 2026.</p>'
