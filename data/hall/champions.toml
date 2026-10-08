@@ -61,7 +61,7 @@ finals = [[2016, "Matt Parker", "Pennridge", "Won 3–0"], [2017, "Luke Werner",
 sources = [["PA-Wrestling, Julian Chlebove career stats", "https://www.pa-wrestling.com/hs/teams/northampton/athlete_stats.htm?id=112357"]]
 
 ["Jeff Ecklof"]
-video = [{ url = "https://www.youtube.com/watch?v=ksHel46QOs8", start = "34:06", end = "44:20", year = 2001 }]
+video = [{ url = "https://www.youtube.com/watch?v=ksHel46QOs8", start = "34:06", end = "44:20", year = 2001 }, { url = "https://www.youtube.com/watch?v=2_OsLeR4dWU", start = "0:00", end = "9:01", year = 2003 }]
 banner = "banner-jeff-ecklof"
 story = [
   "Jeff Ecklof won two PIAA Class AAA titles: 125 pounds as a sophomore in 2001 and 145 pounds as a senior in 2003. He placed at states all four years and won four District XI and four Northeast Regional titles.",
@@ -72,6 +72,7 @@ finals = [[2001, "Pat O'Brien", "Garnet Valley", "Won 12–6"], [2003, "Kirk Mai
 sources = [["Lehigh Valley Wrestling History, \u201c2000-01: Rover Revival, Warrior Arrival\u201d", "https://lehighvalleywrestlinghistory.com/2000-01-rover-revival-warrior-arrival/"], ["Lehigh Valley Wrestling History, \u201c2001-02: It\u2019s Crowell & Powell, State Champs in Town\u201d", "https://lehighvalleywrestlinghistory.com/2001-02-its-crowell-powell-state-champs-in-town/"], ["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a Final Goodbye\u201d", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Josh Haines"]
+video = [{ url = "https://www.youtube.com/watch?v=2_OsLeR4dWU", start = "41:14", end = "51:00", year = 2003 }]
 banner = "banner-josh-haines"
 story = [
   "Josh Haines won back-to-back PIAA Class AAA titles at 189 pounds in 2003 and 2004, losing a total of two matches in those two seasons.",
@@ -158,6 +159,7 @@ finals = [[2003, "Tom Picarsic", "Penn-Trafford", "Won 5–3 (OT)"], [2004, "And
 sources = [["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a Final Goodbye\u201d", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"], ["Lehigh Valley Wrestling History, \u201c2003-04: The More Things Change, the More They Stay the Same\u201d", "https://lehighvalleywrestlinghistory.com/2003-04-the-more-things-change-the-more-they-stay-the-same/"], ["Lehigh Valley Wrestling History, \u201c2004-05: Broken Streaks, Brotherly Feats\u201d", "https://lehighvalleywrestlinghistory.com/2004-05-broken-streaks-brotherly-feats/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Jon Oplinger"]
+video = [{ url = "https://www.youtube.com/watch?v=2_OsLeR4dWU", start = "52:09", end = "1:02:10", year = 2003 }]
 banner = "banner-jon-oplinger"
 story = [
   "Jon Oplinger won back-to-back PIAA Class AAA titles at 215 pounds in 2003 and 2004, going 41–1 and 40–1.",

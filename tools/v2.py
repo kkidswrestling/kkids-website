@@ -716,7 +716,7 @@ def build_champion_pages():
     <div class="prose cp-story"><h2>The story</h2>{story}</div>
   </div>
 </section>
-<section class="band dark"><div class="wrap"><h2>The state final</h2>{video}</div></section>
+<section class="band dark"><div class="wrap"><h2>The state final{"s" if len(vids) > 1 else ""}</h2><div class="vid-stack">{video}</div></div></section>
 {f'<section class="band"><div class="wrap"><h2>Photos</h2>{gal}</div></section>' if gal else ''}
 <section class="band concrete">
   <div class="wrap">
