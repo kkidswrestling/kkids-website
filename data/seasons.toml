@@ -47,6 +47,13 @@ awards = [
   ["Most Takedowns", "Gabe Ballard (114)"],
   ["Most Team Points", "Gabe Ballard (238)"],
 ]
+portraits = [
+  ["portrait-wenrich-2026", "Brayden Wenrich", "State champion, 114"],
+  ["portrait-ballard-2026", "Gabe Ballard", "State champion, 152"],
+  ["portrait-wagner-2026", "Trey Wagner", "State 7th, 139"],
+  ["portrait-sommer-2026", "Matthew Sommer", "State qualifier, 133"],
+  ["portrait-chlebove-2026", "Carter Chlebove", "State qualifier, 160"],
+]
 never_pinned = ["Ben Schoeneberger", "Chase Grabfelder", "Cade Strauss", "Trey Wagner", "Brayden Wenrich", "Gabe Ballard"]
 epc = [
   ["1st Team", "Brayden Wenrich, Gabe Ballard"],
@@ -146,6 +153,20 @@ jv = [
   ["Danny Herritt", "Champion"], ["Logan Rusnock", "Champion"],
 ]
 seniors_list = "Kyle Biondo, Devlin Chevere, Nicholas DiSante, Gavin Grell, Colin Marano, Ryan Marano, Felix Ramos, Gursilar Sidhu, Colin Turner"
+never_pinned = ["Brayden Wenrich", "Ryan Marano", "Trey Wagner", "Gavin Grell", "Colin Marano"]
+lerch = ["Devlin Chevere", "Nicholas DiSante", "Gavin Grell", "Colin Marano", "Ryan Marano"]
+forty_point = [
+  ["1st year", "Brayden Wenrich, Ryan Marano, Carter Chlebove, Parker Williams"],
+  ["2nd year", "Colin Marano, Gabriel Ballard, Chase Grabfelder, Gavin Grell"],
+  ["3rd year", "Trey Wagner"],
+]
+roster = [
+  ["Seniors", "Kyle Biondo, Devlin Chevere, Nicholas DiSante, Gavin Grell, Colin Marano, Ryan Marano, Felix Ramos, Gursilar Sidhu, Colin Turner"],
+  ["Juniors", "Chase Grabfelder, Daniel Herritt, Brandon McEntire, Luke Rogan, Matthew Sommer, Landon Tworkowsky, Trey Wagner, Parker Williams"],
+  ["Sophomores", "Aaden Clough, Gabriel Ballard, Ethan Furs, Davi Glykas, Zachary Hartzell, Blayze Ibarra, Jayce Lucas-Collis, Michael Miller, Riggins O’Grady, Johan Santana, Aiden Sayers, Ashton Shibla, Joell Small, Cade Strauss, Christopher Stumpf, Robert Wambold, Ethan Weiland"],
+  ["Freshmen", "Carter Chlebove, Giuliano Labbadia, Logan Rusnock, Brayden Wenrich"],
+]
+gallery = ["season25-hardware", "season25-hersheys", "season25-hotel", "season25-b", "season25-g", "season25-a", "season25-c", "season25-d", "season25-e", "season25-stands", "season25-f", "season25-h", "season25-i", "bench-final-seconds"]
 junior_high = "6–4 in duals and 10th at the District XI Junior High Tournament under head coach Craig Israel. District placewinners: Ashton Szoke (4th), Mason Frisoli (5th), Nick Harding (6th)."
 
 [[season]]

@@ -949,12 +949,12 @@ def build_seasons():
     for s in SEASONS:
         parts = [f'<section class="band season{" dark" if len(blocks) % 2 else ""}" id="{s["id"]}" aria-labelledby="h-{s["id"]}"><div class="wrap">']
         parts.append(section_head(f'<span id="h-{s["id"]}">{s["label"]}</span>', e(s["headline"])))
-        if s["id"] == CUR["id"]:
-            parts.append(f'<div class="split narrow-right"><div class="prose"><p>{s["dual_record"]} in duals, Parkland Duals champions, and 3rd at the District XI, Northeast Regional, and PIAA tournaments. Brayden Wenrich (114) and Gabe Ballard (152) won state titles, and Trey Wagner won a regional title at 139.</p>'
-                         f'<p><a class="btn" href="../high-school/">Full 2025–26 recap</a></p></div>{figure(R, s["team_photo"], "(min-width: 900px) 40vw, 100vw", "wide-fig")}</div>')
-        else:
+        if True:
             dark = len(blocks) % 2
             od = " on-dark" if dark else ""
+            if s["id"] == CUR["id"]:
+                parts.append(f'<div class="prose"><p>{s["dual_record"]} in duals, Parkland Duals champions, and 3rd at the District XI, Northeast Regional, and PIAA tournaments. Brayden Wenrich (114) and Gabe Ballard (152) won state titles, and Trey Wagner won a regional title at 139.</p>'
+                             f'<p><a class="btn" href="../high-school/">Full 2025–26 recap</a></p></div>')
             if s.get("summary"):
                 parts.append('<div class="prose cols">' + "".join(f"<p>{e(p)}</p>" for p in s["summary"]) + "</div>")
             if s.get("team_finishes"):
@@ -987,10 +987,18 @@ def build_seasons():
             if honors:
                 extra.append('<div class="prose">' + "".join(honors) + "</div>")
             tail = ""
-            if s.get("seniors_list"):
+            if s.get("seniors"):
+                tail += '<h3 class="sub">Seniors</h3><p>' + "<br>".join(f"<b>{e(r[0])}</b>" + (f" — {e(r[2])}" if r[2] else "") for r in s["seniors"]) + "</p>"
+            elif s.get("seniors_list"):
                 tail += f'<h3 class="sub">Seniors</h3><p>{e(s["seniors_list"])}</p>'
-            if s.get("junior_high"):
-                tail += f'<h3 class="sub">Junior high</h3><p>{e(s["junior_high"])}</p>'
+            jh = s.get("junior_high")
+            if isinstance(jh, dict):
+                bits = [f'{jh["record"]} in duals']
+                bits += [f'{a}: {b}' for a, b in jh.get("finishes", [])]
+                pw = ", ".join(f"{n} ({pl})" for n, pl in jh.get("placewinners", []))
+                tail += f'<h3 class="sub">Junior high</h3><p>{e(". ".join(bits))}.' + (f' District placewinners: {e(pw)}.' if pw else "") + '</p>'
+            elif jh:
+                tail += f'<h3 class="sub">Junior high</h3><p>{e(jh)}</p>'
             if tail:
                 extra.append(f'<div class="prose">{tail}</div>')
             if extra:

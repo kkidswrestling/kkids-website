@@ -972,3 +972,120 @@ caption = "Junior high district medalists, 2023."
 crop = [14, 2, 1160, 478]
 widths = [640]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/z23-jh-b.png"
+
+[[photo]]
+id = "season25-hardware"
+source = "2024-25 banquet program, page 35"
+season = "2024-25"
+alt = "The Konkrete Kids with their trophies and brackets after a 2024–25 tournament title"
+caption = "Hardware, 2024–25."
+widths = [640, 1200, 1800]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-hardware.jpg"
+
+[[photo]]
+id = "season25-hersheys"
+source = "2024-25 banquet program, page 36"
+season = "2024-25"
+alt = "The team in orange in front of Hershey’s Chocolate World"
+caption = "The state tournament trip to Hershey, 2025."
+widths = [640, 1200, 1800]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-hersheys.jpg"
+
+[[photo]]
+id = "season25-hotel"
+source = "2024-25 banquet program, page 36"
+season = "2024-25"
+alt = "Northampton wrestlers and coaches at the state tournament"
+caption = "State tournament weekend, 2025."
+widths = [640, 1200]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-hotel.jpg"
+
+[[photo]]
+id = "season25-a"
+source = "2024-25 banquet program, page 37"
+season = "2024-25"
+alt = "A Northampton heavyweight ties up at the state tournament"
+caption = "PIAA Championships, 2025."
+widths = [640, 1200, 1800]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-a.jpg"
+
+[[photo]]
+id = "season25-b"
+source = "2024-25 banquet program, page 37"
+season = "2024-25"
+alt = "A Northampton wrestler in orange has his hand raised"
+caption = "PIAA Championships, 2025."
+widths = [640]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-b.jpg"
+
+[[photo]]
+id = "season25-c"
+source = "2024-25 banquet program, page 37"
+season = "2024-25"
+alt = "A Northampton wrestler in orange headgear between periods"
+caption = "PIAA Championships, 2025."
+widths = [640]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-c.jpg"
+
+[[photo]]
+id = "season25-d"
+source = "2024-25 banquet program, page 37"
+season = "2024-25"
+alt = "A Northampton wrestler works a cradle"
+caption = "PIAA Championships, 2025."
+widths = [640, 1200, 1800]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-d.jpg"
+
+[[photo]]
+id = "season25-e"
+source = "2024-25 banquet program, page 38"
+season = "2024-25"
+alt = "A Northampton wrestler rides from the top"
+caption = "PIAA Championships, 2025."
+widths = [640, 1200, 1800]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-e.jpg"
+
+[[photo]]
+id = "season25-stands"
+source = "2024-25 banquet program, page 38"
+season = "2024-25"
+alt = "Northampton wrestlers wait in the stands at Hershey"
+caption = "Between sessions at Hershey, 2025."
+widths = [640, 1200, 1800]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-stands.jpg"
+
+[[photo]]
+id = "season25-f"
+source = "2024-25 banquet program, page 38"
+season = "2024-25"
+alt = "A Northampton wrestler hand-fights in neutral"
+caption = "PIAA Championships, 2025."
+widths = [640, 1200, 1800]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-f.jpg"
+
+[[photo]]
+id = "season25-g"
+source = "2024-25 banquet program, page 39"
+season = "2024-25"
+alt = "A Northampton wrestler locks up a cradle"
+caption = "PIAA Championships, 2025."
+widths = [640]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-g.jpg"
+
+[[photo]]
+id = "season25-h"
+source = "2024-25 banquet program, page 40"
+season = "2024-25"
+alt = "A Northampton wrestler drives his opponent to the mat"
+caption = "PIAA Championships, 2025."
+widths = [640, 1200, 1800]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-h.jpg"
+
+[[photo]]
+id = "season25-i"
+source = "2024-25 banquet program, page 40"
+season = "2024-25"
+alt = "A Northampton wrestler in his stance under the Reese’s banner"
+caption = "PIAA Championships, 2025."
+widths = [640, 1200, 1800]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-i.jpg"
