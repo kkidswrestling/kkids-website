@@ -2,7 +2,8 @@
 # appears in data/hall/state-champions.csv. Every field is optional; champions with
 # no entry still get a page with their full record filled in automatically.
 #
-#   banner   = photo id for the banner (an action shot)
+#   headshot = photo id for the banner when we have a medal headshot (preferred; uniform look). The old action-shot banner then moves to the gallery.
+#   banner   = photo id for the banner (an action shot), used until a headshot arrives
 #   banners  = per-year banner photos for multi-time champions, e.g. { "2017" = "photo-id" }
 #   portrait = photo id for the full medal portrait on the champion page
 #   hero     = photo id for the big photo at the top of the page
@@ -15,6 +16,7 @@
 
 ["Gabriel Ballard"]
 video = [{ url = "https://www.youtube.com/watch?v=3Jym9NVDEZw", start = "0:00", end = "10:18" }]
+headshot = "headshot-gabriel-ballard"
 banner = "banner-gabriel-ballard"
 portrait = "portrait-ballard-2026"
 hero = "ballard-raised"
@@ -23,10 +25,11 @@ story = [
   "It capped a steady climb at Hershey: 4th at 114 as a freshman, runner-up at 127 as a sophomore, and champion at 152. He led the team in takedowns (114) and team points (238), and his 41 wins matched his freshman total on the school's single-season wins list.",
   "Ballard enters his senior season with 121 career wins, already a member of the 100-Win Club.",
 ]
-gallery = ["ballard-attack", "ballard-coaches", "ballard-100", "ballard-ride"]
+gallery = ["ballard-roar", "ballard-attack", "ballard-coaches", "ballard-100", "ballard-ride"]
 
 ["Brayden Wenrich"]
 video = [{ url = "https://www.youtube.com/watch?v=3Jym9NVDEZw", start = "1:02:20", end = "1:10:15" }]
+headshot = "headshot-brayden-wenrich"
 banner = "banner-brayden-wenrich"
 portrait = "portrait-wenrich-2026"
 hero = "wenrich-final"
@@ -38,6 +41,7 @@ story = [
 gallery = ["wenrich-celebrates", "wenrich-medal", "celebration"]
 
 ["Trey Wagner"]
+headshot = "headshot-trey-wagner"
 banner = "banner-trey-wagner"
 portrait = "portrait-wagner-2024"
 hero = "showcase-arms-up"
@@ -46,7 +50,7 @@ story = [
   "He swept the District XI, Northeast Regional, and state titles that season and was named the team's Outstanding Wrestler. Wagner went on to place 5th at 133 in 2025 and 7th at 139 in 2026, finishing as a three-time state medalist and a two-time Northeast Regional champion.",
   "He finished his career with 140 wins and is headed to the U.S. Air Force Academy.",
 ]
-gallery = ["trey-embrace", "trey-hug"]
+gallery = ["trey-point", "trey-embrace", "trey-hug"]
 video = [{ url = "https://www.youtube.com/watch?v=pzuGGfMqfTk", start = "39:05", end = "48:45" }]
 
 ["Julian Chlebove"]
@@ -129,6 +133,7 @@ sources = [["Lehigh Valley Wrestling History, \u201c1997-98: Bulldogs Blossom, K
 
 ["Christian Luciano"]
 video = [{ url = "https://www.youtube.com/watch?v=zCCGSPL2qxg", start = "39:10", end = "51:50" }]
+headshot = "portrait-luciano"
 banner = "banner-christian-luciano"
 portrait = "portrait-luciano"
 story = [

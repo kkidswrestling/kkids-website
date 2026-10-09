@@ -285,19 +285,19 @@ file = "img26/p-038-190.png"
 # Studio portraits from the 2026 picture plaque awards
 [[photo]]
 id = "portrait-wenrich-2026"
-source = "2025-26 banquet program, page 9"
+source = "Coach Provini, batch 9 (full-size; also in 2025-26 banquet program, page 9)"
 season = "2025-26"
 alt = "Brayden Wenrich in his Northampton singlet wearing his postseason medals"
-widths = [480, 918]
-file = "img26/p-009-012.png"
+widths = [480, 900, 1400]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/wenrich-portrait-hi.jpg"
 
 [[photo]]
 id = "portrait-ballard-2026"
-source = "2025-26 banquet program, page 10"
+source = "Coach Provini, batch 9 (full-size; also in 2025-26 banquet program, page 10)"
 season = "2025-26"
 alt = "Gabe Ballard in his Northampton singlet wearing his postseason medals"
-widths = [480, 1027]
-file = "img26/p-010-015.png"
+widths = [480, 900, 1400]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/ballard-portrait-hi.jpg"
 
 [[photo]]
 id = "portrait-wagner-2026"
@@ -459,11 +459,11 @@ file = "p24/p-005-014.png"
 
 [[photo]]
 id = "portrait-wagner-2024"
-source = "2023-24 banquet program, page 10"
+source = "Coach Provini, batch 9 (also in 2023-24 banquet program, page 10)"
 season = "2023-24"
 alt = "Trey Wagner in his Northampton singlet wearing his 2024 state championship medals"
 widths = [480, 900]
-file = "p24/p-010-020.png"
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/wagner-portrait-hi.jpg"
 
 [[photo]]
 id = "portrait-ballard-2024"
@@ -1108,3 +1108,45 @@ alt = "A Northampton wrestler in his stance under the Reese’s banner"
 caption = "PIAA Championships, 2025."
 widths = [640, 1200, 1800]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-i.jpg"
+
+# Banner headshots (uniform look on the state-champion banner wall). Crop: top of head to the medals, 4:5.
+[[photo]]
+id = "headshot-brayden-wenrich"
+source = "Coach Provini, batch 9"
+alt = "Brayden Wenrich wearing his state championship medals"
+crop = [349, 450, 1389, 1750]
+widths = [320, 640]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/wenrich-portrait-hi.jpg"
+
+[[photo]]
+id = "headshot-gabriel-ballard"
+source = "Coach Provini, batch 9"
+alt = "Gabe Ballard wearing his state championship medals"
+crop = [351, 440, 1375, 1720]
+widths = [320, 640]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/ballard-portrait-hi.jpg"
+
+[[photo]]
+id = "headshot-trey-wagner"
+source = "Coach Provini, batch 9"
+alt = "Trey Wagner wearing his state championship medals"
+crop = [123, 160, 787, 990]
+widths = [320, 640]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/wagner-portrait-hi.jpg"
+
+# Former banner action shots, now shown full-size in the champion's page gallery
+[[photo]]
+id = "ballard-roar"
+source = "Coach Provini, batch 3"
+alt = "Gabe Ballard roars and flexes after a win at the PIAA Championships"
+caption = "Gabe Ballard after a win at the PIAA Championships."
+widths = [500]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/ballard-roar.webp"
+
+[[photo]]
+id = "trey-point"
+source = "Coach Provini, batch 6"
+alt = "Trey Wagner grins and points both fingers skyward after a win at the PIAA Championships"
+caption = "Trey Wagner after a win at the PIAA Championships."
+widths = [640, 1200, 1458]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch6/trey-point.jpg"

@@ -277,12 +277,12 @@ def pennant(year, name, weight, small=False, R=None):
         return (f'<li class="pennant{" sm" if small else ""}"><span class="yr">{year}</span>'
                 f'<span class="nm">{e(name)}</span><span class="wt">{e(weight)}</span></li>')
     c = CHAMPS.get(name, {})
-    bid = c.get("banners", {}).get(str(year)) or c.get("banner")
+    bid = c.get("headshot") or c.get("banners", {}).get(str(year)) or c.get("banner")
     if bid:
         face = picture(R, bid, "160px", "pn-face", alt="")
     else:
         face = f'<span class="pn-face pn-logo"><img src="{R}assets/img/logo-96.png" alt="" width="56" height="48" loading="lazy"></span>'
-    return (f'<li class="pennant linked{" has-face" if c.get("banner") else ""}"><a href="{R}champions/{slug(name)}/">'
+    return (f'<li class="pennant linked{" has-face" if (c.get("headshot") or c.get("banner")) else ""}{" headshot" if c.get("headshot") else ""}"><a href="{R}champions/{slug(name)}/">'
             f'<span class="yr">{year}</span>{face}<span class="nm">{e(name)}</span><span class="wt">{e(weight)}</span>'
             f'<span class="pn-cta" aria-hidden="true">{"▶ Story &amp; video" if c.get("video") else "Read the story"}</span>'
             f'<span class="visually-hidden">: read the story{" and watch the video" if c.get("video") else ""}</span></a></li>')
