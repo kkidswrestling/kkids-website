@@ -778,6 +778,10 @@ def build_team_title_pages():
                + (f'<a href="{R}champions/team/{prev}/">‹ {prev}</a>' if prev else "<span></span>")
                + f'<a href="{R}champions/#team-title">All team titles</a>'
                + (f'<a href="{R}champions/team/{nxt}/">{nxt} ›</a>' if nxt else "<span></span>") + "</nav>")
+        sid = f"{y - 1}-{str(y)[2:]}"
+        v = M.season_videos(sid, row["season"])
+        n_v = len(M.SEASON_VIDEOS.get(sid, []))
+        vids = (f'<h2>Season highlight video{"s" if n_v > 1 else ""}</h2>' + v) if v else ""
         coach = s.get("coach", "")
         lede = f'PIAA Class AAA team champions · {e(row["season"])}' + (f' · Coach {e(coach)}' if coach else "")
         body = f"""
@@ -794,6 +798,7 @@ def build_team_title_pages():
     <div class="prose cp-story"><h2>The season</h2>{story}</div>
   </div>
 </section>
+{f'<section class="band tight" id="video"><div class="wrap">{vids}</div></section>' if vids else ''}
 <section class="band dark">
   <div class="wrap">
     <h2>On the podium at Hershey</h2>

@@ -911,3 +911,14 @@ h3.sub, h2.sub { display: block; position: static; min-width: 0; background: non
   .page-head.fit-photo .bg { height: auto; bottom: auto; aspect-ratio: 1.556; object-position: 50% 0 !important; }
   .page-head.fit-photo::after { background: linear-gradient(180deg, rgba(20,20,20,0) 30%, rgba(20,20,20,.75) 52vw, rgba(20,20,20,.95) 64vw); }
 }
+/* Make the banner walls read as clickable, including on phones (no hover there) */
+.wall-hint { display: inline-flex; align-items: center; gap: 10px; margin: -6px 0 22px; padding: 9px 16px; border-radius: 999px; background: var(--mat); color: var(--on-dark); font-weight: 600; font-size: 15px; line-height: 1.3; }
+.wall-hint span { color: var(--blaze); }
+.wall-hint.on-dark { background: var(--blaze); color: var(--mat); }
+.wall-hint.on-dark span { color: var(--mat); }
+.pennant.linked .pn-cta { display: inline-block; margin-top: 12px; padding: 5px 10px; border-radius: 999px; background: var(--blaze); color: var(--mat); font-family: var(--body, Inter, sans-serif); font-size: 12px; font-weight: 700; text-transform: none; letter-spacing: 0; line-height: 1.2; white-space: nowrap; }
+.pennant.linked a:hover .pn-cta, .pennant.linked a:focus-visible .pn-cta { background: var(--on-dark); }
+.tbanner .tb-more { white-space: nowrap; margin-top: 4px; padding: 5px 10px; border-radius: 999px; background: var(--blaze); color: var(--mat); font-size: 12px; font-weight: 700; }
+.tbanner:hover .tb-more, .tbanner:focus-within .tb-more { background: var(--on-dark); }
+@media (max-width: 380px) { .pennant.linked .pn-cta, .tbanner .tb-more { font-size: 11px; padding: 4px 8px; } }
+@media (min-width: 1001px) { .tbanner .tb-more { font-size: 11px; padding: 4px 8px; } }

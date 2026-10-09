@@ -284,7 +284,8 @@ def pennant(year, name, weight, small=False, R=None):
         face = f'<span class="pn-face pn-logo"><img src="{R}assets/img/logo-96.png" alt="" width="56" height="48" loading="lazy"></span>'
     return (f'<li class="pennant linked{" has-face" if c.get("banner") else ""}"><a href="{R}champions/{slug(name)}/">'
             f'<span class="yr">{year}</span>{face}<span class="nm">{e(name)}</span><span class="wt">{e(weight)}</span>'
-            f'<span class="visually-hidden">: read the story</span></a></li>')
+            f'<span class="pn-cta" aria-hidden="true">{"▶ Story &amp; video" if c.get("video") else "Read the story"}</span>'
+            f'<span class="visually-hidden">: read the story{" and watch the video" if c.get("video") else ""}</span></a></li>')
 
 
 # ------------------------------------------------------------------ hall math
@@ -456,6 +457,7 @@ def build_home():
 <section class="band concrete" aria-labelledby="wall-title">
   <div class="wrap">
     {section_head('<span id="wall-title">The banner wall</span>', f'{TOTALS["state"]} PIAA state champions since 1955. These are the last ten.')}
+    <p class="wall-hint"><span aria-hidden="true">▶</span> Tap a banner for the champion’s story. ▶ means there’s state-final video.</p>
     <ol class="pennants" role="list" reversed>{''.join(pennant(r['year'], norm(r['wrestler']), r['weight'], R=R) for r in recent[:10])}</ol>
     <div class="numbers">
       <p><b>{TOTALS['team_titles']}</b> PIAA team titles</p>
@@ -909,13 +911,15 @@ def build_champions():
 {page_head(R, "Hall of Champions", "Every Konkrete Kid who has won a District XI, Northeast Regional, or PIAA title or medaled at the state tournament, from 1948 to today.")}
 <section class="band" aria-labelledby="team-title">
   <div class="wrap">
-    {section_head(f'<span id="team-title">{TOTALS["team_titles"]} PIAA team titles</span>', f'Northampton won the team title at the PIAA Class AAA championships seven times between 1993 and 2004. Select a banner for that season. The program has also had at least one state medalist every year since {TOTALS["streak"][0]}, {TOTALS["streak"][2]} straight seasons.')}
-    <ol class="team-banners" role="list">{"".join(f'<li class="tbanner"><span class="t1">Northampton Wrestling</span><span class="t2">PIAA State Champions</span><span class="t3">AAA</span><a class="yr" href="{R}champions/team/{int(r["season"][:4]) + 1}/"><span class="visually-hidden">The </span>{e(r["season"])}<span class="visually-hidden"> team title season</span></a><span class="tb-more" aria-hidden="true">The season ›</span></li>' for r in TEAM_TITLES)}</ol>
+    {section_head(f'<span id="team-title">{TOTALS["team_titles"]} PIAA team titles</span>', f'Northampton won the team title at the PIAA Class AAA championships seven times between 1993 and 2004. The program has also had at least one state medalist every year since {TOTALS["streak"][0]}, {TOTALS["streak"][2]} straight seasons.')}
+    <p class="wall-hint"><span aria-hidden="true">▶</span> Tap any banner for that season’s story, results and highlight video.</p>
+    <ol class="team-banners" role="list">{"".join(f'<li class="tbanner"><span class="t1">Northampton Wrestling</span><span class="t2">PIAA State Champions</span><span class="t3">AAA</span><a class="yr" href="{R}champions/team/{int(r["season"][:4]) + 1}/"><span class="visually-hidden">The </span>{e(r["season"])}<span class="visually-hidden"> team title season</span></a><span class="tb-more" aria-hidden="true">▶ Season &amp; video</span></li>' for r in TEAM_TITLES)}</ol>
   </div>
 </section>
 <section class="band dark wall-band" aria-labelledby="wall-title">
   <div class="wrap">
-    {section_head(f'<span id="wall-title">{TOTALS["state"]} state champions</span>', "The banner wall, newest first. Select a banner for that champion’s story.")}
+    {section_head(f'<span id="wall-title">{TOTALS["state"]} state champions</span>', "The banner wall, newest first.")}
+    <p class="wall-hint on-dark"><span aria-hidden="true">▶</span> Tap any banner for that champion’s story and photos. ▶ means there’s state-final video.</p>
     <ol class="pennants full" role="list" reversed>{''.join(pennant(r['year'], norm(r['wrestler']), r['weight'], R=R) for r in st)}</ol>
   </div>
 </section>
