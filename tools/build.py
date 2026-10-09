@@ -1001,13 +1001,37 @@ def season_archive(R):
         sid, label, y = f"{a}-{b[2:]}", f"{a}–{b[2:]}", int(b)
         if sid in detailed:
             continue
-        body, summ = [], [coach(y)]
+        body, summ = [], []
+        # One-line summary: team accomplishments first, then individual honors, record, video.
+        if s["record"] and len(s["duals"]) >= 8:  # short lists are partial; the full list stays inside
+            summ.append(s["record"])
+        fin = dict(s["finishes"])
         if y in titles:
             summ.append("PIAA team champions")
+        elif fin.get("PIAA Championships"):
+            summ.append(f'{fin["PIAA Championships"]} at states')
+        for d in s["duals"]:
+            name = d["opponent"] + " " + d["event"]
+            if ("Championship Final" in name or "(Finals)" in name) and ("PIAA" in name or "District" in name):
+                lvl = "State" if "PIAA" in name else "District XI"
+                summ.append(f'{lvl} duals {"champions" if d["result"].startswith("W") else "runner-up"}')
+        firsts = [n for st, n in (("District XI tournament", "District XI"), ("Northeast Regional", "Regional")) if fin.get(st) == "1st"]
+        if firsts:
+            summ.append(" & ".join(firsts) + " champions")
+        n_st = sum(int(r["year"]) == y for r in HALL["state"])
+        n_md = n_st + sum(int(r["year"]) == y for r in HALL["medals"])
+        if n_st:
+            summ.append(f'{n_st} state champ{"s" * (n_st > 1)}')
+        if n_md > n_st:
+            summ.append(f'{n_md} {"state " * (not n_st)}medalist{"s" * (n_md > 1)}')
+        if not n_md:
+            for k, w in (("regional", "regional champ"), ("district", "District XI champ")):
+                n = sum(int(r["year"]) == y for r in HALL[k])
+                if n:
+                    summ.append(f'{n} {w}{"s" * (n > 1)}')
         facts = [("Head coach", e(coach(y)))] if coach(y) else []
         if s["record"]:
             facts.append(("Dual record", s["record"] + (f' ({s["league_record"]} league)' if s["league_record"] else "")))
-            summ.append(s["record"])
         if SEASON_VIDEOS.get(sid):
             summ.append("▶ video")
         for st, p in s["finishes"]:
