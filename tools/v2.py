@@ -179,7 +179,7 @@ def build_home():
         f'<ul role="list">{"".join(f"<li>{l}</li>" for l in lines)}</ul></div></article>')
     T = S.TOTALS
     recent = S.HALL["state"][::-1]
-    inside = [("facilities/", "practice-room", "The Room", "Where every Konkrete Kid is made: the wrestling room and Pete Schneider Gym."),
+    inside = [("facilities/", "practice-room", "The Room", "Where every Konkrete Kid is made: the wrestling room and Pete Schneider Gymnasium."),
               ("champions/", "showcase-arms-up", "The Tradition", f"{T['team_titles']} team state titles, {T['state']} state champions, and {T['streak'][2]} straight years with a state medalist."),
               ("story/", "program-family", "The Community", "Generations of families in the same black and orange."),
               ("join/", "youth-champs", "The Next Generation", "Kindergarten through varsity, one program and one path.")]
@@ -277,7 +277,7 @@ def build_home():
         "@context": "https://schema.org", "@type": "SportsTeam", "name": "Northampton Konkrete Kids Wrestling",
         "sport": "Wrestling", "url": S.SITE["domain"] + "/", "foundingDate": "1945",
         "memberOf": {"@type": "SportsOrganization", "name": S.SITE["owner"]},
-        "location": {"@type": "Place", "name": S.SITE["gym"] + ", " + S.SITE["school"], "address": {"@type": "PostalAddress", "streetAddress": S.SITE["address"][0], "addressLocality": "Northampton", "addressRegion": "PA", "postalCode": "18067", "addressCountry": "US"}},
+        "location": {"@type": "Place", "name": S.SITE["school"], "address": {"@type": "PostalAddress", "streetAddress": S.SITE["address"][0], "addressLocality": "Northampton", "addressRegion": "PA", "postalCode": "18067", "addressCountry": "US"}},
         "logo": S.SITE["domain"] + "/assets/img/logo-400.png", "email": S.SITE["email"], "sameAs": list(S.SITE["social"].values()),
     }
     import json
@@ -488,12 +488,12 @@ def build_story():
 def build_facilities():
     R = "../"
     body = f"""
-{M.page_head(R, "Our Home", "Pete Schneider Gym and the Northampton wrestling room.", "hero-circle", "50% 100%")}
+{M.page_head(R, "Our Home", "Pete Schneider Gymnasium and the Northampton wrestling room.", "hero-circle", "50% 100%")}
 <section class="band">
   <div class="wrap split">
     <div class="prose">
-      <h2>Pete Schneider Gym</h2>
-      <p>Home duals are wrestled in Pete Schneider Gym at Northampton Area High School, under the program’s state championship banners. Before every home match, the team lies in a circle on the orange mat with their fists together.</p>
+      <h2>Pete Schneider Gymnasium</h2>
+      <p>Home duals are wrestled in Pete Schneider Gymnasium at Northampton Area High School, under the program’s state championship banners. Before every home match, the team lies in a circle on the orange mat with their fists together.</p>
       <p>{M.SITE['school']}<br>{'<br>'.join(M.SITE['address'])}</p>
     </div>
     {M.figure(R, "senior-night", "(min-width: 900px) 45vw, 100vw", "wide-fig")}
@@ -510,7 +510,7 @@ def build_facilities():
 </section>
 <section class="band"><div class="wrap">{M.figure(R, "program-family", "(min-width: 1180px) 1100px, 100vw", "natural-fig")}</div></section>
 """
-    return M.page("facilities/index.html", "Our Home", "Pete Schneider Gym and the Northampton wrestling room.", body, "facilities/", og_image="hero-circle")
+    return M.page("facilities/index.html", "Our Home", "Pete Schneider Gymnasium and the Northampton wrestling room.", body, "facilities/", og_image="hero-circle")
 
 
 def build_join():
@@ -544,7 +544,7 @@ def build_join():
 <section class="band">
   <div class="wrap split">
     {M.figure(R, "practice-room", "(min-width: 900px) 45vw, 100vw", "wide-fig")}
-    <div class="prose"><h2>Our home</h2><p>Home matches in Pete Schneider Gym under the state championship banners, and daily practice in the wrestling room.</p><p><a class="text-link" href="../facilities/">See our home</a> · <a class="text-link" href="../coaching-staff/">Meet the coaches</a></p></div>
+    <div class="prose"><h2>Our home</h2><p>Home matches in Pete Schneider Gymnasium under the state championship banners, and daily practice in the wrestling room.</p><p><a class="text-link" href="../facilities/">See our home</a> · <a class="text-link" href="../coaching-staff/">Meet the coaches</a></p></div>
   </div>
 </section>
 <section class="band concrete" id="start" aria-labelledby="start-title">
@@ -577,7 +577,7 @@ def build_family():
   <div class="wrap split even">
     <div class="prose">
       <h2>Season at a glance</h2>
-      <ul class="results" role="list"><li><span>High school season</span><b>November – March</b></li><li><span>Postseason</span><b>District XI, Regional, PIAA</b></li><li><span>Home matches</span><b>Pete Schneider Gym</b></li><li><span>Banquet</span><b>Spring</b></li></ul>
+      <ul class="results" role="list"><li><span>High school season</span><b>November – March</b></li><li><span>Postseason</span><b>District XI, Regional, PIAA</b></li><li><span>Home matches</span><b>Pete Schneider Gymnasium</b></li><li><span>Banquet</span><b>Spring</b></li></ul>
       <p class="actions"><a class="btn" href="../schedule/">Schedule</a><a class="btn ghost dark-ink" href="{M.SITE['links']['district_calendar']}" rel="noopener">District calendar</a></p>
     </div>
     <div class="prose">

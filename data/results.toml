@@ -7,7 +7,7 @@
 # opponent = "Easton"            # or the tournament name
 # kind = "dual"                  # dual | tournament
 # home = true
-# location = "Pete Schneider Gym"
+# location = "Pete Schneider Gymnasium"
 # result = ""                    # W / L, or a place like "3rd"
 # score = ""                     # e.g. "36-25"
 

@@ -211,7 +211,7 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
       <h2>Contact</h2>
       <p><a href="mailto:{SITE['email']}">{SITE['email']}</a></p>
       <p>{SITE['phone_label']}: <a href="tel:+1{SITE['phone'].replace('-', '')}">{SITE['phone']}</a></p>
-      <p>{SITE['gym']}, {SITE['school']}<br>{'<br>'.join(SITE['address'])}</p>
+      <p>{SITE['school']}<br>{'<br>'.join(SITE['address'])}</p>
     </div>
     <div>
       <h2>Explore</h2>
