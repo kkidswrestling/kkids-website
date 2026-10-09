@@ -760,7 +760,7 @@ def build_coaches():
 
     def coach_card(c):
         if c["photo"]:
-            ph = picture(R, c["photo"], "120px", "avatar")
+            ph = picture(R, c["photo"], "180px", "avatar")
         else:
             ini = "".join(x[0] for x in c["name"].split())
             ph = f'<span class="avatar initials" aria-hidden="true">{ini}</span>'
@@ -768,7 +768,7 @@ def build_coaches():
 
     off = COACHES["officers"]
     body = f"""
-{page_head(R, "Coaching Staff", "The coaches who run the room, from the varsity to the junior high.", "coaches-embrace", "60% 8%")}
+{page_head(R, "Coaching Staff", "The coaches who run the room, from the varsity to the junior high.", "staff-states-2026", "50% 22%")}
 <section class="band">
   <div class="wrap head-coach">
     <figure class="hc-photo">{picture(R, h['photo'], "(min-width: 900px) 30vw, 70vw")}</figure>
@@ -811,7 +811,7 @@ def build_coaches():
   </div>
 </section>
 """
-    return page("coaching-staff/index.html", "Coaching Staff", "Northampton wrestling coaching staff: head coach Joe Provini, varsity assistants, and junior high coaches.", body, "coaching-staff/", og_image="coaches-embrace")
+    return page("coaching-staff/index.html", "Coaching Staff", "Northampton wrestling coaching staff: head coach Joe Provini, varsity assistants, and junior high coaches.", body, "coaching-staff/", og_image="staff-states-2026")
 
 
 def medals_chart():

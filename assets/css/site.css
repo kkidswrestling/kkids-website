@@ -311,13 +311,15 @@ details p { margin: 0 0 14px; }
 .head-coach h2 { font-size: clamp(44px, 6vw, 76px); }
 @media (max-width: 760px) { .head-coach { grid-template-columns: 1fr; } .hc-photo { max-width: 340px; } }
 .coaches { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.coach { display: grid; grid-template-columns: 96px 1fr; gap: 20px; background: var(--paper); padding: 22px; border: 1px solid var(--line); }
+.coach { display: flex; flex-direction: column; align-items: center; gap: 18px; background: var(--paper); padding: 28px 24px 24px; border: 1px solid var(--line); border-top: 4px solid var(--blaze); }
+.coach > div { width: 100%; text-align: center; }
+.coach > div p:last-child { text-align: left; }
 .coach h3 { font-size: 26px; margin: 0 0 2px; }
 .coach p:last-child { margin: 0; font-size: 16px; }
-.avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; background: var(--concrete); }
+.avatar { width: 168px; height: 168px; border-radius: 50%; object-fit: cover; object-position: 50% 30%; background: var(--concrete); box-shadow: 0 0 0 4px var(--paper), 0 0 0 6px var(--blaze); }
 .avatar.initials { display: flex; align-items: center; justify-content: center; background: var(--mat); color: var(--blaze); font-family: var(--display); font-size: 34px; }
 @media (max-width: 860px) { .coaches { grid-template-columns: 1fr; } }
-@media (max-width: 460px) { .coach { grid-template-columns: 1fr; } }
+
 
 /* schedule */
 .note-card { background: var(--concrete); padding: 26px; border-top: 4px solid var(--blaze); }

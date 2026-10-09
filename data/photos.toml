@@ -178,6 +178,16 @@ widths = [640, 1200, 1655]
 file = "img26/p-041-215.png"
 
 [[photo]]
+id = "staff-states-2026"
+focus = "50% 22%"
+source = "Coach Provini, batch 7"
+season = "2025-26"
+alt = "Northampton coaches and state qualifiers together at the 2026 PIAA Championships"
+caption = "Coaches and state qualifiers at the 2026 PIAA Championships."
+widths = [640, 1200, 1800, 2400]
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch7/staff-states-2026.jpg"
+
+[[photo]]
 id = "coaches-embrace"
 focus = "60% 8%"
 source = "Coach Provini, showcase batch 1 (also in 2025-26 banquet program, page 41)"
@@ -326,7 +336,7 @@ file = "img26/p-011-019.png"
 id = "coach-sommer"
 source = "2025-26 banquet program, page 12"
 alt = "Coach Mike Sommer"
-crop = [513, 110, 1113, 860]
+crop = [509, 80, 1109, 680]
 widths = [480, 600]
 file = "img26/p-012-020.png"
 
@@ -334,7 +344,7 @@ file = "img26/p-012-020.png"
 id = "coach-derr"
 source = "2025-26 banquet program, page 12"
 alt = "Coach Jim Derr"
-crop = [500, 100, 1100, 850]
+crop = [492, 70, 1112, 690]
 widths = [480, 600]
 file = "img26/p-012-021.png"
 
@@ -342,7 +352,7 @@ file = "img26/p-012-021.png"
 id = "coach-newsom"
 source = "2025-26 banquet program, page 13"
 alt = "Coach Marcus Newsom"
-crop = [840, 110, 1640, 1110]
+crop = [942, 90, 1542, 690]
 widths = [480, 800]
 file = "img26/p-013-022.png"
 
@@ -355,6 +365,7 @@ file = "img26/rusnock_hi.png"
 
 [[photo]]
 id = "coach-szerencsits"
+focus = "50% 8%"
 source = "2024-25 team photo (2025-26 banquet program, page 13)"
 alt = "Coach Ethan Szerencsits"
 widths = [158]
