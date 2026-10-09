@@ -480,7 +480,7 @@ def build_story():
     <aside class="note-card"><h3>Eight head coaches</h3><ul class="results" role="list">{era_rows}</ul></aside>
   </div>
 </section>
-<section class="band dark"><div class="wrap"><blockquote class="arena dark-q"><p>“It is not the critic who counts… The credit belongs to the man who is actually in the arena.”</p><footer>Theodore Roosevelt</footer></blockquote></div></section>
+<section class="band dark"><div class="wrap"><blockquote class="arena dark-q"><p>“I hope I’ll be seen as a guy who really cared about his athletes, as wanting to get every kid he coached to his next level.”</p><footer>Don Rohn, head coach 1982–2000</footer></blockquote></div></section>
 """
     return M.page("story/index.html", "Our Story", "The history and philosophy of Northampton Wrestling since 1945.", body, "story/", og_image="program-family")
 
