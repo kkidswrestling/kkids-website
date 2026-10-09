@@ -922,3 +922,4 @@ h3.sub, h2.sub { display: block; position: static; min-width: 0; background: non
 .tbanner:hover .tb-more, .tbanner:focus-within .tb-more { background: var(--on-dark); }
 @media (max-width: 380px) { .pennant.linked .pn-cta, .tbanner .tb-more { font-size: 11px; padding: 4px 8px; } }
 @media (min-width: 1001px) { .tbanner .tb-more { font-size: 11px; padding: 4px 8px; } }
+.pennant.headshot .pn-face { object-position: 50% 0 !important; }
