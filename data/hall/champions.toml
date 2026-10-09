@@ -47,6 +47,7 @@ story = [
   "He finished his career with 140 wins and is headed to the U.S. Air Force Academy.",
 ]
 gallery = ["trey-embrace", "trey-hug"]
+video = [{ url = "https://www.youtube.com/watch?v=pzuGGfMqfTk", start = "39:05", end = "48:45" }]
 
 ["Julian Chlebove"]
 video = [{ url = "https://www.youtube.com/watch?v=kJpFY4KdLkE", year = 2017 }, { url = "https://www.flowrestling.org/video/6390273-132-lbs-final-julian-chlebove-northampton-vs-kenny-herrmann-becahi", year = 2019, site = "FloWrestling" }]
