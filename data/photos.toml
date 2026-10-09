@@ -1114,7 +1114,7 @@ file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8
 id = "headshot-brayden-wenrich"
 source = "Coach Provini, batch 9"
 alt = "Brayden Wenrich wearing his state championship medals"
-crop = [333, 380, 1405, 1720]
+crop = [305, 380, 1433, 1790]
 widths = [320, 640]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/wenrich-portrait-hi.jpg"
 
@@ -1122,7 +1122,7 @@ file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8
 id = "headshot-gabriel-ballard"
 source = "Coach Provini, batch 9"
 alt = "Gabe Ballard wearing his state championship medals"
-crop = [327, 350, 1399, 1690]
+crop = [315, 350, 1411, 1720]
 widths = [320, 640]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/ballard-portrait-hi.jpg"
 
@@ -1130,7 +1130,7 @@ file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8
 id = "headshot-trey-wagner"
 source = "Coach Provini, batch 9"
 alt = "Trey Wagner wearing his state championship medals"
-crop = [79, 30, 831, 970]
+crop = [46, 30, 854, 1040]
 widths = [320, 640]
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/wagner-portrait-hi.jpg"
 
