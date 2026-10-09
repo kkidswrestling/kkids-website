@@ -334,7 +334,7 @@ def build_profile(w, season):
   <div class="wrap">
     <h2>Honors</h2>
     {(UL_OPEN + honors + "</ul>") if honors else "<p>Honors will appear here as the season goes.</p>"}
-    <p class="fine">From Northampton banquet programs and season results. <a href="{R}champions/?q={e(w["name"].split()[-1])}">Search the Hall of Champions</a>.</p>
+    <p class="fine"><a href="{R}champions/?q={e(w["name"].split()[-1])}">Search the Hall of Champions</a>. See something we got wrong? Email <a href="mailto:{M.SITE['email']}">{M.SITE['email']}</a>.</p>
   </div>
 </section>
 """
@@ -682,8 +682,6 @@ def build_champion_pages():
             story = (f'<p>{e(name)} is one of {M.TOTALS["state"]} Konkrete Kids to win a PIAA state title. His full record is below.</p>'
                      f'<p class="ask">Photos, the story of this title, and the state final are coming. Have something to share? Email '
                      f'<a href="mailto:{M.SITE["email"]}?subject=State%20champion%3A%20{e(name)}">{M.SITE["email"]}</a>.</p>')
-        if c.get("sources"):
-            story += '<p class="cp-source">' + ("Sources: " if len(c["sources"]) > 1 else "Source: ") + "; ".join(f'<a href="{s[1]}" rel="noopener">{e(s[0])}</a>' for s in c["sources"]) + "</p>"
         # video entries: a YouTube URL, or {url, start, end} with times like "15:30" to play just one match
         def secs(x):
             if not x: return 0
@@ -729,7 +727,7 @@ def build_champion_pages():
   <div class="wrap">
     <h2>Career at Northampton</h2>
     {(UL_OPEN + honors + "</ul>") if honors else ""}
-    <p class="fine">From Northampton banquet programs, the gym banners, and season results.</p>
+    <p class="fine">See something we got wrong? Email <a href="mailto:{M.SITE['email']}">{M.SITE['email']}</a>.</p>
   </div>
 </section>
 {pn}
@@ -771,8 +769,6 @@ def build_team_title_pages():
         story = "".join("<p>" + re.sub(r"(\d+(?:\.\d+)?[–-]\d+(?:\.\d+)?)", r'<span class="nw">\1</span>', e(x)) + "</p>" for x in s.get("story", []))
         if not story:
             story = f'<p>Northampton won the PIAA Class AAA team title in {e(row["season"])}. The full story of this season is coming.</p>'
-        if s.get("sources"):
-            story += '<p class="cp-source">' + ("Sources: " if len(s["sources"]) > 1 else "Source: ") + "; ".join(f'<a href="{x[1]}" rel="noopener">{e(x[0])}</a>' for x in s["sources"]) + "</p>"
         post = "".join(f'<li><span class="ps">{e(a)}</span><span class="pr">{e(b)}</span></li>' for a, b in s.get("postseason", []))
         hl = "".join(f'<li><span class="hd">{e(a)}</span><span>{e(b)}</span></li>' for a, b in s.get("highlights", []))
         lst = lambda rows: "".join(f'<li>{who(r["wrestler"])} <span class="w">{e(r["weight"])}</span></li>' for r in rows)

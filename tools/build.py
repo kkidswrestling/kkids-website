@@ -943,7 +943,7 @@ def build_champions():
     <h2 id="lists-title">The record book</h2>
     <div class="tabs" role="tablist" aria-label="Record book">{tablist}</div>
     {panels}
-    <p class="fine">Lists come from the Northampton Wrestling banquet programs, the banners in the gym, and PA-Wrestling.com team history. Missing or misspelled names? Email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p>
+    <p class="fine">Missing or misspelled names? Email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p>
   </div>
 </section>
 """
