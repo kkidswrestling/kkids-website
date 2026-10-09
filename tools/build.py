@@ -239,10 +239,10 @@ def section_head(title, intro="", level=2, id_=None):
     return f'<div class="sec-head"><h{level}{i}>{title}</h{level}>{p}</div>'
 
 
-def page_head(R, title, intro, photo=None, focus=None, kicker=None):
+def page_head(R, title, intro, photo=None, focus=None, kicker=None, cls=""):
     k = f'<p class="kicker">{kicker}</p>' if kicker else ""
     if photo:
-        return (f'<header class="page-head has-photo">{picture(R, photo, "100vw", "bg", True, alt="", focus=focus)}'
+        return (f'<header class="page-head has-photo{(" " + cls) if cls else ""}">{picture(R, photo, "100vw", "bg", True, alt="", focus=focus)}'
                 f'<div class="wrap">{k}<h1>{title}</h1><p class="lede">{intro}</p></div></header>')
     return f'<header class="page-head concrete"><div class="wrap">{k}<h1>{title}</h1><p class="lede">{intro}</p></div></header>'
 
@@ -768,7 +768,7 @@ def build_coaches():
 
     off = COACHES["officers"]
     body = f"""
-{page_head(R, "Coaching Staff", "The coaches who run the room, from the varsity to the junior high.", "staff-states-2026", "50% 22%")}
+{page_head(R, "Coaching Staff", "The coaches who run the room, from the varsity to the junior high.", "staff-states-2026", "50% 22%", cls="fit-photo")}
 <section class="band">
   <div class="wrap head-coach">
     <figure class="hc-photo">{picture(R, h['photo'], "(min-width: 900px) 30vw, 70vw")}</figure>

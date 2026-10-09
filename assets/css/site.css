@@ -897,3 +897,9 @@ h3.sub, h2.sub { display: block; position: static; min-width: 0; background: non
 .season-page .top-gap { margin-top: 40px; }
 .season-page .season-nav { margin-top: 48px; padding: 24px 0 0; border-top: 1px solid var(--line); }
 .season-page .split.top:first-of-type { margin-top: 24px; }
+/* Group photos in a page header: on phones show the whole width (nobody cut off), title below the faces */
+@media (max-width: 760px) {
+  .page-head.fit-photo { padding-top: calc(64vw - 24px); }
+  .page-head.fit-photo .bg { height: auto; bottom: auto; aspect-ratio: 1.556; object-position: 50% 0 !important; }
+  .page-head.fit-photo::after { background: linear-gradient(180deg, rgba(20,20,20,0) 30%, rgba(20,20,20,.75) 52vw, rgba(20,20,20,.95) 64vw); }
+}
