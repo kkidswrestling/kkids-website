@@ -448,7 +448,15 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 .hero { align-items: flex-start; }
 .hero::after { background: linear-gradient(180deg, rgba(20,20,20,.92) 0%, rgba(20,20,20,.55) 38%, rgba(20,20,20,0) 62%, rgba(20,20,20,0) 88%, rgba(20,20,20,.6) 100%); }
 .hero-copy { padding-top: clamp(48px, 7vw, 88px); padding-bottom: 0; }
-@media (max-width: 700px) { .hero { min-height: 92vh; } .hero::after { background: linear-gradient(180deg, rgba(20,20,20,.94) 0%, rgba(20,20,20,.7) 45%, rgba(20,20,20,0) 72%); } }
+/* Phones: title on the dark band, then the whole photo at its own shape below it.
+   No viewport-height sizing, so nothing resizes or jumps when the browser bar hides on scroll. */
+@media (max-width: 700px) {
+  .hero { min-height: 0; flex-direction: column; align-items: stretch; }
+  .hero::after { display: none; }
+  .hero-copy { order: 1; padding-bottom: 8px; }
+  .hero-img { order: 2; position: relative; inset: auto; z-index: 0; height: auto; aspect-ratio: 2000 / 1429; object-position: 50% 50% !important;
+              -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%); mask-image: linear-gradient(180deg, transparent 0%, #000 22%); }
+}
 @media (min-width: 701px) {
   .hero { min-height: 0; aspect-ratio: 2000 / 1429; max-height: none; }
   .hero h1 { font-size: clamp(60px, 8vw, 132px); }
