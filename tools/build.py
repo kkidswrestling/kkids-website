@@ -299,16 +299,17 @@ def counts():
 
 
 def multi_lists():
+    """[(category, [(times, names), ...]), ...] for wrestlers with 2+ of an honor."""
     c, medals = counts()
     out = []
-    for title, ctr, ks in (("State medalists", medals, (4, 3, 2)),
-                           ("Regional champions", c["regional"], (4, 3, 2)),
-                           ("District XI champions", c["district"], (4, 3, 2))):
-        for k in ks:
+    for title, ctr in (("State medalists", medals), ("Regional champions", c["regional"]),
+                       ("District XI champions", c["district"])):
+        tiers = []
+        for k in (4, 3, 2):
             names = sorted((n for n, v in ctr.items() if v == k), key=lambda s: s.split()[-1] + s)
             if names:
-                word = {4: "Four", 3: "Three", 2: "Two"}[k]
-                out.append((f"{word}-time {title.lower()}", names))
+                tiers.append((k, names))
+        out.append((title, tiers))
     return out
 
 
@@ -871,7 +872,13 @@ def build_champions():
     t_reg = tbl("t-reg", "Northeast Regional champions, newest first", ["Year", "Wrestler", "Weight"], "".join(tr(r) for r in HALL["regional"][::-1]))
     t_dist = tbl("t-dist", "District XI champions, newest first", ["Year", "Wrestler", "Weight"], "".join(tr(r) for r in HALL["district"][::-1]))
 
-    multi = "".join(f'<div><h3>{t}</h3><p>{e(", ".join(n))}</p></div>' for t, n in multi_lists())
+    word = {4: "Four-time", 3: "Three-time", 2: "Two-time"}
+    multi = "".join(
+        f'<section class="mt-group"><h3>{t}</h3>' + "".join(
+            f'<div class="mt-tier"><h4><span class="mt-x" aria-hidden="true">{k}×</span>{word[k]}'
+            f'<span class="mt-n">{len(n)} wrestler{"s" * (len(n) != 1)}</span></h4><ul class="mt-names" role="list">'
+            + "".join(f"<li>{e(x)}</li>" for x in n) + "</ul></div>" for k, n in tiers) + "</section>"
+        for t, tiers in multi_lists())
 
     def rec(cat):
         rows = [r for r in RECORDS if r["category"] == cat]
