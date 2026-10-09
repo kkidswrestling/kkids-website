@@ -221,7 +221,6 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
   </div>
   <div class="wrap foot-base">
     <p>&copy; <span data-year>2026</span> {SITE['owner']}</p>
-    <p>Action photos credited where marked. Records from Northampton Wrestling banquet programs.</p>
   </div>
 </footer>
 {js}
