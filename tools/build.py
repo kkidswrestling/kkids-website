@@ -42,6 +42,7 @@ HUNDRED = load_csv("hall/hundred-wins.csv")
 # school named; never counted in program totals, lists, or streaks.
 OTHER = load_csv("hall/other-schools.csv")
 TEAM_TITLES = load_csv("hall/team-titles.csv")
+SEASON_VIDEOS = load_toml("season-videos.toml")
 CUR = SEASONS[0]
 
 NAV_GROUPS = [
@@ -950,6 +951,21 @@ def build_champions():
     return page("champions/index.html", "Hall of Champions", "Northampton wrestling’s PIAA champions, state medalists, regional and District XI champions, season records, and head coaches since 1945.", body, "champions/", scripts=("site.js", "hall.js"), og_image="portrait-ballard-2026")
 
 
+def season_videos(sid, label, heading="h3"):
+    """Highlight video(s) for a season from data/season-videos.toml (facade, loads YouTube on click)."""
+    vids = SEASON_VIDEOS.get(sid, [])
+    if not vids:
+        return ""
+    many = len(vids) > 1
+    cards = "".join(
+        f'<div class="video-facade single" data-ytv="{v["id"]}"><img class="vf-img" src="https://i.ytimg.com/vi/{v["id"]}/hqdefault.jpg" alt="" loading="lazy">'
+        f'<button type="button" class="vf-play"><span aria-hidden="true">▶</span> {label} highlights'
+        + (f' · part {v["part"]}' if v["part"] and many else "") + "</button></div>" for v in vids)
+    title = "Season highlight videos" if many else "Season highlight video"
+    cls = ' class="sub"' if heading == "h3" else ""
+    return f'<{heading}{cls}>{title}</{heading}><div class="season-vids{" many" if many else ""}">{cards}</div>'
+
+
 def season_archive(R):
     """Baseline entry for every season without a detailed write-up: PA-Wrestling's schedule
     page facts (data/hall/pawrestling-seasons.json) plus that year's honors from the Hall lists.
@@ -992,6 +1008,8 @@ def season_archive(R):
         if s["record"]:
             facts.append(("Dual record", s["record"] + (f' ({s["league_record"]} league)' if s["league_record"] else "")))
             summ.append(s["record"])
+        if SEASON_VIDEOS.get(sid):
+            summ.append("▶ video")
         for st, p in s["finishes"]:
             facts.append((st, e(p)))
         for n, p in s["tournaments"]:
@@ -1007,6 +1025,9 @@ def season_archive(R):
         h = honors(y)
         if h:
             body.append('<h4>Individual honors</h4><dl class="awards compact">' + "".join(f"<div><dt>{a_}</dt><dd>{b_}</dd></div>" for a_, b_ in h) + "</dl>")
+        sv = season_videos(sid, label, "h4")
+        if sv:
+            body.append(sv)
         if y in titles:
             body.append(f'<p><a href="{R}champions/team/{y}/">The {label} PIAA team title season ›</a></p>')
         decades_ids.setdefault(y - 1 - (y - 1) % 10, []).append((sid, label))
@@ -1087,6 +1108,7 @@ def build_seasons():
             if s.get("roster"):
                 parts.append('<details class="season-roster"><summary>Full ' + e(s["label"]) + ' roster</summary><dl class="awards compact">'
                              + "".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in s["roster"]) + "</dl></details>")
+            parts.append(season_videos(s["id"], s["label"]))
             if s.get("gallery"):
                 parts.append(f'<h3 class="sub">Photos</h3>{gallery(R, s["gallery"], "season-" + s["id"])}')
         parts.append("</div></section>")

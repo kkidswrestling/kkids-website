@@ -832,3 +832,10 @@ h3.sub { display: block; position: static; min-width: 0; background: none; borde
 .mt-names li { padding: 3px 0; break-inside: avoid; }
 @media (max-width: 1100px) { .multi { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 700px) { .multi { grid-template-columns: 1fr; } }
+/* Season highlight videos */
+.season-vids { display: grid; gap: 16px; margin: 0 0 24px; max-width: 960px; }
+.season-vids.many { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); max-width: none; }
+.arch-body .season-vids { max-width: 760px; }
+.arch-body .season-vids.many { grid-template-columns: 1fr 1fr; }
+@media (max-width: 600px) { .arch-body .season-vids.many { grid-template-columns: 1fr; } }
+.season-vids .vf-play { font-size: 15px; }
