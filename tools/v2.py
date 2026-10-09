@@ -424,7 +424,7 @@ def build_videos():
   <div class="wrap">
     <div class="video-facade" data-yt="{e(pl)}">
       {M.picture(R, "dark-stance", "(min-width: 1180px) 1100px, 100vw", "vf-img", alt="")}
-      <button type="button" class="vf-play"><span aria-hidden="true">▶</span> Play the Northampton Wrestling playlist</button>
+      <button type="button" class="vf-play"><span aria-hidden="true">▶</span> Play all highlight videos</button>
     </div>
     <p class="fine on-dark">Plays from YouTube. Season highlight videos are produced by Coach Mike Sommer.</p>
     <p class="actions"><a class="btn" href="{M.SITE['social']['youtube']}" rel="noopener">Watch on YouTube</a></p>
