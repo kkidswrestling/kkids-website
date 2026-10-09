@@ -38,7 +38,7 @@ story = [
 gallery = ["wenrich-celebrates", "wenrich-medal", "celebration"]
 
 ["Trey Wagner"]
-banner = "trey-hug"
+banner = "banner-trey-wagner"
 portrait = "portrait-wagner-2024"
 hero = "showcase-arms-up"
 story = [
@@ -46,7 +46,7 @@ story = [
   "He swept the District XI, Northeast Regional, and state titles that season and was named the team's Outstanding Wrestler. Wagner went on to place 5th at 133 in 2025 and 7th at 139 in 2026, finishing as a three-time state medalist and a two-time Northeast Regional champion.",
   "He finished his career with 140 wins and is headed to the U.S. Air Force Academy.",
 ]
-gallery = ["trey-embrace"]
+gallery = ["trey-embrace", "trey-hug"]
 
 ["Julian Chlebove"]
 video = [{ url = "https://www.youtube.com/watch?v=kJpFY4KdLkE", year = 2017 }, { url = "https://www.flowrestling.org/video/6390273-132-lbs-final-julian-chlebove-northampton-vs-kenny-herrmann-becahi", year = 2019, site = "FloWrestling" }]

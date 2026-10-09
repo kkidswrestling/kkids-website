@@ -679,6 +679,15 @@ alt = "Trey Wagner hugs Coach Joe Provini after winning the 2024 state title"
 file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/trey-hug.jpg"
 
 [[photo]]
+id = "banner-trey-wagner"
+crop = [360, 265, 1080, 1165]
+focus = "50% 30%"
+widths = [480, 720]
+source = "Coach Provini, batch 6"
+alt = "Trey Wagner grins and points both fingers skyward after a win at the PIAA Championships"
+file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch6/trey-point.jpg"
+
+[[photo]]
 id = "banner-mike-tomsic"
 crop = [62, 17, 287, 298]
 focus = "50% 50%"

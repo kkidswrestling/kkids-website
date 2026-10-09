@@ -525,6 +525,24 @@
    ]
   ]
  },
+ "banner-trey-wagner": {
+  "fallback": [
+   720,
+   900
+  ],
+  "h": 900,
+  "w": 720,
+  "widths": [
+   [
+    480,
+    600
+   ],
+   [
+    720,
+    900
+   ]
+  ]
+ },
  "banner-whitey-chlebove": {
   "fallback": [
    182,
