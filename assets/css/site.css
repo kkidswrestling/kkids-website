@@ -105,7 +105,7 @@ p { margin: 0 0 1em; }
 /* ------------------------------------------------------------ bands */
 .band { padding: var(--band) 0; }
 .band.dark { background: var(--mat); color: var(--on-dark); }
-.band.concrete, .page-head.concrete { background: linear-gradient(rgba(230,228,223,.86), rgba(230,228,223,.86)), url("../img/photos/concrete-1600.webp") center/1100px auto; }
+.band.concrete, .page-head.concrete { background: linear-gradient(rgba(230,228,223,.86), rgba(230,228,223,.86)), url("../img/bg-concrete.webp") center/1100px auto; }
 .sec-head { max-width: 760px; margin-bottom: clamp(28px, 4vw, 44px); }
 .sec-head h2 { margin-bottom: .3em; }
 .lede { font-size: clamp(18px, 1.7vw, 21px); line-height: 1.5; margin: 0; }
@@ -556,7 +556,7 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 .article-body p { font-size: 19px; line-height: 1.65; }
 
 /* ---- big numbers ---- */
-.numbers-band { background: var(--mat) url("../img/photos/concrete-1600.webp") center/1100px; background-blend-mode: multiply; color: var(--on-dark); }
+.numbers-band { background: var(--mat) url("../img/bg-concrete.webp") center/1100px; background-blend-mode: multiply; color: var(--on-dark); }
 .big-numbers { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; }
 .big-numbers p { margin: 0; padding: 8px 16px; border-left: 1px solid var(--line-dark); }
 .big-numbers p:first-child { border-left: 0; padding-left: 0; }

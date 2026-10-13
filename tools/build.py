@@ -1274,6 +1274,17 @@ def main():
     redirect("copy-of-high-school/index.html", "seasons/2022-23/")
     redirect("copy-of-high-school-1/index.html", "seasons/2023-24/")
     redirect("coaches/index.html", "coaching-staff/")
+    # Sitemap: every built page (not redirect stubs), so new profiles and news posts are always included
+    for d, dirs, files in os.walk(ROOT):
+        dirs[:] = [x for x in dirs if not x.startswith(".") and x not in ("node_modules", "assets", "tools", "data")]
+        if "index.html" in files:
+            rel = os.path.relpath(d, ROOT)
+            with open(os.path.join(d, "index.html"), encoding="utf-8") as fh:
+                if 'http-equiv="refresh"' in fh.read(3000):
+                    continue
+            u = SITE["domain"] + "/" + ("" if rel == "." else rel.replace(os.sep, "/") + "/")
+            if u not in urls:
+                urls.append(u)
     sm = "".join(f"<url><loc>{u}</loc></url>" for u in urls)
     open(os.path.join(ROOT, "sitemap.xml"), "w").write(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{sm}</urlset>\n')
