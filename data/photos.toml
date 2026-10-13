@@ -18,7 +18,7 @@ alt = "Northampton wrestlers lie in a circle on the orange home mat with their f
 caption = "The pre-match circle on the home mat."
 focus = "50% 100%"
 widths = [640, 1200, 1800, 2000]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/hero.png"
+file = "originals/batch2_hero.jpg"
 
 [[photo]]
 id = "program-family"
@@ -27,7 +27,7 @@ season = "2025-26"
 alt = "The whole Northampton wrestling program, from the youngest youth wrestlers to the varsity, with coaches, in the gym bleachers below the state championship banners"
 caption = "The Konkrete Kids family, from the youngest youth wrestlers to the varsity."
 widths = [640, 1200, 1800, 2576]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/program.jpg"
+file = "originals/batch2_program.jpg"
 
 [[photo]]
 id = "team-mayhem"
@@ -36,7 +36,7 @@ season = "2025-26"
 alt = "The Northampton varsity team and coaches pose together at the Mid-Winter Mayhem tournament"
 caption = "The varsity at the Mid-Winter Mayhem, where the team finished 3rd."
 widths = [640, 1200, 1800, 2400]
-file = "img26/p-030-116.png"
+file = "originals/img26_p-030-116.jpg"
 
 [[photo]]
 id = "piaa-third"
@@ -45,7 +45,7 @@ season = "2025-26"
 alt = "Northampton wrestlers hold a hand-painted sign that reads KKid Wrestling 3rd in PIAA"
 caption = "Third in the state at the 2026 PIAA Championships."
 widths = [640, 1200, 1800]
-file = "img26/p-017-050.png"
+file = "originals/img26_p-017-050.jpg"
 
 [[photo]]
 id = "senior-night"
@@ -54,7 +54,7 @@ season = "2025-26"
 alt = "Northampton seniors and their families on the orange mat for Senior Night"
 caption = "Senior Night 2026."
 widths = [640, 1200, 1800]
-file = "img26/p-027-103.png"
+file = "originals/img26_p-027-103.jpg"
 
 [[photo]]
 id = "ballard-100"
@@ -63,7 +63,7 @@ season = "2025-26"
 alt = "Gabe Ballard holds a banner marking his 100th career win, flanked by his coaches"
 caption = "Gabe Ballard is honored for his 100th career win."
 widths = [640, 1200, 1800]
-file = "img26/p-027-100.png"
+file = "originals/img26_p-027-100.jpg"
 
 [[photo]]
 id = "jv-districts"
@@ -72,7 +72,7 @@ season = "2025-26"
 alt = "Northampton JV wrestlers and coaches at the JV district tournament"
 caption = "The JV squad at the 2026 Ray Nunamaker JV District Tournament."
 widths = [640, 1200, 1800]
-file = "img26/p-031-121.png"
+file = "originals/img26_p-031-121.jpg"
 
 [[photo]]
 id = "jh-districts"
@@ -81,7 +81,7 @@ season = "2025-26"
 alt = "Northampton junior high wrestlers with medals and certificates, with their coaches"
 caption = "The junior high team at the 2026 District XI Junior High Tournament."
 widths = [640, 1200, 1800]
-file = "img26/p-032-125.png"
+file = "originals/img26_p-032-125.jpg"
 
 [[photo]]
 id = "youth-champs"
@@ -91,7 +91,7 @@ season = "2025-26"
 alt = "Three Northampton youth wrestlers hold VEWL champion trophies"
 caption = "Youth league champions."
 widths = [640, 1200]
-file = "img26/p-016-040.png"
+file = "originals/img26_p-016-040.jpg"
 
 [[photo]]
 id = "youth-autographs"
@@ -101,7 +101,7 @@ alt = "Varsity wrestlers sign autographs for young fans at a long table"
 caption = "Varsity wrestlers sign autographs for the next generation."
 widths = [640, 1200]
 focus = "50% 40%"
-file = "img26/p-025-096.png"
+file = "originals/img26_p-025-096.jpg"
 
 [[photo]]
 id = "youth-mat"
@@ -110,7 +110,7 @@ season = "2025-26"
 alt = "Young wrestlers sit on the mat and listen to a coach"
 caption = "Youth wrestlers on the mat."
 widths = [640, 1200]
-file = "img26/p-025-092.png"
+file = "originals/img26_p-025-092.jpg"
 
 [[photo]]
 id = "hershey"
@@ -119,7 +119,7 @@ season = "2025-26"
 alt = "Northampton wrestlers and coaches stand in front of Hershey's Chocolate World"
 caption = "In Hershey for the 2026 PIAA Championships."
 widths = [640, 1200]
-file = "img26/p-039-197.png"
+file = "originals/img26_p-039-197.jpg"
 
 [[photo]]
 id = "celebration"
@@ -128,7 +128,7 @@ season = "2025-26"
 alt = "Wrestlers in K-Kids shirts pose in front of a State Champion Wenrich banner"
 caption = "Celebrating two state champions."
 widths = [640, 1200, 1800]
-file = "img26/p-044-246.png"
+file = "originals/img26_p-044-246.jpg"
 
 [[photo]]
 id = "practice-room"
@@ -137,7 +137,7 @@ season = "2025-26"
 alt = "Wrestlers work through a drill in the Northampton wrestling room"
 caption = "Work in the room."
 widths = [640, 1200]
-file = "img26/p-036-177.png"
+file = "originals/img26_p-036-177.jpg"
 
 [[photo]]
 id = "bowling"
@@ -146,7 +146,7 @@ season = "2025-26"
 alt = "Teammates gather at a bowling lane during a team outing"
 caption = "Team bowling night."
 widths = [640, 1200]
-file = "img26/p-037-184.png"
+file = "originals/img26_p-037-184.jpg"
 
 [[photo]]
 id = "wenrich-celebrates"
@@ -155,7 +155,7 @@ season = "2025-26"
 alt = "Brayden Wenrich yells and clenches his fists after a win"
 caption = "Brayden Wenrich celebrates a win."
 widths = [640, 960]
-file = "img26/p-009-014.png"
+file = "originals/img26_p-009-014.jpg"
 
 [[photo]]
 id = "wenrich-medal"
@@ -165,7 +165,7 @@ alt = "Brayden Wenrich wears his PIAA state championship gold medal"
 caption = "Brayden Wenrich, 2026 PIAA champion at 114 pounds."
 widths = [640, 1050]
 focus = "50% 30%"
-file = "img26/p-041-213.png"
+file = "originals/img26_p-041-213.jpg"
 
 [[photo]]
 id = "wenrich-final"
@@ -175,7 +175,7 @@ season = "2025-26"
 alt = "Brayden Wenrich, wearing a gold medal, stands with three men in suits in front of a green screen"
 caption = "Brayden Wenrich after the 114-pound final."
 widths = [640, 1200, 1655]
-file = "img26/p-041-215.png"
+file = "originals/img26_p-041-215.jpg"
 
 [[photo]]
 id = "staff-states-2026"
@@ -185,7 +185,7 @@ season = "2025-26"
 alt = "Northampton coaches and state qualifiers together at the 2026 PIAA Championships"
 caption = "Coaches and state qualifiers at the 2026 PIAA Championships."
 widths = [640, 1200, 1800, 2400]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch7/staff-states-2026.jpg"
+file = "originals/batch7_staff-states-2026.jpg"
 
 [[photo]]
 id = "coaches-embrace"
@@ -195,7 +195,7 @@ season = "2025-26"
 alt = "Two Northampton coaches embrace on the arena floor at the Giant Center"
 caption = "The corner celebrates at the Giant Center."
 widths = [640, 1200, 1800, 2400]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/06-d133656c-image.jpg"
+file = "originals/batch1_06-d133656c-image.jpg"
 
 [[photo]]
 id = "states-control"
@@ -204,7 +204,7 @@ season = "2025-26"
 alt = "A Northampton wrestler in white headgear controls his opponent's leg"
 caption = "PIAA Championships action."
 widths = [640, 1229]
-file = "img26/p-041-221.png"
+file = "originals/img26_p-041-221.jpg"
 
 [[photo]]
 id = "ballard-medal"
@@ -214,7 +214,7 @@ alt = "Gabe Ballard wears his PIAA state championship gold medal"
 caption = "Gabe Ballard, 2026 PIAA champion at 152 pounds."
 widths = [640, 984]
 focus = "50% 30%"
-file = "img26/p-042-224.png"
+file = "originals/img26_p-042-224.jpg"
 
 [[photo]]
 id = "ballard-ride"
@@ -223,7 +223,7 @@ season = "2025-26"
 alt = "Gabe Ballard smiles while controlling his opponent from behind"
 caption = "Gabe Ballard at the 2026 PIAA Championships."
 widths = [640, 926]
-file = "img26/p-042-226.png"
+file = "originals/img26_p-042-226.jpg"
 
 [[photo]]
 id = "ballard-coaches"
@@ -232,7 +232,7 @@ season = "2025-26"
 alt = "Coaches embrace Gabe Ballard after a win"
 caption = "Gabe Ballard celebrates with his coaches."
 widths = [640, 1280]
-file = "img26/p-042-229.png"
+file = "originals/img26_p-042-229.jpg"
 
 [[photo]]
 id = "ballard-attack"
@@ -242,7 +242,7 @@ alt = "Gabe Ballard drives through his opponent's legs toward the mat"
 caption = "Gabe Ballard on the attack."
 credit = "Aaron Morekin"
 widths = [640, 1200, 1624]
-file = "img26/p-042-232.png"
+file = "originals/img26_p-042-232.jpg"
 
 [[photo]]
 id = "ballard-raised"
@@ -253,7 +253,7 @@ alt = "A referee raises Gabe Ballard's hand as he points one finger in the air"
 caption = "Gabe Ballard, state champion."
 credit = "Aaron Morekin"
 widths = [640, 1152]
-file = "img26/p-042-233.png"
+file = "originals/img26_p-042-233.jpg"
 
 [[photo]]
 id = "dark-stance"
@@ -262,7 +262,7 @@ season = "2025-26"
 alt = "Two wrestlers square off under dramatic lighting on the orange home mat"
 credit = "Aaron Morekin"
 widths = [640, 1280]
-file = "img26/p-021-074.png"
+file = "originals/img26_p-021-074.jpg"
 
 [[photo]]
 id = "dark-shot"
@@ -271,7 +271,7 @@ season = "2025-26"
 alt = "A Northampton wrestler drives into his opponent under dramatic lighting"
 credit = "Aaron Morekin"
 widths = [640, 1170]
-file = "img26/p-021-078.png"
+file = "originals/img26_p-021-078.jpg"
 
 [[photo]]
 id = "postseason-roar"
@@ -280,7 +280,7 @@ season = "2025-26"
 alt = "A Northampton wrestler roars with his fists clenched after a win"
 caption = "Postseason intensity."
 widths = [640, 1044]
-file = "img26/p-038-190.png"
+file = "originals/img26_p-038-190.jpg"
 
 # Studio portraits from the 2026 picture plaque awards
 [[photo]]
@@ -289,7 +289,7 @@ source = "Coach Provini, batch 9 (full-size; also in 2025-26 banquet program, pa
 season = "2025-26"
 alt = "Brayden Wenrich in his Northampton singlet wearing his postseason medals"
 widths = [480, 900, 1400]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/wenrich-portrait-hi.jpg"
+file = "originals/batch9_wenrich-portrait-hi.jpg"
 
 [[photo]]
 id = "portrait-ballard-2026"
@@ -297,7 +297,7 @@ source = "Coach Provini, batch 9 (full-size; also in 2025-26 banquet program, pa
 season = "2025-26"
 alt = "Gabe Ballard in his Northampton singlet wearing his postseason medals"
 widths = [480, 900, 1400]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/ballard-portrait-hi.jpg"
+file = "originals/batch9_ballard-portrait-hi.jpg"
 
 [[photo]]
 id = "portrait-wagner-2026"
@@ -305,7 +305,7 @@ source = "2025-26 banquet program, page 8"
 season = "2025-26"
 alt = "Trey Wagner in his Northampton singlet wearing his postseason medals"
 widths = [480, 841]
-file = "img26/p-008-010.png"
+file = "originals/img26_p-008-010.jpg"
 
 [[photo]]
 id = "portrait-sommer-2026"
@@ -313,7 +313,7 @@ source = "2025-26 banquet program, page 7"
 season = "2025-26"
 alt = "Matthew Sommer in his Northampton singlet wearing his postseason medals"
 widths = [480, 871]
-file = "img26/p-007-008.png"
+file = "originals/img26_p-007-008.jpg"
 
 [[photo]]
 id = "portrait-chlebove-2026"
@@ -321,7 +321,7 @@ source = "2025-26 banquet program, page 7"
 season = "2025-26"
 alt = "Carter Chlebove in his Northampton singlet wearing his postseason medals"
 widths = [480, 872]
-file = "img26/p-007-009.png"
+file = "originals/img26_p-007-009.jpg"
 
 # ---------------------------------------------------------------- coaches
 [[photo]]
@@ -330,7 +330,7 @@ source = "2025-26 banquet program, page 11"
 alt = "Head coach Joe Provini claps from the corner during a match"
 crop = [250, 0, 707, 572]
 widths = [457]
-file = "img26/p-011-019.png"
+file = "originals/img26_p-011-019.jpg"
 
 [[photo]]
 id = "coach-sommer"
@@ -338,7 +338,7 @@ source = "2025-26 banquet program, page 12"
 alt = "Coach Mike Sommer"
 crop = [509, 80, 1109, 680]
 widths = [480, 600]
-file = "img26/p-012-020.png"
+file = "originals/img26_p-012-020.jpg"
 
 [[photo]]
 id = "coach-derr"
@@ -346,7 +346,7 @@ source = "2025-26 banquet program, page 12"
 alt = "Coach Jim Derr"
 crop = [492, 70, 1112, 690]
 widths = [480, 600]
-file = "img26/p-012-021.png"
+file = "originals/img26_p-012-021.jpg"
 
 [[photo]]
 id = "coach-newsom"
@@ -354,14 +354,14 @@ source = "2025-26 banquet program, page 13"
 alt = "Coach Marcus Newsom"
 crop = [942, 90, 1542, 690]
 widths = [480, 800]
-file = "img26/p-013-022.png"
+file = "originals/img26_p-013-022.jpg"
 
 [[photo]]
 id = "coach-rusnock"
 source = "2024-25 team photo (2025-26 banquet program, page 13)"
 alt = "Coach Kyle Rusnock"
 widths = [191]
-file = "img26/rusnock_hi.png"
+file = "originals/img26_rusnock_hi.jpg"
 
 [[photo]]
 id = "coach-szerencsits"
@@ -369,7 +369,7 @@ focus = "50% 8%"
 source = "2024-25 team photo (2025-26 banquet program, page 13)"
 alt = "Coach Ethan Szerencsits"
 widths = [158]
-file = "img26/szerencsits_hi.png"
+file = "originals/img26_szerencsits_hi.jpg"
 
 [[photo]]
 id = "coach-embrace"
@@ -378,7 +378,7 @@ source = "Head coach page header, 2023-24 through 2025-26 banquet programs"
 alt = "Coach Joe Provini lifts Carson Wagner in a hug as another coach cheers behind them"
 caption = "Carson Wagner and Coach Provini after Wagner’s last-second upset of a former state champion sent him to the 2023 state finals."
 widths = [640, 1070]
-file = "img26/p-011-018.png"
+file = "originals/img26_p-011-018.jpg"
 
 # ---------------------------------------------------------------- texture
 [[photo]]
@@ -387,7 +387,7 @@ source = "2025-26 banquet program, cover background"
 alt = ""
 widths = [1600]
 gray = true
-file = "img26/p-001-000.png"
+file = "originals/img26_p-001-000.jpg"
 
 # ---------------------------------------------------------------- 2024-25
 [[photo]]
@@ -397,7 +397,7 @@ season = "2024-25"
 alt = "The 2024-25 Northampton varsity team and coaches in front of the regional and state champions banners"
 caption = "The 2024–25 Konkrete Kids."
 widths = [640, 1200, 2369]
-file = "p25/p-001-001.png"
+file = "originals/p25_p-001-001.jpg"
 
 [[photo]]
 id = "portrait-wenrich-2025"
@@ -405,7 +405,7 @@ source = "2024-25 banquet program, page 7"
 season = "2024-25"
 alt = "Brayden Wenrich in an orange Northampton singlet wearing his postseason medals"
 widths = [480, 900]
-file = "p25/p-007-008.png"
+file = "originals/p25_p-007-008.jpg"
 
 [[photo]]
 id = "portrait-ryan-marano-2025"
@@ -413,7 +413,7 @@ source = "2024-25 banquet program, page 7"
 season = "2024-25"
 alt = "Ryan Marano in his Northampton singlet wearing his postseason medals"
 widths = [480, 900]
-file = "p25/p-007-009.png"
+file = "originals/p25_p-007-009.jpg"
 
 [[photo]]
 id = "portrait-ballard-2025"
@@ -421,7 +421,7 @@ source = "2024-25 banquet program, page 8"
 season = "2024-25"
 alt = "Gabe Ballard in his Northampton singlet wearing his postseason medals"
 widths = [480, 900]
-file = "p25/p-008-010.png"
+file = "originals/p25_p-008-010.jpg"
 
 [[photo]]
 id = "portrait-wagner-2025"
@@ -429,7 +429,7 @@ source = "2024-25 banquet program, page 8"
 season = "2024-25"
 alt = "Trey Wagner in a gray Northampton singlet wearing his postseason medals"
 widths = [480, 900]
-file = "p25/p-008-011.png"
+file = "originals/p25_p-008-011.jpg"
 
 [[photo]]
 id = "portrait-grabfelder-2025"
@@ -437,7 +437,7 @@ source = "2024-25 banquet program, page 9"
 season = "2024-25"
 alt = "Chase Grabfelder in his Northampton singlet wearing his postseason medals"
 widths = [480, 900]
-file = "p25/p-009-012.png"
+file = "originals/p25_p-009-012.jpg"
 
 [[photo]]
 id = "portrait-grell-2025"
@@ -445,7 +445,7 @@ source = "2024-25 banquet program, page 9"
 season = "2024-25"
 alt = "Gavin Grell in his Northampton singlet wearing his postseason medals"
 widths = [480, 900]
-file = "p25/p-009-013.png"
+file = "originals/p25_p-009-013.jpg"
 
 # ---------------------------------------------------------------- 2023-24
 [[photo]]
@@ -455,7 +455,7 @@ season = "2023-24"
 alt = "The 2023-24 Northampton varsity team and coaches seated on the mat in the wrestling room"
 caption = "The 2023–24 Konkrete Kids."
 widths = [640, 1200, 1616]
-file = "p24/p-005-014.png"
+file = "originals/p24_p-005-014.jpg"
 
 [[photo]]
 id = "portrait-wagner-2024"
@@ -463,7 +463,7 @@ source = "Coach Provini, batch 9 (also in 2023-24 banquet program, page 10)"
 season = "2023-24"
 alt = "Trey Wagner in his Northampton singlet wearing his 2024 state championship medals"
 widths = [480, 900]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/wagner-portrait-hi.jpg"
+file = "originals/batch9_wagner-portrait-hi.jpg"
 
 [[photo]]
 id = "portrait-ballard-2024"
@@ -471,7 +471,7 @@ source = "2023-24 banquet program, page 8"
 season = "2023-24"
 alt = "Gabe Ballard in a white Northampton singlet wearing his postseason medals"
 widths = [480, 900]
-file = "p24/p-008-016.png"
+file = "originals/p24_p-008-016.jpg"
 
 [[photo]]
 id = "portrait-noe-2024"
@@ -479,7 +479,7 @@ source = "2023-24 banquet program, page 8"
 season = "2023-24"
 alt = "Austin Noe in his Northampton singlet wearing his postseason medals"
 widths = [480, 900]
-file = "p24/p-008-017.png"
+file = "originals/p24_p-008-017.jpg"
 
 [[photo]]
 id = "portrait-grell-2024"
@@ -487,7 +487,7 @@ source = "2023-24 banquet program, page 9"
 season = "2023-24"
 alt = "Gavin Grell in his Northampton singlet wearing his postseason medals"
 widths = [480, 900]
-file = "p24/p-009-019.png"
+file = "originals/p24_p-009-019.jpg"
 
 # ---------------------------------------------------------------- showcase batch 1 (from Coach Provini)
 [[photo]]
@@ -498,7 +498,7 @@ alt = "Trey Wagner throws both arms in the air after winning the 2024 PIAA champ
 caption = "Trey Wagner wins the 2024 PIAA title at 127, the first state championship of Coach Provini’s head coaching career."
 focus = "45% 12%"
 widths = [640, 1200, 2000]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/01-f17cd701-image.jpg"
+file = "originals/batch1_01-f17cd701-image.jpg"
 
 [[photo]]
 id = "showcase-tears"
@@ -508,7 +508,7 @@ alt = "Freshman Gabe Ballard cries with joy as two coaches hug him after a state
 caption = "Freshman Gabe Ballard after his state quarterfinal win in 2024."
 focus = "50% 40%"
 widths = [640, 1200, 1800, 2576]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/03-bda95548-image.jpg"
+file = "originals/batch1_03-bda95548-image.jpg"
 
 [[photo]]
 id = "showcase-roar"
@@ -518,7 +518,7 @@ source = "Coach Provini, showcase batch 1"
 alt = "Carson Wagner roars and flexes after a last-second win at the PIAA Championships"
 focus = "50% 22%"
 widths = [640, 1179]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/05-b6a5c44a-image.jpg"
+file = "originals/batch1_05-b6a5c44a-image.jpg"
 
 [[photo]]
 id = "bench-final-seconds"
@@ -528,7 +528,7 @@ alt = "Northampton coaches and wrestlers rise from the bench and signal with the
 caption = "The Northampton bench in the final second, December 2024."
 credit = "Aaron Morekin"
 widths = [640, 1280]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/04-0eb79c60-image.jpg"
+file = "originals/batch1_04-0eb79c60-image.jpg"
 
 [[photo]]
 id = "provini-celebrates"
@@ -537,7 +537,7 @@ source = "Coach Provini, showcase batch 1"
 alt = "Trey Wagner runs to Coach Joe Provini after winning the 2024 state title"
 caption = "Trey Wagner and Coach Provini after the 2024 state title, a first for both."
 widths = [640, 1179]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/11-56c94a05-image.jpg"
+file = "originals/batch1_11-56c94a05-image.jpg"
 
 [[photo]]
 id = "staff-corner"
@@ -546,7 +546,7 @@ season = "2025-26"
 alt = "Coach Joe Provini and Coach Mike Sommer watch a match from the corner"
 caption = "Coach Provini (front) and Coach Sommer in the corner."
 widths = [640, 768]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch1/12-fd262792-image.jpg"
+file = "originals/batch1_12-fd262792-image.jpg"
 
 [[photo]]
 id = "trey-embrace"
@@ -555,7 +555,7 @@ season = "2023-24"
 alt = "Coach Joe Provini hugs Trey Wagner, eyes shut and smiling, after Wagner's 2024 state championship"
 caption = "Trey Wagner and Coach Provini after the 2024 state title, a first for both."
 widths = [500]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/trey-embrace.jpg"
+file = "originals/batch2_trey-embrace.jpg"
 
 # ---------------------------------------------------------------- champion banner action shots
 [[photo]]
@@ -565,7 +565,7 @@ focus = "50% 50%"
 widths = [450]
 source = "Coach Provini, batch 3"
 alt = "Gabe Ballard roars and flexes after a win at the PIAA Championships"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/ballard-roar.webp"
+file = "originals/batch2_ballard-roar.jpg"
 
 [[photo]]
 id = "banner-brayden-wenrich"
@@ -574,7 +574,7 @@ focus = "50% 50%"
 widths = [480, 482]
 source = "2025-26 banquet program, page 9"
 alt = "Brayden Wenrich celebrates a win"
-file = "img26/p-009-014.png"
+file = "originals/img26_p-009-014.jpg"
 
 [[photo]]
 id = "banner-julian-chlebove"
@@ -583,7 +583,7 @@ focus = "50% 50%"
 widths = [440]
 source = "Coach Provini, batch 4 (2016 state championship)"
 alt = "Julian Chlebove points to the crowd after winning the 2016 state title"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/julian-2016.jpg"
+file = "originals/batch3_julian-2016.jpg"
 
 [[photo]]
 id = "julian-2017"
@@ -593,7 +593,7 @@ widths = [434]
 source = "Coach Provini, batch 4"
 alt = "Julian Chlebove holds up two fingers after his second state title in 2017"
 caption = "Julian Chlebove after his second state title, 2017."
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/julian-2017.jpg"
+file = "originals/batch3_julian-2017.jpg"
 
 [[photo]]
 id = "julian-2019"
@@ -603,7 +603,7 @@ widths = [208]
 source = "Coach Provini, batch 4"
 alt = "Julian Chlebove in his stance in the 2019 state tournament"
 caption = "Julian Chlebove on his way to a third state title, 2019."
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/julian-2019.jpg"
+file = "originals/batch3_julian-2019.jpg"
 
 [[photo]]
 id = "banner-jeff-ecklof"
@@ -612,7 +612,7 @@ focus = "50% 50%"
 widths = [290]
 source = "Coach Provini, batch 4 (2001 state championship)"
 alt = "Jeff Ecklof in his stance at the state tournament"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/jeff-ecklof.jpg"
+file = "originals/batch3_jeff-ecklof.jpg"
 
 [[photo]]
 id = "banner-josh-haines"
@@ -621,7 +621,7 @@ focus = "50% 50%"
 widths = [424]
 source = "Coach Provini, batch 4 (2003 state championship)"
 alt = "Josh Haines throws both arms up after winning the 2003 state title"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/josh-haines.jpg"
+file = "originals/batch3_josh-haines.jpg"
 
 [[photo]]
 id = "banner-dennis-liberto"
@@ -631,7 +631,7 @@ widths = [180]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Dennis Liberto controls an opponent"
 credit = "Marty Fella (yearbook)"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/liberto.webp"
+file = "originals/batch3_liberto.jpg"
 
 [[photo]]
 id = "banner-ryan-mccallum"
@@ -641,7 +641,7 @@ widths = [229]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Ryan McCallum works for points on the mat"
 credit = "Heather Rispol (yearbook)"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/mccallum.jpg"
+file = "originals/batch3_mccallum.jpg"
 
 [[photo]]
 id = "banner-chad-billy"
@@ -650,7 +650,7 @@ focus = "50% 50%"
 widths = [480, 844]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Chad Billy wearing his state championship medal"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/chad-billy.jpg"
+file = "originals/batch3_chad-billy.jpg"
 
 [[photo]]
 id = "banner-sean-finkbeiner"
@@ -659,7 +659,7 @@ focus = "50% 50%"
 widths = [480, 900]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Sean Finkbeiner wearing his state championship medal"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/finkbeiner.jpg"
+file = "originals/batch3_finkbeiner.jpg"
 
 [[photo]]
 id = "banner-steve-micio"
@@ -668,7 +668,7 @@ focus = "50% 50%"
 widths = [480, 900]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Steve Micio holding his state championship trophy"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/micio.jpg"
+file = "originals/batch3_micio.jpg"
 
 [[photo]]
 id = "banner-edward-keglovits"
@@ -677,7 +677,7 @@ focus = "50% 50%"
 widths = [480, 900]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Edward Keglovits holding his state championship trophy"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/keglovits.jpg"
+file = "originals/batch3_keglovits.jpg"
 
 [[photo]]
 id = "trey-hug"
@@ -687,7 +687,7 @@ widths = [480, 660]
 source = "Coach Provini, batch 4"
 season = "2023-24"
 alt = "Trey Wagner hugs Coach Joe Provini after winning the 2024 state title"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/trey-hug.jpg"
+file = "originals/batch3_trey-hug.jpg"
 
 [[photo]]
 id = "banner-trey-wagner"
@@ -696,7 +696,7 @@ focus = "50% 30%"
 widths = [480, 720]
 source = "Coach Provini, batch 6"
 alt = "Trey Wagner grins and points both fingers skyward after a win at the PIAA Championships"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch6/trey-point.jpg"
+file = "originals/batch6_trey-point.jpg"
 
 [[photo]]
 id = "banner-mike-tomsic"
@@ -706,7 +706,7 @@ widths = [225]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Mike Tomsic sets up the Cement Job on his opponent"
 credit = "Marty Fella (yearbook)"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/tomsic.jpg"
+file = "originals/batch3_tomsic.jpg"
 
 [[photo]]
 id = "banner-john-hard"
@@ -716,7 +716,7 @@ widths = [160]
 source = "Northampton yearbook, via Coach Provini"
 alt = "John Hard has his hand raised by the referee after a win"
 credit = "Northampton yearbook"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/heavyweight.jpg"
+file = "originals/batch3_heavyweight.jpg"
 
 [[photo]]
 id = "banner-christian-luciano"
@@ -725,14 +725,14 @@ alt = "Christian Luciano wearing his state medals"
 crop = [33, 0, 257, 280]
 focus = "50% 25%"
 widths = [224]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/luciano.jpg"
+file = "originals/batch3_luciano.jpg"
 
 [[photo]]
 id = "portrait-luciano"
 source = "Coach Provini"
 alt = "Christian Luciano in his Northampton singlet wearing his state medals"
 widths = [280]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/luciano.jpg"
+file = "originals/batch3_luciano.jpg"
 
 [[photo]]
 id = "banner-jagger-condomitti"
@@ -741,7 +741,7 @@ focus = "50% 50%"
 widths = [363]
 source = "Coach Provini"
 alt = "Jagger Condomitti works for a fall at the state tournament"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/condomitti.jpg"
+file = "originals/batch3_condomitti.jpg"
 
 [[photo]]
 id = "banner-joey-ecklof"
@@ -750,7 +750,7 @@ focus = "50% 50%"
 widths = [480, 714]
 source = "Coach Provini"
 alt = "Joey Ecklof holds up three fingers for his third state title"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/joey-ecklof.jpg"
+file = "originals/batch3_joey-ecklof.jpg"
 
 [[photo]]
 id = "banner-jon-oplinger"
@@ -759,7 +759,7 @@ focus = "50% 50%"
 widths = [480, 539]
 source = "Coach Provini"
 alt = "Jon Oplinger (white) works on top in the 2004 state tournament"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/oplinger-2004.jpg"
+file = "originals/batch3_oplinger-2004.jpg"
 
 [[photo]]
 id = "banner-justin-wieller"
@@ -769,7 +769,7 @@ widths = [252]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Justin Wieller rides his opponent from the top position"
 credit = "Marty Fella (yearbook)"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/wieller-yb.jpg"
+file = "originals/batch3_wieller-yb.jpg"
 
 [[photo]]
 id = "banner-whitey-chlebove"
@@ -779,7 +779,7 @@ widths = [182]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Whitey Chlebove keeps his opponent controlled on the mat"
 credit = "Northampton yearbook"
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch3/whitey-yb.jpg"
+file = "originals/batch3_whitey-yb.jpg"
 
 [[photo]]
 id = "two-champs-2026"
@@ -788,7 +788,7 @@ source = "Combined: Wenrich photo from Coach Provini (Oct. 2026) and Ballard pho
 season = "2025-26"
 alt = "2026 state champions side by side: Brayden Wenrich has his hand raised by the referee, and Gabe Ballard points a finger skyward"
 widths = [480, 1002]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch8/two-champs-2026-v2.jpg"
+file = "originals/batch8_two-champs-2026-v2.jpg"
 
 [[photo]]
 id = "team-2022"
@@ -797,7 +797,7 @@ season = "2021-22"
 alt = "The 2021–22 Northampton varsity team in front of the championship banners"
 caption = "The 2021–22 Konkrete Kids."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-005-058.png"
+file = "originals/batch4_p22-005-058.jpg"
 
 [[photo]]
 id = "jh-districts-2022"
@@ -806,7 +806,7 @@ season = "2021-22"
 alt = "The 2021–22 junior high team with its District XI championship trophy"
 caption = "District XI junior high champions, 2022."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-008-098.png"
+file = "originals/batch4_p22-008-098.jpg"
 
 [[photo]]
 id = "jh-medals-2022"
@@ -815,7 +815,7 @@ season = "2021-22"
 alt = "Junior high wrestlers with their medals at the district tournament"
 caption = "Junior high district medalists, 2022."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-013-184.png"
+file = "originals/batch4_p22-013-184.jpg"
 
 [[photo]]
 id = "lisa-celebrates"
@@ -824,7 +824,7 @@ season = "2021-22"
 alt = "Coach Seth Lisa celebrates from the corner"
 caption = "Coach Seth Lisa in his final season, 2021–22."
 widths = [640, 1200]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-023-294.png"
+file = "originals/batch4_p22-023-294.jpg"
 
 [[photo]]
 id = "derr-coy-2022"
@@ -833,7 +833,7 @@ season = "2021-22"
 alt = "Coaches with the 2022 Pennsylvania Junior High Coach of the Year plaque"
 caption = "Coach Jim Derr was named 2022 District XI and Pennsylvania Junior High Coach of the Year."
 widths = [640, 1024]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-024-299.png"
+file = "originals/batch4_p22-024-299.jpg"
 
 [[photo]]
 id = "action-2022a"
@@ -842,7 +842,7 @@ season = "2021-22"
 alt = "A Northampton wrestler works for a takedown"
 caption = "2021–22 season."
 widths = [640, 1200]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-025-304.png"
+file = "originals/batch4_p22-025-304.jpg"
 
 [[photo]]
 id = "action-2022b"
@@ -851,7 +851,7 @@ season = "2021-22"
 alt = "A Northampton wrestler drives through a shot"
 caption = "2021–22 season."
 widths = [640, 1083]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-025-305.png"
+file = "originals/batch4_p22-025-305.jpg"
 
 [[photo]]
 id = "action-2022c"
@@ -860,7 +860,7 @@ season = "2021-22"
 alt = "A Northampton wrestler controls his opponent from the top"
 caption = "2021–22 season."
 widths = [640, 1082]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-025-306.png"
+file = "originals/batch4_p22-025-306.jpg"
 
 [[photo]]
 id = "action-2022d"
@@ -869,7 +869,7 @@ season = "2021-22"
 alt = "A Northampton wrestler rides his opponent"
 caption = "2021–22 season."
 widths = [640, 992]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-025-307.png"
+file = "originals/batch4_p22-025-307.jpg"
 
 [[photo]]
 id = "action-2022e"
@@ -878,7 +878,7 @@ season = "2021-22"
 alt = "A Northampton wrestler in the blue room works for a finish"
 caption = "2021–22 season."
 widths = [640, 1182]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-026-308.png"
+file = "originals/batch4_p22-026-308.jpg"
 
 [[photo]]
 id = "action-2022f"
@@ -887,7 +887,7 @@ season = "2021-22"
 alt = "A Northampton wrestler in his stance"
 caption = "2021–22 season."
 widths = [640, 1200, 1524]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-026-309.png"
+file = "originals/batch4_p22-026-309.jpg"
 
 [[photo]]
 id = "action-2022g"
@@ -896,7 +896,7 @@ season = "2021-22"
 alt = "A Northampton heavyweight has his hand raised"
 caption = "2021–22 season."
 widths = [640, 916]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-026-312.png"
+file = "originals/batch4_p22-026-312.jpg"
 
 [[photo]]
 id = "portrait-carson-wagner-2022"
@@ -905,7 +905,7 @@ season = "2021-22"
 alt = "Carson Wagner wearing his 2022 medals"
 caption = "Carson Wagner, state 4th at 113."
 widths = [640, 1050]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-027-313.png"
+file = "originals/batch4_p22-027-313.jpg"
 
 [[photo]]
 id = "portrait-fritz-2022"
@@ -914,7 +914,7 @@ season = "2021-22"
 alt = "Christian Fritz wearing his 2022 medals"
 caption = "Christian Fritz, state qualifier at 145."
 widths = [640, 1050]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-027-314.png"
+file = "originals/batch4_p22-027-314.jpg"
 
 [[photo]]
 id = "portrait-dagen-condomitti-2022"
@@ -923,7 +923,7 @@ season = "2021-22"
 alt = "Dagen Condomitti wearing his 2022 medals"
 caption = "Dagen Condomitti, District XI and Northeast Regional champion, state 4th at 152."
 widths = [640, 1050]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/p22-027-315.png"
+file = "originals/batch4_p22-027-315.jpg"
 
 [[photo]]
 id = "team-2023"
@@ -932,7 +932,7 @@ season = "2022-23"
 alt = "The 2022–23 postseason lineup in front of a good-luck banner listing each wrestler and weight"
 caption = "The 2022–23 postseason lineup."
 widths = [640, 1185]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/z23-p20-top.png"
+file = "originals/batch4_z23-p20-top.jpg"
 
 [[photo]]
 id = "carson-roar-2023"
@@ -942,7 +942,7 @@ alt = "Carson Wagner roars after a win at the state tournament"
 caption = "Carson Wagner at Hershey, 2023."
 crop = [20, 70, 1520, 1690]
 widths = [640, 1200, 1500]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/z23-cover-roar.png"
+file = "originals/batch4_z23-cover-roar.jpg"
 
 [[photo]]
 id = "carson-semis-2023"
@@ -952,7 +952,7 @@ alt = "Carson Wagner leaps into his coach’s arms after winning his state semif
 caption = "Into the finals: Carson Wagner after his 2023 state semifinal."
 crop = [165, 18, 1140, 725]
 widths = [640]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/z23-p18-top.png"
+file = "originals/batch4_z23-p18-top.jpg"
 
 [[photo]]
 id = "carson-raised-2023"
@@ -962,7 +962,7 @@ alt = "Carson Wagner has his hand raised at the state tournament"
 caption = "Carson Wagner, 2023 state runner-up at 114."
 crop = [165, 2, 1122, 636]
 widths = [640]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/z23-p18-bot.png"
+file = "originals/batch4_z23-p18-bot.jpg"
 
 [[photo]]
 id = "team-casual-2023"
@@ -971,7 +971,7 @@ season = "2022-23"
 alt = "Northampton wrestlers pose together in team shirts"
 caption = "The 2022–23 team."
 widths = [640, 1185]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/z23-p20-bot.png"
+file = "originals/batch4_z23-p20-bot.jpg"
 
 [[photo]]
 id = "jh-team-2023"
@@ -980,7 +980,7 @@ season = "2022-23"
 alt = "The 2022–23 junior high team"
 caption = "The 2022–23 junior high team, 3rd at the District XI tournament."
 widths = [640, 1200]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/z23-jh-team.png"
+file = "originals/batch4_z23-jh-team.jpg"
 
 [[photo]]
 id = "jh-podium-2023"
@@ -990,7 +990,7 @@ alt = "Junior high wrestlers on the district medal stand"
 caption = "Junior high district medalists, 2023."
 crop = [14, 2, 1160, 478]
 widths = [640]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch4/z23-jh-b.png"
+file = "originals/batch4_z23-jh-b.jpg"
 
 [[photo]]
 id = "season25-hardware"
@@ -999,7 +999,7 @@ season = "2024-25"
 alt = "The Konkrete Kids with their trophies and brackets after a 2024–25 tournament title"
 caption = "Hardware, 2024–25."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-hardware.jpg"
+file = "originals/batch5_season25-hardware.jpg"
 
 [[photo]]
 id = "season25-hersheys"
@@ -1008,7 +1008,7 @@ season = "2024-25"
 alt = "The team in orange in front of Hershey’s Chocolate World"
 caption = "The state tournament trip to Hershey, 2025."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-hersheys.jpg"
+file = "originals/batch5_season25-hersheys.jpg"
 
 [[photo]]
 id = "season25-hotel"
@@ -1017,7 +1017,7 @@ season = "2024-25"
 alt = "Northampton wrestlers and coaches at the state tournament"
 caption = "State tournament weekend, 2025."
 widths = [640, 1200]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-hotel.jpg"
+file = "originals/batch5_season25-hotel.jpg"
 
 [[photo]]
 id = "season25-a"
@@ -1026,7 +1026,7 @@ season = "2024-25"
 alt = "A Northampton heavyweight ties up at the state tournament"
 caption = "PIAA Championships, 2025."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-a.jpg"
+file = "originals/batch5_season25-a.jpg"
 
 [[photo]]
 id = "season25-b"
@@ -1035,7 +1035,7 @@ season = "2024-25"
 alt = "A Northampton wrestler in orange has his hand raised"
 caption = "PIAA Championships, 2025."
 widths = [640]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-b.jpg"
+file = "originals/batch5_season25-b.jpg"
 
 [[photo]]
 id = "season25-c"
@@ -1044,7 +1044,7 @@ season = "2024-25"
 alt = "A Northampton wrestler in orange headgear between periods"
 caption = "PIAA Championships, 2025."
 widths = [640]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-c.jpg"
+file = "originals/batch5_season25-c.jpg"
 
 [[photo]]
 id = "season25-d"
@@ -1053,7 +1053,7 @@ season = "2024-25"
 alt = "A Northampton wrestler works a cradle"
 caption = "PIAA Championships, 2025."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-d.jpg"
+file = "originals/batch5_season25-d.jpg"
 
 [[photo]]
 id = "season25-e"
@@ -1062,7 +1062,7 @@ season = "2024-25"
 alt = "A Northampton wrestler rides from the top"
 caption = "PIAA Championships, 2025."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-e.jpg"
+file = "originals/batch5_season25-e.jpg"
 
 [[photo]]
 id = "season25-stands"
@@ -1071,7 +1071,7 @@ season = "2024-25"
 alt = "Northampton wrestlers wait in the stands at Hershey"
 caption = "Between sessions at Hershey, 2025."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-stands.jpg"
+file = "originals/batch5_season25-stands.jpg"
 
 [[photo]]
 id = "season25-f"
@@ -1080,7 +1080,7 @@ season = "2024-25"
 alt = "A Northampton wrestler hand-fights in neutral"
 caption = "PIAA Championships, 2025."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-f.jpg"
+file = "originals/batch5_season25-f.jpg"
 
 [[photo]]
 id = "season25-g"
@@ -1089,7 +1089,7 @@ season = "2024-25"
 alt = "A Northampton wrestler locks up a cradle"
 caption = "PIAA Championships, 2025."
 widths = [640]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-g.jpg"
+file = "originals/batch5_season25-g.jpg"
 
 [[photo]]
 id = "season25-h"
@@ -1098,7 +1098,7 @@ season = "2024-25"
 alt = "A Northampton wrestler drives his opponent to the mat"
 caption = "PIAA Championships, 2025."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-h.jpg"
+file = "originals/batch5_season25-h.jpg"
 
 [[photo]]
 id = "season25-i"
@@ -1107,7 +1107,7 @@ season = "2024-25"
 alt = "A Northampton wrestler in his stance under the Reese’s banner"
 caption = "PIAA Championships, 2025."
 widths = [640, 1200, 1800]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch5/season25-i.jpg"
+file = "originals/batch5_season25-i.jpg"
 
 # Banner headshots (uniform look on the state-champion banner wall). Crop: top of head to the medals, 4:5.
 [[photo]]
@@ -1116,7 +1116,7 @@ source = "Coach Provini, batch 9"
 alt = "Brayden Wenrich wearing his state championship medals"
 crop = [305, 380, 1433, 1790]
 widths = [320, 640]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/wenrich-portrait-hi.jpg"
+file = "originals/batch9_wenrich-portrait-hi.jpg"
 
 [[photo]]
 id = "headshot-gabriel-ballard"
@@ -1124,7 +1124,7 @@ source = "Coach Provini, batch 9"
 alt = "Gabe Ballard wearing his state championship medals"
 crop = [315, 350, 1411, 1720]
 widths = [320, 640]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/ballard-portrait-hi.jpg"
+file = "originals/batch9_ballard-portrait-hi.jpg"
 
 [[photo]]
 id = "headshot-trey-wagner"
@@ -1132,7 +1132,7 @@ source = "Coach Provini, batch 9"
 alt = "Trey Wagner wearing his state championship medals"
 crop = [46, 30, 854, 1040]
 widths = [320, 640]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch9/wagner-portrait-hi.jpg"
+file = "originals/batch9_wagner-portrait-hi.jpg"
 
 # Former banner action shots, now shown full-size in the champion's page gallery
 [[photo]]
@@ -1141,7 +1141,7 @@ source = "Coach Provini, batch 3"
 alt = "Gabe Ballard roars and flexes after a win at the PIAA Championships"
 caption = "Gabe Ballard after a win at the PIAA Championships."
 widths = [500]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch2/ballard-roar.webp"
+file = "originals/batch2_ballard-roar.jpg"
 
 [[photo]]
 id = "trey-point"
@@ -1149,4 +1149,4 @@ source = "Coach Provini, batch 6"
 alt = "Trey Wagner grins and points both fingers skyward after a win at the PIAA Championships"
 caption = "Trey Wagner after a win at the PIAA Championships."
 widths = [640, 1200, 1458]
-file = "/tmp/claude-0/-home-claude-kkids-website/f6fa2eb8-1b7f-5411-8fac-f9cbfb8814cc/scratchpad/batch6/trey-point.jpg"
+file = "originals/batch6_trey-point.jpg"

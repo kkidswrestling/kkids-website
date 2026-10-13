@@ -221,6 +221,7 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
   </div>
   <div class="wrap foot-base">
     <p>&copy; <span data-year>2026</span> {SITE['owner']}</p>
+    <p class="foot-note">Parents: to have a photo or your wrestler’s name removed, email <a href="mailto:{SITE['email']}?subject=Photo%20removal%20request">{SITE['email']}</a>.</p>
   </div>
 </footer>
 {js}
@@ -651,8 +652,54 @@ def build_high_school():
     return page("high-school/index.html", "High School", "Northampton High School wrestling: 2025–26 results, state champions, final stats, awards, and the Class of 2026.", body, "high-school/", og_image="team-mayhem")
 
 
+
+def build_calendar():
+    """schedule.ics from data/results.toml events, so parents can subscribe once and get every match.
+    Returns the event list (the schedule page shows the subscribe card only when there are events)."""
+    import datetime as _dt
+    with open(os.path.join(ROOT, "data", "results.toml"), "rb") as f:
+        res = tomllib.load(f)
+    evs = res.get("event", [])
+    def esc(t):
+        return str(t).replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,").replace("\n", "\\n")
+    out = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Northampton Wrestling//Schedule//EN", "CALSCALE:GREGORIAN",
+           "METHOD:PUBLISH", "X-WR-CALNAME:Northampton Wrestling", "X-WR-TIMEZONE:America/New_York", "REFRESH-INTERVAL;VALUE=DURATION:PT12H"]
+    stamp = "20260101T000000Z"  # fixed so rebuilding does not change the file
+    for i, ev in enumerate(evs):
+        d = ev["date"]
+        name = ev.get("opponent", "Match")
+        title = ("vs. " if ev.get("home") else "at ") + name if ev.get("kind", "dual") == "dual" else name
+        uid = f"{d.isoformat()}-{slug(name)}@northamptonwrestling.org"
+        t = ev.get("time", "")
+        out += ["BEGIN:VEVENT", f"UID:{uid}", f"DTSTAMP:{stamp}", f"SUMMARY:{esc('Wrestling ' + title)}"]
+        try:
+            tm = _dt.datetime.strptime(t.strip().upper(), "%I:%M %p")
+            start = _dt.datetime.combine(d, tm.time())
+            end = start + _dt.timedelta(hours=3 if ev.get("kind") == "tournament" else 2)
+            out += [f"DTSTART;TZID=America/New_York:{start:%Y%m%dT%H%M%S}", f"DTEND;TZID=America/New_York:{end:%Y%m%dT%H%M%S}"]
+        except ValueError:
+            end_d = ev.get("end_date", d) + _dt.timedelta(days=1)
+            out += [f"DTSTART;VALUE=DATE:{d:%Y%m%d}", f"DTEND;VALUE=DATE:{end_d:%Y%m%d}"]
+        if ev.get("location"):
+            out.append(f"LOCATION:{esc(ev['location'])}")
+        note = " ".join(x for x in [ev.get("result", ""), ev.get("score", "")] if x)
+        if note:
+            out.append(f"DESCRIPTION:{esc('Result: ' + note)}")
+        out.append("END:VEVENT")
+    out.append("END:VCALENDAR")
+    with open(os.path.join(ROOT, "schedule.ics"), "w", newline="") as f:
+        f.write("\r\n".join(out) + "\r\n")
+    return evs
+
 def build_schedule():
     R = "../"
+    evs = build_calendar()
+    host = SITE["domain"].split("://", 1)[1]
+    cal = (f'''<aside class="note-card cal-card"><h3>Add the schedule to your phone</h3>
+      <p>Subscribe once and every match, time change and result shows up in your calendar automatically.</p>
+      <p class="actions"><a class="btn" href="webcal://{host}/schedule.ics">Subscribe (iPhone / Mac)</a>
+      <a class="btn ghost dark-ink" href="https://calendar.google.com/calendar/r?cid=webcal://{host}/schedule.ics" rel="noopener">Google Calendar</a></p>
+      <p class="fine"><a href="{R}schedule.ics" download>Download the calendar file</a></p></aside>''') if evs else ""
     body = f"""
 {page_head(R, "Schedule", "Varsity, JV, and junior high match schedules for 2026–27.")}
 <section class="band">
@@ -665,14 +712,14 @@ def build_schedule():
       <p>Results, lineups, and photos go up on the team’s social accounts during the season.</p>
       <div class="social dark-ink">{social_links()}</div>
     </div>
-    <aside class="note-card">
+    <div>{cal}<aside class="note-card">
       <h3>Postseason path</h3>
       <ol class="steps">
         <li><b>District XI AAA Championships</b><span>Top finishers advance</span></li>
         <li><b>PIAA Northeast Regional AAA</b><span>Top finishers advance</span></li>
         <li><b>PIAA Championships</b><span>Giant Center, Hershey</span></li>
       </ol>
-    </aside>
+    </aside></div>
   </div>
 </section>
 """
