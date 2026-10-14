@@ -9,6 +9,7 @@
 #   hero     = photo id for the big photo at the top of the page
 #   story    = paragraphs about the wrestler and the title run
 #   finals   = one row per title: [year, "opponent", "opponent school", "result"]
+#   feature  = one photo shown large on its own, with its caption (feature_line = optional headline)
 #   gallery  = more photo ids
 #   sources  = [["title", "url"], ...] where the story came from (shown under the story)
 #   video    = YouTube links, or { url = "...", start = "15:30", end = "18:30", year = 2001 } to play one match from a longer video.
@@ -50,7 +51,8 @@ story = [
   "He swept the District XI, Northeast Regional, and state titles that season and was named the team's Outstanding Wrestler. Wagner went on to place 5th at 133 in 2025 and 7th at 139 in 2026, finishing as a three-time state medalist and a two-time Northeast Regional champion.",
   "He finished his career with 140 wins and is headed to the U.S. Air Force Academy.",
 ]
-gallery = ["trey-point", "trey-embrace", "trey-hug"]
+feature = "trey-embrace"
+gallery = ["trey-point", "trey-hug"]
 video = [{ url = "https://www.youtube.com/watch?v=pzuGGfMqfTk", start = "39:05", end = "48:45" }]
 
 ["Julian Chlebove"]

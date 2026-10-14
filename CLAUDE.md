@@ -36,3 +36,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Photo originals live in originals/ (high-quality JPEGs, same pixel size as the source so crops still apply). data/photos.toml `file` paths point there; `python3 tools/images.py` (no --src) rebuilds everything. Put every new upload in originals/ before cataloging it.
 - Calendar: build_calendar() writes schedule.ics from the [[event]] entries in data/results.toml (time "7:00 PM" -> timed event; no time -> all-day, optional end_date for tournaments). The schedule page shows the Subscribe card only once events exist. The subscribe links use SITE domain, so the custom domain must be live before the schedule is posted.
 - Footer carries a parents' photo-removal line (Oct. 2026).
+- Home page stays team-centered: the Trey/Coach Provini embrace photo moved off the home page (Joe, Oct. 2026) and is the `feature` photo on Trey Wagner's champion page.

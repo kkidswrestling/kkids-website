@@ -216,16 +216,6 @@ def build_home():
   </div>
 </section>
 
-<section class="moment" aria-label="Photo">
-  <div class="wrap moment-split">
-    <figure class="moment-photo">{S.picture(R, "trey-embrace", "(min-width: 760px) 440px, 90vw")}</figure>
-    <div class="moment-text">
-      <p class="moment-cap">The moment it all pays off.</p>
-      <p class="moment-sub">{e(S.PHOTOS["trey-embrace"]["caption"])}</p>
-    </div>
-  </div>
-</section>
-
 <section class="band numbers-band" aria-labelledby="numbers-title">
   <div class="wrap">
     <h2 id="numbers-title" class="visually-hidden">Northampton Wrestling by the numbers</h2>
@@ -706,6 +696,12 @@ def build_champion_pages():
         if not video:
             video = f'<div class="empty-state small"><h3>State final video</h3><p>Have video of this final? Send a YouTube link to <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a>.</p></div>'
         gal = M.gallery(R, c["gallery"], "champ") if c.get("gallery") else ""
+        # featured photo: one moment shown large on its own, with its caption
+        fid = c.get("feature")
+        feat = (f'<section class="moment" aria-label="Photo"><div class="wrap moment-split">'
+                f'<figure class="moment-photo">{M.picture(R, fid, "(min-width: 760px) 440px, 90vw")}</figure>'
+                f'<div class="moment-text"><p class="moment-cap">{e(c.get("feature_line", "The moment it all paid off."))}</p>'
+                f'<p class="moment-sub">{e(M.PHOTOS[fid].get("caption", ""))}</p></div></div></section>') if fid else ""
         honors = "".join(f'<li><b>{h[0]}</b><span>{e(h[1])}{(SCH_OPEN + "for " + e(h[3]) + "</span>") if len(h) > 3 else ""}</span>{(W_OPEN + e(h[2]) + "</span>") if h[2] else ""}</li>' for h in hon)
         prev = order[i - 1] if i > 0 else None
         nxt = order[i + 1] if i + 1 < len(order) else None
@@ -721,7 +717,7 @@ def build_champion_pages():
     <div class="prose cp-story"><h2>The story</h2>{story}</div>
   </div>
 </section>
-<section class="band dark"><div class="wrap"><h2>The state final{"s" if len(vids) + len(links) > 1 else ""}</h2><div class="vid-stack">{video}</div></div></section>
+{feat}<section class="band dark"><div class="wrap"><h2>The state final{"s" if len(vids) + len(links) > 1 else ""}</h2><div class="vid-stack">{video}</div></div></section>
 {f'<section class="band"><div class="wrap"><h2>Photos</h2>{gal}</div></section>' if gal else ''}
 <section class="band concrete">
   <div class="wrap">
