@@ -324,7 +324,7 @@ def build_profile(w, season):
   <div class="wrap">
     <h2>Honors</h2>
     {(UL_OPEN + honors + "</ul>") if honors else "<p>Honors will appear here as the season goes.</p>"}
-    <p class="fine"><a href="{R}champions/?q={e(w["name"].split()[-1])}">Search the Hall of Champions</a>. See something we got wrong? Email <a href="mailto:{M.SITE['email']}">{M.SITE['email']}</a>.</p>
+    <p class="fine"><a href="{R}champions/?q={e(w["name"].split()[-1])}">Search the Hall of Champions</a>. See something we got wrong? <a href="{M.SITE['links']['share_form']}" rel="noopener" target="_blank">Send a correction</a>. (We read everything but can’t reply individually.)</p>
   </div>
 </section>
 """
@@ -400,7 +400,7 @@ def build_photos():
 {M.page_head(R, "Photos", "Moments from the mat, the room, and the community. Select a photo to view it full size.")}
 <nav class="jump wrap" aria-label="Photo sets">{''.join(f'<a href="#ph-{i}">{lbl}</a>' for i, (lbl, _) in enumerate(sets))}</nav>
 {secs}
-<section class="band dark"><div class="wrap prose"><h2>Share your photos</h2><p>Have great photos from a match, a tournament, or an old season? Email them to <a href="mailto:{M.SITE['email']}">{M.SITE['email']}</a> with who and when, and the photographer’s name so we can credit them.</p></div></section>
+<section class="band dark"><div class="wrap prose"><h2>Share your photos</h2><p>Have great photos or video from a match, a tournament, or an old season? Share them with who and when, and the photographer’s name so we can credit them. We read everything but can’t reply individually.</p><p><a class="btn" href="{M.SITE['links']['share_form']}" rel="noopener" target="_blank">Share photos &amp; video</a></p></div></section>
 """
     return M.page("photos/index.html", "Photos", "Northampton wrestling photo galleries.", body, "photos/", og_image="ballard-raised")
 
@@ -443,7 +443,7 @@ def build_timeline():
 {M.page_head(R, "Timeline", "Eighty-plus years of Konkrete Kids wrestling, from the first season in 1945 to today.")}
 <nav class="tl-nav" aria-label="Decades"><div class="wrap">{nav}</div></nav>
 <div class="band"><div class="wrap tl">{''.join(items)}</div></div>
-<section class="band concrete"><div class="wrap prose"><h2>Help us fill in the history</h2><p>Have photos, newspaper clippings, or stories from earlier decades? Email <a href="mailto:{M.SITE['email']}">{M.SITE['email']}</a>. We’ll credit everything we use.</p></div></section>
+<section class="band concrete"><div class="wrap prose"><h2>Help us fill in the history</h2><p>Have photos, video, or stories from earlier decades? Share them here. We’ll credit everything we use. We read everything but can’t reply individually.</p><p><a class="btn" href="{M.SITE['links']['share_form']}" rel="noopener" target="_blank">Share photos &amp; video</a></p></div></section>
 """
     return M.page("timeline/index.html", "Timeline", "The history of Northampton Wrestling, 1945 to today.", body, "timeline/", og_image="showcase-arms-up")
 
@@ -606,7 +606,7 @@ def build_alumni():
       <h2>Where are they now?</h2>
       <p>We want to hear from every Konkrete Kid, from the 1940s to last spring. Where did wrestling take you? Did you wrestle in college, coach, serve, start a family of future Konkrete Kids?</p>
       <p>Send a few lines and a photo, then and now if you have them, and we’ll share alumni stories here.</p>
-      <p><a class="btn" href="mailto:{M.SITE['email']}?subject=Alumni%20story">Share your story</a></p>
+      <p><a class="btn" href="{M.SITE['links']['share_form']}" rel="noopener" target="_blank">Share your story</a></p>
     </div>
     <div>
       <h2>Konkrete Kids who came home</h2>
@@ -670,8 +670,8 @@ def build_champion_pages():
         story = "".join("<p>" + re.sub(r"(\d+[\u2013-]\d+(?:[\u2013-]\d+)?)", r'<span class="nw">\1</span>', e(p)) + "</p>" for p in c.get("story", []))
         if not story:
             story = (f'<p>{e(name)} is one of {M.TOTALS["state"]} Konkrete Kids to win a PIAA state title. His full record is below.</p>'
-                     f'<p class="ask">Photos, the story of this title, and the state final are coming. Have something to share? Email '
-                     f'<a href="mailto:{M.SITE["email"]}?subject=State%20champion%3A%20{e(name)}">{M.SITE["email"]}</a>.</p>')
+                     f'<p class="ask">Photos, the story of this title, and the state final are coming. Have something to share? '
+                     f'<a href="{M.SITE["links"]["share_form"]}" rel="noopener" target="_blank">Share photos, video, or a story</a>. We read everything but can’t reply individually.</p>')
         # video entries: a YouTube URL, or {url, start, end} with times like "15:30" to play just one match
         def secs(x):
             if not x: return 0
@@ -694,7 +694,7 @@ def build_champion_pages():
             note = '<p class="vl-note">FloWrestling subscription required to watch</p>' if "flowrestling" in u else ""
             video += f'<div class="vl-wrap"><a class="video-link" href="{e(u)}" rel="noopener" target="_blank"><span class="vl-play" aria-hidden="true">▶</span><span><b>Watch the {(yr + " ") if yr else ""}state final on {e(site)}</b><small>Opens in a new tab</small></span></a>{note}</div>'
         if not video:
-            video = f'<div class="empty-state small"><h3>State final video</h3><p>Have video of this final? Send a YouTube link to <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a>.</p></div>'
+            video = f'<div class="empty-state small"><h3>State final video</h3><p>Have video of this final? <a href="{M.SITE["links"]["share_form"]}" rel="noopener" target="_blank">Share a YouTube link</a>. We read everything but can’t reply individually.</p></div>'
         gal = M.gallery(R, c["gallery"], "champ") if c.get("gallery") else ""
         # featured photo: one moment shown large on its own, with its caption
         fid = c.get("feature")
@@ -723,7 +723,7 @@ def build_champion_pages():
   <div class="wrap">
     <h2>Career at Northampton</h2>
     {(UL_OPEN + honors + "</ul>") if honors else ""}
-    <p class="fine">See something we got wrong? Email <a href="mailto:{M.SITE['email']}">{M.SITE['email']}</a>.</p>
+    <p class="fine">See something we got wrong? <a href="{M.SITE['links']['share_form']}" rel="noopener" target="_blank">Send a correction</a>. (We read everything but can’t reply individually.)</p>
   </div>
 </section>
 {pn}

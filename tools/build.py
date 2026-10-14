@@ -211,6 +211,7 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
     <div>
       <h2>Contact</h2>
       <p><a href="mailto:{SITE['email']}">{SITE['email']}</a></p>
+      <p><a href="{SITE['links']['share_form']}" rel="noopener" target="_blank">Share photos &amp; video</a></p>
       <p>{SITE['phone_label']}: <a href="tel:+1{SITE['phone'].replace('-', '')}">{SITE['phone']}</a></p>
       <p>{SITE['school']}<br>{'<br>'.join(SITE['address'])}</p>
     </div>
@@ -995,7 +996,7 @@ def build_champions():
     <h2 id="lists-title">The record book</h2>
     <div class="tabs" role="tablist" aria-label="Record book">{tablist}</div>
     {panels}
-    <p class="fine">Missing or misspelled names? Email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p>
+    <p class="fine">Missing or misspelled names? <a href="{SITE['links']['share_form']}" rel="noopener" target="_blank">Send a correction</a>. (We read everything but can’t reply individually.)</p>
   </div>
 </section>
 """
