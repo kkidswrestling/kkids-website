@@ -552,8 +552,8 @@ def build_high_school():
       <p>Both of last season’s state champions were underclassmen: Brayden Wenrich wrestled 2025–26 as a sophomore and Gabe Ballard as a junior.</p>
       <p class="actions"><a class="btn" href="../schedule/">Schedule</a><a class="btn ghost dark-ink" href="../coaching-staff/">Coaching staff</a></p>
     </div>
-    {figure(R, "showcase-roar", "(min-width: 900px) 40vw, 100vw", "tall-fig")}
   </div>
+  <div class="wrap">{figure(R, "team-mayhem", "(min-width: 1180px) 1100px, 100vw", "natural-fig program-fig")}</div>
 </section>
 
 <section class="band dark" aria-labelledby="recap-title">
