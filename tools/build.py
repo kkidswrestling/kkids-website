@@ -1137,6 +1137,10 @@ def hall_postseason(y):
     return sorted(rows.values(), key=lambda x: (rank(x[4]), rank(x[3]), rank(x[2]), int(re.sub(r"\D", "", x[1]) or 0)))
 
 
+with open(os.path.join(DATA, "hall", "season-stories.json"), encoding="utf-8") as _f:
+    SEASON_STORIES = json.load(_f)["seasons"]
+
+
 def build_season_page(i, all_s):
     """One season, laid out the same way for every year (the layout the 2021-22+ seasons were built with)."""
     sid, label, y, pw, d = all_s[i]
@@ -1144,13 +1148,20 @@ def build_season_page(i, all_s):
     d = d or {}
     facts = season_facts(sid, y, pw, d or None)
     coach = season_coach(y)
-    headline = d.get("headline") or " · ".join(season_phrases(facts, y in TITLE_YEARS))
+    st = SEASON_STORIES.get(sid, {})
+    headline = d.get("headline") or st.get("headline") or " · ".join(season_phrases(facts, y in TITLE_YEARS))
     parts = []
     if sid == CUR["id"]:
         parts.append(f'<div class="prose"><p>{d["dual_record"]} in duals, Parkland Duals champions, and 3rd at the District XI, Northeast Regional, and PIAA tournaments. Brayden Wenrich (114) and Gabe Ballard (152) won state titles, and Trey Wagner won a regional title at 139.</p>'
                      f'<p><a class="btn" href="{R}high-school/">Full 2025–26 recap</a></p></div>')
     if d.get("summary"):
         parts.append('<div class="prose cols">' + "".join(f"<p>{e(x)}</p>" for x in d["summary"]) + "</div>")
+    elif st.get("story"):
+        src = (f'Season facts from <a href="{e(st["source_url"])}" rel="noopener" target="_blank">Lehigh Valley Wrestling History</a>, '
+               if st.get("source_url") else "Season facts from ")
+        parts.append('<div class="prose cols season-story">' + "".join(f"<p>{e(x)}</p>" for x in st["story"]) + "</div>"
+                     + f'<p class="fine story-src">{src}PA-Wrestling, and Northampton’s banquet programs. See something we got wrong? '
+                     + f'<a href="{SITE["links"]["share_form"]}" rel="noopener" target="_blank">Send a correction</a>.</p>')
     # Team results list
     if d.get("team_finishes"):
         res = [("Dual meet record", d["dual_record"])] + [tuple(x) for x in d["team_finishes"]]
@@ -1158,7 +1169,8 @@ def build_season_page(i, all_s):
         res = ([("Dual meet record", pw["record"] + (f' ({pw["league_record"]} league)' if pw["league_record"] else ""))] if pw["record"] else [])
         res += [tuple(x) for x in pw["finishes"]] + [tuple(x) for x in pw["tournaments"]]
     who = d.get("coaches") or (f"Head coach: {coach}" if coach else "")
-    left = (f'<h2 class="sub">Team results</h2><ul class="results" role="list">{result_rows(res)}</ul>' if res else '<h2 class="sub">Team results</h2><p class="arch-none">No stats available.</p>')
+    left = (f'<h2 class="sub">Team results</h2><ul class="results" role="list">{result_rows(res)}</ul>' if res
+            else ("" if st.get("story") else '<h2 class="sub">Team results</h2><p class="arch-none">No stats available.</p>'))
     left += f'<p class="season-coaches">{e(who)}</p>' if who else ""
     if y in TITLE_YEARS:
         left += f'<p><a class="text-link" href="{R}champions/team/{y}/">The {label} PIAA team title season ›</a></p>'
@@ -1258,7 +1270,7 @@ def build_seasons():
         card = (f'<a class="sc{" title" if title else ""}{" has-img" if thumb else ""}" href="{sid}/" id="{sid}">{thumb}<span class="sc-body">'
                 f'<span class="sc-yr">{label}</span>'
                 + ('<span class="sc-badge">PIAA team champions</span>' if title else "")
-                + (f'<span class="sc-head">{e(d["headline"])}</span>' if d else "")
+                + (f'<span class="sc-head">{e(d["headline"])}</span>' if d else (f'<span class="sc-head">{e(SEASON_STORIES[sid]["headline"])}</span>' if sid in SEASON_STORIES else ""))
                 + (f'<ul class="sc-facts" role="list">{chips}</ul>' if chips else "")
                 + ('<span class="sc-vid">▶ Highlight video</span>' if SEASON_VIDEOS.get(sid) else "")
                 + "</span></a>")
