@@ -36,8 +36,8 @@ def news_card(R, p, big=False):
 
 
 def follow_block(R, heading_id="follow-title", dark=True):
-    nl = M.SITE.get("newsletter_url", "")
-    action = nl or f'mailto:{M.SITE["email"]}?subject=Subscribe%20me%20to%20Coach%E2%80%99s%20Corner&body=Please%20add%20this%20email%20to%20the%20Northampton%20Wrestling%20newsletter.'
+    nl = M.SITE.get("links", {}).get("signup_form", "") or M.SITE.get("newsletter_url", "")
+    action = nl or f'mailto:{M.SITE["email"]}?subject=Sign%20me%20up%20for%20Northampton%20Wrestling%20updates&body=Name%3A%0AConnection%20to%20the%20program%20(parent%2C%20alumni%2C%20fan...)%3A'
     cards = "".join(
         f'<a class="follow-card fc-{k}" href="{M.SITE["social"][k]}" rel="noopener">{M.icon(k)}<span><b>{label}</b>{sub}</span></a>'
         for k, label, sub in (("instagram", "Instagram", "Match-day photos and results"),
@@ -47,9 +47,9 @@ def follow_block(R, heading_id="follow-title", dark=True):
     return f'''<div class="follow-grid">
   <div class="newsletter">
     <h2 id="{heading_id}">Never miss what’s happening</h2>
-    <p class="lede">Coach’s Corner is a note from Coach Provini, weekly in season and monthly in the off-season: the varsity, junior high, and youth programs, the week’s schedule, a wrestler spotlight, and a moment from the archives.</p>
-    <a class="btn" href="{action}">{"Sign up for Coach’s Corner" if nl else "Email us to sign up"}</a>
-    {"" if nl else '<p class="fine">Opens an email to the club. Online sign-up is coming soon.</p>'}
+    <p class="lede">Sign up for updates about the program: big results, schedules, events, and news from the varsity, junior high, and youth teams. We only send something when there’s something worth sharing.</p>
+    <a class="btn" href="{action}"{' rel="noopener" target="_blank"' if nl else ""}>Sign up for updates</a>
+    {"" if nl else '<p class="fine">Opens an email to the club with “Sign me up” already filled in. Just hit send.</p>'}
   </div>
   <div class="follow-cards">{cards}</div>
 </div>'''
@@ -615,7 +615,7 @@ def build_alumni():
   </div>
 </section>
 <section class="band concrete" id="update" aria-labelledby="update-title">
-  <div class="wrap prose"><h2 id="update-title">Update your information</h2><p>Get invited to alumni events and Coach’s Corner. Email your name, graduation year, and best contact info.</p><p><a class="btn" href="mailto:{M.SITE['email']}?subject=Alumni%20update&body=Name%3A%0AGraduation%20year%3A%0AEmail%3A%0APhone%20(optional)%3A">Update your info</a></p></div>
+  <div class="wrap prose"><h2 id="update-title">Update your information</h2><p>Get invited to alumni events and program updates. Email your name, graduation year, and best contact info.</p><p><a class="btn" href="mailto:{M.SITE['email']}?subject=Alumni%20update&body=Name%3A%0AGraduation%20year%3A%0AEmail%3A%0APhone%20(optional)%3A">Update your info</a></p></div>
 </section>
 <section class="band dark" id="support" aria-labelledby="support-title">
   <div class="wrap prose"><h2 id="support-title">Support the program</h2><p>The {M.SITE['owner']} funds scholarships, gear, and the banquet. To donate, sponsor, or help organize an alumni night, email <a href="mailto:{M.SITE['email']}">{M.SITE['email']}</a>.</p></div>
@@ -627,10 +627,10 @@ def build_alumni():
 def build_follow():
     R = "../"
     body = f"""
-{M.page_head(R, "Follow Northampton", "Coach’s Corner, match updates, and every Konkrete Kids channel in one place.")}
+{M.page_head(R, "Follow Northampton", "Program updates by email, and every Konkrete Kids channel in one place.")}
 <section class="band dark"><div class="wrap">{follow_block(R, "nl-title")}</div></section>
 """
-    return M.page("follow/index.html", "Follow", "Follow Northampton Wrestling: Coach’s Corner newsletter and social media.", body, "follow/")
+    return M.page("follow/index.html", "Follow", "Follow Northampton Wrestling: sign up for program updates and find the team on social media.", body, "follow/")
 
 
 # ------------------------------------------------------------------ state champion pages
