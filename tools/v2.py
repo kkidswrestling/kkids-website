@@ -541,7 +541,7 @@ def build_join():
   <div class="wrap">
     <h2 id="start-title">Start wrestling</h2>
     <div class="start-grid">
-      <div class="note-card"><h3>Grades K–6</h3><p>Join the youth program. No experience needed.</p><a class="btn" href="mailto:{M.SITE['email']}?subject=Youth%20wrestling">Email about youth wrestling</a></div>
+      <div class="note-card"><h3>Grades K–6</h3><p>Join the youth program. No experience needed.</p><a class="btn" href="{M.SITE['links']['youth_registration']}" rel="noopener" target="_blank">Register for youth wrestling</a></div>
       <div class="note-card"><h3>Grades 7–8</h3><p>Join the junior high team with Coach Craig Israel.</p><a class="btn" href="mailto:{M.SITE['email']}?subject=Junior%20high%20wrestling">Email about junior high</a></div>
       <div class="note-card"><h3>High school</h3><p>New to wrestling or new to Northampton? Talk to Coach Provini.</p><a class="btn" href="mailto:{M.SITE['email']}?subject=High%20school%20wrestling">Contact the coaches</a></div>
     </div>

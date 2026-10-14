@@ -775,8 +775,9 @@ def build_youth():
     </div>
     <aside class="note-card">
       <h3>Join the Konkrete Kids</h3>
-      <p>Registration runs through the NAA youth program. Email us and we’ll send the current registration link and season details.</p>
-      <p><a class="btn" href="mailto:{SITE['email']}?subject=Youth%20wrestling%20registration">Email about registration</a></p>
+      <p>Registration runs through the NAA youth program. Sign up online, and email us with any questions about the season.</p>
+      <p class="actions"><a class="btn" href="{SITE['links']['youth_registration']}" rel="noopener" target="_blank">Register for youth wrestling</a>
+      <a class="btn ghost dark-ink" href="mailto:{SITE['email']}?subject=Youth%20wrestling%20registration">Email a question</a></p>
     </aside>
   </div>
 </section>
