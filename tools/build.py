@@ -799,6 +799,8 @@ def build_youth():
       {figure(R, "youth-autographs", "(min-width: 900px) 45vw, 100vw")}
       {figure(R, "youth-mat", "(min-width: 900px) 45vw, 100vw")}
     </div>
+    <h2 class="sub top-gap">More from the youth program</h2>
+    {gallery(R, ["youth-varsity-mat", "youth-team-2022", "youth-novice-2022", "youth-autographs-2"], "youth")}
   </div>
 </section>
 """

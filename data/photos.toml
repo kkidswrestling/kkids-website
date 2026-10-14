@@ -1150,3 +1150,40 @@ alt = "Trey Wagner grins and points both fingers skyward after a win at the PIAA
 caption = "Trey Wagner after a win at the PIAA Championships."
 widths = [640, 1200, 1458]
 file = "originals/batch6_trey-point.jpg"
+
+# More youth photos from the banquet programs (Oct. 2026). Youth (K-6): no names.
+[[photo]]
+id = "youth-team-2022"
+source = "2021-22 banquet program, page 10"
+season = "2021-22"
+alt = "Northampton youth wrestlers and their coaches seated in the gym bleachers under the state championship banners"
+caption = "The 2021–22 youth team and coaches."
+widths = [640, 1200, 1800]
+file = "originals/p22_i-010-147.jpg"
+
+[[photo]]
+id = "youth-novice-2022"
+source = "2021-22 banquet program, page 11"
+season = "2021-22"
+alt = "A line of young Northampton novice wrestlers in singlets and headgear at a tournament"
+caption = "Novice wrestlers at a tournament, 2021–22."
+widths = [640, 960]
+file = "originals/p22_i-011-156.jpg"
+
+[[photo]]
+id = "youth-varsity-mat"
+source = "2024-25 banquet program, page 51"
+season = "2024-25"
+alt = "Youth wrestlers stand with the Northampton varsity on the orange home mat"
+caption = "Youth wrestlers with the varsity on the home mat."
+widths = [640, 1200, 2016]
+file = "originals/img25_p-051-284.jpg"
+
+[[photo]]
+id = "youth-autographs-2"
+source = "2025-26 banquet program, page 25"
+season = "2025-26"
+alt = "A young fan in a Northampton Kids shirt gets autographs from varsity wrestlers at a long table"
+caption = "Autograph night with the varsity."
+widths = [480, 900]
+file = "originals/img26_p-025-097.jpg"
