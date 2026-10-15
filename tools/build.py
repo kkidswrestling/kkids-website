@@ -913,7 +913,7 @@ def yc_level(YC, lid, drills):
       <div class="ycp-card"><h3>Non-negotiable coaching habits</h3><ul class="ycp-checks">{habits}</ul></div>
       <div class="ycp-card"><h3>Teaching distinction</h3><p>{e(lv["distinction"])}</p>
         <p><span class="ycp-pill">Practice length: coming soon</span></p>
-        <a class="ycp-btn soft" href="#builder" data-level="{lid}">Build a practice for this group →</a></div>
+        <a class="ycp-btn soft" href="#builder" data-level="{lid}">Build a practice for this level →</a></div>
     </div>
     <div class="ycp-card ycp-gap"><h3>Live situations</h3>{live_lead}<div class="ycp-grid2 tight">{live}</div></div>"""
 
@@ -960,9 +960,9 @@ def build_youth_coaches():
   <div><p class="ycp-eyebrow">{e(H["eyebrow"])}</p>
     <h1>{"<br>".join(e(x) for x in H["lines"])}<br><span>{e(H["accent"])}</span></h1>
     <p class="ycp-lede">{e(H["lede"])}</p>
-    <p class="ycp-actions"><a class="ycp-btn" href="#builder">Build a practice →</a><a class="ycp-btn dark" href="#expectations">Your group’s standards →</a><a class="ycp-btn dark" href="#videos">▶ Technique videos</a></p></div>
+    <p class="ycp-actions"><a class="ycp-btn" href="#builder">Build a practice →</a><a class="ycp-btn dark" href="#expectations">Your level’s standards →</a><a class="ycp-btn dark" href="#videos">▶ Technique videos</a></p></div>
   {mat}</div></header>"""
-    tabs = [("standard", "The standard"), ("expectations", "Group expectations"), ("builder", "Practice builder"),
+    tabs = [("standard", "The standard"), ("expectations", "Level expectations"), ("builder", "Practice builder"),
             ("drills", "Drill library"), ("videos", "Video library"), ("challenge", "Coaching challenge"), ("checkin", "Weekly check-in")]
     tabbar = '<nav class="ycp-tabs" aria-label="Playbook sections"><div class="wrap">' + "".join(f'<a href="#{i}">{t}</a>' for i, t in tabs) + "</div></nav>"
     std = "".join(f'<li class="ycp-card"><p class="ycp-eyebrow">{i + 1:02d} · {e(k)}</p><h3>{e(t)}</h3><p>{e(d)}</p></li>' for i, (k, t, d) in enumerate(I["standard"]))
@@ -1021,19 +1021,19 @@ def build_youth_coaches():
 
 <section class="ycp-sec alt" id="expectations" aria-labelledby="exp-title"><div class="wrap">
   <p class="ycp-eyebrow">Developmental progression</p><h2 id="exp-title">What should wrestlers learn—and how?</h2>
-  <p class="ycp-intro">Choose your group for its attitude, the skills in each position, how to coach each one, the drills to run, and what a wrestler must demonstrate before moving on.</p>
-  <label class="ycp-field">Coaching group<select id="ycp-level">{level_opts}</select></label>
+  <p class="ycp-intro">Select your level, Novice or Orange &amp; Black, for its attitude, the skills in each position, how to coach each one, the drills to run, and what a wrestler must demonstrate before moving on.</p>
+  <label class="ycp-field">Select your level<select id="ycp-level">{level_opts}</select></label>
   {panels}
   {top}
 </div></section>
 
 <section class="ycp-sec" id="builder" aria-labelledby="builder-title"><div class="wrap">
   <p class="ycp-eyebrow">Plan your next practice</p><h2 id="builder-title">Build a purposeful practice.</h2>
-  <p class="ycp-intro">{e(P["intro"])} Choose the group, the moves to review and the new technique. The plan fills in the cues, the contest situation and what to check.</p>
+  <p class="ycp-intro">{e(P["intro"])} Choose the level, the moves to review and the new technique. The plan fills in the cues, the contest situation and what to check.</p>
   <div class="yc-builder" data-builder hidden>
     <div class="ycp-card ycp-form">
       <div class="ycp-form-row">
-        <label class="ycp-field">Group<select id="b-level">{level_opts}</select></label>
+        <label class="ycp-field">Level<select id="b-level">{level_opts}</select></label>
         <label class="ycp-field">Date<input type="date" id="b-date"></label>
         <label class="ycp-field">New technique<select id="b-skill1"></select></label>
         <label class="ycp-field">Second new technique <span class="muted">(optional)</span><select id="b-skill2"></select></label>
@@ -1063,7 +1063,7 @@ def build_youth_coaches():
   <p class="ycp-eyebrow">Coach-ready drill instructions</p><h2 id="drills-title">The drill library coaches can actually use.</h2>
   <p class="ycp-intro">Every drill, live situation and game in the playbook, with the set-up, what to coach, the cue, and how to check learning.</p>
   <div class="ycp-filters" data-drill-filters hidden>
-    <label class="ycp-field">Group<select id="f-level"><option value="">All groups</option>{level_opts}</select></label>
+    <label class="ycp-field">Level<select id="f-level"><option value="">All levels</option>{level_opts}</select></label>
     <label class="ycp-field">Position<select id="f-pos"><option value="">All positions</option>{"".join(f'<option value="{k}">{v}</option>' for k, v in YC_POSITIONS)}</select></label>
     <label class="ycp-field">Type<select id="f-type"><option value="">All types</option><option value="drill">Drills</option><option value="live">Live situations</option><option value="game">Games</option></select></label>
   </div>
@@ -1096,7 +1096,7 @@ def build_youth_coaches():
 <section class="ycp-sec" id="checkin" aria-labelledby="checkin-title"><div class="wrap">
   <p class="ycp-eyebrow">A repeatable standard</p><h2 id="checkin-title">60-second weekly coaching check-in</h2>
   <p class="ycp-intro">{e(C["intro"])}</p>
-  <label class="ycp-field">Coaching group<select id="c-level">{level_opts}</select></label>
+  <label class="ycp-field">Select your level<select id="c-level">{level_opts}</select></label>
   <div class="ycp-split wide ycp-gap">
     <div class="ycp-card" data-checkin hidden><h3 id="c-title">After-practice reflection</h3>
       <p class="ycp-small muted">Check what genuinely happened this week. Unchecked boxes are next practice’s teaching priority, not a failure.</p>

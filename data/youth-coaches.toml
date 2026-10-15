@@ -19,12 +19,12 @@ standard = [
   ["Every skill", "Master it before moving up", "A skill is learned when the wrestler can demonstrate it, not when the coach has shown it. Levels are skills, not years."],
   ["Every match", "Matches are for experience", "In the corner: calm, short, positive. The first words after a match are positive. Fixing happens at the next practice."],
 ]
-northampton_way = "Teach the Northampton way. Every group is organized the same way, Attitude, On Our Feet, Bottom, Top, in the same words the high school room uses."
+northampton_way = "Teach the Northampton way. Every level is organized the same way, Attitude, On Our Feet, Bottom, Top, in the same words the high school room uses."
 
 # The season roadmap: four steps
 roadmap = [
-  ["Before the season", "Pick your group. Read its attitude, coaching habits, and the coaching standards."],
-  ["Every week", "Choose 1–2 skills from your group's list. Build each practice around them with the practice builder."],
+  ["Before the season", "Select your level: Novice or Orange & Black. Read its attitude, coaching habits, and the coaching standards."],
+  ["Every week", "Choose 1–2 skills from your level's list. Build each practice around them with the practice builder."],
   ["At practice", "Teach the cues, drill it (Orange & Black drills 2&2), put it in a live situation, then check: can the wrestler demonstrate it?"],
   ["After practice", "Coach's notes: who owns today's skill, and who needs it re-taught next practice."],
 ]
@@ -916,13 +916,13 @@ items = [
 eyebrow = "Building the next generation of Konkrete Kids"
 lines = ["Fundamentals", "first."]
 accent = "The Northampton way."
-lede = "Better stance, better position, better habits. Everything youth coaches need to run a purposeful practice, organized by group and ready to use."
+lede = "Better stance, better position, better habits. Everything youth coaches need to run a purposeful practice, organized by level and ready to use."
 mat_caption = "We never give up. Hustle back to the center."
 
 [habit]
 eyebrow = "The Northampton habit"
 title = "Finish. Get up. Stop the first move."
-text = "Every group, every practice. On our feet we finish shots and go behind, never around the waist. On bottom we move on the whistle and get to our feet. On top we stop the first move and don't let them up."
+text = "Every level, every practice. On our feet we finish shots and go behind, never around the waist. On bottom we move on the whistle and get to our feet. On top we stop the first move and don't let them up."
 chain = "Stance → shot → finish → feet."
 
 [success]
