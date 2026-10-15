@@ -990,7 +990,9 @@ def build_youth_coaches():
         "positions": dict(YC_POSITIONS),
         "skills": [{"id": yc_id(x), "level": x["level"], "position": x["position"], "name": x["name"], "teach": x.get("teach", []),
                     "drill": x["drill"], "live": x.get("live", ""), "demo": x["demonstrates"], "drills": yc_skill_drills(x)} for x in YC["skill"]],
-        "drills": {d["id"]: {"name": d["name"], "setup": d["setup"], "coach": d["coach"], "cue": d["cue"], "check": d["check"]} for d in YC["drill"]},
+        "drills": {d["id"]: {"name": d["name"], "setup": d["setup"], "coach": d["coach"], "cue": d["cue"], "check": d["check"],
+                             "type": d["type"], "levels": d["levels"]} for d in YC["drill"]},
+        "live": {lid: [i for L in YC["live"] if L["level"] in (lid, "novice") and (lid != "novice" or L["level"] == "novice") for i in L["items"]] for lid in lids},
         "quiz": scen,
         "checkin": {"common": C["common"], "levels": {k: v["items"] for k, v in C["levels"].items()}},
     }
@@ -1041,7 +1043,8 @@ def build_youth_coaches():
       <details class="ycp-review"><summary>Review moves <span class="muted" id="b-review-count"></span></summary><div class="yc-checklist" id="b-review"></div></details>
     </div>
     <div class="ycp-split wide ycp-gap">
-      <div class="yc-out" aria-live="polite"><div id="b-sheet"></div></div>
+      <div class="yc-out"><div class="ycp-edit-hint"><p><b>Make it yours.</b> Click any line to change it. Use + Add line or × to add and remove lines. Your plan saves on this device.</p>
+        <button type="button" class="ycp-btn soft sm" id="b-fresh">Start a fresh plan</button></div><div id="b-sheet"></div></div>
       <div class="ycp-side">
         <div class="ycp-card"><p class="ycp-eyebrow">Run these drills</p><div id="b-drills"></div></div>
         <div class="ycp-card"><p class="ycp-eyebrow">Exit check: not just activity</p><h3>Can they actually do it?</h3>

@@ -1086,6 +1086,21 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .yc-sheet li { padding: 1px 0; }
 .yc-sheet li:empty { list-style: none; border-bottom: 1px solid #e4e0dc; height: 1.5em; margin-left: -20px; }
 .yc-sheet em { font-style: normal; font-weight: 700; color: #b8460c; }
+.ycp-edit-hint { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; background: var(--pe); border: 1px solid #f7d9c4; border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; }
+.ycp-edit-hint p { margin: 0; font-size: 15px; }
+.yc-sheet.editable li { position: relative; }
+.ycp-ed { border-radius: 4px; outline: 1px dashed transparent; outline-offset: 1px; cursor: text; display: inline; padding: 0 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.ycp-ed:hover { outline-color: #e2b799; background: #fffaf6; }
+.ycp-ed:focus { outline: 2px solid var(--o); background: #fff; }
+.ycp-ed:empty::before { content: "Type here…"; color: #a3a8ad; }
+.ycp-x { border: 0; background: none; color: #b9bdc2; font: 700 15px var(--body); cursor: pointer; padding: 0 4px; margin-left: 2px; line-height: 1; vertical-align: baseline; }
+.ycp-x:hover, .ycp-x:focus-visible { color: #c0392b; }
+.ycp-sec-tools { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 0 18px; }
+.ycp-add { border: 1px dashed #e2b799; background: #fffaf6; color: var(--o-ink); border-radius: 8px; font: 700 13px var(--body); padding: 4px 9px; cursor: pointer; }
+.ycp-add:hover { background: var(--pe); }
+.ycp-pick { border: 1px solid #e4dfd9; border-radius: 8px; font: 600 13px var(--body); padding: 4px 6px; background: #fff; color: var(--o-ink); max-width: 100%; }
+.ycp-reset { border: 0; background: none; color: var(--o-ink); font: 700 12px var(--body); cursor: pointer; margin-left: 8px; text-decoration: underline; }
+@media (hover: none) { .ycp-x { color: #9aa0a6; } }
 /* drill library */
 .ycp-filters { display: flex; flex-wrap: wrap; gap: 0 14px; }
 .ycp-filters .ycp-field { width: 220px; margin-bottom: 10px; }
@@ -1143,7 +1158,9 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
   .ycp-field, .ycp-filters .ycp-field { max-width: none; width: 100%; }
 }
 @media print {
-  .ycp-tabs, .ycp-mini, .ycp-top, .ycp-actions { display: none !important; }
+  .ycp-tabs, .ycp-mini, .ycp-top, .ycp-actions, .ycp-x, .ycp-sec-tools, .ycp-reset, .ycp-edit-hint { display: none !important; }
+  .ycp-ed { outline: 0 !important; background: none !important; }
+  .ycp-ed:empty::before { content: ""; }
   .ycp-acc > .ycp-acc-body { display: block; }
   body.print-plan main > *, body.print-plan .ycp > * { display: none !important; }
   body.print-plan .ycp, body.print-plan main > .ycp, body.print-plan .ycp > #builder { display: block !important; }

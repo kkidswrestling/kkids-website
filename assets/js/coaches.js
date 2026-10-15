@@ -38,14 +38,17 @@
   };
   lvlSel.addEventListener("change", function () { setGroup(lvlSel.value); });
 
-  // ---------------------------------------------------------- practice builder (Joe's template sections)
+  // ---------------------------------------------------------- practice builder (Joe's template sections, editable)
+  // The plan is a list of sections. Choices at the top fill the sections; any section the coach
+  // edits keeps the coach's version (with a Reset link). The plan saves on this device.
   var B = document.querySelector("[data-builder]");
   var builder = null;
   if (B) {
     B.hidden = false;
     var bl = $("b-level"), s1 = $("b-skill1"), s2 = $("b-skill2"), rev = $("b-review"), dateIn = $("b-date"),
         sheet = $("b-sheet"), drillBox = $("b-drills"), revCount = $("b-review-count");
-    var touched = false, plainText = "", bCur = null;
+    var touched = false, bCur = null, plan = null, PKEY = "yc-plan";
+    var SECTIONS = ["announce", "warmup", "drill", "new", "contest", "cond", "announce2", "culture", "notes"];
     var fillSelect = function (sel, lid, withNone) {
       sel.innerHTML = "";
       if (withNone) { var o = el("option", "None"); o.value = ""; sel.appendChild(o); }
@@ -62,7 +65,7 @@
         skillsFor(lid).filter(function (s) { return s.position === pid; }).forEach(function (s) {
           var lab = el("label"), cb = document.createElement("input");
           cb.type = "checkbox"; cb.value = s.id;
-          cb.addEventListener("change", function () { touched = true; render(); });
+          cb.addEventListener("change", function () { touched = true; refresh(); });
           lab.appendChild(cb); lab.appendChild(document.createTextNode(" " + s.name)); rev.appendChild(lab);
         });
       });
@@ -74,77 +77,181 @@
       list.forEach(function (x) { if (sug.length < 3 && sug.indexOf(x.id) < 0 && picks.indexOf(x.id) < 0) sug.push(x.id); });
       rev.querySelectorAll("input").forEach(function (cb) { cb.checked = sug.indexOf(cb.value) >= 0 && picks.indexOf(cb.value) < 0; });
     };
-    var render = function () {
-      var lid = bl.value, L = DATA.levels[lid];
-      var picks = [byId(s1.value), byId(s2.value)].filter(function (x, i, a) { return x && a.indexOf(x) === i; });
-      var review = Array.prototype.slice.call(rev.querySelectorAll("input:checked")).map(function (cb) { return byId(cb.value); })
+    var picksNow = function () { return [byId(s1.value), byId(s2.value)].filter(function (x, i, a) { return x && a.indexOf(x) === i; }); };
+    var reviewNow = function () {
+      var picks = picksNow();
+      return Array.prototype.slice.call(rev.querySelectorAll("input:checked")).map(function (cb) { return byId(cb.value); })
         .filter(function (x) { return picks.indexOf(x) < 0; });
-      revCount.textContent = "(" + review.length + " selected)";
-      var lives = [];
-      picks.forEach(function (p) { if (p.live && lives.indexOf(p.live) < 0) lives.push(p.live); });
-      lives.push(lid === "novice" ? "Quick starts (10–15 seconds)" : "Quick starts with a score given (down 1, down 2)");
-      var moves = function (arr, isNew) { return arr.map(function (x) { return { t: x.name + (isNew ? " (new)" : ""), sub: x.teach }; }); };
-      var plain = function (arr) { return arr.map(function (t) { return { t: t, sub: [] }; }); };
-      var secs = [
-        ["Announcements", plain(["Skin check and attendance"])],
-        ["Warm-up", plain([L.warmup])],
-        [L.drill, moves(review, false)],
-        ["New Technique", moves(picks, true)],
-        ["Contest situation", plain(lives.concat(["Matched by size and experience. Short goes."]))],
-        ["Conditioning", plain([L.conditioning])],
-        ["Announcements", plain([""])],
-        ["Team Culture", plain([lid === "novice" ? "Observations: “What did you see someone do well?”" : "Spotlight", "Handshake line"])],
-        ["My notes", plain(picks.map(function (p) { return p.name + ": " + p.demo; }).concat(["Who needs it re-taught next practice?"]))]
-      ];
+    };
+    var it = function (t, sub) { return { t: t, sub: (sub || []).slice() }; };
+    // what each section suggests from the current choices
+    var suggest = function (key) {
+      var lid = bl.value, L = DATA.levels[lid], picks = picksNow();
+      if (key === "announce") return [it("Skin check and attendance")];
+      if (key === "warmup") return [it(L.warmup)];
+      if (key === "drill") return reviewNow().map(function (x) { return it(x.name, x.teach); });
+      if (key === "new") return picks.map(function (x) { return it(x.name + " (new)", x.teach); });
+      if (key === "contest") {
+        var lives = [];
+        picks.forEach(function (p) { if (p.live && lives.indexOf(p.live) < 0) lives.push(p.live); });
+        lives.push(lid === "novice" ? "Quick starts (10–15 seconds)" : "Quick starts with a score given (down 1, down 2)");
+        return lives.concat(["Matched by size and experience. Short goes."]).map(function (t) { return it(t); });
+      }
+      if (key === "cond") return [it(L.conditioning)];
+      if (key === "announce2") return [it("")];
+      if (key === "culture") return [it(lid === "novice" ? "Observations: “What did you see someone do well?”" : "Spotlight"), it("Handshake line")];
+      if (key === "notes") return picks.map(function (p) { return it(p.name + ": " + p.demo); }).concat([it("Who needs it re-taught next practice?")]);
+      return [];
+    };
+    var title = function (key) {
+      return { announce: "Announcements", warmup: "Warm-up", drill: DATA.levels[bl.value].drill, "new": "New Technique",
+               contest: "Contest situation", cond: "Conditioning", announce2: "Announcements", culture: "Team Culture", notes: "My notes" }[key];
+    };
+    var save = function () {
+      plan.level = bl.value; plan.date = dateIn.value; plan.s1 = s1.value; plan.s2 = s2.value;
+      plan.review = Array.prototype.slice.call(rev.querySelectorAll("input:checked")).map(function (cb) { return cb.value; });
+      plan.touched = touched;
+      store.set(PKEY, JSON.stringify(plan));
+    };
+    var newPlan = function () { return { sections: SECTIONS.map(function (k) { return { key: k, items: suggest(k), custom: false }; }) }; };
+    // re-fill every section the coach hasn't edited
+    var refresh = function () {
+      if (!plan) plan = newPlan();
+      plan.sections.forEach(function (sec) { if (!sec.custom) sec.items = suggest(sec.key); });
+      draw(); save();
+    };
+    var editable = function (node, onEdit) {
+      node.contentEditable = "true"; node.spellcheck = true; node.className = (node.className + " ycp-ed").trim();
+      node.addEventListener("input", function () { onEdit(node.textContent); });
+      node.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); node.blur(); } });
+    };
+    var adders = function (sec) {
+      var lid = bl.value, opts = [];
+      if (sec.key === "warmup" || sec.key === "cond") {
+        Object.keys(DATA.drills).forEach(function (k) { var d = DATA.drills[k]; if (d.type === "game" && d.levels.indexOf(lid) >= 0) opts.push(d.name); });
+      } else if (sec.key === "contest") {
+        Object.keys(DATA.drills).forEach(function (k) { var d = DATA.drills[k]; if (d.type === "live" && d.levels.indexOf(lid) >= 0) opts.push(d.name); });
+        (DATA.live[lid] || []).forEach(function (t) { if (opts.indexOf(t) < 0) opts.push(t); });
+      } else if (sec.key === "drill" || sec.key === "new") {
+        skillsFor(lid).forEach(function (x) { opts.push(x.name); });
+      }
+      return opts;
+    };
+    var draw = function () {
+      var lid = bl.value, L = DATA.levels[lid];
       var d = dateIn.value ? new Date(dateIn.value + "T12:00:00").toLocaleDateString(undefined, { weekday: "long", month: "numeric", day: "numeric", year: "2-digit" }) : "";
       sheet.innerHTML = "";
-      var wrap = el("div", null, "yc-sheet"), head = el("div", null, "yc-sheet-head"), body = el("div", null, "yc-sheet-body");
+      var wrap = el("div", null, "yc-sheet editable"), head = el("div", null, "yc-sheet-head"), body = el("div", null, "yc-sheet-body");
       head.appendChild(el("h3", "Practice Plan")); head.appendChild(el("span", (d ? d + " · " : "") + L.name));
-      var text = ["Practice Plan" + (d ? " – " + d : "") + " – " + L.name, ""];
-      secs.forEach(function (sec) {
-        var box = el("section"), ul = el("ul");
-        box.appendChild(el("h4", sec[0])); text.push(sec[0] + ":");
-        sec[1].forEach(function (it) {
-          var li = el("li", it.t); text.push("  - " + it.t);
-          if (it.sub && it.sub.length) {
+      plan.sections.forEach(function (sec) {
+        var box = el("section"), h = el("h4", title(sec.key)), ul = el("ul");
+        if (sec.custom) {
+          var rs = el("button", "↺ Reset", "ycp-reset"); rs.type = "button"; rs.title = "Go back to the suggested lines";
+          rs.addEventListener("click", function () { sec.custom = false; refresh(); });
+          h.appendChild(rs);
+        }
+        box.appendChild(h);
+        sec.items.forEach(function (item, ii) {
+          var li = el("li"), txt = el("span", item.t);
+          editable(txt, function (v) { item.t = v; sec.custom = true; save(); });
+          var x = el("button", "×", "ycp-x"); x.type = "button"; x.setAttribute("aria-label", "Remove this line");
+          x.addEventListener("click", function () { sec.items.splice(ii, 1); sec.custom = true; draw(); save(); });
+          li.appendChild(txt); li.appendChild(x);
+          if (item.sub.length) {
             var sub = el("ul");
-            it.sub.forEach(function (c) { sub.appendChild(el("li", c)); text.push("      - " + c); });
+            item.sub.forEach(function (c, ci) {
+              var sl = el("li"), st = el("span", c);
+              editable(st, function (v) { item.sub[ci] = v; sec.custom = true; save(); });
+              var sx = el("button", "×", "ycp-x"); sx.type = "button"; sx.setAttribute("aria-label", "Remove this cue");
+              sx.addEventListener("click", function () { item.sub.splice(ci, 1); sec.custom = true; draw(); save(); });
+              sl.appendChild(st); sl.appendChild(sx); sub.appendChild(sl);
+            });
             li.appendChild(sub);
           }
           ul.appendChild(li);
         });
-        box.appendChild(ul); body.appendChild(box);
+        box.appendChild(ul);
+        var tools = el("div", null, "ycp-sec-tools");
+        var add = el("button", "+ Add line", "ycp-add"); add.type = "button";
+        add.addEventListener("click", function () {
+          sec.items.push(it("")); sec.custom = true; draw(); save();
+          var spans = sheet.querySelectorAll("section")[plan.sections.indexOf(sec)].querySelectorAll(":scope > ul > li > span");
+          if (spans.length) spans[spans.length - 1].focus();
+        });
+        tools.appendChild(add);
+        var opts = adders(sec);
+        if (opts.length) {
+          var pick = el("select", null, "ycp-pick");
+          var lab = sec.key === "contest" ? "+ Add a live situation…" : (sec.key === "drill" || sec.key === "new") ? "+ Add a skill…" : "+ Add a game…";
+          var o0 = el("option", lab); o0.value = ""; pick.appendChild(o0);
+          opts.forEach(function (t) { var o = el("option", t); o.value = t; pick.appendChild(o); });
+          pick.setAttribute("aria-label", lab.replace("+ ", "").replace("…", ""));
+          pick.addEventListener("change", function () {
+            if (!pick.value) return;
+            var sk = skillsFor(bl.value).filter(function (x) { return x.name === pick.value; })[0];
+            sec.items.push(sk ? it(sk.name + (sec.key === "new" ? " (new)" : ""), sk.teach) : it(pick.value));
+            sec.custom = true; draw(); save();
+          });
+          tools.appendChild(pick);
+        }
+        box.appendChild(tools);
+        body.appendChild(box);
       });
       wrap.appendChild(head); wrap.appendChild(body); sheet.appendChild(wrap);
-      plainText = text.join("\n");
       // drills to run for the new technique
       drillBox.innerHTML = "";
       var ids = [];
-      picks.forEach(function (p) { p.drills.forEach(function (x) { if (ids.indexOf(x) < 0) ids.push(x); }); });
+      picksNow().forEach(function (p) { p.drills.forEach(function (x) { if (ids.indexOf(x) < 0) ids.push(x); }); });
       ids.forEach(function (x) {
         var dd = DATA.drills[x]; if (!dd) return;
         var item = el("div", null, "ycp-bdrill"), a = el("a", dd.name);
         a.href = "#drill-" + x; item.appendChild(a); item.appendChild(el("p", dd.cue, "ycp-small muted"));
         drillBox.appendChild(item);
       });
+      revCount.textContent = "(" + reviewNow().length + " selected)";
+    };
+    var planText = function () {
+      var d = dateIn.value ? new Date(dateIn.value + "T12:00:00").toLocaleDateString(undefined, { weekday: "long", month: "numeric", day: "numeric", year: "2-digit" }) : "";
+      var out = ["Practice Plan" + (d ? " – " + d : "") + " – " + DATA.levels[bl.value].name, ""];
+      plan.sections.forEach(function (sec) {
+        out.push(title(sec.key) + ":");
+        sec.items.forEach(function (i) { out.push("  - " + i.t); i.sub.forEach(function (c) { out.push("      - " + c); }); });
+      });
+      return out.join("\n");
     };
     var setLevel = function (lid, skillId) {
-      if (bCur !== lid) { bCur = lid; bl.value = lid; fillSelect(s1, lid, false); fillSelect(s2, lid, true); fillReview(lid); touched = false; }
+      var changed = bCur !== lid;
+      if (changed) { bCur = lid; bl.value = lid; fillSelect(s1, lid, false); fillSelect(s2, lid, true); fillReview(lid); touched = false; }
       if (skillId) { s1.value = skillId; touched = false; }
       if (!touched) suggestReview();
-      render();
+      if (changed || skillId) plan = newPlan();
+      refresh();
     };
     bl.addEventListener("change", function () { setGroup(bl.value); });
-    s1.addEventListener("change", function () { if (!touched) suggestReview(); render(); });
-    s2.addEventListener("change", function () { if (!touched) suggestReview(); render(); });
-    dateIn.addEventListener("change", render);
+    s1.addEventListener("change", function () { if (!touched) suggestReview(); refresh(); });
+    s2.addEventListener("change", function () { if (!touched) suggestReview(); refresh(); });
+    dateIn.addEventListener("change", function () { draw(); save(); });
+    $("b-fresh").addEventListener("click", function () {
+      store.del(PKEY); touched = false; suggestReview(); plan = newPlan(); refresh();
+    });
     onLevel.push(function (lid) { if (bCur !== lid) setLevel(lid); });
     $("b-print").addEventListener("click", function () {
       document.body.classList.add("print-plan"); window.print();
       setTimeout(function () { document.body.classList.remove("print-plan"); }, 500);
     });
-    $("b-copy").addEventListener("click", function () { copy(plainText, this, "Copy plan"); });
-    builder = { setLevel: setLevel };
+    $("b-copy").addEventListener("click", function () { copy(planText(), this, "Copy plan"); });
+    // restore a saved plan for this device
+    var restore = function () {
+      var saved = null;
+      try { saved = JSON.parse(store.get(PKEY)); } catch (e) { saved = null; }
+      if (!saved || !saved.sections || levels.indexOf(saved.level) < 0) return false;
+      bCur = saved.level; bl.value = saved.level; fillSelect(s1, saved.level, false); fillSelect(s2, saved.level, true); fillReview(saved.level);
+      if (saved.s1) s1.value = saved.s1; s2.value = saved.s2 || "";
+      rev.querySelectorAll("input").forEach(function (cb) { cb.checked = (saved.review || []).indexOf(cb.value) >= 0; });
+      dateIn.value = saved.date || ""; touched = !!saved.touched; plan = { sections: saved.sections };
+      return true;
+    };
+    builder = { setLevel: setLevel, restore: restore, refresh: refresh };
   }
   document.querySelectorAll('a[href="#builder"][data-level]').forEach(function (a) {
     a.addEventListener("click", function () { setGroup(a.dataset.level); if (builder) builder.setLevel(a.dataset.level, a.dataset.skill); });
@@ -289,6 +396,8 @@
     }
     return true;
   };
-  if (!fromHash()) setGroup(store.get("yc-level") || levels[0]);
+  var restored = builder ? builder.restore() : false;
+  if (!fromHash()) setGroup(restored ? bCur : (store.get("yc-level") || levels[0]));
+  if (restored && builder) builder.refresh();
   window.addEventListener("hashchange", fromHash);
 })();
