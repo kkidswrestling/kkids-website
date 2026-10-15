@@ -579,10 +579,10 @@ live = "On knees: maintain position."
 [[skill]]
 level = "orange-black"
 position = "bottom"
-name = "Get away"
+name = "Escaping from your feet"
 teach = ["Leg forward, chest up, pressure back in, wrist, cut through."]
-demonstrates = "Escapes with the get away against light resistance."
-drill = "2&2 get away."
+demonstrates = "Escapes from their feet against light resistance."
+drill = "2&2 escaping from your feet."
 live = "Quick starts from bottom with a score given (down 1, down 2)."
 
 [[skill]]
@@ -805,7 +805,7 @@ live = "Two legs in (on knees or on belly). Overtime ride-out."
 # ------------------------------------------------------------------ Drilling and live situations
 [drilling]
 two_and_two = "I do two reps in a row, then my partner does two, and we keep alternating. Same setup and finish each time."
-series = "Series version: head inside single, stand-up, mat return, change-over and stand, get away. Then the other wrestler shoots."
+series = "Series version: head inside single, stand-up, mat return, change-over and stand, escape from your feet. Then the other wrestler shoots."
 
 [[live]]
 level = "novice"
@@ -963,7 +963,7 @@ type = "drill"
 levels = ["orange-black"]
 position = "all"
 setup = "Partners matched by size, one shooter."
-coach = "Head inside single, stand-up, mat return, change-over and stand, get away. Then the other wrestler shoots."
+coach = "Head inside single, stand-up, mat return, change-over and stand, escape from your feet. Then the other wrestler shoots."
 cue = "Chain it. Don't stop between moves."
 check = "Runs the whole series without a pause."
 
