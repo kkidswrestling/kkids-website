@@ -142,7 +142,9 @@
       var d = dateIn.value ? new Date(dateIn.value + "T12:00:00").toLocaleDateString(undefined, { weekday: "long", month: "numeric", day: "numeric", year: "2-digit" }) : "";
       sheet.innerHTML = "";
       var wrap = el("div", null, "yc-sheet editable"), head = el("div", null, "yc-sheet-head"), body = el("div", null, "yc-sheet-body");
-      head.appendChild(el("h3", "Practice Plan")); head.appendChild(el("span", (d ? d + " · " : "") + L.name));
+      var logo = el("img", null, "yc-logo"); logo.src = "../../assets/img/logo-192.png"; logo.alt = "Northampton Wrestling"; logo.width = 192; logo.height = 165;
+      var tb = el("div", null, "yc-sheet-title"); tb.appendChild(el("p", "Northampton Wrestling · Youth")); tb.appendChild(el("h3", "Practice Plan"));
+      head.appendChild(logo); head.appendChild(tb); head.appendChild(el("span", (d ? d + " · " : "") + L.name, "yc-sheet-meta"));
       plan.sections.forEach(function (sec) {
         var box = el("section"), h = el("h4", title(sec.key)), ul = el("ul");
         if (sec.custom) {
@@ -197,7 +199,8 @@
         box.appendChild(tools);
         body.appendChild(box);
       });
-      wrap.appendChild(head); wrap.appendChild(body); sheet.appendChild(wrap);
+      var foot = el("div", null, "yc-sheet-foot"); foot.appendChild(el("span", "Better people first. Better wrestlers along the way.")); foot.appendChild(el("span", "Konkrete Kids"));
+      wrap.appendChild(head); wrap.appendChild(body); wrap.appendChild(foot); sheet.appendChild(wrap);
       // drills to run for the new technique
       drillBox.innerHTML = "";
       var ids = [];
@@ -236,8 +239,11 @@
     });
     onLevel.push(function (lid) { if (bCur !== lid) setLevel(lid); });
     $("b-print").addEventListener("click", function () {
+      var pg = document.createElement("style");
+      pg.textContent = "@page { size: letter portrait; margin: 0; }";
+      document.head.appendChild(pg);
       document.body.classList.add("print-plan"); window.print();
-      setTimeout(function () { document.body.classList.remove("print-plan"); }, 500);
+      setTimeout(function () { document.body.classList.remove("print-plan"); pg.remove(); }, 500);
     });
     $("b-copy").addEventListener("click", function () { copy(planText(), this, "Copy plan"); });
     // restore a saved plan for this device

@@ -862,8 +862,16 @@ def yc_sheet(smp, by_id):
             ("Contest situation", plain(smp["contest"])), ("Conditioning", plain(smp["conditioning"])),
             ("Announcements", plain(smp["closing"]) or "<li></li>"), ("Team Culture", plain(smp["culture"])), ("My notes", notes)]
     body = "".join(f'<section><h4>{e(n)}</h4><ul>{c}</ul></section>' for n, c in secs)
-    return (f'<div class="yc-sheet"><div class="yc-sheet-head"><h3>Practice Plan</h3><span>{e(smp["title"].split(": ", 1)[-1])}</span></div>'
-            f'<div class="yc-sheet-body">{body}</div></div>')
+    return (f'<div class="yc-sheet">{yc_sheet_head(e(smp["title"].split(": ", 1)[-1]))}'
+            f'<div class="yc-sheet-body">{body}</div>{YC_SHEET_FOOT}</div>')
+
+
+YC_SHEET_FOOT = '<div class="yc-sheet-foot"><span>Better people first. Better wrestlers along the way.</span><span>Konkrete Kids</span></div>'
+
+
+def yc_sheet_head(meta):
+    return ('<div class="yc-sheet-head"><img class="yc-logo" src="../../assets/img/logo-192.png" width="192" height="165" alt="Northampton Wrestling">'
+            f'<div class="yc-sheet-title"><p>Northampton Wrestling · Youth</p><h3>Practice Plan</h3></div><span class="yc-sheet-meta">{meta}</span></div>')
 
 
 def yc_skill(s, drills):
