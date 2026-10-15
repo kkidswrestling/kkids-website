@@ -242,8 +242,13 @@
       var pg = document.createElement("style");
       pg.textContent = "@page { size: letter portrait; margin: 0; }";
       document.head.appendChild(pg);
-      document.body.classList.add("print-plan"); window.print();
-      setTimeout(function () { document.body.classList.remove("print-plan"); pg.remove(); }, 500);
+      // long plans get slightly smaller type so they stay on one page
+      var lines = 0;
+      plan.sections.forEach(function (sec) { sec.items.forEach(function (i) { lines += 1 + i.sub.length + Math.floor((i.t || "").length / 55); }); });
+      var dense = lines > 62 ? "plan-denser" : lines > 46 ? "plan-dense" : "";
+      document.body.classList.add("print-plan"); if (dense) document.body.classList.add(dense);
+      window.print();
+      setTimeout(function () { document.body.classList.remove("print-plan", "plan-dense", "plan-denser"); pg.remove(); }, 800);
     });
     $("b-copy").addEventListener("click", function () { copy(planText(), this, "Copy plan"); });
     // restore a saved plan for this device

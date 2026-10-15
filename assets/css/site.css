@@ -1175,7 +1175,11 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
   body.print-plan .ycp-split.wide { display: block !important; }
   body.print-plan .yc-sheet { box-shadow: none; border: 0; border-radius: 0; font-size: 12px; line-height: 1.28; }
   body.print-plan { padding: .45in .5in; }
-  body.print-plan .yc-sheet-body { padding: 10px 4px 0; column-gap: 22px; }
+  body.print-plan .yc-sheet-body { padding: 10px 4px 0; column-gap: 22px; columns: 2 !important; column-count: 2 !important; column-width: auto !important; }
+  body.print-plan .yc-out, body.print-plan #b-sheet, body.print-plan .yc-sheet { width: 100% !important; max-width: none !important; }
+  body.print-plan.plan-dense .yc-sheet { font-size: 11px; line-height: 1.22; }
+  body.print-plan.plan-denser .yc-sheet { font-size: 10px; line-height: 1.18; }
+  body.print-plan.plan-dense .yc-sheet section, body.print-plan.plan-denser .yc-sheet section { margin-bottom: 6px; }
   body.print-plan .yc-sheet section { margin-bottom: 9px; }
   body.print-plan .yc-sheet h4 { font-size: 11.5px; }
   body.print-plan .yc-sheet-head { border-radius: 8px 8px 0 0; }
