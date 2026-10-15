@@ -928,7 +928,14 @@ chain = "Stance → shot → finish → feet."
 [success]
 eyebrow = "What success looks like"
 title = "By the start of 7th grade"
-text = "Wrestlers should own a good stance and motion, finish a single and a double without staying on their knees, get to their feet from bottom, ride and turn with a half or a cradle, and wrestle with the Northampton attitude: never give up, hustle, respect. These fundamentals carry straight into the junior high room."
+text = "A wrestler finishing Orange & Black should be able to demonstrate:"
+items = [
+  ["On our feet", "Hand fight to a tie and shoot from it. Finish head outside, head inside, low and high singles on a resisting partner without leaving the leg. Counter the singles and score from a front headlock."],
+  ["Bottom", "Hold a base, get to their feet with the stand-up series and sit to stand, switch and re-switch, fight the chop, and clear legs."],
+  ["Top", "Break down and Turk, finish the crossface and near cradles and the half, run a bar, and ride legs."],
+  ["Attitude", "Wrestle hard all six minutes, win the 3rd period, never get a stall call, and fight off their back."],
+]
+outro = "These fundamentals carry straight into the junior high room."
 link_text = "See the junior high program"
 
 [development]

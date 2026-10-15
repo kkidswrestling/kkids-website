@@ -1003,9 +1003,11 @@ def build_youth_coaches():
   <p class="ycp-eyebrow">Our shared commitment</p><h2 id="standard-title">A consistent foundation. Across every team.</h2>
   <p class="ycp-intro">Coaches bring their own personalities and styles. But the skills we teach, and the habits we reinforce, should not depend on which team a child joins.</p>
   <ol class="ycp-grid4">{std}</ol>
-  <div class="ycp-split ycp-gap">
+  <div class="ycp-split ycp-gap top">
     <div class="ycp-card dark"><p class="ycp-eyebrow light">{e(HB["eyebrow"])}</p><h3>{e(HB["title"])}</h3><p>{e(HB["text"])}</p><p class="ycp-chain">{e(HB["chain"])}</p></div>
-    <div class="ycp-card"><p class="ycp-eyebrow">{e(SU["eyebrow"])}</p><h3>{e(SU["title"])}</h3><p>{e(SU["text"])}</p><a class="ycp-btn soft" href="../../junior-high/">{e(SU["link_text"])} →</a></div>
+    <div class="ycp-card"><p class="ycp-eyebrow">{e(SU["eyebrow"])}</p><h3>{e(SU["title"])}</h3><p>{e(SU["text"])}</p>
+      <dl class="ycp-success">{"".join(f"<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>" for k, v in SU["items"])}</dl>
+      <p class="ycp-small muted">{e(SU["outro"])}</p><a class="ycp-btn soft" href="../../junior-high/">{e(SU["link_text"])} →</a></div>
   </div>
   <div class="ycp-note bar ycp-gap"><b>{e(DV["title"])}</b> {e(DV["text"])}</div>
   <p class="ycp-eyebrow ycp-gap-lg">The development process</p><h2>Four steps to an effective season</h2>
