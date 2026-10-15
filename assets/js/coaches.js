@@ -14,10 +14,18 @@
     del: function (k) { try { localStorage.removeItem(k); } catch (e) {} }
   };
   var copy = function (text, btn, label) {
-    if (!navigator.clipboard) return;
-    navigator.clipboard.writeText(text).then(function () {
-      btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1600);
-    }, function () {});
+    var flash = function (msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = label; }, 1800); };
+    var fallback = function () {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.top = "-1000px"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0, text.length);
+      var ok = false; try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      flash(ok ? "Copied" : "Couldn’t copy. Try Print instead.");
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { flash("Copied"); }, fallback);
+    } else { fallback(); }
   };
   var levels = Object.keys(DATA.levels);
   var skillsFor = function (lid) { return DATA.skills.filter(function (s) { return s.level === lid; }); };
@@ -230,14 +238,18 @@
       if (changed || skillId) plan = newPlan();
       refresh();
     };
-    bl.addEventListener("change", function () { setGroup(bl.value); });
+    var hasEdits = function () { return plan && plan.sections.some(function (x) { return x.custom; }); };
+    var okToReplace = function () { return !hasEdits() || window.confirm("Start a new plan? Your edits to the current plan will be replaced."); };
+    bl.addEventListener("change", function () {
+      if (!okToReplace()) { bl.value = bCur; return; }
+      setLevel(bl.value);
+    });
     s1.addEventListener("change", function () { if (!touched) suggestReview(); refresh(); });
     s2.addEventListener("change", function () { if (!touched) suggestReview(); refresh(); });
     dateIn.addEventListener("change", function () { draw(); save(); });
     $("b-fresh").addEventListener("click", function () {
       store.del(PKEY); touched = false; suggestReview(); plan = newPlan(); refresh();
     });
-    onLevel.push(function (lid) { if (bCur !== lid) setLevel(lid); });
     $("b-print").addEventListener("click", function () {
       var pg = document.createElement("style");
       pg.textContent = "@page { size: letter portrait; margin: 0; }";
@@ -247,8 +259,14 @@
       plan.sections.forEach(function (sec) { sec.items.forEach(function (i) { lines += 1 + i.sub.length + Math.floor((i.t || "").length / 55); }); });
       var dense = lines > 62 ? "plan-denser" : lines > 46 ? "plan-dense" : "";
       document.body.classList.add("print-plan"); if (dense) document.body.classList.add(dense);
-      window.print();
-      setTimeout(function () { document.body.classList.remove("print-plan", "plan-dense", "plan-denser"); pg.remove(); }, 800);
+      var done = false, clean = function () {
+        if (done) return; done = true;
+        document.body.classList.remove("print-plan", "plan-dense", "plan-denser"); pg.remove();
+        window.removeEventListener("afterprint", clean);
+      };
+      window.addEventListener("afterprint", clean);
+      setTimeout(function () { window.print(); }, 50);
+      setTimeout(clean, 60000);
     });
     $("b-copy").addEventListener("click", function () { copy(planText(), this, "Copy plan"); });
     // restore a saved plan for this device
@@ -262,10 +280,14 @@
       dateIn.value = saved.date || ""; touched = !!saved.touched; plan = { sections: saved.sections };
       return true;
     };
-    builder = { setLevel: setLevel, restore: restore, refresh: refresh };
+    builder = { setLevel: setLevel, restore: restore, refresh: refresh, okToReplace: okToReplace, level: function () { return bCur; } };
   }
   document.querySelectorAll('a[href="#builder"][data-level]').forEach(function (a) {
-    a.addEventListener("click", function () { setGroup(a.dataset.level); if (builder) builder.setLevel(a.dataset.level, a.dataset.skill); });
+    a.addEventListener("click", function (e) {
+      if (!builder) return;
+      if (!builder.okToReplace()) { e.preventDefault(); return; }
+      builder.setLevel(a.dataset.level, a.dataset.skill);
+    });
   });
 
   // ---------------------------------------------------------- drill library filters
@@ -329,13 +351,15 @@
         box.appendChild(b);
       });
     };
+    var finished = false;
     $("q-next").addEventListener("click", function () {
+      if (finished) { finished = false; qi = 0; score = 0; showQ(); return; }
       if (qi < DATA.quiz.length - 1) { qi++; showQ(); return; }
+      finished = true;
       $("q-num").textContent = "Done";
       $("q-text").textContent = "You chose the Northampton way on " + score + " of " + DATA.quiz.length + " scenarios.";
       $("q-opts").innerHTML = ""; $("q-fb").hidden = true;
       var b = $("q-next"); b.textContent = "Start over"; b.disabled = false;
-      b.onclick = function () { b.onclick = null; qi = 0; score = 0; showQ(); };
     });
     showQ();
   }
@@ -378,7 +402,8 @@
       });
       copy(lines.join("\n"), this, "Copy check-in summary");
     });
-    onLevel.push(function (lid) { cl.value = lid; renderCheck(); });
+    cl.value = store.get("yc-level") && levels.indexOf(store.get("yc-level")) >= 0 ? store.get("yc-level") : levels[0];
+    renderCheck();
   }
 
   // ---------------------------------------------------------- section bar: highlight where you are
@@ -408,7 +433,7 @@
     return true;
   };
   var restored = builder ? builder.restore() : false;
-  if (!fromHash()) setGroup(restored ? bCur : (store.get("yc-level") || levels[0]));
-  if (restored && builder) builder.refresh();
+  if (!fromHash()) setGroup(store.get("yc-level") || levels[0]);
+  if (builder) { if (restored) builder.refresh(); else builder.setLevel(current); }
   window.addEventListener("hashchange", fromHash);
 })();
