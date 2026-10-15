@@ -47,7 +47,8 @@ CUR = SEASONS[0]
 
 NAV_GROUPS = [
     ("Program", [("story/", "Our Story"), ("coaching-staff/", "Coaches"), ("facilities/", "Our Home"),
-                 ("high-school/", "Varsity"), ("junior-high/", "Junior High"), ("youth/", "Youth")]),
+                 ("high-school/", "Varsity"), ("junior-high/", "Junior High"), ("youth/", "Youth"),
+                 ("youth/coaches/", "Youth Coaches")]),
     ("Team", [("roster/", "Roster"), ("schedule/", "Schedule"), ("results/", "Results"), ("high-school/#stats-title", "Stats")]),
     ("Tradition", [("champions/", "Hall of Champions"), ("champions/#team-title", "Team Titles"),
                    ("champions/#hundred-title", "100-Win Club"), ("champions/#lists-title", "Record Book"),
@@ -782,6 +783,13 @@ def build_youth():
     </aside>
   </div>
 </section>
+<section class="band dark yc-promo">
+  <div class="wrap split narrow-right">
+    <div><p class="kicker">For youth coaches</p><h2>Youth Coaches’ Playbook</h2>
+    <p class="lede">What to teach in Novice and in Orange &amp; Black, what each wrestler should be able to demonstrate, and how to run a practice.</p></div>
+    <p class="actions"><a class="btn" href="coaches/">Open the playbook</a></p>
+  </div>
+</section>
 <section class="band concrete">
   <div class="wrap">
     <h2>Questions families ask</h2>
@@ -805,6 +813,111 @@ def build_youth():
 </section>
 """
     return page("youth/index.html", "Youth", "Northampton youth wrestling for grades K–6 in the Valley Elementary Wrestling League.", body, "youth/", og_image="youth-champs")
+
+
+YC_POSITIONS = [("feet", "On Our Feet"), ("bottom", "Bottom"), ("top", "Top")]
+
+
+def yc_skill(s):
+    cues = "".join(f"<li>{e(c)}</li>" for c in s.get("teach", []))
+    cues = f'<ul class="yc-cues" role="list">{cues}</ul>' if cues else ""
+    vid = (f'<a class="yc-video" href="{e(s["video"])}" rel="noopener" target="_blank">Watch the technique</a>'
+           if s.get("video") else "")
+    return (f'<article class="yc-skill"><h4>{e(s["name"])}</h4>{cues}'
+            f'<p class="yc-demo"><b>Wrestler demonstrates</b>{e(s["demonstrates"])}</p>{vid}</article>')
+
+
+def yc_level(YC, lid):
+    lv = YC["levels"][lid]
+    skills = [s for s in YC["skill"] if s["level"] == lid]
+    attitude = "".join(f"<li>{e(a)}</li>" for a in lv["attitude"])
+    blocks = []
+    for pi, (pid, pname) in enumerate(YC_POSITIONS):
+        ps = [s for s in skills if s["position"] == pid]
+        note = lv.get("notes", {}).get(pid)
+        groups = list(dict.fromkeys(s.get("group", "") for s in ps))
+        inner = ""
+        for g in groups:
+            cards = "".join(yc_skill(s) for s in ps if s.get("group", "") == g)
+            head = f'<h3 class="yc-group">{e(g)}</h3>' if g else ""
+            inner += f'{head}<div class="yc-grid">{cards}</div>'
+        note_html = f'<p class="yc-note">{e(note)}</p>' if note else ""
+        blocks.append(
+            f'<details class="yc-pos" id="{lid}-{pid}"{" open" if pi == 0 else ""}><summary><span class="yc-pos-name">{pname}</span>'
+            f'<span class="yc-count">{len(ps)} skills</span></summary><div class="yc-pos-body">{note_html}{inner}</div></details>')
+    live = ""
+    for L in [x for x in YC["live"] if x["level"] == lid]:
+        h = f'<h4>{e(L["group"])}</h4>' if L.get("group") else ""
+        live += f'<div>{h}<ul role="list">{"".join(f"<li>{e(i)}</li>" for i in L["items"])}</ul></div>'
+    live_lead = "" if lid == "novice" else '<p class="fine">Everything in Novice, plus:</p>'
+    return f"""
+    <div class="yc-level-head">
+      <div><h2>{e(lv["name"])}</h2><p class="lede">{e(lv["who"])}</p><p class="yc-summary">{e(lv["summary"])}</p></div>
+      <div class="yc-attitude"><h3>Attitude</h3><ul role="list">{attitude}</ul></div>
+    </div>
+    {"".join(blocks)}
+    <div class="yc-live"><h3>Live situations</h3>{live_lead}<div class="yc-live-cols">{live}</div></div>"""
+
+
+def build_youth_coaches():
+    R = "../../"
+    YC = load_toml("youth-coaches.toml")
+    lids = list(YC["levels"].keys())
+    points = "".join(f'<li><b>{e(t)}</b>{e(d)}</li>' for t, d in YC["intro"]["points"])
+    tabs = "".join(
+        f'<button type="button" role="tab" id="tab-{lid}" aria-controls="lvl-{lid}" aria-selected="{"true" if i == 0 else "false"}"'
+        f'{"" if i == 0 else " tabindex=\"-1\""} data-level="{lid}">{e(YC["levels"][lid]["name"])}</button>'
+        for i, lid in enumerate(lids))
+    panels = "".join(
+        f'<section class="panel yc-panel" role="tabpanel" id="lvl-{lid}" aria-labelledby="tab-{lid}" tabindex="0">{yc_level(YC, lid)}</section>'
+        for lid in lids)
+    P = YC["practice"]
+    template = "".join(f"<li><b>{e(a)}</b>{e(b)}</li>" for a, b in P["template"])
+    samples = ""
+    for smp in YC["sample"]:
+        rows = "".join(f'<tr><th scope="row">{e(a)}</th><td>{e(b)}</td></tr>' for a, b in smp["rows"])
+        samples += (f'<div class="yc-sample"><h3>{e(smp["title"])}</h3><div class="table-wrap" tabindex="0" role="region" aria-label="{e(smp["title"])}">'
+                    f'<table class="yc-plan"><thead><tr><th scope="col">Block</th><th scope="col">Plan</th></tr></thead><tbody>{rows}</tbody></table></div></div>')
+    standards = "".join(f"<li>{e(s)}</li>" for s in YC["standards"]["items"])
+    D = YC["drilling"]
+    body = f"""
+{page_head(R, "Youth Coaches’ Playbook", e(YC["intro"]["lede"]), "youth-mat", "50% 40%", kicker="Northampton youth wrestling")}
+<nav class="yc-jump" aria-label="On this page"><div class="wrap"><a href="#curriculum">Curriculum</a><a href="#practice">Practice plan</a><a href="#standards">Coaching standards</a></div></nav>
+<section class="band">
+  <div class="wrap split narrow-right top">
+    <ol class="yc-points" role="list">{points}</ol>
+    <aside class="note-card"><h3>Our mission</h3><p>{e(YC["intro"]["mission"])}</p><p class="yc-tag">{e(YC["intro"]["tagline"])}</p></aside>
+  </div>
+</section>
+<section class="band concrete" id="curriculum" aria-labelledby="curriculum-title">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="curriculum-title">What to teach</h2>
+    <p>Pick your group. Each position opens to show its skills, the coaching cues, and what a wrestler must demonstrate before moving on.</p></div>
+    <div class="tabs yc-tabs" role="tablist" aria-label="Group">{tabs}</div>
+    {panels}
+  </div>
+</section>
+<section class="band" id="practice" aria-labelledby="practice-title">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="practice-title">Practice plan</h2><p>{e(P["intro"])}</p></div>
+    <div class="split even">
+      <div><h3>Every practice</h3><ol class="yc-template">{template}</ol></div>
+      <div class="note-card"><h3>2&amp;2 drilling</h3><p>{e(D["two_and_two"])}</p><p>{e(D["series"])}</p></div>
+    </div>
+    <div class="yc-samples">{samples}</div>
+  </div>
+</section>
+<section class="band dark" id="standards" aria-labelledby="standards-title">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="standards-title">Coaching standards</h2><p class="lede">We are transformational coaches. Kids learn what a good adult looks like by watching us.</p></div>
+    <ol class="yc-standards" role="list">{standards}</ol>
+    <p class="actions top-gap"><a class="btn" href="../">Youth wrestling home</a></p>
+  </div>
+</section>
+"""
+    return page("youth/coaches/index.html", "Youth Coaches’ Playbook",
+                "What Northampton youth wrestling coaches teach: Novice and Orange & Black curriculum, practice plans, and coaching standards.",
+                body, "youth/coaches/", scripts=("site.js", "coaches.js"), og_image="youth-mat")
 
 
 def build_coaches():
@@ -1328,7 +1441,7 @@ def main():
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import v2
     v2.M = sys.modules[__name__]
-    urls = [v2.build_home(), build_high_school(), build_schedule(), build_junior_high(), build_youth(),
+    urls = [v2.build_home(), build_high_school(), build_schedule(), build_junior_high(), build_youth(), build_youth_coaches(),
             build_coaches(), build_champions()] + build_seasons()
     urls += v2.build_all(sys.modules[__name__])
     build_404()
