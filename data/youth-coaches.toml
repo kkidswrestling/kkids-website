@@ -8,19 +8,41 @@
 # when a technique video is ready; the "Watch" button appears automatically.
 
 [intro]
-lede = "What every Northampton youth coach teaches, by group, in the same words the high school room uses."
-points = [
-  ["Master it before moving up.", "Levels are skills, not years. Wrestlers move on when they own the position, not when the season ends. Each skill lists what the wrestler must demonstrate to show they own it."],
-  ["Teach the Northampton way.", "Every group is organized the same way: Attitude, On Our Feet, Bottom, Top. Kids should reach the high school already speaking the language."],
-  ["Orange and Black builds on Novice.", "Everything in Novice keeps getting drilled; Orange and Black adds finishes, counters, hand fighting, chains and legs."],
-]
+lede = "Everything a Northampton youth coach needs to run a purposeful practice: what to teach, how to teach it, and how to know it stuck."
 mission = "To help student-athletes develop the timeless qualities and skills they need to become successful and happy adults, to help them reach their potential in wrestling, and to add value to their lives."
 tagline = "Better people first. Better wrestlers along the way."
+
+# The shared standard: four cards
+standard = [
+  ["Every practice", "Teach the fundamentals", "A written plan every practice. A few moves, taught well, lots of reps. Kids leave tired, a little better, and excited to come back."],
+  ["Every wrestler", "Every kid matters", "The beginner gets the same attention as the tournament winner. Partners and live goes are matched by size and experience."],
+  ["Every skill", "Master it before moving up", "A skill is learned when the wrestler can demonstrate it, not when the coach has shown it. Levels are skills, not years."],
+  ["Every match", "Matches are for experience", "In the corner: calm, short, positive. The first words after a match are positive. Fixing happens at the next practice."],
+]
+northampton_way = "Teach the Northampton way. Every group is organized the same way, Attitude, On Our Feet, Bottom, Top, in the same words the high school room uses."
+
+# The season roadmap: four steps
+roadmap = [
+  ["Before the season", "Pick your group. Read its attitude, coaching habits, and the coaching standards."],
+  ["Every week", "Choose 1–2 skills from your group's list. Build each practice around them with the practice builder."],
+  ["At practice", "Teach the cues, drill it 2&2, put it in a live situation, then check: can the wrestler demonstrate it?"],
+  ["After practice", "Coach's notes: who owns today's skill, and who needs it re-taught next practice."],
+]
 
 [levels.novice]
 name = "Novice"
 who = "First- and second-year wrestlers, mostly K–2."
 summary = "Few moves, taught well, lots of reps."
+callout = ["Keep it fun.", "Fun is a requirement, not a reward. The more fun they have, the more they improve. Use games, short reps, and lots of praise for effort."]
+habits = [
+  "A few moves, taught well, with lots of reps.",
+  "Games whenever possible; conditioning built into games.",
+  "Every kid gets the same attention, beginners most of all.",
+  "Partners and live goes matched by size and experience.",
+  "Praise effort and attitude more than results.",
+]
+warmup = "Stance and motion follow-the-leader. Ankle touch for points. Sumo."
+conditioning = "King of the mat."
 attitude = [
   "We never give up.",
   "We wrestle hard at all times.",
@@ -34,6 +56,16 @@ feet = "On every shot: don't stay on your knees (drive in or tripod up). Go behi
 name = "Orange & Black"
 who = "Experienced wrestlers on Northampton Orange and Northampton Black, varsity and JV."
 summary = "Keep drilling everything in Novice. Orange and Black adds the following."
+callout = ["Build on Novice.", "Re-teach any Novice skill a wrestler can't demonstrate before adding new ones. Then add finishes, counters, hand fighting, chains and legs."]
+habits = [
+  "Keep drilling Novice skills every week.",
+  "Chain moves: connect one move to the next instead of teaching moves alone.",
+  "Live situations every practice, matched by size and experience.",
+  "Measure effort and attitude, not the scoreboard.",
+  "Same language as the high school room.",
+]
+warmup = "Jog, forward rolls, karaoke in and out, stance in and out, sprawls. Finish with a short game."
+conditioning = "Sprawl relay or king of the mat."
 attitude = [
   "We never give up. Hustle back to the center.",
   "We don't go out of bounds; keep your back to the center and circle in.",
@@ -58,6 +90,8 @@ group = "Position"
 name = "Stance"
 teach = ["Staggered and square.", "Low, balanced, ready.", "Always able to touch the mat with your hand."]
 demonstrates = "Holds both stances in motion and can touch the mat with either hand at any time without standing up."
+drill = "Stance in, stance out on the coach's call: staggered, square, touch the mat."
+live = "Ankle touch for points."
 
 [[skill]]
 level = "novice"
@@ -66,6 +100,8 @@ group = "Position"
 name = "Motion"
 teach = ["Forward, back, side to side, circling."]
 demonstrates = "Moves in every direction and circles while staying in stance, without crossing feet."
+drill = "Shadow wrestle: forward, back, side to side, circling, staying in stance."
+live = "Mirror a partner's motion without crossing your feet."
 
 [[skill]]
 level = "novice"
@@ -74,6 +110,8 @@ group = "Position"
 name = "Penetration step"
 teach = ["Inside and outside.", "Change your elevation before you penetrate."]
 demonstrates = "Changes level first, then hits a deep inside and outside step with head up."
+drill = "2&2 penetration steps, inside and outside. Level change first."
+live = "Shoot on the whistle from motion."
 
 [[skill]]
 level = "novice"
@@ -82,6 +120,8 @@ group = "Position"
 name = "Back step"
 teach = []
 demonstrates = "Back steps with correct footwork to both sides from stance."
+drill = "Back step footwork to both sides, alone first, then with a partner."
+live = ""
 
 [[skill]]
 level = "novice"
@@ -90,6 +130,8 @@ group = "Position"
 name = "Setups and control ties"
 teach = ["Wrist tie, head snap, pop and go."]
 demonstrates = "Sets up a shot with a wrist tie, head snap or pop and go instead of shooting from open space."
+drill = "2&2: wrist tie, head snap, or pop and go into a double leg."
+live = "Start in a tie; score from it on the whistle."
 
 [[skill]]
 level = "novice"
@@ -98,6 +140,8 @@ group = "Takedowns"
 name = "Double leg"
 teach = ["Head outside.", "Drive through and finish."]
 demonstrates = "Hits the double from stance, drives through and finishes on a drilling partner."
+drill = "2&2 double leg from stance."
+live = "Quick starts from neutral (10–15 seconds)."
 
 [[skill]]
 level = "novice"
@@ -106,6 +150,8 @@ group = "Takedowns"
 name = "Head outside single"
 teach = ["Screw the leg in.", "Lock the wrist high.", "Leg drive.", "Build to a good position."]
 demonstrates = "Finishes on a resisting partner without staying on their knees."
+drill = "2&2 head outside single."
+live = "Live once in on a leg: head outside (good or bad position)."
 
 [[skill]]
 level = "novice"
@@ -114,6 +160,8 @@ group = "Takedowns"
 name = "Head inside single"
 teach = ["Go behind.", "Don't wrap the lower leg; post the arm through and tackle the other leg."]
 demonstrates = "Gets behind from the leg without wrapping the lower leg."
+drill = "2&2 head inside single, go behind."
+live = "Live once in on a leg: head inside (good or bad position)."
 
 [[skill]]
 level = "novice"
@@ -122,6 +170,8 @@ group = "Takedowns"
 name = "Snap and spin"
 teach = ["Snap your opponent down, go behind."]
 demonstrates = "Snaps a partner to their knees and spins behind to control."
+drill = "2&2 snap down and spin behind."
+live = "On knees: snap down on the whistle; partner defends."
 
 [[skill]]
 level = "novice"
@@ -130,6 +180,8 @@ group = "Defense"
 name = "Lines of defense"
 teach = []
 demonstrates = "Stops a partner's shot before it reaches the legs."
+drill = "Partner shoots at half speed; stop it before it reaches your legs."
+live = "On knees: one shoots, the other counters on the whistle."
 
 [[skill]]
 level = "novice"
@@ -138,6 +190,8 @@ group = "Defense"
 name = "Sprawl and spin"
 teach = []
 demonstrates = "Sprawls with hips down and legs back, then spins behind to score."
+drill = "2&2 sprawl and spin behind."
+live = "On knees: one shoots, the other counters on the whistle."
 
 [[skill]]
 level = "novice"
@@ -146,6 +200,8 @@ group = "Defense"
 name = "Stuff the head"
 teach = []
 demonstrates = "Stuffs the head and stops the shot's penetration."
+drill = "2&2 stuff the head on a partner's shot."
+live = "On knees: one shoots, the other counters on the whistle."
 
 [[skill]]
 level = "novice"
@@ -154,6 +210,8 @@ group = "Defense"
 name = "Down block"
 teach = ["With head position control."]
 demonstrates = "Blocks a low shot while keeping the head in good position."
+drill = "2&2 down block on a low shot."
+live = "On knees: one shoots, the other counters on the whistle."
 
 # ------------------------------------------------------------------ Novice: Bottom
 [[skill]]
@@ -162,6 +220,8 @@ position = "bottom"
 name = "Referee's position"
 teach = ["Procedure and basic positioning.", "Head up, chest up, never on your belly."]
 demonstrates = "Sets up correctly every time, head up and chest up."
+drill = "Set up in referee's position on the coach's call; coaches check head and chest."
+live = "On knees: maintain position."
 
 [[skill]]
 level = "novice"
@@ -169,6 +229,8 @@ position = "bottom"
 name = "The position ladder"
 teach = ["Back is worst.", "Belly beats back.", "Referee's position beats belly.", "Tripod or sit beats referee's position.", "Feet beat everything.", "Always get to something better."]
 demonstrates = "Names the ladder in order, and when broken down to the belly, works back to the knees."
+drill = "Coach calls a position (back, belly, knees, sit); wrestlers get to the next better one."
+live = "On belly: get to your knees, get to a sit, get to your feet."
 
 [[skill]]
 level = "novice"
@@ -176,6 +238,8 @@ position = "bottom"
 name = "Move on the whistle"
 teach = ["Build a base and get to your feet."]
 demonstrates = "Moves on the whistle every time, with no pause."
+drill = "Whistle drill: move on the whistle against light resistance."
+live = "Quick starts from bottom (5–15 seconds)."
 
 [[skill]]
 level = "novice"
@@ -183,6 +247,8 @@ position = "bottom"
 name = "Stand-up"
 teach = []
 demonstrates = "Gets to their feet from referee's position against light resistance."
+drill = "2&2 stand-up."
+live = "Quick starts from bottom: get to your feet."
 
 [[skill]]
 level = "novice"
@@ -190,6 +256,8 @@ position = "bottom"
 name = "Switch"
 teach = []
 demonstrates = "Hits a switch and comes out on top against light resistance."
+drill = "2&2 switch."
+live = "Quick starts from bottom."
 
 [[skill]]
 level = "novice"
@@ -197,6 +265,8 @@ position = "bottom"
 name = "Hip escape"
 teach = []
 demonstrates = "Uses a hip escape to get to a better position."
+drill = "2&2 hip escape."
+live = "On belly: get to your knees."
 
 [[skill]]
 level = "novice"
@@ -204,6 +274,8 @@ position = "bottom"
 name = "Knee slide"
 teach = []
 demonstrates = "Uses a knee slide to get to their feet."
+drill = "2&2 knee slide to your feet."
+live = "Quick starts from bottom: get to your feet."
 
 # ------------------------------------------------------------------ Novice: Top
 [[skill]]
@@ -212,6 +284,8 @@ position = "top"
 name = "Riding position"
 teach = ["Stop the first move.", "Stay off your knees.", "Don't let your opponent up."]
 demonstrates = "Stops a partner's first move and rides for 15 seconds without going to the knees."
+drill = "Top holds position while bottom moves at half speed."
+live = "On knees: maintain position (top rides)."
 
 [[skill]]
 level = "novice"
@@ -219,6 +293,8 @@ position = "top"
 name = "Breakdowns"
 teach = ["Pop and chop, tight waist, ankle ride, spiral ride."]
 demonstrates = "Breaks a partner down to the belly with at least two of the four breakdowns."
+drill = "2&2 each breakdown."
+live = "Quick starts from top: break your partner down to the belly."
 
 [[skill]]
 level = "novice"
@@ -226,6 +302,8 @@ position = "top"
 name = "Return to the mat"
 teach = ["Hip dump."]
 demonstrates = "Returns a standing partner to the mat safely with a hip dump."
+drill = "2&2 hip dump from a standing partner."
+live = "Bottom stands on the whistle; top returns them safely."
 
 [[skill]]
 level = "novice"
@@ -233,6 +311,8 @@ position = "top"
 name = "Half nelsons"
 teach = ["Half nelson, half from the knees, half from the mat."]
 demonstrates = "Turns a partner from belly to back with a half and holds them there."
+drill = "2&2 half nelson, partner on belly, then on knees."
+live = "Half nelson, bottom on knees or belly: get out or don't get out."
 
 [[skill]]
 level = "novice"
@@ -240,6 +320,8 @@ position = "top"
 name = "Cradles"
 teach = ["Cradle, near cradle, crossface cradle."]
 demonstrates = "Locks a cradle and rolls a partner to their back."
+drill = "2&2 each cradle."
+live = "Near cradle, crossface, crossface cradle."
 
 [[skill]]
 level = "novice"
@@ -247,6 +329,8 @@ position = "top"
 name = "Wrist control"
 teach = ["Pinning combinations with the wrist."]
 demonstrates = "Controls the wrist to set up a turn."
+drill = "2&2 wrist control into a turn."
+live = "Quick starts from top: control the wrist and turn."
 
 [[skill]]
 level = "novice"
@@ -254,6 +338,8 @@ position = "top"
 name = "Finishing a pin"
 teach = ["Crunch and pressure down.", "Stay tight, make slow adjustments.", "Head down so your opponent can't get an arm through."]
 demonstrates = "Holds a partner on their back with chest pressure and head down, making slow adjustments."
+drill = "Hold a partner on the back while they bridge lightly."
+live = "Half nelson, bottom on belly: get out or don't get out."
 
 # ------------------------------------------------------------------ Orange & Black: On Our Feet
 [[skill]]
@@ -263,6 +349,8 @@ group = "Position and hand fighting"
 name = "Stalking"
 teach = ["Close the gap, make contact.", "Either have space with motion and fakes, or contact your opponent and move them backwards."]
 demonstrates = "In a live hand fight, closes the gap and moves a partner backwards instead of standing in place."
+drill = "Shadow wrestle with fakes and level changes, then hand fight and move your partner back."
+live = "Live hand fight (shoulder contact or hands to the mat scores a point)."
 
 [[skill]]
 level = "orange-black"
@@ -271,6 +359,8 @@ group = "Position and hand fighting"
 name = "Hand fighting"
 teach = ["Control tie, don't reach.", "Fight hands and wrists.", "Inside ties.", "Handle a posting opponent."]
 demonstrates = "Wins inside position and gets to a tie without reaching."
+drill = "Hand-fight drill: win inside position and get to a tie."
+live = "Live hand fight (shoulder contact or hands to the mat scores a point)."
 
 [[skill]]
 level = "orange-black"
@@ -279,6 +369,8 @@ group = "Position and hand fighting"
 name = "Ties"
 teach = ["Collar tie, wrist tie (elbow to elbow), 2-on-1, underhook (head position).", "A hand on the mat before the whistle is a caution."]
 demonstrates = "Gets to each tie and shoots from it, and never puts a hand down before the whistle."
+drill = "2&2: shoot from each tie."
+live = "Tie-ups: one wrestler has a collar tie, a 2-on-1 or an underhook."
 
 [[skill]]
 level = "orange-black"
@@ -287,6 +379,8 @@ group = "Position and hand fighting"
 name = "Clearing ties"
 teach = ["Fight the claw.", "Chop the arms down, pop the arms up.", "Pop the elbow to head outside or head inside.", "Elbow pass to the far foot.", "Shrug and the shrug counter."]
 demonstrates = "Clears a collar tie or claw and gets straight to their own offense."
+drill = "2&2: clear the tie, then shoot."
+live = "Tie-ups: one wrestler has a collar tie, a 2-on-1 or an underhook."
 
 [[skill]]
 level = "orange-black"
@@ -295,6 +389,8 @@ group = "Takedowns"
 name = "Head outside single"
 teach = ["Inside and outside step penetration.", "Screw the leg in. Lock the wrist high, just below the butt. Leg drive. Take it over your head. Build to a good position.", "Pop finish. Change to a double."]
 demonstrates = "Scores on a resisting partner from both steps, and changes to the double when the leg slips."
+drill = "2&2 head outside single, inside and outside step."
+live = "Live once in on a leg: head outside (good or bad position)."
 
 [[skill]]
 level = "orange-black"
@@ -303,6 +399,8 @@ group = "Takedowns"
 name = "Head inside single"
 teach = ["Go behind: don't wrap the lower leg, post the arm through, extend the leg, put it on the table, tackle the other leg.", "Knee under the ankle and come up.", "Opponent whizzers: head behind the leg, or lock hands above the knee.", "Drive up and knee pick.", "Hook and dive through to a sit, pull to the side, Turk.", "Slide the head across to the double.", "Stay on the leg; don't attack the hip."]
 demonstrates = "Finishes against a live whizzer without leaving the leg."
+drill = "2&2 head inside single; partner adds a whizzer."
+live = "Head inside single with a hook; with hands locked."
 
 [[skill]]
 level = "orange-black"
@@ -311,6 +409,8 @@ group = "Takedowns"
 name = "Low single"
 teach = ["Lower level. Block with the head and run the feet. Misdirection. Timing.", "From a tie: head outside to the opposite ankle. Back step and pull the foot into position; missed, pull again."]
 demonstrates = "Blocks with the head, runs the feet and finishes; also hits it from a tie."
+drill = "2&2 low single, then from a tie."
+live = "Low single with head through."
 
 [[skill]]
 level = "orange-black"
@@ -319,6 +419,8 @@ group = "Takedowns"
 name = "High single"
 teach = ["Elbow across to get past the hands.", "Leg in front: lift the knee and foot sweep, or climb the leg.", "Leg outside the hip: club dump.", "Stay on the leg; don't go for the cradle or the hip."]
 demonstrates = "Gets past the hands and picks the right finish for where the leg is."
+drill = "2&2 high single, both finishes."
+live = "Live once in on a leg: high single."
 
 [[skill]]
 level = "orange-black"
@@ -327,6 +429,8 @@ group = "Takedowns"
 name = "More single leg finishes"
 teach = ["Sweep single inside and outside, tree top, run the pipe (head inside and outside), finish on the feet, run the corner, back door, rotate direction, trick knee whizzer."]
 demonstrates = "Finishes the single with at least two of these on a resisting partner."
+drill = "2&2 each finish."
+live = "Live once in on a leg (good or bad position)."
 
 [[skill]]
 level = "orange-black"
@@ -335,6 +439,8 @@ group = "Takedowns"
 name = "Double leg"
 teach = ["Inside and outside.", "Run-through double."]
 demonstrates = "Hits inside, outside and run-through doubles in live situations."
+drill = "2&2 inside, outside and run-through doubles."
+live = "One wrestler on offense, one on defense."
 
 [[skill]]
 level = "orange-black"
@@ -343,6 +449,8 @@ group = "Takedowns"
 name = "Fireman's carry"
 teach = ["Inline finish, Kelly finish."]
 demonstrates = "Hits the fireman's with an inline or Kelly finish on a drilling partner."
+drill = "2&2 fireman's carry, each finish."
+live = "One wrestler on offense, one on defense."
 
 [[skill]]
 level = "orange-black"
@@ -351,6 +459,8 @@ group = "Takedowns"
 name = "Underhook series"
 teach = ["Capture the underhook, collar tie.", "Throw over, step behind, drive through (one move).", "Head outside single, knee pick, ankle pick.", "Bring to the mat and go behind. Punch up to the high single.", "Opponent counters: check out and head inside single."]
 demonstrates = "Scores from the underhook with at least two options from the series."
+drill = "2&2 from the underhook, one option at a time."
+live = "Tie-ups: one wrestler has an underhook."
 
 [[skill]]
 level = "orange-black"
@@ -359,6 +469,8 @@ group = "Takedowns"
 name = "Foot touch"
 teach = ["Foot touch and re-shot."]
 demonstrates = "Foot touches, reads the reaction and re-shoots."
+drill = "Foot touch and re-shot drill."
+live = "Foot touch; foot touch and re-shot."
 
 [[skill]]
 level = "orange-black"
@@ -367,6 +479,8 @@ group = "Takedowns"
 name = "Block and go behind"
 teach = ["Block go behind, block re-shot, snap and block (T-rex) go behind."]
 demonstrates = "Blocks a live shot and goes behind to score."
+drill = "2&2 block and go behind."
+live = "One wrestler on offense, one on defense."
 
 [[skill]]
 level = "orange-black"
@@ -375,6 +489,8 @@ group = "Counters"
 name = "vs. head outside single"
 teach = ["Foot touch run down.", "Crossface, near ankle.", "Far ankle.", "Dig under, double.", "Post a hand, strong hips, run the feet away.", "Sit to the other side, hand to hand, hip heist whizzer.", "Funk and the funk counter."]
 demonstrates = "Scores at least two of these counters when a partner is in on the leg."
+drill = "2&2 each counter, partner in on the leg."
+live = "Live once in on a leg: head outside."
 
 [[skill]]
 level = "orange-black"
@@ -383,6 +499,8 @@ group = "Counters"
 name = "vs. head inside single"
 teach = ["Post knees, crunch.", "Hands locked: post knees, hand to the hole, crunch, free hip in.", "Prevent the lift: head and chest up, feet down, push down on the back.", "Lifted: body lock, capture the wrist, hop off."]
 demonstrates = "Stops the lift and frees the leg, hands locked or not."
+drill = "2&2; partner locks hands and lifts at half speed."
+live = "Head inside single with hands locked."
 
 [[skill]]
 level = "orange-black"
@@ -391,6 +509,8 @@ group = "Counters"
 name = "vs. high single"
 teach = ["Stuff the head, sprawl your opponent down.", "Attack the hands, pull up, sprawl."]
 demonstrates = "Sprawls a high single back down to the mat."
+drill = "2&2 sprawl the high single down."
+live = "Live once in on a leg: high single."
 
 [[skill]]
 level = "orange-black"
@@ -399,6 +519,8 @@ group = "Counters"
 name = "vs. low single"
 teach = ["Slide off, straighten the leg.", "Stand on the foot, cradle."]
 demonstrates = "Frees the leg or scores with the stand-on-the-foot cradle."
+drill = "2&2 slide off; stand on the foot and cradle."
+live = "Low single with head through."
 
 [[skill]]
 level = "orange-black"
@@ -407,6 +529,8 @@ group = "Counters"
 name = "Stuff the head"
 teach = ["vs. head inside single; vs. head outside single."]
 demonstrates = "Stops both singles by stuffing the head."
+drill = "2&2 stuff the head on both singles."
+live = "On knees: one shoots, the other counters on the whistle."
 
 [[skill]]
 level = "orange-black"
@@ -415,6 +539,8 @@ group = "Counters"
 name = "Front headlock"
 teach = ["Go behind.", "Clear the elbow.", "Whipover.", "Knee tap.", "Drag out of the front headlock."]
 demonstrates = "Scores from the front headlock and clears the elbow when caught in one."
+drill = "2&2 from the front headlock, both sides."
+live = "Front headlock. Crackdown."
 
 [[skill]]
 level = "orange-black"
@@ -423,6 +549,8 @@ group = "Counters"
 name = "Whizzer"
 teach = ["Push the face away.", "Belly whizzer."]
 demonstrates = "Uses the whizzer to stop a single and get back to neutral."
+drill = "2&2 whizzer and face push."
+live = "Live once in on a leg: head outside."
 
 [[skill]]
 level = "orange-black"
@@ -431,6 +559,8 @@ group = "Counters"
 name = "Sprawl"
 teach = ["Free the hip, with and without hands locked.", "On your feet, never dive away; fight into your opponent."]
 demonstrates = "Sprawls and frees the hip against locked hands without diving away."
+drill = "2&2 sprawl and free the hip, hands locked and not."
+live = "On knees: one shoots, the other counters on the whistle."
 
 # ------------------------------------------------------------------ Orange & Black: Bottom
 [[skill]]
@@ -439,6 +569,8 @@ position = "bottom"
 name = "Base"
 teach = ["Build it and hold it.", "Elbow tight to the side; don't let your opponent under the arm.", "Foot out on the belly side, small sit, back pressure, chest up.", "Don't look down for hands."]
 demonstrates = "Holds base for 10 seconds while the top wrestler tries to break them down."
+drill = "Top breaks down at half speed; bottom holds base."
+live = "On knees: maintain position."
 
 [[skill]]
 level = "orange-black"
@@ -446,6 +578,8 @@ position = "bottom"
 name = "Get away"
 teach = ["Leg forward, chest up, pressure back in, wrist, cut through."]
 demonstrates = "Escapes with the get away against light resistance."
+drill = "2&2 get away."
+live = "Quick starts from bottom with a score given (down 1, down 2)."
 
 [[skill]]
 level = "orange-black"
@@ -453,6 +587,8 @@ position = "bottom"
 name = "Stand-up series"
 teach = ["Turn-in stand, Pitt stand, outside knee slide stand, change-over stand."]
 demonstrates = "Gets to their feet with each stand in the series."
+drill = "2&2 each stand."
+live = "Standing, with and without hand control."
 
 [[skill]]
 level = "orange-black"
@@ -460,6 +596,8 @@ position = "bottom"
 name = "Sit to stand"
 teach = ["Push back to the outside hip and stand.", "Tuck the foot, strong post, nose over the knee (lunge forward).", "Drive up with a big swing step.", "Don't stay in the sit."]
 demonstrates = "Goes from the sit to their feet without stalling in the sit."
+drill = "2&2 sit to stand."
+live = "Sitting, with and without hand control."
 
 [[skill]]
 level = "orange-black"
@@ -467,6 +605,8 @@ position = "bottom"
 name = "Short sit"
 teach = ["Stand-up, switch, head post."]
 demonstrates = "Scores from the short sit with a stand-up, switch or head post."
+drill = "2&2 from the short sit: stand-up, switch, head post."
+live = "Sitting, with and without hand control."
 
 [[skill]]
 level = "orange-black"
@@ -474,6 +614,8 @@ position = "bottom"
 name = "Switch"
 teach = ["With setups (crawl, hips up, turn in).", "Re-switch.", "Counter switch (follow the head).", "Standing switch on the way to the mat."]
 demonstrates = "Hits the switch and the re-switch, and counters a partner's switch."
+drill = "2&2 switch, re-switch, counter switch."
+live = "Quick starts from bottom."
 
 [[skill]]
 level = "orange-black"
@@ -481,6 +623,8 @@ position = "bottom"
 name = "Switch to stand"
 teach = ["A hard turn; your head must create space from your opponent's.", "Drive over the knee."]
 demonstrates = "Turns hard enough to create space and drives over the knee to their feet."
+drill = "2&2 switch to stand."
+live = "Quick starts from bottom."
 
 [[skill]]
 level = "orange-black"
@@ -488,6 +632,8 @@ position = "bottom"
 name = "Fighting the chop"
 teach = ["Knees wide, strong arms, low and wide pyramid.", "Fight the arm chop, walk the hand, attack the foot."]
 demonstrates = "Keeps base when chopped and attacks the foot."
+drill = "Top chops at half speed; bottom fights it and attacks the foot."
+live = "On knees: maintain position."
 
 [[skill]]
 level = "orange-black"
@@ -495,6 +641,8 @@ position = "bottom"
 name = "2-command changeover"
 teach = ["First go, fight the chop.", "Second go, change over."]
 demonstrates = "Fights the chop on the first command and changes over on the second."
+drill = "In pairs on the coach's two commands."
+live = "Quick starts from bottom."
 
 [[skill]]
 level = "orange-black"
@@ -502,6 +650,8 @@ position = "bottom"
 name = "Defending legs"
 teach = ["Catch it coming in, push the leg away, head under.", "Missed it: sprawl the leg down and away, get to a sit.", "Hip down hard, attack the wrist. Hard swim out.", "Cross body: forward roll and kick.", "Two legs in: prevent the power half. Arms in tight, hands together under the sternum, roll to your side, attack the feet."]
 demonstrates = "Clears one leg in, and stops the power half with two legs in."
+drill = "2&2: one leg in, then two legs in."
+live = "One leg in; two legs in (on knees or on belly)."
 
 [[skill]]
 level = "orange-black"
@@ -509,6 +659,8 @@ position = "bottom"
 name = "Counter the ankle"
 teach = ["Counter the ankle ride and the ankle lace.", "Dive away when your opponent has your foot.", "Knee jammed in: throw the foot out."]
 demonstrates = "Frees the ankle from an ankle ride and an ankle lace."
+drill = "2&2 against an ankle ride and an ankle lace."
+live = "Top has an ankle."
 
 [[skill]]
 level = "orange-black"
@@ -516,6 +668,8 @@ position = "bottom"
 name = "Crossface cradle defense"
 teach = ["Block the wrist."]
 demonstrates = "Blocks the wrist before the cradle is locked."
+drill = "2&2 block the wrist."
+live = "Near cradle, crossface, crossface cradle."
 
 [[skill]]
 level = "orange-black"
@@ -523,6 +677,8 @@ position = "bottom"
 name = "Back heel trip defense"
 teach = []
 demonstrates = "Stops a back heel trip on the way to the mat."
+drill = "2&2 on the way to the mat."
+live = "Standing, with and without hand control."
 
 # ------------------------------------------------------------------ Orange & Black: Top
 [[skill]]
@@ -531,6 +687,8 @@ position = "top"
 name = "Pop and chop"
 teach = ["Near wrist cheap tilt, far side tilt, bar arms."]
 demonstrates = "Chops a partner down and scores a near wrist or far side tilt."
+drill = "2&2 chop into each tilt."
+live = "Quick starts from top."
 
 [[skill]]
 level = "orange-black"
@@ -538,6 +696,8 @@ position = "top"
 name = "Spiral ride"
 teach = ["Arm Turk, leg Turk."]
 demonstrates = "Turks off the spiral ride, from the arm or the leg."
+drill = "2&2 spiral ride to arm and leg Turk."
+live = "On a hip with a tight waist."
 
 [[skill]]
 level = "orange-black"
@@ -545,6 +705,8 @@ position = "top"
 name = "Turk"
 teach = ["Lift and Turk.", "Corkscrew Turk from the crossface.", "Lift in the crotch, Turk."]
 demonstrates = "Lifts and Turks a partner to their back."
+drill = "2&2 lift and Turk."
+live = "Quick starts from top."
 
 [[skill]]
 level = "orange-black"
@@ -552,6 +714,8 @@ position = "top"
 name = "Crossface cradle series"
 teach = ["Feed the arm, crossface, post between the legs, bring the head to the knee and lock, take your opponent over.", "Opponent comes back up: hip to hip, drive the legs, run to the back.", "Opponent comes back up: outside knee between the feet, walk out the foot, take them straight back.", "Opponent pressures back: roll through.", "Opponent slips the arm through: jump over the back."]
 demonstrates = "Locks and finishes the cradle, and adjusts when a partner comes back up."
+drill = "2&2; partner comes back up each way."
+live = "Near cradle, crossface, crossface cradle."
 
 [[skill]]
 level = "orange-black"
@@ -559,6 +723,8 @@ position = "top"
 name = "Near cradle"
 teach = ["Take the chin, pinch the head, head in the hip to lock, drive the leg under, hook the leg, crunch down."]
 demonstrates = "Locks the near cradle and crunches down for back points."
+drill = "2&2 near cradle."
+live = "Near cradle, crossface, crossface cradle."
 
 [[skill]]
 level = "orange-black"
@@ -566,6 +732,8 @@ position = "top"
 name = "Low leg cradle"
 teach = ["Attack the head, finish slow.", "Shoulder tight to the hip, hook the near arm, feed the arm to the leg hand, head in the hip, lock, finish slow."]
 demonstrates = "Locks the low leg cradle and finishes slow."
+drill = "2&2 low leg cradle, finish slow."
+live = "Quick starts from top."
 
 [[skill]]
 level = "orange-black"
@@ -573,6 +741,8 @@ position = "top"
 name = "Half from the mat"
 teach = ["Drive the head to the mat, keep it there.", "Bring your knees to the chest.", "Sink it deeper, capture the chin."]
 demonstrates = "Keeps the head on the mat and sinks the half to back points."
+drill = "2&2 half from the mat."
+live = "Half nelson, bottom on belly: get out or don't get out."
 
 [[skill]]
 level = "orange-black"
@@ -580,6 +750,8 @@ position = "top"
 name = "Half from the knees"
 teach = ["Stuff-head half, capture the wrist, shuck forward.", "Drive straight over the head, straighten your arms."]
 demonstrates = "Hits the stuff-head half and drives straight over the head."
+drill = "2&2 half from the knees."
+live = "Half nelson, bottom on knees: get out or don't get out."
 
 [[skill]]
 level = "orange-black"
@@ -587,6 +759,8 @@ position = "top"
 name = "Arm bar"
 teach = ["Running a bar, finishing a bar, bar tilt."]
 demonstrates = "Runs a bar and finishes it for back points."
+drill = "2&2 run and finish the bar."
+live = "Arm bar, bottom on belly or knees. Bar and wrist."
 
 [[skill]]
 level = "orange-black"
@@ -594,6 +768,8 @@ position = "top"
 name = "Wrist tilt"
 teach = ["From a chop.", "Feed the wrist through the crotch."]
 demonstrates = "Scores a wrist tilt off a chop."
+drill = "2&2 wrist tilt off a chop."
+live = "Cross wrist."
 
 [[skill]]
 level = "orange-black"
@@ -601,6 +777,8 @@ position = "top"
 name = "Mat returns"
 teach = ["From the stand-up."]
 demonstrates = "Returns a standing partner to the mat safely and legally."
+drill = "2&2 mat return, safely and legally."
+live = "Standing, with and without hand control."
 
 [[skill]]
 level = "orange-black"
@@ -608,6 +786,8 @@ position = "top"
 name = "Getting legs in"
 teach = ["Spiral ride to legs, claw ride to legs.", "Don't jam the top knee in or get too high.", "Don't force legs in."]
 demonstrates = "Gets a leg in from the spiral or claw ride without jamming the knee or getting too high."
+drill = "2&2 spiral and claw ride to legs."
+live = "One leg in (on knees or on belly)."
 
 [[skill]]
 level = "orange-black"
@@ -615,6 +795,8 @@ position = "top"
 name = "Riding legs"
 teach = ["Power half, cross body.", "Cross body to a bar, half, roll-through half finish.", "Scoring from two legs in.", "Top leg in and pull for back points."]
 demonstrates = "Rides legs for 30 seconds and turns with the power half or cross body."
+drill = "2&2 power half and cross body."
+live = "Two legs in (on knees or on belly). Overtime ride-out."
 
 # ------------------------------------------------------------------ Drilling and live situations
 [drilling]
