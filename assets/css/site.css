@@ -1149,7 +1149,7 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 /* responsive */
 @media (max-width: 1060px) { .ycp-grid4 { grid-template-columns: 1fr 1fr; } .ycp-form-row { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 900px) {
-  .ycp-hero-grid, .ycp-split, .ycp-split.wide { grid-template-columns: 1fr; }
+  .ycp-hero-grid, .ycp-split, .ycp-split.wide, .ycp-split.top { grid-template-columns: 1fr; }
   .ycp-grid3 { grid-template-columns: 1fr 1fr; }
   .ycp-standards { grid-template-columns: 1fr 1fr; }
 }
