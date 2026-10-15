@@ -42,6 +42,8 @@ habits = [
   "Praise effort and attitude more than results.",
 ]
 warmup = "Stance and motion follow-the-leader. Ankle touch for points. Sumo."
+label = "Novice"
+distinction = "No 2&2 at Novice. Use partner drills, short reps and games, with one or two new moves at a time."
 conditioning = "King of the mat."
 attitude = [
   "We never give up.",
@@ -65,6 +67,8 @@ habits = [
   "Same language as the high school room.",
 ]
 warmup = "Jog, forward rolls, karaoke in and out, stance in and out, sprawls. Finish with a short game."
+label = "O&B"
+distinction = "Every practice drills 2&2. Chain moves together, and add live situations with a score and stalling."
 conditioning = "Sprawl relay or king of the mat."
 attitude = [
   "We never give up. Hustle back to the center.",
@@ -906,3 +910,345 @@ items = [
   "Teach the Northampton way.",
   "When in doubt, ask Coach Provini.",
 ]
+
+# ------------------------------------------------------------------ Page sections added to match the basketball playbook layout
+[hero]
+eyebrow = "Building the next generation of Konkrete Kids"
+lines = ["Fundamentals", "first."]
+accent = "The Northampton way."
+lede = "Better stance, better position, better habits. Everything youth coaches need to run a purposeful practice, organized by group and ready to use."
+mat_caption = "We never give up. Hustle back to the center."
+
+[habit]
+eyebrow = "The Northampton habit"
+title = "Finish. Get up. Stop the first move."
+text = "Every group, every practice. On our feet we finish shots and go behind, never around the waist. On bottom we move on the whistle and get to our feet. On top we stop the first move and don't let them up."
+chain = "Stance → shot → finish → feet."
+
+[success]
+eyebrow = "What success looks like"
+title = "By the start of 7th grade"
+text = "Wrestlers should own a good stance and motion, finish a single and a double without staying on their knees, get to their feet from bottom, ride and turn with a half or a cradle, and wrestle with the Northampton attitude: never give up, hustle, respect. These fundamentals carry straight into the junior high room."
+link_text = "See the junior high program"
+
+[development]
+title = "Development first, not a medal count."
+text = "Growth over results. Improvement, discipline and effort are the goal; winning is a byproduct. Matches are for experience, and every kid who wants matches gets them. A coach is measured by whether kids leave loving the sport and trusting their coaches."
+
+# ------------------------------------------------------------------ Drill library
+# type: "drill", "live" (live situation) or "game". levels: which groups use it.
+# position: "feet", "bottom", "top" or "all".
+[[drill]]
+id = "two-and-two"
+name = "2&2 drilling"
+type = "drill"
+levels = ["orange-black"]
+position = "all"
+setup = "Partners matched by size."
+coach = "I do two reps in a row, then my partner does two, and we keep alternating. Same setup and finish each time."
+cue = "Same setup. Same finish."
+check = "Clean reps on both sides without stopping to reset."
+
+[[drill]]
+id = "series"
+name = "2&2 series"
+type = "drill"
+levels = ["orange-black"]
+position = "all"
+setup = "Partners matched by size, one shooter."
+coach = "Head inside single, stand-up, mat return, change-over and stand, get away. Then the other wrestler shoots."
+cue = "Chain it. Don't stop between moves."
+check = "Runs the whole series without a pause."
+
+[[drill]]
+id = "partner-drill"
+name = "Partner drill"
+type = "drill"
+levels = ["novice"]
+position = "all"
+setup = "Partners matched by size. Coach demonstrates first."
+coach = "One wrestler drills the move several times while the partner gives a good look, then they switch. Coaches walk the room and fix one thing at a time."
+cue = "Slow, then smooth, then fast."
+check = "Several correct reps in a row."
+
+[[drill]]
+id = "stance-in-out"
+name = "Stance in, stance out"
+type = "drill"
+levels = ["novice", "orange-black"]
+position = "feet"
+setup = "Whole group spread out facing the coach."
+coach = "On the coach's call: staggered, square, touch the mat, back up. Check backs and knees."
+cue = "Low, balanced, ready."
+check = "Every wrestler can touch the mat with either hand without standing up."
+
+[[drill]]
+id = "shadow"
+name = "Shadow wrestling"
+type = "drill"
+levels = ["novice", "orange-black"]
+position = "feet"
+setup = "No partner. Room to move."
+coach = "Motion in every direction, then add fakes, level changes and shots on the coach's call."
+cue = "Stay in your stance."
+check = "Moves and shoots without standing up or crossing feet."
+
+[[drill]]
+id = "mirror"
+name = "Mirror drill"
+type = "drill"
+levels = ["novice"]
+position = "feet"
+setup = "Partners facing each other in stance."
+coach = "One leads, the other mirrors the motion. Switch leaders every 20–30 seconds."
+cue = "Move your feet, not your waist."
+check = "Follows the leader without crossing feet."
+
+[[drill]]
+id = "whistle"
+name = "Whistle drill"
+type = "drill"
+levels = ["novice", "orange-black"]
+position = "bottom"
+setup = "Partners in referee's position."
+coach = "Bottom moves on the whistle against light resistance; top holds position."
+cue = "Move on the whistle."
+check = "No pause off the whistle, every rep."
+
+[[drill]]
+id = "ladder"
+name = "Position ladder drill"
+type = "drill"
+levels = ["novice"]
+position = "bottom"
+setup = "Partners; bottom wrestler starts on the back or belly."
+coach = "Coach calls a position. The bottom wrestler gets to the next better one: back to belly, belly to knees, knees to a sit, sit to feet."
+cue = "Always get to something better."
+check = "Names the ladder and gets to the next position on every call."
+
+[[drill]]
+id = "hand-fight"
+name = "Hand-fight drill"
+type = "drill"
+levels = ["orange-black"]
+position = "feet"
+setup = "Partners in stance, hands up."
+coach = "Win inside position and get to a tie. Add scoring: shoulder contact or hands to the mat scores a point."
+cue = "Control the tie. Don't reach."
+check = "Gets to a tie without reaching or standing up."
+
+[[drill]]
+id = "foot-touch"
+name = "Foot touch and re-shot"
+type = "drill"
+levels = ["orange-black"]
+position = "feet"
+setup = "Partners in stance."
+coach = "Foot touch, read the reaction, re-shoot to a finish."
+cue = "Touch, read, re-shot."
+check = "Re-shoots off the partner's reaction to a finish."
+
+[[drill]]
+id = "changeover"
+name = "2-command changeover"
+type = "drill"
+levels = ["orange-black"]
+position = "bottom"
+setup = "Partners in referee's position; top chops on the first command."
+coach = "First go: fight the chop. Second go: change over."
+cue = "Knees wide. Strong arms."
+check = "Holds base on the chop and changes over on the second command."
+
+[[drill]]
+id = "live-leg"
+name = "Live once in on a leg"
+type = "live"
+levels = ["novice", "orange-black"]
+position = "feet"
+setup = "One wrestler starts in on a leg: head outside, head inside or high single, good or bad position."
+coach = "Wrestle to a score or a stalemate, then reset. Match by size and experience."
+cue = "Finish. Don't stay on your knees."
+check = "Finishes or scores a counter; never just holds the leg."
+
+[[drill]]
+id = "knees-shoot"
+name = "On knees: shoot and counter"
+type = "live"
+levels = ["novice", "orange-black"]
+position = "feet"
+setup = "Both wrestlers on knees, facing."
+coach = "On the whistle one shoots, the other counters."
+cue = "Head up. Hips down."
+check = "Counter wrestler stops the shot or scores."
+
+[[drill]]
+id = "belly"
+name = "On belly: get up"
+type = "live"
+levels = ["novice", "orange-black"]
+position = "bottom"
+setup = "Bottom wrestler on the belly, top on top."
+coach = "Get to your knees, then a sit, then your feet. Top tries to keep them down."
+cue = "Get to something better."
+check = "Bottom wrestler gets off the belly every go."
+
+[[drill]]
+id = "half"
+name = "Half nelson: get out or don't"
+type = "live"
+levels = ["novice", "orange-black"]
+position = "top"
+setup = "Top has a half nelson; bottom on knees or belly."
+coach = "Top turns and holds; bottom fights off the back and gets out."
+cue = "Top: head down, chest pressure. Bottom: fight off your back."
+check = "Top turns the partner; bottom gets out or stays off the back."
+
+[[drill]]
+id = "tie-ups"
+name = "Tie-up starts"
+type = "live"
+levels = ["orange-black"]
+position = "feet"
+setup = "One wrestler starts with a collar tie, a 2-on-1 or an underhook."
+coach = "Score from the tie or clear it and score."
+cue = "Use the tie or lose it."
+check = "Scores from the tie or clears it to a shot."
+
+[[drill]]
+id = "legs"
+name = "Legs: one in, two in"
+type = "live"
+levels = ["orange-black"]
+position = "top"
+setup = "Top starts with one leg in or two legs in; bottom on knees or belly."
+coach = "Top rides and turns; bottom clears the legs and stops the power half."
+cue = "Top: don't force it. Bottom: hip down, attack the wrist."
+check = "Top turns with a power half or cross body, or bottom clears the legs."
+
+[[drill]]
+id = "quick-starts"
+name = "Quick starts"
+type = "live"
+levels = ["novice", "orange-black"]
+position = "all"
+setup = "Any position. Short goes of 5–30 seconds."
+coach = "Restart often. Orange & Black adds a score (down 1, down 2) and stalling."
+cue = "Move on the whistle."
+check = "Every wrestler scores or escapes in the time given."
+
+[[drill]]
+id = "ride-out"
+name = "Overtime ride-out"
+type = "live"
+levels = ["orange-black"]
+position = "top"
+setup = "Referee's position, 30 seconds."
+coach = "Top rides the full time without letting the bottom wrestler up; then switch."
+cue = "Forward pressure. Don't let them up."
+check = "Top rides the full time, or bottom escapes."
+
+[[drill]]
+id = "ankle-touch"
+name = "Ankle touch for points"
+type = "game"
+levels = ["novice", "orange-black"]
+position = "feet"
+setup = "Partners in stance."
+coach = "Score a point for touching the partner's ankle; protect your own."
+cue = "Stay in your stance."
+check = "Scores without standing up or reaching."
+
+[[drill]]
+id = "sumo"
+name = "Sumo"
+type = "game"
+levels = ["novice"]
+position = "feet"
+setup = "Partners in a small circle."
+coach = "Push your partner out of the circle with good position and leg drive."
+cue = "Low hips. Drive your feet."
+check = "Stays low and drives instead of reaching."
+
+[[drill]]
+id = "king"
+name = "King of the mat"
+type = "game"
+levels = ["novice", "orange-black"]
+position = "all"
+setup = "One wrestler holds the middle; challengers rotate in. Match by size."
+coach = "Short goes. Winner stays, everyone gets turns."
+cue = "Never give up."
+check = "Every kid gets several goes."
+
+[[drill]]
+id = "follow-leader"
+name = "Stance and motion follow-the-leader"
+type = "game"
+levels = ["novice"]
+position = "feet"
+setup = "Kids in lines behind a leader."
+coach = "Copy the leader: forward, back, side to side, circling, staying in stance."
+cue = "Stay low."
+check = "The whole line stays in stance."
+
+[[drill]]
+id = "sprawl-relay"
+name = "Sprawl relay"
+type = "game"
+levels = ["orange-black"]
+position = "feet"
+setup = "Teams in lines."
+coach = "Sprint, sprawl on the call, get up, sprint back, tag the next teammate."
+cue = "Hips down. Up fast."
+check = "Every sprawl hits the hips to the mat."
+
+# ------------------------------------------------------------------ Coaching challenge (scenarios)
+[[scenario]]
+q = "A Novice wrestler loses a match and comes off the mat crying. What do you do first?"
+options = ["Explain what went wrong so they learn it while it's fresh.", "Start with something positive. Fixing happens at the next practice.", "Tell them to toughen up; wrestling is hard."]
+answer = 1
+why = "The first words a kid hears after a match are positive. In the corner and after: calm, short, positive. Teaching happens at the next practice."
+
+[[scenario]]
+q = "Your Orange & Black wrestlers keep staying on their knees after shots in matches. What is your best next practice adjustment?"
+options = ["Add extra conditioning at the end of practice.", "Re-teach the finish, then put it in live once in on a leg: drive in or tripod up.", "Teach a new takedown so they have more options."]
+answer = 1
+why = "Re-teach the skill they can't demonstrate before adding new ones. Then test it in a live situation until they can show it."
+
+[[scenario]]
+q = "A parent asks to watch practice from inside the practice room. What do you say?"
+options = ["Sure, as long as they stay quiet.", "Explain that only the team's coaching staff is in the room; drop-off and pick-up happen outside.", "Invite them to help coach for the day."]
+answer = 1
+why = "Only each team's coaching staff is in the practice room. Kids focus better, coaches can coach, and the room stays safe. Extra helpers need approval and clearances first."
+
+[[scenario]]
+q = "Your Novice drill has ten kids standing in one line waiting for a turn. What do you change?"
+options = ["Nothing. Waiting in line teaches discipline.", "Break into partners matched by size so every kid gets reps, and turn it into a game.", "Skip the drill and go straight to live wrestling."]
+answer = 1
+why = "Every kid matters and needs lots of reps. Partners matched by size, games whenever possible, and no long lines."
+
+[[scenario]]
+q = "A parent says their child is a pound over for this weekend and asks if they should skip dinner. What do you tell them?"
+options = ["One meal is fine for a pound.", "Youth wrestlers don't cut weight. They wrestle at their natural weight.", "Have them run in sweats before weigh-ins."]
+answer = 1
+why = "Youth wrestlers do not cut weight. Coaches never suggest, encourage or joke about a youth wrestler losing weight."
+
+# ------------------------------------------------------------------ Weekly check-in
+[checkin]
+intro = "Use this after a practice to make sure teaching actually happened. Your checkmarks stay on your device."
+common = [
+  "I taught the main skill with a clear demonstration, not only instructions.",
+  "Every wrestler had many good reps.",
+  "I put the skill in a live situation matched by size and experience.",
+  "I corrected a specific mistake and gave another chance to demonstrate.",
+  "I checked who can demonstrate it and who needs it re-taught.",
+]
+question = "Could your wrestlers demonstrate that skill to a junior high coach tomorrow?"
+answer = "If the answer is no, simplify the task, add reps, slow down the teaching, and keep working until the skill is reliable."
+start = "Start by choosing one skill to teach and check this week."
+
+[checkin.levels.novice]
+items = ["Practice included games, and every kid had fun.", "I praised effort and attitude more than results."]
+
+[checkin.levels.orange-black]
+items = ["Wrestlers chained moves instead of drilling single moves.", "Live situations included a score or stalling."]

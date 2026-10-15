@@ -816,67 +816,34 @@ def build_youth():
 
 
 YC_POSITIONS = [("feet", "On Our Feet"), ("bottom", "Bottom"), ("top", "Top")]
+YC_TYPES = {"drill": "Northampton drill", "live": "Live situation", "game": "Game"}
+
+# Which library drills a skill uses: its drill style (2&2 or partner) plus any
+# drill or live situation its text names.
+YC_DRILL_KEYS = [("Stance in", "stance-in-out"), ("Shadow wrestle", "shadow"), ("Mirror", "mirror"),
+                 ("Whistle drill", "whistle"), ("Coach calls a position", "ladder"), ("Hand-fight drill", "hand-fight"),
+                 ("Live hand fight", "hand-fight"), ("Foot touch", "foot-touch"), ("two commands", "changeover"),
+                 ("Live once in", "live-leg"), ("On knees: one shoots", "knees-shoot"), ("On knees: snap", "knees-shoot"),
+                 ("On belly", "belly"), ("Half nelson", "half"), ("Tie-ups", "tie-ups"), ("Start in a tie", "tie-ups"),
+                 ("leg in", "legs"), ("legs in", "legs"), ("Quick starts", "quick-starts"), ("Overtime", "ride-out"),
+                 ("Ankle touch", "ankle-touch"), ("Series", "series")]
 
 
 def yc_id(s):
     return f'{s["level"]}-{slug(s["name"])}'
 
 
-def yc_skill(s):
-    cues = "".join(f"<li>{e(c)}</li>" for c in s.get("teach", []))
-    teach = f'<ul class="yc-cues" role="list">{cues}</ul>' if cues else "<p>Demonstrate it, then walk it through at half speed.</p>"
-    steps = [("Teach", teach), ("Drill", f'<p>{e(s["drill"])}</p>')]
-    if s.get("live"):
-        steps.append(("Live", f'<p>{e(s["live"])}</p>'))
-    steps_html = "".join(f'<li><span class="yc-step">{n}</span><div>{body}</div></li>' for n, body in steps)
-    vid = (f'<a class="yc-video" href="{e(s["video"])}" rel="noopener" target="_blank">Watch the technique</a>'
-           if s.get("video") else "")
-    return (f'<article class="yc-skill" id="{yc_id(s)}"><h4>{e(s["name"])}</h4>'
-            f'<p class="yc-how">Coach it this way</p><ol class="yc-steps" role="list">{steps_html}</ol>'
-            f'<p class="yc-demo"><b>Check: wrestler demonstrates</b>{e(s["demonstrates"])}</p>{vid}'
-            f'<a class="yc-plan-link" href="#builder" data-level="{s["level"]}" data-skill="{yc_id(s)}">Build a practice with this skill</a></article>')
-
-
-def yc_level(YC, lid):
-    lv = YC["levels"][lid]
-    skills = [s for s in YC["skill"] if s["level"] == lid]
-    attitude = "".join(f"<li>{e(a)}</li>" for a in lv["attitude"])
-    habits = "".join(f"<li>{e(h)}</li>" for h in lv["habits"])
-    blocks = []
-    for pi, (pid, pname) in enumerate(YC_POSITIONS):
-        ps = [s for s in skills if s["position"] == pid]
-        note = lv.get("notes", {}).get(pid)
-        groups = list(dict.fromkeys(s.get("group", "") for s in ps))
-        inner = ""
-        for g in groups:
-            cards = "".join(yc_skill(s) for s in ps if s.get("group", "") == g)
-            head = f'<h4 class="yc-group">{e(g)}</h4>' if g else ""
-            inner += f'{head}<div class="yc-grid">{cards}</div>'
-        note_html = f'<p class="yc-note">{e(note)}</p>' if note else ""
-        blocks.append(
-            f'<details class="yc-pos" id="{lid}-{pid}"{" open" if pi == 0 else ""}><summary><span class="yc-pos-name">{pname}</span>'
-            f'<span class="yc-count">{len(ps)} skills</span></summary><div class="yc-pos-body">{note_html}{inner}</div></details>')
-    live = ""
-    for L in [x for x in YC["live"] if x["level"] == lid]:
-        h = f'<h4>{e(L["group"])}</h4>' if L.get("group") else ""
-        live += f'<div>{h}<ul role="list">{"".join(f"<li>{e(i)}</li>" for i in L["items"])}</ul></div>'
-    live_lead = "" if lid == "novice" else '<p class="fine">Everything in Novice, plus:</p>'
-    ct, cb = lv["callout"]
-    return f"""
-    <div class="yc-banner">
-      <div class="yc-banner-main"><p class="kicker">{e(lv["who"])}</p><h3>{e(lv["name"])}</h3><p class="yc-summary">{e(lv["summary"])}</p>
-        <p class="yc-callout"><b>{e(ct)}</b> {e(cb)}</p>
-        <a class="btn" href="#builder" data-level="{lid}">Build a {e(lv["name"])} practice</a></div>
-      <div class="yc-banner-side"><h4>Coaching habits</h4><ul class="yc-checks" role="list">{habits}</ul></div>
-    </div>
-    <div class="yc-attitude"><h4>Attitude</h4><ul role="list">{attitude}</ul></div>
-    <p class="yc-tap">Tap a position to open its skills. Each skill shows how to coach it and what the wrestler must demonstrate.</p>
-    {"".join(blocks)}
-    <div class="yc-live"><h4 class="yc-live-title">Live situations</h4>{live_lead}<div class="yc-live-cols">{live}</div></div>"""
-
-
 def yc_drill_head(lid):
     return "Drill (review principles)" if lid == "novice" else "2&2 Drill (review principles)"
+
+
+def yc_skill_drills(s):
+    ids = ["partner-drill" if s["level"] == "novice" else "two-and-two"]
+    text = s.get("drill", "") + " " + s.get("live", "")
+    for k, did in YC_DRILL_KEYS:
+        if k.lower() in text.lower() and did not in ids:
+            ids.append(did)
+    return ids
 
 
 def yc_sheet(smp, by_id):
@@ -895,107 +862,261 @@ def yc_sheet(smp, by_id):
             ("Contest situation", plain(smp["contest"])), ("Conditioning", plain(smp["conditioning"])),
             ("Announcements", plain(smp["closing"]) or "<li></li>"), ("Team Culture", plain(smp["culture"])), ("My notes", notes)]
     body = "".join(f'<section><h4>{e(n)}</h4><ul>{c}</ul></section>' for n, c in secs)
-    return f'<div class="yc-sheet"><div class="yc-sheet-head"><h3>Practice Plan</h3><span>{e(smp["title"].split(": ", 1)[-1])}</span></div><div class="yc-sheet-body">{body}</div></div>'
+    return (f'<div class="yc-sheet"><div class="yc-sheet-head"><h3>Practice Plan</h3><span>{e(smp["title"].split(": ", 1)[-1])}</span></div>'
+            f'<div class="yc-sheet-body">{body}</div></div>')
+
+
+def yc_skill(s, drills):
+    cues = "".join(f"<li>{e(c)}</li>" for c in s.get("teach", []))
+    teach = (f'<p class="ycp-label">Teach</p><ul class="ycp-cues">{cues}</ul>' if cues else
+             '<p class="ycp-label">Teach</p><p class="ycp-small">Demonstrate it, then walk it through at half speed.</p>')
+    how = e(s["drill"]) + (f' <span class="ycp-arrow">→</span> {e(s["live"])}' if s.get("live") else "")
+    chips = "".join(f'<a class="ycp-chip" href="#drill-{d}">{e(drills[d]["name"])} ↗</a>' for d in yc_skill_drills(s) if d in drills)
+    vid = (f'<p class="ycp-label">Watch technique</p><p class="ycp-chips"><a class="ycp-chip dark" href="{e(s["video"])}" rel="noopener" target="_blank">▶ {e(s["name"])} ↗</a></p>'
+           if s.get("video") else "")
+    return (f'<article class="ycp-skill" id="{yc_id(s)}"><h4>{e(s["name"])}</h4>{teach}'
+            f'<p class="ycp-label">Coach it this way</p><p class="ycp-small">{how}</p>'
+            f'<p class="ycp-demo"><b>Wrestler demonstrates:</b> {e(s["demonstrates"])}</p>'
+            f'<p class="ycp-label">Run these drills</p><p class="ycp-chips">{chips}</p>{vid}'
+            f'<a class="ycp-mini" href="#builder" data-level="{s["level"]}" data-skill="{yc_id(s)}">Build a practice with this skill →</a></article>')
+
+
+def yc_level(YC, lid, drills):
+    lv = YC["levels"][lid]
+    skills = [s for s in YC["skill"] if s["level"] == lid]
+    blocks = []
+    for pi, (pid, pname) in enumerate(YC_POSITIONS):
+        ps = [s for s in skills if s["position"] == pid]
+        note = lv.get("notes", {}).get(pid)
+        groups = list(dict.fromkeys(s.get("group", "") for s in ps))
+        inner = f'<p class="ycp-callout">{e(note)}</p>' if note else ""
+        for g in groups:
+            head = f'<h4 class="ycp-group">{e(g)}</h4>' if g else ""
+            inner += head + '<div class="ycp-grid2">' + "".join(yc_skill(s, drills) for s in ps if s.get("group", "") == g) + "</div>"
+        blocks.append(f'<details class="ycp-acc" id="{lid}-{pid}"{" open" if pi == 0 else ""}><summary><span>{pname}</span>'
+                      f'<span class="ycp-count">{len(ps)} skills</span></summary><div class="ycp-acc-body">{inner}</div></details>')
+    attitude = "".join(f"<li>{e(a)}</li>" for a in lv["attitude"])
+    habits = "".join(f"<li>{e(h)}</li>" for h in lv["habits"])
+    live = ""
+    for L in [x for x in YC["live"] if x["level"] == lid]:
+        h = f'<p class="ycp-label">{e(L["group"])}</p>' if L.get("group") else ""
+        live += f'<div>{h}<ul class="ycp-list">{"".join(f"<li>{e(i)}</li>" for i in L["items"])}</ul></div>'
+    live_lead = "" if lid == "novice" else '<p class="ycp-small">Everything in Novice, plus:</p>'
+    ct, cb = lv["callout"]
+    return f"""
+    <div class="ycp-banner"><div><p class="ycp-eyebrow light">{e(lv["who"])}</p><h3>{e(lv["name"])}</h3><p>{e(lv["summary"])}</p></div><span class="ycp-big">{e(lv["label"])}</span></div>
+    <p class="ycp-note"><b>{e(ct)}</b> {e(cb)}</p>
+    <div class="ycp-card ycp-attitude"><p class="ycp-eyebrow">Attitude · the Northampton way</p><ul>{attitude}</ul></div>
+    <div class="ycp-row"><h3>Three positions</h3><p>Tap a position to open teaching steps, drill links and videos.</p></div>
+    {"".join(blocks)}
+    <div class="ycp-grid2 ycp-gap">
+      <div class="ycp-card"><h3>Non-negotiable coaching habits</h3><ul class="ycp-checks">{habits}</ul></div>
+      <div class="ycp-card"><h3>Teaching distinction</h3><p>{e(lv["distinction"])}</p>
+        <p><span class="ycp-pill">Practice length: coming soon</span></p>
+        <a class="ycp-btn soft" href="#builder" data-level="{lid}">Build a practice for this group →</a></div>
+    </div>
+    <div class="ycp-card ycp-gap"><h3>Live situations</h3>{live_lead}<div class="ycp-grid2 tight">{live}</div></div>"""
+
+
+def yc_drill_card(d, used):
+    rows = "".join(f'<div><dt>{k}</dt><dd>{e(d[f])}</dd></div>' for k, f in
+                   [("Set-up", "setup"), ("Coach this", "coach"), ("Coaching cue", "cue"), ("Check learning", "check")])
+    groups = " · ".join({"novice": "Novice", "orange-black": "Orange & Black"}[x] for x in d["levels"])
+    pos = "All positions" if d["position"] == "all" else dict(YC_POSITIONS)[d["position"]]
+    used_txt = f'<p class="ycp-small muted">Used for: {e(", ".join(used[:5]))}{"…" if len(used) > 5 else ""}</p>' if used else ""
+    return (f'<article class="ycp-card ycp-drill" id="drill-{d["id"]}" data-levels="{" ".join(d["levels"])}" data-position="{d["position"]}" data-type="{d["type"]}">'
+            f'<p class="ycp-chips"><span class="ycp-chip type-{d["type"]}">{YC_TYPES[d["type"]]}</span><span class="ycp-chip dark">{pos}</span></p>'
+            f'<h3>{e(d["name"])}</h3><p class="ycp-small muted">{groups}</p><dl class="ycp-dl">{rows}</dl>'
+            f'<p class="ycp-chips foot"><button type="button" class="ycp-chip" data-copy-drill>Copy drill</button></p>{used_txt}</article>')
 
 
 def build_youth_coaches():
     R = "../../"
     YC = load_toml("youth-coaches.toml")
-    I = YC["intro"]
+    I, H, P, D = YC["intro"], YC["hero"], YC["practice"], YC["drilling"]
     lids = list(YC["levels"].keys())
-    std = "".join(f'<li><span class="yc-std-k">{i + 1:02d} · {e(k)}</span><h3>{e(t)}</h3><p>{e(d)}</p></li>'
-                  for i, (k, t, d) in enumerate(I["standard"]))
-    road = "".join(f'<li><span class="yc-road-n">{i + 1}</span><h3>{e(t)}</h3><p>{e(d)}</p></li>' for i, (t, d) in enumerate(I["roadmap"]))
-    tabs = "".join(
-        f'<button type="button" role="tab" id="tab-{lid}" aria-controls="lvl-{lid}" aria-selected="{"true" if i == 0 else "false"}"'
-        f'{"" if i == 0 else " tabindex=\"-1\""} data-level="{lid}">{e(YC["levels"][lid]["name"])}</button>'
-        for i, lid in enumerate(lids))
-    panels = "".join(
-        f'<section class="panel yc-panel" role="tabpanel" id="lvl-{lid}" aria-labelledby="tab-{lid}" tabindex="0">{yc_level(YC, lid)}</section>'
-        for lid in lids)
-    P = YC["practice"]
+    drills = {d["id"]: d for d in YC["drill"]}
+    used = {}
+    for s in YC["skill"]:
+        for did in yc_skill_drills(s):
+            used.setdefault(did, []).append(s["name"])
     by_id = {yc_id(x): x for x in YC["skill"]}
-    template = "".join(f"<li><b>{e(a)}</b>{e(b)}</li>" for a, b in P["sections"])
-    samples = "".join(f'<details class="yc-more"><summary>{e(smp["title"])}</summary>{yc_sheet(smp, by_id)}</details>' for smp in YC["sample"])
+    lvl_name = lambda lid: YC["levels"][lid]["name"]
+    level_opts = "".join(f'<option value="{lid}">{e(lvl_name(lid))}</option>' for lid in lids)
+    top = '<p class="ycp-top"><a href="#top">↑ Back to the top</a></p>'
+    # Hero mat graphic: a wrestling mat with the center circle, starting lines and two wrestlers
+    mat = f"""<figure class="ycp-mat" aria-hidden="true"><svg viewBox="0 0 460 300" focusable="false">
+      <defs><radialGradient id="matg" cx="50%" cy="45%" r="75%"><stop offset="0" stop-color="#2a2522"/><stop offset="1" stop-color="#151619"/></radialGradient></defs>
+      <rect width="460" height="300" fill="url(#matg)"/>
+      <circle cx="230" cy="150" r="170" fill="none" stroke="#f26a1b" stroke-width="14" opacity=".9"/>
+      <circle cx="230" cy="150" r="128" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+      <circle cx="230" cy="150" r="30" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"/>
+      <rect x="196" y="146" width="22" height="8" rx="2" fill="#f26a1b"/><rect x="242" y="146" width="22" height="8" rx="2" fill="#fff"/>
+      <path d="M150 210 C 175 150, 205 125, 230 150" fill="none" stroke="#f9a46e" stroke-width="2.5" stroke-dasharray="6 6"/>
+      <circle cx="150" cy="214" r="19" fill="#f26a1b" stroke="#151619" stroke-width="4"/><text x="150" y="221" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="20" fill="#151619">1</text>
+      <circle cx="318" cy="112" r="19" fill="#fff" stroke="#151619" stroke-width="4"/><text x="318" y="119" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="20" fill="#151619">2</text>
+    </svg><figcaption>{e(H["mat_caption"])}</figcaption></figure>"""
+    hero = f"""<header class="ycp-hero" id="top"><div class="wrap ycp-hero-grid">
+  <div><p class="ycp-eyebrow">{e(H["eyebrow"])}</p>
+    <h1>{"<br>".join(e(x) for x in H["lines"])}<br><span>{e(H["accent"])}</span></h1>
+    <p class="ycp-lede">{e(H["lede"])}</p>
+    <p class="ycp-actions"><a class="ycp-btn" href="#builder">Build a practice →</a><a class="ycp-btn dark" href="#expectations">Your group’s standards →</a><a class="ycp-btn dark" href="#videos">▶ Technique videos</a></p></div>
+  {mat}</div></header>"""
+    tabs = [("standard", "The standard"), ("expectations", "Group expectations"), ("builder", "Practice builder"),
+            ("drills", "Drill library"), ("videos", "Video library"), ("challenge", "Coaching challenge"), ("checkin", "Weekly check-in")]
+    tabbar = '<nav class="ycp-tabs" aria-label="Playbook sections"><div class="wrap">' + "".join(f'<a href="#{i}">{t}</a>' for i, t in tabs) + "</div></nav>"
+    std = "".join(f'<li class="ycp-card"><p class="ycp-eyebrow">{i + 1:02d} · {e(k)}</p><h3>{e(t)}</h3><p>{e(d)}</p></li>' for i, (k, t, d) in enumerate(I["standard"]))
+    road = "".join(f'<li class="ycp-card"><span class="ycp-num">{i + 1}</span><div><h3>{e(t)}</h3><p>{e(d)}</p></div></li>' for i, (t, d) in enumerate(I["roadmap"]))
+    HB, SU, DV = YC["habit"], YC["success"], YC["development"]
+    panels = "".join(f'<div class="ycp-panel" id="lvl-{lid}" data-level-panel="{lid}">{yc_level(YC, lid, drills)}</div>' for lid in lids)
+    template = "".join(f"<li><b>{e(a)}</b> {e(b)}</li>" for a, b in P["sections"])
+    samples = "".join(f'<details class="ycp-acc small"><summary><span>{e(smp["title"])}</span></summary><div class="ycp-acc-body">{yc_sheet(smp, by_id)}</div></details>' for smp in YC["sample"])
+    drill_cards = "".join(yc_drill_card(d, used.get(d["id"], [])) for d in YC["drill"])
+    videos = [s for s in YC["skill"] if s.get("video")]
+    if videos:
+        vids = '<div class="ycp-grid3">' + "".join(
+            f'<article class="ycp-card"><p class="ycp-chips"><span class="ycp-chip dark">{dict(YC_POSITIONS)[s["position"]]}</span></p><h3>{e(s["name"])}</h3>'
+            f'<p class="ycp-small muted">{e(lvl_name(s["level"]))}</p><a class="ycp-btn dark sm" href="{e(s["video"])}" rel="noopener" target="_blank">▶ Watch demonstration ↗</a></article>'
+            for s in videos) + "</div>"
+    else:
+        vids = ('<div class="ycp-note bar"><b>Northampton technique videos are coming.</b> When a video is added to a skill, it shows up here '
+                'and as a “Watch technique” button on that skill’s card.</div>')
+    scen = YC["scenario"]
+    noscript_quiz = "".join(f'<details class="ycp-acc small"><summary><span>{e(q["q"])}</span></summary><div class="ycp-acc-body"><p><b>{e(q["options"][q["answer"]])}</b></p><p>{e(q["why"])}</p></div></details>' for q in scen)
+    C = YC["checkin"]
     standards = "".join(f"<li>{e(x)}</li>" for x in YC["standards"]["items"])
-    D = YC["drilling"]
-    # Data for the practice builder
     bdata = {
         "levels": {lid: {"name": lv["name"], "warmup": lv["warmup"], "conditioning": lv["conditioning"], "drill": yc_drill_head(lid)} for lid, lv in YC["levels"].items()},
         "positions": dict(YC_POSITIONS),
         "skills": [{"id": yc_id(x), "level": x["level"], "position": x["position"], "name": x["name"], "teach": x.get("teach", []),
-                    "drill": x["drill"], "live": x.get("live", ""), "demo": x["demonstrates"]} for x in YC["skill"]],
+                    "drill": x["drill"], "live": x.get("live", ""), "demo": x["demonstrates"], "drills": yc_skill_drills(x)} for x in YC["skill"]],
+        "drills": {d["id"]: {"name": d["name"], "setup": d["setup"], "coach": d["coach"], "cue": d["cue"], "check": d["check"]} for d in YC["drill"]},
+        "quiz": scen,
+        "checkin": {"common": C["common"], "levels": {k: v["items"] for k, v in C["levels"].items()}},
     }
     bjson = json.dumps(bdata, ensure_ascii=False).replace("</", "<\\/")
-    level_opts = "".join(f'<option value="{lid}">{e(YC["levels"][lid]["name"])}</option>' for lid in lids)
-    hero = (f'<header class="page-head has-photo yc-hero">{picture(R, "youth-mat", "100vw", "bg", True, alt="", focus="50% 40%")}'
-            f'<div class="wrap"><p class="kicker">Northampton youth wrestling · Coaches’ playbook</p><h1>Fundamentals first.</h1>'
-            f'<p class="lede">{e(I["lede"])}</p>'
-            f'<p class="actions"><a class="btn" href="#builder">Build a practice</a>'
-            f'<a class="btn ghost" href="#curriculum">Your group’s skills</a><a class="btn ghost" href="#roadmap">Season roadmap</a></p></div></header>')
     body = f"""
+<div class="ycp">
 {hero}
-<nav class="yc-jump" aria-label="On this page"><div class="wrap"><a href="#standard">The standard</a><a href="#roadmap">Season roadmap</a><a href="#curriculum">What to teach</a><a href="#builder">Practice builder</a><a href="#standards">Coaching standards</a></div></nav>
-<section class="band" id="standard" aria-labelledby="standard-title">
-  <div class="wrap">
-    <div class="sec-head"><p class="kicker yc-k">Our shared standard</p><h2 id="standard-title">One program. One way of teaching.</h2>
-    <p class="lede">Coaches bring their own personalities. What we teach, and how we treat kids, doesn’t depend on which team a child joins.</p></div>
-    <ol class="yc-std" role="list">{std}</ol>
-    <div class="split narrow-right top">
-      <p class="yc-way">{e(I["northampton_way"])}</p>
-      <aside class="note-card"><h3>Our mission</h3><p>{e(I["mission"])}</p><p class="yc-tag">{e(I["tagline"])}</p></aside>
-    </div>
+{tabbar}
+<section class="ycp-sec" id="standard" aria-labelledby="standard-title"><div class="wrap">
+  <p class="ycp-eyebrow">Our shared commitment</p><h2 id="standard-title">A consistent foundation. Across every team.</h2>
+  <p class="ycp-intro">Coaches bring their own personalities and styles. But the skills we teach, and the habits we reinforce, should not depend on which team a child joins.</p>
+  <ol class="ycp-grid4">{std}</ol>
+  <div class="ycp-split ycp-gap">
+    <div class="ycp-card dark"><p class="ycp-eyebrow light">{e(HB["eyebrow"])}</p><h3>{e(HB["title"])}</h3><p>{e(HB["text"])}</p><p class="ycp-chain">{e(HB["chain"])}</p></div>
+    <div class="ycp-card"><p class="ycp-eyebrow">{e(SU["eyebrow"])}</p><h3>{e(SU["title"])}</h3><p>{e(SU["text"])}</p><a class="ycp-btn soft" href="../../junior-high/">{e(SU["link_text"])} →</a></div>
   </div>
-</section>
-<section class="band concrete" id="roadmap" aria-labelledby="roadmap-title">
-  <div class="wrap">
-    <div class="sec-head"><p class="kicker yc-k">How to use this playbook</p><h2 id="roadmap-title">Four steps to a good season</h2></div>
-    <ol class="yc-road" role="list">{road}</ol>
+  <div class="ycp-note bar ycp-gap"><b>{e(DV["title"])}</b> {e(DV["text"])}</div>
+  <p class="ycp-eyebrow ycp-gap-lg">The development process</p><h2>Four steps to an effective season</h2>
+  <ol class="ycp-grid4 ycp-steps">{road}</ol>
+  <div class="ycp-split ycp-gap">
+    <div class="ycp-card"><p class="ycp-eyebrow">Our mission</p><p>{e(I["mission"])}</p><p class="ycp-tagline">{e(I["tagline"])}</p></div>
+    <div class="ycp-card"><p class="ycp-eyebrow">One program, K–12</p><p>{e(I["northampton_way"])}</p></div>
   </div>
-</section>
-<section class="band" id="curriculum" aria-labelledby="curriculum-title">
-  <div class="wrap">
-    <div class="sec-head"><p class="kicker yc-k">What to teach, and how</p><h2 id="curriculum-title">Pick your group</h2></div>
-    <div class="tabs yc-tabs" role="tablist" aria-label="Group">{tabs}</div>
-    {panels}
-  </div>
-</section>
-<section class="band concrete" id="builder" aria-labelledby="builder-title">
-  <div class="wrap">
-    <div class="sec-head"><p class="kicker yc-k">Plan your next practice</p><h2 id="builder-title">Practice builder</h2>
-    <p>{e(P["intro"])} Pick your group, the moves to review, and the new technique. The plan fills in the cues, the contest situation, and what to check.</p></div>
-    <div class="yc-builder" data-builder hidden>
-      <div class="yc-form">
-        <label>Group<select id="b-level">{level_opts}</select></label>
-        <label>Date<input type="date" id="b-date"></label>
-        <fieldset><legend>Review moves <span class="fine">(3–5)</span></legend><div class="yc-checklist" id="b-review"></div></fieldset>
-        <label>New technique<select id="b-skill1"></select></label>
-        <label>Second new technique <span class="fine">(optional)</span><select id="b-skill2"></select></label>
+  {top}
+</div></section>
+
+<section class="ycp-sec alt" id="expectations" aria-labelledby="exp-title"><div class="wrap">
+  <p class="ycp-eyebrow">Developmental progression</p><h2 id="exp-title">What should wrestlers learn—and how?</h2>
+  <p class="ycp-intro">Choose your group for its attitude, the skills in each position, how to coach each one, the drills to run, and what a wrestler must demonstrate before moving on.</p>
+  <label class="ycp-field">Coaching group<select id="ycp-level">{level_opts}</select></label>
+  {panels}
+  {top}
+</div></section>
+
+<section class="ycp-sec" id="builder" aria-labelledby="builder-title"><div class="wrap">
+  <p class="ycp-eyebrow">Plan your next practice</p><h2 id="builder-title">Build a purposeful practice.</h2>
+  <p class="ycp-intro">{e(P["intro"])} Choose the group, the moves to review and the new technique. The plan fills in the cues, the contest situation and what to check.</p>
+  <div class="yc-builder" data-builder hidden>
+    <div class="ycp-card ycp-form">
+      <div class="ycp-form-row">
+        <label class="ycp-field">Group<select id="b-level">{level_opts}</select></label>
+        <label class="ycp-field">Date<input type="date" id="b-date"></label>
+        <label class="ycp-field">New technique<select id="b-skill1"></select></label>
+        <label class="ycp-field">Second new technique <span class="muted">(optional)</span><select id="b-skill2"></select></label>
       </div>
-      <div class="yc-out" aria-live="polite">
-        <p class="actions yc-out-actions"><button type="button" class="btn ghost dark-ink" id="b-copy">Copy plan</button><button type="button" class="btn ghost dark-ink" id="b-print">Print plan</button></p>
-        <div id="b-sheet"></div>
+      <details class="ycp-review"><summary>Review moves <span class="muted" id="b-review-count"></span></summary><div class="yc-checklist" id="b-review"></div></details>
+    </div>
+    <div class="ycp-split wide ycp-gap">
+      <div class="yc-out" aria-live="polite"><div id="b-sheet"></div></div>
+      <div class="ycp-side">
+        <div class="ycp-card"><p class="ycp-eyebrow">Run these drills</p><div id="b-drills"></div></div>
+        <div class="ycp-card"><p class="ycp-eyebrow">Exit check: not just activity</p><h3>Can they actually do it?</h3>
+          <p>At the end, ask 3–5 wrestlers to demonstrate today’s skill. If most can’t do it under light pressure, keep it as the priority next practice.</p></div>
+        <p class="ycp-actions"><button type="button" class="ycp-btn" id="b-copy">Copy plan</button><button type="button" class="ycp-btn soft" id="b-print">Print plan</button></p>
       </div>
     </div>
-    <noscript><p class="yc-note">Turn on JavaScript to use the practice builder, or use the template below.</p></noscript>
-    <div class="split even top">
-      <div><h3>The practice plan, section by section</h3><ol class="yc-template">{template}</ol></div>
-      <div><div class="note-card"><h3>2&amp;2 drilling <span class="yc-only">Orange &amp; Black</span></h3><p>{e(D["two_and_two"])}</p><p>{e(D["series"])}</p><p class="fine">Novice does not drill 2&amp;2.</p></div>
-      <div class="yc-samples">{samples}</div></div>
-    </div>
   </div>
-</section>
-<section class="band dark" id="standards" aria-labelledby="standards-title">
-  <div class="wrap">
-    <div class="sec-head"><h2 id="standards-title">Coaching standards</h2><p class="lede">We are transformational coaches. Kids learn what a good adult looks like by watching us.</p></div>
-    <ol class="yc-standards" role="list">{standards}</ol>
-    <p class="actions top-gap"><a class="btn" href="../">Youth wrestling home</a></p>
+  <noscript><p class="ycp-note">Turn on JavaScript to use the practice builder, or use the template below.</p></noscript>
+  <div class="ycp-split ycp-gap">
+    <div class="ycp-card"><h3>The practice plan, section by section</h3><ol class="ycp-template">{template}</ol></div>
+    <div><div class="ycp-card"><h3>2&amp;2 drilling <span class="ycp-pill">Orange &amp; Black</span></h3><p>{e(D["two_and_two"])}</p><p>{e(D["series"])}</p><p class="ycp-small muted">Novice does not drill 2&amp;2.</p></div>
+      <div class="ycp-gap">{samples}</div></div>
   </div>
-</section>
+  {top}
+</div></section>
+
+<section class="ycp-sec alt" id="drills" aria-labelledby="drills-title"><div class="wrap">
+  <p class="ycp-eyebrow">Coach-ready drill instructions</p><h2 id="drills-title">The drill library coaches can actually use.</h2>
+  <p class="ycp-intro">Every drill, live situation and game in the playbook, with the set-up, what to coach, the cue, and how to check learning.</p>
+  <div class="ycp-filters" data-drill-filters hidden>
+    <label class="ycp-field">Group<select id="f-level"><option value="">All groups</option>{level_opts}</select></label>
+    <label class="ycp-field">Position<select id="f-pos"><option value="">All positions</option>{"".join(f'<option value="{k}">{v}</option>' for k, v in YC_POSITIONS)}</select></label>
+    <label class="ycp-field">Type<select id="f-type"><option value="">All types</option><option value="drill">Drills</option><option value="live">Live situations</option><option value="game">Games</option></select></label>
+  </div>
+  <p class="ycp-small muted" id="f-count">{len(YC["drill"])} drills, live situations and games.</p>
+  <div class="ycp-grid3">{drill_cards}</div>
+  {top}
+</div></section>
+
+<section class="ycp-sec" id="videos" aria-labelledby="videos-title"><div class="wrap">
+  <p class="ycp-eyebrow">Coach demonstration videos</p><h2 id="videos-title">See the technique. Run the drill.</h2>
+  <p class="ycp-intro">Watch the technique, then use the cues and drills in your next practice.</p>
+  {vids}
+  {top}
+</div></section>
+
+<section class="ycp-sec alt" id="challenge" aria-labelledby="challenge-title"><div class="wrap">
+  <p class="ycp-eyebrow">5-minute coaching check</p><h2 id="challenge-title">Can you make the right coaching decision?</h2>
+  <p class="ycp-intro">Work through real situations and choose the response that lives our standards.</p>
+  <div class="ycp-card ycp-quiz" data-quiz hidden>
+    <div class="ycp-progress"><span id="q-bar"></span></div>
+    <p class="ycp-eyebrow" id="q-num"></p><h3 id="q-text"></h3>
+    <div class="ycp-options" id="q-opts"></div>
+    <div class="ycp-feedback" id="q-fb" hidden></div>
+    <div class="ycp-quiz-foot"><p class="ycp-small muted">Find a coaching solution, not just an answer.</p><button type="button" class="ycp-btn" id="q-next" disabled>Next scenario →</button></div>
+  </div>
+  <noscript>{noscript_quiz}</noscript>
+  {top}
+</div></section>
+
+<section class="ycp-sec" id="checkin" aria-labelledby="checkin-title"><div class="wrap">
+  <p class="ycp-eyebrow">A repeatable standard</p><h2 id="checkin-title">60-second weekly coaching check-in</h2>
+  <p class="ycp-intro">{e(C["intro"])}</p>
+  <label class="ycp-field">Coaching group<select id="c-level">{level_opts}</select></label>
+  <div class="ycp-split wide ycp-gap">
+    <div class="ycp-card" data-checkin hidden><h3 id="c-title">After-practice reflection</h3>
+      <p class="ycp-small muted">Check what genuinely happened this week. Unchecked boxes are next practice’s teaching priority, not a failure.</p>
+      <div class="ycp-progress"><span id="c-bar"></span></div><p class="ycp-small" id="c-count"></p>
+      <div class="ycp-checkgrid" id="c-items"></div>
+      <p class="ycp-actions"><button type="button" class="ycp-btn" id="c-copy">Copy check-in summary</button><button type="button" class="ycp-btn soft" id="c-reset">Start a new week</button></p></div>
+    <div class="ycp-card"><p class="ycp-eyebrow">Observe, don’t assume</p><h3>The question worth asking</h3><p><b>{e(C["question"])}</b></p><p>{e(C["answer"])}</p><p class="ycp-good">{e(C["start"])}</p></div>
+  </div>
+  {top}
+</div></section>
+
+<section class="ycp-sec dark" id="standards" aria-labelledby="standards-title"><div class="wrap">
+  <p class="ycp-eyebrow light">How we coach Konkrete Kids</p><h2 id="standards-title">Coaching standards</h2>
+  <p class="ycp-intro">We are transformational coaches. Kids learn what a good adult looks like by watching us.</p>
+  <ol class="ycp-standards">{standards}</ol>
+  <p class="ycp-actions ycp-gap"><a class="ycp-btn" href="../">Youth wrestling home</a></p>
+</div></section>
+</div>
 <script type="application/json" id="yc-data">{bjson}</script>
 """
     return page("youth/coaches/index.html", "Youth Coaches’ Playbook",
-                "What Northampton youth wrestling coaches teach: Novice and Orange & Black skills, how to coach each one, a practice builder, and coaching standards.",
+                "What Northampton youth wrestling coaches teach: Novice and Orange & Black skills, how to coach each one, a practice builder, a drill library, and coaching standards.",
                 body, "youth/coaches/", scripts=("site.js", "coaches.js"), og_image="youth-mat")
 
 
