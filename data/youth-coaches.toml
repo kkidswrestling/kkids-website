@@ -25,7 +25,7 @@ northampton_way = "Teach the Northampton way. Every group is organized the same 
 roadmap = [
   ["Before the season", "Pick your group. Read its attitude, coaching habits, and the coaching standards."],
   ["Every week", "Choose 1–2 skills from your group's list. Build each practice around them with the practice builder."],
-  ["At practice", "Teach the cues, drill it 2&2, put it in a live situation, then check: can the wrestler demonstrate it?"],
+  ["At practice", "Teach the cues, drill it (Orange & Black drills 2&2), put it in a live situation, then check: can the wrestler demonstrate it?"],
   ["After practice", "Coach's notes: who owns today's skill, and who needs it re-taught next practice."],
 ]
 
@@ -110,7 +110,7 @@ group = "Position"
 name = "Penetration step"
 teach = ["Inside and outside.", "Change your elevation before you penetrate."]
 demonstrates = "Changes level first, then hits a deep inside and outside step with head up."
-drill = "2&2 penetration steps, inside and outside. Level change first."
+drill = "Drill with a partner: penetration steps, inside and outside. Level change first."
 live = "Shoot on the whistle from motion."
 
 [[skill]]
@@ -130,7 +130,7 @@ group = "Position"
 name = "Setups and control ties"
 teach = ["Wrist tie, head snap, pop and go."]
 demonstrates = "Sets up a shot with a wrist tie, head snap or pop and go instead of shooting from open space."
-drill = "2&2: wrist tie, head snap, or pop and go into a double leg."
+drill = "Drill with a partner: wrist tie, head snap, or pop and go into a double leg."
 live = "Start in a tie; score from it on the whistle."
 
 [[skill]]
@@ -140,7 +140,7 @@ group = "Takedowns"
 name = "Double leg"
 teach = ["Head outside.", "Drive through and finish."]
 demonstrates = "Hits the double from stance, drives through and finishes on a drilling partner."
-drill = "2&2 double leg from stance."
+drill = "Drill with a partner: double leg from stance."
 live = "Quick starts from neutral (10–15 seconds)."
 
 [[skill]]
@@ -150,7 +150,7 @@ group = "Takedowns"
 name = "Head outside single"
 teach = ["Screw the leg in.", "Lock the wrist high.", "Leg drive.", "Build to a good position."]
 demonstrates = "Finishes on a resisting partner without staying on their knees."
-drill = "2&2 head outside single."
+drill = "Drill with a partner: head outside single."
 live = "Live once in on a leg: head outside (good or bad position)."
 
 [[skill]]
@@ -160,7 +160,7 @@ group = "Takedowns"
 name = "Head inside single"
 teach = ["Go behind.", "Don't wrap the lower leg; post the arm through and tackle the other leg."]
 demonstrates = "Gets behind from the leg without wrapping the lower leg."
-drill = "2&2 head inside single, go behind."
+drill = "Drill with a partner: head inside single, go behind."
 live = "Live once in on a leg: head inside (good or bad position)."
 
 [[skill]]
@@ -170,7 +170,7 @@ group = "Takedowns"
 name = "Snap and spin"
 teach = ["Snap your opponent down, go behind."]
 demonstrates = "Snaps a partner to their knees and spins behind to control."
-drill = "2&2 snap down and spin behind."
+drill = "Drill with a partner: snap down and spin behind."
 live = "On knees: snap down on the whistle; partner defends."
 
 [[skill]]
@@ -190,7 +190,7 @@ group = "Defense"
 name = "Sprawl and spin"
 teach = []
 demonstrates = "Sprawls with hips down and legs back, then spins behind to score."
-drill = "2&2 sprawl and spin behind."
+drill = "Drill with a partner: sprawl and spin behind."
 live = "On knees: one shoots, the other counters on the whistle."
 
 [[skill]]
@@ -200,7 +200,7 @@ group = "Defense"
 name = "Stuff the head"
 teach = []
 demonstrates = "Stuffs the head and stops the shot's penetration."
-drill = "2&2 stuff the head on a partner's shot."
+drill = "Drill with a partner: stuff the head on a partner's shot."
 live = "On knees: one shoots, the other counters on the whistle."
 
 [[skill]]
@@ -210,7 +210,7 @@ group = "Defense"
 name = "Down block"
 teach = ["With head position control."]
 demonstrates = "Blocks a low shot while keeping the head in good position."
-drill = "2&2 down block on a low shot."
+drill = "Drill with a partner: down block on a low shot."
 live = "On knees: one shoots, the other counters on the whistle."
 
 # ------------------------------------------------------------------ Novice: Bottom
@@ -247,7 +247,7 @@ position = "bottom"
 name = "Stand-up"
 teach = []
 demonstrates = "Gets to their feet from referee's position against light resistance."
-drill = "2&2 stand-up."
+drill = "Drill with a partner: stand-up."
 live = "Quick starts from bottom: get to your feet."
 
 [[skill]]
@@ -256,7 +256,7 @@ position = "bottom"
 name = "Switch"
 teach = []
 demonstrates = "Hits a switch and comes out on top against light resistance."
-drill = "2&2 switch."
+drill = "Drill with a partner: switch."
 live = "Quick starts from bottom."
 
 [[skill]]
@@ -265,7 +265,7 @@ position = "bottom"
 name = "Hip escape"
 teach = []
 demonstrates = "Uses a hip escape to get to a better position."
-drill = "2&2 hip escape."
+drill = "Drill with a partner: hip escape."
 live = "On belly: get to your knees."
 
 [[skill]]
@@ -274,7 +274,7 @@ position = "bottom"
 name = "Knee slide"
 teach = []
 demonstrates = "Uses a knee slide to get to their feet."
-drill = "2&2 knee slide to your feet."
+drill = "Drill with a partner: knee slide to your feet."
 live = "Quick starts from bottom: get to your feet."
 
 # ------------------------------------------------------------------ Novice: Top
@@ -293,7 +293,7 @@ position = "top"
 name = "Breakdowns"
 teach = ["Pop and chop, tight waist, ankle ride, spiral ride."]
 demonstrates = "Breaks a partner down to the belly with at least two of the four breakdowns."
-drill = "2&2 each breakdown."
+drill = "Drill with a partner: each breakdown."
 live = "Quick starts from top: break your partner down to the belly."
 
 [[skill]]
@@ -302,7 +302,7 @@ position = "top"
 name = "Return to the mat"
 teach = ["Hip dump."]
 demonstrates = "Returns a standing partner to the mat safely with a hip dump."
-drill = "2&2 hip dump from a standing partner."
+drill = "Drill with a partner: hip dump from a standing partner."
 live = "Bottom stands on the whistle; top returns them safely."
 
 [[skill]]
@@ -311,7 +311,7 @@ position = "top"
 name = "Half nelsons"
 teach = ["Half nelson, half from the knees, half from the mat."]
 demonstrates = "Turns a partner from belly to back with a half and holds them there."
-drill = "2&2 half nelson, partner on belly, then on knees."
+drill = "Drill with a partner: half nelson, partner on belly, then on knees."
 live = "Half nelson, bottom on knees or belly: get out or don't get out."
 
 [[skill]]
@@ -320,7 +320,7 @@ position = "top"
 name = "Cradles"
 teach = ["Cradle, near cradle, crossface cradle."]
 demonstrates = "Locks a cradle and rolls a partner to their back."
-drill = "2&2 each cradle."
+drill = "Drill with a partner: each cradle."
 live = "Near cradle, crossface, crossface cradle."
 
 [[skill]]
@@ -329,7 +329,7 @@ position = "top"
 name = "Wrist control"
 teach = ["Pinning combinations with the wrist."]
 demonstrates = "Controls the wrist to set up a turn."
-drill = "2&2 wrist control into a turn."
+drill = "Drill with a partner: wrist control into a turn."
 live = "Quick starts from top: control the wrist and turn."
 
 [[skill]]
@@ -795,7 +795,7 @@ position = "top"
 name = "Riding legs"
 teach = ["Power half, cross body.", "Cross body to a bar, half, roll-through half finish.", "Scoring from two legs in.", "Top leg in and pull for back points."]
 demonstrates = "Rides legs for 30 seconds and turns with the power half or cross body."
-drill = "2&2 power half and cross body."
+drill = "Drill with a partner: power half and cross body."
 live = "Two legs in (on knees or on belly). Overtime ride-out."
 
 # ------------------------------------------------------------------ Drilling and live situations
@@ -849,49 +849,46 @@ items = [
 ]
 
 # ------------------------------------------------------------------ Practice plan
+# Joe's practice-plan template, adjusted for youth. Same sections, same order as the
+# high school plan. Novice does not drill 2&2; Orange & Black does.
 [practice]
-intro = "Every practice has a written plan. Kids should leave tired, a little better, and excited to come back. Mark each move (new) or review so everyone knows what is being introduced."
-template = [
-  ["Skin check and attendance", "Any suspicious spot sits out until a doctor clears it."],
-  ["Warm-up and games", "Movement first, games whenever possible."],
-  ["Review (2&2)", "3–5 moves already taught. Same setup and finish every rep."],
-  ["New technique", "1–2 moves, taught well, lots of reps."],
-  ["Drill", "Partners matched by size."],
-  ["Live situations", "Matched by size and experience. Short goes."],
-  ["Conditioning game", "Conditioning is built into games."],
-  ["Team close", "Observations (“What did you see someone do well?”) or a Spotlight. One quick announcement if needed. Every kid shakes every coach's hand on the way out."],
-  ["Coach's notes", "Who owns today's move? Who needs it re-taught next practice?"],
+intro = "Same practice plan the high school room uses, adjusted for youth. Every practice has a written plan. Kids should leave tired, a little better, and excited to come back."
+sections = [
+  ["Announcements", "Keep it short. Skin check and attendance as kids line up."],
+  ["Warm-up", "Movement and games. No lifting at the youth level."],
+  ["Drill (review principles)", "3–5 moves already taught, with their key cues. Orange & Black drills 2&2."],
+  ["New Technique", "1–2 moves, marked (new). Teach the cues, then lots of reps."],
+  ["Contest situation", "Live situations matched by size and experience. Short goes."],
+  ["Conditioning", "A conditioning game. Takes the place of CrossFit at the youth level."],
+  ["Announcements", "One quick reminder if needed."],
+  ["Team Culture", "Spotlight or Observations (“What did you see someone do well?”). Every kid shakes every coach's hand on the way out."],
+  ["My notes", "Who owns today's move? Who needs it re-taught next practice?"],
 ]
 
+# Sample practices. Moves are skill ids (level-name); their cues come from the skills above.
 [[sample]]
 level = "novice"
 title = "Sample practice: Novice (early season)"
-rows = [
-  ["Skin check and attendance", "Coaches check skin as kids line up."],
-  ["Warm-up and games", "Stance and motion follow-the-leader (forward, back, side to side, circling). Ankle touch for points. Sumo."],
-  ["Review (2&2)", "Stance: staggered and square, always able to touch the mat with your hand. Penetration step, inside and outside. Double leg: head outside, drive through and finish."],
-  ["New technique", "Head outside single (new): screw the leg in, lock the wrist high, leg drive, build to a good position. Half nelson (new)."],
-  ["Drill", "2&2 head outside single. 2&2 half nelson, partner on knees."],
-  ["Live situations", "Live once in on a leg (head outside single). Half nelson, bottom on knees: get out or don't. Quick starts (10–15 seconds)."],
-  ["Conditioning game", "King of the mat."],
-  ["Team close", "Observations: “What did you see someone do well?” Handshake line."],
-  ["Coach's notes", "Who finished the single without staying on their knees? Who needs the half nelson re-taught?"],
-]
+announcements = ["Skin check and attendance", "Welcome, rules for the room"]
+warmup = ["Stance and motion follow-the-leader", "Ankle touch for points", "Sumo"]
+review = ["novice-stance", "novice-penetration-step", "novice-double-leg"]
+new = ["novice-head-outside-single", "novice-half-nelsons"]
+contest = ["Live once in on a leg: head outside", "Half nelson, bottom on knees: get out or don't get out", "Quick starts (10–15 seconds)"]
+conditioning = ["King of the mat"]
+closing = []
+culture = ["Observations: “What did you see someone do well?”", "Handshake line"]
 
 [[sample]]
 level = "orange-black"
 title = "Sample practice: Orange & Black (mid-season)"
-rows = [
-  ["Skin check and attendance", "Coaches check skin as kids line up."],
-  ["Warm-up and games", "Jog, forward rolls, karaoke in and out, stance in and out, sprawls. Finish with a short game: ankle touch for points."],
-  ["Review (2&2)", "Head inside single: go behind, knee under the ankle and come up. Counter the head outside single: crossface, near ankle. Turn-in stand. Switch."],
-  ["New technique", "Low single (new): lower level, block with the head and run the feet. Turk (new): lift and Turk."],
-  ["Drill", "2&2 low single. 2&2 Turk. Series: head inside single, stand-up, mat return, change-over and stand, get away; then switch shooters."],
-  ["Live situations", "Head inside single, good or bad position. On belly: get to your feet. One leg in, on knees. Quick starts with a score given (down 1, down 2)."],
-  ["Conditioning game", "Sprawl relay or king of the mat."],
-  ["Team close", "Spotlight on one wrestler who lived the Northampton way. Quick announcement if needed. Handshake line."],
-  ["Coach's notes", "Who can hit the low single on a live partner? Who is still getting stuck on the belly on bottom?"],
-]
+announcements = ["Skin check and attendance", "Weekend tournament reminder"]
+warmup = ["Jog, forward rolls, karaoke in and out, stance in and out, sprawls", "Ankle touch for points"]
+review = ["orange-black-head-inside-single", "orange-black-vs-head-outside-single", "orange-black-stand-up-series", "orange-black-switch"]
+new = ["orange-black-low-single", "orange-black-turk"]
+contest = ["Head inside single (good or bad position)", "On belly: get to your feet", "One leg in, on knees", "Quick starts with a score given (down 1, down 2)"]
+conditioning = ["Sprawl relay or king of the mat"]
+closing = []
+culture = ["Spotlight", "Handshake line"]
 
 # ------------------------------------------------------------------ Coaching standards (from the Youth Coaches' Guide quick reference)
 [standards]

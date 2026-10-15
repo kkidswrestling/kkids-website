@@ -39,80 +39,111 @@
   });
 
   // ---------------------------------------------------------- practice builder
+  // Builds a plan in the layout of Joe's practice-plan template (same sections, same order).
   var B = document.querySelector("[data-builder]");
-  var builder = null;
   if (B && DATA) {
     B.hidden = false;
     var $ = function (id) { return document.getElementById(id); };
-    var lvlSel = $("b-level"), s1 = $("b-skill1"), s2 = $("b-skill2"), out = $("b-plan"), title = $("b-title");
+    var lvlSel = $("b-level"), s1 = $("b-skill1"), s2 = $("b-skill2"), rev = $("b-review"), dateIn = $("b-date"), sheet = $("b-sheet");
+    var touched = false, plainText = "", current = null;
     var skillsFor = function (lid) { return DATA.skills.filter(function (s) { return s.level === lid; }); };
     var byId = function (id) { return DATA.skills.filter(function (s) { return s.id === id; })[0]; };
-    var fill = function (sel, lid, withNone) {
+    var el = function (tag, text, cls) { var n = document.createElement(tag); if (text) n.textContent = text; if (cls) n.className = cls; return n; };
+    var fillSelect = function (sel, lid, withNone) {
       sel.innerHTML = "";
-      if (withNone) { var o = document.createElement("option"); o.value = ""; o.textContent = "None"; sel.appendChild(o); }
+      if (withNone) { var o = el("option", "None"); o.value = ""; sel.appendChild(o); }
       Object.keys(DATA.positions).forEach(function (pid) {
         var g = document.createElement("optgroup"); g.label = DATA.positions[pid];
-        skillsFor(lid).filter(function (s) { return s.position === pid; }).forEach(function (s) {
-          var o = document.createElement("option"); o.value = s.id; o.textContent = s.name; g.appendChild(o);
-        });
+        skillsFor(lid).filter(function (s) { return s.position === pid; }).forEach(function (s) { var o = el("option", s.name); o.value = s.id; g.appendChild(o); });
         sel.appendChild(g);
       });
     };
-    var tpl = {}; DATA.template.forEach(function (r) { tpl[r[0]] = r[1]; });
+    var fillReview = function (lid) {
+      rev.innerHTML = "";
+      Object.keys(DATA.positions).forEach(function (pid) {
+        rev.appendChild(el("p", DATA.positions[pid], "yc-checklist-h"));
+        skillsFor(lid).filter(function (s) { return s.position === pid; }).forEach(function (s) {
+          var lab = el("label"), cb = document.createElement("input");
+          cb.type = "checkbox"; cb.value = s.id;
+          cb.addEventListener("change", function () { touched = true; render(); });
+          lab.appendChild(cb); lab.appendChild(document.createTextNode(" " + s.name)); rev.appendChild(lab);
+        });
+      });
+    };
+    var suggestReview = function () {
+      var list = skillsFor(lvlSel.value), picks = [s1.value, s2.value];
+      var i = list.map(function (x) { return x.id; }).indexOf(s1.value);
+      var sug = list.slice(Math.max(0, i - 3), i).map(function (x) { return x.id; });
+      list.forEach(function (x) { if (sug.length < 3 && sug.indexOf(x.id) < 0 && picks.indexOf(x.id) < 0) sug.push(x.id); });
+      rev.querySelectorAll("input").forEach(function (cb) { cb.checked = sug.indexOf(cb.value) >= 0 && picks.indexOf(cb.value) < 0; });
+    };
     var render = function () {
       var lid = lvlSel.value, L = DATA.levels[lid];
       var picks = [byId(s1.value), byId(s2.value)].filter(function (x, i, a) { return x && a.indexOf(x) === i; });
-      var list = skillsFor(lid);
-      var first = list.indexOf(picks[0]);
-      var review = list.slice(Math.max(0, first - 3), first).filter(function (x) { return picks.indexOf(x) < 0; });
-      if (review.length < 3) review = review.concat(list.filter(function (x) { return picks.indexOf(x) < 0 && review.indexOf(x) < 0; }).slice(0, 3 - review.length));
-      var names = function (arr) { return arr.map(function (x) { return x.name; }).join(", "); };
+      var review = Array.prototype.slice.call(rev.querySelectorAll("input:checked")).map(function (cb) { return byId(cb.value); })
+        .filter(function (x) { return picks.indexOf(x) < 0; });
       var lives = [];
       picks.forEach(function (p) { if (p.live && lives.indexOf(p.live) < 0) lives.push(p.live); });
-      var blocks = [
-        ["Skin check and attendance", tpl["Skin check and attendance"]],
-        ["Warm-up and games", L.warmup],
-        ["Review (2&2)", "3–5 skills already taught. Suggested: " + names(review) + "."],
-        ["New technique", picks.map(function (p) { return p.name + " (new): " + (p.teach.length ? p.teach.join(" ") : "demonstrate it, then walk it through at half speed."); }).join("  ")],
-        ["Drill", picks.map(function (p) { return p.drill; }).join(" ") + " Partners matched by size."],
-        ["Live situations", (lives.length ? lives.join(" ") : "Quick starts.") + " Matched by size and experience. Short goes."],
-        ["Conditioning game", L.conditioning],
-        ["Team close", tpl["Team close"]],
-        ["Coach's notes", "Can each wrestler demonstrate it? " + picks.map(function (p) { return p.name + ": " + p.demo.charAt(0).toLowerCase() + p.demo.slice(1); }).join(" ") + " Who needs it re-taught next practice?"]
+      lives.push(lid === "novice" ? "Quick starts (10–15 seconds)" : "Quick starts with a score given (down 1, down 2)");
+      var moves = function (arr, isNew) { return arr.map(function (x) { return { t: x.name + (isNew ? " (new)" : ""), sub: x.teach }; }); };
+      var plain = function (arr) { return arr.map(function (t) { return { t: t, sub: [] }; }); };
+      var secs = [
+        ["Announcements", plain(["Skin check and attendance"])],
+        ["Warm-up", plain([L.warmup])],
+        [L.drill, moves(review, false)],
+        ["New Technique", moves(picks, true)],
+        ["Contest situation", plain(lives.concat(["Matched by size and experience. Short goes."]))],
+        ["Conditioning", plain([L.conditioning])],
+        ["Announcements", plain([""])],
+        ["Team Culture", plain([lid === "novice" ? "Observations: “What did you see someone do well?”" : "Spotlight", "Handshake line"])],
+        ["My notes", plain(picks.map(function (p) { return p.name + ": " + p.demo; }).concat(["Who needs it re-taught next practice?"]))]
       ];
-      title.textContent = L.name + " practice: " + names(picks);
-      out.innerHTML = "";
-      blocks.forEach(function (b) {
-        var li = document.createElement("li"), h = document.createElement("b"), p = document.createElement("span");
-        h.textContent = b[0]; p.textContent = b[1]; li.appendChild(h); li.appendChild(p); out.appendChild(li);
+      var d = dateIn.value ? new Date(dateIn.value + "T12:00:00").toLocaleDateString(undefined, { weekday: "long", month: "numeric", day: "numeric", year: "2-digit" }) : "";
+      sheet.innerHTML = "";
+      var wrap = el("div", null, "yc-sheet"), head = el("div", null, "yc-sheet-head"), body = el("div", null, "yc-sheet-body");
+      head.appendChild(el("h3", "Practice Plan")); head.appendChild(el("span", (d ? d + " · " : "") + L.name));
+      var text = ["Practice Plan" + (d ? " – " + d : "") + " – " + L.name, ""];
+      secs.forEach(function (sec) {
+        var box = el("section"), ul = el("ul");
+        box.appendChild(el("h4", sec[0])); text.push(sec[0] + ":");
+        sec[1].forEach(function (it) {
+          var li = el("li", it.t); text.push("  - " + it.t);
+          if (it.sub && it.sub.length) {
+            var sub = el("ul");
+            it.sub.forEach(function (c) { sub.appendChild(el("li", c)); text.push("      - " + c); });
+            li.appendChild(sub);
+          }
+          ul.appendChild(li);
+        });
+        box.appendChild(ul); body.appendChild(box);
       });
-      builder.text = title.textContent + "\n\n" + blocks.map(function (b, i) { return (i + 1) + ". " + b[0] + ": " + b[1]; }).join("\n");
+      wrap.appendChild(head); wrap.appendChild(body); sheet.appendChild(wrap);
+      plainText = text.join("\n");
     };
     var setLevel = function (lid, skillId) {
-      if (lvlSel.value !== lid || !s1.options.length) { lvlSel.value = lid; fill(s1, lid, false); fill(s2, lid, true); }
-      if (skillId) s1.value = skillId;
+      if (current !== lid) { current = lid; lvlSel.value = lid; fillSelect(s1, lid, false); fillSelect(s2, lid, true); fillReview(lid); touched = false; }
+      if (skillId) { s1.value = skillId; touched = false; }
+      if (!touched) suggestReview();
       render();
     };
-    builder = { setLevel: setLevel, text: "" };
     lvlSel.addEventListener("change", function () { selectTab(lvlSel.value); });
-    s1.addEventListener("change", render);
-    s2.addEventListener("change", render);
-    onLevel.push(function (lid) { if (lvlSel.value !== lid || !s1.options.length) setLevel(lid); });
+    s1.addEventListener("change", function () { if (!touched) suggestReview(); render(); });
+    s2.addEventListener("change", function () { if (!touched) suggestReview(); render(); });
+    dateIn.addEventListener("change", render);
+    onLevel.push(function (lid) { if (current !== lid) setLevel(lid); });
     $("b-print").addEventListener("click", function () {
       document.body.classList.add("print-plan");
       window.print();
       setTimeout(function () { document.body.classList.remove("print-plan"); }, 500);
     });
     $("b-copy").addEventListener("click", function () {
-      var btn = this, done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy plan"; }, 1600); };
-      if (navigator.clipboard) navigator.clipboard.writeText(builder.text).then(done, function () {});
+      var btn = this;
+      if (navigator.clipboard) navigator.clipboard.writeText(plainText).then(function () {
+        btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy plan"; }, 1600);
+      }, function () {});
     });
-    // "Build a practice" links on skill cards and level banners
     document.querySelectorAll('a[href="#builder"][data-level]').forEach(function (a) {
-      a.addEventListener("click", function () {
-        selectTab(a.dataset.level);
-        setLevel(a.dataset.level, a.dataset.skill);
-      });
+      a.addEventListener("click", function () { selectTab(a.dataset.level); setLevel(a.dataset.level, a.dataset.skill); });
     });
   }
 

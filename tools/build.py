@@ -875,6 +875,29 @@ def yc_level(YC, lid):
     <div class="yc-live"><h4 class="yc-live-title">Live situations</h4>{live_lead}<div class="yc-live-cols">{live}</div></div>"""
 
 
+def yc_drill_head(lid):
+    return "Drill (review principles)" if lid == "novice" else "2&2 Drill (review principles)"
+
+
+def yc_sheet(smp, by_id):
+    """One practice plan in the layout of Joe's high school template."""
+    def moves(ids, new=False):
+        out = ""
+        for i in ids:
+            x = by_id[i]
+            cues = "".join(f"<li>{e(c)}</li>" for c in x.get("teach", []))
+            out += f'<li>{e(x["name"])}{" <em>(new)</em>" if new else ""}{f"<ul>{cues}</ul>" if cues else ""}</li>'
+        return out
+    plain = lambda items: "".join(f"<li>{e(t)}</li>" for t in items)
+    notes = plain([f'{by_id[i]["name"]}: {by_id[i]["demonstrates"]}' for i in smp["new"]] + ["Who needs it re-taught next practice?"])
+    secs = [("Announcements", plain(smp["announcements"])), ("Warm-up", plain(smp["warmup"])),
+            (yc_drill_head(smp["level"]), moves(smp["review"])), ("New Technique", moves(smp["new"], True)),
+            ("Contest situation", plain(smp["contest"])), ("Conditioning", plain(smp["conditioning"])),
+            ("Announcements", plain(smp["closing"]) or "<li></li>"), ("Team Culture", plain(smp["culture"])), ("My notes", notes)]
+    body = "".join(f'<section><h4>{e(n)}</h4><ul>{c}</ul></section>' for n, c in secs)
+    return f'<div class="yc-sheet"><div class="yc-sheet-head"><h3>Practice Plan</h3><span>{e(smp["title"].split(": ", 1)[-1])}</span></div><div class="yc-sheet-body">{body}</div></div>'
+
+
 def build_youth_coaches():
     R = "../../"
     YC = load_toml("youth-coaches.toml")
@@ -891,21 +914,17 @@ def build_youth_coaches():
         f'<section class="panel yc-panel" role="tabpanel" id="lvl-{lid}" aria-labelledby="tab-{lid}" tabindex="0">{yc_level(YC, lid)}</section>'
         for lid in lids)
     P = YC["practice"]
-    template = "".join(f"<li><b>{e(a)}</b>{e(b)}</li>" for a, b in P["template"])
-    samples = ""
-    for smp in YC["sample"]:
-        rows = "".join(f'<tr><th scope="row">{e(a)}</th><td>{e(b)}</td></tr>' for a, b in smp["rows"])
-        samples += (f'<details class="yc-more"><summary>{e(smp["title"])}</summary><div class="table-wrap" tabindex="0" role="region" aria-label="{e(smp["title"])}">'
-                    f'<table class="yc-plan"><thead><tr><th scope="col">Block</th><th scope="col">Plan</th></tr></thead><tbody>{rows}</tbody></table></div></details>')
+    by_id = {yc_id(x): x for x in YC["skill"]}
+    template = "".join(f"<li><b>{e(a)}</b>{e(b)}</li>" for a, b in P["sections"])
+    samples = "".join(f'<details class="yc-more"><summary>{e(smp["title"])}</summary>{yc_sheet(smp, by_id)}</details>' for smp in YC["sample"])
     standards = "".join(f"<li>{e(x)}</li>" for x in YC["standards"]["items"])
     D = YC["drilling"]
     # Data for the practice builder
     bdata = {
-        "levels": {lid: {"name": lv["name"], "warmup": lv["warmup"], "conditioning": lv["conditioning"]} for lid, lv in YC["levels"].items()},
+        "levels": {lid: {"name": lv["name"], "warmup": lv["warmup"], "conditioning": lv["conditioning"], "drill": yc_drill_head(lid)} for lid, lv in YC["levels"].items()},
         "positions": dict(YC_POSITIONS),
         "skills": [{"id": yc_id(x), "level": x["level"], "position": x["position"], "name": x["name"], "teach": x.get("teach", []),
                     "drill": x["drill"], "live": x.get("live", ""), "demo": x["demonstrates"]} for x in YC["skill"]],
-        "template": P["template"],
     }
     bjson = json.dumps(bdata, ensure_ascii=False).replace("</", "<\\/")
     level_opts = "".join(f'<option value="{lid}">{e(YC["levels"][lid]["name"])}</option>' for lid in lids)
@@ -944,24 +963,24 @@ def build_youth_coaches():
 <section class="band concrete" id="builder" aria-labelledby="builder-title">
   <div class="wrap">
     <div class="sec-head"><p class="kicker yc-k">Plan your next practice</p><h2 id="builder-title">Practice builder</h2>
-    <p>Choose your group and the skill you’re teaching. You get a full practice plan with the cues, the drill, the live situation, and the check.</p></div>
+    <p>{e(P["intro"])} Pick your group, the moves to review, and the new technique. The plan fills in the cues, the contest situation, and what to check.</p></div>
     <div class="yc-builder" data-builder hidden>
       <div class="yc-form">
         <label>Group<select id="b-level">{level_opts}</select></label>
-        <label>New skill<select id="b-skill1"></select></label>
-        <label>Second new skill <span class="fine">(optional)</span><select id="b-skill2"></select></label>
+        <label>Date<input type="date" id="b-date"></label>
+        <fieldset><legend>Review moves <span class="fine">(3–5)</span></legend><div class="yc-checklist" id="b-review"></div></fieldset>
+        <label>New technique<select id="b-skill1"></select></label>
+        <label>Second new technique <span class="fine">(optional)</span><select id="b-skill2"></select></label>
       </div>
       <div class="yc-out" aria-live="polite">
-        <div class="yc-out-head"><h3 id="b-title">Your practice plan</h3>
-          <p class="actions"><button type="button" class="btn ghost dark-ink" id="b-copy">Copy plan</button><button type="button" class="btn ghost dark-ink" id="b-print">Print plan</button></p></div>
-        <ol class="yc-out-list" id="b-plan"></ol>
-        <p class="fine">Minutes for each block will be added once practice lengths are set.</p>
+        <p class="actions yc-out-actions"><button type="button" class="btn ghost dark-ink" id="b-copy">Copy plan</button><button type="button" class="btn ghost dark-ink" id="b-print">Print plan</button></p>
+        <div id="b-sheet"></div>
       </div>
     </div>
     <noscript><p class="yc-note">Turn on JavaScript to use the practice builder, or use the template below.</p></noscript>
     <div class="split even top">
-      <div><h3>Every practice</h3><ol class="yc-template">{template}</ol></div>
-      <div><div class="note-card"><h3>2&amp;2 drilling</h3><p>{e(D["two_and_two"])}</p><p>{e(D["series"])}</p></div>
+      <div><h3>The practice plan, section by section</h3><ol class="yc-template">{template}</ol></div>
+      <div><div class="note-card"><h3>2&amp;2 drilling <span class="yc-only">Orange &amp; Black</span></h3><p>{e(D["two_and_two"])}</p><p>{e(D["series"])}</p><p class="fine">Novice does not drill 2&amp;2.</p></div>
       <div class="yc-samples">{samples}</div></div>
     </div>
   </div>
