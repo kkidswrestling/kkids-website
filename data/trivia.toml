@@ -25,7 +25,7 @@ link = ["The 1993 title season", "champions/team/1993/"]
 q = "The Kids won 50 duals in a row from 1992–93 into 1994–95. On Dec. 10, 1994, the No. 1 team in the nation ended the streak by a single point. Who was it?"
 choices = ["Canon-McMillan", "Walsh Jesuit (Ohio)", "St. Edward (Ohio)", "Blair Academy (N.J.)"]
 answer = 2
-fact = "Walsh Jesuit won 28–27 at the Valley Youth House Elite Duals, hours after the Kids beat Canon-McMillan for win No. 50. Northampton came in ranked No. 2 in the nation, and went on to win its third straight state team title that March."
+fact = "Walsh Jesuit won 28–27 at the Valley Youth House Elite Duals, the same day the Kids beat Canon-McMillan for win No. 50. Northampton came in ranked No. 2 in the nation, and went on to win its third straight state team title that March."
 link = ["The 1994–95 season", "seasons/1994-95/"]
 
 [[round.q]]
