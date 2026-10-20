@@ -1233,3 +1233,4 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 /* Orange labels on light backgrounds use the darker orange so they're easy to read */
 .page-head.concrete .kicker, .season-page .kicker { color: var(--blaze-ink); }
 .table-wrap:focus-visible { outline: 3px solid var(--blaze); outline-offset: 2px; }
+.page-head.has-photo .ph-credit { position: absolute; right: 12px; bottom: 8px; margin: 0; font-size: 12px; line-height: 1.2; color: rgba(243, 241, 236, .85); text-shadow: 0 1px 2px rgba(0, 0, 0, .6); z-index: 2; }

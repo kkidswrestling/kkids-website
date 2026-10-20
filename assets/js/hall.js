@@ -72,7 +72,7 @@
     var v = q.value.trim().toLowerCase();
     filterTables(v);
     if (v.length < 2) { out.innerHTML = ""; return; }
-    var hits = people.filter(function (p) { return p.name.toLowerCase().indexOf(v) > -1; }).slice(0, 8);
+    var hits = people.filter(function (p) { return (p.name + " " + (p.aka || []).join(" ")).toLowerCase().indexOf(v) > -1; }).slice(0, 8);
     if (!hits.length) {
       out.innerHTML = '<p class="none">No wrestler named “' + esc(q.value.trim()) + '” is on the champion lists yet.</p>';
       return;

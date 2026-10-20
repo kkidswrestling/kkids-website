@@ -41,10 +41,10 @@ def follow_block(R, heading_id="follow-title", dark=True):
     action = nl or f'mailto:{M.SITE["email"]}?subject=Sign%20me%20up%20for%20Northampton%20Wrestling%20updates&body=Name%3A%0AConnection%20to%20the%20program%20(parent%2C%20alumni%2C%20fan...)%3A'
     cards = "".join(
         f'<a class="follow-card fc-{k}" href="{M.SITE["social"][k]}" rel="noopener">{M.icon(k)}<span><b>{label}</b>{sub}</span></a>'
-        for k, label, sub in (("instagram", "Instagram", "Match-day photos and results"),
+        for k, label, sub in (("instagram", "Instagram", "Photos and results"),
                               ("youtube", "YouTube", "Highlights and season videos"),
                               ("facebook", "Facebook", "News for families and alumni"),
-                              ("x", "X", "Live updates")))
+                              ("x", "X", "Team news")))
     return f'''<div class="follow-grid">
   <div class="newsletter">
     <h2 id="{heading_id}">Never miss what’s happening</h2>
@@ -168,11 +168,16 @@ def match_strip(R):
 </section>'''
 
 
+def last_season(w):
+    """Last season's weight and record in small type: '152 lbs · 41–5 in 2025–26'."""
+    bits = ([w["weight"] + " lbs"] if w.get("weight") else []) + ([f'{w["stats"]["wins"]}–{w["stats"]["losses"]}'] if w["stats"] and int(w["stats"]["wins"]) else [])
+    return f'<i>{" · ".join(bits)} in 2025–26</i>' if bits else ""
+
+
 def roster_carousel(R, roster):
     cards = "".join(
         f'<li><a class="wr-card" href="{wrestler_url(R, w["name"])}">{avatar(R, w, "220px")}'
-        f'<span class="wr-meta"><b>{e(w["name"])}</b>{e(w["class"])}{" · " + w["weight"] + " lbs" if w.get("weight") else ""}'
-        f'{"<i>" + w["stats"]["wins"] + "–" + w["stats"]["losses"] + " in 2025–26</i>" if w["stats"] and int(w["stats"]["wins"]) else ""}</span></a></li>'
+        f'<span class="wr-meta"><b>{e(w["name"])}</b>{e(w["class"])}{last_season(w)}</span></a></li>'
         for w in roster)
     return f'''<div class="carousel" data-carousel>
   <div class="car-ctrl"><button type="button" class="car-btn" data-dir="-1" aria-label="Scroll left">‹</button><button type="button" class="car-btn" data-dir="1" aria-label="Scroll right">›</button></div>
@@ -195,7 +200,7 @@ def build_home():
     T = S.TOTALS
     recent = S.HALL["state"][::-1]
     inside = [("facilities/", "practice-room", "The Room", "Where every Konkrete Kid is made: the wrestling room and Pete Schneider Gymnasium."),
-              ("champions/", "showcase-arms-up", "The Tradition", f"{T['team_titles']} team state titles, {T['state']} state champions, and {T['streak'][2]} straight years with a state medalist."),
+              ("champions/", "showcase-arms-up", "The Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a state medalist."),
               ("story/", "program-family", "The Community", "Generations of families in the same black and orange."),
               ("join/", "youth-champs", "The Next Generation", "Kindergarten through varsity, one program and one path.")]
     inside_html = "".join(
@@ -226,7 +231,7 @@ def build_home():
     {S.section_head('<span id="champs-title">Reigning state champions</span>', 'Brayden Wenrich and Gabe Ballard won PIAA titles in Hershey in March 2026. Both are back this season.')}
     <div class="champ-grid">
       {champ("portrait-wenrich-2026", "Brayden Wenrich", "114", [f"{w['wins']}–{w['losses']} as a sophomore", "District XI, Northeast Regional, and PIAA champion", "Fastest pin of the season: 9 seconds", f"{w['career_wins']}–{w['career_losses']} career record"])}
-      {champ("portrait-ballard-2026", "Gabe Ballard", "152", [f"{b['wins']}–{b['losses']} as a junior", "District XI, Northeast Regional, and PIAA champion", "114 takedowns, 238 team points", f"{b['career_wins']} career wins, a member of the 100-Win Club"])}
+      {champ("portrait-ballard-2026", "Gabe Ballard", "152", [f"{b['wins']}–{b['losses']} as a junior", "District XI, Northeast Regional, and PIAA champion", "114 takedowns, 238 season team points", f"{b['career_wins']} career wins, a member of the 100-Win Club"])}
     </div>
   </div>
 </section>
@@ -236,7 +241,7 @@ def build_home():
     <h2 id="numbers-title" class="visually-hidden">Northampton Wrestling by the numbers</h2>
     <div class="big-numbers">
       {count_up(T['team_titles'], 'PIAA team titles')}
-      {count_up(T['state'], 'PIAA state champions')}
+      {count_up(T['state'], 'PIAA state titles')}
       {count_up(T['medals'], 'state medals')}
       {count_up(T['district'], 'District XI titles')}
       {count_up(T['hundred'], '100-win wrestlers')}
@@ -296,8 +301,7 @@ def build_roster():
     season, roster = roster_data()
     cards = "".join(
         f'<li><a class="wr-card light" href="{wrestler_url(R, w["name"])}">{avatar(R, w, "(min-width: 900px) 22vw, 45vw")}'
-        f'<span class="wr-meta"><b>{e(w["name"])}</b>{e(w["class"])}{" · " + w["weight"] + " lbs" if w.get("weight") else ""}'
-        f'{"<i>" + w["stats"]["wins"] + "–" + w["stats"]["losses"] + " in 2025–26</i>" if w["stats"] and int(w["stats"]["wins"]) else ""}</span></a></li>'
+        f'<span class="wr-meta"><b>{e(w["name"])}</b>{e(w["class"])}{last_season(w)}</span></a></li>'
         for w in roster)
     body = f"""
 {M.page_head(R, "Roster", f"Returning varsity wrestlers for {season}. The full lineup posts after wrestle-offs.", "team-mayhem", "50% 40%")}
@@ -318,7 +322,7 @@ def build_profile(w, season):
     R = "../../"
     st = w["stats"]
     statrow = ""
-    if st:
+    if st and int(st["wins"]):  # no row of zeros for wrestlers without a varsity win yet
         cells = [("2025–26 record", f'{st["wins"]}–{st["losses"]}'), ("Career record", f'{st["career_wins"]}–{st["career_losses"]}'),
                  ("Pins", st["falls"]), ("Tech falls", st["tech_falls"]), ("Takedowns", st["takedowns"]), ("Dual team points", st["team_points_duals"])]
         statrow = '<div class="facts-row light pf-stats">' + "".join(f"<p><b>{v}</b>{k}</p>" for k, v in cells) + "</div>"
@@ -371,7 +375,7 @@ def build_results():
 <section class="band concrete">
   <div class="wrap split even">
     <div><h2>2025–26 team finishes</h2><ul class="results" role="list"><li><span>Dual meet record</span><b>{s['dual_record']}</b></li>{M.result_rows(s['team_finishes'])}</ul></div>
-    <div class="prose"><h2>Earlier seasons</h2><p>Full results, postseason finishes, and awards for every season since 2022–23 are on the <a href="../seasons/">Past Seasons</a> page, and the <a href="../champions/">Hall of Champions</a> goes back to 1948.</p></div>
+    <div class="prose"><h2>Earlier seasons</h2><p>Every season back to 1946–47 has its own page on <a href="../seasons/">Past Seasons</a>, and the <a href="../champions/">Hall of Champions</a> goes back to 1948.</p></div>
   </div>
 </section>
 """
@@ -411,14 +415,14 @@ def build_photos():
             ("2024–25", ["team-2025", "bench-final-seconds"]),
             ("2023–24", ["showcase-arms-up", "trey-embrace", "team-2024"]),
             ("2022–23", ["showcase-roar", "coach-embrace"]),
-            ("The program", ["program-family", "hero-circle", "youth-champs", "youth-autographs", "youth-mat", "staff-corner", "coaches-embrace"])]
+            ("The program", ["program-family", "hero-circle", "youth-champs", "youth-autographs", "youth-mat", "staff-corner"])]
     secs = "".join(f'<section class="band{" concrete" if i % 2 else ""}" aria-labelledby="ph-{i}"><div class="wrap"><h2 id="ph-{i}">{lbl}</h2>{M.gallery(R, ids, "set" + str(i))}</div></section>'
                    for i, (lbl, ids) in enumerate(sets))
     body = f"""
 {M.page_head(R, "Photos", "Moments from the mat, the room, and the community. Select a photo to view it full size.")}
 <nav class="jump wrap" aria-label="Photo sets">{''.join(f'<a href="#ph-{i}">{lbl}</a>' for i, (lbl, _) in enumerate(sets))}</nav>
 {secs}
-<section class="band dark"><div class="wrap prose"><h2>Share your photos</h2><p>Have great photos or video from a match, a tournament, or an old season? Share them with who and when, and the photographer’s name so we can credit them. We read everything but can’t reply individually.</p><p><a class="btn" href="{M.SITE['links']['share_form']}" rel="noopener" target="_blank">Share photos &amp; video</a></p></div></section>
+<section class="band dark"><div class="wrap prose"><h2>Share your photos</h2><p>Have great photos or video from a match, a tournament, or an old season? Share them with a note on who’s in them and when, plus the photographer’s name so we can credit them. We read everything but can’t reply individually.</p><p><a class="btn" href="{M.SITE['links']['share_form']}" rel="noopener" target="_blank">Share photos &amp; video</a></p></div></section>
 """
     return M.page("photos/index.html", "Photos", "Northampton wrestling photo galleries.", body, "photos/", og_image="ballard-raised")
 
@@ -434,7 +438,7 @@ def build_videos():
       {M.picture(R, "dark-stance", "(min-width: 1180px) 1100px, 100vw", "vf-img", alt="")}
       <button type="button" class="vf-play"><span aria-hidden="true">▶</span> Play all highlight videos</button>
     </div>
-    <p class="fine on-dark">Plays from YouTube. Season highlight videos are produced by Coach Mike Sommer.</p>
+    <p class="fine on-dark">Plays from YouTube. Season highlight videos are produced by Coach Mike Sommer. Photo: {e(M.PHOTOS["dark-stance"].get("credit", ""))}.</p>
     <p class="actions"><a class="btn" href="{M.SITE['social']['youtube']}" rel="noopener">Watch on YouTube</a></p>
   </div>
 </section>
@@ -479,7 +483,7 @@ def build_story():
     <div class="prose">
       <h2>Since 1945</h2>
       <p>Northampton Wrestling began in 1945. More than 80 seasons later, the program runs from kindergarten through varsity, and every Konkrete Kid comes through the same room, the same expectations, and the same black and orange.</p>
-      <p>Along the way the program has won {T['team_titles']} PIAA team titles, crowned {T['state']} individual state champions, and earned {T['medals']} state medals, with a state medalist every year since {T['streak'][0]}. Eight head coaches have led the program, and {T['hundred']} wrestlers have won 100 or more varsity matches.</p>
+      <p>Along the way the program has won {T['team_titles']} PIAA team titles, won {T['state']} individual state titles, and earned {T['medals']} state medals, with a state medalist every year since {T['streak'][0]}. Eight head coaches have led the program, and {T['hundred']} wrestlers have won 100 or more varsity matches.</p>
       <h2>What we believe</h2>
       <p>Our mission is to give young people a supportive, demanding place to grow as wrestlers and as responsible, resilient, respectful members of the community.</p>
       <p><strong>We never sacrifice goodness for greatness.</strong> Integrity and honor come first. Winning is the byproduct.</p>
@@ -524,7 +528,7 @@ def build_facilities():
 def build_join():
     R = "../"
     T = M.TOTALS
-    pillars = [("Tradition", f"{T['team_titles']} team state titles, {T['state']} state champions, and {T['streak'][2]} straight years with a state medalist."),
+    pillars = [("Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a state medalist."),
                ("Coaching", "A staff that includes a PIAA state champion, several state placewinners, and coaches who have been in the program for more than 20 years."),
                ("Training partners", "You train every day beside state champions and state medalists."),
                ("Competition", "The varsity wrestles at the Ironman, King of the Mountain, the Mid-Winter Mayhem, and the Parkland Duals."),
@@ -533,7 +537,7 @@ def build_join():
             ("Junior high", "Grades 7–8", "The bridge to the varsity room. The 2023–24 team won the District XI title.", "../junior-high/"),
             ("JV", "High school", "Matches, tournaments, and the JV District Tournament.", "../high-school/"),
             ("Varsity", "High school", "District XI, Northeast Regional, and the PIAA Championships in Hershey.", "../high-school/"),
-            ("College", "Next level", "Members of the Class of 2026 are headed to wrestle at Elizabethtown and King’s College.", "../alumni/")]
+            ("College", "Next level", "Members of the Class of 2026 are headed to wrestle at Elizabethtown College and King’s College.", "../alumni/")]
     body = f"""
 {M.page_head(R, "Become a Konkrete Kid", "Why Northampton, our home, the path, and how to start.", "showcase-arms-up", "45% 12%")}
 <section class="band">
@@ -576,7 +580,7 @@ def build_family():
            ("Where can I find the schedule?", 'On our <a href="../schedule/">schedule page</a> and the district athletics calendar, which also lists bus times and changes.'),
            ("Can parents watch youth practice?", "In the youth program, only each team’s coaching staff is in the practice room. Matches and tournaments are open to families and fans."),
            ("What if my child misses practice?", "In-season practice and competition attendance is required. Talk to your child’s coach about any special circumstances ahead of time; they’re handled case by case."),
-           ("What does a wrestler need before the season?", "A PIAA physical on file with the district athletic office, plus the weight assessment the coaches schedule early in the season."),
+           ("What does a wrestler need before the season?", "Junior high and high school wrestlers need a PIAA physical on file with the district athletic office, plus the weight assessment the coaches schedule early in the season."),
            ("How do I reach a coach?", f'Email <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a> and we’ll get your message to the right coach.')]
     body = f"""
 {M.page_head(R, "Family", "What parents and families need to know.", "senior-night", "50% 40%")}
@@ -614,7 +618,7 @@ def build_alumni():
     R = "../"
     home = [("Mike Sommer", "Class of 1997 · varsity assistant"), ("Marcus Newsom", "Northampton alumnus · varsity assistant"),
             ("John Paukovits", "3x District XI champion · varsity assistant"), ("Ethan Szerencsits", "Class of 2020 · varsity assistant"),
-            ("Braden Turner", "2008 District and Regional champion · junior high assistant"), ("Justin Haupt", "1998–99 District XI champion · junior high assistant")]
+            ("Braden Turner", "2008 District and Regional champion · junior high assistant"), ("Justin Haupt", "1998 and 1999 District XI champion · junior high assistant")]
     body = f"""
 {M.page_head(R, "Alumni", "Once a Konkrete Kid, always a Konkrete Kid.", "coaches-embrace", "60% 8%")}
 <section class="band">
@@ -622,7 +626,7 @@ def build_alumni():
     <div class="prose">
       <h2>Where are they now?</h2>
       <p>We want to hear from every Konkrete Kid, from the 1940s to last spring. Where did wrestling take you? Did you wrestle in college, coach, serve, start a family of future Konkrete Kids?</p>
-      <p>Send a few lines and a photo, then and now if you have them, and we’ll share alumni stories here.</p>
+      <p>Send a few lines and a photo, then and now if you have them. We read everything but can’t reply individually.</p>
       <p><a class="btn" href="{M.SITE['links']['share_form']}" rel="noopener" target="_blank">Share your story</a></p>
     </div>
     <div>
@@ -710,9 +714,11 @@ def build_champion_pages():
             site = site or ("FloWrestling" if "flowrestling" in u else "the web")
             note = '<p class="vl-note">FloWrestling subscription required to watch</p>' if "flowrestling" in u else ""
             video += f'<div class="vl-wrap"><a class="video-link" href="{e(u)}" rel="noopener" target="_blank"><span class="vl-play" aria-hidden="true">▶</span><span><b>Watch the {(yr + " ") if yr else ""}state final on {e(site)}</b><small>Opens in a new tab</small></span></a>{note}</div>'
-        if not video:
+        if not video and max(int(r["year"]) for r in titles) >= 1980:  # no point asking for 1950s film
             video = f'<div class="empty-state small"><h3>State final video</h3><p>Have video of this final? <a href="{M.SITE["links"]["share_form"]}" rel="noopener" target="_blank">Share a YouTube link</a>. We read everything but can’t reply individually.</p></div>'
         gal = M.gallery(R, c["gallery"], "champ") if c.get("gallery") else ""
+        final_band = (f'<section class="band dark"><div class="wrap"><h2>The state final{"s" if len(vids) + len(links) > 1 else ""}</h2>'
+                      f'<div class="vid-stack">{video}</div></div></section>') if video else ""
         # featured photo: one moment shown large on its own, with its caption
         fid = c.get("feature")
         feat = (f'<section class="moment" aria-label="Photo"><div class="wrap moment-split">'
@@ -734,7 +740,7 @@ def build_champion_pages():
     <div class="prose cp-story"><h2>The story</h2>{story}</div>
   </div>
 </section>
-{feat}<section class="band dark"><div class="wrap"><h2>The state final{"s" if len(vids) + len(links) > 1 else ""}</h2><div class="vid-stack">{video}</div></div></section>
+{feat}{final_band}
 {f'<section class="band"><div class="wrap"><h2>Photos</h2>{gal}</div></section>' if gal else ''}
 <section class="band concrete">
   <div class="wrap">
@@ -808,7 +814,7 @@ def build_team_title_pages():
       {f'<h2 class="side-h">Postseason</h2><ol class="post-list" role="list">{post}</ol>' if post else ''}
       {f'<p class="side-note">{e(s["league"])}</p>' if s.get("league") else ''}
     </aside>
-    <div class="prose cp-story"><h2>The season</h2>{story}</div>
+    <div class="prose cp-story"><h2>The season</h2>{story}<p><a class="text-link" href="{R}seasons/{sid}/">Results, duals, and video for {e(row["season"])} ›</a></p></div>
   </div>
 </section>
 {f'<section class="band tight" id="video"><div class="wrap">{vids}</div></section>' if vids else ''}

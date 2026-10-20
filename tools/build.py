@@ -248,7 +248,8 @@ def page_head(R, title, intro, photo=None, focus=None, kicker=None, cls=""):
     k = f'<p class="kicker">{kicker}</p>' if kicker else ""
     if photo:
         return (f'<header class="page-head has-photo{(" " + cls) if cls else ""}">{picture(R, photo, "100vw", "bg", True, alt="", focus=focus)}'
-                f'<div class="wrap">{k}<h1>{title}</h1><p class="lede">{intro}</p></div></header>')
+                f'<div class="wrap">{k}<h1>{title}</h1><p class="lede">{intro}</p></div>'
+                + (f'<p class="ph-credit">Photo: {e(PHOTOS[photo]["credit"])}</p>' if PHOTOS[photo].get("credit") else "") + '</header>')
     return f'<header class="page-head concrete"><div class="wrap">{k}<h1>{title}</h1><p class="lede">{intro}</p></div></header>'
 
 
@@ -256,20 +257,21 @@ def result_rows(rows):
     return "".join(f"<li><span>{e(a)}</span><b>{e(b)}</b></li>" for a, b in rows)
 
 
-def place_cell(v):
+def place_cell(v, blank=False):
     if not v:
-        return '<td class="na">—</td>'
+        return '<td class="na"></td>' if blank else '<td class="na">—</td>'
     cls = "gold" if v in ("Champion", "1st") else ("podium" if v in ("2nd", "3rd") else "")
     return f'<td class="{cls}">{e(v)}</td>'
 
 
-def postseason_table(rows, caption):
+def postseason_table(rows, caption, titles_only=False):
     body = "".join(
-        f"<tr><th scope=\"row\">{e(n)}{f' <span class=\"wt\">{w}</span>' if w else ''}</th>{place_cell(d)}{place_cell(r)}{place_cell(s)}</tr>"
+        f"<tr><th scope=\"row\">{e(n)}{f' <span class=\"wt\">{w}</span>' if w else ''}</th>{place_cell(d, titles_only)}{place_cell(r, titles_only)}{place_cell(s, titles_only)}</tr>"
         for n, w, d, r, s in rows)
     return (f'<div class="table-wrap" tabindex="0" role="region" aria-label="{e(caption)}"><table class="path"><caption>{caption}</caption>'
             f'<thead><tr><th scope="col">Wrestler</th><th scope="col">District XI</th><th scope="col">NE Regional</th><th scope="col">PIAA</th></tr></thead>'
-            f'<tbody>{body}</tbody></table></div>')
+            f'<tbody>{body}</tbody></table></div>'
+            + ('<p class="fine">District XI and NE Regional columns list titles; the PIAA column lists state medals.</p>' if titles_only else ""))
 
 
 CHAMPS = load_toml("hall/champions.toml")
@@ -360,6 +362,11 @@ def end_year(span):
 TOTALS["streak"] = medal_streak()
 
 
+# Other names people search for in the Hall finder (nicknames, names used in stories and on the roster)
+SEARCH_ALIASES = {"Gabriel Ballard": ["Gabe Ballard"], "Edward Keglovits": ["Ed Keglovits"], "Dennis Liberto": ["Denny Liberto"],
+           "Whitey Chlebove": ["Ian Chlebove"]}
+
+
 def hall_json():
     people = defaultdict(lambda: {"honors": []})
     for k, label in (("state", "PIAA champion"), ("regional", "Northeast Regional champion"), ("district", "District XI champion")):
@@ -383,7 +390,7 @@ def hall_json():
     out = []
     for n, d in people.items():
         d["honors"].sort(key=lambda h: (h[0], h[1]))
-        out.append({"name": n, "honors": d["honors"]})
+        out.append({"name": n, "honors": d["honors"], **({"aka": SEARCH_ALIASES[n]} if n in SEARCH_ALIASES else {})})
     out.sort(key=lambda p: p["name"].split()[-1] + p["name"])
     return out
 
@@ -514,6 +521,9 @@ def build_home():
 
 
 def build_high_school():
+    evs = sorted(load_results().get("event", []), key=lambda x: x["date"])
+    opener = (f'The 2026–27 season opens {evs[0]["date"]:%B %-d} {"against" if evs[0].get("home") else "at"} {e(evs[0]["opponent"])}.'
+              if evs else "The new season starts this winter.")
     R = "../"
     s = CUR
     leaders = {}
@@ -538,8 +548,8 @@ def build_high_school():
                    f'<tfoot><tr><th scope="row">Team</th><td>{tw}–{tl}</td><td>{tot("falls")}</td><td>{tot("tech_falls")}</td><td>{tot("major_decisions")}</td><td>{tot("takedowns")}</td><td>{tot("team_points_duals")}</td><td></td></tr></tfoot></table></div>')
 
     seniors = "".join(
-        f'<li><h3>{e(n)}</h3><p class="wt">{w} lb</p><p class="next">Next: {e(nx)}</p>'
-        + (f'<blockquote><p>“{e(q)}”</p><footer>A Coach Provini saying he won’t forget</footer></blockquote>' if q else "") + "</li>"
+        f'<li><h3>{e(n)}</h3><p class="wt">{w} lbs</p><p class="next">Next: {e(nx)}</p>'
+        + (f'<blockquote><p>“{e(q)}”</p><footer>A coaching line he won’t forget</footer></blockquote>' if q else "") + "</li>"
         for n, w, nx, q in s["seniors"])
     awards = "".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in s["awards"])
     medal_card = lambda pid, name, line: (f'<article class="medalist">{picture(R, pid, "(min-width: 900px) 18vw, 45vw")}'
@@ -551,8 +561,8 @@ def build_high_school():
   <div class="wrap split narrow-right">
     <div class="prose">
       <h2 id="now-title">2026–27</h2>
-      <p>The new season starts this winter. The roster, lineup, and results will be posted here as the season goes.</p>
-      <p>Both of last season’s state champions were underclassmen: Brayden Wenrich wrestled 2025–26 as a sophomore and Gabe Ballard as a junior.</p>
+      <p>{opener} Lineups and results will be added during the season.</p>
+      <p>Both of last season’s state champions are back: Brayden Wenrich is now a junior and Gabe Ballard a senior.</p>
       <p class="actions"><a class="btn" href="../schedule/">Schedule</a><a class="btn ghost dark-ink" href="../coaching-staff/">Coaching staff</a></p>
     </div>
   </div>
@@ -826,7 +836,7 @@ def build_schedule():
       </ol>
     </aside>'''
     follow = f'''<h2>Follow along on match day</h2>
-      <p>Results, lineups, and photos go up on the team’s social accounts during the season.</p>
+      <p>Follow the team’s social accounts for news and photos during the season.</p>
       <div class="social dark-ink">{social_links()}</div>'''
     if evs:
         main = f'''<div class="ev-wrap">
@@ -1292,10 +1302,10 @@ def build_coaches():
   <div class="wrap">
     <div class="facts-row light">
       <p><b>{h['record']}</b> dual record</p>
-      <p><b>{h['district_champs']}</b> District XI champions</p>
-      <p><b>{h['regional_champs']}</b> regional champions</p>
-      <p><b>{h['state_champs']}</b> PIAA champions</p>
-      <p><b>{h['placewinners']}</b> state placewinners</p>
+      <p><b>{h['district_champs']}</b> District XI titles</p>
+      <p><b>{h['regional_champs']}</b> regional titles</p>
+      <p><b>{h['state_champs']}</b> PIAA titles</p>
+      <p><b>{h['placewinners']}</b> state medals</p>
     </div>
     <p class="fine">At Northampton, through the 2025–26 season.</p>
   </div>
@@ -1376,7 +1386,7 @@ def build_champions():
         return (f'<div class="table-wrap" tabindex="0"><table class="hall" id="{id_}"><caption>{cap}</caption><thead><tr>{th}</tr></thead>'
                 f'<tbody>{rows}</tbody></table></div>')
 
-    tr = lambda r, extra="": (f'<tr data-name="{e(norm(r["wrestler"]))}"><td>{r["year"]}</td><th scope="row">{e(r["wrestler"])}</th>'
+    tr = lambda r, extra="": (f'<tr data-name="{e(" ".join([norm(r["wrestler"])] + SEARCH_ALIASES.get(norm(r["wrestler"]), [])))}"><td>{r["year"]}</td><th scope="row">{e(r["wrestler"])}</th>'
                               f'<td>{r["weight"]}</td>{extra}</tr>')
     t_medals = tbl("t-medals", "PIAA state medalists, newest first", ["Year", "Wrestler", "Weight", "Place"],
                    "".join(tr(r, f'<td class="{"gold" if r["place"] == "1" else ""}">{PLACE[r["place"]]}</td>') for r in medals))
@@ -1427,7 +1437,7 @@ def build_champions():
 </section>
 <section class="band dark wall-band" aria-labelledby="wall-title">
   <div class="wrap">
-    {section_head(f'<span id="wall-title">{TOTALS["state"]} state champions</span>', "The banner wall, newest first.")}
+    {section_head(f'<span id="wall-title">{TOTALS["state"]} state titles</span>', "The banner wall, newest first.")}
     <p class="wall-hint on-dark"><span aria-hidden="true">▶</span> Tap any banner for that champion’s story and photos. ▶ means there’s state-final video.</p>
     <ol class="pennants full" role="list" reversed>{''.join(pennant(r['year'], norm(r['wrestler']), r['weight'], R=R) for r in st)}</ol>
   </div>
@@ -1505,10 +1515,38 @@ def season_list():
     return out
 
 
+TEAM_SEASONS = load_toml("hall/team-seasons.toml")
+
+
+def season_record(y, pw, d):
+    """(record, league record) to show, or ("", ""). Detailed seasons use their own record and title seasons
+    the team page's; otherwise PA-Wrestling's only when enough duals were captured to be the whole season."""
+    if d and d.get("dual_record"):
+        return d["dual_record"], ""
+    ts = TEAM_SEASONS.get(str(y)) if y in TITLE_YEARS else None
+    if ts and ts.get("record"):
+        return ts["record"], ""
+    if pw["record"] and len(pw["duals"]) >= 8:
+        return pw["record"], pw["league_record"]
+    return "", ""
+
+
+LABEL_FIXES = [(r"Wresting", "Wrestling"), (r"NhSCA", "NHSCA"), (r"KonKrete", "Konkrete"), (r"DX1 AAA Team Duals", "District XI AAA Duals"),
+               (r"District 11[- ]AAA", "District XI AAA"), (r"District 11\b", "District XI"), (r"\bSemi Finals\b", "Semifinals"),
+               (r" - Semis\b", " (Semifinals)"), (r" Dual Meet$", "")]
+
+
+def clean_label(s):
+    """Tidy raw PA-Wrestling event labels for display."""
+    for a, b in LABEL_FIXES:
+        s = re.sub(a, b, s)
+    return s
+
+
 def season_facts(sid, y, pw, d):
     """Short facts for the index card and the season header. Only what the sources show."""
     f = []
-    rec = d["dual_record"] if d and d.get("dual_record") else (pw["record"] if pw["record"] and len(pw["duals"]) >= 8 else "")
+    rec = season_record(y, pw, d)[0]
     if rec:
         f.append(("Dual record", rec))
     fin = dict(pw["finishes"])
@@ -1518,7 +1556,7 @@ def season_facts(sid, y, pw, d):
         f.append(("PIAA team", f'{fin["PIAA Championships"]} place'))
     for x in pw["duals"]:
         name = x["opponent"] + " " + x["event"]
-        if ("Championship Final" in name or "(Finals)" in name) and ("PIAA" in name or "District" in name):
+        if ("Championship Final" in name or "(Finals)" in name or "(Championship)" in name) and ("PIAA" in name or "District" in name):
             f.append(("State duals" if "PIAA" in name else "District XI duals", "Champions" if x["result"].startswith("W") else "Runner-up"))
     for st, lab in (("District XI tournament", "District XI team"), ("Northeast Regional", "Regional team")):
         if fin.get(st) == "1st":
@@ -1602,16 +1640,17 @@ def build_season_page(i, all_s):
     if d.get("summary"):
         parts.append('<div class="prose cols">' + "".join(f"<p>{e(x)}</p>" for x in d["summary"]) + "</div>")
     elif st.get("story"):
-        src = (f'Season facts from <a href="{e(st["source_url"])}" rel="noopener" target="_blank">Lehigh Valley Wrestling History</a>, '
-               if st.get("source_url") else "Season facts from ")
+        srcs = ([f'<a href="{e(st["source_url"])}" rel="noopener" target="_blank">Lehigh Valley Wrestling History</a>'] if st.get("source_url") else []) + ["PA-Wrestling", "Northampton’s banquet programs"]
+        src = "Season facts from " + (", ".join(srcs[:-1]) + ", and " if len(srcs) > 2 else srcs[0] + " and ") + srcs[-1] + "."
         parts.append('<div class="prose cols season-story">' + "".join(f"<p>{e(x)}</p>" for x in st["story"]) + "</div>"
-                     + f'<p class="fine story-src">{src}PA-Wrestling, and Northampton’s banquet programs. See something we got wrong? '
+                     + f'<p class="fine story-src">{src} See something we got wrong? '
                      + f'<a href="{SITE["links"]["share_form"]}" rel="noopener" target="_blank">Send a correction</a>.</p>')
     # Team results list
     if d.get("team_finishes"):
         res = [("Dual meet record", d["dual_record"])] + [tuple(x) for x in d["team_finishes"]]
     else:
-        res = ([("Dual meet record", pw["record"] + (f' ({pw["league_record"]} league)' if pw["league_record"] else ""))] if pw["record"] else [])
+        rec_, lg_ = season_record(y, pw, d or None)
+        res = ([("Dual meet record", rec_ + (f" ({lg_} league)" if lg_ else ""))] if rec_ else [])
         res += [tuple(x) for x in pw["finishes"]] + [tuple(x) for x in pw["tournaments"]]
     who = d.get("coaches") or (f"Head coach: {coach}" if coach else "")
     left = (f'<h2 class="sub">Team results</h2><ul class="results" role="list">{result_rows(res)}</ul>' if res
@@ -1620,10 +1659,11 @@ def build_season_page(i, all_s):
     if y in TITLE_YEARS:
         left += f'<p><a class="text-link" href="{R}champions/team/{y}/">The {label} PIAA team title season ›</a></p>'
     right = figure(R, d["team_photo"], "(min-width: 900px) 40vw, 100vw", "wide-fig") if d.get("team_photo") else ""
+    duals_complete = bool(pw["record"]) and season_record(y, pw, d or None)[0] == pw["record"]
     if not right and pw["duals"]:
-        right = ('<h2 class="sub">Duals</h2><ul class="arch-duals" role="list">' + "".join(
-            f'<li><span class="ad-date">{e(x["date"])}</span><span class="ad-opp">{e(x["opponent"])}'
-            + (f' <small>{e(x["event"])}</small>' if x["event"] else "") + (' <small>league</small>' if x["league"] else "")
+        right = (f'<h2 class="sub">{"Duals" if duals_complete else "Duals on record"}</h2><ul class="arch-duals" role="list">' + "".join(
+            f'<li><span class="ad-date">{e(x["date"])}</span><span class="ad-opp">{e(clean_label(x["opponent"]))}'
+            + (f' <small>{e(clean_label(x["event"]))}</small>' if x["event"] else "") + (' <small>league</small>' if x["league"] else "")
             + f'</span><b class="nw">{e(x["result"])}</b></li>' for x in pw["duals"]) + '</ul><p class="fine">Winner’s score first.</p>')
         pw_duals_shown = True
     else:
@@ -1640,7 +1680,7 @@ def build_season_page(i, all_s):
     if d.get("leaders"):
         aw += f'<h2 class="sub">Team leaders</h2><dl class="awards compact">{"".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in d["leaders"])}</dl>'
     if post or aw:
-        tbl = f'<h2 class="sub">Postseason</h2>{postseason_table(post, label + " postseason results by wrestler")}' if post else ""
+        tbl = f'<h2 class="sub">Postseason</h2>{postseason_table(post, label + " postseason results by wrestler", titles_only=not d.get("postseason"))}' if post else ""
         parts.append(f'<div class="split even top"><div>{tbl}</div><div>{aw}</div></div>' if aw else f'<div class="top-gap">{tbl}</div>')
     extra = []
     if d.get("epc"):
@@ -1676,9 +1716,9 @@ def build_season_page(i, all_s):
         parts.append('<details class="season-roster"><summary>Full ' + e(label) + ' roster</summary><dl class="awards compact">'
                      + "".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in d["roster"]) + "</dl></details>")
     if pw["duals"] and not pw_duals_shown:
-        parts.append('<details class="season-roster"><summary>All ' + e(label) + ' duals</summary><ul class="arch-duals" role="list">' + "".join(
-            f'<li><span class="ad-date">{e(x["date"])}</span><span class="ad-opp">{e(x["opponent"])}'
-            + (f' <small>{e(x["event"])}</small>' if x["event"] else "") + (' <small>league</small>' if x["league"] else "")
+        parts.append('<details class="season-roster"><summary>' + (f'All {e(label)} duals' if duals_complete else f'{e(label)} duals on record') + '</summary><ul class="arch-duals" role="list">' + "".join(
+            f'<li><span class="ad-date">{e(x["date"])}</span><span class="ad-opp">{e(clean_label(x["opponent"]))}'
+            + (f' <small>{e(clean_label(x["event"]))}</small>' if x["event"] else "") + (' <small>league</small>' if x["league"] else "")
             + f'</span><b class="nw">{e(x["result"])}</b></li>' for x in pw["duals"]) + '</ul><p class="fine">Winner’s score first.</p></details>')
     sv = season_videos(sid, label)
     if sv:
@@ -1727,7 +1767,7 @@ def build_seasons():
     redirect_js = ('<script>(function(){var m=location.hash.match(/^#(?:season-)?(\\d{4}-\\d{2})$/);'
                    'if(m)location.replace(m[1]+"/");})();</script>')
     body = f"""
-{page_head(R, "Past Seasons", "Every Konkrete Kids season since 1946–47. Pick a season for its results, champions, duals, and video.")}
+{page_head(R, "Past Seasons", "Every season on record since 1946–47 (the program began in 1945–46). Pick a season for its results, champions, duals, and video.")}
 <nav class="jump seasons-jump wrap" aria-label="Decades"><div class="jump-row">{jump}</div></nav>
 {groups}
 {redirect_js}
