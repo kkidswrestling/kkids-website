@@ -304,7 +304,7 @@ def build_roster():
         f'<span class="wr-meta"><b>{e(w["name"])}</b>{e(w["class"])}{last_season(w)}</span></a></li>'
         for w in roster)
     body = f"""
-{M.page_head(R, "Roster", f"Returning varsity wrestlers for {season}. The full lineup posts after wrestle-offs.", "team-mayhem", "50% 40%")}
+{M.page_head(R, "Roster", f"Returning varsity wrestlers for {season}. The full lineup posts after wrestle-offs.", "team-mayhem-tight", "50% 22%", cls="fit-photo")}
 <section class="band">
   <div class="wrap">
     <ul class="roster-grid" role="list">{cards}</ul>

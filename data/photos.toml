@@ -1394,3 +1394,13 @@ alt = "Jeff Ecklof in his stance at the 2001 PIAA Championships"
 caption = "Jeff Ecklof at the 2001 PIAA Championships, where he won his first state title."
 widths = [620]
 file = "originals/batch3_jeff-ecklof.jpg"
+
+# Roster page header: the Mid-Winter Mayhem team photo cropped tight to the team (Joe, Oct. 2026)
+[[photo]]
+id = "team-mayhem-tight"
+source = "2025-26 banquet program, page 30 (cropped to the team)"
+season = "2025-26"
+alt = "The Northampton varsity team and coaches pose together at the Mid-Winter Mayhem tournament"
+crop = [180, 480, 3170, 2402]
+widths = [640, 1200, 1800, 2400]
+file = "originals/img26_p-030-116.jpg"
