@@ -22,10 +22,10 @@ fact = "The 1992–93 and 1993–94 teams didn't lose a dual meet, and the 1994�
 link = ["The 1993 title season", "champions/team/1993/"]
 
 [[round.q]]
-q = "The Kids put together a dual-meet winning streak that ran from 1992–93 into 1994–95. How many straight duals did it reach?"
-choices = ["24", "36", "50", "61"]
-answer = 3
-fact = "Fifty straight: 24–0, then 24–0 again, then the first two duals of 1994–95. National No. 1 Walsh Jesuit of Ohio ended it later that same day, Dec. 10, 1994, at the Valley Youth House Elite Duals."
+q = "The Kids won 50 duals in a row from 1992–93 into 1994–95. On Dec. 10, 1994, the No. 1 team in the nation ended the streak by a single point. Who was it?"
+choices = ["Canon-McMillan", "Walsh Jesuit (Ohio)", "St. Edward (Ohio)", "Blair Academy (N.J.)"]
+answer = 2
+fact = "Walsh Jesuit won 28–27 at the Valley Youth House Elite Duals, hours after the Kids beat Canon-McMillan for win No. 50. Northampton came in ranked No. 2 in the nation, and went on to win its third straight state team title that March."
 link = ["The 1994–95 season", "seasons/1994-95/"]
 
 [[round.q]]
