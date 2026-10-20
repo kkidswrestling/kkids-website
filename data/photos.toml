@@ -1217,3 +1217,41 @@ alt = "A young fan in a Northampton Kids shirt gets autographs from varsity wres
 caption = "Autograph night with the varsity."
 widths = [480, 900]
 file = "originals/img26_p-025-097.jpg"
+
+# Brayden Wenrich, 2026 Fargo Junior freestyle title (Coach Provini, Oct. 2026)
+[[photo]]
+id = "wenrich-fargo-plaque"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Brayden Wenrich, in a Team Pennsylvania singlet, holds his national champion plaque on the mat at Fargo"
+caption = "Brayden Wenrich receives his national champion plaque at Fargo, July 2026."
+widths = [480, 960]
+file = "originals/batch11_wenrich-fargo-plaque.jpg"
+
+[[photo]]
+id = "wenrich-fargo-raised"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "The referee raises Brayden Wenrich's hand as he points a finger skyward after the Fargo final"
+caption = "Wenrich's hand is raised after the 120-pound Junior freestyle final."
+widths = [640, 1280]
+file = "originals/batch11_wenrich-fargo-raised.jpg"
+
+[[photo]]
+id = "wenrich-fargo-celebrate"
+focus = "50% 18%"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Brayden Wenrich presses his fists to his head in celebration at Fargo"
+caption = "Wenrich celebrates at Fargo."
+widths = [640, 1200, 2000]
+file = "originals/batch11_wenrich-fargo-celebrate.jpg"
+
+[[photo]]
+id = "wenrich-fargo-team"
+source = "Coach Provini, Oct. 2026 (team upload)"
+season = "2026-27"
+alt = "Brayden Wenrich holds his Fargo plaque, standing on the grass with five Northampton coaches"
+caption = "Back home with the plaque and the Northampton coaches, summer 2026."
+widths = [600, 1185]
+file = "originals/batch11_wenrich-fargo-team.jpg"

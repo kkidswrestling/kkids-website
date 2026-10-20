@@ -1,5 +1,5 @@
 # News posts, newest first. Each post gets its own page at news/<slug>/.
-# Only post things that happened; keep each one short.
+# Only post things that happened; keep each one short. Optional gallery = [photo ids] shows under the story.
 
 [[post]]
 slug = "ballard-super-32"
@@ -29,7 +29,8 @@ slug = "wenrich-fargo-champion"
 date = 2026-07-12
 title = "Brayden Wenrich wins a national title at Fargo"
 summary = "Wenrich is the first Northampton wrestler to win at the USA Wrestling Junior Nationals in Fargo."
-photo = "portrait-wenrich-2026"
+photo = "wenrich-fargo-celebrate"
+gallery = ["wenrich-fargo-raised", "wenrich-fargo-plaque", "wenrich-fargo-team"]
 body = [
   "Brayden Wenrich won the Junior men's freestyle national championship at 120 pounds at the 2026 USA Wrestling Junior Nationals in Fargo, North Dakota, becoming the first Northampton wrestler ever to win a Fargo title.",
   "Wrestling for Team Pennsylvania, Wenrich finished the tournament on July 12 with a 14–2 technical fall over New Jersey's Michael Batista in the final.",
