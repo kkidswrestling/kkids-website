@@ -1237,3 +1237,15 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .news-grid.four { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 1060px) { .news-grid.four { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .news-grid.four { grid-template-columns: 1fr; } }
+/* Home news: the newest post leads, large on the left, with four more beside it */
+.news-grid.lead { grid-template-columns: 1.3fr 1fr 1fr; }
+.news-grid.lead .news-card.big { grid-row: span 2; }
+.news-grid.lead .news-card.big img { aspect-ratio: 4/3; }
+.news-grid.lead .news-card:not(.big) .nc-body p { display: none; }
+@media (max-width: 900px) { .news-grid.lead { grid-template-columns: 1fr 1fr; } .news-grid.lead .news-card.big { grid-column: 1 / -1; grid-row: auto; } }
+@media (max-width: 600px) { .news-grid.lead { grid-template-columns: 1fr; } }
+@media (min-width: 901px) {
+  .news-grid.lead .news-card.big a { display: flex; flex-direction: column; }
+  .news-grid.lead .news-card.big picture { flex: 1; display: block; min-height: 0; }
+  .news-grid.lead .news-card.big img { height: 100%; aspect-ratio: auto; }
+}
