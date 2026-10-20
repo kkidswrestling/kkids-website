@@ -272,6 +272,13 @@ answer = 2
 fact = "Seth Lisa, who won 152 matches as a Konkrete Kid and coached the program from 2011–12 to 2021–22."
 link = ["The 100-Win Club", "champions/#hundred-title"]
 
+[[round.q]]
+q = "The season highlight videos on Northampton Wrestling's YouTube channel, going all the way back to the late 1980s, are produced by which varsity assistant coach?"
+choices = ["Jim Derr", "Mike Sommer", "Marcus Newsom", "Ethan Szerencsits"]
+answer = 2
+fact = "Coach Mike Sommer, a 1997 Konkrete Kid who placed 4th at states at 140. Every season's video is on its season page."
+link = ["Watch the highlight videos", "videos/"]
+
 [[round]]
 title = "Deep Cuts"
 blurb = "For the ones who remember the old gym."
