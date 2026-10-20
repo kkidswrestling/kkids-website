@@ -303,7 +303,7 @@ link = ["The 100-Win Club", "champions/#hundred-title"]
 q = "Which last name belongs to a 1997 state medalist, a 2010 state medalist, and a 2026 state qualifier?"
 choices = ["Billy", "Wagner", "Sommer", "Chlebove"]
 answer = 3
-fact = "Sommer: Mike placed 4th at 140 in 1997, Austin placed 3rd at 152 in 2010, and Matthew qualified for states at 133 in 2026. Mike is now a Northampton varsity assistant."
+fact = "Sommer: Coach Mike Sommer placed 4th at 140 in 1997, his nephew Austin placed 3rd at 152 in 2010, and his son Matthew qualified for states at 133 in 2026. Mike is now a Northampton varsity assistant."
 link = ["Coaching staff", "coaching-staff/"]
 
 [[round]]
