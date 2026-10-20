@@ -222,7 +222,7 @@ def build_home():
 <section class="band" aria-labelledby="news-title">
   <div class="wrap">
     <div class="sec-row"><h2 id="news-title">Latest from Northampton</h2><a class="text-link" href="news/">All news</a></div>
-    <div class="news-grid">{''.join(news_card(R, p, i == 0) for i, p in enumerate(posts[:3]))}</div>
+    <div class="news-grid four">{''.join(news_card(R, p) for p in posts[:4])}</div>
   </div>
 </section>
 

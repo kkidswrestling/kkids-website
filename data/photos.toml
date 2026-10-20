@@ -1302,3 +1302,86 @@ alt = "The Oklahoma State wrestling room, with orange and black mats and OKLAHOM
 caption = "The Oklahoma State wrestling room in Stillwater."
 widths = [640, 1280, 1999]
 file = "originals/batch12_wno-osu-room.jpg"
+
+# 2026 cornhole tournament (Coach Provini, Oct. 2026). Youth in these photos are not named.
+[[photo]]
+id = "cornhole-lines"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Two long lines of cornhole boards on the grass, with players tossing across the field and canopies along the trees"
+caption = "Teams line up for the 2026 Northampton Wrestling cornhole tournament."
+widths = [640, 1280, 2000]
+file = "originals/batch13_cornhole-lines.jpg"
+
+[[photo]]
+id = "cornhole-group"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "A large group of players, families and Northampton wrestlers poses on the grass in front of the pavilion"
+caption = "The 2026 cornhole crowd."
+widths = [640, 1280, 2000]
+file = "originals/batch13_cornhole-group.jpg"
+
+[[photo]]
+id = "cornhole-pools"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Players gather around boards marked Pool B and Pool C during pool play"
+caption = "Pool play on the main field."
+widths = [640, 1280, 2000]
+file = "originals/batch13_cornhole-pools.jpg"
+
+[[photo]]
+id = "cornhole-throwing"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "A row of players tosses bags at boards under the trees"
+caption = "Bags in the air."
+widths = [640, 1280, 2016]
+file = "originals/batch13_cornhole-throwing.jpg"
+
+[[photo]]
+id = "cornhole-club-table"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Volunteers work the Northampton Area Wrestling Club table under black canopies"
+caption = "The Northampton Area Wrestling Club table."
+widths = [640, 1280, 2016]
+file = "originals/batch13_cornhole-club-table.jpg"
+
+[[photo]]
+id = "cornhole-raffle"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "A volunteer and a young helper sit behind the 50/50 and Northampton Wrestling gear raffle table"
+caption = "The 50/50 and gear raffles."
+widths = [640, 1280, 2000]
+file = "originals/batch13_cornhole-raffle.jpg"
+
+[[photo]]
+id = "cornhole-gold-bracket"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Two players in matching shirts hold the completed Gold Championship bracket"
+caption = "The finished Gold Championship bracket."
+widths = [600, 1200, 1512]
+file = "originals/batch13_cornhole-gold-bracket.jpg"
+
+[[photo]]
+id = "cornhole-silver-bracket"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Two players and a young fan pose with the completed Silver Championship bracket"
+caption = "The finished Silver Championship bracket."
+widths = [600, 1200, 1512]
+file = "originals/batch13_cornhole-silver-bracket.jpg"
+
+[[photo]]
+id = "cornhole-ballard"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Gabe Ballard smiles with a supporter on the tournament grounds"
+caption = "Gabe Ballard at the tournament."
+widths = [640, 1280, 2000]
+file = "originals/batch13_cornhole-ballard.jpg"
+

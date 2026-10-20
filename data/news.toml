@@ -13,6 +13,20 @@ body = [
 ]
 
 [[post]]
+slug = "cornhole-tournament-2026"
+date = 2026-10-20
+title = "Cornhole tournament brings the Konkrete Kids family together"
+summary = "The Northampton Wrestling Club's 8th annual cornhole tournament filled two brackets this summer."
+photo = "cornhole-lines"
+gallery = ["cornhole-group", "cornhole-pools", "cornhole-throwing", "cornhole-club-table", "cornhole-raffle", "cornhole-ballard", "wenrich-fargo-team", "cornhole-gold-bracket", "cornhole-silver-bracket"]
+body = [
+  "Northampton Wrestling held its 8th annual cornhole tournament in July, bringing wrestlers, alumni, parents, coaches and fans together for a day on the boards.",
+  "Teams played pool rounds before moving into two brackets. Los Luchadores won the Gold Championship and the Pythons won the Silver Championship.",
+  "The day also featured a 50/50 raffle and raffles for Northampton Wrestling gear and donated prizes, and Brayden Wenrich brought along the plaque from his Fargo national title.",
+  "Thank you to everyone who played, volunteered, donated a prize, or sponsored the day. The tournament supports the Northampton Area Wrestling Club.",
+]
+
+[[post]]
 slug = "wenrich-whos-number-one"
 date = 2026-09-26
 title = "Wenrich wins at Who's Number One"
