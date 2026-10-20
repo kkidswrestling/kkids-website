@@ -13,20 +13,6 @@ body = [
 ]
 
 [[post]]
-slug = "cornhole-tournament-2026"
-date = 2026-10-20
-title = "Cornhole tournament brings the Konkrete Kids family together"
-summary = "The Northampton Wrestling Club's 8th annual cornhole tournament filled two brackets this summer."
-photo = "cornhole-lines"
-gallery = ["cornhole-group", "cornhole-pools", "cornhole-throwing", "cornhole-club-table", "cornhole-raffle", "cornhole-ballard", "wenrich-fargo-team", "cornhole-gold-bracket", "cornhole-silver-bracket"]
-body = [
-  "Northampton Wrestling held its 8th annual cornhole tournament in July, bringing wrestlers, alumni, parents, coaches and fans together for a day on the boards.",
-  "Teams played pool rounds before moving into two brackets. Los Luchadores won the Gold Championship and the Pythons won the Silver Championship.",
-  "The day also featured a 50/50 raffle and raffles for Northampton Wrestling gear and donated prizes, and Brayden Wenrich brought along the plaque from his Fargo national title.",
-  "Thank you to everyone who played, volunteered, donated a prize, or sponsored the day. The tournament supports the Northampton Area Wrestling Club.",
-]
-
-[[post]]
 slug = "wenrich-whos-number-one"
 date = 2026-09-26
 title = "Wenrich wins at Who's Number One"
@@ -37,6 +23,20 @@ body = [
   "Brayden Wenrich was selected for FloWrestling's 2026 Who's Number One, the invitation-only event that matches the top two wrestlers in the country at each weight, and he won his match.",
   "Ranked No. 1 at 120 pounds, Wenrich beat No. 2 Michael Batista of New Jersey 4–2 on September 26 at Gallagher-Iba Arena in Stillwater, Oklahoma. It was a rematch of the Fargo final in July.",
   "Wenrich is the first Northampton wrestler to win at Who's Number One.",
+]
+
+[[post]]
+slug = "cornhole-tournament-2026"
+date = 2026-07-25
+title = "Cornhole tournament brings the Konkrete Kids family together"
+summary = "The Northampton Wrestling Club's 8th annual cornhole tournament filled two brackets this summer."
+photo = "cornhole-lines"
+gallery = ["cornhole-group", "cornhole-pools", "cornhole-throwing", "cornhole-club-table", "cornhole-raffle", "cornhole-ballard", "wenrich-fargo-team", "cornhole-gold-bracket", "cornhole-silver-bracket"]
+body = [
+  "Northampton Wrestling held its 8th annual cornhole tournament on July 25, bringing wrestlers, alumni, parents, coaches and fans together for a day on the boards.",
+  "Teams played pool rounds before moving into two brackets. Los Luchadores won the Gold Championship and the Pythons won the Silver Championship. The day also featured a 50/50 raffle and raffles for Northampton Wrestling gear and donated prizes.",
+  "One highlight came midway through the day, when the program recognized Brayden Wenrich for becoming Northampton Wrestling's first Fargo champion. The crowd also gathered for a group photo to send to Trey Wagner at basic training, so he knows his hometown is behind him.",
+  "Thank you to everyone who played, volunteered, sponsored, and donated, and to the booster club for the work that made the day happen. Your support creates opportunities for Northampton wrestlers. See you next summer for the 9th annual tournament.",
 ]
 
 [[post]]
