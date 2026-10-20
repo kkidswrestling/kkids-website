@@ -655,77 +655,207 @@ def build_high_school():
 
 
 
+def load_results():
+    with open(os.path.join(ROOT, "data", "results.toml"), "rb") as f:
+        return tomllib.load(f)
+
+
+def event_title(ev):
+    """'vs. Easton' / 'at Whitehall' for duals; tournaments go by their name."""
+    if ev.get("kind", "dual") == "tournament":
+        return ev["opponent"]
+    return ("vs. " if ev.get("home") else "at ") + ev["opponent"]
+
+
+def event_where(ev, full=False):
+    """Home matches: the gym (full=True adds school and street for map apps). Otherwise the event's location."""
+    if ev.get("home") and not ev.get("location"):
+        return f'{SITE["gym"]}, {SITE["school"]}, {", ".join(SITE["address"])}' if full else SITE["gym"]
+    return ev.get("location", "")
+
+
+def event_days(ev):
+    """('Dec 11–12', 'Fri–Sat') for the schedule list."""
+    d, end = ev["date"], ev.get("end_date")
+    if not end or end == d:
+        return d.strftime("%b %-d"), d.strftime("%a")
+    if end.month == d.month:
+        return f"{d:%b %-d}–{end.day}", f"{d:%a}–{end:%a}"
+    return f"{d:%b %-d}–{end:%b %-d}", f"{d:%a}–{end:%a}"
+
+
+def event_long_date(ev):
+    """'Wednesday, December 9' or 'Fri–Sat, December 11–12' for the home page."""
+    d, end = ev["date"], ev.get("end_date")
+    if not end or end == d:
+        return d.strftime("%A, %B %-d")
+    if end.month == d.month:
+        return f"{d:%a}–{end:%a}, {d:%B %-d}–{end.day}"
+    return f"{d:%B %-d}–{end:%B %-d}"
+
+
+def cal_base():
+    """Where schedule.ics can be fetched today. GitHub writes a CNAME file into the repo once the custom
+    domain is set up; until then use the github.io address (GitHub redirects it to the domain afterward,
+    so early subscribers keep getting updates)."""
+    return SITE["domain"] if os.path.exists(os.path.join(ROOT, "CNAME")) else SITE["test_url"]
+
+
+ICS_TZ = ["BEGIN:VTIMEZONE", "TZID:America/New_York",
+          "BEGIN:DAYLIGHT", "TZOFFSETFROM:-0500", "TZOFFSETTO:-0400", "TZNAME:EDT", "DTSTART:19700308T020000",
+          "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU", "END:DAYLIGHT",
+          "BEGIN:STANDARD", "TZOFFSETFROM:-0400", "TZOFFSETTO:-0500", "TZNAME:EST", "DTSTART:19701101T020000",
+          "RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU", "END:STANDARD", "END:VTIMEZONE"]
+
+
+def ics_fold(line):
+    """Calendar files wrap lines longer than 75 bytes; each continuation starts with a space."""
+    parts, cur = [], b""
+    for ch in line:
+        b = ch.encode("utf-8")
+        if len(cur) + len(b) > (74 if parts else 75):
+            parts.append(cur.decode("utf-8"))
+            cur = b""
+        cur += b
+    parts.append(cur.decode("utf-8"))
+    return "\r\n ".join(parts)
+
+
 def build_calendar():
     """schedule.ics from data/results.toml events, so parents can subscribe once and get every match.
-    Returns the event list (the schedule page shows the subscribe card only when there are events)."""
+    Duals with a time are timed events; tournaments and anything without a time are all-day events
+    (a tournament's start time goes in the notes). Returns the events, oldest first."""
     import datetime as _dt
-    with open(os.path.join(ROOT, "data", "results.toml"), "rb") as f:
-        res = tomllib.load(f)
-    evs = res.get("event", [])
+    evs = sorted(load_results().get("event", []), key=lambda x: x["date"])
     def esc(t):
         return str(t).replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,").replace("\n", "\\n")
     out = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Northampton Wrestling//Schedule//EN", "CALSCALE:GREGORIAN",
-           "METHOD:PUBLISH", "X-WR-CALNAME:Northampton Wrestling", "X-WR-TIMEZONE:America/New_York", "REFRESH-INTERVAL;VALUE=DURATION:PT12H"]
+           "METHOD:PUBLISH", "X-WR-CALNAME:Northampton Wrestling", "X-WR-TIMEZONE:America/New_York",
+           "REFRESH-INTERVAL;VALUE=DURATION:PT12H", "X-PUBLISHED-TTL:PT12H"] + (ICS_TZ if evs else [])
     stamp = "20260101T000000Z"  # fixed so rebuilding does not change the file
-    for i, ev in enumerate(evs):
+    page_url = cal_base() + "/schedule/"
+    for ev in evs:
         d = ev["date"]
         name = ev.get("opponent", "Match")
-        title = ("vs. " if ev.get("home") else "at ") + name if ev.get("kind", "dual") == "dual" else name
-        uid = f"{d.isoformat()}-{slug(name)}@northamptonwrestling.org"
-        t = ev.get("time", "")
-        out += ["BEGIN:VEVENT", f"UID:{uid}", f"DTSTAMP:{stamp}", f"SUMMARY:{esc('Wrestling ' + title)}"]
-        try:
-            tm = _dt.datetime.strptime(t.strip().upper(), "%I:%M %p")
-            start = _dt.datetime.combine(d, tm.time())
-            end = start + _dt.timedelta(hours=3 if ev.get("kind") == "tournament" else 2)
-            out += [f"DTSTART;TZID=America/New_York:{start:%Y%m%dT%H%M%S}", f"DTEND;TZID=America/New_York:{end:%Y%m%dT%H%M%S}"]
-        except ValueError:
+        tourney = ev.get("kind", "dual") == "tournament"
+        t = ev.get("time", "").strip()
+        notes = []
+        lines = ["BEGIN:VEVENT", f"UID:{d.isoformat()}-{slug(name)}@northamptonwrestling.org", f"DTSTAMP:{stamp}",
+                 "SUMMARY:" + esc(("Wrestling: " + name) if tourney else ("Wrestling " + event_title(ev)))]
+        start = None
+        if t and not tourney:
+            try:
+                start = _dt.datetime.combine(d, _dt.datetime.strptime(t.upper(), "%I:%M %p").time())
+            except ValueError:
+                start = None
+        if start:
+            end = start + _dt.timedelta(hours=2)
+            lines += [f"DTSTART;TZID=America/New_York:{start:%Y%m%dT%H%M%S}", f"DTEND;TZID=America/New_York:{end:%Y%m%dT%H%M%S}"]
+        else:
             end_d = ev.get("end_date", d) + _dt.timedelta(days=1)
-            out += [f"DTSTART;VALUE=DATE:{d:%Y%m%d}", f"DTEND;VALUE=DATE:{end_d:%Y%m%d}"]
-        if ev.get("location"):
-            out.append(f"LOCATION:{esc(ev['location'])}")
-        note = " ".join(x for x in [ev.get("result", ""), ev.get("score", "")] if x)
-        if note:
-            out.append(f"DESCRIPTION:{esc('Result: ' + note)}")
-        out.append("END:VEVENT")
+            lines += [f"DTSTART;VALUE=DATE:{d:%Y%m%d}", f"DTEND;VALUE=DATE:{end_d:%Y%m%d}", "TRANSP:TRANSPARENT"]
+            notes.append(f"Starts {t}." if t else "Time to be announced.")
+        if ev.get("league"):
+            notes.append("League match.")
+        if ev.get("postseason"):
+            notes.append("Postseason.")
+        if ev.get("result"):
+            notes.append("Result: " + " ".join(x for x in [ev["result"], ev.get("score", "")] if x) + ".")
+        notes.append(f"Times can change. Latest schedule: {page_url}")
+        where = event_where(ev, full=True)
+        if where:
+            lines.append(f"LOCATION:{esc(where)}")
+        lines += [f"DESCRIPTION:{esc(' '.join(notes))}", f"URL:{page_url}", "END:VEVENT"]
+        out += lines
     out.append("END:VCALENDAR")
     with open(os.path.join(ROOT, "schedule.ics"), "w", newline="") as f:
-        f.write("\r\n".join(out) + "\r\n")
+        f.write("\r\n".join(ics_fold(x) for x in out) + "\r\n")
     return evs
+
+
+def schedule_list(evs):
+    """The season's events grouped by month: date, matchup, tags, place, and the time (or the result)."""
+    import datetime as _dt
+    months = {}
+    for ev in evs:
+        months.setdefault((ev["date"].year, ev["date"].month), []).append(ev)
+    out = []
+    for (y, m), items in months.items():
+        rows = []
+        for ev in items:
+            day, dow = event_days(ev)
+            tags = ([('home', 'Home')] if ev.get("home") else []) + ([('', 'League')] if ev.get("league") else []) \
+                + ([('post', 'Postseason')] if ev.get("postseason") else []) \
+                + ([('', 'Tournament')] if ev.get("kind") == "tournament" and not ev.get("postseason") else [])
+            tag_html = "".join(f'<span class="ev-tag{" " + c if c else ""}">{lab}</span>' for c, lab in tags)
+            if ev.get("result"):
+                res = ev["result"] + (" " + ev["score"] if ev.get("score") else "")
+                right = f'<b class="ev-res{" win" if ev["result"] == "W" else ""}">{e(res)}</b>'
+            else:
+                right = e(ev["time"]) if ev.get("time") else '<span class="ev-tba">TBA</span>'
+            rows.append(f'<li class="ev-row{" is-home" if ev.get("home") else ""}">'
+                        f'<time class="ev-date" datetime="{ev["date"].isoformat()}"><b>{day}</b><span>{dow}</span></time>'
+                        f'<div class="ev-main"><p class="ev-title">{e(event_title(ev))}</p>'
+                        f'<p class="ev-meta">{tag_html}<span>{e(event_where(ev))}</span></p></div>'
+                        f'<p class="ev-time">{right}</p></li>')
+        out.append(f'<h3 class="ev-month">{_dt.date(y, m, 1):%B %Y}</h3><ol class="ev-list" role="list">{"".join(rows)}</ol>')
+    return "".join(out)
+
 
 def build_schedule():
     R = "../"
+    res = load_results()
     evs = build_calendar()
-    host = SITE["domain"].split("://", 1)[1]
-    cal = (f'''<aside class="note-card cal-card"><h3>Add the schedule to your phone</h3>
+    webcal = "webcal://" + cal_base().split("://", 1)[1] + "/schedule.ics"
+    cal = (f'''<aside class="note-card cal-card" id="add-calendar"><h3>Add the schedule to your phone</h3>
       <p>Subscribe once and every match, time change and result shows up in your calendar automatically.</p>
-      <p class="actions"><a class="btn" href="webcal://{host}/schedule.ics">Subscribe (iPhone / Mac)</a>
-      <a class="btn ghost dark-ink" href="https://calendar.google.com/calendar/r?cid=webcal://{host}/schedule.ics" rel="noopener">Google Calendar</a></p>
+      <p class="actions"><a class="btn" href="{webcal}">Subscribe (iPhone / Mac)</a>
+      <a class="btn ghost dark-ink" href="https://calendar.google.com/calendar/r?cid={webcal}" rel="noopener">Google Calendar</a></p>
       <p class="fine"><a href="{R}schedule.ics" download>Download the calendar file</a></p></aside>''') if evs else ""
-    body = f"""
-{page_head(R, "Schedule", "Varsity, JV, and junior high match schedules for 2026–27.")}
-<section class="band">
-  <div class="wrap split narrow-right">
-    <div class="prose">
-      <h2>2026–27 schedule</h2>
-      <p>The season schedule will be posted here once it is final. Until then, the district’s athletics calendar is the official source for every Northampton team, including bus times and changes.</p>
-      <p class="actions"><a class="btn" href="{SITE['links']['district_calendar']}" rel="noopener">District athletics calendar</a><a class="btn ghost dark-ink" href="{SITE['links']['district_athletics']}" rel="noopener">Northampton athletics website</a></p>
-      <h2>Follow along on match day</h2>
-      <p>Results, lineups, and photos go up on the team’s social accounts during the season.</p>
-      <div class="social dark-ink">{social_links()}</div>
-    </div>
-    <div>{cal}<aside class="note-card">
+    official = (f'''<aside class="note-card"><h3>Official calendar</h3>
+      <p>The district’s athletics calendar is the official source for every Northampton team, including JV and junior high, bus times, and changes.</p>
+      <p class="actions"><a class="btn" href="{SITE['links']['district_calendar']}" rel="noopener">District athletics calendar</a><a class="btn ghost dark-ink" href="{SITE['links']['district_athletics']}" rel="noopener">Northampton athletics website</a></p></aside>''')
+    path = '''<aside class="note-card">
       <h3>Postseason path</h3>
       <ol class="steps">
         <li><b>District XI AAA Championships</b><span>Top finishers advance</span></li>
         <li><b>PIAA Northeast Regional AAA</b><span>Top finishers advance</span></li>
         <li><b>PIAA Championships</b><span>Giant Center, Hershey</span></li>
       </ol>
-    </aside></div>
+    </aside>'''
+    follow = f'''<h2>Follow along on match day</h2>
+      <p>Results, lineups, and photos go up on the team’s social accounts during the season.</p>
+      <div class="social dark-ink">{social_links()}</div>'''
+    if evs:
+        main = f'''<div class="ev-wrap">
+      <h2>{res["season"]} varsity schedule</h2>
+      <p class="ev-note">Home matches are at {SITE["gym"]}. Dates and times can change, so check the <a href="{SITE['links']['district_calendar']}" rel="noopener">district athletics calendar</a> before you go. <a href="#add-calendar">Add every match to your phone</a>.</p>
+      {schedule_list(evs)}
+      <div class="prose ev-follow">{follow}</div>
+    </div>'''
+        side = f'<div class="ev-side">{cal}{official}{path}</div>'
+        intro, desc = (f"Every {res['season']} varsity dual and tournament, with times and places, and a calendar you can add to your phone.",
+                       f"{res['season']} Northampton wrestling schedule: every varsity dual and tournament, with times, locations, and a phone calendar.")
+    else:
+        main = f'''<div class="prose">
+      <h2>{res["season"]} schedule</h2>
+      <p>The season schedule will be posted here once it is final. Until then, the district’s athletics calendar is the official source for every Northampton team, including bus times and changes.</p>
+      <p class="actions"><a class="btn" href="{SITE['links']['district_calendar']}" rel="noopener">District athletics calendar</a><a class="btn ghost dark-ink" href="{SITE['links']['district_athletics']}" rel="noopener">Northampton athletics website</a></p>
+      {follow}
+    </div>'''
+        side = f"<div>{path}</div>"
+        intro, desc = (f"Varsity, JV, and junior high match schedules for {res['season']}.",
+                       f"{res['season']} Northampton wrestling schedules for varsity, JV, and junior high.")
+    body = f"""
+{page_head(R, "Schedule", intro)}
+<section class="band">
+  <div class="wrap split narrow-right ev-split">
+    {main}
+    {side}
   </div>
 </section>
 """
-    return page("schedule/index.html", "Schedule", "2026–27 Northampton wrestling schedules for varsity, JV, and junior high.", body, "schedule/")
+    return page("schedule/index.html", "Schedule", desc, body, "schedule/")
 
 
 def build_junior_high():

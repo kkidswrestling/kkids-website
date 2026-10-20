@@ -5,6 +5,21 @@
   // Year in footer
   document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
+  // Home page "Next match": pages are rebuilt only when something changes, so pick the next event here
+  var nextCell = document.querySelector("[data-next]");
+  if (nextCell) {
+    try {
+      var now = new Date();
+      var today = now.getFullYear() + "-" + ("0" + (now.getMonth() + 1)).slice(-2) + "-" + ("0" + now.getDate()).slice(-2);
+      var left = JSON.parse(nextCell.getAttribute("data-next")).filter(function (x) { return x.end >= today; });
+      var nt = nextCell.querySelector("[data-next-t]"), nm = nextCell.querySelector("[data-next-m]");
+      if (nt && nm) {
+        nt.textContent = left.length ? left[0].t : "No upcoming matches";
+        nm.textContent = left.length ? left[0].m : "";
+      }
+    } catch (err) { /* keep the text the page was built with */ }
+  }
+
   // Mobile menu
   var btn = document.querySelector(".menu-btn");
   var nav = document.getElementById("site-nav");

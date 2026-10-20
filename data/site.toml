@@ -5,6 +5,9 @@ established = 1945
 conference = "Eastern Pennsylvania Conference"
 district = "PIAA District XI"
 domain = "https://www.northamptonwrestling.org"
+# Where the site is live until northamptonwrestling.org points to GitHub Pages. The calendar subscribe
+# links use this until GitHub adds a CNAME file to the repo (that happens when the custom domain is set).
+test_url = "https://kkidswrestling.github.io/kkids-website"
 owner = "Northampton Area Wrestling Club"
 current_season = "2026–27"
 

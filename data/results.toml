@@ -1,17 +1,138 @@
-# 2026-27 schedule and results. Add each event when the schedule is released.
-# For a result, fill in result = "W" or "L" and the score (or place for tournaments).
+# 2026-27 schedule and results (varsity). Source: PA-Wrestling's Northampton schedule page.
+# Each [[event]] shows on the Schedule page, in schedule.ics (the phone calendar), and in the
+# home page "Next match" box. Once it has a result it also shows on the Results page.
 #
 # [[event]]
 # date = 2026-12-16
-# time = "7:00 PM"
+# end_date = 2026-12-17          # multi-day tournaments only
+# time = "7:00 PM"               # leave out when the time isn't set yet (shows TBA)
 # opponent = "Easton"            # or the tournament name
 # kind = "dual"                  # dual | tournament
-# home = true
-# location = "Pete Schneider Gymnasium"
+# home = true                    # home matches use the gym and address from site.toml
+# location = "Liberty High School, Bethlehem, PA"   # away matches and tournaments
+# league = true                  # league dual (PA-Wrestling's L)
+# postseason = true              # PA-Wrestling's PS
 # result = ""                    # W / L, or a place like "3rd"
 # score = ""                     # e.g. "36-25"
 
 season = "2026–27"
+
+[[event]]
+date = 2026-12-09
+time = "7:00 PM"
+opponent = "Whitehall"
+kind = "dual"
+league = true
+location = "Whitehall High School, Whitehall, PA"
+
+[[event]]
+date = 2026-12-11
+end_date = 2026-12-12
+opponent = "Walsh Ironman"
+kind = "tournament"
+location = "Walsh Jesuit High School, Cuyahoga Falls, OH"
+
+[[event]]
+date = 2026-12-16
+time = "7:00 PM"
+opponent = "Pocono Mountain West"
+kind = "dual"
+home = true
+
+[[event]]
+date = 2026-12-18
+end_date = 2026-12-19
+opponent = "King of the Mountain"
+kind = "tournament"
+location = "Central Mountain High School, Mill Hall, PA"
+
+[[event]]
+date = 2026-12-23
+time = "7:00 PM"
+opponent = "Bethlehem Liberty"
+kind = "dual"
+location = "Liberty High School, Bethlehem, PA"
+
+[[event]]
+date = 2027-01-06
+time = "7:00 PM"
+opponent = "Stroudsburg"
+kind = "dual"
+home = true
+league = true
+
+[[event]]
+date = 2027-01-08
+end_date = 2027-01-09
+opponent = "Mid-Winter Mayhem"
+kind = "tournament"
+location = "Kovalchick Convention and Athletic Complex (IUP), Indiana, PA"
+
+[[event]]
+date = 2027-01-13
+time = "7:00 PM"
+opponent = "Bethlehem Freedom"
+kind = "dual"
+location = "Freedom High School, Bethlehem, PA"
+
+[[event]]
+date = 2027-01-16
+time = "9:15 AM"
+opponent = "Parkland Winter Duals"
+kind = "tournament"
+location = "Parkland High School, Allentown, PA"
+
+[[event]]
+date = 2027-01-20
+time = "7:00 PM"
+opponent = "Bethlehem Catholic"
+kind = "dual"
+home = true
+
+[[event]]
+date = 2027-01-27
+time = "7:00 PM"
+opponent = "Nazareth"
+kind = "dual"
+league = true
+location = "Nazareth Area High School, Nazareth, PA"
+
+[[event]]
+date = 2027-01-30
+opponent = "Easton"
+kind = "dual"
+home = true
+
+[[event]]
+date = 2027-02-06
+opponent = "District XI AAA Team Duals"
+kind = "tournament"
+postseason = true
+location = "Freedom High School, Bethlehem, PA"
+
+[[event]]
+date = 2027-02-26
+end_date = 2027-02-27
+opponent = "District XI AAA Championships"
+kind = "tournament"
+postseason = true
+location = "Liberty High School, Bethlehem, PA"
+
+[[event]]
+date = 2027-03-05
+end_date = 2027-03-06
+opponent = "PIAA Northeast Regional AAA"
+kind = "tournament"
+postseason = true
+location = "Liberty High School, Bethlehem, PA"
+
+[[event]]
+date = 2027-03-11
+end_date = 2027-03-13
+opponent = "PIAA Class AAA Championships"
+kind = "tournament"
+postseason = true
+location = "Giant Center, Hershey, PA"
 
 # Shown on the home page until the first 2026-27 result is posted.
 [last_result]

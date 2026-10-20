@@ -4,6 +4,7 @@ Family, Alumni, and Follow. Called from build.py main() with the build module.""
 import re
 import datetime as dt
 import html
+import json
 import os
 import tomllib
 
@@ -124,30 +125,44 @@ def count_up(n, label):
     return f'<p><b class="count" data-to="{n}">{n}</b><span>{label}</span></p>'
 
 
+def next_meta(n):
+    """'Wednesday, December 9 · 7:00 PM · Whitehall High School, Whitehall, PA'"""
+    return " · ".join([M.event_long_date(n)] + ([n["time"]] if n.get("time") else []) + ([M.event_where(n)] if M.event_where(n) else []))
+
+
 def match_strip(R):
     res = load("results.toml")
-    events = res.get("event", [])
+    events = sorted(res.get("event", []), key=lambda x: x["date"])
     today = dt.date.today()
-    upcoming = sorted([x for x in events if x["date"] >= today and not x.get("result")], key=lambda x: x["date"])
-    done = sorted([x for x in events if x.get("result")], key=lambda x: x["date"])
+    upcoming = [x for x in events if x.get("end_date", x["date"]) >= today and not x.get("result")]
+    done = [x for x in events if x.get("result")]
+    feed = ""
     if upcoming:
         n = upcoming[0]
-        nxt = (f'<p class="ms-k">Next match</p><h2 class="ms-h">{"vs." if n.get("home") else "at"} {e(n["opponent"])}</h2>'
-               f'<p class="ms-d">{fmt_date(n["date"])}{" · " + e(n["time"]) if n.get("time") else ""} · {e(n.get("location", ""))}</p>')
+        # The page is only rebuilt when something changes, so site.js re-picks the next event from this list.
+        feed = ' data-next="' + e(json.dumps([{"end": x.get("end_date", x["date"]).isoformat(), "t": M.event_title(x), "m": next_meta(x)} for x in upcoming], ensure_ascii=False)) + '"'
+        nxt = (f'<p class="ms-k">Next match</p><h2 class="ms-h" data-next-t>{e(M.event_title(n))}</h2>'
+               f'<p class="ms-d" data-next-m>{e(next_meta(n))}</p>')
     else:
-        nxt = ('<p class="ms-k">Next match</p><h2 class="ms-h">2026–27 schedule coming soon</h2>'
-               '<p class="ms-d">The season opens this winter. Dates post here as soon as they’re released.</p>')
+        nxt = (f'<p class="ms-k">Next match</p><h2 class="ms-h">{res["season"]} schedule coming soon</h2>'
+               '<p class="ms-d">Dates post here as soon as they’re released.</p>')
     if done:
         l = done[-1]
-        last = (f'<p class="ms-k">Last result</p><h2 class="ms-h">{e(l["result"])} {e(l.get("score", ""))}</h2>'
-                f'<p class="ms-d">{"vs." if l.get("home") else "at"} {e(l["opponent"])} · {fmt_date(l["date"])}</p>')
+        if l.get("kind") == "tournament":
+            head = l["result"] + (" place" if re.fullmatch(r"\d+(st|nd|rd|th)", l["result"]) else "")
+            sub = l["opponent"]
+        else:
+            head = {"W": "Win", "L": "Loss", "T": "Tie"}.get(l["result"], l["result"]) + (", " + l["score"].replace("-", "–") if l.get("score") else "")
+            sub = M.event_title(l)
+        last = (f'<p class="ms-k">Last result</p><h2 class="ms-h">{e(head)}</h2>'
+                f'<p class="ms-d">{e(sub)} · {fmt_date(l["date"])}</p>')
     else:
         l = res["last_result"]
         last = (f'<p class="ms-k">Last result</p><h2 class="ms-h">{e(l["result"])}, {e(l["event"])}</h2>'
                 f'<p class="ms-d">{fmt_date(l["date"])} · {e(l["location"])}. {e(l["note"])}</p>')
     return f'''<section class="match-strip" aria-label="Next match and last result">
   <div class="wrap ms-grid">
-    <div class="ms-cell">{nxt}<p class="ms-links"><a href="{R}schedule/">Full schedule</a></p></div>
+    <div class="ms-cell"{feed}>{nxt}<p class="ms-links"><a href="{R}schedule/">Full schedule</a></p></div>
     <div class="ms-cell">{last}<p class="ms-links"><a href="{R}results/">All results</a></p></div>
   </div>
 </section>'''
@@ -335,15 +350,18 @@ def build_profile(w, season):
 def build_results():
     R = "../"
     res = load("results.toml")
-    ev = sorted(res.get("event", []), key=lambda x: x["date"])
+    sched = sorted(res.get("event", []), key=lambda x: x["date"])
+    ev = [x for x in sched if x.get("result")]
     if ev:
         rows = "".join(
-            f'<tr><td>{short_date(x["date"])}</td><th scope="row">{"vs." if x.get("home") else "at"} {e(x["opponent"])}</th><td>{e(x.get("kind", ""))}</td>'
+            f'<tr><td>{short_date(x["date"])}</td><th scope="row">{e(M.event_title(x))}</th><td>{e(x.get("kind", "dual").capitalize())}</td>'
             f'<td class="{"gold" if x.get("result") == "W" else ""}">{e(x.get("result", "") or "—")}</td><td>{e(x.get("score", ""))}</td></tr>' for x in ev)
         table = (f'<div class="table-wrap"><table class="hall"><caption>{res["season"]} varsity results</caption><thead><tr><th scope="col">Date</th><th scope="col">Opponent</th>'
                  f'<th scope="col">Type</th><th scope="col">Result</th><th scope="col">Score</th></tr></thead><tbody>{rows}</tbody></table></div>')
     else:
-        table = '<div class="empty-state"><h2>The 2026–27 season starts this winter</h2><p>Results post here after every match, usually the same night.</p><p class="actions"><a class="btn" href="../schedule/">Schedule</a><a class="btn ghost dark-ink" href="../follow/">Get match updates</a></p></div>'
+        opens = (f'The {res["season"]} season opens {sched[0]["date"]:%B %-d} {"against" if sched[0].get("home") else "at"} {e(sched[0]["opponent"])}'
+                 if sched else f'The {res["season"]} season starts this winter')
+        table = f'<div class="empty-state"><h2>{opens}</h2><p>Results post here after every match, usually the same night.</p><p class="actions"><a class="btn" href="../schedule/">Schedule</a><a class="btn ghost dark-ink" href="../follow/">Get match updates</a></p></div>'
     s = M.CUR
     body = f"""
 {M.page_head(R, "Results", f"Varsity match and tournament results for {res['season']}.")}
@@ -470,7 +488,7 @@ def build_story():
     <aside class="note-card"><h3>Eight head coaches</h3><ul class="results" role="list">{era_rows}</ul></aside>
   </div>
 </section>
-<section class="band dark"><div class="wrap"><blockquote class="arena dark-q"><p>“I hope I’ll be seen as a guy who really cared about his athletes, as wanting to get every kid he coached to his next level.”</p><footer>Don Rohn, head coach 1982–2000</footer></blockquote></div></section>
+<section class="band dark"><div class="wrap"><blockquote class="arena dark-q"><p>“I hope I’ll be seen as a guy who really cared about his athletes, as wanting to get every kid he coached to his next level.”</p><footer>Don Rohn, head coach 1982–2000<span class="q-src"><cite>The Morning Call</cite>, April 5, 2000</span></footer></blockquote></div></section>
 """
     return M.page("story/index.html", "Our Story", "The history and philosophy of Northampton Wrestling since 1945.", body, "story/", og_image="program-family")
 
