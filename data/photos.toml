@@ -1134,6 +1134,16 @@ crop = [46, 30, 854, 1040]
 widths = [320, 640]
 file = "originals/batch9_wagner-portrait-hi.jpg"
 
+# No medal portrait yet: 4:5 crop of his 1994 PIAA podium photo (whitey-podium, crop 960,600,1840,1700),
+# edges darkened so he stands out (Coach Provini asked for him centered and highlighted, Oct. 2026).
+[[photo]]
+id = "headshot-whitey-chlebove"
+source = "Coach Provini, Oct. 2026 (cropped from the podium photo)"
+season = "1993-94"
+alt = "Whitey Chlebove on the PIAA podium in a Northampton warm-up jacket"
+widths = [320, 640]
+file = "originals/batch10_whitey-banner.jpg"
+
 # Former banner action shots, now shown full-size in the champion's page gallery
 [[photo]]
 id = "ballard-roar"
@@ -1150,6 +1160,27 @@ alt = "Trey Wagner grins and points both fingers skyward after a win at the PIAA
 caption = "Trey Wagner after a win at the PIAA Championships."
 widths = [640, 1200, 1458]
 file = "originals/batch6_trey-point.jpg"
+
+[[photo]]
+id = "whitey-yearbook"
+crop = [12, 9, 294, 280]
+widths = [282]
+source = "Northampton yearbook, via Coach Provini (the photo without the yearbook's printed caption)"
+season = "1993-94"
+alt = "Whitey Chlebove keeps his opponent controlled on the mat"
+caption = "Whitey Chlebove in control on the mat."
+credit = "Northampton yearbook"
+file = "originals/batch3_whitey-yb.jpg"
+
+# Champion page feature photo (shown whole)
+[[photo]]
+id = "whitey-podium"
+source = "Coach Provini, Oct. 2026"
+season = "1993-94"
+alt = "Whitey Chlebove stands on the top step of the PIAA podium at 130 pounds in a Northampton warm-up jacket, beside the other medalists"
+caption = "Whitey Chlebove on top of the PIAA podium at 130 pounds in 1994."
+widths = [480, 960, 1440]
+file = "originals/batch10_whitey-podium.jpg"
 
 # More youth photos from the banquet programs (Oct. 2026). Youth (K-6): no names.
 [[photo]]
