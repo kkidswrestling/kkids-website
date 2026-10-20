@@ -2,6 +2,41 @@
 # Only post things that happened; keep each one short.
 
 [[post]]
+slug = "ballard-super-32"
+date = 2026-10-20
+title = "Gabe Ballard heads to the Super 32"
+summary = "The reigning state champion wrestles this weekend at one of the country's toughest high school tournaments."
+photo = "ballard-attack"
+body = [
+  "Senior Gabe Ballard, the 2026 PIAA Class AAA champion at 152 pounds, is entered at 150 pounds in the Super 32 Challenge on October 24 and 25 at the Greensboro Coliseum in Greensboro, North Carolina.",
+  "The Super 32 is one of the biggest preseason tournaments in high school wrestling, drawing many of the nation's top-ranked wrestlers each fall. Ballard enters his senior season with 121 career wins.",
+]
+
+[[post]]
+slug = "wenrich-whos-number-one"
+date = 2026-09-26
+title = "Wenrich wins at Who's Number One"
+summary = "Ranked No. 1 at 120, Brayden Wenrich beat No. 2 Michael Batista 4–2 in Stillwater."
+photo = "wenrich-final"
+body = [
+  "Brayden Wenrich was selected for FloWrestling's 2026 Who's Number One, the invitation-only event that matches the top two wrestlers in the country at each weight, and he won his match.",
+  "Ranked No. 1 at 120 pounds, Wenrich beat No. 2 Michael Batista of New Jersey 4–2 on September 26 at Gallagher-Iba Arena in Stillwater, Oklahoma. It was a rematch of the Fargo final in July.",
+  "Wenrich is the first Northampton wrestler to win at Who's Number One.",
+]
+
+[[post]]
+slug = "wenrich-fargo-champion"
+date = 2026-07-12
+title = "Brayden Wenrich wins a national title at Fargo"
+summary = "Wenrich is the first Northampton wrestler to win at the USA Wrestling Junior Nationals in Fargo."
+photo = "portrait-wenrich-2026"
+body = [
+  "Brayden Wenrich won the Junior men's freestyle national championship at 120 pounds at the 2026 USA Wrestling Junior Nationals in Fargo, North Dakota, becoming the first Northampton wrestler ever to win a Fargo title.",
+  "Wrestling for Team Pennsylvania, Wenrich finished the tournament on July 12 with a 14–2 technical fall over New Jersey's Michael Batista in the final.",
+  "Fargo is the largest and most prestigious national tournament for high school wrestlers. Wenrich, the 2026 PIAA Class AAA champion at 114, enters his junior season at Northampton.",
+]
+
+[[post]]
 slug = "new-website"
 date = 2026-10-06
 title = "Northampton Wrestling launches its new home online"
