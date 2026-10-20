@@ -1352,22 +1352,7 @@ def season_phrases(facts, title):
     return out
 
 
-def season_videos(sid, label, heading="h3"):
-    """Highlight video(s) for a season from data/season-videos.toml (facade, loads YouTube on click)."""
-    vids = SEASON_VIDEOS.get(sid, [])
-    if not vids:
-        return ""
-    many = len(vids) > 1
-    cards = "".join(
-        f'<div class="video-facade single" data-ytv="{v["id"]}"><img class="vf-img" src="https://i.ytimg.com/vi/{v["id"]}/hqdefault.jpg" alt="" loading="lazy">'
-        f'<button type="button" class="vf-play"><span aria-hidden="true">▶</span> {label} highlights'
-        + (f' · part {v["part"]}' if v["part"] and many else "") + "</button></div>" for v in vids)
-    title = "Season highlight videos" if many else "Season highlight video"
-    cls = ' class="sub"' if heading == "h3" else ""
-    return f'<{heading}{cls}>{title}</{heading}><div class="season-vids{" many" if many else ""}">{cards}</div>'
-
-
-PAWR = {f'{x["season"][:4]}-{x["season"][7:]}': x for x in json.load(open(os.path.join(DATA, "hall", "pawrestling-seasons.json")))["seasons"]}
+PAWR ={f'{x["season"][:4]}-{x["season"][7:]}': x for x in json.load(open(os.path.join(DATA, "hall", "pawrestling-seasons.json")))["seasons"]}
 TITLE_YEARS = {int(r["season"][:4]) + 1 for r in TEAM_TITLES}
 
 
