@@ -276,7 +276,7 @@ link = ["The 100-Win Club", "champions/#hundred-title"]
 q = "The season highlight videos on Northampton Wrestling's YouTube channel, going all the way back to the late 1980s, are produced by which varsity assistant coach?"
 choices = ["Jim Derr", "Mike Sommer", "Marcus Newsom", "Ethan Szerencsits"]
 answer = 2
-fact = "Coach Mike Sommer, a 1997 Konkrete Kid who placed 4th at states at 140. Every season's video is on its season page."
+fact = "Coach Mike Sommer, a 1997 Konkrete Kid who placed 4th at states at 140. You'll find his videos on the season pages too."
 link = ["Watch the highlight videos", "videos/"]
 
 [[round]]
