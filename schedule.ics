@@ -25,6 +25,18 @@ RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
+UID:2026-12-05-notre-dame-green-pond@northamptonwrestling.org
+DTSTAMP:20260101T000000Z
+SUMMARY:Wrestling vs. Notre Dame-Green Pond
+DTSTART;TZID=America/New_York:20261205T143000
+DTEND;TZID=America/New_York:20261205T163000
+LOCATION:Pete Schneider Gymnasium\, Northampton Area High School\, 1619 Lau
+ bach Ave\, Northampton\, PA 18067
+DESCRIPTION:Times can change. Latest schedule: https://kkidswrestling.githu
+ b.io/kkids-website/schedule/
+URL:https://kkidswrestling.github.io/kkids-website/schedule/
+END:VEVENT
+BEGIN:VEVENT
 UID:2026-12-09-whitehall@northamptonwrestling.org
 DTSTAMP:20260101T000000Z
 SUMMARY:Wrestling at Whitehall
@@ -43,8 +55,8 @@ DTSTART;VALUE=DATE:20261211
 DTEND;VALUE=DATE:20261213
 TRANSP:TRANSPARENT
 LOCATION:Walsh Jesuit High School\, Cuyahoga Falls\, OH
-DESCRIPTION:Time to be announced. Times can change. Latest schedule: https:
- //kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:Starts 5:00 PM. Times can change. Latest schedule: https://kkid
+ swrestling.github.io/kkids-website/schedule/
 URL:https://kkidswrestling.github.io/kkids-website/schedule/
 END:VEVENT
 BEGIN:VEVENT
@@ -67,8 +79,8 @@ DTSTART;VALUE=DATE:20261218
 DTEND;VALUE=DATE:20261220
 TRANSP:TRANSPARENT
 LOCATION:Central Mountain High School\, Mill Hall\, PA
-DESCRIPTION:Time to be announced. Times can change. Latest schedule: https:
- //kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:Starts 11:00 AM. Times can change. Latest schedule: https://kki
+ dswrestling.github.io/kkids-website/schedule/
 URL:https://kkidswrestling.github.io/kkids-website/schedule/
 END:VEVENT
 BEGIN:VEVENT
@@ -155,14 +167,12 @@ END:VEVENT
 BEGIN:VEVENT
 UID:2027-01-30-easton@northamptonwrestling.org
 DTSTAMP:20260101T000000Z
-SUMMARY:Wrestling vs. Easton
-DTSTART;VALUE=DATE:20270130
-DTEND;VALUE=DATE:20270131
-TRANSP:TRANSPARENT
-LOCATION:Pete Schneider Gymnasium\, Northampton Area High School\, 1619 Lau
- bach Ave\, Northampton\, PA 18067
-DESCRIPTION:Time to be announced. Times can change. Latest schedule: https:
- //kkidswrestling.github.io/kkids-website/schedule/
+SUMMARY:Wrestling at Easton
+DTSTART;TZID=America/New_York:20270130T190000
+DTEND;TZID=America/New_York:20270130T210000
+LOCATION:Easton Area High School\, Easton\, PA
+DESCRIPTION:Times can change. Latest schedule: https://kkidswrestling.githu
+ b.io/kkids-website/schedule/
 URL:https://kkidswrestling.github.io/kkids-website/schedule/
 END:VEVENT
 BEGIN:VEVENT

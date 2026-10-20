@@ -1,4 +1,5 @@
-# 2026-27 schedule and results (varsity). Source: PA-Wrestling's Northampton schedule page.
+# 2026-27 schedule and results (varsity). Sources: PA-Wrestling's Northampton schedule page and the school's ArbiterLive
+# varsity schedule (Joe, Oct. 20, 2026; Arbiter wins on times and home/away). The Nov. 28 Saucon Valley scrimmage is left out on purpose.
 # Each [[event]] shows on the Schedule page, in schedule.ics (the phone calendar), and in the
 # home page "Next match" box. Once it has a result it also shows on the Results page.
 #
@@ -18,6 +19,13 @@
 season = "2026–27"
 
 [[event]]
+date = 2026-12-05
+time = "2:30 PM"
+opponent = "Notre Dame-Green Pond"
+kind = "dual"
+home = true
+
+[[event]]
 date = 2026-12-09
 time = "7:00 PM"
 opponent = "Whitehall"
@@ -28,6 +36,7 @@ location = "Whitehall High School, Whitehall, PA"
 [[event]]
 date = 2026-12-11
 end_date = 2026-12-12
+time = "5:00 PM"
 opponent = "Walsh Ironman"
 kind = "tournament"
 location = "Walsh Jesuit High School, Cuyahoga Falls, OH"
@@ -42,6 +51,7 @@ home = true
 [[event]]
 date = 2026-12-18
 end_date = 2026-12-19
+time = "11:00 AM"
 opponent = "King of the Mountain"
 kind = "tournament"
 location = "Central Mountain High School, Mill Hall, PA"
@@ -99,9 +109,10 @@ location = "Nazareth Area High School, Nazareth, PA"
 
 [[event]]
 date = 2027-01-30
+time = "7:00 PM"
 opponent = "Easton"
 kind = "dual"
-home = true
+location = "Easton Area High School, Easton, PA"
 
 [[event]]
 date = 2027-02-06
