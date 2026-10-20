@@ -1385,3 +1385,12 @@ caption = "Gabe Ballard at the tournament."
 widths = [640, 1280, 2000]
 file = "originals/batch13_cornhole-ballard.jpg"
 
+
+[[photo]]
+id = "jeff-ecklof-2001"
+source = "Coach Provini (IPTC: Jeff eckloff 2001 state champ)"
+season = "2000-01"
+alt = "Jeff Ecklof in his stance at the 2001 PIAA Championships"
+caption = "Jeff Ecklof at the 2001 PIAA Championships, where he won his first state title."
+widths = [620]
+file = "originals/batch3_jeff-ecklof.jpg"

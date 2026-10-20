@@ -1,5 +1,5 @@
 # News posts, newest first. Each post gets its own page at news/<slug>/.
-# Only post things that happened; keep each one short. Optional gallery = [photo ids] shows under the story.
+# Only post things that happened; keep each one short. Optional gallery = [photo ids] shows under the story; links = [[title, url]] adds a Read more list.
 
 [[post]]
 slug = "ballard-super-32"
@@ -10,6 +10,20 @@ photo = "ballard-attack"
 body = [
   "Senior Gabe Ballard, the 2026 PIAA Class AAA champion at 152 pounds, is entered at 150 pounds in the Super 32 Challenge on October 24 and 25 at the Greensboro Coliseum in Greensboro, North Carolina.",
   "The Super 32 is one of the biggest preseason tournaments in high school wrestling, drawing many of the nation's top-ranked wrestlers each fall. Ballard enters his senior season with 121 career wins.",
+]
+
+[[post]]
+slug = "ecklof-brothers-hall-of-fame"
+date = 2026-10-20
+title = "Jeff and Joey Ecklof enter the state wrestling hall of fame"
+summary = "The brothers, who won five PIAA titles between them, are part of the PWCA's 2026 class, inducted October 25."
+photo = "jeff-ecklof-2001"
+links = [["The Morning Call: Northampton brothers among 11 to be inducted into Pa. Wrestling Hall of Fame", "https://www.mcall.com/2026/09/23/northampton-brothers-among-11-to-be-inducted-into-pa-wrestling-hall-of-fame/"], ["lehighvalleylive.com: Northampton's Ecklof brothers entering state wrestling hall of fame", "https://www.lehighvalleylive.com/highschoolsports/2026/10/northamptons-ecklof-brothers-entering-state-wrestling-hall-of-fame.html"]]
+body = [
+  "Brothers Jeff and Joey Ecklof are part of the Pennsylvania Wrestling Coaches Association's 2026 Hall of Fame class. The 11 inductees will be honored on Sunday, October 25, at Mountain View Golf and Country Club in Boalsburg.",
+  "Jeff Ecklof, a 2003 graduate, won four District XI titles and four Northeast Regional titles, medaled at states all four years, reached three state finals, and won PIAA titles in 2001 and 2003. He finished with 154 career wins and went on to become an All-American at the University of Oklahoma.",
+  "Joey Ecklof, a 2005 graduate, won three straight PIAA titles from 2003 to 2005, along with three Northeast Regional titles and two District XI titles. He wrestled at Pitt, where he twice qualified for the NCAA Championships.",
+  "In 2003 the brothers won state titles on the same night, part of Northampton's record four individual champions that year and its sixth PIAA team title. Both were inducted into the District XI Hall of Fame in 2023.",
 ]
 
 [[post]]
