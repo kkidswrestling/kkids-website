@@ -356,12 +356,12 @@ def build_results():
         rows = "".join(
             f'<tr><td>{short_date(x["date"])}</td><th scope="row">{e(M.event_title(x))}</th><td>{e(x.get("kind", "dual").capitalize())}</td>'
             f'<td class="{"gold" if x.get("result") == "W" else ""}">{e(x.get("result", "") or "—")}</td><td>{e(x.get("score", ""))}</td></tr>' for x in ev)
-        table = (f'<div class="table-wrap"><table class="hall"><caption>{res["season"]} varsity results</caption><thead><tr><th scope="col">Date</th><th scope="col">Opponent</th>'
+        table = (f'<div class="table-wrap" tabindex="0"><table class="hall"><caption>{res["season"]} varsity results</caption><thead><tr><th scope="col">Date</th><th scope="col">Opponent</th>'
                  f'<th scope="col">Type</th><th scope="col">Result</th><th scope="col">Score</th></tr></thead><tbody>{rows}</tbody></table></div>')
     else:
         opens = (f'The {res["season"]} season opens {sched[0]["date"]:%B %-d} {"against" if sched[0].get("home") else "at"} {e(sched[0]["opponent"])}'
                  if sched else f'The {res["season"]} season starts this winter')
-        table = f'<div class="empty-state"><h2>{opens}</h2><p>Results post here after every match, usually the same night.</p><p class="actions"><a class="btn" href="../schedule/">Schedule</a><a class="btn ghost dark-ink" href="../follow/">Get match updates</a></p></div>'
+        table = f'<div class="empty-state"><h2>{opens}</h2><p>Results post here during the season.</p><p class="actions"><a class="btn" href="../schedule/">Schedule</a><a class="btn ghost dark-ink" href="../follow/">Get match updates</a></p></div>'
     s = M.CUR
     body = f"""
 {M.page_head(R, "Results", f"Varsity match and tournament results for {res['season']}.")}
@@ -572,8 +572,7 @@ def build_join():
 # ------------------------------------------------------------------ family, alumni, follow
 def build_family():
     R = "../"
-    off = M.COACHES["officers"]["list"]
-    faq = [("When does the season start?", "The high school season begins in November and runs through the PIAA Championships in March. Dates post on the schedule page as soon as they’re released."),
+    faq = [("When does the season start?", 'The high school season begins in November and runs through the PIAA Championships in March. The full schedule is on our <a href="../schedule/">schedule page</a>.'),
            ("Where can I find the schedule?", 'On our <a href="../schedule/">schedule page</a> and the district athletics calendar, which also lists bus times and changes.'),
            ("Can parents watch youth practice?", "In the youth program, only each team’s coaching staff is in the practice room. Matches and tournaments are open to families and fans."),
            ("What if my child misses practice?", "In-season practice and competition attendance is required. Talk to your child’s coach about any special circumstances ahead of time; they’re handled case by case."),
@@ -746,7 +745,7 @@ def build_champion_pages():
 </section>
 {pn}
 """
-        M.page(f"champions/{M.slug(name)}/index.html", name, f"{name}, {headline} for Northampton ({', '.join(r['year'] for r in titles)}).", body, "champions/", og_image=hero or "showcase-arms-up")
+        M.page(f"champions/{M.slug(name)}/index.html", f"{name}, State Champion", f"{name}, {headline} for Northampton ({', '.join(r['year'] for r in titles)}).", body, "champions/", og_image=hero or "showcase-arms-up")
     return [M.SITE["domain"] + f"/champions/{M.slug(n)}/" for n in order]
 
 

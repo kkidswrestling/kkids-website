@@ -22,7 +22,8 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Youth practice-room and attendance rules are Joe's youth-program rules; don't present them as varsity rules.
 - CSS/JS links carry a content-hash ?v= stamp (asset_ver in build.py) so browsers never mix new pages with an old cached stylesheet. Always rebuild after editing CSS/JS.
 - State champion pages: champions/<slug>/ built by build_champion_pages in tools/v2.py from data/hall/champions.toml (banner action shot, per-year banners for multi-time champs, full medal portrait, hero, story, finals, gallery, YouTube video links). One page per champion; multi-time champs share a page. Missing fields fall back to the auto-filled record and a request for material.
-- Don't list club board/officer names on the site (Joe, Oct. 2026). Officer data stays in coaches.toml but isn't displayed.
+- Don't list club board/officer names on the site (Joe, Oct. 2026). The officer list was removed from coaches.toml on Oct. 20, 2026 because the repo is public; don't add it back.
+- The repo is public and .nojekyll publishes every file, so data/, tools/ and originals/ are reachable by URL even though nothing links to them. Keep anything not meant for the public out of the repo.
 - Never use AI-generated images (e.g., ChatGPT gpt-image, C2PA 'trainedAlgorithmicMedia') as photos of real wrestlers without Joe confirming; check uploads for that marker.
 - Joe labels photos in the IPTC caption field (iptc 2:120), not EXIF. Read it with PIL IptcImagePlugin.getiptcinfo before asking who's in a photo.
 - PIAA wrestling had one combined state tournament through 1972-73 and split into two classes in 1973-74 (Lehigh Valley Wrestling History). Title cards say "PIAA state champion" before 1974 and "PIAA Class AAA champion" from 1974.

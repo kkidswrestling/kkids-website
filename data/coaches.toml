@@ -1,4 +1,4 @@
-# Coaching staff and club officers. Order here is the order on the page.
+# Coaching staff. Order here is the order on the page. (Club officers are not kept here: the repo is public.)
 
 [head]
 name = "Joe Provini"
@@ -63,14 +63,4 @@ staff = [
   ["Brandon Szoke", "Assistant"],
   ["Justin Haupt", "Assistant"],
   ["Keith Turner", "Assistant"],
-]
-
-[officers]
-season = "2025–26"
-list = [
-  ["Chris Wagner", "President"],
-  ["John Paukovits", "Vice President"],
-  ["Elizabeth Ballard", "Treasurer"],
-  ["Kristen Wenrich", "Secretary"],
-  ["Steph Szoke", "Member at Large"],
 ]

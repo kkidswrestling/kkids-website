@@ -533,7 +533,7 @@ def build_high_school():
     tw = sum(int(r["wins"]) for r in STATS)
     tl = sum(int(r["losses"]) for r in STATS)
     tot = lambda k: sum(int(r[k]) for r in STATS)
-    stats_table = (f'<div class="table-wrap"><table class="sortable stats"><caption>2025–26 varsity final stats. Select a column heading to sort. Highlighted numbers led the team.</caption>'
+    stats_table = (f'<div class="table-wrap" tabindex="0"><table class="sortable stats"><caption>2025–26 varsity final stats. Select a column heading to sort. Highlighted numbers led the team.</caption>'
                    f'<thead><tr>{head}</tr></thead><tbody>{"".join(rows)}</tbody>'
                    f'<tfoot><tr><th scope="row">Team</th><td>{tw}–{tl}</td><td>{tot("falls")}</td><td>{tot("tech_falls")}</td><td>{tot("major_decisions")}</td><td>{tot("takedowns")}</td><td>{tot("team_points_duals")}</td><td></td></tr></tfoot></table></div>')
 
@@ -810,7 +810,7 @@ def build_schedule():
     evs = build_calendar()
     webcal = "webcal://" + cal_base().split("://", 1)[1] + "/schedule.ics"
     cal = (f'''<aside class="note-card cal-card" id="add-calendar"><h3>Add the schedule to your phone</h3>
-      <p>Subscribe once and every match, time change and result shows up in your calendar automatically.</p>
+      <p>Subscribe once and the whole schedule, including any changes, shows up in your calendar automatically.</p>
       <p class="actions"><a class="btn" href="{webcal}">Subscribe (iPhone / Mac)</a>
       <a class="btn ghost dark-ink" href="https://calendar.google.com/calendar/r?cid={webcal}" rel="noopener">Google Calendar</a></p>
       <p class="fine"><a href="{R}schedule.ics" download>Download the calendar file</a></p></aside>''') if evs else ""
@@ -1278,7 +1278,6 @@ def build_coaches():
             ph = f'<span class="avatar initials" aria-hidden="true">{ini}</span>'
         return f'<article class="coach">{ph}<div><h3>{e(c["name"])}</h3><p class="role">{e(c["role"])}</p><p>{e(c["bio"])}</p></div></article>'
 
-    off = COACHES["officers"]
     body = f"""
 {page_head(R, "Coaching Staff", "The coaches who run the room, from the varsity to the junior high.", "staff-states-2026", "50% 22%", cls="fit-photo")}
 <section class="band">
@@ -1374,7 +1373,7 @@ def build_champions():
 
     def tbl(id_, cap, head, rows):
         th = "".join(f'<th scope="col">{x}</th>' for x in head)
-        return (f'<div class="table-wrap"><table class="hall" id="{id_}"><caption>{cap}</caption><thead><tr>{th}</tr></thead>'
+        return (f'<div class="table-wrap" tabindex="0"><table class="hall" id="{id_}"><caption>{cap}</caption><thead><tr>{th}</tr></thead>'
                 f'<tbody>{rows}</tbody></table></div>')
 
     tr = lambda r, extra="": (f'<tr data-name="{e(norm(r["wrestler"]))}"><td>{r["year"]}</td><th scope="row">{e(r["wrestler"])}</th>'
@@ -1404,7 +1403,7 @@ def build_champions():
         f'<td>{x["wins"]}–{x["losses"]}{"–" + x["ties"] if x["ties"] != "0" else ""}</td><td>{x["district"]}</td><td>{x["regional"]}</td><td>{x["state"]}</td></tr>'
         for x in er)
     tw = sum(int(x["wins"]) for x in er); tl = sum(int(x["losses"]) for x in er); tt = sum(int(x["ties"]) for x in er)
-    coach_tbl = (f'<div class="table-wrap"><table class="hall"><caption>Head coaches since 1945. Championship counts are tallied from the lists on this page.</caption>'
+    coach_tbl = (f'<div class="table-wrap" tabindex="0"><table class="hall"><caption>Head coaches since 1945. Championship counts are tallied from the lists on this page.</caption>'
                  f'<thead><tr><th scope="col">Coach</th><th scope="col">Seasons</th><th scope="col">Years</th><th scope="col">Dual record</th><th scope="col">District XI</th><th scope="col">Regional</th><th scope="col">PIAA</th></tr></thead>'
                  f'<tbody>{coach_rows}</tbody><tfoot><tr><th scope="row">All-time</th><td></td><td>{TOTALS["seasons"]}</td><td>{tw}–{tl}–{tt}</td><td>{TOTALS["district"]}</td><td>{TOTALS["regional"]}</td><td>{TOTALS["state"]}</td></tr></tfoot></table></div>'
                  '<p class="fine">Joe Provini’s record is through the 2025–26 season.</p>')
