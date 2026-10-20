@@ -15,13 +15,6 @@ title = "Team Moments"
 blurb = "The nights the whole town still talks about."
 
 [[round.q]]
-q = "Northampton won three straight PIAA team titles. Which years?"
-choices = ["1990, 1991 and 1992", "1993, 1994 and 1995", "1998, 1999 and 2000", "2002, 2003 and 2004"]
-answer = 2
-fact = "The 1992–93 and 1993–94 teams didn't lose a dual meet, and the 1994–95 team made it three in a row."
-link = ["The 1993 title season", "champions/team/1993/"]
-
-[[round.q]]
 q = "The Kids won 50 duals in a row from 1992–93 into 1994–95. On Dec. 10, 1994, the No. 1 team in the nation ended the streak by a single point. Who was it?"
 choices = ["Canon-McMillan", "Walsh Jesuit (Ohio)", "St. Edward (Ohio)", "Blair Academy (N.J.)"]
 answer = 2
@@ -78,13 +71,6 @@ fact = "The PIAA team duals. That made 2000 the program's first season with both
 link = ["The 2000 title season", "champions/team/2000/"]
 
 [[round.q]]
-q = "Northampton won the District XI Duals three years in a row. Which three?"
-choices = ["1993, 1994, 1995", "1998, 1999, 2000", "2003, 2004, 2005", "2007, 2008, 2009"]
-answer = 2
-fact = "That made five District XI Duals titles in eight years, after 1993 and 1994. The Kids have seven in all."
-link = ["The 1998–99 season", "seasons/1998-99/"]
-
-[[round.q]]
 q = "In a 1991 dual, the Kids trailed Nazareth going into the last bout. Which heavyweight won it with a pin?"
 choices = ["John Hard", "Jason Grim", "Zach Musselman", "Jon Oplinger"]
 answer = 2
@@ -101,13 +87,6 @@ link = ["The 2004 title season", "champions/team/2004/"]
 [[round]]
 title = "Champions"
 blurb = "The names on the banners."
-
-[[round.q]]
-q = "Northampton's first two state titles were won on the same day in 1955, but not in Hershey. Where?"
-choices = ["The Palestra in Philadelphia", "Penn State's Rec Hall", "Stabler Arena", "Liberty High School"]
-answer = 2
-fact = "Penn State's Rec Hall in State College, where Steve Micio and Ed Keglovits both won on March 19, 1955."
-link = ["Steve Micio", "champions/steve-micio/"]
 
 [[round.q]]
 q = "Steve Micio was one of Northampton's first two state champions in 1955. Who was the other?"
@@ -138,13 +117,6 @@ fact = "Joey Ecklof won at 135, 145 and 152. Julian Chlebove won at 113, 120 and
 link = ["Joey Ecklof", "champions/joey-ecklof/"]
 
 [[round.q]]
-q = "Mike Tomsic won the 1993 state final at 112 by fall. How fast?"
-choices = ["45 seconds", "1:30", "2:15", "3:40"]
-answer = 1
-fact = "Forty-five seconds, on the way to Northampton's first PIAA team title."
-link = ["Mike Tomsic", "champions/mike-tomsic/"]
-
-[[round.q]]
 q = "Which state champion finished his title season a perfect 40–0?"
 choices = ["Whitey Chlebove", "Christian Luciano", "Gabe Ballard", "Justin Wieller"]
 answer = 2
@@ -157,13 +129,6 @@ choices = ["Jon Oplinger", "John Hard", "Justin Wieller", "Phil Hard"]
 answer = 2
 fact = "John Hard, 1998. Jon Oplinger (twice) and Justin Wieller won their titles at 215."
 link = ["John Hard", "champions/john-hard/"]
-
-[[round.q]]
-q = "Four Kids medaled at states all four years of high school. Which of these is NOT one of them?"
-choices = ["Christian Luciano", "Dan Moran", "Josh Haines", "Carson Wagner"]
-answer = 3
-fact = "The four-time medalists are Christian Luciano, Jeff Ecklof, Dan Moran and Carson Wagner. Josh Haines won two state titles."
-link = ["Hall of Champions", "champions/#lists-title"]
 
 [[round.q]]
 q = "Only one Konkrete Kid has won four District XI titles. Who?"
@@ -179,22 +144,11 @@ answer = 3
 fact = "Dennis \"Denny\" Liberto won at 103 in 1995 after medaling at 103 the two years before. Chad Billy and Mike Tomsic won at 112."
 link = ["Dennis Liberto", "champions/dennis-liberto/"]
 
-[[round]]
-title = "The Medal Streak"
-blurb = "A Konkrete Kid has medaled at states every year since 1984."
-
 [[round.q]]
 q = "Northampton has had a state medalist every single year since when?"
 choices = ["1975", "1984", "1993", "2000"]
 answer = 2
 fact = "Since 1984, the year Sean Finkbeiner won the state title at 145."
-link = ["State medalists", "champions/#lists-title"]
-
-[[round.q]]
-q = "Through 2026, how many years in a row has Northampton had at least one state medalist?"
-choices = ["18", "27", "43", "51"]
-answer = 3
-fact = "Forty-three straight years, every season from 1984 through 2026."
 link = ["State medalists", "champions/#lists-title"]
 
 [[round.q]]
@@ -273,11 +227,11 @@ fact = "Seth Lisa, who won 152 matches as a Konkrete Kid and coached the program
 link = ["The 100-Win Club", "champions/#hundred-title"]
 
 [[round.q]]
-q = "The season highlight videos on Northampton Wrestling's YouTube channel, going all the way back to the late 1980s, are produced by which varsity assistant coach?"
-choices = ["Jim Derr", "Mike Sommer", "Marcus Newsom", "Ethan Szerencsits"]
-answer = 2
-fact = "Coach Mike Sommer, a 1997 Konkrete Kid who placed 4th at states at 140. You'll find his videos on the season pages too."
-link = ["Watch the highlight videos", "videos/"]
+q = "Who am I? I started in the NAA youth program, placed 4th at states as a Konkrete Kid in 1997, won 97 matches at Lycoming College, and came home to coach. Today I'm a Northampton varsity assistant."
+choices = ["Jim Derr", "John Paukovits", "Mike Sommer", "Marcus Newsom"]
+answer = 3
+fact = "Coach Mike Sommer. He also produces the season highlight videos on the program's YouTube channel."
+link = ["Coaching staff", "coaching-staff/"]
 
 [[round]]
 title = "Deep Cuts"
@@ -346,3 +300,9 @@ answer = 1
 fact = "The Cement Town Duals, a fitting name for the home of the Konkrete Kids."
 link = ["The 2004–05 season", "seasons/2004-05/"]
 
+[[round.q]]
+q = "The 1998–99 Kids, ranked No. 1 in the nation to start the season, won a holiday tournament out West. Which one?"
+choices = ["The Las Vegas Invitational", "The Reno Tournament of Champions", "The Sierra Nevada Classic", "The Clovis Holiday Duals"]
+answer = 2
+fact = "The Reno Tournament of Champions in Nevada. That team also won the Hurricane Classic, the Cedar Cliff Duals and the District XI Duals."
+link = ["The 1998–99 season", "seasons/1998-99/"]
