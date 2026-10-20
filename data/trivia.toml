@@ -46,7 +46,7 @@ link = ["The 1993 title season", "champions/team/1993/"]
 q = "The 1998 Northeast Regional team title came down to the very last bout. Whose pin won it?"
 choices = ["Christian Luciano's", "Phil Hard's", "John Hard's", "Tommy Rohn's"]
 answer = 3
-fact = "Heavyweight John Hard pinned in the final bout, and Northampton won the regional team title by one point. A few weeks later he won the state title at 275."
+fact = "Heavyweight John Hard pinned in the final bout, and Northampton won the regional team title by one point. Then he won the state title at 275."
 link = ["The 1998 title season", "champions/team/1998/"]
 
 [[round.q]]
@@ -159,6 +159,45 @@ fact = "103, by Dennis \"Denny\" Liberto in 1995. He medaled at 103 three years 
 link = ["Dennis Liberto", "champions/dennis-liberto/"]
 
 [[round]]
+title = "The Medal Streak"
+blurb = "A Konkrete Kid has medaled at states every year since 1984."
+
+[[round.q]]
+q = "Northampton has had a state medalist every single year since when?"
+choices = ["1975", "1984", "1993", "2000"]
+answer = 2
+fact = "Since 1984, the year Sean Finkbeiner won the state title at 145."
+link = ["State medalists", "champions/#lists-title"]
+
+[[round.q]]
+q = "Through 2026, how many years in a row has Northampton had at least one state medalist?"
+choices = ["18", "27", "43", "51"]
+answer = 3
+fact = "Forty-three straight years, every season from 1984 through 2026."
+link = ["State medalists", "champions/#lists-title"]
+
+[[round.q]]
+q = "In 2011 the streak rode on a single medal. Who kept it alive with an 8th-place finish at 152?"
+choices = ["Jimmy Sheptock", "John Lambert", "Joe Piro", "Dan Moran"]
+answer = 2
+fact = "John Lambert. His 8th-place medal at 152 kept the streak going."
+link = ["The 2010–11 season", "seasons/2010-11/"]
+
+[[round.q]]
+q = "In 2018, one wrestler carried the streak with a 3rd-place medal at 132. Who?"
+choices = ["Michael Kistler", "Jagger Condomitti", "Devon Britton", "Julian Chlebove"]
+answer = 3
+fact = "Devon Britton placed 3rd at 132. A year later, 2019 brought Julian Chlebove's third state title."
+link = ["The 2017–18 season", "seasons/2017-18/"]
+
+[[round.q]]
+q = "Which year of the streak produced the most Northampton state medalists, with 10?"
+choices = ["1995", "2000", "2004", "2009"]
+answer = 3
+fact = "2004: ten medalists, including state champions Joey Ecklof, Josh Haines and Jon Oplinger."
+link = ["The 2004 title season", "champions/team/2004/"]
+
+[[round]]
 title = "Records & Coaches"
 blurb = "The record book and the men who built the room."
 
@@ -173,7 +212,7 @@ link = ["Christian Luciano", "champions/christian-luciano/"]
 q = "One wrestler holds both Northampton's season record for falls and its season record for team points. Who?"
 choices = ["Joe Piro", "Christian Luciano", "Phil Hard", "Jason Grim"]
 answer = 1
-fact = "Joe Piro, with 34 falls and 137 team points in 2007–08."
+fact = "Joe Piro, with 34 falls and 137 team points in duals in 2007–08."
 link = ["Record book", "champions/#lists-title"]
 
 [[round.q]]
@@ -299,9 +338,3 @@ answer = 1
 fact = "The Cement Town Duals, a fitting name for the home of the Konkrete Kids."
 link = ["The 2004–05 season", "seasons/2004-05/"]
 
-[[round.q]]
-q = "Northampton has had a state medalist every single year since when?"
-choices = ["1975", "1984", "1993", "2000"]
-answer = 2
-fact = "Since 1984, the year Sean Finkbeiner won the state title at 145."
-link = ["Hall of Champions", "champions/"]

@@ -1252,7 +1252,7 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 
 /* Trivia (Tradition > Trivia) */
 .tv-wrap { max-width: 860px; }
-.tv-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 28px; }
+.tv-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 28px; }
 .tv-tab { font: inherit; text-align: left; cursor: pointer; padding: 12px 14px; border: 2px solid var(--line); border-radius: 4px; background: var(--paper); color: var(--ink); font-family: var(--display); text-transform: uppercase; font-size: 19px; line-height: 1.1; min-height: 64px; }
 .tv-tab span { display: block; margin-top: 4px; font-family: var(--body); text-transform: none; font-size: 13px; color: var(--ink-2); }
 .tv-tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--on-dark); }
@@ -1282,4 +1282,4 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .tv-score .btn.ghost.dark-ink { color: var(--on-dark); border-color: var(--on-dark); }
 .tv-score .tv-copied { color: var(--on-dark-2); margin: 12px 0 0; }
 .tv-note { margin-top: 32px; }
-@media (max-width: 700px) { .tv-tabs { grid-template-columns: 1fr 1fr; } .tv-choices { grid-template-columns: 1fr; } .tv-q { padding: 16px; } }
+@media (max-width: 700px) { .tv-tabs { grid-template-columns: 1fr 1fr; } .tv-tab:last-child:nth-child(odd) { grid-column: 1 / -1; } .tv-choices { grid-template-columns: 1fr; } .tv-q { padding: 16px; } }
