@@ -1255,3 +1255,50 @@ alt = "Brayden Wenrich holds his Fargo plaque, standing on the grass with five N
 caption = "Back home with the plaque and the Northampton coaches, summer 2026."
 widths = [600, 1185]
 file = "originals/batch11_wenrich-fargo-team.jpg"
+
+# Brayden Wenrich at FloWrestling's Who's Number One, Stillwater, Okla., Sept. 2026 (Coach Provini, Oct. 2026)
+[[photo]]
+id = "wenrich-wno-one"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Brayden Wenrich in a red FloWrestling shirt holds up one finger in front of a FloWrestling backdrop"
+caption = "Brayden Wenrich at Who's Number One media day."
+focus = "45% 5%"
+widths = [512, 1024]
+file = "originals/batch12_wenrich-wno-one.jpg"
+
+[[photo]]
+id = "wenrich-wno-faceoff"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Brayden Wenrich and his opponent face off with arms crossed in front of a FloWrestling backdrop"
+caption = "The face-off photo before the No. 1 vs. No. 2 match at 120."
+widths = [512, 1024]
+file = "originals/batch12_wenrich-wno-faceoff.jpg"
+
+[[photo]]
+id = "wenrich-wno-coach"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Brayden Wenrich stands with a Northampton coach in front of the lit Who's Number One backdrop"
+caption = "Wenrich and a Northampton coach in Stillwater."
+widths = [500, 1000, 1500]
+file = "originals/batch12_wenrich-wno-coach.jpg"
+
+[[photo]]
+id = "wno-arena"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "Gallagher-Iba Arena set up for Who's Number One, with orange seats, the center scoreboard and the mat surrounded by chairs"
+caption = "Gallagher-Iba Arena, set for Who's Number One."
+widths = [640, 1280, 1999]
+file = "originals/batch12_wno-arena.jpg"
+
+[[photo]]
+id = "wno-osu-room"
+source = "Coach Provini, Oct. 2026"
+season = "2026-27"
+alt = "The Oklahoma State wrestling room, with orange and black mats and OKLAHOMA STATE on the wall"
+caption = "The Oklahoma State wrestling room in Stillwater."
+widths = [640, 1280, 1999]
+file = "originals/batch12_wno-osu-room.jpg"
