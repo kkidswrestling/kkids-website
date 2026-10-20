@@ -12,21 +12,14 @@
 
 [[round]]
 title = "Team Moments"
-blurb = "The nights the whole town still talks about."
+blurb = "The seasons the whole town still talks about."
 
 [[round.q]]
-q = "The Kids won 50 duals in a row from 1992–93 into 1994–95. On Dec. 10, 1994, the No. 1 team in the nation ended the streak by a single point. Who was it?"
-choices = ["Canon-McMillan", "Walsh Jesuit (Ohio)", "St. Edward (Ohio)", "Blair Academy (N.J.)"]
+q = "Northampton won three straight PIAA team titles. Which years?"
+choices = ["1990, 1991 and 1992", "1993, 1994 and 1995", "1998, 1999 and 2000", "2002, 2003 and 2004"]
 answer = 2
-fact = "Walsh Jesuit won 28–27 at the Valley Youth House Elite Duals, the same day the Kids beat Canon-McMillan for win No. 50. Northampton came in ranked No. 2 in the nation, and went on to win its third straight state team title that March."
-link = ["The 1994–95 season", "seasons/1994-95/"]
-
-[[round.q]]
-q = "On Feb. 14, 1994, the Kids beat Nazareth 22–18 at Stabler Arena in front of about 3,600 fans. Which Konkrete Kid won a 3–2 battle of unbeatens over Sean Topping that swung the dual?"
-choices = ["Denny Liberto", "Ryan Gumlock", "Whitey Chlebove", "Dave Emili"]
-answer = 3
-fact = "Whitey Chlebove. He finished the season 38–0 and won the state title at 130 a month later."
-link = ["Whitey Chlebove", "champions/whitey-chlebove/"]
+fact = "The 1992–93 and 1993–94 teams didn't lose a dual meet, and the 1994–95 team made it three in a row."
+link = ["The 1993 title season", "champions/team/1993/"]
 
 [[round.q]]
 q = "How did the town welcome the team home after the 1993 state title?"
@@ -36,11 +29,11 @@ fact = "A parade on March 21, 1993. The superintendent called it one of the grea
 link = ["The 1993 title season", "champions/team/1993/"]
 
 [[round.q]]
-q = "In 1998, one heavyweight won a tied dual with Parkland AND the regional team title with last-bout pins. Who?"
-choices = ["Christian Luciano", "Phil Hard", "John Hard", "Tommy Rohn"]
-answer = 3
-fact = "John Hard. His pin broke a 27–27 tie with Parkland in January, and his pin in the last bout at regionals won the team title by one point. Then he won the state title at 275."
-link = ["The 1998 title season", "champions/team/1998/"]
+q = "Which head coach led Northampton to back-to-back PIAA team titles in 2003 and 2004?"
+choices = ["Don Rohn", "Terry Daubert", "Seth Lisa", "Gordon Bartholomew"]
+answer = 2
+fact = "Terry Daubert, who coached the Kids from 2000–01 to 2010–11. His 2003 team crowned four state champions in one night."
+link = ["The 2003 title season", "champions/team/2003/"]
 
 [[round.q]]
 q = "Before the 1998–99 season, Amateur Wrestling News and USA Today ranked Northampton where?"
@@ -50,11 +43,57 @@ fact = "No. 1 in the nation. That team won the District XI Duals for the second 
 link = ["The 1998–99 season", "seasons/1998-99/"]
 
 [[round.q]]
+q = "The 1998–99 Kids, ranked No. 1 in the nation to start the season, won a holiday tournament out West. Which one?"
+choices = ["The Las Vegas Invitational", "The Reno Tournament of Champions", "The Sierra Nevada Classic", "The Clovis Holiday Duals"]
+answer = 2
+fact = "The Reno Tournament of Champions in Nevada. That team also won the Hurricane Classic, the Cedar Cliff Duals and the District XI Duals."
+link = ["The 1998–99 season", "seasons/1998-99/"]
+
+[[round.q]]
+q = "Northampton won the District XI Duals three years in a row. Which three?"
+choices = ["1993, 1994, 1995", "1998, 1999, 2000", "2003, 2004, 2005", "2007, 2008, 2009"]
+answer = 2
+fact = "That made five District XI Duals titles in eight years, after 1993 and 1994. The Kids have seven in all."
+link = ["The 1998–99 season", "seasons/1998-99/"]
+
+[[round.q]]
+q = "Besides the state tournament title, the 2000 Kids won another state title for the first time. What was it?"
+choices = ["The PIAA team duals", "The Beast of the East", "The Walsh Ironman", "The National High School Duals"]
+answer = 1
+fact = "The PIAA team duals. That made 2000 the program's first season with both state team titles."
+link = ["The 2000 title season", "champions/team/2000/"]
+
+[[round.q]]
 q = "The 2000 Kids set a state record with eight place winners. Four years later the 2004 Kids beat that number. How many state medalists did they have?"
 choices = ["9", "10", "11", "12"]
 answer = 2
 fact = "Ten, the most in program history: three state champions (Joey Ecklof, Josh Haines and Jon Oplinger) and seven more medalists."
 link = ["The 2004 title season", "champions/team/2004/"]
+
+[[round.q]]
+q = "Where did Northampton win its first District XI team title, in 1952–53?"
+choices = ["Liberty High School", "In Northampton's own gym", "Lehigh University", "Easton's Cottingham Stadium"]
+answer = 2
+fact = "At home. The District XI tournament was held in Northampton's gym that year."
+link = ["The 1952–53 season", "seasons/1952-53/"]
+
+[[round.q]]
+q = "The first-ever Lehigh Valley League tournament, in 1965, was held where?"
+choices = ["Liberty High School", "Northampton", "Allentown", "Easton"]
+answer = 2
+fact = "At Northampton, and the Kids won it with seven champions."
+link = ["The 1964–65 season", "seasons/1964-65/"]
+
+[[round]]
+title = "Big Duals"
+blurb = "Packed gyms, last bouts, and one-point nights."
+
+[[round.q]]
+q = "The Kids won 50 duals in a row from 1992–93 into 1994–95. On Dec. 10, 1994, the No. 1 team in the nation ended the streak by a single point. Who was it?"
+choices = ["Canon-McMillan", "Walsh Jesuit (Ohio)", "St. Edward (Ohio)", "Blair Academy (N.J.)"]
+answer = 2
+fact = "Walsh Jesuit won 28–27 at the Valley Youth House Elite Duals, the same day the Kids beat Canon-McMillan for win No. 50. Northampton came in ranked No. 2 in the nation, and went on to win its third straight state team title that March."
+link = ["The 1994–95 season", "seasons/1994-95/"]
 
 [[round.q]]
 q = "On Jan. 23, 1993, the Kids came back from 21–7 down to beat Nazareth 26–23 at Liberty. Which 103-pounder helped start the rally with a major decision?"
@@ -64,11 +103,18 @@ fact = "Denny Liberto, two years before his own state title. Rich Kutzler and he
 link = ["The 1993 title season", "champions/team/1993/"]
 
 [[round.q]]
-q = "Besides the state tournament title, the 2000 Kids won another state title for the first time. What was it?"
-choices = ["The PIAA team duals", "The Beast of the East", "The Walsh Ironman", "The National High School Duals"]
-answer = 1
-fact = "The PIAA team duals. That made 2000 the program's first season with both state team titles."
-link = ["The 2000 title season", "champions/team/2000/"]
+q = "On Feb. 14, 1994, the Kids beat Nazareth 22–18 at Stabler Arena in front of about 3,600 fans. Which Konkrete Kid won a 3–2 battle of unbeatens over Sean Topping that swung the dual?"
+choices = ["Denny Liberto", "Ryan Gumlock", "Whitey Chlebove", "Dave Emili"]
+answer = 3
+fact = "Whitey Chlebove. He finished the season 38–0 and won the state title at 130 a month later."
+link = ["Whitey Chlebove", "champions/whitey-chlebove/"]
+
+[[round.q]]
+q = "In 1998, one heavyweight won a tied dual with Parkland AND the regional team title with last-bout pins. Who?"
+choices = ["Christian Luciano", "Phil Hard", "John Hard", "Tommy Rohn"]
+answer = 3
+fact = "John Hard. His pin broke a 27–27 tie with Parkland in January, and his pin in the last bout at regionals won the team title by one point. Then he won the state title at 275."
+link = ["The 1998 title season", "champions/team/1998/"]
 
 [[round.q]]
 q = "In a 1991 dual, the Kids trailed Nazareth going into the last bout. Which heavyweight won it with a pin?"
@@ -84,6 +130,34 @@ answer = 3
 fact = "Easton, on Jan. 24, 2004. The Kids went 7–0 in the league and won the state team title that March."
 link = ["The 2004 title season", "champions/team/2004/"]
 
+[[round.q]]
+q = "On Jan. 19, 1980, whose 4–2 heavyweight decision won a 26–25 dual at Nazareth?"
+choices = ["Ed Wagner", "Wayne Reiss", "Steve Clemons", "Randy Moats"]
+answer = 1
+fact = "Ed Wagner. Later that month the Kids came back from 20–17 down with three bouts left to beat Liberty."
+link = ["The 1979–80 season", "seasons/1979-80/"]
+
+[[round.q]]
+q = "In 1984–85, which heavyweight clinched comeback league wins over Liberty and Allen, then won a District XI title?"
+choices = ["Ed Wagner", "Wayne Reiss", "Jason Grim", "Steve Clemons"]
+answer = 2
+fact = "Wayne Reiss. The Liberty win came after Northampton trailed 10–0."
+link = ["The 1984–85 season", "seasons/1984-85/"]
+
+[[round.q]]
+q = "In 1973–74, which heavyweight's 13–3 win decided a 27–26 dual with Wilson, then sealed a win over Emmaus with a third-period pin?"
+choices = ["Ed Wagner", "Randy Moats", "Steve Clemons", "Wayne Reiss"]
+answer = 3
+fact = "Steve Clemons, in the first season PIAA wrestling split into two classes."
+link = ["The 1973–74 season", "seasons/1973-74/"]
+
+[[round.q]]
+q = "In January 1959, the Kids ended a 41-meet unbeaten streak with five straight middleweight wins, three of them by a single point. Whose streak was it?"
+choices = ["Bethlehem", "Allentown", "Easton", "Phillipsburg"]
+answer = 2
+fact = "Allentown's. The Kids won 18–15 and went 9–0 to win the Lehigh Valley League outright."
+link = ["The 1958–59 season", "seasons/1958-59/"]
+
 [[round]]
 title = "Champions"
 blurb = "The names on the banners."
@@ -94,6 +168,13 @@ choices = ["Albert Billy", "Gordon Bartholomew", "Ed Keglovits", "Dave Wall"]
 answer = 3
 fact = "Ed Keglovits won his title the same March day at Rec Hall. Albert Billy was the program's first District XI champion, in 1948."
 link = ["Edward Keglovits", "champions/edward-keglovits/"]
+
+[[round.q]]
+q = "Northampton's first two state titles were won on the same day in 1955, but not in Hershey. Where?"
+choices = ["The Palestra in Philadelphia", "Penn State's Rec Hall", "Stabler Arena", "Liberty High School"]
+answer = 2
+fact = "Penn State's Rec Hall in State College, where Steve Micio and Ed Keglovits both won on March 19, 1955."
+link = ["Steve Micio", "champions/steve-micio/"]
 
 [[round.q]]
 q = "Four Kids won state titles on the same night in 2003. Which of these was NOT one of them?"
@@ -108,6 +189,13 @@ choices = ["Joe Billy", "Sean Finkbeiner", "Mike Bartholomew", "Rick Billy"]
 answer = 2
 fact = "Sean Finkbeiner won the 1984 title at 145, and it started the medal streak that is still going."
 link = ["Sean Finkbeiner", "champions/sean-finkbeiner/"]
+
+[[round.q]]
+q = "Mike Tomsic won the 1993 state final at 112 by fall. How fast?"
+choices = ["45 seconds", "1:30", "2:15", "3:40"]
+answer = 1
+fact = "Forty-five seconds, on the way to Northampton's first PIAA team title."
+link = ["Mike Tomsic", "champions/mike-tomsic/"]
 
 [[round.q]]
 q = "Two Konkrete Kids won three state titles, each at three different weights. Julian Chlebove is one. Who's the other?"
@@ -143,20 +231,6 @@ choices = ["Mike Tomsic", "Brayden Wenrich", "Denny Liberto", "Chad Billy"]
 answer = 3
 fact = "Dennis \"Denny\" Liberto won at 103 in 1995 after medaling at 103 the two years before. Chad Billy and Mike Tomsic won at 112."
 link = ["Dennis Liberto", "champions/dennis-liberto/"]
-
-[[round.q]]
-q = "Northampton has had a state medalist every single year since when?"
-choices = ["1975", "1984", "1993", "2000"]
-answer = 2
-fact = "Since 1984, the year Sean Finkbeiner won the state title at 145."
-link = ["State medalists", "champions/#lists-title"]
-
-[[round.q]]
-q = "In 2025, Gavin Grell placed 6th at 285, Northampton's first heavyweight state medalist in how many years?"
-choices = ["9", "15", "21", "30"]
-answer = 3
-fact = "Twenty-one years. The last before him was Matt Snyder, 8th at 275 in 2004."
-link = ["The 2024–25 season", "seasons/2024-25/"]
 
 [[round]]
 title = "Records & Coaches"
@@ -196,7 +270,6 @@ choices = ["Jeff Ecklof", "Seth Lisa", "Josh Haines", "Dan Moran"]
 answer = 3
 fact = "Josh Haines, with 157. Jeff Ecklof (154) and Seth Lisa (152) are next."
 link = ["The 100-Win Club", "champions/#hundred-title"]
-
 
 [[round.q]]
 q = "In 2003–04, Terry Daubert was named PIAA Coach of the Year and national coach of the year by which group?"
@@ -245,20 +318,6 @@ fact = "Six. Lehigh Valley Wrestling History calls them the Original Six."
 link = ["Our Story", "story/"]
 
 [[round.q]]
-q = "Where did Northampton win its first District XI team title, in 1952–53?"
-choices = ["Liberty High School", "In Northampton's own gym", "Lehigh University", "Easton's Cottingham Stadium"]
-answer = 2
-fact = "At home. The District XI tournament was held in Northampton's gym that year."
-link = ["The 1952–53 season", "seasons/1952-53/"]
-
-[[round.q]]
-q = "In 1984–85, which heavyweight clinched comeback league wins over Liberty and Allen, then won a District XI title?"
-choices = ["Ed Wagner", "Wayne Reiss", "Jason Grim", "Steve Clemons"]
-answer = 2
-fact = "Wayne Reiss. The Liberty win came after Northampton trailed 10–0."
-link = ["The 1984–85 season", "seasons/1984-85/"]
-
-[[round.q]]
 q = "From 1963–64 on, how many seasons in a row did Northampton win or share the league title?"
 choices = ["Three", "Four", "Six", "Eight"]
 answer = 3
@@ -273,11 +332,11 @@ fact = "Dave Wall won District XI and Northeast Regional titles at 120 that year
 link = ["The 1962–63 season", "seasons/1962-63/"]
 
 [[round.q]]
-q = "On Jan. 19, 1980, whose 4–2 heavyweight decision won a 26–25 dual at Nazareth?"
-choices = ["Ed Wagner", "Wayne Reiss", "Steve Clemons", "Randy Moats"]
-answer = 1
-fact = "Ed Wagner. Later that month the Kids came back from 20–17 down with three bouts left to beat Liberty."
-link = ["The 1979–80 season", "seasons/1979-80/"]
+q = "How many seasons did Harry Wall coach Northampton?"
+choices = ["12", "18", "26", "31"]
+answer = 3
+fact = "Twenty-six, from the program's first season in 1945–46 through 1970–71."
+link = ["The 1970–71 season", "seasons/1970-71/"]
 
 [[round.q]]
 q = "Which last name appears on Northampton's first-ever District XI champion entry (1948) and on a 1991 state title?"
@@ -287,13 +346,6 @@ fact = "Billy: Albert Billy won District XI at 95 in 1948, and Chad Billy won th
 link = ["Chad Billy", "champions/chad-billy/"]
 
 [[round.q]]
-q = "How many seasons did Harry Wall coach Northampton?"
-choices = ["12", "18", "26", "31"]
-answer = 3
-fact = "Twenty-six, from the program's first season in 1945–46 through 1970–71."
-link = ["The 1970–71 season", "seasons/1970-71/"]
-
-[[round.q]]
 q = "The 2004–05 Kids hosted and won the first edition of which tournament?"
 choices = ["The Cement Town Duals", "The Konkrete Klassic", "The Lehigh Valley Duals", "The Slate Belt Duals"]
 answer = 1
@@ -301,8 +353,29 @@ fact = "The Cement Town Duals, a fitting name for the home of the Konkrete Kids.
 link = ["The 2004–05 season", "seasons/2004-05/"]
 
 [[round.q]]
-q = "The 1998–99 Kids, ranked No. 1 in the nation to start the season, won a holiday tournament out West. Which one?"
-choices = ["The Las Vegas Invitational", "The Reno Tournament of Champions", "The Sierra Nevada Classic", "The Clovis Holiday Duals"]
+q = "Northampton has had a state medalist every single year since when?"
+choices = ["1975", "1984", "1993", "2000"]
 answer = 2
-fact = "The Reno Tournament of Champions in Nevada. That team also won the Hurricane Classic, the Cedar Cliff Duals and the District XI Duals."
-link = ["The 1998–99 season", "seasons/1998-99/"]
+fact = "Since 1984, the year Sean Finkbeiner won the state title at 145."
+link = ["State medalists", "champions/#lists-title"]
+
+[[round.q]]
+q = "Through 2026, how many years in a row has Northampton had at least one state medalist?"
+choices = ["18", "27", "43", "51"]
+answer = 3
+fact = "Forty-three straight years, every season from 1984 through 2026."
+link = ["State medalists", "champions/#lists-title"]
+
+[[round.q]]
+q = "Four Kids medaled at states all four years of high school. Which of these is NOT one of them?"
+choices = ["Christian Luciano", "Dan Moran", "Josh Haines", "Carson Wagner"]
+answer = 3
+fact = "The four-time medalists are Christian Luciano, Jeff Ecklof, Dan Moran and Carson Wagner. Josh Haines won two state titles."
+link = ["Hall of Champions", "champions/#lists-title"]
+
+[[round.q]]
+q = "In 2025, Gavin Grell placed 6th at 285, Northampton's first heavyweight state medalist in how many years?"
+choices = ["9", "15", "21", "30"]
+answer = 3
+fact = "Twenty-one years. The last before him was Matt Snyder, 8th at 275 in 2004."
+link = ["The 2024–25 season", "seasons/2024-25/"]
