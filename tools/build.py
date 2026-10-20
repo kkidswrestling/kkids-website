@@ -54,7 +54,7 @@ NAV_GROUPS = [
     ("Team", [("roster/", "Roster"), ("schedule/", "Schedule"), ("results/", "Results"), ("high-school/#stats-title", "Stats")]),
     ("Tradition", [("champions/", "Hall of Champions"), ("champions/#team-title", "Team Titles"),
                    ("champions/#hundred-title", "100-Win Club"), ("champions/#lists-title", "Record Book"),
-                   ("timeline/", "Timeline"), ("seasons/", "Past Seasons")]),
+                   ("timeline/", "Timeline"), ("seasons/", "Past Seasons"), ("trivia/", "Trivia")]),
     ("Media", [("news/", "News"), ("photos/", "Photos"), ("videos/", "Videos"), ("follow/", "Follow & Updates")]),
     ("Family", [("family/", "Parent Information"), ("family/#faq", "FAQs"), ("family/#booster", "Booster Club")]),
     ("Alumni", [("alumni/", "Where Are They Now"), ("alumni/#update", "Update Your Information"), ("alumni/#support", "Support the Program")]),
@@ -903,6 +903,45 @@ def build_junior_high():
 </section>
 """
     return page("junior-high/index.html", "Junior High", "Northampton junior high wrestling: coaching staff, results, and district placewinners.", body, "junior-high/", og_image="jh-districts")
+
+
+def build_trivia():
+    """Tradition > Trivia: rounds of multiple-choice questions from data/trivia.toml (assets/js/trivia.js runs them)."""
+    R = "../"
+    rounds = load_toml("trivia.toml")["round"]
+    tabs = "".join(f'<button type="button" class="tv-tab" role="tab" id="tv-tab-{i}" aria-controls="tv-round-{i}" aria-selected="{str(i == 0).lower()}">{e(r["title"])}<span>{len(r["q"])} questions</span></button>'
+                   for i, r in enumerate(rounds))
+    secs = []
+    for i, r in enumerate(rounds):
+        qs = []
+        for n, q in enumerate(r["q"], 1):
+            assert len(q["choices"]) == 4 and 1 <= q["answer"] <= 4, q["q"]
+            btns = "".join(f'<li><button type="button" class="tv-choice" data-i="{k}">{e(c)}</button></li>' for k, c in enumerate(q["choices"], 1))
+            more = f' <a href="{R}{q["link"][1]}">{e(q["link"][0])} ›</a>' if q.get("link") else ""
+            qs.append(f'<li class="tv-q" data-answer="{q["answer"]}"><p class="tv-num">Question {n} of {len(r["q"])}</p><h3>{e(q["q"])}</h3>'
+                      f'<ol class="tv-choices" role="list">{btns}</ol>'
+                      f'<div class="tv-reveal" hidden><p class="tv-verdict" aria-live="polite"></p><p class="tv-fact">{e(q["fact"])}{more}</p></div></li>')
+        secs.append(f'<section class="tv-round" id="tv-round-{i}" role="tabpanel" aria-labelledby="tv-tab-{i}"{"" if i == 0 else " hidden"}>'
+                    f'<p class="tv-blurb">{e(r["blurb"])}</p><ol class="tv-list" role="list">{"".join(qs)}</ol>'
+                    f'<div class="tv-score" hidden><p class="tv-score-big"></p><p class="tv-score-line"></p>'
+                    f'<p class="actions"><button type="button" class="btn tv-share">Share your score</button>'
+                    f'<button type="button" class="btn ghost dark-ink tv-again">Try again</button>'
+                    + (f'<button type="button" class="btn ghost dark-ink tv-next" data-next="{i + 1}">Next round: {e(rounds[i + 1]["title"])} ›</button>' if i + 1 < len(rounds) else "")
+                    + '</p><p class="fine tv-copied" hidden>Copied. Paste it anywhere to challenge a friend.</p></div></section>')
+    total = sum(len(r["q"]) for r in rounds)
+    body = f"""
+{page_head(R, "Konkrete Kids Trivia", f"{total} questions on the program’s champions, record holders, coaches, and biggest nights. How well do you know Northampton wrestling?")}
+<section class="band tv">
+  <div class="wrap tv-wrap">
+    <div class="tv-tabs" role="tablist" aria-label="Trivia rounds">{tabs}</div>
+    {"".join(secs)}
+    <noscript><p class="fine">Turn on JavaScript to play.</p></noscript>
+    <p class="fine tv-note">Know a great piece of Konkrete Kids trivia, or think we got one wrong? <a href="{SITE['links']['share_form']}" rel="noopener" target="_blank">Send it in</a>. We read everything but can’t reply individually.</p>
+  </div>
+</section>
+"""
+    return page("trivia/index.html", "Trivia", "Konkrete Kids trivia: test what you know about Northampton wrestling’s champions, records, coaches, and biggest team moments.",
+                body, "trivia/", scripts=("site.js", "trivia.js"), og_image="team-mayhem")
 
 
 def build_youth():
@@ -1814,7 +1853,7 @@ def main():
     urls = [v2.build_home(), build_high_school(), build_schedule(), build_junior_high(), build_youth()]
     if YOUTH_COACHES_LIVE:
         urls.append(build_youth_coaches())
-    urls += [build_coaches(), build_champions()] + build_seasons()
+    urls += [build_coaches(), build_champions(), build_trivia()] + build_seasons()
     urls += v2.build_all(sys.modules[__name__])
     build_404()
     # Old Wix addresses keep working
