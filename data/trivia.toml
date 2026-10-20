@@ -198,10 +198,10 @@ fact = "Forty-three straight years, every season from 1984 through 2026."
 link = ["State medalists", "champions/#lists-title"]
 
 [[round.q]]
-q = "In 2011 the streak rode on a single medal. Who kept it alive with an 8th-place finish at 152?"
+q = "In 2011, a 27-year medal streak came down to one wrestler. He was Northampton's only state medalist that year, placing 8th at 152. Who?"
 choices = ["Jimmy Sheptock", "John Lambert", "Joe Piro", "Dan Moran"]
 answer = 2
-fact = "John Lambert. His 8th-place medal at 152 kept the streak going."
+fact = "John Lambert. Without his medal, the streak would have ended at 27 years. Instead it is still going, 43 years and counting."
 link = ["The 2010–11 season", "seasons/2010-11/"]
 
 [[round.q]]
@@ -210,13 +210,6 @@ choices = ["Michael Kistler", "Jagger Condomitti", "Devon Britton", "Julian Chle
 answer = 3
 fact = "Devon Britton placed 3rd at 132. A year later, 2019 brought Julian Chlebove's third state title."
 link = ["The 2017–18 season", "seasons/2017-18/"]
-
-[[round.q]]
-q = "1985 was year two of the medal streak, and it rode on a single medal: 3rd place at 126. Whose?"
-choices = ["Brad Billy", "Joe Billy", "Wayne Reiss", "Stan Reuben"]
-answer = 2
-fact = "Joe Billy, who also won the District XI title at 126 that year. Brad Billy and Stan Reuben medaled the next year."
-link = ["The 1984–85 season", "seasons/1984-85/"]
 
 [[round.q]]
 q = "In 2025, Gavin Grell placed 6th at 285, Northampton's first heavyweight state medalist in how many years?"
