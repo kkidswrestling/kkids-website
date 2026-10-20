@@ -96,6 +96,13 @@ fact = "Penn State's Rec Hall in State College, where Steve Micio and Ed Keglovi
 link = ["Steve Micio", "champions/steve-micio/"]
 
 [[round.q]]
+q = "Steve Micio was one of Northampton's first two state champions in 1955. Who was the other?"
+choices = ["Albert Billy", "Gordon Bartholomew", "Ed Keglovits", "Dave Wall"]
+answer = 3
+fact = "Ed Keglovits won his title the same March day at Rec Hall. Albert Billy was the program's first District XI champion, in 1948."
+link = ["Edward Keglovits", "champions/edward-keglovits/"]
+
+[[round.q]]
 q = "Four Kids won state titles on the same night in 2003. Which of these was NOT one of them?"
 choices = ["Josh Haines", "Jon Oplinger", "Ryan McCallum", "Joey Ecklof"]
 answer = 3
@@ -103,15 +110,15 @@ fact = "Ryan McCallum won his title in 2000. The 2003 champions were Joey Ecklof
 link = ["The 2003 title season", "champions/team/2003/"]
 
 [[round.q]]
-q = "How many years passed between Northampton's second state champion and its third?"
-choices = ["11", "18", "29", "35"]
-answer = 3
-fact = "Twenty-nine years, from Ed Keglovits in 1955 to Sean Finkbeiner in 1984."
+q = "After Northampton's first two state titles in 1955, the next one took 29 years. Who won it, in 1984?"
+choices = ["Joe Billy", "Sean Finkbeiner", "Mike Bartholomew", "Rick Billy"]
+answer = 2
+fact = "Sean Finkbeiner won the 1984 title at 145, and it started the medal streak that is still going."
 link = ["Sean Finkbeiner", "champions/sean-finkbeiner/"]
 
 [[round.q]]
 q = "Two Konkrete Kids won three state titles, each at three different weights. Julian Chlebove is one. Who's the other?"
-choices = ["Josh Haines", "Jeff Ecklof", "Joey Ecklof", "Jon Oplinger"]
+choices = ["Trey Wagner", "Jeff Ecklof", "Joey Ecklof", "Jon Oplinger"]
 answer = 3
 fact = "Joey Ecklof won at 135, 145 and 152. Julian Chlebove won at 113, 120 and 132."
 link = ["Joey Ecklof", "champions/joey-ecklof/"]
@@ -125,7 +132,7 @@ link = ["Mike Tomsic", "champions/mike-tomsic/"]
 
 [[round.q]]
 q = "Which state champion finished his title season a perfect 40–0?"
-choices = ["Whitey Chlebove", "Christian Luciano", "Josh Haines", "Justin Wieller"]
+choices = ["Whitey Chlebove", "Christian Luciano", "Gabe Ballard", "Justin Wieller"]
 answer = 2
 fact = "Christian Luciano went 40–0 in 1998. Whitey Chlebove also went unbeaten in his title season, 38–0 in 1994."
 link = ["Christian Luciano", "champions/christian-luciano/"]
@@ -146,16 +153,16 @@ link = ["Hall of Champions", "champions/#lists-title"]
 
 [[round.q]]
 q = "Only one Konkrete Kid has won four District XI titles. Who?"
-choices = ["Steve Micio", "Seth Lisa", "Jeff Ecklof", "Dagen Condomitti"]
+choices = ["Steve Micio", "Denny Liberto", "Jeff Ecklof", "Dagen Condomitti"]
 answer = 3
 fact = "Jeff Ecklof, 2000 to 2003. He won four Northeast Regional titles too."
 link = ["Jeff Ecklof", "champions/jeff-ecklof/"]
 
 [[round.q]]
-q = "What's the lightest weight at which a Konkrete Kid has won a state title?"
-choices = ["95", "103", "106", "112"]
-answer = 2
-fact = "103, by Dennis \"Denny\" Liberto in 1995. He medaled at 103 three years in a row."
+q = "Who is the lightest Konkrete Kid ever to win a state title, at 103 pounds?"
+choices = ["Mike Tomsic", "Brayden Wenrich", "Denny Liberto", "Chad Billy"]
+answer = 3
+fact = "Dennis \"Denny\" Liberto won at 103 in 1995 after medaling at 103 the two years before. Chad Billy and Mike Tomsic won at 112."
 link = ["Dennis Liberto", "champions/dennis-liberto/"]
 
 [[round]]
@@ -197,6 +204,13 @@ answer = 3
 fact = "2004: ten medalists, including state champions Joey Ecklof, Josh Haines and Jon Oplinger."
 link = ["The 2004 title season", "champions/team/2004/"]
 
+[[round.q]]
+q = "In 2025, Gavin Grell placed 6th at 285, Northampton's first heavyweight state medalist in how many years?"
+choices = ["9", "15", "21", "30"]
+answer = 3
+fact = "Twenty-one years. The last before him was Matt Snyder, 8th at 275 in 2004."
+link = ["The 2024–25 season", "seasons/2024-25/"]
+
 [[round]]
 title = "Records & Coaches"
 blurb = "The record book and the men who built the room."
@@ -224,7 +238,7 @@ link = ["Record book", "champions/#lists-title"]
 
 [[round.q]]
 q = "Who holds Northampton's single-season record for wins?"
-choices = ["Josh Haines", "Jagger Condomitti", "Julian Chlebove", "Jimmy Sheptock"]
+choices = ["Denny Liberto", "Jagger Condomitti", "Julian Chlebove", "Jimmy Sheptock"]
 answer = 3
 fact = "Julian Chlebove, with 49 wins as a senior in 2018–19, his third state-title season."
 link = ["Julian Chlebove", "champions/julian-chlebove/"]
@@ -236,12 +250,6 @@ answer = 3
 fact = "Josh Haines, with 157. Jeff Ecklof (154) and Seth Lisa (152) are next."
 link = ["The 100-Win Club", "champions/#hundred-title"]
 
-[[round.q]]
-q = "Which Northampton head coach has the best winning percentage in duals?"
-choices = ["Harry Wall", "Don Rohn", "Terry Daubert", "Seth Lisa"]
-answer = 3
-fact = "Terry Daubert, 199–33. Don Rohn, with 309 wins, is right behind him."
-link = ["Head coaches", "champions/#lists-title"]
 
 [[round.q]]
 q = "In 2003–04, Terry Daubert was named PIAA Coach of the Year and national coach of the year by which group?"
