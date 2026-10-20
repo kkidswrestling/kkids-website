@@ -11,6 +11,11 @@ test_url = "https://kkidswrestling.github.io/kkids-website"
 owner = "Northampton Area Wrestling Club"
 current_season = "2026–27"
 
+# Youth Coaches' Playbook (youth/coaches/). Paused Oct. 20, 2026 (Joe): everything stays saved in
+# data/youth-coaches.toml, build_youth_coaches() in tools/build.py, assets/js/coaches.js and the .ycp styles.
+# Set to true and rebuild to put the page, its menu item and the Youth page section back.
+youth_coaches_page = false
+
 email = "northamptonareawrestlingclub@gmail.com"
 phone = "610-262-7812"
 phone_label = "Athletic office"

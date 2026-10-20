@@ -24,6 +24,8 @@ def load_csv(name):
 
 
 SITE = load_toml("site.toml")
+# Youth Coaches' Playbook on/off (paused Oct. 2026; see youth_coaches_page in data/site.toml)
+YOUTH_COACHES_LIVE = bool(SITE.get("youth_coaches_page", False))
 COACHES = load_toml("coaches.toml")
 SEASONS = load_toml("seasons.toml")["season"]
 PHOTOS = {p["id"]: p for p in load_toml("photos.toml")["photo"]}
@@ -47,8 +49,8 @@ CUR = SEASONS[0]
 
 NAV_GROUPS = [
     ("Program", [("story/", "Our Story"), ("coaching-staff/", "Coaches"), ("facilities/", "Our Home"),
-                 ("high-school/", "Varsity"), ("junior-high/", "Junior High"), ("youth/", "Youth"),
-                 ("youth/coaches/", "Youth Coaches")]),
+                 ("high-school/", "Varsity"), ("junior-high/", "Junior High"), ("youth/", "Youth")]
+                + ([("youth/coaches/", "Youth Coaches")] if YOUTH_COACHES_LIVE else [])),
     ("Team", [("roster/", "Roster"), ("schedule/", "Schedule"), ("results/", "Results"), ("high-school/#stats-title", "Stats")]),
     ("Tradition", [("champions/", "Hall of Champions"), ("champions/#team-title", "Team Titles"),
                    ("champions/#hundred-title", "100-Win Club"), ("champions/#lists-title", "Record Book"),
@@ -894,6 +896,14 @@ def build_junior_high():
 
 
 def build_youth():
+    yc_promo = """<section class="band dark yc-promo">
+  <div class="wrap split narrow-right">
+    <div><p class="kicker">For youth coaches</p><h2>Youth Coaches’ Playbook</h2>
+    <p class="lede">What to teach in Novice and in Orange &amp; Black, what each wrestler should be able to demonstrate, and how to run a practice.</p></div>
+    <p class="actions"><a class="btn" href="coaches/">Open the playbook</a></p>
+  </div>
+</section>
+""" if YOUTH_COACHES_LIVE else ""
     R = "../"
     body = f"""
 {page_head(R, "Youth Wrestling", "Grades K–6. Where every Konkrete Kid starts.", "youth-champs", "50% 18%")}
@@ -913,14 +923,7 @@ def build_youth():
     </aside>
   </div>
 </section>
-<section class="band dark yc-promo">
-  <div class="wrap split narrow-right">
-    <div><p class="kicker">For youth coaches</p><h2>Youth Coaches’ Playbook</h2>
-    <p class="lede">What to teach in Novice and in Orange &amp; Black, what each wrestler should be able to demonstrate, and how to run a practice.</p></div>
-    <p class="actions"><a class="btn" href="coaches/">Open the playbook</a></p>
-  </div>
-</section>
-<section class="band concrete">
+{yc_promo}<section class="band concrete">
   <div class="wrap">
     <h2>Questions families ask</h2>
     <div class="faq">
@@ -1769,8 +1772,10 @@ def main():
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import v2
     v2.M = sys.modules[__name__]
-    urls = [v2.build_home(), build_high_school(), build_schedule(), build_junior_high(), build_youth(), build_youth_coaches(),
-            build_coaches(), build_champions()] + build_seasons()
+    urls = [v2.build_home(), build_high_school(), build_schedule(), build_junior_high(), build_youth()]
+    if YOUTH_COACHES_LIVE:
+        urls.append(build_youth_coaches())
+    urls += [build_coaches(), build_champions()] + build_seasons()
     urls += v2.build_all(sys.modules[__name__])
     build_404()
     # Old Wix addresses keep working
@@ -1778,6 +1783,8 @@ def main():
     redirect("copy-of-high-school/index.html", "seasons/2022-23/")
     redirect("copy-of-high-school-1/index.html", "seasons/2023-24/")
     redirect("coaches/index.html", "coaching-staff/")
+    if not YOUTH_COACHES_LIVE:
+        redirect("youth/coaches/index.html", "youth/")  # paused: old links land on the Youth page
     # Sitemap: every built page (not redirect stubs), so new profiles and news posts are always included
     for d, dirs, files in os.walk(ROOT):
         dirs[:] = [x for x in dirs if not x.startswith(".") and x not in ("node_modules", "assets", "tools", "data")]
