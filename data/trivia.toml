@@ -300,10 +300,10 @@ fact = "Seth Lisa, who won 152 matches as a Konkrete Kid and coached the program
 link = ["The 100-Win Club", "champions/#hundred-title"]
 
 [[round.q]]
-q = "Who am I? I started in the NAA youth program, placed 4th at states as a Konkrete Kid in 1997, won 97 matches at Lycoming College, and came home to coach. Today I'm a Northampton varsity assistant."
-choices = ["Jim Derr", "John Paukovits", "Mike Sommer", "Marcus Newsom"]
+q = "Which last name belongs to a 1997 state medalist, a 2010 state medalist, and a 2026 state qualifier?"
+choices = ["Billy", "Wagner", "Sommer", "Chlebove"]
 answer = 3
-fact = "Coach Mike Sommer. He also produces the season highlight videos on the program's YouTube channel."
+fact = "Sommer: Mike placed 4th at 140 in 1997, Austin placed 3rd at 152 in 2010, and Matthew qualified for states at 133 in 2026. Mike is now a Northampton varsity assistant."
 link = ["Coaching staff", "coaching-staff/"]
 
 [[round]]
