@@ -455,7 +455,7 @@ def build_timeline():
     for d in decades:
         evs = [x for x in ev if x["year"] // 10 * 10 == d]
         lis = "".join(
-            f'<li class="tl-item{" team" if x.get("team") else ""}{" has-photo" if x.get("photo") else ""}"><span class="tl-year">{x["year"]}</span>'
+            f'<li class="tl-item{" team" if x.get("team") else ""}{" has-photo" if x.get("photo") else ""}{" tall" if x.get("tall") else ""}"><span class="tl-year">{x["year"]}</span>'
             f'<div class="tl-card">{M.picture(R, x["photo"], "(min-width: 900px) 40vw, 90vw") if x.get("photo") else ""}'
             f'<h3>{e(x["title"])}</h3><p>{e(x["text"])}</p>{TL_TAG if x.get("team") else ""}</div></li>'
             for x in evs)

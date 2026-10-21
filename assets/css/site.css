@@ -1287,3 +1287,6 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .results.eras li { display: block; padding: 10px 0; }
 .results.eras li > span { display: block; font-weight: 700; color: inherit; }
 .results.eras b { display: block; text-align: left; font-weight: 400; color: var(--ink-2, #555); font-size: .95em; }
+/* Timeline: portrait photos show whole on phones; on wide screens cap the height and keep head to jersey */
+.tl-item.tall .tl-card img { aspect-ratio: auto; height: auto; }
+@media (min-width: 700px) { .tl-item.tall .tl-card img { max-height: 620px; object-fit: cover; object-position: 50% 35%; } }
