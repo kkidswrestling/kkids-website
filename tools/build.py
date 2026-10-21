@@ -944,6 +944,117 @@ def build_trivia():
                 body, "trivia/", scripts=("site.js", "trivia.js"), og_image="team-mayhem")
 
 
+def youth_model_html():
+    """Black & Orange model (Joe's 'One Program. Two Strong Teams.' handout, Oct. 2026). Page 1 layout kept."""
+    chk = '<svg class="ym-chk" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    team = lambda cls, name: (f'<div class="ym-team {cls}"><h3>{name}</h3><ul role="list">'
+        + "".join(f"<li>{chk}<span>{x}</span></li>" for x in ("Full varsity and JV lineups", "Its own coaching staff, year to year", "Built to stay together through 6th grade"))
+        + "</ul></div>")
+    means = [("A team they’re proud of.", "Our goal: no A team or B team, just two strong teams."),
+             ("Meaningful matches.", "Two competitive teams mean close, real competition all season."),
+             ("Coaches who know them.", "The same staff for years, watching them grow."),
+             ("Teammates for the journey.", "Built to stay together from Novice to junior high.")]
+    rows = [("Team placement", "Week-one wrestle-offs", "An even mix on each team"),
+            ("Coaching staffs", "Set after wrestle-offs", "Same staff, year after year"),
+            ("Orange", "Advanced wrestlers move to Black", "Develops its own wrestlers"),
+            ("Pressure", "Team spot tied to weight", "Not decided on the scale"),
+            ("A kid’s label", "“A team” or “B team”", "Black or Orange, built as equals")]
+    road = [("2026–27:", "a transition year. Some current wrestlers may move to help balance the rosters. Schedules are set by the previous year’s results and will even out as the teams balance."),
+            ("Each fall:", "new Novice grads are placed to balance the teams."),
+            ("Every season’s end:", "we review what worked and adjust."),
+            ("In a few seasons:", "two equally strong teams.")]
+    principles = [
+        ("Develop for the long run, not early wins",
+         [("“Focus on long-term learning over winning.”", "Its standard for ages 5–12.", "USA Wrestling · Athlete Development Model"),
+          ("Youth program success", "“should not be measured by wins and losses alone.”", "National Wrestling Coaches Association")],
+         "Kids grow on one team for years instead of being sorted by a week-one result."),
+        ("Don’t sort or label kids too early",
+         [("Ended national titles", "for its youngest ages to stop “super teams” of 9- and 10-year-olds.", "USA Hockey"),
+          ("Don’t cut kids.", "Add teams so more children play.", "Aspen Institute · Project Play")],
+         "No A or B team. An even mix on each team, neither ranked above the other."),
+        ("Keep young wrestlers off the scale",
+         [("No weight loss for ages 5–12,", "other than for health reasons.", "USA Wrestling"),
+          ("Rapid weight cutting", "is “potentially life threatening.”", "American Academy of Pediatrics")],
+         "Team placement never depends on making weight."),
+        ("Keep every kid in the sport",
+         [("Its goal:", "“involving as many young people as possible.”", "NFHS"),
+          ("Kids enjoy close competition", "more than blowouts, even when they lose.", "National Alliance for Youth Sports")],
+         "Two competitive teams, so every kid has a real team and a reason to stay."),
+    ]
+    p_html = "".join(
+        f'<div class="ym-pr"><h3><span class="ym-num">{i}</span>{t}</h3><div class="ym-quotes">'
+        + "".join(f'<figure><blockquote><p><b>{a}</b> {b}</p></blockquote><figcaption>{s}</figcaption></figure>' for a, b, s in qs)
+        + f'</div><p class="ym-in"><b>In our model ›</b> {m}</p></div>'
+        for i, (t, qs, m) in enumerate(principles, 1))
+    return f"""
+<section class="ym-hero" aria-labelledby="ym-title">
+  <div class="wrap">
+    <p class="ym-kick">Northampton Youth Wrestling · Konkrete Kids · 2026–27</p>
+    <h2 id="ym-title" class="ym-big">One program.<br><span>Two strong teams.</span></h2>
+    <p class="ym-lede">Starting in 2026–27, we’re building Black and Orange as equals: balanced rosters, steady coaches, and a team for every wrestler from Novice to junior high.</p>
+  </div>
+</section>
+<section class="band ym" aria-labelledby="ym-built">
+  <div class="wrap ym-wrap">
+    <p class="ym-label" id="ym-built">How the program is built</p>
+    <div class="ym-flow">
+      <div class="ym-pill ym-novice"><b>Novice</b> <span>Grades K–2 · fun and fundamentals</span></div>
+      <div class="ym-split" aria-hidden="true"><span>Placed for an even mix</span></div>
+      <div class="ym-teams">{team("black", "Northampton Black")}<span class="ym-eq" aria-label="equal to">=</span>{team("orange", "Northampton Orange")}</div>
+      <div class="ym-room"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1l-1.5 1.5M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.5-1.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <div><h3>Still one practice room</h3><p>Black and Orange varsity and JV keep holding joint practices. Day-to-day practice structure barely changes.</p></div></div>
+      <div class="ym-stem" aria-hidden="true"></div>
+      <div class="ym-pill ym-jh"><b>Junior high</b> <span>They move up together</span></div>
+    </div>
+    <div class="ym-means">
+      <h3>What this means for your child</h3>
+      <ul role="list">{"".join(f"<li>{chk}<span><b>{a}</b> {b}</span></li>" for a, b in means)}</ul>
+    </div>
+  </div>
+</section>
+<section class="band concrete ym" aria-labelledby="ym-why">
+  <div class="wrap ym-wrap">
+    <p class="ym-label">Why we’re doing this</p>
+    <h2 id="ym-why">Every kid deserves a team they’re proud of.</h2>
+    <div class="ym-stat"><b>70%</b><div><p class="ym-stat-h">of kids quit organized sports by age 13. The two biggest reasons:</p>
+      <p class="ym-reasons"><span><em>1</em> It stopped being fun</span><span><em>2</em> “I’m not good enough”</span></p>
+      <p class="ym-src">70%: American Academy of Pediatrics, 2024 · Reasons: youth-sports dropout surveys</p></div></div>
+    <p class="ym-bar">Our model is built to guard against both.</p>
+    <div class="ym-two">
+      <div><h3><em>1</em> It stopped being fun</h3><div class="ym-change"><p class="ym-mini">What changes</p><p>Two competitive teams, so every kid gets meaningful matches.</p><p>Team placement is never decided on the scale.</p></div>
+        <div class="ym-res"><p><b>Kids enjoy close competition</b> more than blowouts, even when they lose.</p><p class="ym-src">J. Engh, National Alliance for Youth Sports, 2019</p><p><b>No weight loss at ages 5–12</b> except for health reasons.</p><p class="ym-src">USA Wrestling, Athlete Development Model</p></div></div>
+      <div><h3><em>2</em> “I’m not good enough”</h3><div class="ym-change"><p class="ym-mini">What changes</p><p>Our goal: no A team, no B team. Each team gets an even mix of experience levels.</p><p>Over time, two equally strong teams.</p></div>
+        <div class="ym-res"><p><b>Sorted into A, B, and C teams,</b> 9- and 10-year-olds came to define themselves by their team.</p><p class="ym-src">Wrang et al., Sport, Exercise, and Performance Psychology, 2023</p><p><b>Don’t label young athletes:</b> “No child qualifies as elite before growing into their body.”</p><p class="ym-src">Aspen Institute Project Play</p></div></div>
+    </div>
+    <div class="ym-plus"><h3>Plus: steady coaches</h3><p>Each team keeps its coaches year to year, so coaches and wrestlers build real relationships over several seasons, and kids always know who’s in their corner.</p></div>
+  </div>
+</section>
+<section class="band ym" aria-labelledby="ym-change">
+  <div class="wrap ym-wrap">
+    <p class="ym-label">What’s changing</p>
+    <h2 id="ym-change">Then and now</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Then and now"><table class="ym-table"><thead><tr><th scope="col"><span class="visually-hidden">Topic</span></th><th scope="col">Then</th><th scope="col">Now</th></tr></thead>
+      <tbody>{"".join(f'<tr><th scope="row">{a}</th><td>{b}</td><td>{c}</td></tr>' for a, b, c in rows)}</tbody></table></div>
+    <div class="ym-two ym-gap">
+      <div class="ym-move"><p class="ym-mini">When does a wrestler move?</p><p>Wrestlers usually stay put, but coaches can move a wrestler who’s stuck behind a teammate on JV. <b>For example:</b></p>
+        <ol role="list"><li><span class="ym-tag">3rd gr</span><span>A wrestler is placed on <b>Orange</b>.</span></li><li><span class="ym-tag">5th gr</span><span>They improve a lot, but they’re the same weight as Orange’s varsity starter, so they’re stuck on JV.</span></li><li><span class="ym-tag dark">Move</span><span>Coaches move them to <b>Black</b> to wrestle varsity. Now both wrestlers are varsity starters.</span></li></ol>
+        <p class="ym-src">Moves are the exception, made by coaches for the wrestler’s good.</p></div>
+      <div class="ym-road"><p class="ym-mini">The roadmap</p><ol role="list">{"".join(f"<li><b>{a}</b> {b}</li>" for a, b in road)}</ol></div>
+    </div>
+  </div>
+</section>
+<section class="band concrete ym" aria-labelledby="ym-experts">
+  <div class="wrap ym-wrap">
+    <p class="ym-label">What the experts say</p>
+    <h2 id="ym-experts">Built on the best advice in the sport.</h2>
+    <p class="ym-lede-dark">Four principles behind our model, in the words of wrestling’s leaders and youth-sports researchers.</p>
+    {p_html}
+    <p class="ym-src ym-sources"><b>Sources:</b> American Academy of Pediatrics (2024; HealthyChildren.org) · USA Wrestling, Athlete Development Model · National Wrestling Coaches Association · youth-sports dropout surveys · NFHS · Aspen Institute Project Play · USA Hockey · Wrang et al. (2023) · J. Engh, National Alliance for Youth Sports (2019).</p>
+  </div>
+</section>
+"""
+
+
 def build_youth():
     yc_promo = """<section class="band dark yc-promo">
   <div class="wrap split narrow-right">
@@ -961,7 +1072,7 @@ def build_youth():
     <div class="prose">
       <h2>Northampton youth wrestling</h2>
       <p>Our youth program competes in the Valley Elementary Wrestling League (VEWL) for wrestlers in kindergarten through 6th grade. More than 100 kids wrestle each year on three teams:</p>
-      <ul class="results" role="list"><li><span>Northampton Black</span><b>Varsity and JV</b></li><li><span>Northampton Orange</span><b>Varsity and JV</b></li><li><span>Novice</span><b>First-time wrestlers</b></li></ul>
+      <ul class="results" role="list"><li><span>Northampton Black</span><b>Varsity and JV</b></li><li><span>Northampton Orange</span><b>Varsity and JV</b></li><li><span>Novice</span><b>Grades K–2</b></li></ul>
       <p>The goal is simple: carry on the tradition of Northampton wrestling, teach strong fundamentals, and build friendships and a community that last long after the season ends. Many of today’s varsity wrestlers and coaches started right here.</p>
     </div>
     <aside class="note-card">
@@ -971,14 +1082,23 @@ def build_youth():
     </aside>
   </div>
 </section>
+{youth_model_html()}
 {yc_promo}<section class="band concrete">
   <div class="wrap">
     <h2>Questions families ask</h2>
     <div class="faq">
       <details><summary>Who can wrestle?</summary><p>Boys and girls in kindergarten through 6th grade.</p></details>
-      <details><summary>Does my child need experience?</summary><p>No. The Novice team is for first-time wrestlers.</p></details>
+      <details><summary>Does my child need experience?</summary><p>No. Novice is generally for grades K–2 and focuses on fun and fundamentals. An experienced 2nd grader may move up to Black or Orange.</p></details>
+      <details><summary>How are wrestlers placed on Black and Orange?</summary><p>As a team. Black, Orange, and Novice coaches place wrestlers together, so each team gets an even mix of experience levels and weights. No team is ranked above the other.</p></details>
+      <details><summary>Won’t this hold back our more advanced wrestlers?</summary><p>No. Black and Orange varsity and JV still practice together, so advanced wrestlers keep training with experienced partners. They lose a label at age eight, not a chance to grow.</p></details>
+      <details><summary>Will my child still get strong competition?</summary><p>Yes. Each team has its own full schedule, and Black and Orange wrestle each other during the season.</p></details>
+      <details><summary>Will current wrestlers change teams?</summary><p>Some may, to help balance the rosters. Most of the shift happens gradually, as each new class moves up from Novice.</p></details>
+      <details><summary>Isn’t earning your spot a good lesson?</summary><p>Yes, and wrestlers still earn varsity spots. A JV wrestler can move up to varsity during the season, so there’s always a goal to chase.</p></details>
+      <details><summary>What if my child outgrows their team?</summary><p>We’ll move them. If a wrestler is stuck behind a teammate at the same weight, coaches can move them so both wrestlers get a varsity spot.</p></details>
+      <details><summary>Why is this happening gradually?</summary><p>Big changes work best in steps. Each new class moving up from Novice is placed to keep the teams even, and both rosters balance out over a few seasons. Schedules are set by the previous year’s results, so they’ll even out as the teams do.</p></details>
+      <details><summary>How does this help the whole program?</summary><p>More kids who stay in wrestling means deeper junior high and high school rosters. Wrestlers also reach the junior high as experienced teammates who already know how to compete together.</p></details>
       <details><summary>What happens after 6th grade?</summary><p>Wrestlers move up to the <a href="../junior-high/">junior high team</a> in grades 7 and 8, then to the <a href="../high-school/">high school</a> program.</p></details>
-      <details><summary>Who do I contact?</summary><p>Email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p></details>
+      <details><summary>Can we still share feedback?</summary><p>Absolutely. The direction is set, and the details are reviewed every season. We’re always willing to listen: email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p></details>
     </div>
   </div>
 </section>
