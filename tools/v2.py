@@ -876,6 +876,8 @@ def build_team_title_pages():
     def wt(w):
         return int("".join(ch for ch in w if ch.isdigit()) or 0)
     urls = []
+    all_s = M.season_list()
+    s_idx = {x[0]: k for k, x in enumerate(all_s)}
     for i, (row, y) in enumerate(zip(M.TEAM_TITLES, years)):
         s = seasons.get(str(y), {})
         ys = str(y)
@@ -902,6 +904,26 @@ def build_team_title_pages():
                + f'<a href="{R}champions/#team-title">All team titles</a>'
                + (f'<a href="{R}champions/team/{nxt}/">{nxt} ›</a>' if nxt else "<span></span>") + "</nav>")
         sid = f"{y - 1}-{str(y)[2:]}"
+        # This page is the season's only page, so it also carries the duals and the season-to-season links.
+        duals_html, snav = "", ""
+        if sid in s_idx:
+            k = s_idx[sid]
+            pw = all_s[k][3]
+            if pw["duals"]:
+                complete = bool(pw["record"]) and M.season_record(y, pw, all_s[k][4])[0] == pw["record"]
+                duals_html = ('<section class="band tight"><div class="wrap"><details class="season-roster"><summary>'
+                              + (f'All {e(row["season"])} duals' if complete else f'{e(row["season"])} duals on record')
+                              + '</summary><ul class="arch-duals" role="list">' + "".join(
+                    f'<li><span class="ad-date">{e(x["date"])}</span><span class="ad-opp">{e(M.clean_label(x["opponent"]))}'
+                    + (f' <small>{e(M.clean_label(x["event"]))}</small>' if x["event"] else "") + (' <small>league</small>' if x["league"] else "")
+                    + f'</span><b class="nw">{e(x["result"])}</b></li>' for x in pw["duals"])
+                    + '</ul><p class="fine">Winner’s score first.</p></details></div></section>')
+            older = all_s[k + 1] if k + 1 < len(all_s) else None
+            newer = all_s[k - 1] if k > 0 else None
+            snav = ('<nav class="champ-nav wrap" aria-label="More seasons">'
+                    + (f'<a href="{M.season_href(R, older[0], older[2])}">‹ {older[1]} season</a>' if older else "<span></span>")
+                    + f'<span class="cn-mid"><a href="{R}seasons/">All seasons</a> · <a href="{R}champions/#team-title">All team titles</a></span>'
+                    + (f'<a href="{M.season_href(R, newer[0], newer[2])}">{newer[1]} season ›</a>' if newer else "<span></span>") + "</nav>")
         v = M.season_videos(sid, row["season"])
         n_v = len(M.SEASON_VIDEOS.get(sid, []))
         vids = (f'<h2>Season highlight video{"s" if n_v > 1 else ""}</h2>' + v) if v else ""
@@ -920,7 +942,7 @@ def build_team_title_pages():
       {f'<h2 class="side-h">Postseason</h2><ol class="post-list" role="list">{post}</ol>' if post else ''}
       {f'<p class="side-note">{e(s["league"])}</p>' if s.get("league") else ''}
     </aside>
-    <div class="prose cp-story"><h2>The season</h2>{story}<p><a class="text-link" href="{R}seasons/{sid}/">Results, duals, and video for {e(row["season"])} ›</a></p></div>
+    <div class="prose cp-story"><h2>The season</h2>{story}</div>
   </div>
 </section>
 {f'<section class="band tight" id="video"><div class="wrap">{vids}</div></section>' if vids else ''}
@@ -939,7 +961,8 @@ def build_team_title_pages():
     </div>
   </div>
 </section>
-{nav}
+{duals_html}
+{snav or nav}
 """
         M.page(f"champions/team/{y}/index.html", f"{y} PIAA team champions", f"Northampton's {row['season']} PIAA Class AAA team championship season: record, story, State Place Winners, and postseason.", body, "champions/")
         urls.append(M.SITE["domain"] + f"/champions/team/{y}/")

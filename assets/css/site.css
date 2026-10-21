@@ -391,7 +391,7 @@ details p { margin: 0 0 14px; }
 .jump a:hover { background: var(--ink); color: var(--on-dark); }
 .season .trio-text { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 36px; }
 @media (max-width: 860px) { .season .trio-text { grid-template-columns: 1fr; } }
-.prose.cols { max-width: none; columns: 2 320px; column-gap: 40px; }
+.prose.cols { max-width: 72ch; } /* one column: two-column text read out of order on laptops (Joe, Oct. 21, 2026) */
 .dark .table-wrap { border-color: var(--line-dark); }
 .dark table { color: var(--ink); }
 

@@ -1868,9 +1868,18 @@ with open(os.path.join(DATA, "hall", "season-stories.json"), encoding="utf-8") a
     SEASON_STORIES = json.load(_f)["seasons"]
 
 
+def season_href(R, sid, y):
+    """Where a season lives: the team-title page for PIAA team-title years, otherwise seasons/<id>/."""
+    return f"{R}champions/team/{y}/" if y in TITLE_YEARS else f"{R}seasons/{sid}/"
+
+
 def build_season_page(i, all_s):
     """One season, laid out the same way for every year (the layout the 2021-22+ seasons were built with)."""
     sid, label, y, pw, d = all_s[i]
+    if y in TITLE_YEARS:
+        # One page per season: a PIAA team-title season lives at champions/team/<year>/ (Joe, Oct. 21, 2026).
+        redirect(f"seasons/{sid}/index.html", f"champions/team/{y}/")
+        return None
     R = "../../"
     d = d or {}
     facts = season_facts(sid, y, pw, d or None)
@@ -1973,9 +1982,9 @@ def build_season_page(i, all_s):
     newer = all_s[i - 1] if i > 0 else None
     older = all_s[i + 1] if i + 1 < len(all_s) else None
     nav = ('<nav class="season-nav" aria-label="More seasons">'
-           + (f'<a href="../{older[0]}/">‹ {older[1]}</a>' if older else "<span></span>")
+           + (f'<a href="{season_href("../../", older[0], older[2])}">‹ {older[1]}</a>' if older else "<span></span>")
            + '<a href="../">All seasons</a>'
-           + (f'<a href="../{newer[0]}/">{newer[1]} ›</a>' if newer else "<span></span>") + "</nav>")
+           + (f'<a href="{season_href("../../", newer[0], newer[2])}">{newer[1]} ›</a>' if newer else "<span></span>") + "</nav>")
     body = (f'<section class="band season season-page" id="{sid}" aria-labelledby="h-{sid}"><div class="wrap">'
             f'<p class="kicker"><a href="../">‹ All seasons</a></p>'
             + section_head(f'<span id="h-{sid}">{label}</span>', e(headline), level=1)
@@ -1996,7 +2005,7 @@ def build_seasons():
         chips = (f"<li>Dual record: <b>{e(rec[0])}</b></li>" if rec else "") + "".join(
             f"<li>{e(x)}</li>" for x in season_phrases(facts, title) if not (title and x == "PIAA team champions"))
         thumb = picture(R, d["team_photo"], "(min-width: 900px) 25vw, 90vw", "sc-img", alt="") if d and d.get("team_photo") else ""
-        card = (f'<a class="sc{" title" if title else ""}{" has-img" if thumb else ""}" href="{sid}/" id="{sid}">{thumb}<span class="sc-body">'
+        card = (f'<a class="sc{" title" if title else ""}{" has-img" if thumb else ""}" href="{season_href(R, sid, y)}" id="{sid}">{thumb}<span class="sc-body">'
                 f'<span class="sc-yr">{label}</span>'
                 + ('<span class="sc-badge">PIAA team champions</span>' if title else "")
                 + (f'<span class="sc-head">{e(d["headline"])}</span>' if d else (f'<span class="sc-head">{e(SEASON_STORIES[sid]["headline"])}</span>' if sid in SEASON_STORIES else ""))
@@ -2017,7 +2026,7 @@ def build_seasons():
 {redirect_js}
 """
     page("seasons/index.html", "Past Seasons", "Northampton wrestling season archive: results, State Medalists, and awards for every season.", body, "seasons/", og_image="team-2025")
-    return [SITE["domain"] + "/seasons/"] + [SITE["domain"] + f"/seasons/{x[0]}/" for x in all_s]
+    return [SITE["domain"] + "/seasons/"] + [SITE["domain"] + f"/seasons/{x[0]}/" for x in all_s if x[2] not in TITLE_YEARS]
 
 
 def build_404():
