@@ -477,7 +477,7 @@ def build_story():
     eras = M.eras()
     era_rows = "".join(f'<li><span>{e(x["coach"])}</span><b>{" to ".join(f'<span class="nw">{p}</span>' for p in x["seasons"].replace("to present", "to today").split(" to "))}</b></li>' for x in eras)
     body = f"""
-{M.page_head(R, "Our Story", "History, tradition, community.", "program-family", "50% 40%")}
+{M.page_head(R, "Our Story", "History, tradition, community.", "program-family-tight", "50% 40%")}
 <section class="band">
   <div class="wrap split narrow-right top">
     <div class="prose">

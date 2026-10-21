@@ -1404,3 +1404,12 @@ alt = "The Northampton varsity team and coaches pose together at the Mid-Winter 
 crop = [180, 480, 3170, 2402]
 widths = [640, 1200, 1800, 2400]
 file = "originals/img26_p-030-116.jpg"
+
+[[photo]]
+id = "program-family-tight"
+source = "Coach Provini, batch 2 (cropped closer for the Our Story header)"
+season = "2025-26"
+alt = "The whole Northampton wrestling program, from the youngest youth wrestlers to the varsity, with coaches, in the gym bleachers below the state championship banners"
+crop = [180, 110, 2396, 1866]
+widths = [640, 1200, 1800, 2216]
+file = "originals/batch2_program.jpg"
