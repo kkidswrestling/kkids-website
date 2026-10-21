@@ -93,3 +93,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - No "Can parents watch practice?" FAQ on youth/ or family/ (Joe, Oct. 21, 2026).
 - Home hero (Joe, Oct. 21, 2026): one line in the hero-sub style, "Committed to excellence in academics, athletics, and character. Established 1945." Same size and color, not bold, not split.
 - Home-screen app name is "Wrestling" (site.webmanifest short_name + apple-mobile-web-app-title meta), Joe, Oct. 21, 2026. Was "K-Kids".
+- Home hero buttons on phones are two equal-width buttons filling the row (even left/right margins), Joe, Oct. 21, 2026. Joe notices uneven spacing; keep edges symmetric.
