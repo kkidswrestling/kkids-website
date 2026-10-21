@@ -707,7 +707,7 @@ def build_family():
   <div class="wrap">
     <div class="prose">
       <h2 id="booster-title">Booster club</h2>
-      <p>The {M.SITE['owner']} supports the program from youth to varsity: the awards banquet, the Charlie Lerch Memorial and Brandon M. Sommer Memorial scholarships, team gear, and more. Volunteers keep it all running.</p>
+      <p>The {M.SITE['owner']} supports the program from youth to varsity: the awards banquet, the Charlie Lerch Memorial and Brandon M. Sommer Memorial scholarships, team gear, travel expenses, and more. Volunteers keep it all running.</p>
       <p><a class="btn" href="mailto:{M.SITE['email']}?subject=Volunteer">Volunteer with the club</a></p>
     </div>
   </div>
