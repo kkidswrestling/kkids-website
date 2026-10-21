@@ -88,6 +88,7 @@ postseason = [
 sources = [["Lehigh Valley Wrestling History, “1994-95: The Year of the Big Three”", "https://lehighvalleywrestlinghistory.com/1994-95-the-year-of-the-big-three/"]]
 
 ["1998"]
+team_photo = "team-1998"
 record = "21–0"
 league = "Mountain Valley Conference champions, 6–0"
 coach = "Don Rohn"

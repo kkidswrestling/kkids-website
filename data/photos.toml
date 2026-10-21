@@ -1514,3 +1514,13 @@ alt = "Christian Luciano and John Hard watch from the bench in Northampton shirt
 caption = "Christian Luciano and John Hard, 1998 State Champions, during the 1997–98 season."
 widths = [426]
 file = "originals/batch15_luciano-hard-1998.jpg"
+
+[[photo]]
+id = "team-1998"
+source = "Northampton yearbook (1997–98), page 130 team photo; used with permission of the athletic director and school. Names from the yearbook caption (Suranofsky spelled as in our records)."
+season = "1997-98"
+alt = "The 1997–98 Northampton team and coaches in the wrestling room"
+caption = "The 1997–98 Konkrete Kids. First row: Robert Schuller, Seth Lisa, Jeremy Bucko, Grant Taff, Faddy Saloum. Second row: John Bauer, Aaron Suranofsky, Tommy Rohn, Justin Haupt. Third row: Coach Don Rohn, Josh Schmalzer, Brad Youwakim, Eric Swankowski, Phil Hard, Coach Keith Venanzi, David Chamberlain, Christian Luciano, John Hard, Coach John Massiado."
+crop = [12, 10, 672, 398]
+widths = [660]
+file = "originals/batch15_team-1998.jpg"
