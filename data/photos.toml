@@ -1423,3 +1423,14 @@ alt = "Carson Wagner roars and flexes after a win at the PIAA Championships"
 crop = [0, 170, 1179, 1451]
 widths = [640, 1179]
 file = "originals/batch1_05-b6a5c44a-image.jpg"
+
+[[photo]]
+id = "team-2023-official"
+focus = "50% 30%"
+source = "Coach Provini, KKidNation newsletter (2022–23 season preview), cropped to the team photo"
+season = "2022-23"
+alt = "The 2022–23 Northampton varsity team and coaches in singlets on the practice-room mat"
+caption = "The 2022–23 Konkrete Kids."
+crop = [24, 184, 1057, 636]
+widths = [640, 1033]
+file = "originals/batch14_kkidnation-2023.jpg"

@@ -220,7 +220,7 @@ junior_high = "District XI Junior High Tournament team champions with a 13–1 d
 id = "2022-23"
 label = "2022–23"
 dual_record = "9–3"
-team_photo = "team-2023"
+team_photo = "team-2023-official"
 headline = "Dagen Condomitti and Carson Wagner finish their careers on the state podium."
 summary = [
   "Dagen Condomitti finished with 118 career wins, three District XI titles, four Northeast Regional titles (just the second four-time Regional Champion in school history), and three state medals, including 3rd as a senior.",
@@ -272,7 +272,7 @@ roster = [
 ]
 coaches = "Head coach Joe Provini, with assistants Mike Sommer, Jim Derr, and Dennis Condomitti."
 junior_high = "7–3 in duals and 3rd at the District XI Junior High Tournament under head coach Joe Tocci. District Champions: Gabe Ballard and Parker Williams. Placewinners: Carter Chlebove (3rd), Chace Roland (3rd), Daniel Herritt (4th), Joell Small (6th), Ben Schoeneberger (7th), Luke Rogan (7th), Aaden Clough (8th)."
-gallery = ["coach-embrace", "showcase-roar", "carson-semis-2023", "carson-raised-2023", "team-casual-2023", "jh-team-2023", "jh-podium-2023"]
+gallery = ["team-2023", "coach-embrace", "showcase-roar", "carson-semis-2023", "carson-raised-2023", "team-casual-2023", "jh-team-2023", "jh-podium-2023"]
 
 [[season]]
 id = "2021-22"
