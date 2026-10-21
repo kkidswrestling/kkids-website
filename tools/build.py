@@ -262,6 +262,23 @@ def page_head(R, title, intro, photo=None, focus=None, kicker=None, cls=""):
     return f'<header class="page-head concrete"><div class="wrap">{k}<h1>{title}</h1><p class="lede">{intro}</p></div></header>'
 
 
+def hall_wall_head(R, title, intro):
+    """Hall of Champions header: a wall of every state champion's banner photo, oldest first
+    (Joe, Oct. 21, 2026). Uses the same photo as each champion's banner (headshot first)."""
+    names = []
+    for r in load_csv("hall/state-champions.csv"):
+        if r["wrestler"] not in names:
+            names.append(r["wrestler"])
+    tiles = []
+    for n in names:
+        c = CHAMPS.get(n, {})
+        bid = c.get("headshot") or c.get("banner")
+        if bid:
+            tiles.append(f'<span class="hw-tile">{picture(R, bid, "(min-width: 900px) 10vw, 20vw", alt="")}</span>')
+    return (f'<header class="page-head has-photo hall-wall"><div class="hw-grid" aria-hidden="true">{"".join(tiles)}</div>'
+            f'<div class="wrap"><h1>{title}</h1><p class="lede">{intro}</p></div></header>')
+
+
 def result_rows(rows):
     return "".join(f"<li><span>{e(a)}</span><b>{e(b)}</b></li>" for a, b in rows)
 
@@ -1674,7 +1691,7 @@ def build_champions():
                      for i, (k, _, c) in enumerate(tabs))
     open(os.path.join(ROOT, "assets", "data", "hall.json"), "w").write(json.dumps(hall_json(), separators=(",", ":")))
     body = f"""
-{page_head(R, "Hall of Champions", "Every Konkrete Kid who has won a District XI, Northeast Regional, or PIAA title or medaled at the state tournament, from 1948 to today.")}
+{hall_wall_head(R, "Hall of Champions", "Every Konkrete Kid who has won a District XI, Northeast Regional, or PIAA title or medaled at the state tournament, from 1948 to today.")}
 <section class="band" aria-labelledby="team-title">
   <div class="wrap">
     {section_head(f'<span id="team-title">{TOTALS["team_titles"]} PIAA team titles</span>', f'Northampton won the team title at the PIAA Class AAA championships seven times between 1993 and 2004. The program has also had at least one State Medalist every year since {TOTALS["streak"][0]}, {TOTALS["streak"][2]} straight seasons.')}
