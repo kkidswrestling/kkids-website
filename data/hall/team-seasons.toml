@@ -169,6 +169,7 @@ postseason = [
 sources = [["Lehigh Valley Wrestling History, “2002-03: Four of a Kind, a Final Goodbye”", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"]]
 
 ["2004"]
+team_photo = "team-2004"
 record = "20–1"
 league = "Lehigh Valley Conference champions, 7–0"
 coach = "Terry Daubert"
