@@ -44,6 +44,12 @@ HUNDRED = load_csv("hall/hundred-wins.csv")
 # school named; never counted in program totals, lists, or streaks.
 OTHER = load_csv("hall/other-schools.csv")
 TEAM_TITLES = load_csv("hall/team-titles.csv")
+try:
+    import tomllib as _tl
+    TEAM_PHOTOS = {k: v.get("team_photo") for k, v in _tl.load(open(os.path.join(ROOT, "data/hall/team-seasons.toml"), "rb")).items() if isinstance(v, dict) and v.get("team_photo")}
+except Exception:
+    TEAM_PHOTOS = {}
+
 SEASON_VIDEOS = load_toml("season-videos.toml")
 CUR = SEASONS[0]
 
@@ -1670,7 +1676,7 @@ def build_champions():
   <div class="wrap">
     {section_head(f'<span id="team-title">{TOTALS["team_titles"]} PIAA team titles</span>', f'Northampton won the team title at the PIAA Class AAA championships seven times between 1993 and 2004. The program has also had at least one State Medalist every year since {TOTALS["streak"][0]}, {TOTALS["streak"][2]} straight seasons.')}
     <p class="wall-hint"><span aria-hidden="true">▶</span> Tap any banner for that season’s story, results and highlight video.</p>
-    <ol class="team-banners" role="list">{"".join(f'<li class="tbanner"><span class="t1">Northampton Wrestling</span><span class="t2">PIAA State Champions</span><span class="t3">AAA</span><a class="yr" href="{R}champions/team/{int(r["season"][:4]) + 1}/"><span class="visually-hidden">The </span>{e(r["season"])}<span class="visually-hidden"> team title season</span></a><span class="tb-more" aria-hidden="true">▶ Season &amp; video</span></li>' for r in TEAM_TITLES)}</ol>
+    <ol class="team-banners" role="list">{"".join(f'<li class="tbanner{" has-photo" if TEAM_PHOTOS.get(str(int(r["season"][:4]) + 1)) else ""}">' + (picture(R, TEAM_PHOTOS[str(int(r["season"][:4]) + 1)], "(min-width: 900px) 15vw, 45vw", "tb-photo") if TEAM_PHOTOS.get(str(int(r["season"][:4]) + 1)) else "") + f'<span class="t1">Northampton Wrestling</span><span class="t2">PIAA State Champions</span><span class="t3">AAA</span><a class="yr" href="{R}champions/team/{int(r["season"][:4]) + 1}/"><span class="visually-hidden">The </span>{e(r["season"])}<span class="visually-hidden"> team title season</span></a><span class="tb-more" aria-hidden="true">▶ Season &amp; video</span></li>' for r in TEAM_TITLES)}</ol>
   </div>
 </section>
 <section class="band dark wall-band" aria-labelledby="wall-title">
