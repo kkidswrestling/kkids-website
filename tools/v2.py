@@ -720,8 +720,8 @@ def build_family():
 
 def build_alumni():
     R = "../"
-    home = [("Mike Sommer", "Class of 1997 · varsity assistant"), ("Marcus Newsom", "Northampton alumnus · varsity assistant"),
-            ("John Paukovits", "3x District XI Champion · varsity assistant"), ("Ethan Szerencsits", "Class of 2020 · varsity assistant"),
+    home = [("Mike Sommer", "1997 State Placewinner (4th) · varsity assistant"), ("Marcus Newsom", "Three-year varsity starter · varsity assistant"),
+            ("John Paukovits", "3x District XI Champion · varsity assistant"), ("Ethan Szerencsits", "2020 state qualifier · varsity assistant"),
             ("Braden Turner", "2008 District and Regional Champion · junior high assistant"), ("Justin Haupt", "1998 and 1999 District XI Champion · junior high assistant")]
     body = f"""
 {M.page_head(R, "Alumni", "Once a Konkrete Kid, always a Konkrete Kid.", "banner-wall-names", "50% 50%", cls="fit-photo wide")}
