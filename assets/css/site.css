@@ -1476,3 +1476,8 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .team-banners .tbanner .tb-ph img { width: 42%; height: auto; opacity: .9; }
 .team-banners .tbanner.has-photo .t2 { margin-top: 0; }
 @media (max-width: 560px) { .team-banners .tbanner:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 8px); } }
+/* Home "inside" card that shows its whole photo (team photos), with the text on a dark band below */
+.inside.fit { display: flex; flex-direction: column; min-height: 0; }
+.inside.fit img { position: relative; inset: auto; height: auto; aspect-ratio: auto; flex: none; }
+.inside.fit::after { display: none; }
+.inside.fit span { position: relative; padding-top: 18px; }

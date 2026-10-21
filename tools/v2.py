@@ -203,8 +203,9 @@ def build_home():
               ("champions/", "team-1993", "The Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a State Medalist."),
               ("story/", "program-family", "The Community", "Generations of families in the same black and orange."),
               ("join/", "youth-champs", "The Next Generation", "Kindergarten through varsity, one program and one path.")]
+    FIT_WHOLE = {"team-1993"}  # team photos: show the whole picture, no side cropping (Joe, Oct. 2026)
     inside_html = "".join(
-        f'<a class="inside{" wide" if i in (0, 3) else ""}" href="{R}{h}">{S.picture(R, pid, "(min-width: 900px) 60vw, 100vw")}<span><b>{ttl}</b>{txt}</span></a>'
+        f'<a class="inside{" wide" if i in (0, 3) else ""}{" fit" if pid in FIT_WHOLE else ""}" href="{R}{h}">{S.picture(R, pid, "(min-width: 900px) 60vw, 100vw")}<span><b>{ttl}</b>{txt}</span></a>'
         for i, (h, pid, ttl, txt) in enumerate(inside))
     body = f"""
 <section class="hero" aria-labelledby="hero-title">
