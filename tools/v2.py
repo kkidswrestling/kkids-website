@@ -632,20 +632,18 @@ def build_family():
     ten = "".join(f'<li><span class="pt-n">{i}</span><div><b>{a}</b><span>{b}</span></div></li>' for i, (a, b) in enumerate(SECONDARY_TEN, 1))
     body = f"""
 {M.page_head(R, "Parents", "What parents and families need to know.", "senior-night-tight", "50% 40%", cls="fit-photo wide")}
-<section class="band tight"><div class="wrap"><div class="fam-start">
-  <a class="fam-card" href="../youth/#pt-title"><p class="ym-label">Youth parents · K–6</p><h2>Start here</h2><p>How to be a Konkrete Kids parent, and how our two-team youth program works.</p><span class="fam-go">Youth parent guide ›</span></a>
-  <a class="fam-card dark" href="#hs-guide"><p class="ym-label">Junior high &amp; high school parents</p><h2>Start here</h2><p>The parent guide, the honor code in brief, communication, and health and weight.</p><span class="fam-go">Secondary parent guide ›</span></a>
-</div></div></section>
 <section class="band" aria-labelledby="mission-title">
   <div class="wrap ym-wrap">
     <p class="ym-label">Who we are</p>
     <h2 id="mission-title">Our mission</h2>
     <div class="fam-mission">{M.mission_list()}</div>
     <ul class="fam-values" role="list">{"".join(f"<li>{v}</li>" for v in values)}</ul>
-    <h3 class="fam-h3">Our promise to you</h3>
-    <ul class="fam-promise" role="list">{"".join(f"<li>{chk}<span><b>{a}</b> {b}</span></li>" for a, b in promise)}</ul>
   </div>
 </section>
+<section class="band tight"><div class="wrap"><div class="fam-start">
+  <a class="fam-card" href="../youth/#pt-title"><p class="ym-label">Youth parents · K–6</p><h2>Start here</h2><p>How to be a Konkrete Kids parent, and how our two-team youth program works.</p><span class="fam-go">Youth parent guide ›</span></a>
+  <a class="fam-card dark" href="#hs-guide"><p class="ym-label">Junior high &amp; high school parents</p><h2>Start here</h2><p>The parent guide, the honor code in brief, communication, and health and weight.</p><span class="fam-go">Secondary parent guide ›</span></a>
+</div></div></section>
 <section class="band concrete pt" id="hs-guide" aria-labelledby="hs-guide-title">
   <div class="wrap ym-wrap">
     <p class="ym-label">For junior high &amp; high school parents</p>
