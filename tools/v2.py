@@ -621,7 +621,7 @@ def build_alumni():
             ("John Paukovits", "3x District XI Champion · varsity assistant"), ("Ethan Szerencsits", "Class of 2020 · varsity assistant"),
             ("Braden Turner", "2008 District and Regional Champion · junior high assistant"), ("Justin Haupt", "1998 and 1999 District XI Champion · junior high assistant")]
     body = f"""
-{M.page_head(R, "Alumni", "Once a Konkrete Kid, always a Konkrete Kid.", "coaches-embrace", "60% 8%")}
+{M.page_head(R, "Alumni", "Once a Konkrete Kid, always a Konkrete Kid.", "banner-wall-names", "30% 45%")}
 <section class="band">
   <div class="wrap split even">
     <div class="prose">
@@ -643,7 +643,7 @@ def build_alumni():
   <div class="wrap prose"><h2 id="support-title">Support the program</h2><p>The {M.SITE['owner']} funds scholarships, gear, and the banquet. To donate, sponsor, or help organize an alumni night, email <a href="mailto:{M.SITE['email']}">{M.SITE['email']}</a>.</p></div>
 </section>
 """
-    return M.page("alumni/index.html", "Alumni", "Northampton wrestling alumni: share your story, update your information, and support the program.", body, "alumni/", og_image="coaches-embrace")
+    return M.page("alumni/index.html", "Alumni", "Northampton wrestling alumni: share your story, update your information, and support the program.", body, "alumni/", og_image="banner-wall-names")
 
 
 def build_follow():

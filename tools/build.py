@@ -1363,7 +1363,7 @@ def build_coaches():
 <section class="band">
   <div class="wrap">
     <div class="trio">
-      {figure(R, "coach-embrace", "(min-width: 900px) 30vw, 100vw")}
+      {figure(R, "coaches-embrace", "(min-width: 900px) 30vw, 100vw")}
       {figure(R, "bench-final-seconds", "(min-width: 900px) 30vw, 100vw")}
       {figure(R, "staff-corner", "(min-width: 900px) 30vw, 100vw")}
     </div>

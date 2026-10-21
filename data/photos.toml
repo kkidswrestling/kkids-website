@@ -1434,3 +1434,13 @@ caption = "The 2022–23 Konkrete Kids."
 crop = [24, 184, 1057, 636]
 widths = [640, 1033]
 file = "originals/batch14_kkidnation-2023.jpg"
+
+[[photo]]
+id = "banner-wall-names"
+source = "Coach Provini, batch 4 (2021-22 team photo), cropped to the champions' name banners on the wrestling-room wall"
+alt = "The wrestling-room wall of banners listing every Northampton District, Regional and State Champion by name, weight and year"
+caption = "Every name on the wall is a Konkrete Kid."
+crop = [0, 0, 4032, 960]
+focus = "30% 45%"
+widths = [640, 1200, 1800, 2600]
+file = "originals/batch4_p22-005-058.jpg"
