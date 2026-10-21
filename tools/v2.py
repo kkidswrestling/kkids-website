@@ -241,9 +241,9 @@ def build_home():
     <h2 id="numbers-title" class="visually-hidden">Northampton Wrestling by the numbers</h2>
     <div class="big-numbers">
       {count_up(T['team_titles'], 'PIAA team titles')}
-      {count_up(T['state'], 'PIAA state titles')}
-      {count_up(T['medals'], 'state medals')}
-      {count_up(T['district'], 'District XI titles')}
+      {count_up(T['state'], 'individual state titles')}
+      {count_up(T['medals'], 'state placewinners')}
+      {count_up(T['district'], 'District XI champions')}
       {count_up(T['hundred'], '100-win wrestlers')}
       {count_up(T['wins'], 'dual meet wins')}
     </div>

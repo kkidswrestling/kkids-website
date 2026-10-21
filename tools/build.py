@@ -474,9 +474,9 @@ def build_home():
     <div class="numbers">
       <p><b>{TOTALS['team_titles']}</b> PIAA team titles</p>
       <p><b>{TOTALS['state']}</b> individual state titles</p>
-      <p><b>{TOTALS['medals']}</b> state medals</p>
-      <p><b>{TOTALS['regional']}</b> regional titles</p>
-      <p><b>{TOTALS['district']}</b> District XI titles</p>
+      <p><b>{TOTALS['medals']}</b> state placewinners</p>
+      <p><b>{TOTALS['regional']}</b> Northeast Regional champions</p>
+      <p><b>{TOTALS['district']}</b> District XI champions</p>
       <p><b>{TOTALS['hundred']}</b> 100-win wrestlers</p>
       <p><b>{TOTALS['wins']}</b> dual meet wins</p>
     </div>
@@ -1341,10 +1341,10 @@ def build_coaches():
   <div class="wrap">
     <div class="facts-row light">
       <p><b>{h['record']}</b> dual record</p>
-      <p><b>{h['district_champs']}</b> District XI titles</p>
-      <p><b>{h['regional_champs']}</b> regional titles</p>
-      <p><b>{h['state_champs']}</b> PIAA titles</p>
-      <p><b>{h['placewinners']}</b> state medals</p>
+      <p><b>{h['district_champs']}</b> District XI champions</p>
+      <p><b>{h['regional_champs']}</b> Northeast Regional champions</p>
+      <p><b>{h['state_champs']}</b> state champions</p>
+      <p><b>{h['placewinners']}</b> state placewinners</p>
     </div>
     <p class="fine">At Northampton, through the 2025–26 season.</p>
   </div>
