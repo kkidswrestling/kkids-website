@@ -675,7 +675,6 @@ def build_family():
         <li><span><b>Athletic administration.</b> If it still needs attention after that.</span></li>
       </ol>
       <p><b>The 24-hour rule.</b> Emotions run high after a match. Please wait a day before raising a concern with a coach.</p>
-      <p><a class="btn" href="mailto:{M.SITE['email']}">Email the coaches</a></p>
     </div>
     <div>
       <p class="ym-label">Health and weight</p>
