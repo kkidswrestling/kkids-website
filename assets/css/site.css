@@ -1490,3 +1490,4 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .hall-wall .wrap { grid-area: 1 / 1; align-self: end; padding-block: 48px clamp(28px, 4vw, 48px); }
 .page-head.hall-wall::after { background: linear-gradient(180deg, rgba(20,20,20,.25), rgba(20,20,20,.55) 45%, rgba(20,20,20,.92) 92%); }
 @media (max-width: 860px) { .page-head.hall-wall { min-height: 100vw; } .hall-wall .hw-grid { grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(4, 1fr); } }
+.tbanner .t2.t2b { margin-top: 2px; }
