@@ -1444,3 +1444,13 @@ crop = [0, 0, 4032, 960]
 focus = "30% 45%"
 widths = [640, 1200, 1800, 2600]
 file = "originals/batch4_p22-005-058.jpg"
+
+[[photo]]
+id = "senior-night-tight"
+source = "2025-26 banquet program (senior night), cropped close to the seniors and their parents"
+season = "2025-26"
+alt = "Northampton seniors and their parents stand together on the mat on senior night"
+crop = [170, 900, 3260, 1940]
+focus = "50% 40%"
+widths = [640, 1200, 1800, 3090]
+file = "originals/img26_p-027-103.jpg"

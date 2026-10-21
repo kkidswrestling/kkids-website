@@ -1454,3 +1454,9 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .fam-steps li { counter-increment: s; display: grid; grid-template-columns: 34px 1fr; gap: 12px; }
 .fam-steps li::before { content: counter(s); width: 30px; height: 30px; border-radius: 50%; background: var(--blaze); color: var(--ink); display: grid; place-items: center; font-weight: 800; }
 @media (max-width: 760px) { .fam-start, .fam-promise, .fam-grid, .fam-two { grid-template-columns: 1fr; } }
+/* Very wide group photos (e.g. Parents header): on phones show the full width */
+@media (max-width: 760px) {
+  .page-head.fit-photo.wide { padding-top: calc(34vw - 8px); }
+  .page-head.fit-photo.wide .bg { aspect-ratio: 2.97; }
+  .page-head.fit-photo.wide::after { background: linear-gradient(180deg, rgba(20,20,20,0) 20%, rgba(20,20,20,.8) 30vw, rgba(20,20,20,.95) 36vw); }
+}
