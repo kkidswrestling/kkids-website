@@ -954,11 +954,6 @@ def youth_model_html():
              ("Meaningful matches.", "Two competitive teams mean close, real competition all season."),
              ("Coaches who know them.", "The same staff for years, watching them grow."),
              ("Teammates for the journey.", "Built to stay together from Novice to junior high.")]
-    rows = [("Team placement", "Week-one wrestle-offs", "An even mix on each team"),
-            ("Coaching staffs", "Set after wrestle-offs", "Same staff, year after year"),
-            ("Orange", "Advanced wrestlers move to Black", "Develops its own wrestlers"),
-            ("Pressure", "Team spot tied to weight", "Not decided on the scale"),
-            ("A kid’s label", "“A team” or “B team”", "Black or Orange, built as equals")]
     road = [("2026–27:", "a transition year. Some current wrestlers may move to help balance the rosters. Schedules are set by the previous year’s results and will even out as the teams balance."),
             ("Each fall:", "new Novice grads are placed to balance the teams."),
             ("Every season’s end:", "we review what worked and adjust."),
@@ -967,7 +962,7 @@ def youth_model_html():
         ("Develop for the long run, not early wins",
          [("“Focus on long-term learning over winning.”", "Its standard for ages 5–12.", "USA Wrestling · Athlete Development Model"),
           ("Youth program success", "“should not be measured by wins and losses alone.”", "National Wrestling Coaches Association")],
-         "Kids grow on one team for years instead of being sorted by a week-one result."),
+         "Kids grow on one team for years."),
         ("Don’t sort or label kids too early",
          [("Ended national titles", "for its youngest ages to stop “super teams” of 9- and 10-year-olds.", "USA Hockey"),
           ("Don’t cut kids.", "Add teams so more children play.", "Aspen Institute · Project Play")],
@@ -1021,9 +1016,9 @@ def youth_model_html():
       <p class="ym-src">70%: American Academy of Pediatrics, 2024 · Reasons: youth-sports dropout surveys</p></div></div>
     <p class="ym-bar">Our model is built to guard against both.</p>
     <div class="ym-two">
-      <div><h3><em>1</em> It stopped being fun</h3><div class="ym-change"><p class="ym-mini">What changes</p><p>Two competitive teams, so every kid gets meaningful matches.</p><p>Team placement is never decided on the scale.</p></div>
+      <div><h3><em>1</em> It stopped being fun</h3><div class="ym-change"><p class="ym-mini">How our model helps</p><p>Two competitive teams, so every kid gets meaningful matches.</p><p>Team placement is never decided on the scale.</p></div>
         <div class="ym-res"><p><b>Kids enjoy close competition</b> more than blowouts, even when they lose.</p><p class="ym-src">J. Engh, National Alliance for Youth Sports, 2019</p><p><b>No weight loss at ages 5–12</b> except for health reasons.</p><p class="ym-src">USA Wrestling, Athlete Development Model</p></div></div>
-      <div><h3><em>2</em> “I’m not good enough”</h3><div class="ym-change"><p class="ym-mini">What changes</p><p>Our goal: no A team, no B team. Each team gets an even mix of experience levels.</p><p>Over time, two equally strong teams.</p></div>
+      <div><h3><em>2</em> “I’m not good enough”</h3><div class="ym-change"><p class="ym-mini">How our model helps</p><p>Our goal: no A team, no B team. Each team gets an even mix of experience levels.</p><p>Over time, two equally strong teams.</p></div>
         <div class="ym-res"><p><b>Sorted into A, B, and C teams,</b> 9- and 10-year-olds came to define themselves by their team.</p><p class="ym-src">Wrang et al., Sport, Exercise, and Performance Psychology, 2023</p><p><b>Don’t label young athletes:</b> “No child qualifies as elite before growing into their body.”</p><p class="ym-src">Aspen Institute Project Play</p></div></div>
     </div>
     <div class="ym-plus"><h3>Plus: steady coaches</h3><p>Each team keeps its coaches year to year, so coaches and wrestlers build real relationships over several seasons, and kids always know who’s in their corner.</p></div>
@@ -1031,10 +1026,8 @@ def youth_model_html():
 </section>
 <section class="band ym" aria-labelledby="ym-change">
   <div class="wrap ym-wrap">
-    <p class="ym-label">What’s changing</p>
-    <h2 id="ym-change">Then and now</h2>
-    <div class="table-wrap" tabindex="0" role="region" aria-label="Then and now"><table class="ym-table"><thead><tr><th scope="col"><span class="visually-hidden">Topic</span></th><th scope="col">Then</th><th scope="col">Now</th></tr></thead>
-      <tbody>{"".join(f'<tr><th scope="row">{a}</th><td>{b}</td><td>{c}</td></tr>' for a, b, c in rows)}</tbody></table></div>
+    <p class="ym-label">Looking ahead</p>
+    <h2 id="ym-change">The roadmap</h2>
     <div class="ym-two ym-gap">
       <div class="ym-move"><p class="ym-mini">When does a wrestler move?</p><p>Wrestlers usually stay put, but coaches can move a wrestler who’s stuck behind a teammate on JV. <b>For example:</b></p>
         <ol role="list"><li><span class="ym-tag">3rd gr</span><span>A wrestler is placed on <b>Orange</b>.</span></li><li><span class="ym-tag">5th gr</span><span>They improve a lot, but they’re the same weight as Orange’s varsity starter, so they’re stuck on JV.</span></li><li><span class="ym-tag dark">Move</span><span>Coaches move them to <b>Black</b> to wrestle varsity. Now both wrestlers are varsity starters.</span></li></ol>
@@ -1090,7 +1083,7 @@ def build_youth():
       <details><summary>Who can wrestle?</summary><p>Boys and girls in kindergarten through 6th grade.</p></details>
       <details><summary>Does my child need experience?</summary><p>No. Novice is generally for grades K–2 and focuses on fun and fundamentals. An experienced 2nd grader may move up to Black or Orange.</p></details>
       <details><summary>How are wrestlers placed on Black and Orange?</summary><p>As a team. Black, Orange, and Novice coaches place wrestlers together, so each team gets an even mix of experience levels and weights. No team is ranked above the other.</p></details>
-      <details><summary>Won’t this hold back our more advanced wrestlers?</summary><p>No. Black and Orange varsity and JV still practice together, so advanced wrestlers keep training with experienced partners. They lose a label at age eight, not a chance to grow.</p></details>
+      <details><summary>Won’t this hold back our more advanced wrestlers?</summary><p>No. Black and Orange varsity and JV still practice together, so advanced wrestlers keep training with experienced partners.</p></details>
       <details><summary>Will my child still get strong competition?</summary><p>Yes. Each team has its own full schedule, and Black and Orange wrestle each other during the season.</p></details>
       <details><summary>Will current wrestlers change teams?</summary><p>Some may, to help balance the rosters. Most of the shift happens gradually, as each new class moves up from Novice.</p></details>
       <details><summary>Isn’t earning your spot a good lesson?</summary><p>Yes, and wrestlers still earn varsity spots. A JV wrestler can move up to varsity during the season, so there’s always a goal to chase.</p></details>
