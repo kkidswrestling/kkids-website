@@ -92,7 +92,7 @@ def honors_for(name, hn=None):
                 honors.append([int("20" + s["id"][-2:]), f"JV District {place.lower() if place != 'Champion' else 'champion'}", ""])
     seen = set(); clean = []
     def rank(label):
-        for i, key in enumerate(("PIAA champion", "PIAA", "Northeast Regional", "District XI", "100-Win", "Outstanding", "EPC")):
+        for i, key in enumerate(("PIAA Champion", "PIAA", "Northeast Regional", "District XI", "100-Win", "Outstanding", "EPC")):
             if label.startswith(key):
                 return i
         return 9 if label.startswith("School record") else 8
@@ -195,12 +195,12 @@ def build_home():
     season, roster = roster_data()
     champ = lambda pid, name, wt, lines: (
         f'<article class="champ-card">{S.picture(R, pid, "(min-width: 900px) 40vw, 90vw")}'
-        f'<div class="champ-body"><p class="champ-tag">PIAA champion at {wt} pounds</p><h3><a href="{wrestler_url(R, name)}">{name}</a></h3>'
+        f'<div class="champ-body"><p class="champ-tag">PIAA Champion at {wt} pounds</p><h3><a href="{wrestler_url(R, name)}">{name}</a></h3>'
         f'<ul role="list">{"".join(f"<li>{l}</li>" for l in lines)}</ul></div></article>')
     T = S.TOTALS
     recent = S.HALL["state"][::-1]
     inside = [("facilities/", "practice-room", "The Room", "Where every Konkrete Kid is made: the wrestling room and Pete Schneider Gymnasium."),
-              ("champions/", "showcase-arms-up", "The Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a state medalist."),
+              ("champions/", "showcase-arms-up", "The Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a State Medalist."),
               ("story/", "program-family", "The Community", "Generations of families in the same black and orange."),
               ("join/", "youth-champs", "The Next Generation", "Kindergarten through varsity, one program and one path.")]
     inside_html = "".join(
@@ -228,10 +228,10 @@ def build_home():
 
 <section class="band dark champs" aria-labelledby="champs-title">
   <div class="wrap">
-    {S.section_head('<span id="champs-title">Reigning state champions</span>', 'Brayden Wenrich and Gabe Ballard won PIAA titles in Hershey in March 2026. Both are back this season.')}
+    {S.section_head('<span id="champs-title">Reigning State Champions</span>', 'Brayden Wenrich and Gabe Ballard won PIAA titles in Hershey in March 2026. Both are back this season.')}
     <div class="champ-grid">
-      {champ("portrait-wenrich-2026", "Brayden Wenrich", "114", [f"{w['wins']}–{w['losses']} as a sophomore", "District XI, Northeast Regional, and PIAA champion", "Fastest pin of the season: 9 seconds", f"{w['career_wins']}–{w['career_losses']} career record"])}
-      {champ("portrait-ballard-2026", "Gabe Ballard", "152", [f"{b['wins']}–{b['losses']} as a junior", "District XI, Northeast Regional, and PIAA champion", "114 takedowns, 238 season team points", f"{b['career_wins']} career wins, a member of the 100-Win Club"])}
+      {champ("portrait-wenrich-2026", "Brayden Wenrich", "114", [f"{w['wins']}–{w['losses']} as a sophomore", "District XI, Northeast Regional, and PIAA Champion", "Fastest pin of the season: 9 seconds", f"{w['career_wins']}–{w['career_losses']} career record"])}
+      {champ("portrait-ballard-2026", "Gabe Ballard", "152", [f"{b['wins']}–{b['losses']} as a junior", "District XI, Northeast Regional, and PIAA Champion", "114 takedowns, 238 season team points", f"{b['career_wins']} career wins, a member of the 100-Win Club"])}
     </div>
   </div>
 </section>
@@ -242,12 +242,12 @@ def build_home():
     <div class="big-numbers">
       {count_up(T['team_titles'], 'PIAA team titles')}
       {count_up(T['state'], 'individual state titles')}
-      {count_up(T['medals'], 'state placewinners')}
-      {count_up(T['district'], 'District XI champions')}
+      {count_up(T['medals'], 'State Placewinners')}
+      {count_up(T['district'], 'District XI Champions')}
       {count_up(T['hundred'], '100-win wrestlers')}
       {count_up(T['wins'], 'dual meet wins')}
     </div>
-    <p class="numbers-note">{T['streak'][2]} straight seasons with a state medalist, every year since {T['streak'][0]}.</p>
+    <p class="numbers-note">{T['streak'][2]} straight seasons with a State Medalist, every year since {T['streak'][0]}.</p>
   </div>
 </section>
 
@@ -485,7 +485,7 @@ def build_story():
     <div class="prose">
       <h2>Since 1945</h2>
       <p>Northampton Wrestling began in 1945. More than 80 seasons later, the program runs from kindergarten through varsity, and every Konkrete Kid comes through the same room, the same expectations, and the same black and orange.</p>
-      <p>Along the way the program has won {T['team_titles']} PIAA team titles, won {T['state']} individual state titles, and earned {T['medals']} state medals, with a state medalist every year since {T['streak'][0]}. Eight head coaches have led the program, and {T['hundred']} wrestlers have won 100 or more varsity matches.</p>
+      <p>Along the way the program has won {T['team_titles']} PIAA team titles, won {T['state']} individual state titles, and earned {T['medals']} state medals, with a State Medalist every year since {T['streak'][0]}. Eight head coaches have led the program, and {T['hundred']} wrestlers have won 100 or more varsity matches.</p>
       <h2>What we believe</h2>
       <p>Our mission is to give young people a supportive, demanding place to grow as wrestlers and as responsible, resilient, respectful members of the community.</p>
       <p class="actions"><a class="btn" href="../timeline/">Explore the timeline</a><a class="btn ghost dark-ink" href="../champions/">Hall of Champions</a></p>
@@ -517,7 +517,7 @@ def build_facilities():
     {M.figure(R, "practice-room", "(min-width: 900px) 45vw, 100vw", "wide-fig")}
     <div class="prose">
       <h2>The room</h2>
-      <p>The wrestling room is where the work happens, with the names of Northampton’s district, regional, and state champions on the walls.</p>
+      <p>The wrestling room is where the work happens, with the names of Northampton’s district, regional, and State Champions on the walls.</p>
     </div>
   </div>
 </section>
@@ -529,9 +529,9 @@ def build_facilities():
 def build_join():
     R = "../"
     T = M.TOTALS
-    pillars = [("Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a state medalist."),
-               ("Coaching", "A staff that includes a PIAA state champion, several state placewinners, and coaches who have been in the program for more than 20 years."),
-               ("Training partners", "You train every day beside state champions and state medalists."),
+    pillars = [("Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a State Medalist."),
+               ("Coaching", "A staff that includes a PIAA State Champion, several State Placewinners, and coaches who have been in the program for more than 20 years."),
+               ("Training partners", "You train every day beside State Champions and State Medalists."),
                ("Competition", "The varsity wrestles at the Ironman, King of the Mountain, the Mid-Winter Mayhem, and the Parkland Duals."),
                ("Community", "Families from kindergarten through alumni, all in the same black and orange.")]
     path = [("Youth", "Grades K–6", "Northampton Black, Orange, and Novice teams in the Valley Elementary Wrestling League.", "../youth/"),
@@ -551,7 +551,7 @@ def build_join():
   <div class="wrap">
     <h2 id="path-title">The path</h2>
     <ol class="path-steps" role="list">{''.join(f'<li><a href="{h}"><span class="ps-n">{i + 1}</span><b>{a}</b><i>{g}</i><span>{c}</span></a></li>' for i, (a, g, c, h) in enumerate(path))}</ol>
-    <p class="lede">Brayden Wenrich won a District XI junior high title in 2024. Two years later he was a state champion.</p>
+    <p class="lede">Brayden Wenrich won a District XI junior high title in 2024. Two years later he was a State Champion.</p>
   </div>
 </section>
 <section class="band">
@@ -618,8 +618,8 @@ def build_family():
 def build_alumni():
     R = "../"
     home = [("Mike Sommer", "Class of 1997 · varsity assistant"), ("Marcus Newsom", "Northampton alumnus · varsity assistant"),
-            ("John Paukovits", "3x District XI champion · varsity assistant"), ("Ethan Szerencsits", "Class of 2020 · varsity assistant"),
-            ("Braden Turner", "2008 District and Regional champion · junior high assistant"), ("Justin Haupt", "1998 and 1999 District XI champion · junior high assistant")]
+            ("John Paukovits", "3x District XI Champion · varsity assistant"), ("Ethan Szerencsits", "Class of 2020 · varsity assistant"),
+            ("Braden Turner", "2008 District and Regional Champion · junior high assistant"), ("Justin Haupt", "1998 and 1999 District XI Champion · junior high assistant")]
     body = f"""
 {M.page_head(R, "Alumni", "Once a Konkrete Kid, always a Konkrete Kid.", "coaches-embrace", "60% 8%")}
 <section class="band">
@@ -655,7 +655,7 @@ def build_follow():
     return M.page("follow/index.html", "Follow", "Follow Northampton Wrestling: sign up for program updates and find the team on social media.", body, "follow/")
 
 
-# ------------------------------------------------------------------ state champion pages
+# ------------------------------------------------------------------ State Champion pages
 def yt_id(url):
     import re
     m = re.search(r"(?:v=|youtu\.be/|embed/|shorts/)([A-Za-z0-9_-]{11})", url)
@@ -678,9 +678,9 @@ def build_champion_pages():
         for r in titles:
             f = finals.get(r["year"])
             det = (f'<p class="final">Final: {e(f[3])}{(" over " + e(f[1])) if f[1] else ""}{(", " + e(f[2])) if f[2] else ""}</p>') if f else ""
-            tcards.append(f'<li><span class="ty">{r["year"]}</span><span class="tw">{e(r["weight"])}</span><span class="tt">{"PIAA Class AAA champion" if int(r["year"]) >= 1974 else "PIAA state champion"}</span>{det}</li>')
+            tcards.append(f'<li><span class="ty">{r["year"]}</span><span class="tw">{e(r["weight"])}</span><span class="tt">{"PIAA Class AAA Champion" if int(r["year"]) >= 1974 else "PIAA State Champion"}</span>{det}</li>')
         n = len(titles)
-        headline = f"{n}x PIAA state champion" if n > 1 else "PIAA state champion"
+        headline = f"{n}x PIAA State Champion" if n > 1 else "PIAA State Champion"
         hero = c.get("hero")
         if hero:
             head = (f'<header class="page-head has-photo champ-head">{M.picture(R, hero, "100vw", "bg", True, alt="")}'
@@ -783,8 +783,8 @@ def build_team_title_pages():
         podium = [(1, r) for r in champs] + [(int(r["place"]), r) for r in medals]
         place_label = lambda p: "Champion" if p == 1 else f"{p}{M.ordinal_suffix(p)}"
         pod = "".join(f'<li class="pl-{min(p, 4)}"><span class="pp">{place_label(p)}</span><span class="pn">{who(r["wrestler"])}</span><span class="pw">{e(r["weight"])}</span></li>' for p, r in podium)
-        stats = [(s.get("record", ""), "dual record"), (str(len(champs)), "state champion" + ("s" if len(champs) != 1 else "")),
-                 (str(len(podium)), "state place winners"), (str(len(dist)), "District XI champions"), (str(len(reg)), "Regional champions")]
+        stats = [(s.get("record", ""), "dual record"), (str(len(champs)), "State Champion" + ("s" if len(champs) != 1 else "")),
+                 (str(len(podium)), "State Place Winners"), (str(len(dist)), "District XI Champions"), (str(len(reg)), "Regional Champions")]
         stat_html = "".join(f'<li><b>{e(v)}</b><span>{e(l)}</span></li>' for v, l in stats if v)
         story = "".join("<p>" + re.sub(r"(\d+(?:\.\d+)?[–-]\d+(?:\.\d+)?)", r'<span class="nw">\1</span>', e(x)) + "</p>" for x in s.get("story", []))
         if not story:
@@ -829,14 +829,14 @@ def build_team_title_pages():
   <div class="wrap split even">
     <div>{f'<h2>Season highlights</h2><ol class="hl-list" role="list">{hl}</ol>' if hl else ''}</div>
     <div>
-      {f'<h2>District XI champions</h2><ul class="mini-list" role="list">{lst(dist)}</ul>' if dist else ''}
-      {f'<h2>Northeast Regional champions</h2><ul class="mini-list" role="list">{lst(reg)}</ul>' if reg else ''}
+      {f'<h2>District XI Champions</h2><ul class="mini-list" role="list">{lst(dist)}</ul>' if dist else ''}
+      {f'<h2>Northeast Regional Champions</h2><ul class="mini-list" role="list">{lst(reg)}</ul>' if reg else ''}
     </div>
   </div>
 </section>
 {nav}
 """
-        M.page(f"champions/team/{y}/index.html", f"{y} PIAA team champions", f"Northampton's {row['season']} PIAA Class AAA team championship season: record, story, state place winners, and postseason.", body, "champions/")
+        M.page(f"champions/team/{y}/index.html", f"{y} PIAA team champions", f"Northampton's {row['season']} PIAA Class AAA team championship season: record, story, State Place Winners, and postseason.", body, "champions/")
         urls.append(M.SITE["domain"] + f"/champions/team/{y}/")
     return urls
 

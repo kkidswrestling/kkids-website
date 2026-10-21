@@ -6,7 +6,7 @@ id = "2025-26"
 label = "2025–26"
 dual_record = "14–3"
 team_photo = "team-mayhem"
-headline = "Two state champions and a 3rd-place finish at Hershey."
+headline = "Two State Champions and a 3rd-place finish at Hershey."
 team_finishes = [
   ["Parkland Duals", "Champion"],
   ["PIAA State Tournament", "3rd"],
@@ -48,8 +48,8 @@ awards = [
   ["Most Team Points", "Gabe Ballard (238)"],
 ]
 portraits = [
-  ["portrait-wenrich-2026", "Brayden Wenrich", "State champion, 114"],
-  ["portrait-ballard-2026", "Gabe Ballard", "State champion, 152"],
+  ["portrait-wenrich-2026", "Brayden Wenrich", "State Champion, 114"],
+  ["portrait-ballard-2026", "Gabe Ballard", "State Champion, 152"],
   ["portrait-wagner-2026", "Trey Wagner", "State 7th, 139"],
   ["portrait-sommer-2026", "Matthew Sommer", "State qualifier, 133"],
   ["portrait-chlebove-2026", "Carter Chlebove", "State qualifier, 160"],
@@ -167,7 +167,7 @@ roster = [
   ["Freshmen", "Carter Chlebove, Giuliano Labbadia, Logan Rusnock, Brayden Wenrich"],
 ]
 gallery = ["season25-hardware", "season25-hersheys", "season25-hotel", "season25-b", "season25-g", "season25-a", "season25-c", "season25-d", "season25-e", "season25-stands", "season25-f", "season25-h", "season25-i", "bench-final-seconds"]
-junior_high = "6–4 in duals and 10th at the District XI Junior High Tournament under head coach Craig Israel. District placewinners: Ashton Szoke (4th), Mason Frisoli (5th), Nick Harding (6th)."
+junior_high = "6–4 in duals and 10th at the District XI Junior High Tournament under head coach Craig Israel. District Placewinners: Ashton Szoke (4th), Mason Frisoli (5th), Nick Harding (6th)."
 
 [[season]]
 id = "2023-24"
@@ -190,7 +190,7 @@ postseason = [
   ["Landon Roland", "", "6th", "", ""],
 ]
 portraits = [
-  ["portrait-wagner-2024", "Trey Wagner", "State champion, 127"],
+  ["portrait-wagner-2024", "Trey Wagner", "State Champion, 127"],
   ["portrait-ballard-2024", "Gabe Ballard", "State 4th, 114"],
   ["portrait-noe-2024", "Austin Noe", "State qualifier"],
   ["portrait-grell-2024", "Gavin Grell", "State qualifier"],
@@ -214,7 +214,7 @@ jv = [
   ["Kody Ziegenfus", "4th"], ["Colin Turner", "5th"], ["Aaden Clough", "6th"],
 ]
 seniors_list = "Austin Noe, Landon Roland, Kody Ziegenfus"
-junior_high = "District XI Junior High Tournament team champions with a 13–1 dual record under head coach Joe Tocci. District champions: Brayden Wenrich, Davi Glykas, Carter Chlebove."
+junior_high = "District XI Junior High Tournament team champions with a 13–1 dual record under head coach Joe Tocci. District Champions: Brayden Wenrich, Davi Glykas, Carter Chlebove."
 
 [[season]]
 id = "2022-23"
@@ -223,8 +223,8 @@ dual_record = "9–3"
 team_photo = "team-2023"
 headline = "Dagen Condomitti and Carson Wagner finish their careers on the state podium."
 summary = [
-  "Dagen Condomitti finished with 118 career wins, three District XI titles, four Northeast Regional titles (just the second four-time regional champion in school history), and three state medals, including 3rd as a senior.",
-  "Carson Wagner finished with 115 career wins, a District XI title, a Northeast Regional title, and a state runner-up finish, becoming just the fourth four-time state placewinner in Northampton history.",
+  "Dagen Condomitti finished with 118 career wins, three District XI titles, four Northeast Regional titles (just the second four-time Regional Champion in school history), and three state medals, including 3rd as a senior.",
+  "Carson Wagner finished with 115 career wins, a District XI title, a Northeast Regional title, and a state runner-up finish, becoming just the fourth four-time State Placewinner in Northampton history.",
   "Condomitti and freshman Trey Wagner won Holiday Classic titles, Carson Wagner and Condomitti repeated as Top Hat champions, and Condomitti was runner-up at the Beast of the East.",
 ]
 team_finishes = [
@@ -271,7 +271,7 @@ roster = [
   ["Freshmen", "Michael DiSante, Chase Grabfelder, Brandon McEntire, Matthew Sommer, Dylan Stuhldreher, Trey Wagner, Robert Weaver, Elijah Weidner"],
 ]
 coaches = "Head coach Joe Provini, with assistants Mike Sommer, Jim Derr, and Dennis Condomitti."
-junior_high = "7–3 in duals and 3rd at the District XI Junior High Tournament under head coach Joe Tocci. District champions: Gabe Ballard and Parker Williams. Placewinners: Carter Chlebove (3rd), Chace Roland (3rd), Daniel Herritt (4th), Joell Small (6th), Ben Schoeneberger (7th), Luke Rogan (7th), Aaden Clough (8th)."
+junior_high = "7–3 in duals and 3rd at the District XI Junior High Tournament under head coach Joe Tocci. District Champions: Gabe Ballard and Parker Williams. Placewinners: Carter Chlebove (3rd), Chace Roland (3rd), Daniel Herritt (4th), Joell Small (6th), Ben Schoeneberger (7th), Luke Rogan (7th), Aaden Clough (8th)."
 gallery = ["coach-embrace", "showcase-roar", "carson-semis-2023", "carson-raised-2023", "team-casual-2023", "jh-team-2023", "jh-podium-2023"]
 
 [[season]]
@@ -279,11 +279,11 @@ id = "2021-22"
 label = "2021–22"
 dual_record = "13–2"
 team_photo = "team-2022"
-headline = "Coach Seth Lisa’s final season, and a District XI champion junior high team."
+headline = "Coach Seth Lisa’s final season, and a District XI Champion junior high team."
 summary = [
   "Dagen Condomitti swept the District XI and Northeast Regional titles at 152, was named Outstanding Wrestler at both tournaments, and placed 4th at states. Carson Wagner was District XI runner-up at 113 and also placed 4th at Hershey, and Christian Fritz reached states at 145.",
   "It was Seth Lisa’s 11th and final season as head coach. He was named District XI Coach of the Year for the second time, and his teams won the 2017 Holiday Classic, the 2017 Cumberland Valley Duals, three Parkland Duals titles, and a runner-up finish at the 2019 PIAA team duals.",
-  "The junior high went 17–1 and won the District XI Junior High Tournament, the Cumberland Valley Duals, and the Northern Invitational. Its district champions were Brayden Wenrich, Gabe Ballard, Chase Grabfelder, and Trey Wagner, three of whom would become state champions.",
+  "The junior high went 17–1 and won the District XI Junior High Tournament, the Cumberland Valley Duals, and the Northern Invitational. Its District Champions were Brayden Wenrich, Gabe Ballard, Chase Grabfelder, and Trey Wagner, three of whom would become State Champions.",
 ]
 team_finishes = [
   ["PIAA District XI AAA", "3rd"],
@@ -329,5 +329,5 @@ roster = [
   ["Freshmen", "Devlin Chevere, Gavin Grell, Jared Koch"],
 ]
 coaches = "Head coach Seth Lisa, with assistants Mike Sommer, Brett Martinez, Dennis Condomitti, and Adam Hluschak."
-junior_high = "17–1 in duals under head coach Jim Derr, the 2022 District XI and Pennsylvania Junior High Coach of the Year. Champions of the District XI Junior High Tournament, the Cumberland Valley Duals, and the Northern Invitational. District champions: Brayden Wenrich, Gabe Ballard, Chase Grabfelder, Trey Wagner. Northern Invitational champions: Brayden Wenrich, Trey Wagner."
+junior_high = "17–1 in duals under head coach Jim Derr, the 2022 District XI and Pennsylvania Junior High Coach of the Year. Champions of the District XI Junior High Tournament, the Cumberland Valley Duals, and the Northern Invitational. District Champions: Brayden Wenrich, Gabe Ballard, Chase Grabfelder, Trey Wagner. Northern Invitational champions: Brayden Wenrich, Trey Wagner."
 gallery = ["lisa-celebrates", "action-2022a", "action-2022b", "action-2022c", "action-2022d", "action-2022e", "action-2022f", "action-2022g", "jh-districts-2022", "jh-medals-2022", "derr-coy-2022"]

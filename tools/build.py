@@ -310,8 +310,8 @@ def multi_lists():
     """[(category, [(times, names), ...]), ...] for wrestlers with 2+ of an honor."""
     c, medals = counts()
     out = []
-    for title, ctr in (("State medalists", medals), ("Regional champions", c["regional"]),
-                       ("District XI champions", c["district"])):
+    for title, ctr in (("State Medalists", medals), ("Regional Champions", c["regional"]),
+                       ("District XI Champions", c["district"])):
         tiers = []
         for k in (4, 3, 2):
             names = sorted((n for n, v in ctr.items() if v == k), key=lambda s: s.split()[-1] + s)
@@ -369,7 +369,7 @@ SEARCH_ALIASES = {"Gabriel Ballard": ["Gabe Ballard"], "Edward Keglovits": ["Ed 
 
 def hall_json():
     people = defaultdict(lambda: {"honors": []})
-    for k, label in (("state", "PIAA champion"), ("regional", "Northeast Regional champion"), ("district", "District XI champion")):
+    for k, label in (("state", "PIAA Champion"), ("regional", "Northeast Regional Champion"), ("district", "District XI Champion")):
         for r in HALL[k]:
             n = norm(r["wrestler"])
             people[n]["honors"].append([int(r["year"]), label, r["weight"]])
@@ -402,7 +402,7 @@ def build_home():
     wins = {r["wrestler"]: r for r in STATS}
     champ = lambda pid, name, wt, lines: (
         f'<article class="champ-card">{picture(R, pid, "(min-width: 900px) 40vw, 90vw")}'
-        f'<div class="champ-body"><p class="champ-tag">PIAA champion at {wt} pounds</p><h3>{name}</h3>'
+        f'<div class="champ-body"><p class="champ-tag">PIAA Champion at {wt} pounds</p><h3>{name}</h3>'
         f'<ul role="list">{"".join(f"<li>{l}</li>" for l in lines)}</ul></div></article>')
     w = wins["Brayden Wenrich"]
     b = wins["Gabe Ballard"]
@@ -423,21 +423,21 @@ def build_home():
   <div class="wrap facts-row">
     <p><b>{s['dual_record']}</b> dual meet record</p>
     <p><b>3rd</b> at the PIAA State Tournament</p>
-    <p><b>2</b> state champions</p>
-    <p><b>3</b> Northeast Regional champions</p>
+    <p><b>2</b> State Champions</p>
+    <p><b>3</b> Northeast Regional Champions</p>
     <p><b>5</b> state qualifiers</p>
   </div>
 </section>
 
 <section class="band dark champs" aria-labelledby="champs-title">
   <div class="wrap">
-    {section_head('<span id="champs-title">Two state champions</span>', 'Brayden Wenrich and Gabe Ballard won PIAA titles in Hershey in March 2026, the first time since 2004 that Northampton crowned two state champions in the same year.')}
+    {section_head('<span id="champs-title">Two State Champions</span>', 'Brayden Wenrich and Gabe Ballard won PIAA titles in Hershey in March 2026, the first time since 2004 that Northampton crowned two State Champions in the same year.')}
     <div class="champ-grid">
-      {champ("portrait-wenrich-2026", "Brayden Wenrich", "114", [f"{w['wins']}–{w['losses']} as a sophomore", "District XI, Northeast Regional, and PIAA champion", "Fastest pin of the season: 9 seconds", f"{w['career_wins']}–{w['career_losses']} career record"])}
-      {champ("portrait-ballard-2026", "Gabe Ballard", "152", [f"{b['wins']}–{b['losses']} as a junior", "District XI, Northeast Regional, and PIAA champion", "114 takedowns, 238 team points", f"{b['career_wins']} career wins"])}
+      {champ("portrait-wenrich-2026", "Brayden Wenrich", "114", [f"{w['wins']}–{w['losses']} as a sophomore", "District XI, Northeast Regional, and PIAA Champion", "Fastest pin of the season: 9 seconds", f"{w['career_wins']}–{w['career_losses']} career record"])}
+      {champ("portrait-ballard-2026", "Gabe Ballard", "152", [f"{b['wins']}–{b['losses']} as a junior", "District XI, Northeast Regional, and PIAA Champion", "114 takedowns, 238 team points", f"{b['career_wins']} career wins"])}
     </div>
     <div class="also">
-      <article class="mini">{picture(R, "portrait-wagner-2026", "160px")}<div><h3>Trey Wagner</h3><p>Northeast Regional champion and state 7th at 139. Finished his career {t['career_wins']}–{t['career_losses']}.</p></div></article>
+      <article class="mini">{picture(R, "portrait-wagner-2026", "160px")}<div><h3>Trey Wagner</h3><p>Northeast Regional Champion and state 7th at 139. Finished his career {t['career_wins']}–{t['career_losses']}.</p></div></article>
       <article class="mini">{picture(R, "portrait-sommer-2026", "160px")}<div><h3>Matthew Sommer</h3><p>State qualifier at 133.</p></div></article>
       <article class="mini">{picture(R, "portrait-chlebove-2026", "160px")}<div><h3>Carter Chlebove</h3><p>State qualifier at 160.</p></div></article>
     </div>
@@ -468,15 +468,15 @@ def build_home():
 
 <section class="band concrete" aria-labelledby="wall-title">
   <div class="wrap">
-    {section_head('<span id="wall-title">The banner wall</span>', f'{TOTALS["state"]} PIAA state champions since 1955. These are the last ten.')}
+    {section_head('<span id="wall-title">The banner wall</span>', f'{TOTALS["state"]} PIAA State Champions since 1955. These are the last ten.')}
     <p class="wall-hint"><span aria-hidden="true">▶</span> Tap a banner for the champion’s story. ▶ means there’s state-final video.</p>
     <ol class="pennants" role="list" reversed>{''.join(pennant(r['year'], norm(r['wrestler']), r['weight'], R=R) for r in recent[:10])}</ol>
     <div class="numbers">
       <p><b>{TOTALS['team_titles']}</b> PIAA team titles</p>
       <p><b>{TOTALS['state']}</b> individual state titles</p>
-      <p><b>{TOTALS['medals']}</b> state placewinners</p>
-      <p><b>{TOTALS['regional']}</b> Northeast Regional champions</p>
-      <p><b>{TOTALS['district']}</b> District XI champions</p>
+      <p><b>{TOTALS['medals']}</b> State Placewinners</p>
+      <p><b>{TOTALS['regional']}</b> Northeast Regional Champions</p>
+      <p><b>{TOTALS['district']}</b> District XI Champions</p>
       <p><b>{TOTALS['hundred']}</b> 100-win wrestlers</p>
       <p><b>{TOTALS['wins']}</b> dual meet wins</p>
     </div>
@@ -562,7 +562,7 @@ def build_high_school():
     <div class="prose">
       <h2 id="now-title">2026–27</h2>
       <p>{opener} Lineups and results will be added during the season.</p>
-      <p>Both of last season’s state champions are back: Brayden Wenrich is now a junior and Gabe Ballard a senior.</p>
+      <p>Both of last season’s State Champions are back: Brayden Wenrich is now a junior and Gabe Ballard a senior.</p>
       <p class="actions"><a class="btn" href="../schedule/">Schedule</a><a class="btn ghost dark-ink" href="../coaching-staff/">Coaching staff</a></p>
     </div>
   </div>
@@ -580,9 +580,9 @@ def build_high_school():
       <p><b>{tw}–{tl}</b> individual record</p>
     </div>
     <div class="medalists">
-      {medal_card("portrait-wenrich-2026", "Brayden Wenrich", "PIAA champion, 114")}
-      {medal_card("portrait-ballard-2026", "Gabe Ballard", "PIAA champion, 152")}
-      {medal_card("portrait-wagner-2026", "Trey Wagner", "Regional champion, PIAA 7th, 139")}
+      {medal_card("portrait-wenrich-2026", "Brayden Wenrich", "PIAA Champion, 114")}
+      {medal_card("portrait-ballard-2026", "Gabe Ballard", "PIAA Champion, 152")}
+      {medal_card("portrait-wagner-2026", "Trey Wagner", "Regional Champion, PIAA 7th, 139")}
       {medal_card("portrait-sommer-2026", "Matthew Sommer", "PIAA qualifier, 133")}
       {medal_card("portrait-chlebove-2026", "Carter Chlebove", "PIAA qualifier, 160")}
     </div>
@@ -655,7 +655,7 @@ def build_high_school():
     <div class="prose">
       <h2>Program awards</h2>
       <details><summary>40 Point Club</summary><p>Wrestlers who score 40 team points in dual meets in a season earn a winter jacket in year one, a spring jacket in year two, a hoodie in year three, and a scholarship in year four.</p></details>
-      <details><summary>Chris Gmitter Picture Plaque Awards</summary><p>Regional qualifiers receive a plaque. District champions, regional champions, and state qualifiers receive a picture plaque, and district, regional, and state placewinners have their names added to the plaques in the wrestling room.</p></details>
+      <details><summary>Chris Gmitter Picture Plaque Awards</summary><p>Regional qualifiers receive a plaque. District Champions, Regional Champions, and state qualifiers receive a picture plaque, and district, regional, and State Placewinners have their names added to the plaques in the wrestling room.</p></details>
       <details><summary>Charlie Lerch Memorial Scholarship</summary><p>Awarded to graduating seniors who wrestled in the Northampton program for at least three seasons, including senior year, and who enroll in higher education.</p></details>
       <details><summary>Brandon M. Sommer Memorial Scholarship</summary><p>A $500 award to the senior, a three-year member of the team, with the highest combined score for GPA and District, Regional, and State placement.</p></details>
       <p><a class="text-link" href="../seasons/">Earlier seasons</a></p>
@@ -663,7 +663,7 @@ def build_high_school():
   </div>
 </section>
 """
-    return page("high-school/index.html", "High School", "Northampton High School wrestling: 2025–26 results, state champions, final stats, awards, and the Class of 2026.", body, "high-school/", og_image="team-mayhem")
+    return page("high-school/index.html", "High School", "Northampton High School wrestling: 2025–26 results, State Champions, final stats, awards, and the Class of 2026.", body, "high-school/", og_image="team-mayhem")
 
 
 
@@ -881,7 +881,7 @@ def build_junior_high():
     <div>
       <h2>2026–27 coaching staff</h2>
       <ul class="results" role="list">{result_rows(staff)}</ul>
-      <p class="fine">Coaches Braden Turner and Justin Haupt are both former District XI and Northeast Regional champions for Northampton.</p>
+      <p class="fine">Coaches Braden Turner and Justin Haupt are both former District XI and Northeast Regional Champions for Northampton.</p>
     </div>
     <div>
       <h2>2025–26 recap</h2>
@@ -892,17 +892,17 @@ def build_junior_high():
 <section class="band dark">
   <div class="wrap split even">
     <div>
-      <h2>2026 District XI placewinners</h2>
+      <h2>2026 District XI Placewinners</h2>
       <ul class="results on-dark" role="list">{result_rows(jh['placewinners'])}</ul>
     </div>
     <div class="prose">
       <h2>Recent history</h2>
-      <p>In 2023–24 the junior high went 13–1 and won the District XI Junior High Tournament team title under Coach Joe Tocci. Three of that team’s district champions, Brayden Wenrich, Davi Glykas, and Carter Chlebove, were in the varsity lineup two seasons later, and Wenrich won a state title.</p>
+      <p>In 2023–24 the junior high went 13–1 and won the District XI Junior High Tournament team title under Coach Joe Tocci. Three of that team’s District Champions, Brayden Wenrich, Davi Glykas, and Carter Chlebove, were in the varsity lineup two seasons later, and Wenrich won a state title.</p>
     </div>
   </div>
 </section>
 """
-    return page("junior-high/index.html", "Junior High", "Northampton junior high wrestling: coaching staff, results, and district placewinners.", body, "junior-high/", og_image="jh-districts")
+    return page("junior-high/index.html", "Junior High", "Northampton junior high wrestling: coaching staff, results, and District Placewinners.", body, "junior-high/", og_image="jh-districts")
 
 
 def build_trivia():
@@ -1340,11 +1340,11 @@ def build_coaches():
   </div>
   <div class="wrap">
     <div class="facts-row light">
-      <p><b>{h['record']}</b> dual record</p>
-      <p><b>{h['district_champs']}</b> District XI champions</p>
-      <p><b>{h['regional_champs']}</b> Northeast Regional champions</p>
-      <p><b>{h['state_champs']}</b> State champions</p>
-      <p><b>{h['placewinners']}</b> State placewinners</p>
+      <p><b>{h['record']}</b> Dual Record</p>
+      <p><b>{h['district_champs']}</b> District XI Champions</p>
+      <p><b>{h['regional_champs']}</b> Northeast Regional Champions</p>
+      <p><b>{h['state_champs']}</b> State Champions</p>
+      <p><b>{h['placewinners']}</b> State Placewinners</p>
     </div>
     <p class="fine">At Northampton, through the 2025–26 season.</p>
   </div>
@@ -1427,10 +1427,10 @@ def build_champions():
 
     tr = lambda r, extra="": (f'<tr data-name="{e(" ".join([norm(r["wrestler"])] + SEARCH_ALIASES.get(norm(r["wrestler"]), [])))}"><td>{r["year"]}</td><th scope="row">{e(r["wrestler"])}</th>'
                               f'<td>{r["weight"]}</td>{extra}</tr>')
-    t_medals = tbl("t-medals", "PIAA state medalists, newest first", ["Year", "Wrestler", "Weight", "Place"],
+    t_medals = tbl("t-medals", "PIAA State Medalists, newest first", ["Year", "Wrestler", "Weight", "Place"],
                    "".join(tr(r, f'<td class="{"gold" if r["place"] == "1" else ""}">{PLACE[r["place"]]}</td>') for r in medals))
-    t_reg = tbl("t-reg", "Northeast Regional champions, newest first", ["Year", "Wrestler", "Weight"], "".join(tr(r) for r in HALL["regional"][::-1]))
-    t_dist = tbl("t-dist", "District XI champions, newest first", ["Year", "Wrestler", "Weight"], "".join(tr(r) for r in HALL["district"][::-1]))
+    t_reg = tbl("t-reg", "Northeast Regional Champions, newest first", ["Year", "Wrestler", "Weight"], "".join(tr(r) for r in HALL["regional"][::-1]))
+    t_dist = tbl("t-dist", "District XI Champions, newest first", ["Year", "Wrestler", "Weight"], "".join(tr(r) for r in HALL["district"][::-1]))
 
     word = {4: "Four-time", 3: "Three-time", 2: "Two-time"}
     multi = "".join(
@@ -1457,8 +1457,8 @@ def build_champions():
                  f'<tbody>{coach_rows}</tbody><tfoot><tr><th scope="row">All-time</th><td></td><td>{TOTALS["seasons"]}</td><td>{tw}–{tl}–{tt}</td><td>{TOTALS["district"]}</td><td>{TOTALS["regional"]}</td><td>{TOTALS["state"]}</td></tr></tfoot></table></div>'
                  '<p class="fine">Joe Provini’s record is through the 2025–26 season.</p>')
 
-    tabs = [("medals", "State medalists", t_medals), ("regional", "Regional champions", t_reg),
-            ("district", "District XI champions", t_dist), ("multi", "Multi-time honors", f'<div class="multi">{multi}</div>'),
+    tabs = [("medals", "State Medalists", t_medals), ("regional", "Regional Champions", t_reg),
+            ("district", "District XI Champions", t_dist), ("multi", "Multi-time honors", f'<div class="multi">{multi}</div>'),
             ("records", "Season records", f'<div class="records-grid">{records}</div>'), ("coaches", "Head coaches", coach_tbl)]
     tablist = "".join(f'<button type="button" role="tab" id="tab-{k}" aria-controls="panel-{k}" aria-selected="{"true" if i == 0 else "false"}"{"" if i == 0 else " tabindex=\"-1\""}>{l}</button>'
                       for i, (k, l, _) in enumerate(tabs))
@@ -1469,7 +1469,7 @@ def build_champions():
 {page_head(R, "Hall of Champions", "Every Konkrete Kid who has won a District XI, Northeast Regional, or PIAA title or medaled at the state tournament, from 1948 to today.")}
 <section class="band" aria-labelledby="team-title">
   <div class="wrap">
-    {section_head(f'<span id="team-title">{TOTALS["team_titles"]} PIAA team titles</span>', f'Northampton won the team title at the PIAA Class AAA championships seven times between 1993 and 2004. The program has also had at least one state medalist every year since {TOTALS["streak"][0]}, {TOTALS["streak"][2]} straight seasons.')}
+    {section_head(f'<span id="team-title">{TOTALS["team_titles"]} PIAA team titles</span>', f'Northampton won the team title at the PIAA Class AAA championships seven times between 1993 and 2004. The program has also had at least one State Medalist every year since {TOTALS["streak"][0]}, {TOTALS["streak"][2]} straight seasons.')}
     <p class="wall-hint"><span aria-hidden="true">▶</span> Tap any banner for that season’s story, results and highlight video.</p>
     <ol class="team-banners" role="list">{"".join(f'<li class="tbanner"><span class="t1">Northampton Wrestling</span><span class="t2">PIAA State Champions</span><span class="t3">AAA</span><a class="yr" href="{R}champions/team/{int(r["season"][:4]) + 1}/"><span class="visually-hidden">The </span>{e(r["season"])}<span class="visually-hidden"> team title season</span></a><span class="tb-more" aria-hidden="true">▶ Season &amp; video</span></li>' for r in TEAM_TITLES)}</ol>
   </div>
@@ -1509,11 +1509,11 @@ def build_champions():
   </div>
 </section>
 """
-    return page("champions/index.html", "Hall of Champions", "Northampton wrestling’s PIAA champions, state medalists, regional and District XI champions, season records, and head coaches since 1945.", body, "champions/", scripts=("site.js", "hall.js"), og_image="portrait-ballard-2026")
+    return page("champions/index.html", "Hall of Champions", "Northampton wrestling’s PIAA Champions, State Medalists, Regional and District XI Champions, season records, and head coaches since 1945.", body, "champions/", scripts=("site.js", "hall.js"), og_image="portrait-ballard-2026")
 
 
 def season_phrases(facts, title):
-    """Plain-English phrases from season_facts, e.g. '3 state champions'."""
+    """Plain-English phrases from season_facts, e.g. '3 State Champions'."""
     out, team = [], []
     for a, b in facts:
         if a == "Dual record":
@@ -1526,7 +1526,7 @@ def season_phrases(facts, title):
             team.append(a.replace(" team", ""))
         elif b.isdigit():
             n = int(b)
-            out.append(f"{n} {a[:-1] if n == 1 else a}".replace(" champions", " champions").lower().replace("district xi", "District XI"))
+            out.append(f"{n} {a[:-1] if n == 1 else a}")
     if team:
         out.insert(1 if out and out[0].startswith(("PIAA", "1", "2", "3", "4", "5", "6", "7", "8", "9")) and "PIAA" in out[0] else 0,
                    " and ".join(team) + " team champions")
@@ -1590,7 +1590,7 @@ def season_facts(sid, y, pw, d):
         f.append(("Dual record", rec))
     fin = dict(pw["finishes"])
     if y in TITLE_YEARS:
-        f.append(("PIAA team", "State champions"))
+        f.append(("PIAA team", "State Champions"))
     elif fin.get("PIAA Championships"):
         f.append(("PIAA team", f'{fin["PIAA Championships"]} place'))
     for x in pw["duals"]:
@@ -1603,11 +1603,11 @@ def season_facts(sid, y, pw, d):
     n_st = sum(int(r["year"]) == y for r in HALL["state"])
     n_md = n_st + sum(int(r["year"]) == y for r in HALL["medals"])
     if n_st:
-        f.append(("State champions", str(n_st)))
+        f.append(("State Champions", str(n_st)))
     if n_md > n_st:
-        f.append(("State medalists", str(n_md)))
+        f.append(("State Medalists", str(n_md)))
     if not n_md:
-        for k, lab in (("regional", "Regional champions"), ("district", "District XI champions")):
+        for k, lab in (("regional", "Regional Champions"), ("district", "District XI Champions")):
             n = sum(int(r["year"]) == y for r in HALL[k])
             if n:
                 f.append((lab, str(n)))
@@ -1631,11 +1631,11 @@ def honor_cards(R, y):
     cards = []
     st = [r for r in HALL["state"] if int(r["year"]) == y]
     if st:
-        cards.append(("PIAA champions", [f'<a href="{R}champions/{slug(r["wrestler"])}/">{e(r["wrestler"])}</a><span>{e(r["weight"])}</span>' for r in st]))
+        cards.append(("PIAA Champions", [f'<a href="{R}champions/{slug(r["wrestler"])}/">{e(r["wrestler"])}</a><span>{e(r["weight"])}</span>' for r in st]))
     md = sorted((r for r in HALL["medals"] if int(r["year"]) == y), key=lambda r: int(r["place"]))
     if md:
-        cards.append(("State medalists", [f'{e(r["wrestler"])}<span>{PLACE[r["place"]]} · {e(r["weight"])}</span>' for r in md]))
-    for k, lab in (("regional", "Northeast Regional champions"), ("district", "District XI champions")):
+        cards.append(("State Medalists", [f'{e(r["wrestler"])}<span>{PLACE[r["place"]]} · {e(r["weight"])}</span>' for r in md]))
+    for k, lab in (("regional", "Northeast Regional Champions"), ("district", "District XI Champions")):
         rows = [r for r in HALL[k] if int(r["year"]) == y]
         if rows:
             cards.append((lab, [f'{e(r["wrestler"])}<span>{e(r["weight"])}</span>' for r in rows]))
@@ -1744,7 +1744,7 @@ def build_season_page(i, all_s):
     if isinstance(jh, dict):
         bits = [f'{jh["record"]} in duals'] + [f"{a}: {b}" for a, b in jh.get("finishes", [])]
         pwn = ", ".join(f"{n} ({pl})" for n, pl in jh.get("placewinners", []))
-        tail += f'<h2 class="sub">Junior high</h2><p>{e(". ".join(bits))}.' + (f" District placewinners: {e(pwn)}." if pwn else "") + "</p>"
+        tail += f'<h2 class="sub">Junior high</h2><p>{e(". ".join(bits))}.' + (f" District Placewinners: {e(pwn)}." if pwn else "") + "</p>"
     elif jh:
         tail += f'<h2 class="sub">Junior high</h2><p>{e(jh)}</p>'
     if tail:
@@ -1811,7 +1811,7 @@ def build_seasons():
 {groups}
 {redirect_js}
 """
-    page("seasons/index.html", "Past Seasons", "Northampton wrestling season archive: results, state medalists, and awards for every season.", body, "seasons/", og_image="team-2025")
+    page("seasons/index.html", "Past Seasons", "Northampton wrestling season archive: results, State Medalists, and awards for every season.", body, "seasons/", og_image="team-2025")
     return [SITE["domain"] + "/seasons/"] + [SITE["domain"] + f"/seasons/{x[0]}/" for x in all_s]
 
 

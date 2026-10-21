@@ -40,16 +40,16 @@
     var c = { state: 0, medal: 0, reg: 0, dist: 0 };
     p.honors.forEach(function (h) {
       if (h[3]) return; // medals for another school: listed, not counted
-      if (h[1] === "PIAA champion") { c.state++; c.medal++; }
+      if (h[1] === "PIAA Champion") { c.state++; c.medal++; }
       else if (/^PIAA \d/.test(h[1])) c.medal++;
-      else if (h[1] === "Northeast Regional champion") c.reg++;
-      else if (h[1] === "District XI champion") c.dist++;
+      else if (h[1] === "Northeast Regional Champion") c.reg++;
+      else if (h[1] === "District XI Champion") c.dist++;
     });
     var bits = [];
-    if (c.state) bits.push(times(c.state, "PIAA champion"));
-    if (c.medal) bits.push(times(c.medal, "state medalist"));
-    if (c.reg) bits.push(times(c.reg, "Regional champion"));
-    if (c.dist) bits.push(times(c.dist, "District XI champion"));
+    if (c.state) bits.push(times(c.state, "PIAA Champion"));
+    if (c.medal) bits.push(times(c.medal, "State Medalist"));
+    if (c.reg) bits.push(times(c.reg, "Regional Champion"));
+    if (c.dist) bits.push(times(c.dist, "District XI Champion"));
     return bits.join(", ");
   };
 
