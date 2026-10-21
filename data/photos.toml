@@ -1437,13 +1437,13 @@ file = "originals/batch14_kkidnation-2023.jpg"
 
 [[photo]]
 id = "banner-wall-names"
-source = "Coach Provini, batch 4 (2021-22 team photo), cropped to the champions' name banners on the wrestling-room wall"
+source = "Coach Provini, batch 4 (2021-22 team photo), leveled (rotated 2.2°) and cropped to the champions' name banners on the wrestling-room wall"
 alt = "The wrestling-room wall of banners listing every Northampton District, Regional and State Champion by name, weight and year"
 caption = "Every name on the wall is a Konkrete Kid."
-crop = [0, 0, 4032, 960]
-focus = "30% 45%"
-widths = [640, 1200, 1800, 2600]
-file = "originals/batch4_p22-005-058.jpg"
+crop = [280, 75, 3900, 1000]
+focus = "50% 50%"
+widths = [640, 1200, 1800, 3620]
+file = "originals/batch4_p22-005-058-level.jpg"
 
 [[photo]]
 id = "senior-night-tight"

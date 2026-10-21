@@ -724,7 +724,7 @@ def build_alumni():
             ("John Paukovits", "3x District XI Champion · varsity assistant"), ("Ethan Szerencsits", "Class of 2020 · varsity assistant"),
             ("Braden Turner", "2008 District and Regional Champion · junior high assistant"), ("Justin Haupt", "1998 and 1999 District XI Champion · junior high assistant")]
     body = f"""
-{M.page_head(R, "Alumni", "Once a Konkrete Kid, always a Konkrete Kid.", "banner-wall-names", "30% 45%")}
+{M.page_head(R, "Alumni", "Once a Konkrete Kid, always a Konkrete Kid.", "banner-wall-names", "50% 50%", cls="fit-photo wide")}
 <section class="band">
   <div class="wrap split even">
     <div class="prose">
