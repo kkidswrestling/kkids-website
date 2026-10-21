@@ -635,11 +635,29 @@ file = "originals/batch3_josh-haines.jpg"
 
 [[photo]]
 id = "banner-dennis-liberto"
+crop = [690, 230, 1410, 1130]
+focus = "50% 50%"
+widths = [360, 720]
+source = "Northampton yearbook, via Coach Provini (clearer photo, Oct. 21, 2026)"
+alt = "Dennis Liberto controls an opponent"
+file = "originals/batch11_liberto-action.jpg"
+
+[[photo]]
+id = "liberto-yearbook-action"
+widths = [640, 1200, 1800]
+source = "Northampton yearbook, via Coach Provini"
+alt = "Dennis Liberto works on top of an opponent"
+caption = "Denny Liberto on top."
+file = "originals/batch11_liberto-action.jpg"
+
+[[photo]]
+id = "liberto-yearbook-1"
 crop = [150, 10, 330, 235]
 focus = "50% 50%"
 widths = [180]
 source = "Northampton yearbook, via Coach Provini"
 alt = "Dennis Liberto controls an opponent"
+caption = "Denny Liberto controls an opponent."
 credit = "Marty Fella (yearbook)"
 file = "originals/batch3_liberto.jpg"
 
