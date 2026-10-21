@@ -1407,6 +1407,20 @@
    ]
   ]
  },
+ "lisa-yearbook": {
+  "fallback": [
+   606,
+   360
+  ],
+  "h": 360,
+  "w": 606,
+  "widths": [
+   [
+    606,
+    360
+   ]
+  ]
+ },
  "piaa-third": {
   "fallback": [
    1200,

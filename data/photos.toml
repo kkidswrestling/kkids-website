@@ -1495,3 +1495,12 @@ caption = "1993–94 PIAA Class AAA team champions."
 crop = [0, 0, 549, 338]
 widths = [549]
 file = "originals/batch15_team-1994.jpg"
+
+[[photo]]
+id = "lisa-yearbook"
+source = "Northampton yearbook (Seth Lisa's wrestling years, 1997–2001); used with permission of the athletic director and school. A screen pointer in the scan was cleaned out."
+credit = "Northampton yearbook"
+alt = "Seth Lisa in his stance on the mat as a Northampton wrestler, with a referee and the crowd behind him"
+caption = "Seth Lisa as a Konkrete Kid: three-time District XI Champion and three-time State Placewinner."
+widths = [606]
+file = "originals/batch15_lisa-yearbook.jpg"
