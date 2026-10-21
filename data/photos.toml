@@ -1554,3 +1554,21 @@ caption = "2003–04 PIAA Class AAA team champions."
 crop = [0, 0, 1106, 722]
 widths = [640, 1106]
 file = "originals/batch15_team-2004.jpg"
+
+[[photo]]
+id = "daubert-coy-2004"
+source = "Coach Provini (2004 PIAA Championships, Giant Center)"
+season = "2003-04"
+alt = "Coach Terry Daubert holds his Pennsylvania Wrestling Coaches AAA Coach of the Year plaque on the mat at the Giant Center"
+caption = "Coach Terry Daubert receives the Pennsylvania Wrestling Coaches AAA Coach of the Year award at the 2004 PIAA Championships."
+widths = [640, 1200, 1500]
+file = "originals/batch15_daubert-coy-2004.jpg"
+
+[[photo]]
+id = "team-coy-2004"
+source = "Coach Provini (2004 PIAA Championships, Giant Center)"
+season = "2003-04"
+alt = "Northampton wrestlers gather around Coach Terry Daubert and his Coach of the Year plaque on the Giant Center mat"
+caption = "The Kids surround Coach Daubert and his Coach of the Year plaque at Hershey, 2004."
+widths = [640, 1200, 1500]
+file = "originals/batch15_team-coy-2004.jpg"

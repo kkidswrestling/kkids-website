@@ -170,6 +170,7 @@ sources = [["Lehigh Valley Wrestling History, “2002-03: Four of a Kind, a Fina
 
 ["2004"]
 team_photo = "team-2004"
+gallery = ["team-coy-2004", "daubert-coy-2004"]
 record = "20–1"
 league = "Lehigh Valley Conference champions, 7–0"
 coach = "Terry Daubert"
