@@ -535,7 +535,7 @@ def build_join():
                ("Competition", "The varsity wrestles at the Ironman, King of the Mountain, the Mid-Winter Mayhem, and the Parkland Duals."),
                ("Community", "Families from kindergarten through alumni, all in the same black and orange.")]
     path = [("Youth", "Grades K–6", "Northampton Black, Orange, and Novice teams in the Valley Elementary Wrestling League.", "../youth/"),
-            ("Junior high", "Grades 7–8", "The bridge to the varsity room. The 2023–24 team won the District XI title.", "../junior-high/"),
+            ("Junior high", "Grades 7–9", "The bridge to the varsity room. The 2023–24 team won the District XI title.", "../junior-high/"),
             ("JV", "High school", "Matches, tournaments, and the JV District Tournament.", "../high-school/"),
             ("Varsity", "High school", "District XI, Northeast Regional, and the PIAA Championships in Hershey.", "../high-school/"),
             ("College", "Next level", "Members of the Class of 2026 are headed to wrestle at Elizabethtown College and King’s College.", "../alumni/")]
@@ -565,7 +565,7 @@ def build_join():
     <h2 id="start-title">Start wrestling</h2>
     <div class="start-grid">
       <div class="note-card"><h3>Grades K–6</h3><p>Join the youth program. No experience needed.</p><a class="btn" href="{M.SITE['links']['youth_registration']}" rel="noopener" target="_blank">Register for youth wrestling</a></div>
-      <div class="note-card"><h3>Grades 7–8</h3><p>Join the junior high team with Coach Craig Israel.</p><a class="btn" href="mailto:{M.SITE['email']}?subject=Junior%20high%20wrestling">Email about junior high</a></div>
+      <div class="note-card"><h3>Grades 7–9</h3><p>Join the junior high team with Coach Craig Israel.</p><a class="btn" href="mailto:{M.SITE['email']}?subject=Junior%20high%20wrestling">Email about junior high</a></div>
       <div class="note-card"><h3>High school</h3><p>New to wrestling or new to Northampton? Talk to Coach Provini.</p><a class="btn" href="mailto:{M.SITE['email']}?subject=High%20school%20wrestling">Contact the coaches</a></div>
     </div>
   </div>

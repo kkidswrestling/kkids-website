@@ -495,7 +495,7 @@ def build_home():
     {section_head('<span id="levels-title">One program, every level</span>')}
     <div class="levels">
       <a class="level" href="high-school/">{picture(R, "team-mayhem", "(min-width: 900px) 33vw, 100vw")}<span><b>High school</b>Varsity and JV results, rosters, and stats</span></a>
-      <a class="level" href="junior-high/">{picture(R, "jh-districts", "(min-width: 900px) 33vw, 100vw")}<span><b>Junior high</b>Grades 7 and 8, the bridge to the varsity room</span></a>
+      <a class="level" href="junior-high/">{picture(R, "jh-districts", "(min-width: 900px) 33vw, 100vw")}<span><b>Junior high</b>Grades 7–9, the bridge to the varsity room</span></a>
       <a class="level" href="youth/">{picture(R, "youth-champs", "(min-width: 900px) 33vw, 100vw")}<span><b>Youth</b>Grades K–6 in the Valley Elementary Wrestling League</span></a>
     </div>
   </div>
@@ -881,7 +881,7 @@ def build_junior_high():
     jh = CUR["junior_high"]
     staff = COACHES["junior_high"]["staff"]
     body = f"""
-{page_head(R, "Junior High", "Grades 7 and 8. Where Konkrete Kids learn what the varsity room expects.", "jh-districts", "50% 35%")}
+{page_head(R, "Junior High", "Grades 7–9 (9th graders can wrestle on the junior high or high school team). Where Konkrete Kids learn what the varsity room expects.", "jh-districts-tight", "50% 5%", cls="fit-photo wide")}
 <section class="band">
   <div class="wrap split even">
     <div>
@@ -1183,7 +1183,7 @@ def build_youth():
       <details><summary>What if my child outgrows their team?</summary><p>We’ll move them. If a wrestler is stuck behind a teammate at the same weight, coaches can move them so both wrestlers get a varsity spot.</p></details>
       <details><summary>Why is this happening gradually?</summary><p>Big changes work best in steps. Each new class moving up from Novice is placed to keep the teams even, and both rosters balance out over a few seasons. Schedules are set by the previous year’s results, so they’ll even out as the teams do.</p></details>
       <details><summary>How does this help the whole program?</summary><p>More kids who stay in wrestling means deeper junior high and high school rosters. Wrestlers also reach the junior high as experienced teammates who already know how to compete together.</p></details>
-      <details><summary>What happens after 6th grade?</summary><p>Wrestlers move up to the <a href="../junior-high/">junior high team</a> in grades 7 and 8, then to the <a href="../high-school/">high school</a> program.</p></details>
+      <details><summary>What happens after 6th grade?</summary><p>Wrestlers move up to the <a href="../junior-high/">junior high team</a> in 7th grade (the junior high team is grades 7–9; 9th graders can wrestle junior high or high school), then to the <a href="../high-school/">high school</a> program.</p></details>
       <details><summary>Can we still share feedback?</summary><p>Absolutely. The direction is set, and the details are reviewed every season. We’re always willing to listen: email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p></details>
     </div>
   </div>

@@ -84,6 +84,17 @@ widths = [640, 1200, 1800]
 file = "originals/img26_p-032-125.jpg"
 
 [[photo]]
+id = "jh-districts-tight"
+source = "2025-26 banquet program, page 32 (cropped to the team for the Junior High page header)"
+season = "2025-26"
+alt = "Northampton junior high wrestlers with medals and certificates, with their coaches"
+caption = "The junior high team at the 2026 District XI Junior High Tournament."
+crop = [30, 400, 1940, 1440]
+focus = "50% 30%"
+widths = [640, 1200, 1800]
+file = "originals/img26_p-032-125.jpg"
+
+[[photo]]
 id = "youth-champs"
 focus = "50% 18%"
 source = "2025-26 banquet program, page 16"
