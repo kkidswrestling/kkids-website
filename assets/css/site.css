@@ -1508,3 +1508,16 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .fam-who .fam-values { margin: 0; }
 .fam-who + .band.tight { padding-top: clamp(20px, 3vw, 28px); }
 .fam-who .fam-mission, .fam-who .fam-values { max-width: 900px; }
+/* Values chips: equal-width grid that fills every row edge to edge (Joe, Oct. 21, 2026).
+   11 values: phones 3 across (last row 2 wider chips), desktop 4 across (last row 3 wider chips). */
+.fam-who .fam-values { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; max-width: none; }
+.fam-who .fam-values li { grid-column: span 2; text-align: center; padding: 8px 6px; white-space: nowrap; }
+.fam-who .fam-values li:nth-last-child(-n+2) { grid-column: span 3; }
+@media (min-width: 700px) {
+  .fam-who .fam-values { grid-template-columns: repeat(12, 1fr); max-width: 900px; }
+  .fam-who .fam-values li { grid-column: span 3; }
+  .fam-who .fam-values li:nth-last-child(-n+2) { grid-column: span 3; }
+  .fam-who .fam-values li:nth-last-child(-n+3) { grid-column: span 4; }
+}
+@media (max-width: 380px) { .fam-who .fam-values li { font-size: 12.5px; padding: 8px 4px; } }
+@media (max-width: 340px) { .fam-who .fam-values li { font-size: 11.5px; padding: 8px 2px; } }
