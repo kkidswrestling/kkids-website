@@ -200,7 +200,7 @@ def build_home():
     T = S.TOTALS
     recent = S.HALL["state"][::-1]
     inside = [("facilities/", "practice-room", "The Room", "Where every Konkrete Kid is made: the wrestling room and Pete Schneider Gymnasium."),
-              ("champions/", "showcase-arms-up", "The Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a State Medalist."),
+              ("champions/", "ballard-raised", "The Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a State Medalist."),
               ("story/", "program-family", "The Community", "Generations of families in the same black and orange."),
               ("join/", "youth-champs", "The Next Generation", "Kindergarten through varsity, one program and one path.")]
     inside_html = "".join(
