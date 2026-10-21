@@ -631,7 +631,7 @@ def build_family():
            ("How do I reach a coach?", f'Email <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a> and we’ll get your message to the right coach.')]
     ten = "".join(f'<li><span class="pt-n">{i}</span><div><b>{a}</b><span>{b}</span></div></li>' for i, (a, b) in enumerate(SECONDARY_TEN, 1))
     body = f"""
-{M.page_head(R, "Parents", "Helpful information for Konkrete Kids parents and families at every level.", "senior-night-tight", "50% 40%", cls="fit-photo wide")}
+{M.page_head(R, "Parents", "Helpful information for Konkrete Kids parents and families at every level.", "program-family-tight", "50% 35%", cls="fit-photo program")}
 <section class="band fam-who" aria-labelledby="mission-title">
   <div class="wrap">
     <p class="ym-label">Who we are</p>
