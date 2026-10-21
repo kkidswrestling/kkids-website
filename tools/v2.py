@@ -457,7 +457,9 @@ def build_timeline():
         lis = "".join(
             f'<li class="tl-item{" team" if x.get("team") else ""}{" has-photo" if x.get("photo") else ""}{" tall" if x.get("tall") else ""}"><span class="tl-year">{x["year"]}</span>'
             f'<div class="tl-card">{M.picture(R, x["photo"], "(min-width: 900px) 40vw, 90vw") if x.get("photo") else ""}'
-            f'<h3>{e(x["title"])}</h3><p>{e(x["text"])}</p>{TL_TAG if x.get("team") else ""}</div></li>'
+            f'<h3>{e(x["title"])}</h3><p>{e(x["text"])}</p>{TL_TAG if x.get("team") else ""}'
+            + (f'<p class="tl-more"><a class="text-link" href="{R}{x["link"][1]}">{e(x["link"][0])}</a></p>' if x.get("link") else "")
+            + '</div></li>'
             for x in evs)
         items.append(f'<section class="tl-decade" id="d{d}" aria-labelledby="dh{d}"><h2 id="dh{d}" class="tl-dh">{d}s</h2><ol class="tl-list" role="list">{lis}</ol></section>')
     nav = "".join(f'<a href="#d{d}">{d}s</a>' for d in decades)

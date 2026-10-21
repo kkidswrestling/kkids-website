@@ -1290,3 +1290,4 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 /* Timeline: portrait photos show whole on phones; on wide screens cap the height and keep head to jersey */
 .tl-item.tall .tl-card img { aspect-ratio: auto; height: auto; }
 @media (min-width: 700px) { .tl-item.tall .tl-card img { max-height: 620px; object-fit: cover; object-position: 50% 35%; } }
+.tl-more { margin-top: 10px !important; font-size: .95em; }

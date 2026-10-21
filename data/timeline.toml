@@ -1,204 +1,242 @@
-# Program timeline. Every entry is backed by the banquet programs, the gym banners,
-# or PA-Wrestling team history. Add new entries at the end of a season.
+# Program timeline. Every entry is backed by the Hall lists, the banquet programs, the gym banners,
+# PA-Wrestling, or Lehigh Valley Wrestling History. Text only (no photos, Joe Oct. 2026); each entry
+# links to the page with the full story: link = [label, path].
+# What goes on (keep it consistent; see CLAUDE.md): every PIAA team title, state duals final, District XI
+# Duals, District XI tournament and Northeast Regional team title; every individual state title; every
+# head-coach change; program firsts and "only/first N-time" milestones; current program records.
 
 [[event]]
 year = 1945
 title = "Northampton Wrestling begins"
 text = "Harry Wall builds the program and coaches it for 26 seasons, through 1970–71. His teams go 180–110–4 and produce 30 District XI champions, 11 Northeast Regional champions, and 2 state champions."
+link = ["Past seasons", "seasons/"]
 
 [[event]]
 year = 1948
 title = "The first champions"
 text = "Albert Billy (95) and Eugene Susko (165) win the program's first District XI and Northeast Regional titles."
+link = ["The 1947–48 season", "seasons/1947-48/"]
 
 [[event]]
 year = 1953
 title = "The first District XI team title"
-text = "Northampton wins its first District XI team championship, at the tournament held in its own gym."
+text = "Northampton wins its first District XI team title, at the tournament held in its own gym."
+link = ["The 1952–53 season", "seasons/1952-53/"]
 
 [[event]]
 year = 1955
 title = "Northampton's first state champions"
-text = "Steve Micio (133) and Edward Keglovits (154) win PIAA titles. Micio, a state runner-up in 1954, becomes the program's first three-time District XI champion."
+text = "Steve Micio wins the state title at 133 and Edward Keglovits wins the state title at 154. Micio becomes the program's first three-time District XI champion."
+link = ["The 1954–55 season", "seasons/1954-55/"]
 
 [[event]]
 year = 1959
 title = "Unbeaten league champions"
 text = "Northampton wins the Lehigh Valley League outright at 9–0 and ends Allentown's 41-meet unbeaten streak, 18–15."
+link = ["The 1958–59 season", "seasons/1958-59/"]
 
 [[event]]
 year = 1965
 title = "Six straight league titles"
 text = "In the middle of six straight seasons with at least a share of the Lehigh Valley League title (1963–64 to 1968–69), Northampton hosts and wins the first league tournament, with seven champions."
+link = ["The 1964–65 season", "seasons/1964-65/"]
 
 [[event]]
 year = 1971
 title = "Harry Wall's final season"
 text = "In his 26th and final season, Harry Wall's team wins the Lehigh Valley League outright at 7–0. Wall had coached the program since its first season and finished with a 180–110–4 dual-meet record."
+link = ["The 1970–71 season", "seasons/1970-71/"]
 
 [[event]]
 year = 1971
 title = "Thomas Ortwein takes over"
 text = "Thomas Ortwein becomes head coach in 1971–72. In 5 seasons his teams go 28–41–1 and produce 2 District XI champions and 1 Northeast Regional champion."
+link = ["The 1971–72 season", "seasons/1971-72/"]
 
 [[event]]
 year = 1976
 title = "Gordon Bartholomew takes over"
 text = "Gordon Bartholomew, a 1958 District XI champion for Northampton, becomes head coach in 1976–77. In 4 seasons his teams go 32–30."
+link = ["The 1976–77 season", "seasons/1976-77/"]
 
 [[event]]
 year = 1980
 title = "Roger Washburn takes over"
 text = "Roger Washburn becomes head coach in 1980–81. In 2 seasons his teams go 9–27 and produce 2 District XI champions and 2 Northeast Regional champions."
+link = ["The 1980–81 season", "seasons/1980-81/"]
 
 [[event]]
 year = 1982
 title = "The Don Rohn era begins"
 text = "Don Rohn becomes head coach in 1982–83. In 18 seasons his teams go 309–59, win 5 PIAA team titles, and produce 51 District XI champions, 35 Northeast Regional champions, and 8 state champions."
+link = ["The 1982–83 season", "seasons/1982-83/"]
 
 [[event]]
 year = 1984
 title = "The streak starts"
 text = "Sean Finkbeiner wins the state title at 145. Northampton has had at least one state medalist every year since."
 streak = true
+link = ["Sean Finkbeiner's champion page", "champions/sean-finkbeiner/"]
 
 [[event]]
 year = 1988
 title = "District XI team champions"
-text = "Northampton wins the District XI AAA team title."
+text = "Northampton wins the District XI team title."
+link = ["The 1987–88 season", "seasons/1987-88/"]
 
 [[event]]
 year = 1991
 title = "Chad Billy, state champion"
-text = "Chad Billy wins the PIAA title at 112, Northampton's first state champion since 1984."
+text = "Chad Billy wins the state title at 112, Northampton's first state champion since 1984."
+link = ["Chad Billy's champion page", "champions/chad-billy/"]
 
 [[event]]
 year = 1993
 title = "The first team state title"
-text = "Northampton wins its first PIAA Class AAA team title and finishes a perfect 24–0 season ranked No. 1 in the nation. Mike Tomsic wins the state title at 112. The Kids also sweep the District XI Duals, District XI and Northeast Regional team titles. It's the first of three straight state team championships."
+text = "Northampton wins its first PIAA team title and finishes a perfect 24–0 season ranked No. 1 in the nation. Mike Tomsic wins the state title at 112. The Kids also sweep the District XI Duals, District XI and Northeast Regional team titles. It's the first of three straight state team championships."
 team = true
+link = ["The 1993 title season", "champions/team/1993/"]
 
 [[event]]
 year = 1994
 title = "Back-to-back team titles"
-text = "A second straight PIAA team title, and Whitey Chlebove wins the state title at 130. The Kids sweep the District XI Duals, District XI and Northeast Regional team titles again, and win 50 straight duals from 1992–93 into 1994–95."
+text = "A second straight PIAA team title and a second straight perfect 24–0 season. Whitey Chlebove wins the state title at 130. The Kids sweep the District XI Duals, District XI and Northeast Regional team titles again, and win 50 straight duals from 1992–93 into 1994–95."
 team = true
+link = ["The 1994 title season", "champions/team/1994/"]
 
 [[event]]
 year = 1995
 title = "Three in a row"
 text = "A third straight PIAA team title and a third straight Northeast Regional team title. Dennis Liberto wins the state title at 103."
 team = true
+link = ["The 1995 title season", "champions/team/1995/"]
 
 [[event]]
 year = 1998
 title = "Team title number four"
-text = "A perfect 21–0 season and a clean sweep: District XI Duals, District XI, Northeast Regional and PIAA team titles. Christian Luciano (171) and John Hard (275) win state titles. Luciano finishes as a four-time state placewinner."
+text = "A perfect 21–0 season and a clean sweep: District XI Duals, District XI, Northeast Regional and PIAA team titles. Christian Luciano wins the state title at 171 and John Hard wins the state title at 275. Luciano becomes the program's first four-time state placewinner."
 team = true
+link = ["The 1998 title season", "champions/team/1998/"]
 
 [[event]]
 year = 1999
 title = "District XI Duals and district champions"
 text = "Northampton wins the District XI Duals and the District XI team title, and shares the Northeast Regional team title."
+link = ["The 1998–99 season", "seasons/1998-99/"]
 
 [[event]]
 year = 2000
 title = "Team title number five"
-text = "Northampton wins its first PIAA team duals title and its fifth state tournament team title, after sweeping the District XI Duals, District XI and Northeast Regional team titles, with a state-record eight place winners at the time. Ryan McCallum wins the state title at 130, and Tommy Rohn sets the program's single-season takedown record with 147."
+text = "Northampton wins its first PIAA team duals title and its fifth PIAA team title, after sweeping the District XI Duals, District XI and Northeast Regional team titles, with a state-record eight place winners at the time. Ryan McCallum wins the state title at 130, and Tommy Rohn sets the program's single-season takedown record with 147."
 team = true
+link = ["The 2000 title season", "champions/team/2000/"]
 
 [[event]]
 year = 2000
 title = "Terry Daubert takes over"
 text = "Terry Daubert becomes head coach in 2000–01. In 11 seasons his teams go 199–33, win 2 PIAA team titles, and produce 36 District XI champions, 27 Northeast Regional champions, and 10 state champions."
+link = ["The 2000–01 season", "seasons/2000-01/"]
 
 [[event]]
 year = 2001
 title = "Jeff Ecklof, state champion"
-text = "Jeff Ecklof wins his first state title at 125."
+text = "Jeff Ecklof wins the state title at 125."
+link = ["Jeff Ecklof's champion page", "champions/jeff-ecklof/"]
 
 [[event]]
 year = 2003
-title = "Four state champions"
-text = "Jeff Ecklof, Joey Ecklof, Josh Haines, and Jon Oplinger all win state titles. Northampton wins the District XI team title and its sixth state team championship."
+title = "Team title number six"
+text = "Northampton wins its sixth PIAA team title with four state champions: Joey Ecklof (135), Jeff Ecklof (145), Josh Haines (189), and Jon Oplinger (215). The Kids also win the District XI team title. Jeff Ecklof becomes the program's only four-time District XI champion, its first four-time Northeast Regional champion, and its second four-time state placewinner."
 team = true
+link = ["The 2003 title season", "champions/team/2003/"]
 
 [[event]]
 year = 2004
-title = "A seventh team title"
-text = "Joey Ecklof, Josh Haines, and Jon Oplinger repeat as state champions. Northampton wins the District XI team title with a tournament-record 281 points and the Northeast Regional team title, and 10 Kids medal at states, the most in program history. Haines finishes with 157 career wins, still the program record."
+title = "Team title number seven"
+text = "Northampton wins its seventh PIAA team title, and Joey Ecklof (145), Josh Haines (189), and Jon Oplinger (215) repeat as state champions. The Kids win the District XI team title with a tournament-record 281 points and the Northeast Regional team title, and 10 Kids medal at states, the most in program history. Haines finishes with 157 career wins, still the program record."
 team = true
+link = ["The 2004 title season", "champions/team/2004/"]
 
 [[event]]
 year = 2005
 title = "Northampton's first three-time state champion"
 text = "Joey Ecklof wins the state title at 152, his third straight, becoming Northampton's first three-time state champion."
+link = ["Joey Ecklof's champion page", "champions/joey-ecklof/"]
 
 [[event]]
 year = 2007
 title = "Justin Wieller, state champion"
-text = "Justin Wieller wins the PIAA title at 215."
+text = "Justin Wieller wins the state title at 215."
+link = ["Justin Wieller's champion page", "champions/justin-wieller/"]
 
 [[event]]
 year = 2008
 title = "District and regional champions, state duals runner-up"
-text = "Northampton wins the District XI and Northeast Regional team titles and reaches the PIAA Class AAA team duals final, finishing state runner-up."
+text = "Northampton sweeps the District XI Duals, District XI and Northeast Regional team titles, then reaches the PIAA Class AAA team duals final and finishes state runner-up. Joe Piro sets the program's single-season records for falls (34) and dual-meet team points (137)."
+link = ["The 2007–08 season", "seasons/2007-08/"]
 
 [[event]]
 year = 2009
 title = "District and regional champions again"
-text = "A second straight sweep of the District XI and Northeast Regional team titles."
+text = "A second straight sweep of the District XI Duals, District XI and Northeast Regional team titles."
+link = ["The 2008–09 season", "seasons/2008-09/"]
 
 [[event]]
 year = 2011
 title = "Seth Lisa takes over"
 text = "Seth Lisa, a three-time state placewinner for Northampton, becomes head coach in 2011–12. In 11 seasons his teams go 123–57 and produce 16 District XI champions, 15 Northeast Regional champions, and 4 state champions."
+link = ["The 2011–12 season", "seasons/2011-12/"]
 
 [[event]]
 year = 2016
-title = "Julian Chlebove's first title"
-text = "Julian Chlebove wins the PIAA title at 113."
+title = "Julian Chlebove, state champion"
+text = "Julian Chlebove wins the state title at 113."
+link = ["Julian Chlebove's champion page", "champions/julian-chlebove/"]
 
 [[event]]
 year = 2017
-title = "Julian Chlebove repeats"
-text = "Julian Chlebove wins his second state title, at 120."
+title = "Julian Chlebove, two-time state champion"
+text = "Julian Chlebove wins the state title at 120, his second. Dan Moran becomes the program's third four-time state placewinner."
+link = ["Julian Chlebove's champion page", "champions/julian-chlebove/"]
 
 [[event]]
 year = 2019
-title = "Julian Chlebove, three-time champion"
+title = "Julian Chlebove, three-time state champion"
 text = "Julian Chlebove wins the state title at 132, becoming Northampton's second three-time state champion, and sets the program's single-season wins record with 49."
+link = ["Julian Chlebove's champion page", "champions/julian-chlebove/"]
 
 [[event]]
 year = 2019
 title = "State duals runner-up"
-text = "Northampton finishes 2nd at the District XI Duals, then wins its way to the PIAA Class 3A team duals final and finishes state runner-up. The Kids also win the team title at the District XI individual tournament."
+text = "Northampton finishes 2nd at the District XI Duals, then wins its way to the PIAA Class 3A team duals final and finishes state runner-up. The Kids also win the District XI team title."
+link = ["The 2018–19 season", "seasons/2018-19/"]
 
 [[event]]
 year = 2021
 title = "Jagger Condomitti, state champion"
-text = "A state runner-up in 2020, Jagger Condomitti wins the PIAA title at 160."
+text = "Jagger Condomitti wins the state title at 160."
+link = ["Jagger Condomitti's champion page", "champions/jagger-condomitti/"]
 
 [[event]]
 year = 2022
 title = "Joe Provini takes over"
 text = "Joe Provini becomes the eighth head coach in program history in 2022–23."
+link = ["The 2022–23 season", "seasons/2022-23/"]
 
 [[event]]
 year = 2023
 title = "Two careers for the record book"
-text = "Carson Wagner finishes as state runner-up at 114 and becomes just the fourth four-time state placewinner in program history, joining Christian Luciano, Jeff Ecklof, and Dan Moran. Dagen Condomitti becomes just the second four-time Northeast Regional champion in school history."
-photo = "showcase-roar-tight"
-tall = true  # portrait photo: show it whole
+text = "Carson Wagner finishes as state runner-up at 114 and becomes the program's fourth four-time state placewinner, joining Christian Luciano, Jeff Ecklof, and Dan Moran. Dagen Condomitti joins Jeff Ecklof as the program's only four-time Northeast Regional champions."
+link = ["The 2022–23 season", "seasons/2022-23/"]
 
 [[event]]
 year = 2024
 title = "Trey Wagner, state champion"
 text = "Trey Wagner wins the state title at 127."
-photo = "showcase-arms-up"
+link = ["Trey Wagner's champion page", "champions/trey-wagner/"]
 
 [[event]]
 year = 2026
 title = "Two state champions"
 text = "Brayden Wenrich wins the state title at 114, and Gabe Ballard wins the state title at 152."
-photo = "two-champs-2026"
+link = ["The 2025–26 season", "seasons/2025-26/"]
