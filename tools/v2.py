@@ -575,22 +575,123 @@ def build_join():
 
 
 # ------------------------------------------------------------------ family, alumni, follow
+SECONDARY_TEN = [
+    ("Love them the same, win or lose.", "Before every match: “I’m proud of you no matter what.” After: “I love to watch you wrestle.”"),
+    ("Be a great spectator.", "Stay in the stands and let the coaches coach. Keep your words to encouragement."),
+    ("Focus on growth, not results.", "Praise effort, improvement, and perseverance. Winning doesn’t always equal progress."),
+    ("Make the car ride a safe place.", "After a tough match, let them talk first and mostly listen. Save the lessons for practice."),
+    ("Let them speak for themselves.", "Wrestlers talk to their coaches first. If it’s still unresolved, contact Coach Provini privately."),
+    ("Wait 24 hours.", "Give emotions a day to settle before raising a concern with a coach."),
+    ("Support safe weight management.", "Follow the plan the coaches and athletic trainer set. Never pressure your wrestler about weight."),
+    ("Honor the game.", "Respect officials, opponents, and coaches. Cheer for our team, not against theirs."),
+    ("School and healthy habits first.", "Passing grades, good sleep, good food, and clean gear every day."),
+    ("Be part of the team.", "Come to matches, support the booster club, and trust the process."),
+]
+
+
+def build_parent_guide_secondary():
+    """Printable one-pager for junior high and high school parents: family/parent-guide/."""
+    items = "".join(f'<li><span class="n">{i}</span><div><b>{a}</b> {b}</div></li>' for i, (a, b) in enumerate(SECONDARY_TEN, 1))
+    src = open(M.ROOT + "/youth/parent-guide/index.html").read()
+    html = (src.replace("Northampton Youth Wrestling · Konkrete Kids", "Northampton Wrestling · Junior High &amp; High School")
+               .replace('href="../">Back to Youth Wrestling', 'href="../">Back to Parents')
+               .replace(f'{M.SITE["domain"]}/youth/parent-guide/', f'{M.SITE["domain"]}/family/parent-guide/')
+               .replace("Wrestling belongs to the kids.", "Wrestling belongs to the athletes.")
+               .replace("Ten things that matter most for Northampton youth wrestling parents.", "Ten things that matter most for Northampton junior high and high school wrestling parents."))
+    a = html.index("<ol>") + 4; b = html.index("</ol>")
+    html = html[:a] + items + html[b:]
+    import os
+    os.makedirs(M.ROOT + "/family/parent-guide", exist_ok=True)
+    open(M.ROOT + "/family/parent-guide/index.html", "w").write(html)
+    return M.SITE["domain"] + "/family/parent-guide/"
+
+
 def build_family():
     R = "../"
+    mission = load("youth-coaches.toml")["intro"]["mission"]
+    values = ["Leadership", "Reliability", "Integrity", "Honor", "Accountability", "Discipline", "Kindness", "Honesty", "Fairness", "Teamwork"]
+    promise = [("We lift wrestlers up.", "We never embarrass a wrestler. Corrections are made in a way that builds them up."),
+               ("We believe in every wrestler.", "We see each one for who they can become, not just who they are today."),
+               ("We see parents as partners.", "We’re open, honest, and reachable, and we want you part of the program."),
+               ("We develop people first.", "Successful people, not just successful athletes.")]
+    chk = '<svg class="ym-chk" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    honor = [("Academics", "Wrestlers keep a passing grade in every class. Low grades can limit competition until they improve."),
+             ("Reliability", "Be on time and present for school, practice, and competitions. Injured wrestlers still attend unless a doctor or athletic trainer says otherwise."),
+             ("Conduct", "Represent Northampton with pride in school, online, and in the community. Show respect to coaches, teammates, opponents, trainers, and officials."),
+             ("Health and hygiene", "Check skin daily, shower right after practice and matches, and wear clean gear every day. Headgear is worn whenever drilling or wrestling.")]
     faq = [("When does the season start?", 'The high school season begins in November and runs through the PIAA Championships in March. The full schedule is on our <a href="../schedule/">schedule page</a>.'),
            ("Where can I find the schedule?", 'On our <a href="../schedule/">schedule page</a> and the district athletics calendar, which also lists bus times and changes.'),
-           ("Can parents watch youth practice?", "In the youth program, only each team’s coaching staff is in the practice room. Matches and tournaments are open to families and fans."),
+           ("What does a typical week look like?", "Wrestlers practice or compete every day except Sunday. Practice generally starts right after school, and on non-school days the high school generally practices at 9:00 a.m."),
            ("What if my child misses practice?", "In-season practice and competition attendance is required. Talk to your child’s coach about any special circumstances ahead of time; they’re handled case by case."),
-           ("What does a wrestler need before the season?", "Junior high and high school wrestlers need a PIAA physical on file with the district athletic office, plus the weight assessment the coaches schedule early in the season."),
+           ("What does a wrestler need before the season?", "Junior high and high school wrestlers need a PIAA physical on file with the district athletic office, plus the weight assessment the coaches schedule early in the season. Every wrestler and parent also signs the honor code."),
+           ("How are varsity and JV spots decided?", "Usually through wrestle-offs, though the coaches weigh several things when setting a lineup, including attitude, effort, and reliability. Once a spot is earned, a challenger must win two bouts in a row to take it."),
+           ("How does a wrestler earn a varsity letter?", "Complete the full season, compete in at least half of varsity matches, score as many team points as there are dual meets or place in a postseason tournament, and stay in good standing with the team."),
+           ("What happens on snow days?", "Plan to practice or compete, and to make weight, unless Coach Provini says otherwise. Changes are shared as soon as the coaches know."),
+           ("Can parents watch youth practice?", "In the youth program, only each team’s coaching staff is in the practice room. Matches and tournaments are open to families and fans."),
            ("How do I reach a coach?", f'Email <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a> and we’ll get your message to the right coach.')]
+    ten = "".join(f'<li><span class="pt-n">{i}</span><div><b>{a}</b><span>{b}</span></div></li>' for i, (a, b) in enumerate(SECONDARY_TEN, 1))
     body = f"""
 {M.page_head(R, "Parents", "What parents and families need to know.", "senior-night", "50% 40%")}
-<section class="band tight"><div class="wrap"><div class="pt-card"><div><p class="ym-label">New to youth wrestling? Start here.</p><h2>How to be a Konkrete Kids parent</h2><p>Ten simple things that matter most, on one page.</p></div><p class="actions"><a class="btn" href="../youth/#pt-title">Read the parent guide</a><a class="btn ghost dark-ink" href="../youth/parent-guide/" target="_blank" rel="noopener">Printable one-pager</a></p></div></div></section>
+<section class="band tight"><div class="wrap"><div class="fam-start">
+  <a class="fam-card" href="../youth/#pt-title"><p class="ym-label">Youth parents · K–6</p><h2>Start here</h2><p>How to be a Konkrete Kids parent, and how our two-team youth program works.</p><span class="fam-go">Youth parent guide ›</span></a>
+  <a class="fam-card dark" href="#hs-guide"><p class="ym-label">Junior high &amp; high school parents</p><h2>Start here</h2><p>The parent guide, the honor code in brief, communication, and health and weight.</p><span class="fam-go">Secondary parent guide ›</span></a>
+</div></div></section>
+<section class="band" aria-labelledby="mission-title">
+  <div class="wrap ym-wrap">
+    <p class="ym-label">Who we are</p>
+    <h2 id="mission-title">Our mission</h2>
+    <p class="fam-mission">{e(mission)}</p>
+    <ul class="fam-values" role="list">{"".join(f"<li>{v}</li>" for v in values)}</ul>
+    <h3 class="fam-h3">Our promise to you</h3>
+    <ul class="fam-promise" role="list">{"".join(f"<li>{chk}<span><b>{a}</b> {b}</span></li>" for a, b in promise)}</ul>
+  </div>
+</section>
+<section class="band concrete pt" id="hs-guide" aria-labelledby="hs-guide-title">
+  <div class="wrap ym-wrap">
+    <p class="ym-label">For junior high &amp; high school parents</p>
+    <h2 id="hs-guide-title">How to be a Konkrete Kids parent</h2>
+    <p class="ym-lede-dark">Ten things that matter most.</p>
+    <ol class="pt-list" role="list">{ten}</ol>
+    <p class="pt-closer">Wrestling belongs to the athletes. It’s their thing, not ours.</p>
+    <p class="actions"><a class="btn ghost dark-ink" href="parent-guide/" target="_blank" rel="noopener">Printable one-pager</a></p>
+  </div>
+</section>
+<section class="band" aria-labelledby="honor-title">
+  <div class="wrap ym-wrap">
+    <p class="ym-label">Junior high &amp; high school</p>
+    <h2 id="honor-title">The honor code, in brief</h2>
+    <p>Northampton Wrestling is a commitment to excellence in academics, athletics, and character. Every wrestler and a parent sign the full honor code at the start of the season. The heart of it:</p>
+    <div class="fam-grid">{"".join(f'<div class="fam-box"><h3>{a}</h3><p>{b}</p></div>' for a, b in honor)}</div>
+  </div>
+</section>
+<section class="band concrete" aria-labelledby="comm-title">
+  <div class="wrap ym-wrap fam-two">
+    <div>
+      <p class="ym-label">Communication</p>
+      <h2 id="comm-title">Who to talk to</h2>
+      <ol class="fam-steps" role="list">
+        <li><span><b>Wrestler and coach.</b> Wrestlers speak for themselves first. It’s one of the skills the sport teaches.</span></li>
+        <li><span><b>Parent and head coach.</b> If it’s still unresolved, contact Coach Provini privately and respectfully.</span></li>
+        <li><span><b>Athletic administration.</b> If it still needs attention after that.</span></li>
+      </ol>
+      <p><b>The 24-hour rule.</b> Emotions run high after a match. Please wait a day before raising a concern with a coach.</p>
+      <p><a class="btn" href="mailto:{M.SITE['email']}">Email the coaches</a></p>
+    </div>
+    <div>
+      <p class="ym-label">Health and weight</p>
+      <h2>Healthy first</h2>
+      <p><b>Youth wrestlers</b> compete at their natural, healthy weight. No weight cutting.</p>
+      <p><b>Junior high and high school wrestlers</b> go through the PIAA weight certification early in the season and follow a safe descent plan set with the coaches and athletic trainer. Wrestlers weigh in with a coach before every practice and stay hydrated.</p>
+      <p><b>Skin checks.</b> Wrestlers are checked daily for skin infections. A doctor must complete the PIAA Communicable Skin Disease Form before a wrestler with a skin condition can compete.</p>
+      <p><a class="text-link" href="https://www.piaa.org/sports/wrestling/default.aspx" rel="noopener" target="_blank">PIAA wrestling forms</a></p>
+    </div>
+  </div>
+</section>
 <section class="band">
   <div class="wrap split even">
     <div class="prose">
       <h2>Season at a glance</h2>
-      <ul class="results" role="list"><li><span>High school season</span><b>November – March</b></li><li><span>Postseason</span><b>District XI, Regional, PIAA</b></li><li><span>Home matches</span><b>Pete Schneider Gymnasium</b></li><li><span>Banquet</span><b>Spring</b></li></ul>
+      <ul class="results" role="list"><li><span>High school season</span><b>November – March</b></li><li><span>Practice</span><b>Every day but Sunday</b></li><li><span>School days</span><b>Right after school</b></li><li><span>High school, non-school days</span><b>Generally 9:00 a.m.</b></li><li><span>Postseason</span><b>District XI, Regional, PIAA</b></li><li><span>Home matches</span><b>Pete Schneider Gymnasium</b></li><li><span>Banquet</span><b>Spring</b></li></ul>
       <p class="actions"><a class="btn" href="../schedule/">Schedule</a><a class="btn ghost dark-ink" href="{M.SITE['links']['district_calendar']}" rel="noopener">District calendar</a></p>
     </div>
     <div class="prose">
@@ -613,7 +714,9 @@ def build_family():
   </div>
 </section>
 """
-    return M.page("family/index.html", "Parents", "Information for Northampton wrestling parents and families: schedule, expectations, FAQs, and the booster club.", body, "family/", og_image="senior-night")
+    M.page("family/index.html", "Parents", "Information for Northampton wrestling parents and families: our mission, parent guides, the honor code in brief, communication, health and weight, FAQs, and the booster club.", body, "family/", og_image="senior-night")
+    build_parent_guide_secondary()
+    return M.SITE["domain"] + "/family/"
 
 
 def build_alumni():

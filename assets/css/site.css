@@ -1426,3 +1426,31 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .pt-card p { margin: 0; }
 .pt-card .actions { margin: 0; }
 @media (max-width: 480px) { .yj .wrap { gap: 6px; } .yj a { font-size: 14px; padding: 7px 11px; } }
+
+/* ---------- Parents page ---------- */
+.fam-start { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.fam-card { display: block; text-decoration: none; color: var(--ink); background: var(--concrete); border-top: 6px solid var(--blaze); padding: 22px 24px; border-radius: 6px; }
+.fam-card.dark { background: var(--ink); color: #fff; }
+.fam-card.dark .ym-label { color: var(--blaze); }
+.fam-card h2 { font-size: clamp(30px, 4vw, 40px); margin: 0 0 6px; }
+.fam-card p { margin: 0 0 12px; }
+.fam-go { font-weight: 800; color: var(--blaze-ink); }
+.fam-card.dark .fam-go { color: var(--blaze); }
+.fam-card:hover, .fam-card:focus-visible { box-shadow: 0 0 0 3px var(--blaze); }
+.fam-mission { font-size: clamp(19px, 2.4vw, 24px); line-height: 1.4; font-weight: 600; border-left: 6px solid var(--blaze); padding-left: 18px; margin: 0 0 18px; }
+.fam-values { list-style: none; margin: 0 0 30px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.fam-values li { background: var(--ink); color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 700; }
+.fam-values li:nth-child(even) { background: var(--blaze); color: var(--ink); }
+.fam-h3 { font-size: 26px; margin: 0 0 12px; }
+.fam-promise { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; }
+.fam-promise li { display: flex; gap: 10px; }
+.fam-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.fam-box { background: var(--concrete); border-radius: 8px; padding: 18px 20px; border-top: 4px solid var(--blaze); }
+.fam-box h3 { font-size: 22px; margin: 0 0 6px; }
+.fam-box p { margin: 0; }
+.fam-two { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; max-width: 1080px; }
+.fam-two h2 { font-size: clamp(30px, 4vw, 40px); }
+.fam-steps { list-style: none; counter-reset: s; margin: 0 0 16px; padding: 0; display: grid; gap: 10px; }
+.fam-steps li { counter-increment: s; display: grid; grid-template-columns: 34px 1fr; gap: 12px; }
+.fam-steps li::before { content: counter(s); width: 30px; height: 30px; border-radius: 50%; background: var(--blaze); color: var(--ink); display: grid; place-items: center; font-weight: 800; }
+@media (max-width: 760px) { .fam-start, .fam-promise, .fam-grid, .fam-two { grid-template-columns: 1fr; } }
