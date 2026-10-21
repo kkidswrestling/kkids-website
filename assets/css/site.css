@@ -1493,3 +1493,9 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .tbanner .t2.t2b { margin-top: 2px; }
 /* Team photos on title banners: show the whole team, never crop people off the sides (Joe, Oct. 21, 2026) */
 .team-banners .tbanner img.tb-photo { object-fit: contain; background: #0d0d0d; }
+/* Program mission, numbered (Joe, Oct. 21, 2026) */
+.mission-list { list-style: none; counter-reset: m; margin: 0 0 18px; padding: 0; display: grid; gap: 10px; }
+.mission-list li { counter-increment: m; position: relative; padding-left: 2.2em; font-weight: 600; line-height: 1.4; }
+.mission-list li::before { content: counter(m); position: absolute; left: 0; top: -.05em; font-family: var(--display); color: var(--blaze); font-size: 1.35em; line-height: 1; }
+.mission-h { margin: 18px 0 10px; }
+.fam-mission .mission-list { margin: 0; }

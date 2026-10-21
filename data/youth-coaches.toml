@@ -9,7 +9,12 @@
 
 [intro]
 lede = "Everything a Northampton youth coach needs to run a purposeful practice: what to teach, how to teach it, and how to know it stuck."
-mission = "To help student-athletes develop the timeless qualities and skills they need to become successful and happy adults, to help them reach their potential in wrestling, and to add value to their lives."
+# Official program mission (Joe, Oct. 21, 2026). Shown as a numbered list everywhere.
+mission = [
+  "Prepare student-athletes to become successful, happy adults.",
+  "Help every athlete reach their individual potential in wrestling.",
+  "Provide every athlete with a rewarding experience worth remembering.",
+]
 tagline = "Better people first. Better wrestlers along the way."
 
 # The shared standard: four cards

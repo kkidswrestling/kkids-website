@@ -487,8 +487,8 @@ def build_story():
       <h2>Since 1945</h2>
       <p>Northampton Wrestling began in 1945. More than 80 seasons later, the program runs from kindergarten through varsity, and every Konkrete Kid comes through the same room, the same expectations, and the same black and orange.</p>
       <p>Along the way the program has won {T['team_titles']} PIAA team titles, won {T['state']} individual state titles, and earned {T['medals']} state medals, with a State Medalist every year since {T['streak'][0]}. Eight head coaches have led the program, and {T['hundred']} wrestlers have won 100 or more varsity matches.</p>
-      <h2>What we believe</h2>
-      <p>Our mission is to give young people a supportive, demanding place to grow as wrestlers and as responsible, resilient, respectful members of the community.</p>
+      <h2>Our mission</h2>
+      {M.mission_list()}
       <p class="actions"><a class="btn" href="../timeline/">Explore the timeline</a><a class="btn ghost dark-ink" href="../champions/">Hall of Champions</a></p>
     </div>
     <aside class="note-card"><h3>Eight head coaches</h3><ul class="results eras" role="list">{era_rows}</ul></aside>
@@ -609,7 +609,6 @@ def build_parent_guide_secondary():
 
 def build_family():
     R = "../"
-    mission = load("youth-coaches.toml")["intro"]["mission"]
     values = ["Leadership", "Reliability", "Integrity", "Honor", "Accountability", "Discipline", "Kindness", "Honesty", "Fairness", "Teamwork"]
     promise = [("We lift wrestlers up.", "We never embarrass a wrestler. Corrections are made in a way that builds them up."),
                ("We believe in every wrestler.", "We see each one for who they can become, not just who they are today."),
@@ -641,7 +640,7 @@ def build_family():
   <div class="wrap ym-wrap">
     <p class="ym-label">Who we are</p>
     <h2 id="mission-title">Our mission</h2>
-    <p class="fam-mission">{e(mission)}</p>
+    <div class="fam-mission">{M.mission_list()}</div>
     <ul class="fam-values" role="list">{"".join(f"<li>{v}</li>" for v in values)}</ul>
     <h3 class="fam-h3">Our promise to you</h3>
     <ul class="fam-promise" role="list">{"".join(f"<li>{chk}<span><b>{a}</b> {b}</span></li>" for a, b in promise)}</ul>

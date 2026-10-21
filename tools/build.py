@@ -279,6 +279,12 @@ def hall_wall_head(R, title, intro):
             f'<div class="wrap"><h1>{title}</h1><p class="lede">{intro}</p></div></header>')
 
 
+def mission_list():
+    """The official program mission as a numbered list (data/youth-coaches.toml intro.mission)."""
+    items = load_toml("youth-coaches.toml")["intro"]["mission"]
+    return '<ol class="mission-list" role="list">' + "".join(f"<li>{e(x)}</li>" for x in items) + "</ol>"
+
+
 def result_rows(rows):
     return "".join(f"<li><span>{e(a)}</span><b>{e(b)}</b></li>" for a, b in rows)
 
@@ -485,7 +491,8 @@ def build_home():
     <div class="prose">
       <h2 id="about-title">History, tradition, community</h2>
       <p>Northampton Wrestling began in 1945. More than 80 seasons later, the program runs from kindergarten through varsity, and every Konkrete Kid comes through the same room, the same expectations, and the same black and orange.</p>
-      <p>Our mission is to give young people a supportive, demanding place to grow as wrestlers and as responsible, resilient, respectful members of the community.</p>
+      <h3 class="mission-h">Our mission</h3>
+      {mission_list()}
       <p><a class="text-link" href="coaching-staff/">Meet the coaching staff</a></p>
     </div>
     {figure(R, "program-family", "(min-width: 1180px) 1100px, 100vw", "natural-fig program-fig")}
@@ -1430,7 +1437,7 @@ def build_youth_coaches():
   <p class="ycp-eyebrow ycp-gap-lg">The development process</p><h2>Four steps to an effective season</h2>
   <ol class="ycp-grid4 ycp-steps">{road}</ol>
   <div class="ycp-split ycp-gap">
-    <div class="ycp-card"><p class="ycp-eyebrow">Our mission</p><p>{e(I["mission"])}</p><p class="ycp-tagline">{e(I["tagline"])}</p></div>
+    <div class="ycp-card"><p class="ycp-eyebrow">Our mission</p>{mission_list()}<p class="ycp-tagline">{e(I["tagline"])}</p></div>
     <div class="ycp-card"><p class="ycp-eyebrow">One program, K–12</p><p>{e(I["northampton_way"])}</p></div>
   </div>
   {top}
