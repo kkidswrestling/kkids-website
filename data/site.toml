@@ -31,6 +31,7 @@ youtube = "https://www.youtube.com/playlist?list=PLYJb_GgZKkU__A1iExzMBQgJrTBayu
 
 [links]
 share_form = "https://docs.google.com/forms/d/e/1FAIpQLSdPIe3gW-WFSa_6o134FyisO2H45XyV7UmX8Z9ah8pdw0AwMw/viewform"
+signup_form = "https://docs.google.com/forms/d/e/1FAIpQLSdQVPLca5Nofp7jpEiz2HvWBIrzJaz0wD0qc1QrcTGtcnP8fw/viewform"
 youth_registration = "http://www.naasports.net/Registration"
 district_athletics = "https://nasdathletics.org"
 district_calendar = "https://arbiterlive.com/School/Calendar/16413"
