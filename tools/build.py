@@ -1343,8 +1343,8 @@ def build_coaches():
       <p><b>{h['record']}</b> dual record</p>
       <p><b>{h['district_champs']}</b> District XI champions</p>
       <p><b>{h['regional_champs']}</b> Northeast Regional champions</p>
-      <p><b>{h['state_champs']}</b> state champions</p>
-      <p><b>{h['placewinners']}</b> state placewinners</p>
+      <p><b>{h['state_champs']}</b> State champions</p>
+      <p><b>{h['placewinners']}</b> State placewinners</p>
     </div>
     <p class="fine">At Northampton, through the 2025–26 season.</p>
   </div>
