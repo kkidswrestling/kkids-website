@@ -849,7 +849,7 @@ def load_hall_toml(name):
 def build_all(module):
     global M
     M = module
-    urls = [build_roster(), build_results(), build_news(), build_photos(), build_videos(), build_timeline(),
+    urls = [build_roster(), build_results(), build_news(), build_videos(), build_timeline(),
             build_story(), build_facilities(), build_join(), build_family(), build_alumni(), build_follow()]
     urls += build_champion_pages()
     urls += build_team_title_pages()

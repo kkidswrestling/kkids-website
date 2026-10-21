@@ -55,7 +55,7 @@ NAV_GROUPS = [
     ("Tradition", [("champions/", "Hall of Champions"), ("champions/#team-title", "Team Titles"),
                    ("champions/#hundred-title", "100-Win Club"), ("champions/#lists-title", "Record Book"),
                    ("timeline/", "Timeline"), ("seasons/", "Past Seasons"), ("trivia/", "Trivia")]),
-    ("Media", [("news/", "News"), ("photos/", "Photos"), ("videos/", "Videos"), ("follow/", "Follow & Updates")]),
+    ("Media", [("news/", "News"), ("videos/", "Videos"), ("follow/", "Follow & Updates")]),
     ("Family", [("family/", "Parent Information"), ("family/#faq", "FAQs"), ("family/#booster", "Booster Club")]),
     ("Alumni", [("alumni/", "Where Are They Now"), ("alumni/#update", "Update Your Information"), ("alumni/#support", "Support the Program")]),
     ("Join", [("join/", "Why Northampton"), ("join/#path", "The Path"), ("youth/", "Youth Wrestling"), ("join/#start", "Start Wrestling")]),
@@ -1860,6 +1860,7 @@ def main():
     redirect("copy-of-high-school/index.html", "seasons/2022-23/")
     redirect("copy-of-high-school-1/index.html", "seasons/2023-24/")
     redirect("coaches/index.html", "coaching-staff/")
+    redirect("photos/index.html", "seasons/")  # Photos page retired (Joe, Oct. 2026): every photo lives on a season or other page
     if not YOUTH_COACHES_LIVE:
         redirect("youth/coaches/index.html", "youth/")  # paused: old links land on the Youth page
     # Sitemap: every built page (not redirect stubs), so new profiles and news posts are always included
