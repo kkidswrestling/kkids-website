@@ -36,6 +36,7 @@ postseason = [
 sources = [["Lehigh Valley Wrestling History, “1992-93: The Cement Job”", "https://lehighvalleywrestlinghistory.com/1992-93-the-cement-job/"]]
 
 ["1994"]
+team_photo = "team-1994"
 record = "24–0"
 league = "East Penn Conference champions, 11–0"
 coach = "Don Rohn"
@@ -68,6 +69,7 @@ story = [
   "Northampton completed a three-peat in 1995, winning its third straight PIAA team title in a season that tested the Kids more than the two before it.",
   "In their first year in the new Mountain Valley Conference, the Kids opened ranked No. 2 in the nation behind Walsh Jesuit and riding a 48-dual winning streak. The streak reached 50 at the Valley Youth House Elite Duals, including a 31–29 win over Canon-McMillan, before Walsh Jesuit ended it 28–27 the same day. Northampton finished 2nd to Walsh at the Ironman Classic in Ohio, won the Liberty holiday tournament with seven champions and the Bethlehem Holiday Classic, and won the Cedar Cliff Duals again. Nazareth (28–23) and Easton (28–23, then 25–24 in the District Duals semifinals) handed the Kids their other losses.",
   "The Kids crowned six District XI Champions, the most of any team, while finishing 2nd to Nazareth in the team race, then won the Northeast Regional team title with five champions. At Hershey six Kids reached the podium and Northampton won the team title again, led by Denny Liberto's championship at 103.",
+  "The senior class was on teams that collectively won 84 of 90 duals, three PIAA team titles, and two national titles (one from USA Today and one from Amateur Wrestling News), and put together a 50-match unbeaten dual-meet streak.",
 ]
 highlights = [
   ["Dec. 10", "Beat Canon-McMillan 31–29 for a 50th straight dual win; lost 28–27 to No. 1 Walsh Jesuit"],

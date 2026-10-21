@@ -1464,3 +1464,34 @@ caption = "1992–93 PIAA Class AAA team champions."
 crop = [0, 0, 1376, 870]
 widths = [640, 1376]
 file = "originals/batch15_team-1993.jpg"
+
+[[photo]]
+id = "rohn-yearbook"
+source = "Northampton yearbook, photo by Marty Fella; used with permission of the athletic director and school"
+credit = "Marty Fella, Northampton yearbook"
+alt = "Coach Don Rohn watches a match from the corner, hand at his chin"
+caption = "Coach Don Rohn, head coach 1982–2000."
+crop = [2, 34, 206, 352]
+widths = [204]
+file = "originals/batch15_rohn-yearbook.jpg"
+
+[[photo]]
+id = "whitey-yearbook-2"
+source = "Northampton yearbook (1993–94), photo by Marty Fella; used with permission of the athletic director and school"
+credit = "Marty Fella, Northampton yearbook"
+season = "1993-94"
+alt = "Whitey Chlebove controls an opponent from behind in front of a packed crowd"
+caption = "Whitey Chlebove in his first season as a Konkrete Kid, 1993–94."
+crop = [0, 0, 412, 342]
+widths = [412]
+file = "originals/batch15_whitey-yearbook2.jpg"
+
+[[photo]]
+id = "team-1994"
+source = "Northampton yearbook (1993–94), team photo with the PIAA Class AAA team trophy; used with permission of the athletic director and school"
+season = "1993-94"
+alt = "The 1993–94 Northampton team and coaches with the PIAA Class AAA team championship trophy"
+caption = "1993–94 PIAA Class AAA team champions."
+crop = [0, 0, 549, 338]
+widths = [549]
+file = "originals/batch15_team-1994.jpg"

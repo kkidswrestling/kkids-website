@@ -1463,3 +1463,9 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 /* Team-title banners with a team photo (from data/hall/team-seasons.toml team_photo) */
 .tbanner.has-photo { padding-top: 10px; }
 .tbanner .tb-photo { width: calc(100% - 12px); aspect-ratio: 4 / 3; object-fit: cover; border: 2px solid var(--blaze); margin-bottom: 6px; display: block; }
+/* Our Story: Coach Rohn photo beside his quote */
+.rohn-q { display: grid; grid-template-columns: 200px 1fr; gap: 36px; align-items: center; }
+.rohn-q .rohn-fig { margin: 0; }
+.rohn-q .rohn-fig img { width: 100%; height: auto; border: 3px solid var(--blaze); }
+.rohn-q .rohn-fig figcaption { color: var(--on-dark-2); font-size: 13px; margin-top: 6px; }
+@media (max-width: 640px) { .rohn-q { grid-template-columns: 1fr; gap: 20px; } .rohn-q .rohn-fig { max-width: 180px; } }
