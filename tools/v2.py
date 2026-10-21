@@ -428,23 +428,93 @@ def build_photos():
     return M.page("photos/index.html", "Photos", "Northampton wrestling photo galleries.", body, "photos/", og_image="ballard-raised")
 
 
+def _secs(ts):
+    s = 0
+    for part in str(ts).split(":"):
+        s = s * 60 + int(part)
+    return s
+
+
+def _yt_id(url):
+    m = re.search(r"(?:v=|youtu\.be/|embed/)([A-Za-z0-9_-]{11})", url)
+    return m.group(1) if m else ""
+
+
 def build_videos():
+    """Every video on the site, organized (Joe, Oct. 21, 2026): state finals by year, then season highlights by season."""
     R = "../"
-    pl = M.SITE["social"]["youtube"].split("list=")[-1]
+    # ---- state finals, one card per title we have video for
+    rows = M.load_csv("hall/state-champions.csv")
+    finals = []
+    for name, c in M.CHAMPS.items():
+        if not isinstance(c, dict) or not c.get("video"):
+            continue
+        years = [int(r["year"]) for r in rows if r["wrestler"] == name]
+        wts = {int(r["year"]): r["weight"].replace(" lbs", "") for r in rows if r["wrestler"] == name}
+        for v in c["video"]:
+            if isinstance(v, str):
+                v = {"url": v}
+            y = v.get("year") or (years[0] if len(years) == 1 else None)
+            finals.append((y, name, wts.get(y, ""), v))
+    finals.sort(key=lambda x: (x[0] or 0, x[1]))
+    cards = []
+    for y, name, wt, v in finals:
+        url = v["url"]; site = v.get("site", "YouTube")
+        champ = f'{R}champions/{M.slug(name)}/'
+        if site == "YouTube":
+            vid = _yt_id(url)
+            t = _secs(v["start"]) if v.get("start") else 0
+            href = f"https://www.youtube.com/watch?v={vid}" + (f"&t={t}s" if t else "")
+            thumb = f'<img src="https://i.ytimg.com/vi/{vid}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" onerror="this.remove()">'
+            note = f'Starts at {e(v["start"])}' if v.get("start") else "Full video"
+        else:
+            href = url
+            thumb = '<span class="vl-flo">FloWrestling</span>'
+            note = "FloWrestling subscription required"
+        cards.append(f'<li class="vcard"><a class="vthumb" href="{e(href)}" rel="noopener" target="_blank">{thumb}<span class="vplay" aria-hidden="true">▶</span><span class="visually-hidden">Watch {e(name)}, {y} state final</span></a>'
+                     f'<div class="vbody"><p class="vyr">{y} · {e(wt)}</p><h3><a href="{champ}">{e(name)}</a></h3><p class="vnote">{note}</p></div></li>')
+    finals_html = "".join(cards)
+    # ---- season highlights, newest first
+    sv = []
+    for sid in sorted(M.SEASON_VIDEOS, reverse=True):
+        y1 = int(sid[:4]); y2 = y1 + 1
+        label = f"{y1}–{str(y2)[2:]}" if y2 % 100 else f"{y1}–{y2}"
+        if sid == "1999-00": label = "1999–2000"
+        parts = M.SEASON_VIDEOS[sid]
+        href_season = M.season_href(R, sid, y2)
+        for v in parts:
+            vid = v["id"]; pt = v.get("part", 0)
+            sv.append(f'<li class="vcard"><a class="vthumb" href="https://www.youtube.com/watch?v={vid}" rel="noopener" target="_blank"><img src="https://i.ytimg.com/vi/{vid}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" onerror="this.remove()"><span class="vplay" aria-hidden="true">▶</span><span class="visually-hidden">Watch the {label} highlight video{f", part {pt}" if pt else ""}</span></a>'
+                      f'<div class="vbody"><p class="vyr">{"Part " + str(pt) if pt else "Highlights"}</p><h3><a href="{href_season}">{label}</a></h3></div></li>')
+    seasons_html = "".join(sv)
+    n_f = len(cards); n_s = len(sv)
     body = f"""
-{M.page_head(R, "Videos", "Season highlights, big moments, and Konkrete Kids history.")}
-<section class="band dark">
+{M.page_head(R, "Videos", "Every state final and season highlight video we have, in one place.")}
+<nav class="yj" aria-label="On this page"><div class="wrap"><a class="yj-main" href="#finals">State Finals</a><a href="#highlights">Season Highlights</a><a href="#share">Share a video</a></div></nav>
+<section class="band" aria-labelledby="finals">
   <div class="wrap">
-    <div class="video-facade" data-yt="{e(pl)}">
-      {M.picture(R, "dark-stance", "(min-width: 1180px) 1100px, 100vw", "vf-img", alt="")}
-      <button type="button" class="vf-play"><span aria-hidden="true">▶</span> Play all highlight videos</button>
-    </div>
-    <p class="fine on-dark">Plays from YouTube. Season highlight videos are produced by Coach Mike Sommer. Photo: {e(M.PHOTOS["dark-stance"].get("credit", ""))}.</p>
-    <p class="actions"><a class="btn" href="{M.SITE['social']['youtube']}" rel="noopener">Watch on YouTube</a></p>
+    <h2 id="finals">State finals</h2>
+    <p class="lede">{n_f} state championship finals, oldest to newest. Tap a video to watch it on YouTube, or a name for that champion's page.</p>
+    <ul class="vgrid" role="list">{finals_html}</ul>
+  </div>
+</section>
+<section class="band concrete" aria-labelledby="highlights">
+  <div class="wrap">
+    <h2 id="highlights">Season highlights</h2>
+    <p class="lede">{n_s} highlight videos, newest season first, produced by Coach Mike Sommer. Tap a season for its full page.</p>
+    <ul class="vgrid" role="list">{seasons_html}</ul>
+    <p class="actions top-gap"><a class="btn" href="{M.SITE['social']['youtube']}" rel="noopener" target="_blank">Play all highlights on YouTube</a></p>
+  </div>
+</section>
+<section class="band" aria-labelledby="share">
+  <div class="wrap prose">
+    <h2 id="share">Have a video we're missing?</h2>
+    <p>We're still looking for state finals and season highlight videos. If you have one, share it here and we'll add it. We read everything but can't reply individually.</p>
+    <p><a class="btn" href="{M.SITE['links']['share_form']}" rel="noopener" target="_blank">Share photos &amp; video</a></p>
   </div>
 </section>
 """
-    return M.page("videos/index.html", "Videos", "Northampton wrestling videos and season highlights.", body, "videos/", og_image="dark-stance")
+    return M.page("videos/index.html", "Videos", "Every Northampton wrestling state final and season highlight video, organized by year.", body, "videos/", og_image="dark-stance")
 
 
 # ------------------------------------------------------------------ timeline

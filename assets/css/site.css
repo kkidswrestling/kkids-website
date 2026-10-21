@@ -1539,3 +1539,19 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
   .hero-actions { flex-wrap: nowrap; }
   .hero-actions .btn { flex: 1 1 0; min-width: 0; justify-content: center; text-align: center; padding-left: 8px; padding-right: 8px; white-space: nowrap; }
 }
+/* Videos page: organized list of every video (Joe, Oct. 21, 2026) */
+.vgrid { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
+.vcard { background: var(--paper, #fff); border-top: 4px solid var(--blaze); border-radius: 6px; overflow: hidden; box-shadow: 0 1px 0 rgba(0,0,0,.06); display: flex; flex-direction: column; min-width: 0; }
+.band.concrete .vcard { background: #fff; }
+.vthumb { position: relative; display: block; aspect-ratio: 16 / 9; background: var(--ink); overflow: hidden; }
+.vthumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.vplay { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 52px; height: 52px; border-radius: 50%; background: var(--blaze); color: var(--ink); display: grid; place-items: center; font-size: 18px; padding-left: 3px; box-shadow: 0 2px 10px rgba(0,0,0,.35); }
+.vthumb:hover .vplay, .vthumb:focus-visible .vplay { transform: translate(-50%, -50%) scale(1.08); }
+.vl-flo { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-family: var(--display); font-size: 26px; letter-spacing: .04em; text-transform: uppercase; }
+.vbody { padding: 12px 14px 14px; }
+.vyr { margin: 0 0 2px; font-family: var(--display); color: var(--blaze-ink); letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
+.vbody h3 { margin: 0; font-size: 20px; line-height: 1.15; }
+.vbody h3 a { color: var(--ink); text-decoration: none; }
+.vbody h3 a:hover { color: var(--blaze-ink); text-decoration: underline; }
+.vnote { margin: 4px 0 0; font-size: 13.5px; color: var(--muted, #5c5a55); }
+@media (max-width: 640px) { .vgrid { grid-template-columns: 1fr 1fr; gap: 12px; } .vbody { padding: 10px 10px 12px; } .vbody h3 { font-size: 16px; } .vplay { width: 40px; height: 40px; font-size: 14px; } .vnote { font-size: 12px; } }
