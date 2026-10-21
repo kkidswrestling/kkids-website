@@ -83,3 +83,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Hall of Champions header (Joe, Oct. 21, 2026): a wall of every state champion's banner photo (headshot first, else banner), oldest first, from hall_wall_head() in build.py (CSS .hall-wall; 10 across on desktop, 5 across on phones). New champions join it automatically from state-champions.csv + champions.toml.
 - The 1999-2000 team-title banner shows both titles, "PIAA State Champions" and "PIAA State Dual Champions" (Joe, Oct. 21, 2026); the other six show "PIAA State Champions" only.
 - 2000 is the program's only PIAA team duals title (runner-up 2008, 2019). Don't call it the "first" duals title (Joe, Oct. 21, 2026). If another is ever won, update the 2000 team-title page line "still the only state duals title in program history".
+- Team-title banner photos use object-fit: contain so no one is cropped off the sides (Joe, Oct. 21, 2026: Coach Rohn was being cut off).

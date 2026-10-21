@@ -1491,3 +1491,5 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .page-head.hall-wall::after { background: linear-gradient(180deg, rgba(20,20,20,.25), rgba(20,20,20,.55) 45%, rgba(20,20,20,.92) 92%); }
 @media (max-width: 860px) { .page-head.hall-wall { min-height: 100vw; } .hall-wall .hw-grid { grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(4, 1fr); } }
 .tbanner .t2.t2b { margin-top: 2px; }
+/* Team photos on title banners: show the whole team, never crop people off the sides (Joe, Oct. 21, 2026) */
+.team-banners .tbanner img.tb-photo { object-fit: contain; background: #0d0d0d; }
