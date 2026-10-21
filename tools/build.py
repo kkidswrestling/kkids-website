@@ -230,7 +230,10 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
     </div>
   </div>
   <div class="wrap foot-base">
-    <p>&copy; <span data-year>2026</span> {SITE['owner']}</p>
+    <div>
+      <p>&copy; <span data-year>2026</span> {SITE['owner']}</p>
+      <p>*The Northampton Area School District does not sponsor or sanction this program/event/activity.</p>
+    </div>
     <p class="foot-note">Parents: to have a photo or your wrestler’s name removed, email <a href="mailto:{SITE['email']}?subject=Photo%20removal%20request">{SITE['email']}</a>.</p>
   </div>
 </footer>
