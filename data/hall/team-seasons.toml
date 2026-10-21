@@ -115,6 +115,7 @@ postseason = [
 sources = [["Lehigh Valley Wrestling History, “1997-98: Bulldogs Blossom, Kids Triumph over Trojans”", "https://lehighvalleywrestlinghistory.com/1997-98-bulldogs-blossom-kids-triumph-over-trojans/"]]
 
 ["2000"]
+team_photo = "team-2000"
 record = "23–1"
 league = "Mountain Valley Conference champions, 7–0"
 coach = "Don Rohn"

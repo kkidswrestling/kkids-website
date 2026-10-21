@@ -1524,3 +1524,13 @@ caption = "The 1997–98 Konkrete Kids. First row: Robert Schuller, Seth Lisa, J
 crop = [12, 10, 672, 398]
 widths = [660]
 file = "originals/batch15_team-1998.jpg"
+
+[[photo]]
+id = "team-2000"
+source = "Northampton yearbook (1999–2000), team photo with the PIAA Class AAA team trophy; used with permission of the athletic director and school"
+season = "1999-00"
+alt = "The 1999–2000 Northampton team and coaches with the PIAA Class AAA team championship trophy"
+caption = "1999–2000 PIAA Class AAA team champions."
+crop = [0, 0, 563, 326]
+widths = [563]
+file = "originals/batch15_team-2000.jpg"
