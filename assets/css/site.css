@@ -1495,8 +1495,16 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .team-banners .tbanner img.tb-photo { object-fit: contain; background: #0d0d0d; }
 /* Program mission, numbered (Joe, Oct. 21, 2026) */
 .mission-list { list-style: none; counter-reset: m; margin: 0 0 18px; padding: 0; display: grid; gap: .6em; }
-.mission-list li { counter-increment: m; display: grid; grid-template-columns: 1em 1fr; column-gap: .5em; align-items: baseline; font-weight: 600; line-height: 1.4; }
+.mission-list li { counter-increment: m; display: grid; grid-template-columns: .8em 1fr; column-gap: .45em; align-items: baseline; font-weight: 600; line-height: 1.4; }
 .mission-list li::before { content: counter(m); font-family: var(--display); color: var(--blaze); font-size: 1.3em; line-height: 1; }
 .mission-h { margin: 18px 0 10px; }
 .fam-mission .mission-list { margin: 0; }
 .fam-mission { padding-left: .65em; }
+/* Parents page: "Who we are" spacing (Joe, Oct. 21, 2026) */
+.band.fam-who { padding-top: clamp(36px, 5vw, 56px); padding-bottom: clamp(20px, 3vw, 28px); }
+.fam-who .ym-label { margin-bottom: 4px; }
+.fam-who h2 { margin-bottom: 18px; }
+.fam-who .fam-mission { margin-bottom: 22px; }
+.fam-who .fam-values { margin: 0; }
+.fam-who + .band.tight { padding-top: clamp(20px, 3vw, 28px); }
+.fam-who .fam-mission, .fam-who .fam-values { max-width: 900px; }

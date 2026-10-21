@@ -632,8 +632,8 @@ def build_family():
     ten = "".join(f'<li><span class="pt-n">{i}</span><div><b>{a}</b><span>{b}</span></div></li>' for i, (a, b) in enumerate(SECONDARY_TEN, 1))
     body = f"""
 {M.page_head(R, "Parents", "What parents and families need to know.", "senior-night-tight", "50% 40%", cls="fit-photo wide")}
-<section class="band" aria-labelledby="mission-title">
-  <div class="wrap ym-wrap">
+<section class="band fam-who" aria-labelledby="mission-title">
+  <div class="wrap">
     <p class="ym-label">Who we are</p>
     <h2 id="mission-title">Our mission</h2>
     <div class="fam-mission">{M.mission_list()}</div>
