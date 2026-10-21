@@ -35,6 +35,22 @@
       if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") { setOpen(false); btn.focus(); }
     });
     window.matchMedia("(min-width: 1061px)").addEventListener("change", function (m) { if (m.matches) setOpen(false); });
+    // A menu link to a section of the page you're already on (e.g. Hall of Champions > Record Book):
+    // close the menu first, then scroll, so the jump isn't hidden behind the open menu.
+    nav.addEventListener("click", function (e) {
+      var a = e.target.closest("a[href]");
+      if (!a) return;
+      var url = new URL(a.href, location.href);
+      var samePage = url.pathname === location.pathname && url.hash;
+      if (btn.getAttribute("aria-expanded") === "true") setOpen(false);
+      if (!samePage) return;
+      var target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+      if (!target) return;
+      e.preventDefault();
+      subBtns.forEach(function (x) { x.setAttribute("aria-expanded", "false"); });
+      history.pushState(null, "", url.hash);
+      requestAnimationFrame(function () { target.scrollIntoView({ block: "start" }); });
+    });
   }
 
 
