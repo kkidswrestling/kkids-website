@@ -1501,7 +1501,7 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .fam-mission .mission-list { margin: 0; }
 .fam-mission { padding-left: .65em; }
 /* Parents page: "Who we are" spacing (Joe, Oct. 21, 2026) */
-.band.fam-who { padding-top: clamp(36px, 5vw, 56px); padding-bottom: clamp(20px, 3vw, 28px); }
+.band.fam-who { padding-top: clamp(22px, 3vw, 32px); padding-bottom: clamp(20px, 3vw, 28px); }
 .fam-who .ym-label { margin-bottom: 4px; }
 .fam-who h2 { margin-bottom: 18px; }
 .fam-who .fam-mission { margin-bottom: 22px; }
