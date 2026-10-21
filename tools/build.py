@@ -61,7 +61,7 @@ NAV_GROUPS = [
     ("Tradition", [("champions/", "Hall of Champions"), ("champions/#team-title", "Team Titles"),
                    ("champions/#hundred-title", "100-Win Club"), ("champions/#lists-title", "Record Book"),
                    ("timeline/", "Timeline"), ("seasons/", "Past Seasons"), ("trivia/", "Trivia")]),
-    ("Media", [("news/", "News"), ("videos/", "Videos"), ("follow/", "Follow & Updates")]),
+    ("Media", [("news/", "News"), ("videos/", "Videos"), ("follow/", "Follow & Email List")]),
     ("Parents", [("family/", "Parent Information"), ("youth/#pt-title", "Youth Parent Guide"), ("family/#faq", "FAQs"), ("family/#booster", "Booster Club")]),
     ("Alumni", [("alumni/", "Where Are They Now"), ("alumni/#update", "Update Your Information"), ("alumni/#support", "Support the Program")]),
     ("Join", [("join/", "Why Northampton"), ("join/#path", "The Path"), ("youth/", "Youth Wrestling"), ("join/#start", "Start Wrestling")]),

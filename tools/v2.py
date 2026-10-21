@@ -47,9 +47,9 @@ def follow_block(R, heading_id="follow-title", dark=True):
                               ("x", "X", "Team news")))
     return f'''<div class="follow-grid">
   <div class="newsletter">
-    <h2 id="{heading_id}">Never miss what’s happening</h2>
-    <p class="lede">Sign up for updates about the program: big results, schedules, events, and news from the varsity, junior high, and youth teams. We only send something when there’s something worth sharing.</p>
-    <a class="btn" href="{action}"{' rel="noopener" target="_blank"' if nl else ""}>Sign up for updates</a>
+    <h2 id="{heading_id}">Join our email list</h2>
+    <p class="lede">Add your email to the Northampton Wrestling email list. We’ll reach out when there’s something worth sharing about the varsity, junior high, or youth teams.</p>
+    <a class="btn" href="{action}"{' rel="noopener" target="_blank"' if nl else ""}>Join our email list</a>
     {"" if nl else '<p class="fine">Opens an email to the club with “Sign me up” already filled in. Just hit send.</p>'}
   </div>
   <div class="follow-cards">{cards}</div>
@@ -752,10 +752,10 @@ def build_alumni():
 def build_follow():
     R = "../"
     body = f"""
-{M.page_head(R, "Follow Northampton", "Program updates by email, and every Konkrete Kids channel in one place.")}
+{M.page_head(R, "Follow Northampton", "Our email list, and every Konkrete Kids channel in one place.")}
 <section class="band dark"><div class="wrap">{follow_block(R, "nl-title")}</div></section>
 """
-    return M.page("follow/index.html", "Follow", "Follow Northampton Wrestling: sign up for program updates and find the team on social media.", body, "follow/")
+    return M.page("follow/index.html", "Follow", "Follow Northampton Wrestling: join our email list and find the team on social media.", body, "follow/")
 
 
 # ------------------------------------------------------------------ State Champion pages
