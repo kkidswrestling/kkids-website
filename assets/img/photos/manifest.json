@@ -2175,6 +2175,24 @@
    ]
   ]
  },
+ "showcase-roar-tight": {
+  "fallback": [
+   1179,
+   1281
+  ],
+  "h": 1281,
+  "w": 1179,
+  "widths": [
+   [
+    640,
+    695
+   ],
+   [
+    1179,
+    1281
+   ]
+  ]
+ },
  "showcase-tears": {
   "fallback": [
    1200,

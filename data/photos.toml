@@ -1413,3 +1413,13 @@ alt = "The whole Northampton wrestling program, from the youngest youth wrestler
 crop = [180, 110, 2396, 1866]
 widths = [640, 1200, 1800, 2216]
 file = "originals/batch2_program.jpg"
+
+[[photo]]
+id = "showcase-roar-tight"
+caption = "Carson Wagner at the 2023 PIAA Championships, where he finished state runner-up at 114."
+season = "2022-23"
+source = "Coach Provini, showcase batch 1 (trimmed above the head for the timeline)"
+alt = "Carson Wagner roars and flexes after a win at the PIAA Championships"
+crop = [0, 170, 1179, 1451]
+widths = [640, 1179]
+file = "originals/batch1_05-b6a5c44a-image.jpg"
