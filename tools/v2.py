@@ -400,7 +400,7 @@ def build_news():
 <article>
   <header class="page-head has-photo">{M.picture(R2, p["photo"], "100vw", "bg", True, alt="")}
     <div class="wrap"><p class="kicker"><a href="{R2}news/">News</a> · <time datetime="{p['date'].isoformat()}">{fmt_date(p['date'])}</time></p><h1 class="article-title">{e(p['title'])}</h1></div></header>
-  <div class="band"><div class="wrap prose article-body">{''.join(f'<p>{e(x)}</p>' for x in p['body'])}</div>{('<div class="wrap prose article-body"><h2 class="sub">Read more</h2><ul>' + "".join(f'<li><a href="{e(u)}" rel="noopener" target="_blank">{e(tt)}</a></li>' for tt, u in p["links"]) + '</ul></div>') if p.get("links") else ""}{('<div class="wrap top-gap">' + M.gallery(R2, p["gallery"], "news-" + p["slug"]) + '</div>') if p.get("gallery") else ""}</div>
+  <div class="band"><div class="wrap prose article-body">{''.join(f'<p>{e(x)}</p>' for x in p['body'])}</div>{('<div class="wrap prose article-body"><h2 class="sub">' + e(p.get("links_title", "Read more")) + '</h2><ul>' + "".join(f'<li><a href="{e(u)}" rel="noopener" target="_blank">{e(tt)}</a></li>' for tt, u in p["links"]) + '</ul></div>') if p.get("links") else ""}{('<div class="wrap top-gap">' + M.gallery(R2, p["gallery"], "news-" + p["slug"]) + '</div>') if p.get("gallery") else ""}</div>
 </article>
 <section class="band concrete"><div class="wrap"><h2>More news</h2><div class="news-grid two">{''.join(news_card(R2, q) for q in more)}</div></div></section>
 """
