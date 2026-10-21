@@ -64,10 +64,10 @@ fact = "The PIAA team duals. That made 2000 the program's first season with both
 link = ["The 2000 title season", "champions/team/2000/"]
 
 [[round.q]]
-q = "The 2000 Kids set a state record with eight place winners. Four years later the 2004 Kids beat that number. How many state medalists did they have?"
-choices = ["9", "10", "11", "12"]
-answer = 2
-fact = "Ten, the most in program history: three state champions (Joey Ecklof, Josh Haines and Jon Oplinger) and seven more medalists."
+q = "Which Northampton team sent home the most state medalists in program history, 10 in one year?"
+choices = ["The 1995 team", "The 2000 team", "The 2003 team", "The 2004 team"]
+answer = 4
+fact = "The 2004 team: state champions Joey Ecklof, Josh Haines and Jon Oplinger plus seven more medalists. The 2000 team had set the state record with eight."
 link = ["The 2004 title season", "champions/team/2004/"]
 
 [[round.q]]
