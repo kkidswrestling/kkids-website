@@ -486,7 +486,6 @@ def build_story():
       <p>Along the way the program has won {T['team_titles']} PIAA team titles, won {T['state']} individual state titles, and earned {T['medals']} state medals, with a state medalist every year since {T['streak'][0]}. Eight head coaches have led the program, and {T['hundred']} wrestlers have won 100 or more varsity matches.</p>
       <h2>What we believe</h2>
       <p>Our mission is to give young people a supportive, demanding place to grow as wrestlers and as responsible, resilient, respectful members of the community.</p>
-      <p><strong>We never sacrifice goodness for greatness.</strong> Integrity and honor come first. Winning is the byproduct.</p>
       <p class="actions"><a class="btn" href="../timeline/">Explore the timeline</a><a class="btn ghost dark-ink" href="../champions/">Hall of Champions</a></p>
     </div>
     <aside class="note-card"><h3>Eight head coaches</h3><ul class="results" role="list">{era_rows}</ul></aside>
@@ -593,7 +592,7 @@ def build_family():
     </div>
     <div class="prose">
       <h2>Program expectations</h2>
-      <p>We never sacrifice goodness for greatness. Wrestlers are expected to be at every in-season practice and competition, and to represent Northampton with integrity on and off the mat.</p>
+      <p>Wrestlers are expected to be at every in-season practice and competition, and to represent Northampton with integrity on and off the mat.</p>
       <p>In the youth program, only each team’s coaching staff is in the practice room, and in-season attendance is required: club practices and outside tournaments don’t replace team practice. Special circumstances are handled case by case.</p>
     </div>
   </div>

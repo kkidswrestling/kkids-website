@@ -459,7 +459,7 @@ def build_home():
     <div class="prose">
       <h2 id="about-title">History, tradition, community</h2>
       <p>Northampton Wrestling began in 1945. More than 80 seasons later, the program runs from kindergarten through varsity, and every Konkrete Kid comes through the same room, the same expectations, and the same black and orange.</p>
-      <p>Our mission is to give young people a supportive, demanding place to grow as wrestlers and as responsible, resilient, respectful members of the community. We never sacrifice goodness for greatness. Integrity and honor come first, and winning is the byproduct.</p>
+      <p>Our mission is to give young people a supportive, demanding place to grow as wrestlers and as responsible, resilient, respectful members of the community.</p>
       <p><a class="text-link" href="coaching-staff/">Meet the coaching staff</a></p>
     </div>
     {figure(R, "program-family", "(min-width: 1180px) 1100px, 100vw", "natural-fig program-fig")}
