@@ -1534,3 +1534,4 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .yx .fam-card h2 { font-size: clamp(26px, 3.2vw, 34px); }
 @media (max-width: 760px) { .yx { grid-template-columns: 1fr; gap: 12px; } .yx .fam-card { padding: 16px 18px; } .yx .fam-card h2 { font-size: 26px; } }
 .pt-back a { white-space: nowrap; }
+.hero-motto { display: block; color: var(--on-dark); font-weight: 600; margin-bottom: 6px; }

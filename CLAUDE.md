@@ -91,3 +91,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Youth FAQs (Joe, Oct. 21, 2026): about the sport and how the program is structured and run, not the Black/Orange transition, and no justification of the change. Keep transition questions out. Facts used: K-6, Novice generally K-2, Black/Orange each varsity+JV with own staff, VEWL, matched by weight, no weight cutting, attendance rule, NAA registration, JH 7-9.
 - "Why we're doing this" section removed from youth/ (Joe, Oct. 21, 2026); keep it off the site.
 - No "Can parents watch practice?" FAQ on youth/ or family/ (Joe, Oct. 21, 2026).
+- Home hero (Joe, Oct. 21, 2026): "Committed to excellence in academics, athletics, and character." sits on its own line above "Established 1945" (.hero-motto).
