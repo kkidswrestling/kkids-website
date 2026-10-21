@@ -4,7 +4,7 @@
 [[event]]
 year = 1945
 title = "Northampton Wrestling begins"
-text = "Harry Wall builds the program and coaches it for 26 seasons, through 1970–71, with a 180–110–4 dual-meet record."
+text = "Harry Wall builds the program and coaches it for 26 seasons, through 1970–71. His teams go 180–110–4 and produce 30 District XI champions, 11 Northeast Regional champions, and 2 state champions."
 
 [[event]]
 year = 1948
@@ -37,9 +37,24 @@ title = "Harry Wall's final season"
 text = "In his 26th and final season, Harry Wall's team wins the Lehigh Valley League outright at 7–0. Wall had coached the program since its first season and finished with a 180–110–4 dual-meet record."
 
 [[event]]
+year = 1971
+title = "Thomas Ortwein takes over"
+text = "Thomas Ortwein becomes head coach in 1971–72. In 5 seasons his teams go 28–41–1 and produce 2 District XI champions and 1 Northeast Regional champion."
+
+[[event]]
+year = 1976
+title = "Gordon Bartholomew takes over"
+text = "Gordon Bartholomew, a 1958 District XI champion for Northampton, becomes head coach in 1976–77. In 4 seasons his teams go 32–30."
+
+[[event]]
+year = 1980
+title = "Roger Washburn takes over"
+text = "Roger Washburn becomes head coach in 1980–81. In 2 seasons his teams go 9–27 and produce 2 District XI champions and 2 Northeast Regional champions."
+
+[[event]]
 year = 1982
-title = "The Don Rohn era begins"
-text = "Donald Rohn takes over in 1982–83. In 18 seasons his teams go 309–59 and produce 51 District XI champions, 35 Regional champions, and 8 state champions."
+title = "Don Rohn takes over"
+text = "Don Rohn becomes head coach in 1982–83. In 18 seasons his teams go 309–59, win 5 PIAA team titles, and produce 51 District XI champions, 35 Northeast Regional champions, and 8 state champions."
 
 [[event]]
 year = 1984
@@ -89,8 +104,13 @@ text = "Northampton wins the District XI Duals and the District XI team title, a
 [[event]]
 year = 2000
 title = "Team title number five"
-text = "Northampton wins its first PIAA team duals title and its fifth state tournament team title, after sweeping the District XI Duals, District XI and Northeast Regional team titles, with a state-record eight place winners at the time. Ryan McCallum wins the state title at 130, and Tommy Rohn sets the single-season takedown record with 147. Terry Daubert takes over the program the next season."
+text = "Northampton wins its first PIAA team duals title and its fifth state tournament team title, after sweeping the District XI Duals, District XI and Northeast Regional team titles, with a state-record eight place winners at the time. Ryan McCallum wins the state title at 130, and Tommy Rohn sets the single-season takedown record with 147."
 team = true
+
+[[event]]
+year = 2000
+title = "Terry Daubert takes over"
+text = "Terry Daubert becomes head coach in 2000–01. In 11 seasons his teams go 199–33, win 2 PIAA team titles, and produce 36 District XI champions, 27 Northeast Regional champions, and 10 state champions. In 2004 he is named PIAA Coach of the Year and national coach of the year by the NHSCA."
 
 [[event]]
 year = 2001
@@ -132,7 +152,7 @@ text = "A second straight sweep of the District XI and Northeast Regional team t
 [[event]]
 year = 2011
 title = "Seth Lisa takes over"
-text = "Seth Lisa, a three-time state placewinner for Northampton, becomes head coach in 2011–12."
+text = "Seth Lisa, a three-time state placewinner for Northampton, becomes head coach in 2011–12. In 11 seasons his teams go 123–57 and produce 16 District XI champions, 15 Northeast Regional champions, and 4 state champions."
 
 [[event]]
 year = 2016
@@ -161,8 +181,8 @@ text = "A state runner-up in 2020, Jagger Condomitti wins the PIAA title at 160.
 
 [[event]]
 year = 2022
-title = "Joe Provini named head coach"
-text = "Joe Provini becomes the eighth head coach in program history in May 2022."
+title = "Joe Provini takes over"
+text = "Joe Provini becomes the eighth head coach in program history in 2022–23."
 
 [[event]]
 year = 2023
@@ -179,6 +199,6 @@ photo = "showcase-arms-up"
 
 [[event]]
 year = 2026
-title = "Two champions and a trip to the podium"
-text = "Brayden Wenrich (114) and Gabe Ballard (152) win state titles. The team goes 14–3 in duals and finishes 3rd at the PIAA Championships."
+title = "Two state champions"
+text = "Brayden Wenrich wins the state title at 114, and Gabe Ballard wins the state title at 152."
 photo = "two-champs-2026"
