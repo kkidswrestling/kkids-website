@@ -517,7 +517,7 @@ def build_facilities():
     {M.figure(R, "practice-room", "(min-width: 900px) 45vw, 100vw", "wide-fig")}
     <div class="prose">
       <h2>The room</h2>
-      <p>The wrestling room is where the work happens, with the names of Northampton’s District, Regional, and State champions on the walls.</p>
+      <p>The wrestling room is where the work happens, with the names of Northampton’s district, regional, and state champions on the walls.</p>
     </div>
   </div>
 </section>
