@@ -581,7 +581,7 @@ SECONDARY_TEN = [
     ("Be a great spectator.", "Stay in the stands and let the coaches coach. Keep your words to encouragement."),
     ("Focus on growth, not results.", "Praise effort, improvement, and perseverance. Winning doesn’t always equal progress."),
     ("Make the car ride a safe place.", "After a tough match, let them talk first and mostly listen. Save the lessons for practice."),
-    ("Let them speak for themselves.", "Wrestlers talk to their coaches first. If it’s still unresolved, contact Coach Provini privately."),
+    ("Let them speak for themselves.", "Wrestlers talk to their coaches first. If it’s still unresolved, contact the head coach privately."),
     ("Wait 24 hours.", "Give emotions a day to settle before raising a concern with a coach."),
     ("Support safe weight management.", "Follow the plan the coaches and athletic trainer set. Never pressure your wrestler about weight."),
     ("Honor the game.", "Respect officials, opponents, and coaches. Cheer for our team, not against theirs."),
@@ -669,7 +669,7 @@ def build_family():
       <h2 id="comm-title">Who to talk to</h2>
       <ol class="fam-steps" role="list">
         <li><span><b>Wrestler and coach.</b> Wrestlers speak for themselves first. It’s one of the skills the sport teaches.</span></li>
-        <li><span><b>Parent and head coach.</b> If it’s still unresolved, contact Coach Provini privately and respectfully.</span></li>
+        <li><span><b>Parent and head coach.</b> If it’s still unresolved, contact the head coach privately and respectfully.</span></li>
         <li><span><b>Athletic administration.</b> If it still needs attention after that.</span></li>
       </ol>
       <p><b>The 24-hour rule.</b> Emotions run high after a match. Please wait a day before raising a concern with a coach.</p>
