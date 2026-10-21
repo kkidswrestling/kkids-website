@@ -213,7 +213,7 @@ def build_home():
   <div class="wrap hero-copy">
     <p class="script" aria-hidden="true">Konkrete Kids</p>
     <h1 id="hero-title">Northampton<br>Wrestling</h1>
-    <p class="hero-sub"><span class="hero-motto">Committed to excellence in academics, athletics, and character.</span>Established 1945</p>
+    <p class="hero-sub">Committed to excellence in academics, athletics, and character. Established 1945.</p>
     <p class="hero-actions"><a class="btn" href="roster/">Meet the team</a><a class="btn ghost" href="schedule/">View schedule</a></p>
   </div>
 </section>
