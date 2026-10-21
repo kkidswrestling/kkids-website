@@ -1534,3 +1534,13 @@ caption = "1999–2000 PIAA Class AAA team champions."
 crop = [0, 0, 563, 326]
 widths = [563]
 file = "originals/batch15_team-2000.jpg"
+
+[[photo]]
+id = "team-2003"
+source = "Northampton yearbook (2002–03), team photo with the PIAA Class AAA team trophy; used with permission of the athletic director and school"
+season = "2002-03"
+alt = "The 2002–03 Northampton team and coaches with the PIAA Class AAA team championship trophy"
+caption = "2002–03 PIAA Class AAA team champions."
+crop = [0, 0, 561, 326]
+widths = [561]
+file = "originals/batch15_team-2003.jpg"

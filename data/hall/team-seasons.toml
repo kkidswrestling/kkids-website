@@ -143,6 +143,7 @@ postseason = [
 sources = [["Lehigh Valley Wrestling History, “1999-00: Going Out on Top”", "https://lehighvalleywrestlinghistory.com/1999-00-going-out-on-top/"]]
 
 ["2003"]
+team_photo = "team-2003"
 record = "21–2"
 league = "Lehigh Valley Conference champions, 7–0"
 coach = "Terry Daubert"
