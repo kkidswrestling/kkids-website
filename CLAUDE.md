@@ -92,3 +92,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - "Why we're doing this" section removed from youth/ (Joe, Oct. 21, 2026); keep it off the site.
 - No "Can parents watch practice?" FAQ on youth/ or family/ (Joe, Oct. 21, 2026).
 - Home hero (Joe, Oct. 21, 2026): "Committed to excellence in academics, athletics, and character." sits on its own line above "Established 1945" (.hero-motto).
+- Home-screen app name is "Wrestling" (site.webmanifest short_name + apple-mobile-web-app-title meta), Joe, Oct. 21, 2026. Was "K-Kids".

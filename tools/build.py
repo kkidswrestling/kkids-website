@@ -194,6 +194,7 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
 <link rel="icon" href="{R}assets/img/icon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="{R}assets/img/apple-touch-icon.png">
 <link rel="manifest" href="{R}site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Wrestling">
 <link rel="preload" href="{R}assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{R}assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{R}assets/css/site.css?v={asset_ver("assets/css/site.css")}">
