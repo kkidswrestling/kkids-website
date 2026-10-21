@@ -627,7 +627,6 @@ def build_family():
            ("How are varsity and JV spots decided?", "Usually through wrestle-offs, though the coaches weigh several things when setting a lineup, including attitude, effort, and reliability. Once a spot is earned, a challenger must win two bouts in a row to take it."),
            ("How does a wrestler earn a varsity letter?", "Complete the full season, compete in at least half of varsity matches, score as many team points as there are dual meets or place in a postseason tournament, and stay in good standing with the team."),
            ("What happens on snow days?", "Plan to practice or compete, and to make weight, unless Coach Provini says otherwise. Changes are shared as soon as the coaches know."),
-           ("Can parents watch youth practice?", "In the youth program, only each team’s coaching staff is in the practice room. Matches and tournaments are open to families and fans."),
            ("How do I reach a coach?", f'Email <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a> and we’ll get your message to the right coach.')]
     ten = "".join(f'<li><span class="pt-n">{i}</span><div><b>{a}</b><span>{b}</span></div></li>' for i, (a, b) in enumerate(SECONDARY_TEN, 1))
     body = f"""
