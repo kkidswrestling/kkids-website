@@ -609,7 +609,7 @@ def build_parent_guide_secondary():
 
 def build_family():
     R = "../"
-    values = ["Leadership", "Reliability", "Integrity", "Honor", "Accountability", "Discipline", "Kindness", "Honesty", "Fairness", "Teamwork", "Resilience"]
+    values = ["Leadership", "Reliability", "Integrity", "Honor", "Teamwork", "Discipline", "Kindness", "Honesty", "Fairness", "Accountability", "Resilience"]
     promise = [("We lift wrestlers up.", "We never embarrass a wrestler. Corrections are made in a way that builds them up."),
                ("We believe in every wrestler.", "We see each one for who they can become, not just who they are today."),
                ("We see parents as partners.", "We’re open, honest, and reachable, and we want you part of the program."),
