@@ -1469,3 +1469,10 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .rohn-q .rohn-fig img { width: 100%; height: auto; border: 3px solid var(--blaze); }
 .rohn-q .rohn-fig figcaption { color: var(--on-dark-2); font-size: 13px; margin-top: 6px; }
 @media (max-width: 640px) { .rohn-q { grid-template-columns: 1fr; gap: 20px; } .rohn-q .rohn-fig { max-width: 180px; } }
+/* Team banners: every banner gets the same photo box, centered; no photo yet = the logo */
+.team-banners .tbanner.has-photo { padding: 12px 12px 18px; }
+.team-banners .tbanner .tb-photo { width: 100%; max-width: none; margin: 0 0 8px; align-self: stretch; box-sizing: border-box; }
+.team-banners .tbanner .tb-ph { display: grid; place-items: center; aspect-ratio: 4 / 3; border: 2px solid var(--blaze); background: var(--slab); }
+.team-banners .tbanner .tb-ph img { width: 42%; height: auto; opacity: .9; }
+.team-banners .tbanner.has-photo .t2 { margin-top: 0; }
+@media (max-width: 560px) { .team-banners .tbanner:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 8px); } }
