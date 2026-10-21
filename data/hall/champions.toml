@@ -26,7 +26,7 @@ story = [
   "It capped a steady climb at Hershey: 4th at 114 as a freshman, runner-up at 127 as a sophomore, and champion at 152. He led the team in takedowns (114) and season team points (238), and his 41 wins matched his freshman total on the school's single-season wins list.",
   "Ballard enters his senior season with 121 career wins, already a member of the 100-Win Club.",
 ]
-gallery = ["ballard-roar", "ballard-attack", "ballard-coaches", "ballard-100", "ballard-ride"]
+gallery = ["ballard-podium-2026", "champs-2026", "ballard-roar", "ballard-attack", "ballard-coaches", "ballard-100", "ballard-ride"]
 
 ["Brayden Wenrich"]
 video = [{ url = "https://www.youtube.com/watch?v=3Jym9NVDEZw", start = "1:02:20", end = "1:10:15" }]
@@ -39,7 +39,7 @@ story = [
   "A year earlier he reached the state final at 107 as a freshman, placing 2nd after a 44-win season that put him on the school's single-season wins list. In 2026 he swept the District XI, Northeast Regional, and PIAA titles, recorded the team's fastest pin of the season at 9 seconds, and was never pinned.",
   "He enters his junior season with an 80–7 career record.",
 ]
-gallery = ["wenrich-celebrates", "wenrich-medal", "celebration"]
+gallery = ["wenrich-podium-2026", "champs-2026", "wenrich-celebrates", "wenrich-medal", "celebration"]
 
 ["Trey Wagner"]
 headshot = "headshot-trey-wagner"
@@ -52,7 +52,7 @@ story = [
   "He finished his career with 140 wins and is headed to the U.S. Air Force Academy.",
 ]
 feature = "trey-embrace"
-gallery = ["trey-point", "trey-hug"]
+gallery = ["wagner-podium-2024", "champs-2024", "trey-point", "trey-hug"]
 video = [{ url = "https://www.youtube.com/watch?v=pzuGGfMqfTk", start = "39:05", end = "48:45" }]
 
 ["Julian Chlebove"]

@@ -1601,3 +1601,52 @@ alt = "Northampton wrestlers gather around Coach Terry Daubert and his Coach of 
 caption = "The Kids surround Coach Daubert and his Coach of the Year plaque at Hershey, 2004."
 widths = [640, 1200, 1500]
 file = "originals/batch15_team-coy-2004.jpg"
+
+# PIAA podium and champions photos from Coach Provini (Oct. 21, 2026). Podium shots cropped centered on the champion.
+[[photo]]
+id = "wagner-podium-2024"
+source = "Coach Provini, Oct. 2026"
+season = "2023-24"
+alt = "Trey Wagner stands on the top step of the 2024 PIAA Class AAA podium at 127 pounds wearing his gold medal"
+caption = "Trey Wagner on top of the PIAA podium at 127 pounds in 2024."
+crop = [700, 400, 1550, 1460]
+widths = [480, 850]
+file = "originals/batch16_wagner-podium-2024.jpg"
+
+[[photo]]
+id = "ballard-podium-2026"
+source = "Coach Provini, Oct. 2026"
+season = "2025-26"
+alt = "Gabe Ballard stands on the top step of the 2026 PIAA Class AAA podium at 152 pounds wearing his gold medal"
+caption = "Gabe Ballard on top of the PIAA podium at 152 pounds in 2026."
+crop = [680, 230, 1530, 1240]
+widths = [480, 850]
+file = "originals/batch16_ballard-podium-2026.jpg"
+
+[[photo]]
+id = "wenrich-podium-2026"
+source = "Coach Provini, Oct. 2026"
+season = "2025-26"
+alt = "Brayden Wenrich stands on the top step of the 2026 PIAA Class AAA podium at 114 pounds wearing his gold medal"
+caption = "Brayden Wenrich on top of the PIAA podium at 114 pounds in 2026."
+crop = [710, 240, 1560, 1260]
+widths = [480, 850]
+file = "originals/batch16_wenrich-podium-2026.jpg"
+
+[[photo]]
+id = "champs-2026"
+source = "Coach Provini, Oct. 2026"
+season = "2025-26"
+alt = "The 2026 PIAA Class AAA state champions, including Brayden Wenrich and Gabe Ballard, with their gold medals on the Hershey arena floor"
+caption = "The 2026 PIAA Class AAA state champions."
+widths = [600]
+file = "originals/batch16_champs-2026.jpg"
+
+[[photo]]
+id = "champs-2024"
+source = "Coach Provini, Oct. 2026"
+season = "2023-24"
+alt = "The 2024 PIAA Class AAA state champions, including Trey Wagner, with their gold medals on the Hershey arena floor"
+caption = "The 2024 PIAA Class AAA state champions."
+widths = [600]
+file = "originals/batch16_champs-2024.jpg"
