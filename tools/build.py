@@ -56,7 +56,7 @@ NAV_GROUPS = [
                    ("champions/#hundred-title", "100-Win Club"), ("champions/#lists-title", "Record Book"),
                    ("timeline/", "Timeline"), ("seasons/", "Past Seasons"), ("trivia/", "Trivia")]),
     ("Media", [("news/", "News"), ("videos/", "Videos"), ("follow/", "Follow & Updates")]),
-    ("Family", [("family/", "Parent Information"), ("family/#faq", "FAQs"), ("family/#booster", "Booster Club")]),
+    ("Parents", [("family/", "Parent Information"), ("youth/#pt-title", "Youth Parent Guide"), ("family/#faq", "FAQs"), ("family/#booster", "Booster Club")]),
     ("Alumni", [("alumni/", "Where Are They Now"), ("alumni/#update", "Update Your Information"), ("alumni/#support", "Support the Program")]),
     ("Join", [("join/", "Why Northampton"), ("join/#path", "The Path"), ("youth/", "Youth Wrestling"), ("join/#start", "Start Wrestling")]),
 ]
@@ -1146,6 +1146,7 @@ def build_youth():
     R = "../"
     body = f"""
 {page_head(R, "Youth Wrestling", "Grades K–6. Where every Konkrete Kid starts.", "youth-champs", "50% 18%")}
+<nav class="yj" aria-label="On this page"><div class="wrap"><a class="yj-main" href="#join">Register</a><a href="#ym-title">Two Teams</a><a href="#pt-title">Parent Guide</a><a href="#faq">FAQs</a></div></nav>
 <section class="band">
   <div class="wrap split narrow-right">
     <div class="prose">
@@ -1154,7 +1155,7 @@ def build_youth():
       <ul class="results" role="list"><li><span>Northampton Black</span><b>Varsity and JV</b></li><li><span>Northampton Orange</span><b>Varsity and JV</b></li><li><span>Novice</span><b>Grades K–2</b></li></ul>
       <p>The goal is simple: carry on the tradition of Northampton wrestling, teach strong fundamentals, and build friendships and a community that last long after the season ends. Many of today’s varsity wrestlers and coaches started right here.</p>
     </div>
-    <aside class="note-card">
+    <aside class="note-card" id="join">
       <h3>Join the Konkrete Kids</h3>
       <p>Registration runs through the NAA youth program. Sign up online.</p>
       <p class="actions"><a class="btn" href="{SITE['links']['youth_registration']}" rel="noopener" target="_blank">Register for youth wrestling</a></p>
@@ -1164,7 +1165,7 @@ def build_youth():
 {youth_model_html()}{parent_ten_html()}
 {yc_promo}<section class="band concrete">
   <div class="wrap">
-    <h2>Questions families ask</h2>
+    <h2 id="faq">Questions families ask</h2>
     <div class="faq">
       <details><summary>Who can wrestle?</summary><p>Boys and girls in kindergarten through 6th grade.</p></details>
       <details><summary>Does my child need experience?</summary><p>No. Novice is generally for grades K–2 and focuses on fun and fundamentals. An experienced 2nd grader may move up to Black or Orange.</p></details>

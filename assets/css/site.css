@@ -1413,3 +1413,16 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .pt-list li:nth-child(even) .pt-n { background: var(--blaze); color: var(--ink); }
 .pt-closer { margin: 26px 0 10px; background: var(--ink); color: #fff; border-radius: 8px; padding: 16px 20px; text-align: center; font-family: var(--display); text-transform: uppercase; font-size: clamp(18px, 2.4vw, 24px); }
 @media (max-width: 700px) { .pt-list { grid-template-columns: 1fr; gap: 0; } }
+/* Youth jump bar + Parents page guide card */
+.yj { background: var(--slab); border-bottom: 3px solid var(--blaze); position: sticky; top: 68px; z-index: 5; }
+.yj .wrap { display: flex; gap: 8px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px; scrollbar-width: none; }
+.yj a { flex: 0 0 auto; color: var(--on-dark); font-weight: 700; font-size: 15px; text-decoration: none; padding: 8px 14px; border: 1.5px solid var(--line-dark); border-radius: 999px; white-space: nowrap; }
+.yj a:hover, .yj a:focus-visible { border-color: var(--blaze); color: #fff; }
+.yj a.yj-main { background: var(--blaze); border-color: var(--blaze); color: var(--ink); }
+#join, #faq, #pt-title, #ym-title { scroll-margin-top: 140px; }
+.band.tight { padding: clamp(28px, 4vw, 44px) 0; }
+.pt-card { display: flex; justify-content: space-between; align-items: center; gap: 20px 32px; flex-wrap: wrap; background: var(--concrete); border-left: 6px solid var(--blaze); padding: 22px 26px; }
+.pt-card h2 { font-size: clamp(26px, 3.4vw, 36px); margin: 0 0 6px; }
+.pt-card p { margin: 0; }
+.pt-card .actions { margin: 0; }
+@media (max-width: 480px) { .yj .wrap { gap: 6px; } .yj a { font-size: 14px; padding: 7px 11px; } }

@@ -584,7 +584,8 @@ def build_family():
            ("What does a wrestler need before the season?", "Junior high and high school wrestlers need a PIAA physical on file with the district athletic office, plus the weight assessment the coaches schedule early in the season."),
            ("How do I reach a coach?", f'Email <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a> and we’ll get your message to the right coach.')]
     body = f"""
-{M.page_head(R, "Family", "What parents and families need to know.", "senior-night", "50% 40%")}
+{M.page_head(R, "Parents", "What parents and families need to know.", "senior-night", "50% 40%")}
+<section class="band tight"><div class="wrap"><div class="pt-card"><div><p class="ym-label">New to youth wrestling? Start here.</p><h2>How to be a Konkrete Kids parent</h2><p>Ten simple things that matter most, on one page.</p></div><p class="actions"><a class="btn" href="../youth/#pt-title">Read the parent guide</a><a class="btn ghost dark-ink" href="../youth/parent-guide/" target="_blank" rel="noopener">Printable one-pager</a></p></div></div></section>
 <section class="band">
   <div class="wrap split even">
     <div class="prose">
@@ -612,7 +613,7 @@ def build_family():
   </div>
 </section>
 """
-    return M.page("family/index.html", "Family", "Information for Northampton wrestling parents and families: schedule, expectations, FAQs, and the booster club.", body, "family/", og_image="senior-night")
+    return M.page("family/index.html", "Parents", "Information for Northampton wrestling parents and families: schedule, expectations, FAQs, and the booster club.", body, "family/", og_image="senior-night")
 
 
 def build_alumni():
