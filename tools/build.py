@@ -1048,6 +1048,92 @@ def youth_model_html():
 """
 
 
+PARENT_TEN = [
+    ("Love them the same, win or lose.", "Say it before and after: “I love to watch you wrestle.”"),
+    ("Be a great spectator.", "Coaches coach, referees ref, wrestlers wrestle. Parents cheer."),
+    ("Cheer effort, not just results.", "A loss with real effort is a good day."),
+    ("Make the car ride a safe place.", "Let them talk first, and leave the lessons to the coaches."),
+    ("Keep it fun.", "Fun is the number one reason kids stay in wrestling."),
+    ("Don’t compare.", "Every child grows on their own timeline."),
+    ("No weight cutting.", "Youth wrestlers compete at their natural, healthy weight."),
+    ("Honor the game.", "Respect referees, opponents, and coaches. Cheer for our team, not against theirs."),
+    ("Healthy habits first.", "Good sleep, good food, schoolwork done, and clean gear."),
+    ("Trust the coaches.", "Your encouragement and trust in the process make all the difference."),
+]
+PARENT_CLOSER = "Wrestling belongs to the kids. It’s their thing, not ours."
+PARENT_SOURCES = "Built on guidance from USA Wrestling, the American Academy of Pediatrics, Aspen Institute Project Play, and the National Wrestling Coaches Association."
+
+
+def parent_ten_html():
+    items = "".join(f'<li><span class="pt-n">{i}</span><div><b>{a}</b><span>{b}</span></div></li>' for i, (a, b) in enumerate(PARENT_TEN, 1))
+    return f"""<section class="band pt" aria-labelledby="pt-title">
+  <div class="wrap ym-wrap">
+    <p class="ym-label">For youth parents</p>
+    <h2 id="pt-title">How to be a Konkrete Kids parent</h2>
+    <p class="ym-lede-dark">Ten things that matter most.</p>
+    <ol class="pt-list" role="list">{items}</ol>
+    <p class="pt-closer">{PARENT_CLOSER}</p>
+    <p class="ym-src">{PARENT_SOURCES}</p>
+    <p class="actions"><a class="btn ghost dark-ink" href="parent-guide/" target="_blank" rel="noopener">Printable one-pager</a></p>
+  </div>
+</section>
+"""
+
+
+def build_parent_guide():
+    """Standalone printable one-pager (fits one letter page). youth/parent-guide/"""
+    items = "".join(f'<li><span class="n">{i}</span><div><b>{a}</b> {b}</div></li>' for i, (a, b) in enumerate(PARENT_TEN, 1))
+    html = f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Be a Konkrete Kids Parent | {SITE['name']}</title>
+<meta name="description" content="Ten things that matter most for Northampton youth wrestling parents.">
+<link rel="canonical" href="{SITE['domain']}/youth/parent-guide/">
+<link rel="icon" href="../../assets/img/logo-96.png">
+<style>
+@font-face {{ font-family: "Anton"; src: url("../../assets/fonts/anton-400.woff2") format("woff2"); }}
+@font-face {{ font-family: "Inter"; src: url("../../assets/fonts/inter-var.woff2") format("woff2"); font-weight: 100 900; }}
+@page {{ size: letter; margin: 0.45in; }}
+* {{ box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }}
+html, body {{ margin: 0; background: #e6e4df; color: #141414; font-family: "Inter", system-ui, sans-serif; }}
+.sheet {{ background: #fff; max-width: 8.5in; margin: 24px auto; padding: 0.5in 0.55in; box-shadow: 0 2px 18px rgba(0,0,0,.15); }}
+header {{ display: flex; align-items: center; gap: 18px; border-bottom: 6px solid #f26a1b; padding-bottom: 14px; margin-bottom: 18px; }}
+header img {{ width: 78px; height: auto; }}
+.kick {{ font-family: "Anton", Impact, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #9c3d08; font-size: 13px; margin: 0 0 4px; }}
+h1 {{ font-family: "Anton", Impact, sans-serif; font-weight: 400; text-transform: uppercase; font-size: 40px; line-height: 1; margin: 0; }}
+h1 span {{ color: #f26a1b; }}
+.sub {{ margin: 6px 0 0; color: #5c5a55; font-size: 15px; }}
+ol {{ list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }}
+li {{ display: flex; gap: 14px; align-items: flex-start; font-size: 15.5px; line-height: 1.4; padding-bottom: 11px; border-bottom: 1px solid #e3e0da; }}
+li:last-child {{ border-bottom: 0; padding-bottom: 0; }}
+.n {{ flex: 0 0 34px; height: 34px; border-radius: 50%; background: #141414; color: #f26a1b; display: grid; place-items: center; font-family: "Anton", Impact, sans-serif; font-size: 18px; }}
+li:nth-child(even) .n {{ background: #f26a1b; color: #141414; }}
+li b {{ font-weight: 800; }}
+.closer {{ margin: 20px 0 10px; background: #141414; color: #fff; border-radius: 8px; padding: 14px 18px; text-align: center; font-family: "Anton", Impact, sans-serif; text-transform: uppercase; font-size: 20px; letter-spacing: .02em; }}
+.closer span {{ color: #f26a1b; }}
+.src {{ font-size: 11.5px; color: #5c5a55; margin: 0; text-align: center; }}
+.bar {{ max-width: 8.5in; margin: 16px auto 0; display: flex; gap: 10px; justify-content: flex-end; padding: 0 4px; }}
+.bar a, .bar button {{ font: 700 15px "Inter", sans-serif; padding: 10px 16px; border-radius: 4px; border: 2px solid #141414; background: #fff; color: #141414; cursor: pointer; text-decoration: none; }}
+.bar button {{ background: #f26a1b; border-color: #f26a1b; }}
+@media (max-width: 640px) {{ .sheet {{ margin: 12px; padding: 22px 18px; }} h1 {{ font-size: 30px; }} header img {{ width: 56px; }} .bar {{ margin: 12px; }} }}
+@media print {{ html, body {{ background: #fff; }} .bar {{ display: none; }} .sheet {{ box-shadow: none; margin: 0; padding: 0; max-width: none; }} h1 {{ font-size: 44px; }} li {{ font-size: 17px; padding-bottom: 12px; }} ol {{ gap: 12px; }} .n {{ flex-basis: 40px; height: 40px; font-size: 21px; }} .closer {{ font-size: 22px; margin-top: 20px; }} .src {{ font-size: 12.5px; }} }}
+</style></head>
+<body>
+<div class="bar"><a href="../">Back to Youth Wrestling</a><button type="button" onclick="window.print()">Print</button></div>
+<main class="sheet">
+  <header><img src="../../assets/img/logo-192.png" alt="Northampton Konkrete Kids logo" width="78" height="78">
+    <div><p class="kick">Northampton Youth Wrestling · Konkrete Kids</p><h1>How to be a <span>Konkrete Kids</span> parent</h1><p class="sub">Ten things that matter most.</p></div></header>
+  <ol>{items}</ol>
+  <p class="closer">{PARENT_CLOSER.replace("It’s their thing", "<span>It’s their thing").replace("not ours.", "not ours.</span>")}</p>
+  <p class="src">{PARENT_SOURCES}</p>
+</main>
+</body></html>
+"""
+    dest = os.path.join(ROOT, "youth/parent-guide/index.html")
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    open(dest, "w").write(html)
+    return SITE["domain"] + "/youth/parent-guide/"
+
+
 def build_youth():
     yc_promo = """<section class="band dark yc-promo">
   <div class="wrap split narrow-right">
@@ -1075,7 +1161,7 @@ def build_youth():
     </aside>
   </div>
 </section>
-{youth_model_html()}
+{youth_model_html()}{parent_ten_html()}
 {yc_promo}<section class="band concrete">
   <div class="wrap">
     <h2>Questions families ask</h2>
@@ -1962,7 +2048,7 @@ def main():
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import v2
     v2.M = sys.modules[__name__]
-    urls = [v2.build_home(), build_high_school(), build_schedule(), build_junior_high(), build_youth()]
+    urls = [v2.build_home(), build_high_school(), build_schedule(), build_junior_high(), build_youth(), build_parent_guide()]
     if YOUTH_COACHES_LIVE:
         urls.append(build_youth_coaches())
     urls += [build_coaches(), build_champions(), build_trivia()] + build_seasons()
