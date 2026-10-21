@@ -32,9 +32,9 @@ DTSTART;TZID=America/New_York:20261205T143000
 DTEND;TZID=America/New_York:20261205T163000
 LOCATION:Pete Schneider Gymnasium\, Northampton Area High School\, 1619 Lau
  bach Ave\, Northampton\, PA 18067
-DESCRIPTION:Times can change. Latest schedule: https://kkidswrestling.githu
- b.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:Times can change. Latest schedule: https://www.northamptonwrest
+ ling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-12-09-whitehall@northamptonwrestling.org
@@ -43,9 +43,9 @@ SUMMARY:Wrestling at Whitehall
 DTSTART;TZID=America/New_York:20261209T190000
 DTEND;TZID=America/New_York:20261209T210000
 LOCATION:Whitehall High School\, Whitehall\, PA
-DESCRIPTION:League match. Times can change. Latest schedule: https://kkidsw
- restling.github.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:League match. Times can change. Latest schedule: https://www.no
+ rthamptonwrestling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-12-11-walsh-ironman@northamptonwrestling.org
@@ -55,9 +55,9 @@ DTSTART;VALUE=DATE:20261211
 DTEND;VALUE=DATE:20261213
 TRANSP:TRANSPARENT
 LOCATION:Walsh Jesuit High School\, Cuyahoga Falls\, OH
-DESCRIPTION:Starts 5:00 PM. Times can change. Latest schedule: https://kkid
- swrestling.github.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:Starts 5:00 PM. Times can change. Latest schedule: https://www.
+ northamptonwrestling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-12-16-pocono-mountain-west@northamptonwrestling.org
@@ -67,9 +67,9 @@ DTSTART;TZID=America/New_York:20261216T190000
 DTEND;TZID=America/New_York:20261216T210000
 LOCATION:Pete Schneider Gymnasium\, Northampton Area High School\, 1619 Lau
  bach Ave\, Northampton\, PA 18067
-DESCRIPTION:Times can change. Latest schedule: https://kkidswrestling.githu
- b.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:Times can change. Latest schedule: https://www.northamptonwrest
+ ling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-12-18-king-of-the-mountain@northamptonwrestling.org
@@ -79,9 +79,9 @@ DTSTART;VALUE=DATE:20261218
 DTEND;VALUE=DATE:20261220
 TRANSP:TRANSPARENT
 LOCATION:Central Mountain High School\, Mill Hall\, PA
-DESCRIPTION:Starts 11:00 AM. Times can change. Latest schedule: https://kki
- dswrestling.github.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:Starts 11:00 AM. Times can change. Latest schedule: https://www
+ .northamptonwrestling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-12-23-bethlehem-liberty@northamptonwrestling.org
@@ -90,9 +90,9 @@ SUMMARY:Wrestling at Bethlehem Liberty
 DTSTART;TZID=America/New_York:20261223T190000
 DTEND;TZID=America/New_York:20261223T210000
 LOCATION:Liberty High School\, Bethlehem\, PA
-DESCRIPTION:Times can change. Latest schedule: https://kkidswrestling.githu
- b.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:Times can change. Latest schedule: https://www.northamptonwrest
+ ling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-01-06-stroudsburg@northamptonwrestling.org
@@ -102,9 +102,9 @@ DTSTART;TZID=America/New_York:20270106T190000
 DTEND;TZID=America/New_York:20270106T210000
 LOCATION:Pete Schneider Gymnasium\, Northampton Area High School\, 1619 Lau
  bach Ave\, Northampton\, PA 18067
-DESCRIPTION:League match. Times can change. Latest schedule: https://kkidsw
- restling.github.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:League match. Times can change. Latest schedule: https://www.no
+ rthamptonwrestling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-01-08-mid-winter-mayhem@northamptonwrestling.org
@@ -115,8 +115,8 @@ DTEND;VALUE=DATE:20270110
 TRANSP:TRANSPARENT
 LOCATION:Kovalchick Convention and Athletic Complex (IUP)\, Indiana\, PA
 DESCRIPTION:Time to be announced. Times can change. Latest schedule: https:
- //kkidswrestling.github.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+ //www.northamptonwrestling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-01-13-bethlehem-freedom@northamptonwrestling.org
@@ -125,9 +125,9 @@ SUMMARY:Wrestling at Bethlehem Freedom
 DTSTART;TZID=America/New_York:20270113T190000
 DTEND;TZID=America/New_York:20270113T210000
 LOCATION:Freedom High School\, Bethlehem\, PA
-DESCRIPTION:Times can change. Latest schedule: https://kkidswrestling.githu
- b.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:Times can change. Latest schedule: https://www.northamptonwrest
+ ling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-01-16-parkland-winter-duals@northamptonwrestling.org
@@ -137,9 +137,9 @@ DTSTART;VALUE=DATE:20270116
 DTEND;VALUE=DATE:20270117
 TRANSP:TRANSPARENT
 LOCATION:Parkland High School\, Allentown\, PA
-DESCRIPTION:Starts 9:15 AM. Times can change. Latest schedule: https://kkid
- swrestling.github.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:Starts 9:15 AM. Times can change. Latest schedule: https://www.
+ northamptonwrestling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-01-20-bethlehem-catholic@northamptonwrestling.org
@@ -149,9 +149,9 @@ DTSTART;TZID=America/New_York:20270120T190000
 DTEND;TZID=America/New_York:20270120T210000
 LOCATION:Pete Schneider Gymnasium\, Northampton Area High School\, 1619 Lau
  bach Ave\, Northampton\, PA 18067
-DESCRIPTION:Times can change. Latest schedule: https://kkidswrestling.githu
- b.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:Times can change. Latest schedule: https://www.northamptonwrest
+ ling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-01-27-nazareth@northamptonwrestling.org
@@ -160,9 +160,9 @@ SUMMARY:Wrestling at Nazareth
 DTSTART;TZID=America/New_York:20270127T190000
 DTEND;TZID=America/New_York:20270127T210000
 LOCATION:Nazareth Area High School\, Nazareth\, PA
-DESCRIPTION:League match. Times can change. Latest schedule: https://kkidsw
- restling.github.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:League match. Times can change. Latest schedule: https://www.no
+ rthamptonwrestling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-01-30-easton@northamptonwrestling.org
@@ -171,9 +171,9 @@ SUMMARY:Wrestling at Easton
 DTSTART;TZID=America/New_York:20270130T190000
 DTEND;TZID=America/New_York:20270130T210000
 LOCATION:Easton Area High School\, Easton\, PA
-DESCRIPTION:Times can change. Latest schedule: https://kkidswrestling.githu
- b.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+DESCRIPTION:Times can change. Latest schedule: https://www.northamptonwrest
+ ling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-02-06-district-xi-aaa-team-duals@northamptonwrestling.org
@@ -184,8 +184,8 @@ DTEND;VALUE=DATE:20270207
 TRANSP:TRANSPARENT
 LOCATION:Freedom High School\, Bethlehem\, PA
 DESCRIPTION:Time to be announced. Postseason. Times can change. Latest sche
- dule: https://kkidswrestling.github.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+ dule: https://www.northamptonwrestling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-02-26-district-xi-aaa-championships@northamptonwrestling.org
@@ -196,8 +196,8 @@ DTEND;VALUE=DATE:20270228
 TRANSP:TRANSPARENT
 LOCATION:Liberty High School\, Bethlehem\, PA
 DESCRIPTION:Time to be announced. Postseason. Times can change. Latest sche
- dule: https://kkidswrestling.github.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+ dule: https://www.northamptonwrestling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-03-05-piaa-northeast-regional-aaa@northamptonwrestling.org
@@ -208,8 +208,8 @@ DTEND;VALUE=DATE:20270307
 TRANSP:TRANSPARENT
 LOCATION:Liberty High School\, Bethlehem\, PA
 DESCRIPTION:Time to be announced. Postseason. Times can change. Latest sche
- dule: https://kkidswrestling.github.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+ dule: https://www.northamptonwrestling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 BEGIN:VEVENT
 UID:2027-03-11-piaa-class-aaa-championships@northamptonwrestling.org
@@ -220,7 +220,7 @@ DTEND;VALUE=DATE:20270314
 TRANSP:TRANSPARENT
 LOCATION:Giant Center\, Hershey\, PA
 DESCRIPTION:Time to be announced. Postseason. Times can change. Latest sche
- dule: https://kkidswrestling.github.io/kkids-website/schedule/
-URL:https://kkidswrestling.github.io/kkids-website/schedule/
+ dule: https://www.northamptonwrestling.org/schedule/
+URL:https://www.northamptonwrestling.org/schedule/
 END:VEVENT
 END:VCALENDAR
