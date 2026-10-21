@@ -912,6 +912,7 @@ def build_team_title_pages():
 <h1>{y} State Champions</h1><p class="lede">{lede}</p>
 <p class="tt-count">Team title {i + 1} of {len(years)}</p></div></header>
 <section class="band tight"><div class="wrap"><ul class="ts-stats" role="list">{stat_html}</ul></div></section>
+{(f'<section class="band tight"><div class="wrap">' + M.figure(R, s["team_photo"], "(min-width: 1200px) 1100px, 100vw") + '</div></section>') if s.get("team_photo") else ""}
 <section class="band">
   <div class="wrap cp-grid">
     <aside class="cp-side">

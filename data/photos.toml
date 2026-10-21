@@ -1454,3 +1454,13 @@ crop = [170, 900, 3260, 1940]
 focus = "50% 40%"
 widths = [640, 1200, 1800, 3090]
 file = "originals/img26_p-027-103.jpg"
+
+[[photo]]
+id = "team-1993"
+source = "Northampton yearbook (1992–93), team photo at the PIAA Championships; used with permission of the athletic director and school"
+season = "1992-93"
+alt = "The 1992–93 Northampton team and coaches with the PIAA Class AAA team championship trophy"
+caption = "1992–93 PIAA Class AAA team champions."
+crop = [0, 0, 1376, 870]
+widths = [640, 1376]
+file = "originals/batch15_team-1993.jpg"

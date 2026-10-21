@@ -10,6 +10,7 @@
 #   sources    = [["title", "url"], ...]
 
 ["1993"]
+team_photo = "team-1993"
 record = "24–0"
 league = "East Penn Conference champions, 11–0"
 coach = "Don Rohn"
