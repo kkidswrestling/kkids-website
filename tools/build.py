@@ -62,7 +62,7 @@ NAV_GROUPS = [
                    ("champions/#hundred-title", "100-Win Club"), ("champions/#lists-title", "Record Book"),
                    ("timeline/", "Timeline"), ("seasons/", "Past Seasons"), ("trivia/", "Trivia")]),
     ("Media", [("news/", "News"), ("videos/", "Videos"), ("follow/", "Follow & Email List")]),
-    ("Parents", [("family/", "Parent Information"), ("youth/#pt-title", "Youth Parent Guide"), ("family/#faq", "FAQs"), ("family/#booster", "Booster Club")]),
+    ("Parents", [("family/", "Parent Information"), ("youth/", "Youth Program Guide"), ("family/#faq", "FAQs"), ("family/#booster", "Booster Club")]),
     ("Alumni", [("alumni/", "Where Are They Now"), ("alumni/#update", "Update Your Information"), ("alumni/#support", "Support the Program")]),
     ("Join", [("join/", "Why Northampton"), ("join/#path", "The Path"), ("youth/", "Youth Wrestling"), ("join/#start", "Start Wrestling")]),
 ]
@@ -1104,6 +1104,7 @@ def parent_ten_html():
     <p class="ym-label">For youth parents</p>
     <h2 id="pt-title">How to be a Konkrete Kids parent</h2>
     <p class="ym-lede-dark">Ten things that matter most.</p>
+    <p class="pt-back">New to the program? <a href="#ym-title">See how it works first ›</a></p>
     <ol class="pt-list" role="list">{items}</ol>
     <p class="pt-closer">{PARENT_CLOSER}</p>
     <p class="ym-src">{PARENT_SOURCES}</p>
@@ -1179,7 +1180,7 @@ def build_youth():
     R = "../"
     body = f"""
 {page_head(R, "Youth Wrestling", "Grades K–6. Where every Konkrete Kid starts.", "youth-champs", "50% 18%")}
-<nav class="yj" aria-label="On this page"><div class="wrap"><a class="yj-main" href="#join">Register</a><a href="#ym-title">Two Teams</a><a href="#pt-title">Parent Guide</a><a href="#faq">FAQs</a></div></nav>
+<nav class="yj" aria-label="On this page"><div class="wrap"><a class="yj-main" href="#join">Register</a><a href="#ym-title">How It Works</a><a href="#pt-title">Parent Guide</a><a href="#faq">FAQs</a></div></nav>
 <section class="band">
   <div class="wrap split narrow-right">
     <div class="prose">
@@ -1200,18 +1201,31 @@ def build_youth():
   <div class="wrap">
     <h2 id="faq">Questions families ask</h2>
     <div class="faq">
-      <details><summary>Who can wrestle?</summary><p>Boys and girls in kindergarten through 6th grade.</p></details>
-      <details><summary>Does my child need experience?</summary><p>No. Novice is generally for grades K–2 and focuses on fun and fundamentals. An experienced 2nd grader may move up to Black or Orange.</p></details>
-      <details><summary>How are wrestlers placed on Black and Orange?</summary><p>As a team. Black, Orange, and Novice coaches place wrestlers together, so each team gets an even mix of experience levels and weights. No team is ranked above the other.</p></details>
-      <details><summary>Won’t this hold back our more advanced wrestlers?</summary><p>No. Black and Orange varsity and JV still practice together, so advanced wrestlers keep training with experienced partners.</p></details>
-      <details><summary>Will my child still get strong competition?</summary><p>Yes. Each team has its own full schedule, and Black and Orange wrestle each other during the season.</p></details>
-      <details><summary>Will current wrestlers change teams?</summary><p>Some may, to help balance the rosters. Most of the shift happens gradually, as each new class moves up from Novice.</p></details>
-      <details><summary>Isn’t earning your spot a good lesson?</summary><p>Yes, and wrestlers still earn varsity spots. A JV wrestler can move up to varsity during the season, so there’s always a goal to chase.</p></details>
-      <details><summary>What if my child outgrows their team?</summary><p>We’ll move them. If a wrestler is stuck behind a teammate at the same weight, coaches can move them so both wrestlers get a varsity spot.</p></details>
-      <details><summary>Why is this happening gradually?</summary><p>Big changes work best in steps. Each new class moving up from Novice is placed to keep the teams even, and both rosters balance out over a few seasons. Schedules are set by the previous year’s results, so they’ll even out as the teams do.</p></details>
-      <details><summary>How does this help the whole program?</summary><p>More kids who stay in wrestling means deeper junior high and high school rosters. Wrestlers also reach the junior high as experienced teammates who already know how to compete together.</p></details>
-      <details><summary>What happens after 6th grade?</summary><p>Wrestlers move up to the <a href="../junior-high/">junior high team</a> in 7th grade (the junior high team is grades 7–9; 9th graders can wrestle junior high or high school), then to the <a href="../high-school/">high school</a> program.</p></details>
-      <details><summary>Can we still share feedback?</summary><p>Absolutely. The direction is set, and the details are reviewed every season. We’re always willing to listen: email <a href="mailto:{SITE['email']}">{SITE['email']}</a>.</p></details>
+      <details><summary>Who can wrestle?</summary><p>Boys and girls in kindergarten through 6th grade. No experience needed.</p></details>
+      <details><summary>How is the youth program set up?</summary><p>Wrestlers start in <b>Novice</b>, generally grades K–2, where the focus is fun and fundamentals. From there they move up to <b>Northampton Black</b> or <b>Northampton Orange</b>. Each of those teams has its own varsity and JV lineups and its own coaching staff. An experienced 2nd grader may move up early.</p></details>
+      <details><summary>How are wrestlers placed on Black or Orange?</summary><p>Coaches place wrestlers so each team gets an even mix of experience levels and weights. Neither team is ranked above the other.</p></details>
+      <details><summary>Who do we wrestle against?</summary><p>Our teams compete in the Valley Elementary Wrestling League (VEWL) against other youth programs in the area.</p></details>
+      <details><summary>What’s the difference between varsity and JV?</summary><p>Each team’s varsity lineup has one wrestler at each weight class. Everyone else wrestles JV, so every wrestler gets matches. JV wrestlers can earn a varsity spot during the season.</p></details>
+      <details><summary>How do wrestlers get matched up?</summary><p>By weight. Wrestlers compete against kids at about the same weight, so matches are fair.</p></details>
+      <details><summary>How does a match work?</summary><p>Wrestlers score points for takedowns, escapes, reversals, and near falls. A pin, holding the opponent’s shoulders to the mat, ends the match right away. If there’s no pin, the wrestler with more points wins.</p></details>
+      <details><summary>Does my child need to lose weight?</summary><p>No. Youth wrestlers compete at their natural, healthy weight. Team placement never depends on making weight.</p></details>
+      <details><summary>What does my child need to wrestle?</summary><p>Wrestling shoes and headgear, plus comfortable athletic clothes for practice. Ask your child’s coach before buying anything else.</p></details>
+      <details><summary>Can parents watch practice?</summary><p>Only each team’s coaching staff is in the practice room. Matches and tournaments are open to families and fans.</p></details>
+      <details><summary>What if my child misses practice?</summary><p>In-season practice and match attendance is required. Talk to your child’s coach ahead of time about any special circumstances; they’re handled case by case.</p></details>
+      <details><summary>What happens after 6th grade?</summary><p>Wrestlers move up to the <a href="../junior-high/">junior high team</a> in 7th grade (grades 7–9; 9th graders can wrestle junior high or high school), then to the <a href="../high-school/">high school</a> program.</p></details>
+      <details><summary>How do we sign up?</summary><p>Registration runs through the NAA youth program: <a href="{SITE['links']['youth_registration']}" rel="noopener" target="_blank">register online</a>.</p></details>
+      <details><summary>How do I reach a coach?</summary><p>Email <a href="mailto:{SITE['email']}">{SITE['email']}</a> and we’ll get your message to the right coach.</p></details>
+    </div>
+  </div>
+</section>
+<section class="band tight">
+  <div class="wrap">
+    <h2 class="sub">Keep exploring</h2>
+    <div class="fam-start yx">
+      <a class="fam-card" href="#ym-title"><p class="ym-label">Novice · Black · Orange</p><h2>How it works</h2><p>How wrestlers start in Novice and move up to Black or Orange.</p><span class="fam-go">See the program ›</span></a>
+      <a class="fam-card dark" href="#pt-title"><p class="ym-label">For youth parents</p><h2>Parent guide</h2><p>How to be a Konkrete Kids parent: ten things that matter most.</p><span class="fam-go">Read the guide ›</span></a>
+      <a class="fam-card dark" href="#join"><p class="ym-label">Grades K–6</p><h2>Register</h2><p>Sign up through the NAA youth program.</p><span class="fam-go">How to register ›</span></a>
+      <a class="fam-card" href="../family/"><p class="ym-label">Every level</p><h2>Parent information</h2><p>Our mission, the honor code, communication, health and weight, and the booster club.</p><span class="fam-go">Parents page ›</span></a>
     </div>
   </div>
 </section>

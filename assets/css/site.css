@@ -1527,3 +1527,10 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
   .page-head.fit-photo.program .bg { aspect-ratio: 1.262; }
   .page-head.fit-photo.program::after { background: linear-gradient(180deg, rgba(20,20,20,0) 55vw, rgba(20,20,20,.85) 72vw, rgba(20,20,20,.95) 79vw); }
 }
+/* Youth page signposts (Joe, Oct. 21, 2026) */
+.pt-back { margin: -4px 0 18px; font-weight: 700; }
+.pt-back a { color: var(--blaze-ink); }
+.yx { grid-template-columns: repeat(2, 1fr); }
+.yx .fam-card h2 { font-size: clamp(26px, 3.2vw, 34px); }
+@media (max-width: 760px) { .yx { grid-template-columns: 1fr; gap: 12px; } .yx .fam-card { padding: 16px 18px; } .yx .fam-card h2 { font-size: 26px; } }
+.pt-back a { white-space: nowrap; }

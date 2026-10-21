@@ -641,7 +641,7 @@ def build_family():
   </div>
 </section>
 <section class="band tight"><div class="wrap"><div class="fam-start">
-  <a class="fam-card" href="../youth/#pt-title"><p class="ym-label">Youth parents · K–6</p><h2>Start here</h2><p>How to be a Konkrete Kids parent, and how our two-team youth program works.</p><span class="fam-go">Youth parent guide ›</span></a>
+  <a class="fam-card" href="../youth/"><p class="ym-label">Youth parents · K–6</p><h2>Start here</h2><p>How our youth program works, from Novice to Black and Orange, plus the parent guide and FAQs.</p><span class="fam-go">Youth program guide ›</span></a>
   <a class="fam-card dark" href="#hs-guide"><p class="ym-label">Junior high &amp; high school parents</p><h2>Start here</h2><p>The parent guide, the honor code in brief, communication, and health and weight.</p><span class="fam-go">Secondary parent guide ›</span></a>
 </div></div></section>
 <section class="band concrete pt" id="hs-guide" aria-labelledby="hs-guide-title">
