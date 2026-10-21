@@ -626,8 +626,7 @@ def build_family():
            ("What does a wrestler need before the season?", "Junior high and high school wrestlers need a PIAA physical on file with the district athletic office, plus the weight assessment the coaches schedule early in the season. Every wrestler and parent also signs the honor code."),
            ("How are varsity and JV spots decided?", "Usually through wrestle-offs, though the coaches weigh several things when setting a lineup, including attitude, effort, and reliability. Once a spot is earned, a challenger must win two bouts in a row to take it."),
            ("How does a wrestler earn a varsity letter?", "Complete the full season, compete in at least half of varsity matches, score as many team points as there are dual meets or place in a postseason tournament, and stay in good standing with the team."),
-           ("What happens on snow days?", "Plan to practice or compete, and to make weight, unless Coach Provini says otherwise. Changes are shared as soon as the coaches know."),
-           ("How do I reach a coach?", f'Email <a href="mailto:{M.SITE["email"]}">{M.SITE["email"]}</a> and we’ll get your message to the right coach.')]
+           ("What happens on snow days?", "Plan to practice or compete, and to make weight, unless Coach Provini says otherwise. Changes are shared as soon as the coaches know.")]
     ten = "".join(f'<li><span class="pt-n">{i}</span><div><b>{a}</b><span>{b}</span></div></li>' for i, (a, b) in enumerate(SECONDARY_TEN, 1))
     body = f"""
 {M.page_head(R, "Parents", "Helpful information for Konkrete Kids parents and families at every level.", "program-family-tight", "50% 35%", cls="fit-photo program")}
