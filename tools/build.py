@@ -555,7 +555,7 @@ def build_high_school():
     medal_card = lambda pid, name, line: (f'<article class="medalist">{picture(R, pid, "(min-width: 900px) 18vw, 45vw")}'
                                          f'<h3>{name}</h3><p>{line}</p></article>')
     body = f"""
-{page_head(R, "High School", "Northampton Area High School boys wrestling: varsity and JV.", "showcase-arms-up", "45% 12%")}
+{page_head(R, "High School", "Northampton Area High School boys wrestling: varsity and JV.", "dark-stance", "50% 55%")}
 
 <section class="band" aria-labelledby="now-title">
   <div class="wrap split narrow-right">
