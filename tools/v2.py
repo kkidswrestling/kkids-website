@@ -488,7 +488,7 @@ def build_story():
       <p>Our mission is to give young people a supportive, demanding place to grow as wrestlers and as responsible, resilient, respectful members of the community.</p>
       <p class="actions"><a class="btn" href="../timeline/">Explore the timeline</a><a class="btn ghost dark-ink" href="../champions/">Hall of Champions</a></p>
     </div>
-    <aside class="note-card"><h3>Eight head coaches</h3><ul class="results" role="list">{era_rows}</ul></aside>
+    <aside class="note-card"><h3>Eight head coaches</h3><ul class="results eras" role="list">{era_rows}</ul></aside>
   </div>
 </section>
 <section class="band dark"><div class="wrap"><blockquote class="arena dark-q"><p>“I hope I’ll be seen as a guy who really cared about his athletes, as wanting to get every kid he coached to his next level.”</p><footer>Don Rohn, head coach 1982–2000<span class="q-src"><cite>The Morning Call</cite>, April 5, 2000</span></footer></blockquote></div></section>
