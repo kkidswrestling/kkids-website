@@ -353,7 +353,7 @@ fact = "The Cement Town Duals, a fitting name for the home of the Konkrete Kids.
 link = ["The 2004–05 season", "seasons/2004-05/"]
 
 [[round.q]]
-q = "Northampton has had a State Medalist every single year since when?"
+q = "Northampton has had a state medalist every single year since when?"
 choices = ["1975", "1984", "1993", "2000"]
 answer = 2
 fact = "Since 1984, the year Sean Finkbeiner won the state title at 145."

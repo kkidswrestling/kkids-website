@@ -248,7 +248,7 @@ def build_home():
       {count_up(T['hundred'], '100-win wrestlers')}
       {count_up(T['wins'], 'dual meet wins')}
     </div>
-    <p class="numbers-note">{T['streak'][2]} straight seasons with a State Medalist, every year since {T['streak'][0]}.<br>A PIAA record.</p>
+    <p class="numbers-note">{T['streak'][2]} straight seasons with a state medalist, every year since {T['streak'][0]}.<br>A PIAA record.</p>
   </div>
 </section>
 
