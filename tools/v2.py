@@ -579,7 +579,7 @@ def build_facilities():
   <div class="wrap split">
     <div class="prose">
       <h2>Pete Schneider Gymnasium</h2>
-      <p>Home duals are wrestled in Pete Schneider Gymnasium at Northampton Area High School, under the program’s state championship banners. Before every home match, the team lies in a circle on the orange mat with their fists together.</p>
+      <p>Home duals are wrestled in Pete Schneider Gymnasium at Northampton Area High School, under the program’s state championship banners.</p>
       <p>{M.SITE['school']}<br>{'<br>'.join(M.SITE['address'])}</p>
     </div>
     {M.figure(R, "gym-anthem", "(min-width: 900px) 45vw, 100vw", "wide-fig")}
