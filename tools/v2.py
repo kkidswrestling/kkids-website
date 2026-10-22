@@ -860,7 +860,12 @@ def build_champion_pages():
         else:
             head = (f'<header class="page-head concrete champ-head"><div class="wrap"><p class="kicker"><a href="{R}champions/">Hall of Champions</a></p>'
                     f'<h1>{e(name)}</h1><p class="lede">{headline} · {", ".join(r["year"] for r in titles)}</p></div></header>')
-        face = M.picture(R, c["portrait"], "(min-width: 900px) 300px, 70vw", "cp-face", alt=f"{display.get(name, name)} wearing his state championship medals") if c.get("portrait") else ""
+        # Side photo: the medal portrait if we have one, otherwise the same photo as his Hall banner (Joe, Oct. 22, 2026: every champion page shows a photo)
+        if c.get("portrait"):
+            face = M.picture(R, c["portrait"], "(min-width: 900px) 300px, 70vw", "cp-face", alt=f"{display.get(name, name)} wearing his state championship medals")
+        else:
+            fb = c.get("headshot") or c.get("banner") or next(iter(c.get("banners", {}).values()), None)
+            face = M.picture(R, fb, "(min-width: 900px) 300px, 70vw", "cp-face", alt=M.PHOTOS[fb].get("alt") or display.get(name, name)) if fb else ""
         story = "".join("<p>" + re.sub(r"(\d+[\u2013-]\d+(?:[\u2013-]\d+)?)", r'<span class="nw">\1</span>', e(p)) + "</p>" for p in c.get("story", []))
         if not story:
             story = (f'<p>{e(name)} is one of {M.TOTALS["state"]} Konkrete Kids to win a PIAA state title. His full record is below.</p>'

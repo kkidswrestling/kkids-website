@@ -109,3 +109,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Our Home header (hero-circle) uses .page-head.bright for a lighter fade and text shadow only; the photo itself is NOT brightened (Joe tried it and asked to undo it, Oct. 21, 2026).
 - On phones the Our Home header puts the title and subtitle in the dark upper part of the photo, with the wrestlers clear below (Joe, Oct. 21, 2026).
 - Timeline 2017 is one entry (Joe, Oct. 21, 2026: no separate dot): Julian Chlebove's second title, then Dan Moran's senior runner-up finish at 138 making him the third four-time State Placewinner (exception to the no-runner-up-in-champion-entries rule).
+- Every champion page shows a photo (Joe, Oct. 22, 2026): the side photo is the medal portrait when there is one, otherwise the same photo as his Hall banner (headshot, then banner, then first per-year banner).
