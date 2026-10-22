@@ -1658,3 +1658,14 @@ alt = "A packed Pete Schneider Gymnasium stands for the anthem before a home dua
 caption = "Match night in Pete Schneider Gymnasium."
 widths = [640, 1200, 2000]
 file = "originals/batch17_gym-anthem.jpg"
+
+# Portrait crop of lisa-celebrates for the Our Story quote (Oct. 21, 2026)
+[[photo]]
+id = "lisa-quote"
+source = "2021-22 banquet program, page 23"
+season = "2021-22"
+alt = "Coach Seth Lisa pumps his fist from the corner"
+caption = "Coach Seth Lisa, head coach 2011–2022."
+crop = [300, 0, 860, 674]
+widths = [400]
+file = "originals/batch4_p22-023-294.jpg"

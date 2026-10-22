@@ -1559,6 +1559,20 @@
    ]
   ]
  },
+ "lisa-quote": {
+  "fallback": [
+   560,
+   674
+  ],
+  "h": 674,
+  "w": 560,
+  "widths": [
+   [
+    400,
+    481
+   ]
+  ]
+ },
  "lisa-yearbook": {
   "fallback": [
    606,

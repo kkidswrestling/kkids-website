@@ -1561,3 +1561,4 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .vf-cap { margin-top: 8px; font-size: 14px; color: var(--on-dark-2); }
 a.vf-link { display: block; text-decoration: none; }
 a.vf-link:hover .vf-play, a.vf-link:focus-visible .vf-play { background: var(--on-dark); }
+.coach-q2 { border-top: 1px solid rgba(255,255,255,.12); }

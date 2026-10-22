@@ -565,6 +565,7 @@ def build_story():
   </div>
 </section>
 <section class="band dark"><div class="wrap rohn-q">{M.figure(R, "rohn-yearbook", "220px", "rohn-fig", caption=False)}<blockquote class="arena dark-q"><p>“I hope I’ll be seen as a guy who really cared about his athletes, as wanting to get every kid he coached to his next level.”</p><footer>Don Rohn, head coach 1982–2000<span class="q-src"><cite>The Morning Call</cite>, April 5, 2000</span></footer></blockquote></div></section>
+<section class="band dark coach-q2"><div class="wrap rohn-q">{M.figure(R, "lisa-quote", "220px", "rohn-fig", caption=False)}<blockquote class="arena dark-q"><p>“Somebody winning a state title, man, that’s a wild feeling as a coach, to see a kid ultimately get to that stage and succeed. There’s nothing like that. But there’s also something to be said about your JV kids becoming varsity, and those kids getting an opportunity and then going out in the postseason and succeeding.”</p><footer>Seth Lisa, head coach 2011–2022<span class="q-src">Service Electric Network interview, April 2022</span></footer></blockquote></div></section>
 """
     return M.page("story/index.html", "Our Story", "The history and philosophy of Northampton Wrestling since 1945.", body, "story/", og_image="program-family")
 
