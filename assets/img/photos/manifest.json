@@ -1255,6 +1255,20 @@
    ]
   ]
  },
+ "headshot-jagger-condomitti": {
+  "fallback": [
+   380,
+   475
+  ],
+  "h": 475,
+  "w": 380,
+  "widths": [
+   [
+    380,
+    475
+   ]
+  ]
+ },
  "headshot-trey-wagner": {
   "fallback": [
    808,

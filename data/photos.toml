@@ -1693,3 +1693,13 @@ caption = "The 1987–88 District XI team champions with their trophy. Photo cou
 crop = [75, 60, 1910, 1462]
 widths = [640, 1200, 1800]
 file = "originals/batch18_team-1988.jpg"
+
+# Jagger Condomitti after his 2021 state final (IPTC: "Jagger Condomitti state championship"), Oct. 22, 2026
+[[photo]]
+id = "headshot-jagger-condomitti"
+source = "Coach Provini, Oct. 22, 2026"
+season = "2020-21"
+alt = "Jagger Condomitti smiles and looks up after winning the 2021 state title"
+crop = [172, 0, 552, 475]
+widths = [380]
+file = "originals/batch18_jagger-headshot.jpg"
