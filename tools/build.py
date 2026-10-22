@@ -1890,6 +1890,10 @@ with open(os.path.join(DATA, "hall", "season-stories.json"), encoding="utf-8") a
     SEASON_STORIES = json.load(_f)["seasons"]
 
 
+# Team photos for seasons without a seasons.toml entry (season id -> photo id)
+SEASON_PHOTOS = load_toml("season-photos.toml")
+
+
 def season_href(R, sid, y):
     """Where a season lives: the team-title page for PIAA team-title years, otherwise seasons/<id>/."""
     return f"{R}champions/team/{y}/" if y in TITLE_YEARS else f"{R}seasons/{sid}/"
@@ -1907,6 +1911,8 @@ def build_season_page(i, all_s):
     facts = season_facts(sid, y, pw, d or None)
     coach = season_coach(y)
     st = SEASON_STORIES.get(sid, {})
+    if not d.get("team_photo") and sid in SEASON_PHOTOS:
+        d = {**d, "team_photo": SEASON_PHOTOS[sid]}
     headline = d.get("headline") or st.get("headline") or " · ".join(season_phrases(facts, y in TITLE_YEARS))
     parts = []
     if sid == CUR["id"]:
@@ -2027,7 +2033,8 @@ def build_seasons():
         rec = [b_ for a_, b_ in facts if a_ == "Dual record"]
         chips = (f"<li>Dual record: <b>{e(rec[0])}</b></li>" if rec else "") + "".join(
             f"<li>{e(x)}</li>" for x in season_phrases(facts, title) if not (title and x == "PIAA team champions"))
-        thumb = picture(R, d["team_photo"], "(min-width: 900px) 25vw, 90vw", "sc-img", alt="") if d and d.get("team_photo") else ""
+        tp = (d or {}).get("team_photo") or SEASON_PHOTOS.get(sid)
+        thumb = picture(R, tp, "(min-width: 900px) 25vw, 90vw", "sc-img", alt="") if tp else ""
         card = (f'<a class="sc{" title" if title else ""}{" has-img" if thumb else ""}" href="{season_href(R, sid, y)}" id="{sid}">{thumb}<span class="sc-body">'
                 f'<span class="sc-yr">{label}</span>'
                 + ('<span class="sc-badge">PIAA team champions</span>' if title else "")

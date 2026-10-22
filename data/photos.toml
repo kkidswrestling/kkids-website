@@ -1680,3 +1680,16 @@ caption = "Coach Terry Daubert, head coach 2000–2011."
 crop = [800, 130, 1150, 740]
 widths = [390]
 file = "originals/batch15_daubert-coy-2004.jpg"
+
+# ---------------------------------------------------------------- 1987-88
+# Framed print photographed by Michael Recker (1988 District XI champion at 105), sent Oct. 22, 2026.
+# Original cleaned of dust specks and levels lifted; crop trims the frame.
+[[photo]]
+id = "team-1988"
+source = "Michael Recker, via Coach Provini, Oct. 22, 2026"
+season = "1987-88"
+alt = "The 1987-88 Northampton team, coaches and a young fan holding the District XI team trophy overhead, with fingers raised in the gym"
+caption = "The 1987–88 District XI team champions with their trophy. Photo courtesy of Michael Recker."
+crop = [75, 60, 1910, 1462]
+widths = [640, 1200, 1800]
+file = "originals/batch18_team-1988.jpg"
