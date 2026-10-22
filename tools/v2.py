@@ -231,8 +231,8 @@ def build_home():
   <div class="wrap">
     {S.section_head('<span id="champs-title">Reigning State Champions</span>', 'Brayden Wenrich and Gabe Ballard won PIAA titles in Hershey in March 2026. Both are back this season.')}
     <div class="champ-grid">
-      {champ("portrait-wenrich-2026", "Brayden Wenrich", "114", [f"{w['wins']}–{w['losses']} as a sophomore", "District XI, Northeast Regional, and PIAA Champion", "Fastest pin of the season: 9 seconds", f"{w['career_wins']}–{w['career_losses']} career record"])}
-      {champ("portrait-ballard-2026", "Gabe Ballard", "152", [f"{b['wins']}–{b['losses']} as a junior", "District XI, Northeast Regional, and PIAA Champion", "114 takedowns, 238 season team points", f"{b['career_wins']} career wins, a member of the 100-Win Club"])}
+      {champ("portrait-wenrich-2026", "Brayden Wenrich", "114", [f"{w['wins']} wins as a sophomore", "District XI, Northeast Regional, and PIAA Champion", f"{w['career_wins']} career wins"])}
+      {champ("portrait-ballard-2026", "Gabe Ballard", "152", [f"{b['wins']} wins as a junior", "District XI, Northeast Regional, and PIAA Champion", "114 takedowns, 238 season team points", f"{b['career_wins']} career wins, a member of the 100-Win Club"])}
     </div>
   </div>
 </section>
