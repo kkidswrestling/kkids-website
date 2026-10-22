@@ -603,7 +603,7 @@ def build_join():
     R = "../"
     T = M.TOTALS
     pillars = [("Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a state medalist."),
-               ("Coaching", "An experienced staff that has coached 3 State Champions and 11 State Placewinners since 2023, including a District XI Assistant Coach of the Year, a PIAA Junior High Coach of the Year, and coaches with more than 20 years in the program."),
+               ("Coaching", "An experienced, dedicated staff that knows how to develop wrestlers at every level, from first-year beginners to State Champions, and cares about who they become off the mat."),
                ("Training partners", "You train every day beside State Champions and State Medalists."),
                ("Competition", "The varsity wrestles at the Ironman, King of the Mountain, the Mid-Winter Mayhem, and the Parkland Duals."),
                ("Community", "Families from kindergarten through alumni, all in the same black and orange.")]
