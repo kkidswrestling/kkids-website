@@ -360,7 +360,7 @@ fact = "Since 1984, the year Sean Finkbeiner won the state title at 145."
 link = ["State Medalists", "champions/#lists-title"]
 
 [[round.q]]
-q = "Through 2026, how many years in a row has Northampton had at least one State Medalist?"
+q = "Through 2026, how many years in a row has Northampton had at least one state medalist?"
 choices = ["18", "27", "43", "51"]
 answer = 3
 fact = "Forty-three straight years, every season from 1984 through 2026."

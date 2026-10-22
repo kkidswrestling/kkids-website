@@ -200,7 +200,7 @@ def build_home():
     T = S.TOTALS
     recent = S.HALL["state"][::-1]
     inside = [("facilities/", "practice-room", "The Room", "Where every Konkrete Kid is made: the wrestling room and Pete Schneider Gymnasium."),
-              ("champions/", "team-1993", "The Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a State Medalist."),
+              ("champions/", "team-1993", "The Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a state medalist."),
               ("story/", "program-family", "The Community", "Generations of families in the same black and orange."),
               ("join/", "youth-champs", "The Next Generation", "Kindergarten through varsity, one program and one path.")]
     FIT_WHOLE = {"team-1993"}  # team photos: show the whole picture, no side cropping (Joe, Oct. 2026)
@@ -602,7 +602,7 @@ def build_facilities():
 def build_join():
     R = "../"
     T = M.TOTALS
-    pillars = [("Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a State Medalist."),
+    pillars = [("Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a state medalist."),
                ("Coaching", "An experienced staff that has coached 3 State Champions and 11 State Placewinners since 2023, including a District XI Assistant Coach of the Year, a PIAA Junior High Coach of the Year, and coaches with more than 20 years in the program."),
                ("Training partners", "You train every day beside State Champions and State Medalists."),
                ("Competition", "The varsity wrestles at the Ironman, King of the Mountain, the Mid-Winter Mayhem, and the Parkland Duals."),
