@@ -574,7 +574,7 @@ def build_story():
 def build_facilities():
     R = "../"
     body = f"""
-{M.page_head(R, "Our Home", "Pete Schneider Gymnasium and the Northampton wrestling room.", "hero-circle", "50% 100%")}
+{M.page_head(R, "Our Home", "Pete Schneider Gymnasium and the Northampton wrestling room.", "hero-circle", "50% 100%", cls="bright")}
 <section class="band">
   <div class="wrap split">
     <div class="prose">

@@ -1562,3 +1562,7 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 a.vf-link { display: block; text-decoration: none; }
 a.vf-link:hover .vf-play, a.vf-link:focus-visible .vf-play { background: var(--on-dark); }
 .coach-q2 { border-top: 1px solid rgba(255,255,255,.12); }
+/* Our Home header: the hero-circle photo is very dark, so lift it (Joe, Oct. 21, 2026) */
+.page-head.has-photo.bright .bg { filter: brightness(1.65) contrast(1.05) saturate(1.1); }
+.page-head.has-photo.bright h1, .page-head.has-photo.bright .lede { text-shadow: 0 2px 12px rgba(0,0,0,.7); }
+.page-head.has-photo.bright::after { background: linear-gradient(180deg, rgba(20,20,20,0) 35%, rgba(20,20,20,.75) 90%); }
