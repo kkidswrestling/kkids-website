@@ -877,13 +877,30 @@ def build_champion_pages():
                 links.append((u, "" if isinstance(item, str) else str(item.get("year", "")), "" if isinstance(item, str) else item.get("site", "")))
             if yt_id(u):
                 vids.append((yt_id(u), 0 if isinstance(item, str) else secs(item.get("start")), 0 if isinstance(item, str) else secs(item.get("end")), "" if isinstance(item, str) else str(item.get("year", ""))))
-        video = "".join(
-            f'<div class="video-facade single" data-ytv="{v}"{f' data-start="{s0}"' if s0 else ""}{f' data-end="{s1}"' if s1 else ""}><img class="vf-img" src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><button type="button" class="vf-play"><span aria-hidden="true">▶</span> Watch the {(yr + " ") if yr else ""}state final</button></div>'
-            for v, s0, s1, yr in vids)
+        # Every final looks the same: a 16:9 player box with the orange "Watch the YEAR state final" button
+        # and one caption line under it (Joe, Oct. 21, 2026). Flo finals open on FloWrestling.
+        wt_by_year = {r["year"]: r["weight"].replace(" lbs", "") for r in titles}
+        items = []
+        for v, s0, s1, yr in vids:
+            box = (f'<div class="video-facade single" data-ytv="{v}"{f' data-start="{s0}"' if s0 else ""}{f' data-end="{s1}"' if s1 else ""}>'
+                   f'<img class="vf-img" src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy">'
+                   f'<button type="button" class="vf-play"><span aria-hidden="true">▶</span> Watch the {(yr + " ") if yr else ""}state final</button></div>')
+            items.append((yr, box, "Plays on this page"))
         for u, yr, site in links:
             site = site or ("FloWrestling" if "flowrestling" in u else "the web")
-            note = '<p class="vl-note">FloWrestling subscription required to watch</p>' if "flowrestling" in u else ""
-            video += f'<div class="vl-wrap"><a class="video-link" href="{e(u)}" rel="noopener" target="_blank"><span class="vl-play" aria-hidden="true">▶</span><span><b>Watch the {(yr + " ") if yr else ""}state final on {e(site)}</b><small>Opens in a new tab</small></span></a>{note}</div>'
+            bid = c.get("banners", {}).get(yr) or c.get("headshot") or c.get("banner")
+            img = M.picture(R, bid, "(min-width: 1000px) 960px, 100vw", "vf-img", alt="") if bid else ""
+            box = (f'<a class="video-facade single vf-link" href="{e(u)}" rel="noopener" target="_blank">{img}'
+                   f'<span class="vf-play"><span aria-hidden="true">▶</span> Watch the {(yr + " ") if yr else ""}state final</span></a>')
+            cap = f"On {e(site)} · subscription required" if "flowrestling" in u else f"Opens on {e(site)}"
+            items.append((yr, box, cap))
+        items.sort(key=lambda x: x[0] or "")
+        many = len(items) > 1
+        video = "".join(
+            f'<figure class="vf-item">'
+            + (f'<p class="vf-yr">{yr}{(" · " + wt_by_year[yr]) if wt_by_year.get(yr) else ""}</p>' if many and yr else "")
+            + f'{box}<figcaption class="vf-cap">{cap}</figcaption></figure>'
+            for yr, box, cap in items)
         if not video and max(int(r["year"]) for r in titles) >= 1980:  # no point asking for 1950s film
             video = f'<div class="empty-state small"><h3>State final video</h3><p>Have video of this final? <a href="{M.SITE["links"]["share_form"]}" rel="noopener" target="_blank">Share a YouTube link</a>. We read everything but can’t reply individually.</p></div>'
         gal = M.gallery(R, c["gallery"], "champ") if c.get("gallery") else ""

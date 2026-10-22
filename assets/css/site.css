@@ -1555,3 +1555,9 @@ details.ycp-acc:last-of-type { border-bottom: 1px solid var(--ln); }
 .vbody h3 a:hover { color: var(--blaze-ink); text-decoration: underline; }
 .vnote { margin: 4px 0 0; font-size: 13.5px; color: var(--muted, #5c5a55); }
 @media (max-width: 640px) { .vgrid { grid-template-columns: 1fr 1fr; gap: 12px; } .vbody { padding: 10px 10px 12px; } .vbody h3 { font-size: 16px; } .vplay { width: 40px; height: 40px; font-size: 14px; } .vnote { font-size: 12px; } }
+/* Champion pages: every state final shown the same way, YouTube or FloWrestling (Joe, Oct. 21, 2026) */
+.vf-item { margin: 0; max-width: 960px; }
+.vf-yr { margin: 0 0 8px; font-family: var(--display); color: var(--blaze); letter-spacing: .08em; text-transform: uppercase; font-size: 18px; }
+.vf-cap { margin-top: 8px; font-size: 14px; color: var(--on-dark-2); }
+a.vf-link { display: block; text-decoration: none; }
+a.vf-link:hover .vf-play, a.vf-link:focus-visible .vf-play { background: var(--on-dark); }
