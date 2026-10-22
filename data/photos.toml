@@ -1669,3 +1669,14 @@ caption = "Coach Seth Lisa, head coach 2011–2022."
 crop = [300, 0, 860, 674]
 widths = [400]
 file = "originals/batch4_p22-023-294.jpg"
+
+# Portrait crop of daubert-coy-2004 for the Our Story quote (Oct. 21, 2026)
+[[photo]]
+id = "daubert-quote"
+source = "Coach Provini (2004 PIAA Championships, Giant Center)"
+season = "2003-04"
+alt = "Coach Terry Daubert holds his Coach of the Year plaque at the Giant Center"
+caption = "Coach Terry Daubert, head coach 2000–2011."
+crop = [800, 130, 1150, 740]
+widths = [390]
+file = "originals/batch15_daubert-coy-2004.jpg"
