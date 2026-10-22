@@ -196,8 +196,14 @@ link = ["Julian Chlebove's champion page", "champions/julian-chlebove/"]
 [[event]]
 year = 2017
 title = "Julian Chlebove, two-time State Champion"
-text = "Julian Chlebove wins the state title at 120, his second. Dan Moran becomes the program's third four-time State Placewinner."
+text = "Julian Chlebove wins the state title at 120, his second."
 link = ["Julian Chlebove's champion page", "champions/julian-chlebove/"]
+
+[[event]]
+year = 2017
+title = "Dan Moran, four-time State Placewinner"
+text = "Dan Moran finishes as state runner-up at 138 as a senior and becomes the program's third four-time State Placewinner, joining Christian Luciano and Jeff Ecklof."
+link = ["The 2016–17 season", "seasons/2016-17/"]
 
 [[event]]
 year = 2019
