@@ -1694,12 +1694,48 @@ crop = [75, 60, 1910, 1462]
 widths = [640, 1200, 1800]
 file = "originals/batch18_team-1988.jpg"
 
-# Jagger Condomitti after his 2021 state final (IPTC: "Jagger Condomitti state championship"), Oct. 22, 2026
+# Jagger Condomitti, 2021 PIAA final at Hershey (Joe, Oct. 22, 2026). IPTC dates 2021-03-13.
 [[photo]]
 id = "headshot-jagger-condomitti"
 source = "Coach Provini, Oct. 22, 2026"
 season = "2020-21"
+alt = "Jagger Condomitti smiles as he walks off the mat after winning the 2021 state title"
+crop = [380, 73, 800, 598]
+widths = [420]
+file = "originals/batch19_jagger-walk.jpg"
+
+[[photo]]
+id = "jagger-walk"
+source = "Coach Provini, Oct. 22, 2026"
+season = "2020-21"
+alt = "Jagger Condomitti smiles as he walks off the mat after winning the 2021 state title"
+caption = "Walking off the mat a state champion, Hershey, 2021."
+widths = [640, 1161]
+file = "originals/batch19_jagger-walk.jpg"
+
+[[photo]]
+id = "jagger-smile"
+source = "Coach Provini, Oct. 22, 2026"
+season = "2020-21"
 alt = "Jagger Condomitti smiles and looks up after winning the 2021 state title"
-crop = [172, 0, 552, 475]
-widths = [380]
+caption = "Moments after the 2021 state final."
+widths = [640, 800]
 file = "originals/batch18_jagger-headshot.jpg"
+
+[[photo]]
+id = "jagger-flex"
+source = "Coach Provini, Oct. 22, 2026"
+season = "2020-21"
+alt = "Jagger Condomitti raises a fist after his 2021 state final win"
+caption = "A fist pump after the final."
+widths = [640, 1200]
+file = "originals/batch19_jagger-flex.jpg"
+
+[[photo]]
+id = "jagger-clap"
+source = "Coach Provini, Oct. 22, 2026"
+season = "2020-21"
+alt = "Jagger Condomitti claps as he walks across the mat after his 2021 state final win"
+caption = "Celebrating on the Giant Center mat."
+widths = [640, 1165]
+file = "originals/batch19_jagger-clap.jpg"
