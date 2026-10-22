@@ -501,7 +501,7 @@ def build_videos():
 <section class="band concrete" aria-labelledby="highlights">
   <div class="wrap">
     <h2 id="highlights">Season highlights</h2>
-    <p class="lede">{n_s} highlight videos, newest season first, produced by Coach Mike Sommer. Tap a season for its full page.</p>
+    <p class="lede">{n_s} highlight videos, newest season first. A program tradition since {min(M.SEASON_VIDEOS)[:4]}–{min(M.SEASON_VIDEOS)[5:]}. Tap a season for its full page.</p>
     <ul class="vgrid" role="list">{seasons_html}</ul>
     <p class="actions top-gap"><a class="btn" href="{M.SITE['social']['youtube']}" rel="noopener" target="_blank">Play all highlights on YouTube</a></p>
   </div>
