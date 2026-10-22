@@ -864,7 +864,7 @@ def build_champion_pages():
         if c.get("portrait"):
             face = M.picture(R, c["portrait"], "(min-width: 900px) 300px, 70vw", "cp-face", alt=f"{display.get(name, name)} wearing his state championship medals")
         else:
-            fb = c.get("headshot") or c.get("banner") or next(iter(c.get("banners", {}).values()), None)
+            fb = c.get("side") or c.get("headshot") or c.get("banner") or next(iter(c.get("banners", {}).values()), None)
             face = M.picture(R, fb, "(min-width: 900px) 300px, 70vw", "cp-face", alt=M.PHOTOS[fb].get("alt") or display.get(name, name)) if fb else ""
         story = "".join("<p>" + re.sub(r"(\d+[\u2013-]\d+(?:[\u2013-]\d+)?)", r'<span class="nw">\1</span>', e(p)) + "</p>" for p in c.get("story", []))
         if not story:

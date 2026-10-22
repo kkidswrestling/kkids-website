@@ -152,7 +152,8 @@ sources = [["Lehigh Valley Wrestling History, \u201c1997-98: Bulldogs Blossom, K
 ["Jagger Condomitti"]
 banner = "banner-jagger-condomitti"
 headshot = "headshot-jagger-condomitti"
-gallery = ["jagger-walk", "jagger-smile", "jagger-flex", "jagger-clap", "banner-jagger-condomitti"]
+side = "banner-jagger-condomitti"
+gallery = ["jagger-walk", "jagger-smile", "jagger-flex", "jagger-clap"]
 story = [
   "Jagger Condomitti won the 2021 PIAA Class AAA title at 160 pounds, finishing a pandemic-shortened senior season unbeaten.",
   "The title capped a four-year climb. As a freshman at 126, he won 36 matches and placed 3rd at districts and regionals. As a sophomore at 145, he went 48–10 with 25 pins and placed 4th at states. As a junior, he went 39–4 and beat Bethlehem Catholic's Cole Handlovic 7–3 in sudden victory for the District XI title. The two met again in the state final, and Handlovic won 3–2.",
