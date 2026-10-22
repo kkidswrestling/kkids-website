@@ -172,7 +172,9 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
         groups.append(f'<li class="has-sub{" is-active" if on else ""}"><button type="button" class="sub-btn" aria-expanded="false" aria-controls="sub-{gi}">{glabel}</button>'
                       f'<ul class="sub" id="sub-{gi}" role="list">{links}</ul></li>')
     nav = "".join(groups)
-    og = SITE["domain"] + "/" + largest("", og_image)
+    # Share previews use the JPEG (Facebook doesn't reliably read WebP), Oct. 21, 2026
+    og = f'{SITE["domain"]}/assets/img/photos/{og_image}.jpg'
+    og_w, og_h = MANIFEST[og_image]["fallback"]
     js = "".join(f'<script src="{R}assets/js/{s}?v={asset_ver("assets/js/" + s)}" defer></script>' for s in scripts)
     head_cls = " is-over-hero" if hero_header else ""
     out = f"""<!doctype html>
@@ -189,6 +191,9 @@ def page(path, title, desc, body, active=None, extra_head="", scripts=("site.js"
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{og}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="{og_w}">
+<meta property="og:image:height" content="{og_h}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#141414">
 <link rel="icon" href="{R}assets/img/icon-32.png" sizes="32x32" type="image/png">
