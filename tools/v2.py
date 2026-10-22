@@ -556,7 +556,7 @@ def build_story():
     <div class="prose">
       <h2>Since 1945</h2>
       <p>Northampton Wrestling began in 1945. More than 80 seasons later, the program runs from kindergarten through varsity, and every Konkrete Kid comes through the same room, the same expectations, and the same black and orange.</p>
-      <p>Along the way the program has won {T['team_titles']} PIAA team titles, won {T['state']} individual state titles, and earned {T['medals']} state medals, with a State Medalist every year since {T['streak'][0]}. Eight head coaches have led the program, and {T['hundred']} wrestlers have won 100 or more varsity matches.</p>
+      <p>Along the way the program has won {T['team_titles']} PIAA team titles, won {T['state']} individual state titles, and earned {T['medals']} state medals, with a state medalist every year since {T['streak'][0]}. Eight head coaches have led the program, and {T['hundred']} wrestlers have won 100 or more varsity matches.</p>
       <h2>Our mission</h2>
       {M.mission_list()}
       <p class="actions"><a class="btn" href="../timeline/">Explore the timeline</a><a class="btn ghost dark-ink" href="../champions/">Hall of Champions</a></p>
