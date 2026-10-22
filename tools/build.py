@@ -24,6 +24,8 @@ def load_csv(name):
 
 
 SITE = load_toml("site.toml")
+# Banquet season awards (Outstanding Wrestler, Rookie of the Year, ...) are kept in seasons.toml but not shown (Joe, Oct. 21, 2026)
+SHOW_SEASON_AWARDS = False
 # Youth Coaches' Playbook on/off (paused Oct. 2026; see youth_coaches_page in data/site.toml)
 YOUTH_COACHES_LIVE = bool(SITE.get("youth_coaches_page", False))
 COACHES = load_toml("coaches.toml")
@@ -657,8 +659,7 @@ def build_high_school():
 
 <section class="band" aria-labelledby="awards-title">
   <div class="wrap">
-    <h2 id="awards-title">Season awards</h2>
-    <dl class="awards">{awards}</dl>
+    {('<h2 id="awards-title">Season awards</h2><dl class="awards">' + awards + '</dl>') if SHOW_SEASON_AWARDS else '<h2 id="awards-title" class="visually-hidden">Season honors</h2>'}
     <div class="split even top">
       <div>
         <h3 class="sub">Eastern Pennsylvania Conference all-stars</h3>
@@ -1961,7 +1962,7 @@ def build_season_page(i, all_s):
             for pid, n, l in d["portraits"]) + "</div>")
     post = d.get("postseason") or hall_postseason(y)
     aw = ""
-    if d.get("awards"):
+    if d.get("awards") and SHOW_SEASON_AWARDS:
         aw += f'<h2 class="sub">Season awards</h2><dl class="awards compact">{"".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in d["awards"])}</dl>'
     if d.get("leaders"):
         aw += f'<h2 class="sub">Team leaders</h2><dl class="awards compact">{"".join(f"<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>" for a, b in d["leaders"])}</dl>'

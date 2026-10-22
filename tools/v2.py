@@ -81,7 +81,7 @@ def honors_for(name, hn=None):
                         yr = int("20" + s["id"][-2:])
                         label = f"{lvl} {v.lower() if v in ('Qualifier',) else v}"
                         honors.append([yr, label.replace("PIAA Qualifier", "PIAA state qualifier").replace("Northeast Regional Qualifier", "Northeast Regional qualifier"), (row[1] + " lbs") if row[1] else ""])
-        for a, who in s.get("awards", []):
+        for a, who in (s.get("awards", []) if M.SHOW_SEASON_AWARDS else []):
             if name in who or hn in who:
                 honors.append([int("20" + s["id"][-2:]), a, ""])
         for team, who in s.get("epc", []):
