@@ -580,7 +580,7 @@ def build_facilities():
       <p>Home duals are wrestled in Pete Schneider Gymnasium at Northampton Area High School, under the program’s state championship banners. Before every home match, the team lies in a circle on the orange mat with their fists together.</p>
       <p>{M.SITE['school']}<br>{'<br>'.join(M.SITE['address'])}</p>
     </div>
-    {M.figure(R, "senior-night", "(min-width: 900px) 45vw, 100vw", "wide-fig")}
+    {M.figure(R, "gym-anthem", "(min-width: 900px) 45vw, 100vw", "wide-fig")}
   </div>
 </section>
 <section class="band dark">
@@ -592,7 +592,7 @@ def build_facilities():
     </div>
   </div>
 </section>
-<section class="band"><div class="wrap">{M.figure(R, "program-family", "(min-width: 1180px) 1100px, 100vw", "natural-fig")}</div></section>
+<section class="band"><div class="wrap">{M.figure(R, "program-family", "(min-width: 1180px) 1100px, 100vw", "natural-fig")}<div class="top-gap">{M.figure(R, "senior-night", "(min-width: 1180px) 1100px, 100vw", "natural-fig")}</div></div></section>
 """
     return M.page("facilities/index.html", "Our Home", "Pete Schneider Gymnasium and the Northampton wrestling room.", body, "facilities/", og_image="hero-circle")
 

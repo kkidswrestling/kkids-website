@@ -1650,3 +1650,11 @@ alt = "The 2024 PIAA Class AAA state champions, including Trey Wagner, with thei
 caption = "The 2024 PIAA Class AAA state champions."
 widths = [600]
 file = "originals/batch16_champs-2024.jpg"
+
+[[photo]]
+id = "gym-anthem"
+source = "Coach Provini, Oct. 21, 2026"
+alt = "A packed Pete Schneider Gymnasium stands for the anthem before a home dual, with youth wrestlers in orange shirts beside the mat and the state championship banners on the wall"
+caption = "Match night in Pete Schneider Gymnasium."
+widths = [640, 1200, 2000]
+file = "originals/batch17_gym-anthem.jpg"
