@@ -22,7 +22,7 @@ banner = "banner-gabriel-ballard"
 portrait = "portrait-ballard-2026"
 hero = "ballard-raised"
 story = [
-  "Gabe Ballard won the 2026 PIAA Class AAA title at 152 pounds as a junior, finishing the season 41–5 with 15 pins.",
+  "Gabe Ballard won the 2026 PIAA Class AAA title at 152 pounds as a junior, finishing the season with 41 wins and 15 pins.",
   "It capped a steady climb at Hershey: 4th at 114 as a freshman, runner-up at 127 as a sophomore, and champion at 152. He led the team in takedowns (114) and season team points (238), and his 41 wins matched his freshman total on the school's single-season wins list.",
   "Ballard enters his senior season with 121 career wins, already a member of the 100-Win Club.",
 ]
@@ -35,9 +35,9 @@ banner = "banner-brayden-wenrich"
 portrait = "portrait-wenrich-2026"
 hero = "wenrich-final"
 story = [
-  "Brayden Wenrich won the 2026 PIAA Class AAA title at 114 pounds as a sophomore, finishing the season 36–1.",
+  "Brayden Wenrich won the 2026 PIAA Class AAA title at 114 pounds as a sophomore, finishing the season with 36 wins.",
   "A year earlier he reached the state final at 107 as a freshman, placing 2nd after a 44-win season that put him on the school's single-season wins list. In 2026 he swept the District XI, Northeast Regional, and PIAA titles, recorded the team's fastest pin of the season at 9 seconds, and was never pinned.",
-  "He enters his junior season with an 80–7 career record.",
+  "He enters his junior season with 80 career wins.",
 ]
 gallery = ["wenrich-podium-2026", "champs-2026", "wenrich-celebrates", "wenrich-medal", "celebration"]
 
@@ -62,8 +62,8 @@ banners = { "2017" = "julian-2017", "2019" = "julian-2019" }
 gallery = ["julian-2017", "julian-2019"]
 story = [
   "Julian Chlebove is one of Northampton's three-time State Champions, winning PIAA Class AAA titles at 113 (2016), 120 (2017), and 132 (2019).",
-  "He won his first as a freshman, going 43–2, which put him on the school's single-season wins list. He beat Nazareth's Ryan O'Grady 7–1 for the District XI title and 6–5 for the Northeast Regional title, then won four straight at Hershey: Aidan Burke of Council Rock North 4–0, Logan Macri of Canon-McMillan 5–1, Devin Schnupp of Warwick 8–1 in the semifinal, and Matt Parker of Pennridge 3–0 in the final. As a sophomore he went 37–1, losing only to New Jersey's Nick Raimo. He beat Liberty's Luke Werner 9–2 in both the district and regional finals, did not give up a point in his first three state matches, and majored Werner 13–3 in an all-District XI state final.",
-  "He did not wrestle in the 2017–18 postseason, then came back as a senior and went 49–3, the school record for wins in a season, wrestling at 132 and 138. He pinned Bethlehem Catholic's Kenny Herrmann in the district final and beat him 9–2 in the regional final. At Hershey he pinned Hayden Butterfield of Erie McDowell, teched Michael Cassidy of Cedar Cliff, edged Sam Hillegas of North Hills 2–1 in the semifinal, and beat Herrmann 6–2 in the final, his fifth win over Herrmann that season. He lost only six matches in his career and finished with 130 wins.",
+  "He won his first as a freshman with 43 wins, which put him on the school's single-season wins list. He beat Nazareth's Ryan O'Grady 7–1 for the District XI title and 6–5 for the Northeast Regional title, then won four straight at Hershey: Aidan Burke of Council Rock North 4–0, Logan Macri of Canon-McMillan 5–1, Devin Schnupp of Warwick 8–1 in the semifinal, and Matt Parker of Pennridge 3–0 in the final. As a sophomore he won 37 matches. He beat Liberty's Luke Werner 9–2 in both the district and regional finals, did not give up a point in his first three state matches, and majored Werner 13–3 in an all-District XI state final.",
+  "He did not wrestle in the 2017–18 postseason, then came back as a senior and won 49 matches, the school record for wins in a season, wrestling at 132 and 138. He pinned Bethlehem Catholic's Kenny Herrmann in the district final and beat him 9–2 in the regional final. At Hershey he pinned Hayden Butterfield of Erie McDowell, teched Michael Cassidy of Cedar Cliff, edged Sam Hillegas of North Hills 2–1 in the semifinal, and beat Herrmann 6–2 in the final, his fifth win over Herrmann that season. He lost only six matches in his career and finished with 130 wins.",
 ]
 finals = [[2016, "Matt Parker", "Pennridge", "Won 3–0"], [2017, "Luke Werner", "Bethlehem Liberty", "Won 13–3 (major decision)"], [2019, "Kenny Herrmann", "Bethlehem Catholic", "Won 6–2"]]
 sources = [["PA-Wrestling, Julian Chlebove career stats", "https://www.pa-wrestling.com/hs/teams/northampton/athlete_stats.htm?id=112357"]]
@@ -73,8 +73,8 @@ video = [{ url = "https://www.youtube.com/watch?v=ksHel46QOs8", start = "34:06",
 banner = "banner-jeff-ecklof"
 story = [
   "Jeff Ecklof won two PIAA Class AAA titles: 125 pounds as a sophomore in 2001 and 145 pounds as a senior in 2003. He placed at states all four years and won four District XI and four Northeast Regional titles.",
-  "His first title came in Terry Daubert's first season as head coach. Ecklof went 40–3, edged Easton's Mike Rogers and Stroudsburg's Joey Rivera, each 3–2, at districts, and pinned Rivera in the regional final. At Hershey he beat Jarrod King of Connellsville 11–8 and Brad Forbes of Downingtown 2–1 in a tiebreaker, survived Brian Baglio of Red Land 10–9 in overtime in the semifinal, and beat Pat O'Brien of Garnet Valley 12–6 in the final.",
-  "After a 3rd-place finish at 130 as a junior, the year he won his 100th match, he went 42–2 as a senior. He beat Mike Ferrara 4–3 for his fourth district title and 5–3 for his fourth regional title, won his state semifinal 9–3, and beat Kirk Main of McGuffey 3–2 in the final. That night brother Joey, Josh Haines, and Jon Oplinger also won titles, and Northampton won the 2003 PIAA team title 98–80.5 over Easton. Jeff finished with 154 career wins.",
+  "His first title came in Terry Daubert's first season as head coach. Ecklof won 40 matches, edged Easton's Mike Rogers and Stroudsburg's Joey Rivera, each 3–2, at districts, and pinned Rivera in the regional final. At Hershey he beat Jarrod King of Connellsville 11–8 and Brad Forbes of Downingtown 2–1 in a tiebreaker, survived Brian Baglio of Red Land 10–9 in overtime in the semifinal, and beat Pat O'Brien of Garnet Valley 12–6 in the final.",
+  "After a 3rd-place finish at 130 as a junior, the year he won his 100th match, he won 42 matches as a senior. He beat Mike Ferrara 4–3 for his fourth district title and 5–3 for his fourth regional title, won his state semifinal 9–3, and beat Kirk Main of McGuffey 3–2 in the final. That night brother Joey, Josh Haines, and Jon Oplinger also won titles, and Northampton won the 2003 PIAA team title 98–80.5 over Easton. Jeff finished with 154 career wins.",
 ]
 finals = [[2001, "Pat O'Brien", "Garnet Valley", "Won 12–6"], [2003, "Kirk Main", "McGuffey", "Won 3–2"]]
 sources = [["Lehigh Valley Wrestling History, \u201c2000-01: Rover Revival, Warrior Arrival\u201d", "https://lehighvalleywrestlinghistory.com/2000-01-rover-revival-warrior-arrival/"], ["Lehigh Valley Wrestling History, \u201c2001-02: It\u2019s Crowell & Powell, State Champs in Town\u201d", "https://lehighvalleywrestlinghistory.com/2001-02-its-crowell-powell-state-champs-in-town/"], ["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a Final Goodbye\u201d", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
@@ -84,8 +84,8 @@ video = [{ url = "https://www.youtube.com/watch?v=2_OsLeR4dWU", start = "41:14",
 banner = "banner-josh-haines"
 story = [
   "Josh Haines won back-to-back PIAA Class AAA titles at 189 pounds in 2003 and 2004, losing a total of two matches in those two seasons.",
-  "After placing 3rd at 171 as a sophomore, he went 44–1 as a junior, one of the best win totals in school history. He swept the district and regional titles and went 4–0 at Hershey: Andy Bateman of Owen J. Roberts 15–2, Bret Caldwell of Solanco 8–1, a 9–7 overtime semifinal over Harrisburg's Philip Davis, and a 2–0 final over Kyle Narkiewicz of Warwick, one of four Northampton champions that night.",
-  "As a senior he went 40–1 with 21 falls. He beat Honesdale's Josh Arnone 2–0 in the regional final, pinned two of his first three opponents at states, and met Arnone again in the state final, winning 3–1. Haines finished with 157 career wins, and Northampton won the PIAA team title both years.",
+  "After placing 3rd at 171 as a sophomore, he won 44 matches as a junior, one of the best win totals in school history. He swept the district and regional titles and went 4–0 at Hershey: Andy Bateman of Owen J. Roberts 15–2, Bret Caldwell of Solanco 8–1, a 9–7 overtime semifinal over Harrisburg's Philip Davis, and a 2–0 final over Kyle Narkiewicz of Warwick, one of four Northampton champions that night.",
+  "As a senior he won 40 matches with 21 falls. He beat Honesdale's Josh Arnone 2–0 in the regional final, pinned two of his first three opponents at states, and met Arnone again in the state final, winning 3–1. Haines finished with 157 career wins, and Northampton won the PIAA team title both years.",
 ]
 finals = [[2003, "Kyle Narkiewicz", "Warwick", "Won 2–0"], [2004, "Josh Arnone", "Honesdale", "Won 3–1"]]
 sources = [["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a Final Goodbye\u201d", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"], ["Lehigh Valley Wrestling History, \u201c2003-04: The More Things Change, the More They Stay the Same\u201d", "https://lehighvalleywrestlinghistory.com/2003-04-the-more-things-change-the-more-they-stay-the-same/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
@@ -95,7 +95,7 @@ video = [{ url = "https://www.youtube.com/watch?v=7JUBUS2InI0", start = "0:00", 
 banner = "banner-dennis-liberto"
 gallery = ["liberto-yearbook-action", "liberto-yearbook-1"]
 story = [
-  "Dennis \"Denny\" Liberto won the 1995 PIAA Class AAA title at 103 pounds as a senior, beating Mike Khan of Harrisburg 13–5 in the final. He finished the season 37–1.",
+  "Dennis \"Denny\" Liberto won the 1995 PIAA Class AAA title at 103 pounds as a senior, beating Mike Khan of Harrisburg 13–5 in the final. He finished the season with 37 wins.",
   "He placed at states three straight years: 6th as a sophomore, 3rd as a junior, and champion as a senior, all at 103. He also won three straight Northeast Regional titles and two District XI titles, beating Easton's Bryan Snyder 9–5 in the 1995 district final. At Hershey he won by forfeit, beat Brian Kubistek of Derry Area 13–5, beat Brad Fralic of Cathedral Prep 15–6 in the semifinal, and then beat Khan for the title.",
   "During his senior season he won the Ironman Classic in Ohio and earned his 100th career win at the Bethlehem Holiday Classic. He finished with 128 wins. His title opened a big night for the Kids, who won their third straight PIAA team title in 1995.",
 ]
@@ -105,7 +105,7 @@ sources = [["Lehigh Valley Wrestling History, \u201c1994-95: The Year of the Big
 ["Ryan McCallum"]
 banner = "banner-ryan-mccallum"
 story = [
-  "Ryan McCallum won the 2000 PIAA Class AAA title at 130 pounds in Don Rohn's final season as head coach. He finished the year 40–5.",
+  "Ryan McCallum won the 2000 PIAA Class AAA title at 130 pounds in Don Rohn's final season as head coach. He finished the year with 40 wins.",
   "He came to Northampton from Berks County for his senior season, a year after placing 2nd at states for Wilson (West Lawn). He won the Holiday Classic, beat Easton's Gino Fortebuono 3–1 in overtime at the District Duals for Fortebuono's first loss, and edged defending champion Christian Franco of Whitehall 6–5 for the District XI title. Fortebuono pinned him in the regional semifinal, but McCallum came back for 3rd. At Hershey he beat Rick Bauer of McGuffey 11–6, Mark Maney of Bald Eagle Area 11–3, Franco again 2–1 in the semifinal, and Chris Graber of Greater Latrobe 9–4 in the final.",
   "It was a fitting send-off for Rohn. The 2000 Kids went 23–1, won the PIAA team duals title 30–19 over Connellsville, set a state record at the time with eight place winners, and won the program's fifth PIAA team title. Rohn finished 309–59 with five team titles and eight individual State Champions.",
 ]
@@ -117,7 +117,7 @@ video = [{ url = "https://www.youtube.com/watch?v=ljqIW4sDCT0", start = "15:30",
 banner = "banner-mike-tomsic"
 story = [
   "Mike Tomsic won the 1993 PIAA Class AAA title at 112 pounds the Northampton way: with a cement job. In the final he put favored Jason LaMotta of Conestoga on his back and pinned him in 45 seconds.",
-  "He won the District XI title by fall over Freedom's Jon Horvath and then the Northeast Regional title. At Hershey he beat Scott Bacco of Moon 6–5 and Randall Braunfeld of Radnor 12–9, pinned Eric Steppe of Williamsport in the semifinal, and then pinned LaMotta for the title. He finished his senior season 32–5.",
+  "He won the District XI title by fall over Freedom's Jon Horvath and then the Northeast Regional title. At Hershey he beat Scott Bacco of Moon 6–5 and Randall Braunfeld of Radnor 12–9, pinned Eric Steppe of Williamsport in the semifinal, and then pinned LaMotta for the title. He finished his senior season with 32 wins.",
   "His title came in one of the greatest seasons in program history. Northampton went 24–0 in duals, was ranked No. 1 in the nation, won the District XI and Northeast Regional team titles, and won its first PIAA team championship. Coach Don Rohn was named Coach of the Year.",
 ]
 finals = [[1993, "Jason LaMotta", "Conestoga", "Won by fall, 0:45"]]
@@ -128,7 +128,7 @@ video = [{ url = "https://www.youtube.com/watch?v=zCCGSPL2qxg", start = "1:04:02
 banner = "banner-john-hard"
 gallery = ["luciano-hard-1998"]
 story = [
-  "John Hard won the 1998 PIAA Class AAA heavyweight title at 275 pounds, riding out Dave Armstrong of Central Bucks West for a 2–1 overtime win in the final. He finished his senior season 38–3.",
+  "John Hard won the 1998 PIAA Class AAA heavyweight title at 275 pounds, riding out Dave Armstrong of Central Bucks West for a 2–1 overtime win in the final. He finished his senior season with 38 wins.",
   "He was a three-time Northeast Regional Champion and two-time District XI Champion, and he placed 4th at states as a junior. In 1998 he won the district title 6–4 over Mike Moya. At regionals the team title came down to him: his pin of Nazareth's Steve Itterly in the last bout gave Northampton a 94–93 win over Parkland. At Hershey he beat Brian Williams of Methacton 6–2, Brian Cartwright of Plum 4–1, and Steve Kovach of West Chester East 4–3 in the semifinal before the overtime win in the final.",
   "Hard finished with 107 career wins. The 1998 Kids went 21–0 in duals and won the District XI, Northeast Regional, and PIAA team titles, with Christian Luciano winning at 171 the same night.",
 ]
@@ -142,7 +142,7 @@ banner = "banner-christian-luciano"
 portrait = "portrait-luciano"
 gallery = ["luciano-hard-1998"]
 story = [
-  "Christian Luciano capped a four-medal career with the 1998 PIAA Class AAA title at 171 pounds, finishing his senior season a perfect 40–0.",
+  "Christian Luciano capped a four-medal career with the 1998 PIAA Class AAA title at 171 pounds, finishing his senior season unbeaten with 40 wins.",
   "He climbed the podium one step at a time: 6th at 140 as a freshman, 4th at 152 as a sophomore, runner-up at 171 as a junior, and champion as a senior. In 1998 he won the Beast of the East, took Outstanding Wrestler and the pin award at the Hurricane Classic, and set what was then the school's single-season record for falls with 29. He won his third District XI title with a fall and the Northeast Regional title, then went 4–0 at Hershey: Jacob Lininger of Lower Dauphin 5–3, Mike Minella of Chartiers Valley 17–6, Steve Foote of Dallastown 10–3 in the semifinal, and Nick Richmond of McGuffey 7–3 in the final, built on three takedowns.",
   "Luciano finished with 143 career wins. The 1998 Kids went 21–0 in duals and swept the District XI, Northeast Regional, and PIAA team titles, and teammate John Hard won the heavyweight title the same night.",
 ]
@@ -152,8 +152,8 @@ sources = [["Lehigh Valley Wrestling History, \u201c1997-98: Bulldogs Blossom, K
 ["Jagger Condomitti"]
 banner = "banner-jagger-condomitti"
 story = [
-  "Jagger Condomitti won the 2021 PIAA Class AAA title at 160 pounds, finishing a pandemic-shortened senior season a perfect 16–0.",
-  "The title capped a four-year climb. As a freshman at 126, he went 36–12 and placed 3rd at districts and regionals. As a sophomore at 145, he went 48–10 with 25 pins and placed 4th at states. As a junior, he went 39–4 and beat Bethlehem Catholic's Cole Handlovic 7–3 in sudden victory for the District XI title. The two met again in the state final, and Handlovic won 3–2.",
+  "Jagger Condomitti won the 2021 PIAA Class AAA title at 160 pounds, finishing a pandemic-shortened senior season unbeaten.",
+  "The title capped a four-year climb. As a freshman at 126, he won 36 matches and placed 3rd at districts and regionals. As a sophomore at 145, he went 48–10 with 25 pins and placed 4th at states. As a junior, he went 39–4 and beat Bethlehem Catholic's Cole Handlovic 7–3 in sudden victory for the District XI title. The two met again in the state final, and Handlovic won 3–2.",
   "As a senior, he moved up to 160 and swept the postseason. He pinned Bethlehem Catholic's Landon Muth in the District XI final and beat Muth again by technical fall for the Northeast Regional title. At Hershey, he beat Norwin's Chase Kranitz 5–3 and Council Rock South's Matt Colajezzi 6–4, then won the final 7–3 in sudden victory over Spring-Ford's Jack McGill. He finished his career with 141 wins and 64 pins.",
 ]
 finals = [[2021, "Jack McGill", "Spring-Ford", "Won 7–3 (SV)"]]
@@ -165,7 +165,7 @@ banner = "banner-joey-ecklof"
 story = [
   "Joey Ecklof is one of Northampton's three-time State Champions, winning PIAA Class AAA titles at 135 (2003), 145 (2004), and 152 (2005).",
   "His first came as a sophomore on the same night as his brother Jeff's second. He placed 3rd at districts, won the Northeast Regional title, and at Hershey beat Archie McConnell of Solanco 10–5, Chad George of Erie McDowell 11–6, and Joe Ortiz of Reading 11–3 before a 5–3 overtime win over Tom Picarsic of Penn-Trafford in the final. As a junior he went 39–2, won his 100th match at districts, majored Liberty's Dan Horwath 19–7 for the district title, pinned his first three opponents at states, and beat Andrew Sherry of Pittsburgh Central Catholic 7–3 in the final as the Kids won another team title.",
-  "As a senior he went 31–3. He won the District XI final 2–1 in overtime over Pleasant Valley's Bryan Farley and the regional final 12–3 over Nazareth's Thad Frick. At Hershey he beat Bill Trimble of Pennsbury 10–6, Travis Uncapher of Greensburg Central Catholic 2–1 in overtime, and Brent Fiorito of Upper Perkiomen 5–2. The final matched two two-time State Champions, and Ecklof took control early with a takedown and tilt to beat Donnie Jones of Greensburg Salem 10–3. He finished with 140 career wins.",
+  "As a senior he won 31 matches. He won the District XI final 2–1 in overtime over Pleasant Valley's Bryan Farley and the regional final 12–3 over Nazareth's Thad Frick. At Hershey he beat Bill Trimble of Pennsbury 10–6, Travis Uncapher of Greensburg Central Catholic 2–1 in overtime, and Brent Fiorito of Upper Perkiomen 5–2. The final matched two two-time State Champions, and Ecklof took control early with a takedown and tilt to beat Donnie Jones of Greensburg Salem 10–3. He finished with 140 career wins.",
 ]
 finals = [[2003, "Tom Picarsic", "Penn-Trafford", "Won 5–3 (OT)"], [2004, "Andrew Sherry", "Pittsburgh Central Catholic", "Won 7–3"], [2005, "Donnie Jones", "Greensburg Salem", "Won 10–3"]]
 sources = [["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a Final Goodbye\u201d", "https://lehighvalleywrestlinghistory.com/2002-03-four-of-a-kind-a-final-goodbye/"], ["Lehigh Valley Wrestling History, \u201c2003-04: The More Things Change, the More They Stay the Same\u201d", "https://lehighvalleywrestlinghistory.com/2003-04-the-more-things-change-the-more-they-stay-the-same/"], ["Lehigh Valley Wrestling History, \u201c2004-05: Broken Streaks, Brotherly Feats\u201d", "https://lehighvalleywrestlinghistory.com/2004-05-broken-streaks-brotherly-feats/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
@@ -174,7 +174,7 @@ sources = [["Lehigh Valley Wrestling History, \u201c2002-03: Four of a Kind, a F
 video = [{ url = "https://www.youtube.com/watch?v=2_OsLeR4dWU", start = "52:09", end = "1:02:10", year = 2003 }]
 banner = "banner-jon-oplinger"
 story = [
-  "Jon Oplinger won back-to-back PIAA Class AAA titles at 215 pounds in 2003 and 2004, going 41–1 and 40–1.",
+  "Jon Oplinger won back-to-back PIAA Class AAA titles at 215 pounds in 2003 and 2004, with 41 and 40 wins.",
   "He reached the state final at 189 as a sophomore and placed 2nd. As a junior his decision clinched a 31–29 win at Easton, Coach Terry Daubert's first win over the Rovers as head coach. He won the district and regional titles, then went 4–0 at Hershey: Ryan Collins of Council Rock North 19–6, Nic San Doval of Pittsburgh Central Catholic 5–2, Kyle Sprenkle of Spring Grove 15–7 in the semifinal, and Adam LoPiccolo of Susquehannock 3–2 in overtime in the final.",
   "As a senior he beat Easton's Marcus Millen 6–1 for the district title and Pittston Area's John Laboranti 3–1 for the regional title. At states he beat Brad Neu of Canon-McMillan 9–3, Steve Funk of Pennridge 9–1, and Nick Hursky of Chartiers Valley 7–2, then won the final 6–4 over Kiski Area's Scott McKillop on a takedown with 14 seconds left. He finished with 119 career wins, and Northampton won the PIAA team title both years.",
 ]
@@ -186,7 +186,7 @@ banner = "banner-justin-wieller"
 story = [
   "Justin Wieller won the 2007 PIAA Class AAA title at 215 pounds with the move Northampton is known for. Early in the final he hit a flying cement job on Jordan Enck of Manheim Central, and the points held up for a 6–4 win.",
   "He was a three-time Northeast Regional Champion. As a sophomore he won the regional title at 215, and as a junior he swept the district and regional titles at 189 and placed 5th at states. As a senior he wrestled much of the season at 189, beating Easton's Corey Rutt 7–2 at the District Duals, then moved up to 215 for the postseason. He finished 2nd at districts, won the regional final 13–1 over Scranton's Jason Dominick, and went 4–0 at Hershey: John Mangol of Corry Area 9–2, Brandon Miller of Middletown 7–4, Dan Utchel of Chartiers Valley 8–3 in the semifinal, and Enck 6–4 in the final.",
-  "He finished his senior season 36–6 and his career 98–22, then won his bout for Pennsylvania at the Easton Lions Classic.",
+  "He finished his senior season with 36 wins and his career with 98, then won his bout for Pennsylvania at the Easton Lions Classic.",
 ]
 finals = [[2007, "Jordan Enck", "Manheim Central", "Won 6–4"]]
 sources = [["Lehigh Valley Wrestling History, \u201c2006-07: Eye of the Tiger\u201d", "https://lehighvalleywrestlinghistory.com/2006-07-eye-of-the-tiger/"], ["PA-Wrestling, Justin Wieller career stats", "https://www.pa-wrestling.com/hs/teams/northampton/athlete_stats.htm?id=10009"]]
@@ -195,10 +195,10 @@ sources = [["Lehigh Valley Wrestling History, \u201c2006-07: Eye of the Tiger\u2
 headshot = "headshot-whitey-chlebove"
 banner = "banner-whitey-chlebove"
 feature = "whitey-podium"
-feature_line = "38–0 and on top of the podium."
+feature_line = "Unbeaten and on top of the podium."
 gallery = ["whitey-yearbook-2", "whitey-yearbook"]
 story = [
-  "Ian \"Whitey\" Chlebove won the 1994 PIAA Class AAA title at 130 pounds and finished his senior season a perfect 38–0. He joined the Kids that year after two state medals for Whitehall, including a runner-up finish in 1993.",
+  "Ian \"Whitey\" Chlebove won the 1994 PIAA Class AAA title at 130 pounds and finished his senior season unbeaten with 38 wins. He joined the Kids that year after two state medals for Whitehall, including a runner-up finish in 1993.",
   "He was tested along the way. At the Christmas City Tournament he edged AA State Place Winner Placido Salamone of Pen Argyl 5–3, and in February he beat fellow unbeaten Sean Topping 3–2 in the dual with Nazareth. He won the District XI final 8–4 over Easton's Brad Weaver, beat Weaver again for the Northeast Regional title, and went 4–0 at Hershey: a technical fall over Randy Dischner of Shaler, a major decision over Ryan Abbott of DuBois, a 2–1 semifinal over Chuck Murdy of Canon-McMillan, and a 10–4 win over Dana Weber of Waynesboro in the final.",
   "Northampton went 24–0 for the second straight year and won its second straight PIAA team title. Coach Don Rohn won his 200th dual meet at Northampton that season and was named AAA Coach of the Year.",
 ]
@@ -209,7 +209,7 @@ sources = [["Lehigh Valley Wrestling History, \u201c1993-94: The Kids Are Hot To
 video = ["https://www.youtube.com/watch?v=6H1IXhzIlOc"]
 banner = "banner-chad-billy"
 story = [
-  "Chad Billy won the 1991 PIAA Class AAA title at 112 pounds, the only State Champion from the Lehigh Valley that year. He finished his senior season 37–1.",
+  "Chad Billy won the 1991 PIAA Class AAA title at 112 pounds, the only State Champion from the Lehigh Valley that year. He finished his senior season with 37 wins.",
   "It was the last step of a three-year climb at states: 4th at 103 as a sophomore, 6th at 112 as a junior, and champion as a senior. In 1991 he won the Christmas City Tournament, where Northampton edged Nazareth for the team title by half a point, and swept the District XI and Northeast Regional titles. At Hershey he went 4–0, beating John Bryan of State College 7–4, Gabe Miller of Canon-McMillan 12–6, Jim Gority of Hollidaysburg 5–4 in the semifinal, and Jeff Cervone of Meadville 7–4 in the final.",
   "That season Northampton went 21–2 and won the East Penn Conference at 11–0. Billy finished his career with 102 wins and a spot in the 100-Win Club, and he added a fall for Pennsylvania in its 24–22 win over the USA team at the Pittsburgh Classic.",
 ]
@@ -220,7 +220,7 @@ sources = [["Lehigh Valley Wrestling History, \u201c1990-91: Fierce Competition\
 video = ["https://www.youtube.com/watch?v=FLdZqqqxgts"]
 banner = "banner-sean-finkbeiner"
 story = [
-  "Sean Finkbeiner ended a 29-year wait in 1984, becoming Northampton's first State Champion since 1955. He won the PIAA title at 145 pounds and finished his senior season a perfect 35–0. He had come to Northampton that year after two state runner-up finishes for Saucon Valley.",
+  "Sean Finkbeiner ended a 29-year wait in 1984, becoming Northampton's first State Champion since 1955. He won the PIAA title at 145 pounds and finished his senior season unbeaten with 35 wins. He had come to Northampton that year after two state runner-up finishes for Saucon Valley.",
   "He set the tone early, pinning Northern Lehigh's Greg Parsons at 155 to win the Christmas City Tournament and its Outstanding Wrestler award. In the postseason he edged Allen's Scott Schleicher 3–2 for the District XI title, won the Northeast Regional at Bloomsburg, and then went 4–0 at states: major decisions over Mark Nichols of Canon-McMillan (15–3) and Mario Harpel of Neshaminy (16–3), a 3–2 semifinal over Brad Lloyd of Red Lion, and a 7–2 win over Kurt Bowman of Waynesboro in the final.",
   "He kept winning after the season. At the Easton Lions Classic he beat New Jersey State Champion Mike Barna 9–3, he won at the AAA-AA Challenge of Champions, and he was named Outstanding Wrestler at the Pittsburgh Press Classic after a 14–5 win over future Iowa State star Tim Krieger. It was Don Rohn's second season as head coach. Rohn went on to win five PIAA team titles.",
 ]

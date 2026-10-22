@@ -106,7 +106,7 @@ link = ["The 1993 title season", "champions/team/1993/"]
 q = "On Feb. 14, 1994, the Kids beat Nazareth 22–18 at Stabler Arena in front of about 3,600 fans. Which Konkrete Kid won a 3–2 battle of unbeatens over Sean Topping that swung the dual?"
 choices = ["Denny Liberto", "Ryan Gumlock", "Whitey Chlebove", "Dave Emili"]
 answer = 3
-fact = "Whitey Chlebove. He finished the season 38–0 and won the state title at 130 a month later."
+fact = "Whitey Chlebove. He finished the season unbeaten and won the state title at 130 a month later."
 link = ["Whitey Chlebove", "champions/whitey-chlebove/"]
 
 [[round.q]]
@@ -205,10 +205,10 @@ fact = "Joey Ecklof won at 135, 145 and 152. Julian Chlebove won at 113, 120 and
 link = ["Joey Ecklof", "champions/joey-ecklof/"]
 
 [[round.q]]
-q = "Which State Champion finished his title season a perfect 40–0?"
+q = "Which State Champion finished his title season unbeaten with 40 wins?"
 choices = ["Whitey Chlebove", "Christian Luciano", "Gabe Ballard", "Justin Wieller"]
 answer = 2
-fact = "Christian Luciano went 40–0 in 1998. Whitey Chlebove also went unbeaten in his title season, 38–0 in 1994."
+fact = "Christian Luciano went unbeaten with 40 wins in 1998. Whitey Chlebove also went unbeaten in his title season, with 38 wins in 1994."
 link = ["Christian Luciano", "champions/christian-luciano/"]
 
 [[round.q]]
