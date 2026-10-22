@@ -2099,6 +2099,7 @@ def main():
     redirect("copy-of-high-school-1/index.html", "seasons/2023-24/")
     redirect("coaches/index.html", "coaching-staff/")
     redirect("photos/index.html", "seasons/")  # Photos page retired (Joe, Oct. 2026): every photo lives on a season or other page
+    redirect("news/2026-banquet/index.html", "news/")  # banquet post removed (Joe, Oct. 21, 2026)
     if not YOUTH_COACHES_LIVE:
         redirect("youth/coaches/index.html", "youth/")  # paused: old links land on the Youth page
     # Sitemap: every built page (not redirect stubs), so new profiles and news posts are always included
