@@ -660,20 +660,8 @@ def build_high_school():
 <section class="band" aria-labelledby="awards-title">
   <div class="wrap">
     {('<h2 id="awards-title">Season awards</h2><dl class="awards">' + awards + '</dl>') if SHOW_SEASON_AWARDS else '<h2 id="awards-title" class="visually-hidden">Season honors</h2>'}
-    <div class="split even top">
-      <div>
-        <h3 class="sub">Eastern Pennsylvania Conference all-stars</h3>
-        <ul class="results" role="list">{result_rows(s["epc"])}</ul>
-        <h3 class="sub">Never pinned</h3>
-        <p>{e(", ".join(s["never_pinned"]))}</p>
-      </div>
-      <div>
-        <h3 class="sub">Charlie Lerch Memorial Scholarships</h3>
-        <p>{e(", ".join(s["lerch"]))}</p>
-        <h3 class="sub">40 Point Club</h3>
-        <ul class="results" role="list">{result_rows(s["forty_point"])}</ul>
-      </div>
-    </div>
+    <h3 class="sub">Eastern Pennsylvania Conference all-stars</h3>
+    <ul class="results" role="list">{result_rows(s["epc"])}</ul>
   </div>
 </section>
 
@@ -1975,11 +1963,12 @@ def build_season_page(i, all_s):
     if d.get("jv"):
         extra.append(f'<div><h2 class="sub">{d["jv_title"]}</h2><ul class="results" role="list">{result_rows(d["jv"])}</ul></div>')
     honors = []
-    if d.get("never_pinned"):
+    # Never Pinned, 40 Point Club and Lerch scholarship lists hidden (Joe, Oct. 21, 2026); data kept in seasons.toml
+    if False and d.get("never_pinned"):
         honors.append(f'<h2 class="sub">Never pinned</h2><p>{e(", ".join(d["never_pinned"]))}</p>')
-    if d.get("forty_point"):
+    if False and d.get("forty_point"):
         honors.append('<h2 class="sub">“40” Point Club</h2><p>' + "<br>".join(f"<b>{e(a)}:</b> {e(b)}" for a, b in d["forty_point"]) + "</p>")
-    if d.get("lerch"):
+    if False and d.get("lerch"):
         honors.append(f'<h2 class="sub">Charlie Lerch Memorial Scholarships</h2><p>{e(", ".join(d["lerch"]))}</p>')
     if honors:
         extra.append('<div class="prose">' + "".join(honors) + "</div>")
