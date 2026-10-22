@@ -46,6 +46,8 @@ bio = "Coach Rusnock brings coaching experience from Maumee (Ohio), Pen Argyl, A
 [[varsity]]
 name = "John Paukovits"
 role = "Varsity Assistant"
+# Hidden until board approval is confirmed (Joe, Oct. 21, 2026). Delete the next line to show him again.
+hidden = true
 photo = ""
 bio = "A Northampton alumnus, Coach Paukovits was a three-time District XI Champion (2002, 2004, 2005), the 2004 Northeast Regional Champion, and a two-time PIAA State Placewinner. At Kutztown University he won 66 matches from 2008 to 2011 and, as a senior, won the Super Region I title and placed 6th at 149 at the NCAA Division II National Championships to earn All-American honors. He joins the varsity staff for 2026–27."
 

@@ -27,6 +27,11 @@ SITE = load_toml("site.toml")
 # Youth Coaches' Playbook on/off (paused Oct. 2026; see youth_coaches_page in data/site.toml)
 YOUTH_COACHES_LIVE = bool(SITE.get("youth_coaches_page", False))
 COACHES = load_toml("coaches.toml")
+# Coaches marked hidden = true are kept in coaches.toml but left off the site (e.g., awaiting board approval)
+for _k, _v in list(COACHES.items()):
+    if isinstance(_v, list):
+        COACHES[_k] = [c for c in _v if not (isinstance(c, dict) and c.get("hidden"))]
+HIDDEN_COACHES = {c["name"] for _v in load_toml("coaches.toml").values() if isinstance(_v, list) for c in _v if isinstance(c, dict) and c.get("hidden")}
 SEASONS = load_toml("seasons.toml")["season"]
 PHOTOS = {p["id"]: p for p in load_toml("photos.toml")["photo"]}
 MANIFEST = json.load(open(os.path.join(ROOT, "assets", "img", "photos", "manifest.json")))
