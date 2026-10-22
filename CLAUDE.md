@@ -108,4 +108,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - The April 2, 2026 banquet news post was removed (Joe, Oct. 21, 2026); news/2026-banquet/ redirects to news/.
 - Our Home header (hero-circle) uses .page-head.bright for a lighter fade and text shadow only; the photo itself is NOT brightened (Joe tried it and asked to undo it, Oct. 21, 2026).
 - On phones the Our Home header puts the title and subtitle in the dark upper part of the photo, with the wrestlers clear below (Joe, Oct. 21, 2026).
-- Timeline 2017 has two entries: Julian Chlebove's second title, and Dan Moran becoming the third four-time State Placewinner with his senior runner-up finish at 138 (Joe, Oct. 21, 2026: give Moran his own entry).
+- Timeline 2017 is one entry (Joe, Oct. 21, 2026: no separate dot): Julian Chlebove's second title, then Dan Moran's senior runner-up finish at 138 making him the third four-time State Placewinner (exception to the no-runner-up-in-champion-entries rule).
