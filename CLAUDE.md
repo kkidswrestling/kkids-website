@@ -107,3 +107,4 @@ Owner: Coach Joe Provini (head coach). He asks for updates in plain language; ma
 - Never Pinned, 40 Point Club and Charlie Lerch scholarship name lists are also hidden on the High School page and season pages (Joe, Oct. 21, 2026; data kept). Trey Wagner's champion story keeps "was named the team's Outstanding Wrestler" (Joe asked to put it back).
 - The April 2, 2026 banquet news post was removed (Joe, Oct. 21, 2026); news/2026-banquet/ redirects to news/.
 - Our Home header (hero-circle) is brightened with .page-head.bright (CSS filter + lighter fade + text shadow), Joe, Oct. 21, 2026: the original photo is very dark.
+- On phones the Our Home header puts the title and subtitle in the dark upper part of the photo, with the wrestlers clear below (Joe, Oct. 21, 2026).
