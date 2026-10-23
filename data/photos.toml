@@ -588,9 +588,9 @@ file = "originals/img26_p-009-014.jpg"
 
 [[photo]]
 id = "banner-julian-chlebove"
-crop = [315, 0, 733, 522]
+crop = [304, 50, 744, 600]
 focus = "50% 50%"
-widths = [418]
+widths = [440]
 source = "Coach Provini, batch 4 (2016 state championship)"
 alt = "Julian Chlebove points to the crowd after winning the 2016 state title"
 file = "originals/batch3_julian-2016.jpg"
