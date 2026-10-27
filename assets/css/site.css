@@ -557,6 +557,10 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 .article-fig { margin: 8px 0 0; max-width: 520px; }
 .article-fig a { display: block; }
 .article-fig img { display: block; width: 100%; height: auto; }
+.fig-box { position: relative; }
+/* tap area over part of a figure (e.g. a flyer's QR code); .lb-hot is the same in the full-size view */
+.fig-hot, .lb-hot { position: absolute; border-radius: 4px; }
+@media (hover: hover) { .fig-hot:hover, .lb-hot:hover { box-shadow: 0 0 0 3px var(--paper), 0 0 0 6px var(--blaze); } }
 
 /* ---- big numbers ---- */
 .numbers-band { background: var(--mat) url("../img/bg-concrete.webp") center/1100px; background-blend-mode: multiply; color: var(--on-dark); }

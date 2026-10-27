@@ -400,6 +400,8 @@ def build_news():
         kick = f'<p class="kicker"><a href="{R2}news/">News</a> · <time datetime="{p["date"].isoformat()}">{fmt_date(p["date"])}</time></p>'
         # head = "plain": concrete header with no photo (for flyers and graphics full of text);
         # figure = "<photo id>": the photo shown whole under the story, opening full size.
+        # figure_link = { label, url, box = [left, top, width, height] } (percent of the photo): a tap
+        # area over part of the figure, such as a flyer's QR code; it works in the full-size view too.
         if p.get("head") == "plain":
             head = f'<header class="page-head concrete"><div class="wrap">{kick}<h1 class="article-title">{e(p["title"])}</h1></div></header>'
         else:
@@ -408,9 +410,15 @@ def build_news():
         fig = ""
         if p.get("figure"):
             fid = p["figure"]; fw = M.MANIFEST[fid]["widths"][-1]
-            fig = (f'<div class="wrap prose article-body"><figure class="article-fig"><a href="{M.largest(R2, fid)}" data-lightbox="news-{p["slug"]}" '
-                   f'data-caption="{e(M.PHOTOS[fid].get("caption", ""))}" data-w="{fw[0]}" data-h="{fw[1]}">'
-                   f'{M.picture(R2, fid, "(min-width: 600px) 520px, 100vw")}</a></figure></div>')
+            hot = hot_data = ""
+            if p.get("figure_link"):
+                fl = p["figure_link"]; l, t, w, h = fl["box"]
+                hot = (f'<a class="fig-hot" href="{e(fl["url"])}" rel="noopener" target="_blank" aria-label="{e(fl["label"])}" title="{e(fl["label"])}" '
+                       f'style="left:{l:g}%;top:{t:g}%;width:{w:g}%;height:{h:g}%"></a>')
+                hot_data = f' data-hot-url="{e(fl["url"])}" data-hot-label="{e(fl["label"])}" data-hot-box="{l:g},{t:g},{w:g},{h:g}"'
+            fig = (f'<div class="wrap prose article-body"><figure class="article-fig"><div class="fig-box"><a href="{M.largest(R2, fid)}" data-lightbox="news-{p["slug"]}" '
+                   f'data-caption="{e(M.PHOTOS[fid].get("caption", ""))}" data-w="{fw[0]}" data-h="{fw[1]}"{hot_data}>'
+                   f'{M.picture(R2, fid, "(min-width: 600px) 520px, 100vw")}</a>{hot}</div></figure></div>')
         ab = f"""
 <article>
   {head}

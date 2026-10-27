@@ -159,9 +159,33 @@
     document.body.appendChild(dlg);
     var img = dlg.querySelector("img"), cap = dlg.querySelector(".lb-cap"), count = dlg.querySelector(".lb-count");
     var group = [], idx = 0, opener = null;
+    // Tap area over part of a photo (e.g. a flyer's QR code), from data-hot-* on the gallery link
+    var hot = document.createElement("a");
+    hot.className = "lb-hot"; hot.target = "_blank"; hot.rel = "noopener"; hot.hidden = true;
+    dlg.appendChild(hot);
+    var placeHot = function () {
+      var a = group[idx];
+      if (!dlg.open || !a || !a.dataset.hotUrl || !img.naturalWidth) { hot.hidden = true; return; }
+      var r = img.getBoundingClientRect(), d = dlg.getBoundingClientRect();
+      var s = Math.min(r.width / img.naturalWidth, r.height / img.naturalHeight);  // object-fit: contain
+      var w = img.naturalWidth * s, h = img.naturalHeight * s;
+      var x = r.left - d.left + (r.width - w) / 2, y = r.top - d.top + (r.height - h) / 2;
+      var b = a.dataset.hotBox.split(",").map(Number);
+      hot.href = a.dataset.hotUrl;
+      hot.title = a.dataset.hotLabel || "";
+      hot.setAttribute("aria-label", hot.title);
+      hot.style.left = x + w * b[0] / 100 + "px";
+      hot.style.top = y + h * b[1] / 100 + "px";
+      hot.style.width = w * b[2] / 100 + "px";
+      hot.style.height = h * b[3] / 100 + "px";
+      hot.hidden = false;
+    };
+    img.addEventListener("load", placeHot);
+    window.addEventListener("resize", placeHot);
     var show = function (i) {
       idx = (i + group.length) % group.length;
       var a = group[idx];
+      hot.hidden = true;
       img.src = a.getAttribute("href");
       img.alt = a.querySelector("img").alt;
       cap.textContent = a.dataset.caption || "";
