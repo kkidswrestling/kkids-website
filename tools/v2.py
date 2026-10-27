@@ -967,7 +967,7 @@ def build_champion_pages():
 </section>
 {pn}
 """
-        M.page(f"champions/{M.slug(name)}/index.html", f"{name}, State Champion", f"{name}, {headline} for Northampton ({', '.join(r['year'] for r in titles)}).", body, "champions/", og_image=hero or "showcase-arms-up")
+        M.page(f"champions/{M.slug(name)}/index.html", f"{name}, State Champion", f"{name}, {headline} for Northampton ({', '.join(r['year'] for r in titles)}).", body, "champions/", og_image=hero or c.get("feature") or c.get("side") or c.get("banner") or c.get("headshot") or c.get("portrait") or next(iter(c.get("banners", {}).values()), None) or "showcase-arms-up")
     return [M.SITE["domain"] + f"/champions/{M.slug(n)}/" for n in order]
 
 
