@@ -554,6 +554,9 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 @media (max-width: 600px) { .news-grid, .news-grid.all, .news-grid.two { grid-template-columns: 1fr; } }
 .article-title { font-size: clamp(38px, 6vw, 72px) !important; max-width: 20ch; }
 .article-body p { font-size: 19px; line-height: 1.65; }
+.article-fig { margin: 8px 0 0; max-width: 520px; }
+.article-fig a { display: block; }
+.article-fig img { display: block; width: 100%; height: auto; }
 
 /* ---- big numbers ---- */
 .numbers-band { background: var(--mat) url("../img/bg-concrete.webp") center/1100px; background-blend-mode: multiply; color: var(--on-dark); }

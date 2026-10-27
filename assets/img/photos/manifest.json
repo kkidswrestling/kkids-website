@@ -2579,6 +2579,24 @@
    ]
   ]
  },
+ "spaghetti-dinner-flyer": {
+  "fallback": [
+   820,
+   1229
+  ],
+  "h": 1229,
+  "w": 820,
+  "widths": [
+   [
+    640,
+    959
+   ],
+   [
+    820,
+    1229
+   ]
+  ]
+ },
  "staff-corner": {
   "fallback": [
    768,

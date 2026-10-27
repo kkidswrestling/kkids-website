@@ -18,6 +18,23 @@ body = [
 ]
 
 [[post]]
+slug = "spaghetti-dinner-2026"
+date = 2026-10-26
+title = "Spaghetti dinner fundraiser set for November 12"
+summary = "Dine in or take out at The Gin Mill and Grille. Tickets are $12 and must be bought by November 9."
+links_title = "Tickets and sign-up"
+links = [["Buy tickets ($12, by November 9)", "https://docs.google.com/forms/d/e/1FAIpQLSdUJTgr-WUobqKlVSTfYFyL8kgph6PTrSccXvwcURMHdj7AfA/viewform"], ["Donate baked goods (SignUpGenius)", "https://m.signupgenius.com/#!/showSignUp/4090A4FAAAE2BAAFF2-67029178-spaghetti?useFullSite=false"]]
+photo = "spaghetti-dinner-flyer"
+head = "plain"
+figure = "spaghetti-dinner-flyer"
+body = [
+  "The Northampton Wrestling Booster Club is holding a spaghetti dinner fundraiser on Thursday, November 12, from 5:00 to 7:30 p.m. at The Gin Mill and Grille, 1750 Main Street in Northampton. All proceeds benefit the booster club.",
+  "Dinner includes pasta with red sauce, salad and rolls. Eat in or take it home; take-out is available. Tickets are $12 and must be purchased by Monday, November 9, through the ticket form below.",
+  "Dine-in guests can also stop by a bake sale stocked with treats donated by Northampton Wrestling families. To donate baked goods, use the sign-up below so we don't end up with duplicates.",
+  "Northampton's high school wrestlers will be serving dinner. Thank you to The Gin Mill and Grille for hosting, and to everyone who comes out to support the Konkrete Kids.",
+]
+
+[[post]]
 slug = "ballard-super-32"
 date = 2026-10-20
 title = "Gabe Ballard heads to Super 32"

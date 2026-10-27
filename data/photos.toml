@@ -1739,3 +1739,14 @@ alt = "Jagger Condomitti claps as he walks across the mat after his 2021 state f
 caption = "Celebrating on the Giant Center mat."
 widths = [640, 1165]
 file = "originals/batch19_jagger-clap.jpg"
+
+# Spaghetti dinner fundraiser flyer (Northampton Wrestling Booster Club, from Coach Provini, Oct. 26, 2026)
+[[photo]]
+id = "spaghetti-dinner-flyer"
+source = "Booster club flyer, from Coach Provini, Oct. 26, 2026"
+season = "2026-27"
+alt = "Flyer for the spaghetti dinner at The Gin Mill and Grille on Thursday, November 12, 2026, 5:00 to 7:30 p.m. Tickets are $12 and all proceeds benefit the Northampton Wrestling Booster Club. Take-out is offered and there is a bake sale for dine-in customers. Purchase tickets by November 9 using the QR code."
+caption = "The spaghetti dinner flyer."
+focus = "50% 34%"
+widths = [640, 1200]
+file = "originals/spaghetti-dinner-flyer.jpg"

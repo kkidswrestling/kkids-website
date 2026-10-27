@@ -397,11 +397,24 @@ def build_news():
     for i, p in enumerate(posts):
         R2 = "../../"
         more = [q for q in posts if q is not p][:2]
+        kick = f'<p class="kicker"><a href="{R2}news/">News</a> · <time datetime="{p["date"].isoformat()}">{fmt_date(p["date"])}</time></p>'
+        # head = "plain": concrete header with no photo (for flyers and graphics full of text);
+        # figure = "<photo id>": the photo shown whole under the story, opening full size.
+        if p.get("head") == "plain":
+            head = f'<header class="page-head concrete"><div class="wrap">{kick}<h1 class="article-title">{e(p["title"])}</h1></div></header>'
+        else:
+            head = (f'<header class="page-head has-photo">{M.picture(R2, p["photo"], "100vw", "bg", True, alt="")}\n'
+                    f'    <div class="wrap">{kick}<h1 class="article-title">{e(p["title"])}</h1></div></header>')
+        fig = ""
+        if p.get("figure"):
+            fid = p["figure"]; fw = M.MANIFEST[fid]["widths"][-1]
+            fig = (f'<div class="wrap prose article-body"><figure class="article-fig"><a href="{M.largest(R2, fid)}" data-lightbox="news-{p["slug"]}" '
+                   f'data-caption="{e(M.PHOTOS[fid].get("caption", ""))}" data-w="{fw[0]}" data-h="{fw[1]}">'
+                   f'{M.picture(R2, fid, "(min-width: 600px) 520px, 100vw")}</a></figure></div>')
         ab = f"""
 <article>
-  <header class="page-head has-photo">{M.picture(R2, p["photo"], "100vw", "bg", True, alt="")}
-    <div class="wrap"><p class="kicker"><a href="{R2}news/">News</a> · <time datetime="{p['date'].isoformat()}">{fmt_date(p['date'])}</time></p><h1 class="article-title">{e(p['title'])}</h1></div></header>
-  <div class="band"><div class="wrap prose article-body">{''.join(f'<p>{e(x)}</p>' for x in p['body'])}</div>{('<div class="wrap prose article-body"><h2 class="sub">' + e(p.get("links_title", "Read more")) + '</h2><ul>' + "".join(f'<li><a href="{e(u)}" rel="noopener" target="_blank">{e(tt)}</a></li>' for tt, u in p["links"]) + '</ul></div>') if p.get("links") else ""}{('<div class="wrap top-gap">' + M.gallery(R2, p["gallery"], "news-" + p["slug"]) + '</div>') if p.get("gallery") else ""}</div>
+  {head}
+  <div class="band"><div class="wrap prose article-body">{''.join(f'<p>{e(x)}</p>' for x in p['body'])}</div>{('<div class="wrap prose article-body"><h2 class="sub">' + e(p.get("links_title", "Read more")) + '</h2><ul>' + "".join(f'<li><a href="{e(u)}" rel="noopener" target="_blank">{e(tt)}</a></li>' for tt, u in p["links"]) + '</ul></div>') if p.get("links") else ""}{fig}{('<div class="wrap top-gap">' + M.gallery(R2, p["gallery"], "news-" + p["slug"]) + '</div>') if p.get("gallery") else ""}</div>
 </article>
 <section class="band concrete"><div class="wrap"><h2>More news</h2><div class="news-grid two">{''.join(news_card(R2, q) for q in more)}</div></div></section>
 """
