@@ -91,6 +91,27 @@ def slug(s):
 def ordinal_suffix(n):
     return "th" if 10 <= n % 100 <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
 
+# Record-book lines say where a mark ranks in program history, so a spot on the list
+# doesn't read like the program record (Joe, Oct. 27, 2026).
+RECORD_WORDS = {"Most Wins": "wins in a season", "Most Falls": "falls in a season",
+                "Most Takedowns": "takedowns in a season", "Most Team Points (Duals)": "dual-meet team points in a season"}
+
+
+def program_rank(value, values):
+    """'the most in program history', '3rd most ...', 'tied for 2nd most ...' (ties share a rank)."""
+    better = sum(1 for v in values if v > value)
+    tied = sum(1 for v in values if v == value) > 1
+    if better == 0:
+        return ("tied for the most" if tied else "the most") + " in program history"
+    r = better + 1
+    return ("tied for " if tied else "") + f"{r}{ordinal_suffix(r)} most in program history"
+
+
+def record_label(r):
+    vals = [int(x["value"]) for x in RECORDS if x["category"] == r["category"]]
+    return f"Record book: {r['value']} {RECORD_WORDS.get(r['category'], r['category'].lower())}, {program_rank(int(r['value']), vals)}"
+
+
 
 def picture(R, pid, sizes="100vw", cls="", eager=False, alt=None, focus=None):
     """<picture> with WebP srcset and a JPEG fallback."""
@@ -428,10 +449,10 @@ def hall_json():
     for r in HUNDRED:
         n = norm(r["wrestler"])
         y = end_year(r["years"]) or 2026
-        people[n]["honors"].append([y, f"100-Win Club: {r['wins']} career wins" + (" and counting" if r["status"] == "active" else ""), ""])
+        people[n]["honors"].append([y, f"100-Win Club: {r['wins']} career wins" + (" and counting" if r["status"] == "active" else "") + f" ({program_rank(int(r['wins']), [int(x['wins']) for x in HUNDRED])})", ""])
     for r in RECORDS:
         n = norm(r["wrestler"])
-        people[n]["honors"].append([int(r["year"]), f"School record list: {r['category'].lower()} ({r['value']})", ""])
+        people[n]["honors"].append([int(r["year"]), record_label(r), ""])
     out = []
     for n, d in people.items():
         d["honors"].sort(key=lambda h: (h[0], h[1]))

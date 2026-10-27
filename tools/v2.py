@@ -95,7 +95,7 @@ def honors_for(name, hn=None):
         for i, key in enumerate(("PIAA Champion", "PIAA", "Northeast Regional", "District XI", "100-Win", "Outstanding", "EPC")):
             if label.startswith(key):
                 return i
-        return 9 if label.startswith("School record") else 8
+        return 9 if label.startswith(("School record", "Record book")) else 8
     for h in sorted(honors, key=lambda h: (-h[0], rank(h[1]), h[1])):
         k = (h[0], h[1])
         if k not in seen:
