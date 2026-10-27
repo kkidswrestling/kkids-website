@@ -150,6 +150,7 @@ finals = [[1998, "Nick Richmond", "McGuffey", "Won 7–3"]]
 sources = [["Lehigh Valley Wrestling History, \u201c1997-98: Bulldogs Blossom, Kids Triumph over Trojans\u201d", "https://lehighvalleywrestlinghistory.com/1997-98-bulldogs-blossom-kids-triumph-over-trojans/"], ["PA-Wrestling, Northampton state tournament history", "https://brackets.pa-wrestling.com/piaa-class-aaa/history_participating_wrestlers.htm?id=189"]]
 
 ["Jagger Condomitti"]
+video = [{ url = "https://www.youtube.com/watch?v=rBXRP7ofQsc", year = 2021 }]
 banner = "banner-jagger-condomitti"
 headshot = "headshot-jagger-condomitti"
 side = "banner-jagger-condomitti"
