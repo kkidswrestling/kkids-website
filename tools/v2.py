@@ -623,21 +623,39 @@ def build_facilities():
 def build_join():
     R = "../"
     T = M.TOTALS
+    reasons = [("Every size has a place", "Weight classes mean kids wrestle someone their own size, whether they’re the smallest in class or the biggest."),
+               ("It’s fun", "Kids already love to roughhouse. Wrestling gives it rules, a mat, and a partner."),
+               ("It makes better athletes", "Balance, footwork, strength, and body control help in every other sport they play."),
+               ("Confidence they earn", "Every move learned and every match won comes from their own work."),
+               ("They learn to handle themselves", "Wrestlers know how to stay calm and in control when someone pushes them."),
+               ("It teaches ownership", "On the mat, there’s no one to point to. Kids learn to own the result, win or lose."),
+               ("It teaches respect", "For the partner who pushes them, the opponent who tests them, the coach who teaches them, and the referee who makes the call."),
+               ("It builds discipline", "Showing up, drilling a move a hundred times, and doing the hard thing when no one’s watching."),
+               ("Hard work pays off", "Kids set a goal, put in the work, and watch it happen, a lesson they carry into school and work."),
+               ("It builds toughness", "They learn they can keep going when it’s hard, and that a loss is something to learn from, not something that defines them.")]
     pillars = [("Tradition", f"{T['team_titles']} team state titles, {T['state']} individual state titles, and {T['streak'][2]} straight years with a state medalist."),
+               ("Community", "Families from kindergarten through alumni, all in the same black and orange."),
                ("Coaching", "An experienced, dedicated staff that knows how to develop wrestlers at every level, from first-year beginners to State Champions, and cares about who they become off the mat."),
                ("Training partners", "You train every day beside State Champions and State Medalists."),
-               ("Competition", "The varsity wrestles at the Ironman, King of the Mountain, the Mid-Winter Mayhem, and the Parkland Duals."),
-               ("Community", "Families from kindergarten through alumni, all in the same black and orange.")]
+               ("Competition", "The varsity wrestles at the Ironman, King of the Mountain, the Mid-Winter Mayhem, and the Parkland Duals.")]
     path = [("Youth", "Grades K–6", "Northampton Black, Orange, and Novice teams in the Valley Elementary Wrestling League.", "../youth/"),
             ("Junior high", "Grades 7–9", "The bridge to the varsity room. The 2023–24 team won the District XI title.", "../junior-high/"),
             ("JV", "High school", "Matches, tournaments, and the JV District Tournament.", "../high-school/"),
             ("Varsity", "High school", "District XI, Northeast Regional, and the PIAA Championships in Hershey.", "../high-school/"),
             ("College", "Next level", "Members of the Class of 2026 are headed to wrestle at Elizabethtown College and King’s College.", "../alumni/")]
     body = f"""
-{M.page_head(R, "Become a Konkrete Kid", "Why wrestle, our home, the path, and how to start.", "showcase-arms-up", "45% 12%")}
-<section class="band">
+{M.page_head(R, "Become a Konkrete Kid", "Why wrestle, why Northampton, the path, and how to start.", "showcase-arms-up", "45% 12%")}
+<section class="band" id="why-wrestle" aria-labelledby="why-wrestle-title">
   <div class="wrap">
-    <h2>Why Wrestle?</h2>
+    <h2 id="why-wrestle-title">Why Wrestle?</h2>
+    <ol class="reasons" role="list">{''.join(f'<li><span class="rn">{i + 1}</span><div><h3>{a}</h3><p>{b}</p></div></li>' for i, (a, b) in enumerate(reasons))}</ol>
+    <p class="reasons-credit">Inspired by Cael Sanderson’s “Why My Kids Will Wrestle.”</p>
+  </div>
+</section>
+<section class="band concrete" id="why-northampton" aria-labelledby="why-northampton-title">
+  <div class="wrap">
+    <h2 id="why-northampton-title">Why Northampton</h2>
+    <p class="lede why-lede">We’re a public school program, and that’s what makes it ours. Since 1945, Northampton wrestlers have come from the same town, the same schools, and the same families, and many start in our youth program before they can read a bracket. The names on the banners in Pete Schneider Gymnasium belong to the same community that fills the stands today.</p>
     <div class="pillars">{''.join(f'<div><h3>{a}</h3><p>{b}</p></div>' for a, b in pillars)}</div>
   </div>
 </section>

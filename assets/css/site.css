@@ -671,6 +671,14 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 @media (max-width: 640px) { .tl-item { grid-template-columns: 1fr; gap: 6px; } .tl-list { padding-left: 22px; } .tl-item::before { left: -33px; } .tl-year { font-size: 32px; } }
 
 /* ---- join ---- */
+.reasons { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; border-top: 4px solid var(--ink); }
+.reasons li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 14px; padding: 20px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.reasons .rn { font-family: var(--display); font-size: 40px; line-height: 1; color: var(--blaze); }
+.reasons h3 { font-size: 24px; margin: 0 0 4px; }
+.reasons p { color: var(--ink-2); font-size: 16px; margin: 0; }
+.reasons-credit { color: var(--ink-2); font-size: 14px; margin: 14px 0 0; }
+.why-lede { max-width: 62ch; margin: 0 0 28px; }
+@media (max-width: 760px) { .reasons { grid-template-columns: 1fr; } .reasons li { grid-template-columns: 42px minmax(0, 1fr); } .reasons .rn { font-size: 34px; } }
 .pillars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 4px solid var(--ink); }
 .pillars div { padding: 20px 18px 0 0; }
 .pillars h3 { font-size: 26px; }
