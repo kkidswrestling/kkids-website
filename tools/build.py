@@ -71,7 +71,7 @@ NAV_GROUPS = [
     ("Media", [("news/", "News"), ("videos/", "Videos"), ("follow/", "Follow & Email List")]),
     ("Parents", [("family/", "Parent Information"), ("youth/", "Youth Program Guide"), ("family/#faq", "FAQs"), ("family/#booster", "Booster Club")]),
     ("Alumni", [("alumni/", "Where Are They Now"), ("alumni/#update", "Update Your Information"), ("alumni/#support", "Support the Program")]),
-    ("Join", [("join/", "Why Northampton"), ("join/#path", "The Path"), ("youth/", "Youth Wrestling"), ("join/#start", "Start Wrestling")]),
+    ("Join", [("join/", "Why Wrestle?"), ("join/#path", "The Path"), ("youth/", "Youth Wrestling"), ("join/#start", "Start Wrestling")]),
 ]
 NAV = [("", "Home")] + [(h, l) for _, items in NAV_GROUPS for h, l in items if "#" not in h]
 NAV = list(dict.fromkeys(NAV))

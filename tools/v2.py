@@ -634,10 +634,10 @@ def build_join():
             ("Varsity", "High school", "District XI, Northeast Regional, and the PIAA Championships in Hershey.", "../high-school/"),
             ("College", "Next level", "Members of the Class of 2026 are headed to wrestle at Elizabethtown College and King’s College.", "../alumni/")]
     body = f"""
-{M.page_head(R, "Become a Konkrete Kid", "Why Northampton, our home, the path, and how to start.", "showcase-arms-up", "45% 12%")}
+{M.page_head(R, "Become a Konkrete Kid", "Why wrestle, our home, the path, and how to start.", "showcase-arms-up", "45% 12%")}
 <section class="band">
   <div class="wrap">
-    <h2>Why Northampton</h2>
+    <h2>Why Wrestle?</h2>
     <div class="pillars">{''.join(f'<div><h3>{a}</h3><p>{b}</p></div>' for a, b in pillars)}</div>
   </div>
 </section>
