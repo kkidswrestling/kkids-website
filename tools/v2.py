@@ -31,7 +31,7 @@ def short_date(d):
 # ------------------------------------------------------------------ shared pieces
 def news_card(R, p, big=False):
     return (f'<article class="news-card{" big" if big else ""}"><a href="{R}news/{p["slug"]}/">'
-            f'{M.picture(R, p["photo"], "(min-width: 900px) 33vw, 100vw")}'
+            f'{M.picture(R, p.get("card") or p["photo"], "(min-width: 900px) 33vw, 100vw")}'
             f'<div class="nc-body"><time datetime="{p["date"].isoformat()}">{fmt_date(p["date"])}</time>'
             f'<h3>{e(p["title"])}</h3><p>{e(p["summary"])}</p></div></a></article>')
 

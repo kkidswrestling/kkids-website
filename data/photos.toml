@@ -1750,3 +1750,20 @@ caption = "The spaghetti dinner flyer."
 focus = "50% 34%"
 widths = [640, 1200]
 file = "originals/spaghetti-dinner-flyer.jpg"
+
+[[photo]]
+id = "gear-store-2026"
+source = "Team store product images (northampton-wrestling.itemorder.com) sent by Coach Provini, Nov. 10, 2026; combined into one share graphic"
+season = "2026-27"
+alt = "Northampton Wrestling team store gear: a white hoodie and a gray Nike long-sleeve shirt with the Northampton Konkrete Kids Wrestling logo, and a black and white trucker hat with the orange N logo, above a banner reading Team Store Now Open."
+caption = "Some of the gear in this year's team store."
+widths = [640, 1200]
+file = "originals/gear-store-2026.jpg"
+
+[[photo]]
+id = "gear-store-2026-card"
+source = "Same team store product images as gear-store-2026 (Nov. 10, 2026), laid out square so news cards don't crop them"
+season = "2026-27"
+alt = "Northampton Wrestling team store gear: a white hoodie, a gray Nike long-sleeve shirt and a black and white trucker hat, each with the Northampton Wrestling logo."
+widths = [640, 1000]
+file = "originals/gear-store-2026-card.jpg"

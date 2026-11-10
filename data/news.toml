@@ -2,6 +2,25 @@
 # Only post things that happened; keep each one short. Optional gallery = [photo ids] shows under the story; links = [[title, url]] adds a Read more list.
 
 [[post]]
+slug = "team-store-2026"
+date = 2026-11-10
+title = "Team gear store is open"
+summary = "Shirts, hoodies, hats and bags in adult and youth sizes. Every order supports Northampton Wrestling."
+links_title = "Shop"
+links = [["Shop the Northampton Wrestling team store", "https://northampton-wrestling.itemorder.com/shop/home/"]]
+photo = "gear-store-2026"
+# card = the news-card picture when it differs from photo (photo still sets the share preview)
+card = "gear-store-2026-card"
+head = "plain"
+figure = "gear-store-2026"
+figure_link = { label = "Shop the team store", url = "https://northampton-wrestling.itemorder.com/shop/home/", box = [0, 0, 100, 100] }
+body = [
+  "Our annual team gear fundraiser is here. The Northampton Wrestling team store is open online, and every purchase helps support the program.",
+  "The store carries adult and youth sizes: T-shirts, long sleeves, crewnecks and hoodies, joggers and shorts, embroidered polos and quarter-zips, hats and beanies, and bags and backpacks. Youth tees start at about $17.",
+  "Thank you for supporting the Konkrete Kids.",
+]
+
+[[post]]
 slug = "ballard-super-32-third"
 date = 2026-10-26
 title = "Gabe Ballard takes third at Super 32"
