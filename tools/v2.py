@@ -114,6 +114,8 @@ def roster_data():
         hn = w.get("hall_name", w["name"])
         clean = honors_for(w["name"], hn)
         w["honors"] = clean
+        # regular-season highlights (roster.toml) join the profile Honors list under the season's spring year
+        w["profile_honors"] = sorted(clean + [[2026, f"{ev} {place} ({when})", f"{wt} lbs" if wt else ""] for ev, place, wt, when in w.get("highlights", [])], key=lambda h: -h[0])
         out.append(w)
     order = {"Senior": 0, "Junior": 1, "Sophomore": 2, "Freshman": 3}
     out.sort(key=lambda w: (0 if w.get("photo") else 1, -(int(w["stats"]["wins"]) if w["stats"] else -1), order.get(w["class"], 9)))
@@ -168,16 +170,57 @@ def match_strip(R):
 </section>'''
 
 
-def last_season(w):
-    """Last season's weight and record in small type: '152 lbs · 41–5 in 2025–26'."""
-    bits = ([w["weight"] + " lbs"] if w.get("weight") else []) + ([f'{w["stats"]["wins"]}–{w["stats"]["losses"]}'] if w["stats"] and int(w["stats"]["wins"]) else [])
-    return f'<i>{" · ".join(bits)} in 2025–26</i>' if bits else ""
+def card_lines(w):
+    """Roster-card lines (no W-L records, Joe, Nov. 11, 2026): last season's weight and varsity wins,
+    then postseason honors for the career (state finishes, District XI / Northeast Regional titles,
+    last season's other district/regional finishes, JV district), then regular-season highlights."""
+    st = w["stats"]
+    wins = int(st["wins"]) if st and st.get("wins") else 0
+    head = ([w["weight"] + " lbs"] if w.get("weight") else []) + ([f'{wins} varsity win{"s" if wins != 1 else ""} in <span class="nw">2025–26</span>'] if wins else [])
+    out = []
+    hon = w["honors"]
+    last = max([h[0] for h in hon], default=0)
+    for y, lab, *_ in hon:  # newest first
+        if lab.startswith("PIAA"):
+            t = lab.replace("PIAA Champion", "State Champion").replace("PIAA state qualifier", "State qualifier").replace("PIAA 2nd place", "State runner-up").replace("PIAA ", "State ").replace(" place", "")
+            out.append(f"{t} ({y})")
+    titles = {}
+    for y, lab, *_ in hon:
+        for lvl in ("District XI", "Northeast Regional"):
+            if lab == f"{lvl} Champion":
+                titles.setdefault(lvl, []).append(y)
+    d, r = sorted(titles.get("District XI", [])), sorted(titles.get("Northeast Regional", []))
+    def champ(name, ys):
+        return f"{len(ys)}× {name} Champion" if len(ys) > 1 else f"{name} Champion ({ys[0]})"
+    if d and d == r:
+        out.append(champ("District XI and Northeast Regional", d))
+    else:
+        out += [champ(n, ys) for n, ys in (("District XI", d), ("Northeast Regional", r)) if ys]
+    if last == 2026:
+        other = {}
+        for y, lab, *_ in hon:
+            if y != 2026: continue
+            for lvl, short in (("District XI", "District XI"), ("Northeast Regional", "Regional")):
+                if lab.startswith(lvl) and not lab.endswith("Champion"):
+                    other[short] = lab[len(lvl):].strip().replace("2nd", "runner-up")
+        if other.get("District XI") and other.get("District XI") == other.get("Regional"):
+            out.append(f'District XI and Regional {other["District XI"]} (2026)')
+        else:
+            out += [f"{k} {other[k]} (2026)" for k in ("District XI", "Regional") if other.get(k)]
+    for y, lab, *_ in hon:
+        if lab.startswith("JV District"):
+            out.append(f'{lab.replace("JV District champion", "JV District Champion").replace("JV District 2nd", "JV District runner-up")} ({y})')
+    for ev, place, wt, when in w.get("highlights", []):
+        out.append(f"{ev} {place} ({when})")
+    if not (head or out):
+        return ""
+    return (f'<i>{" · ".join(head)}</i>' if head else "") + (f'<span class="wr-hl">{"".join(f"<span>{e(x)}</span>" for x in out)}</span>' if out else "")
 
 
 def roster_carousel(R, roster):
     cards = "".join(
         f'<li><a class="wr-card" href="{wrestler_url(R, w["name"])}">{avatar(R, w, "220px")}'
-        f'<span class="wr-meta"><b>{e(w["name"])}</b>{e(w["class"])}{last_season(w)}</span></a></li>'
+        f'<span class="wr-meta"><b>{e(w["name"])}</b>{e(w["class"])}{card_lines(w)}</span></a></li>'
         for w in roster)
     return f'''<div class="carousel" data-carousel>
   <div class="car-ctrl"><button type="button" class="car-btn" data-dir="-1" aria-label="Scroll left">‹</button><button type="button" class="car-btn" data-dir="1" aria-label="Scroll right">›</button></div>
@@ -302,14 +345,14 @@ def build_roster():
     season, roster = roster_data()
     cards = "".join(
         f'<li><a class="wr-card light" href="{wrestler_url(R, w["name"])}">{avatar(R, w, "(min-width: 900px) 22vw, 45vw")}'
-        f'<span class="wr-meta"><b>{e(w["name"])}</b>{e(w["class"])}{last_season(w)}</span></a></li>'
+        f'<span class="wr-meta"><b>{e(w["name"])}</b>{e(w["class"])}{card_lines(w)}</span></a></li>'
         for w in roster)
     body = f"""
 {M.page_head(R, "Roster", f"Returning varsity wrestlers for {season}. The full lineup posts after wrestle-offs.", "team-mayhem-tight", "50% 22%", cls="fit-photo")}
 <section class="band">
   <div class="wrap">
     <ul class="roster-grid" role="list">{cards}</ul>
-    <p class="fine">Class is for the {season} season. Records are from 2025–26. Junior high and youth rosters are not posted online.</p>
+    <p class="fine">Class is for the {season} season. Weights and varsity wins are from 2025–26. Junior high and youth rosters are not posted online.</p>
   </div>
 </section>
 """
@@ -324,10 +367,10 @@ def build_profile(w, season):
     st = w["stats"]
     statrow = ""
     if st and int(st["wins"]):  # no row of zeros for wrestlers without a varsity win yet
-        cells = [("2025–26 record", f'{st["wins"]}–{st["losses"]}'), ("Career record", f'{st["career_wins"]}–{st["career_losses"]}'),
+        cells = [("2025–26 wins", st["wins"]), ("Career wins", st["career_wins"]),
                  ("Pins", st["falls"]), ("Tech falls", st["tech_falls"]), ("Takedowns", st["takedowns"]), ("Dual team points", st["team_points_duals"])]
         statrow = '<div class="facts-row light pf-stats">' + "".join(f"<p><b>{v}</b>{k}</p>" for k, v in cells) + "</div>"
-    honors = "".join(f'<li><b>{h[0]}</b><span>{e(h[1])}{(SCH_OPEN + "for " + e(h[3]) + "</span>") if len(h) > 3 else ""}</span>{(W_OPEN + e(h[2]) + "</span>") if h[2] else ""}</li>' for h in w["honors"])
+    honors = "".join(f'<li><b>{h[0]}</b><span>{e(h[1])}{(SCH_OPEN + "for " + e(h[3]) + "</span>") if len(h) > 3 else ""}</span>{(W_OPEN + e(h[2]) + "</span>") if h[2] else ""}</li>' for h in w["profile_honors"])
     body = f"""
 <section class="band profile-hero dark">
   <div class="wrap pf-grid">
@@ -348,7 +391,7 @@ def build_profile(w, season):
   </div>
 </section>
 """
-    M.page(f"wrestlers/{M.slug(w['name'])}/index.html", w["name"], f"{w['name']}, Northampton wrestling: record, career record, and honors.", body, "roster/", og_image=w.get("photo") or "team-mayhem")
+    M.page(f"wrestlers/{M.slug(w['name'])}/index.html", w["name"], f"{w['name']}, Northampton wrestling: wins and honors.", body, "roster/", og_image=w.get("photo") or "team-mayhem")
 
 
 # ------------------------------------------------------------------ results

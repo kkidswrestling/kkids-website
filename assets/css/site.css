@@ -1585,3 +1585,8 @@ a.vf-link:hover .vf-play, a.vf-link:focus-visible .vf-play { background: var(--o
   .page-head.has-photo.bright { padding-top: 64px; padding-bottom: 210px; }
   .page-head.has-photo.bright::after { background: linear-gradient(180deg, rgba(20,20,20,.55), rgba(20,20,20,.2) 55%, rgba(20,20,20,0)); }
 }
+/* roster cards: honors under the wins line (Nov. 2026) */
+.wr-hl { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.35; }
+.wr-hl span { display: block; }
+.wr-hl span + span { margin-top: 3px; }
+.wr-card:not(.light) .wr-hl { border-top-color: rgba(255,255,255,.14); }

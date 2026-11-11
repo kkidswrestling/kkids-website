@@ -2,6 +2,10 @@
 # Update after wrestle-offs: add new wrestlers, remove anyone not returning.
 # class = grade in 2026-27. stats_name = the name used in data/stats-2025-26.csv.
 # weight = the 2025-26 postseason weight, when known.
+# highlights = notable regular-season tournament finishes: [event, place, weight, when].
+#   Shown on roster cards and in profile Honors. Postseason finishes come from data/seasons.toml.
+#   2025-26 sources: King of the Mountain (Central Mountain HS, Dec. 2025) finals and place bouts in the
+#   Williamsport Sun-Gazette and The Record (Lock Haven); Mid-Winter Mayhem (IUP, Jan. 2026) from The Morning Call.
 
 season = "2026–27"
 
@@ -11,6 +15,7 @@ class = "Senior"
 weight = "152"
 photo = "portrait-ballard-2026"
 stats_name = "Gabe Ballard"
+highlights = [["King of the Mountain", "runner-up", "160", "Dec. 2025"], ["Mid-Winter Mayhem", "runner-up", "160", "Jan. 2026"]]
 hall_name = "Gabriel Ballard"
 
 [[wrestler]]
@@ -19,6 +24,7 @@ class = "Junior"
 weight = "114"
 photo = "portrait-wenrich-2026"
 stats_name = "Brayden Wenrich"
+highlights = [["King of the Mountain", "Champion", "121", "Dec. 2025"], ["Mid-Winter Mayhem", "runner-up", "121", "Jan. 2026"]]
 
 [[wrestler]]
 name = "Carter Chlebove"
@@ -26,6 +32,7 @@ class = "Junior"
 weight = "160"
 photo = "portrait-chlebove-2026"
 stats_name = "Carter Chlebove"
+highlights = [["King of the Mountain", "6th", "172", "Dec. 2025"], ["Mid-Winter Mayhem", "8th", "172", "Jan. 2026"]]
 
 [[wrestler]]
 name = "Joell Small"
