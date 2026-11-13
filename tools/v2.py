@@ -871,7 +871,7 @@ def build_family():
 def build_alumni():
     R = "../"
     home = [("Mike Sommer", "1997 State Placewinner (4th) · varsity assistant"), ("Marcus Newsom", "Three-year varsity starter · varsity assistant"),
-            ("John Paukovits", "3x District XI Champion · varsity assistant"), ("Ethan Szerencsits", "2020 state qualifier · varsity assistant"),
+            ("John Paukovits", "2003 and 2004 State Placewinner · varsity assistant"), ("Ethan Szerencsits", "2020 state qualifier · varsity assistant"),
             ("Braden Turner", "2008 District and Regional Champion · junior high assistant"), ("Justin Haupt", "1998 and 1999 District XI Champion · junior high assistant")]
     home = [h for h in home if h[0] not in M.HIDDEN_COACHES]
     body = f"""
