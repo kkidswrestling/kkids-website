@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#141414">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="KK Schedule">
+<title>Team Schedule | Northampton Wrestling</title>
+__HEAD_LINKS__
+<style>
+__FONTS__
+:root{
+  --mat:#141414;--slab:#1f2022;--slab-2:#2a2b2e;--concrete:#e6e4df;--paper:#fff;--bg:#f4f3f0;
+  --blaze:#f26a1b;--blaze-ink:#9c3d08;--blaze-soft:#fff1e7;--ink:#141414;--ink-2:#5c5a55;--on-dark:#f3f1ec;--on-dark-2:#c9c6bf;
+  --line:#dedbd5;--line-dark:#3a3b3f;--red:#b3261e;--red-soft:#fdecea;--green:#156c4d;
+  --display:"Anton","Impact","Arial Narrow",sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:14px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.45 var(--body);min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--blaze);outline-offset:2px;border-radius:4px}
+[hidden]{display:none!important}
+.disp{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1}
+
+/* ---------- Lock screen ---------- */
+.lock{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:32px 20px;background:var(--mat);color:var(--on-dark);
+  background-image:radial-gradient(ellipse at 50% 120%,rgba(242,106,27,.22),transparent 60%)}
+.lock-box{width:100%;max-width:380px;text-align:center}
+.lock-logo{width:96px;height:96px;margin:0 auto 18px;display:block}
+.lock h1{font-size:40px;margin:0 0 6px}
+.lock p{color:var(--on-dark-2);margin:0 0 26px}
+.lock form{display:grid;gap:12px}
+.lock input{width:100%;padding:16px 16px;border-radius:12px;border:2px solid var(--line-dark);background:var(--slab);color:var(--on-dark);font-size:18px;text-align:center}
+.lock input:focus{border-color:var(--blaze);outline:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 20px;border-radius:12px;border:0;background:var(--blaze);color:#141414;font-weight:800;font-size:16px;text-decoration:none}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;border:2px solid var(--line);color:var(--ink)}
+.btn.dark{background:var(--ink);color:var(--on-dark)}
+.btn.danger{background:var(--red-soft);color:var(--red)}
+.btn[disabled]{opacity:.55;cursor:default}
+.lock .msg{min-height:24px;font-weight:700;color:#ffb38a;margin:4px 0 0}
+.lock .fine{font-size:14px;margin-top:22px}
+
+/* ---------- App shell ---------- */
+.stick{position:sticky;top:0;z-index:20}
+.top{background:var(--mat);color:var(--on-dark);padding:10px 16px calc(10px);padding-top:max(10px,env(safe-area-inset-top))}
+.top-row{max-width:728px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.top img{width:40px;height:40px}
+.top .ttl{flex:1;min-width:0}
+.top .ttl b{display:block;font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:.03em;text-transform:uppercase;line-height:1.05}
+.top .ttl span{display:block;font-size:13px;color:var(--on-dark-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon-btn{width:44px;height:44px;border-radius:12px;border:1px solid var(--line-dark);background:var(--slab);color:var(--on-dark);display:grid;place-items:center}
+.icon-btn svg{width:20px;height:20px}
+.bar{position:sticky;z-index:15;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 16px}
+.bar-row{max-width:728px;margin:0 auto;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;background:var(--concrete);border-radius:12px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;min-height:40px;padding:8px 14px;border-radius:9px;font-weight:700;font-size:15px;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.seg.small button{padding:8px 11px}
+main{max-width:760px;margin:0 auto;padding:16px 16px 40px}
+
+/* ---------- Next-up cards ---------- */
+.hero{display:grid;gap:10px;margin-bottom:20px}
+.nx{border-radius:var(--r);padding:16px 18px;background:var(--paper);border:1px solid var(--line);position:relative;overflow:hidden}
+.nx.match{background:var(--mat);color:var(--on-dark);border-color:var(--mat)}
+.nx .lbl{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blaze-ink);margin-bottom:6px;display:flex;gap:8px;align-items:center;justify-content:space-between}
+.nx-in{background:var(--blaze);color:#141414;border-radius:6px;padding:4px 8px 3px;letter-spacing:.08em}
+.nx.match .lbl{color:var(--blaze)}
+.nx .when{font-weight:800;font-size:15px}
+.nx h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:30px;line-height:1.02;margin:4px 0 6px;letter-spacing:.01em}
+.nx .sub{font-size:15px;color:var(--ink-2)}
+.nx.match .sub{color:var(--on-dark-2)}
+.nx .chips{margin-top:10px}
+.nx.match .nx-days{position:absolute;right:16px;top:14px;text-align:right}
+.nx-days b{display:block;font-family:var(--display);font-weight:400;font-size:34px;line-height:1;color:var(--blaze)}
+.nx-days span{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-2)}
+
+/* ---------- List ---------- */
+.wk{margin:0 0 22px}
+.wk-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 8px;padding:0 2px}
+.wk-h h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:22px;letter-spacing:.02em;margin:0;line-height:1}
+.wk-h span{font-size:13px;color:var(--ink-2);font-weight:600}
+.wk.now .wk-h h3{color:var(--blaze-ink)}
+.day{display:grid;grid-template-columns:58px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.day:first-of-type{border-top:0}
+.wk-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:4px 14px}
+.dt{text-align:center;padding-top:2px}
+.dt .dow{display:block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.dt .dn{display:block;font-family:var(--display);font-size:30px;line-height:1.05}
+.dt .mo{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.day.today .dt{background:var(--blaze);border-radius:12px;padding:6px 0 7px;align-self:start}
+.day.today .dt .dow,.day.today .dt .mo{color:var(--ink)}
+.day.past{opacity:.55}
+.evs{display:grid;gap:8px;min-width:0}
+.ev{display:block;width:100%;text-align:left;border:0;background:transparent;padding:2px 0;border-radius:10px}
+.ev .tm{font-weight:800;font-size:15px}
+.ev .nm{font-weight:700;font-size:16.5px;line-height:1.25}
+.ev .wh{font-size:14px;color:var(--ink-2);margin-top:2px}
+.ev .wh a{color:var(--blaze-ink);font-weight:700;white-space:nowrap}
+.ev .note{font-size:14px;margin-top:3px;font-weight:600}
+.ev.comp{background:var(--mat);color:var(--on-dark);padding:10px 12px;border-left:5px solid var(--blaze)}
+.ev.comp .wh{color:var(--on-dark-2)}
+.ev.comp .wh a{color:var(--blaze)}
+.ev.comp .nm{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:21px;letter-spacing:.015em;line-height:1.05;margin:2px 0}
+.ev.off .nm{color:var(--ink-2)}
+.ev.cx .nm,.ev.cx .tm{text-decoration:line-through;text-decoration-thickness:2px}
+.ev.cx{opacity:.8}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 2px}
+.chip{display:inline-flex;align-items:center;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;line-height:1;padding:5px 7px 4px;border-radius:5px;border:1px solid var(--line);color:var(--ink-2);background:var(--paper)}
+.chip.k-practice{border-color:#bcb8b0}
+.chip.k-run{background:#eef3f8;border-color:#c9d7e6;color:#1f4f7a}
+.chip.k-lift{background:#f1efe9;border-color:#d9d4c8;color:#4a463f}
+.chip.k-comp{background:var(--blaze);border-color:var(--blaze);color:#141414}
+.chip.k-home{background:transparent;border-color:var(--blaze);color:var(--blaze)}
+.chip.team{background:var(--ink);border-color:var(--ink);color:var(--on-dark)}
+.nx.match .chip.team,.ev.comp .chip.team{background:var(--on-dark);color:var(--ink);border-color:var(--on-dark)}
+.chip.bus{background:var(--blaze-soft);border-color:#f6b48a;color:var(--blaze-ink)}
+.nx.match .chip.bus,.ev.comp .chip.bus{background:transparent;border-color:var(--blaze);color:var(--blaze)}
+.chip.upd{background:#fff6d6;border-color:#e9b44c;color:#6b4b00}
+.chip.cx{background:var(--red-soft);border-color:#f0b4ae;color:var(--red)}
+.nx.match .chip.cx,.ev.comp .chip.cx{background:var(--red);border-color:var(--red);color:#fff}
+.more{display:flex;justify-content:center;margin:0 0 18px}
+.empty{background:var(--paper);border:1px dashed var(--line);border-radius:var(--r);padding:28px 18px;text-align:center;color:var(--ink-2)}
+
+/* ---------- Month ---------- */
+.mon{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:16px}
+.mon-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.mon-h h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:24px;margin:0}
+.mon-h button{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--paper);font-size:20px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.grid.six{grid-template-columns:repeat(6,minmax(0,1fr))}
+.grid .dh{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:var(--ink-2);padding:2px 0 4px}
+.cell{min-height:84px;border:1px solid var(--line);border-radius:9px;background:var(--paper);padding:4px 2px 3px;display:flex;flex-direction:column;align-items:stretch;gap:2px;min-width:0;text-align:left}
+.cell.blank{border:0;background:transparent}
+.cell .n{font-weight:700;font-size:13px;line-height:1.2;text-align:center;margin-bottom:1px}
+.lb{display:block;border-radius:4px;padding:2px 3px 2px;font-size:10px;line-height:1.15;font-weight:700;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;background:#ecebe7;color:#33312d}
+.lb.lift{background:#cbc4b4}
+.lb.run{background:#e3ecf5;color:#1f4f7a}
+.lb.comp{background:var(--blaze);color:#141414;white-space:normal}
+.lb.comp b{display:block;font-weight:800;font-size:9.5px;letter-spacing:-.025em;white-space:normal;-webkit-hyphens:auto;hyphens:auto;line-height:1.1}
+.lb.comp i{display:block;font-style:normal;font-weight:600}
+.lb.off{background:transparent;color:var(--ink-2);border:1px dashed var(--line);font-weight:600}
+.lb.cx{text-decoration:line-through;opacity:.55}
+.cell.sel .lb{box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+.cell.today{border:2px solid var(--blaze)}
+.cell.today .n{color:var(--blaze-ink)}
+.cell.sel{background:var(--mat);border-color:var(--mat);color:var(--on-dark)}
+.cell.sel .n{color:var(--on-dark)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--ink-2);margin-top:10px;padding:0 2px}
+.legend i{display:inline-block;width:14px;height:10px;border-radius:3px;background:#ecebe7;margin-right:5px;vertical-align:-1px;border:1px solid #d9d6cf}
+.legend i.lift{background:#cbc4b4}
+.legend i.comp{background:var(--blaze);border-color:var(--blaze)}
+.legend i.run{background:#e3ecf5;border-color:#c9d7e6}
+.daypanel h4{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:20px;margin:6px 2px 8px}
+
+/* ---------- Footer ---------- */
+.foot{max-width:760px;margin:0 auto;padding:0 16px 48px;color:var(--ink-2);font-size:14px}
+.tip{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;margin-bottom:14px}
+.tip summary{font-weight:700;color:var(--ink);cursor:pointer;min-height:28px}
+.tip ol{margin:8px 0 2px;padding-left:20px}
+.foot-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.linkish{background:none;border:0;padding:10px 0;color:var(--ink-2);font-weight:700;text-decoration:underline;text-underline-offset:3px;min-height:44px}
+
+/* ---------- Coach ---------- */
+.coachbar{background:var(--blaze);color:#141414;padding:10px 16px}
+.coachbar .bar-row{flex-wrap:wrap}
+.coachbar b{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:19px;letter-spacing:.03em}
+.coachbar .acts{display:flex;gap:8px}
+.coachbar .btn{min-height:42px;padding:8px 14px;font-size:15px}
+.coachbar .btn.dark{background:#141414}
+.coachbar .btn.lite{background:rgba(255,255,255,.75);color:#141414}
+body.coach .ev{outline:1.5px dashed rgba(242,106,27,.0);}
+body.coach .ev:not(.comp){padding:6px 8px;margin:-4px -8px;width:calc(100% + 16px);background:rgba(242,106,27,.06)}
+body.coach .ev .edit-hint{display:inline-flex}
+.edit-hint{display:none;font-size:12px;font-weight:800;color:var(--blaze-ink);letter-spacing:.04em;text-transform:uppercase;margin-left:6px}
+.ev.comp .edit-hint{color:var(--blaze)}
+
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(20,20,20,.55);z-index:50;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--paper);width:100%;max-width:560px;max-height:92vh;max-height:92dvh;overflow:auto;border-radius:20px 20px 0 0;padding:8px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(0,0,0,.25)}
+@media(min-width:620px){.scrim{align-items:center}.sheet{border-radius:20px;max-height:88vh}}
+.grab{width:44px;height:5px;border-radius:3px;background:var(--line);margin:4px auto 10px}
+.sheet h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:26px;margin:0 0 4px}
+.sheet .lead{color:var(--ink-2);margin:0 0 14px;font-size:15px}
+.f{display:grid;gap:6px;margin-bottom:14px}
+.f>label,.f>.lab{font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2)}
+.f input[type=text],.f input[type=date],.f input[type=time],.f input[type=password],.f select,.f textarea{width:100%;min-height:48px;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--paper);font-size:16px}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--blaze)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two .f{margin-bottom:0}
+.row-gap{margin-bottom:14px}
+.seg.full{display:flex;width:100%}
+.seg.full button{flex:1;padding:10px 6px}
+.check{display:flex;align-items:center;gap:12px;min-height:48px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font-weight:700}
+.check input{width:22px;height:22px;accent-color:var(--blaze)}
+.check.cxl{border-color:#f0b4ae;background:var(--red-soft);color:var(--red)}
+.sheet-acts{display:grid;gap:10px;margin-top:6px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.savebar{position:sticky;bottom:calc(-18px - env(safe-area-inset-bottom));margin:6px -18px calc(-18px - env(safe-area-inset-bottom));padding:12px 18px calc(14px + env(safe-area-inset-bottom));background:var(--paper);border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 2fr;gap:10px}
+.helper{font-size:13px;color:var(--ink-2)}
+.steps{margin:0 0 14px;padding-left:20px}
+.steps li{margin-bottom:8px}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:80;background:var(--mat);color:var(--on-dark);padding:13px 18px;border-radius:12px;font-weight:700;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:calc(100% - 32px);text-align:center}
+.toast.err{background:var(--red);color:#fff}
+.toast.ok b{color:var(--blaze)}
+.pv{background:#fff6d6;border-bottom:1px solid #e9d38f;color:#5a4300;font-size:13.5px;padding:8px 16px;text-align:center}
+@media(max-width:380px){.seg button{padding:8px 8px;font-size:14px}.seg.small button{padding:8px 7px}.nx h2{font-size:26px}.bar{padding:10px 12px}.top{padding-left:12px;padding-right:12px}main,.foot{padding-left:12px;padding-right:12px}.bar-row{gap:6px}.top .ttl b{font-size:19px}.top .ttl span{font-size:12px}.top img{width:34px;height:34px}.top-row{gap:8px}.icon-btn{width:40px;height:40px}}
+@media(max-width:420px){.mon{padding:10px 6px}.grid{gap:3px}.bar-row{gap:8px}.seg button{padding:8px 11px;font-size:15px}.seg.small button{padding:8px 10px}}
+@media(max-width:360px){.seg button{padding:8px 6px;font-size:13.5px}.seg.small button{padding:8px 6px}.lb{font-size:9px;padding:2px 2px}.lb.comp b{font-size:8.5px}.cell .n{font-size:12px}}
+@media(min-width:600px){.cell{min-height:96px;padding:5px 4px}.lb{font-size:11.5px;padding:3px 5px}}
+@media(max-width:340px){.rw{display:none}.seg button{padding:8px 6px;font-size:13px}.seg.small button{padding:8px 6px}.day{grid-template-columns:48px minmax(0,1fr);gap:10px}.dt .dn{font-size:26px}}
+</style>
+</head>
+<body>
+<div id="lock" class="lock" hidden>
+  <div class="lock-box">
+    <img class="lock-logo" src="__LOGO__" alt="Northampton Konkrete Kids">
+    <h1 class="disp">Team Schedule</h1>
+    <p>Northampton Wrestling · athletes &amp; coaches only</p>
+    <form id="lockForm" autocomplete="off">
+      <input id="pw" type="password" inputmode="text" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="Team password" aria-label="Team password" required>
+      <button class="btn" id="unlockBtn" type="submit">Unlock schedule</button>
+      <p class="msg" id="lockMsg" role="alert"></p>
+    </form>
+    <p class="fine">Don’t have the password? Ask Coach Provini.</p>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <div id="pvBanner" class="pv" hidden>Preview — this isn’t on the website yet. Coach edits save on this phone only.</div>
+  <div class="stick" id="stick">
+  <header class="top">
+    <div class="top-row">
+      <img src="__LOGO__" alt="">
+      <div class="ttl"><b>Team Schedule</b><span id="seasonLbl">2026–27 season</span></div>
+      <button class="icon-btn" id="editBtn" aria-label="Edit the schedule" title="Edit" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      </button>
+      <button class="icon-btn" id="lockBtn" aria-label="Lock this phone" title="Lock">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      </button>
+    </div>
+  </header>
+  <div id="coachBar" class="coachbar" hidden>
+    <div class="bar-row">
+      <b>Coach mode</b>
+      <div class="acts">
+        <button class="btn dark" id="addBtn" type="button">+ Add</button>
+        <button class="btn lite" id="toolsBtn" type="button">More</button>
+        <button class="btn lite" id="doneBtn" type="button">Done</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="bar" id="bar">
+    <div class="bar-row">
+      <div class="seg" role="group" aria-label="Show schedule for">
+        <button type="button" data-team="all">Everyone</button>
+        <button type="button" data-team="varsity">Varsity</button>
+        <button type="button" data-team="jv">JV</button>
+      </div>
+      <div class="seg small" role="group" aria-label="View">
+        <button type="button" data-view="list">List</button>
+        <button type="button" data-view="month">Month</button>
+      </div>
+    </div>
+  </div>
+  <main id="main"></main>
+  <footer class="foot">
+    <details class="tip">
+      <summary>Put this on your home screen</summary>
+      <ol>
+        <li><b>iPhone:</b> tap the Share button in Safari, then <b>Add to Home Screen</b>.</li>
+        <li><b>Android:</b> tap the ⋮ menu in Chrome, then <b>Add to Home screen</b>.</li>
+        <li>Open it from your home screen and type the team password one more time.</li>
+      </ol>
+    </details>
+    <div class="foot-row">
+      <span>Times can change. Check here before you leave the house.</span>
+      <button class="linkish" id="coachLink" type="button">Coach</button>
+    </div>
+  </footer>
+</div>
+<div id="layer"></div>
+<div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+"use strict";
+const CFG = {
+  preview: __PREVIEW__,
+  inline: __PAYLOAD__,
+  repo: "kkidswrestling/kkids-website",
+  branch: "main",
+  path: "team/schedule.json",
+  iter: 600000
+};
+const K = {key: "kk-team-key", team: "kk-team-filter", view: "kk-team-view", token: "kk-coach-token", pv: "kk-preview-payload"};
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const ls = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} }
+};
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+
+/* ---------- crypto ---------- */
+const te = new TextEncoder(), td = new TextDecoder();
+function b64(u8) { let s = ""; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s); }
+function unb64(s) { const b = atob(s); const u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+const norm = pw => pw.toLowerCase().replace(/\s+/g, "");
+async function derive(pw, saltB64, iter) {
+  const base = await crypto.subtle.importKey("raw", te.encode(norm(pw)), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({name: "PBKDF2", salt: unb64(saltB64), iterations: iter, hash: "SHA-256"}, base, {name: "AES-GCM", length: 256}, true, ["encrypt", "decrypt"]);
+}
+async function decrypt(p, key) {
+  const pt = await crypto.subtle.decrypt({name: "AES-GCM", iv: unb64(p.iv)}, key, unb64(p.ct));
+  return JSON.parse(td.decode(pt));
+}
+async function encrypt(obj, key, saltB64, iter) {
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = new Uint8Array(await crypto.subtle.encrypt({name: "AES-GCM", iv}, key, te.encode(JSON.stringify(obj))));
+  return {v: 1, kdf: "PBKDF2-SHA256", iter, salt: saltB64, iv: b64(iv), ct: b64(ct)};
+}
+async function rememberKey(key, salt) { const raw = new Uint8Array(await crypto.subtle.exportKey("raw", key)); ls.set(K.key, JSON.stringify({salt, k: b64(raw)})); }
+async function storedKey(salt) {
+  try {
+    const s = JSON.parse(ls.get(K.key) || "null");
+    if (!s || s.salt !== salt) return null;
+    return await crypto.subtle.importKey("raw", unb64(s.k), {name: "AES-GCM"}, true, ["encrypt", "decrypt"]);
+  } catch (e) { return null; }
+}
+
+/* ---------- state ---------- */
+const S = {payload: null, data: null, key: null, team: ls.get(K.team) || "all", view: ls.get(K.view) || "list",
+  showPast: false, coach: false, month: null, selDay: null, sha: null};
+const qsToday = new URLSearchParams(location.search).get("today");
+function today() { if (qsToday) { const [y, m, d] = qsToday.split("-").map(Number); return new Date(y, m - 1, d, 12); } return new Date(); }
+const pad = n => String(n).padStart(2, "0");
+const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const pdate = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const DOWL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+function t12(hm, withAP = true) { if (!hm) return ""; let [h, m] = hm.split(":").map(Number); const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12; return `${h}:${pad(m)}${withAP ? " " + ap : ""}`; }
+function range(a, b) {
+  if (!a) return "Time TBA";
+  if (!b) return t12(a);
+  const apA = +a.split(":")[0] >= 12, apB = +b.split(":")[0] >= 12;
+  return apA === apB ? `${t12(a, false)}–${t12(b)}` : `${t12(a)}–${t12(b)}`;
+}
+const COMP = new Set(["dual", "tournament", "scrimmage"]);
+const TYPES = [["practice", "Practice"], ["run", "Morning Run"], ["dual", "Dual meet"], ["tournament", "Tournament"], ["scrimmage", "Scrimmage"], ["travel", "Travel / bus"], ["off", "No practice"], ["other", "Team event"]];
+const typeLabel = t => (TYPES.find(x => x[0] === t) || [, "Event"])[1];
+function nameOf(e) {
+  switch (e.type) {
+    case "practice": return e.lift ? "Practice + Lift" : (e.title && e.title !== "Practice" ? e.title : "Practice");
+    case "run": return "Morning Run";
+    case "dual": return (e.home ? "vs. " : "at ") + e.title;
+    case "scrimmage": return "Scrimmage " + (e.home ? "vs. " : "at ") + e.title;
+    default: return e.title || typeLabel(e.type);
+  }
+}
+const teamOk = e => S.team === "all" || e.team === "all" || e.team === S.team;
+const sorted = () => S.data.events.slice().sort((a, b) => (a.date + (a.start || "99")).localeCompare(b.date + (b.start || "99")));
+const recent = e => e.updated && (Date.now() - Date.parse(e.updated)) < 4 * 864e5;
+function endOf(e) { const d = pdate(e.date); const hm = e.end || e.start; if (hm) { const [h, m] = hm.split(":").map(Number); d.setHours(h, m + (e.end ? 0 : 120)); } else d.setHours(23, 59); return d; }
+function startOf(e) { const d = pdate(e.date); if (e.start) { const [h, m] = e.start.split(":").map(Number); d.setHours(h, m); } return d; }
+function mapUrl(w) { return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(w); }
+function weekStart(d) { const x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); const k = (x.getDay() + 6) % 7; x.setDate(x.getDate() - k); return x; }
+function rel(d) {
+  const t = today(); const a = new Date(t.getFullYear(), t.getMonth(), t.getDate()); const b = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const n = Math.round((b - a) / 864e5);
+  if (n === 0) return "Today"; if (n === 1) return "Tomorrow"; if (n > 1 && n < 7) return DOWL[b.getDay()];
+  return `${DOWL[b.getDay()]}, ${MON[b.getMonth()]} ${b.getDate()}`;
+}
+function daysAway(d) { const t = today(); const a = new Date(t.getFullYear(), t.getMonth(), t.getDate()); return Math.round((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - a) / 864e5); }
+
+/* ---------- rendering ---------- */
+function chips(e, opts = {}) {
+  const c = [];
+  if (e.cancelled) c.push('<span class="chip cx">Canceled</span>');
+  else if (recent(e)) c.push('<span class="chip upd">Updated</span>');
+  if (e.team !== "all") c.push(`<span class="chip team">${e.team === "jv" ? "JV" : "Varsity"}</span>`);
+  if (COMP.has(e.type)) { if (!opts.noKind) c.push(`<span class="chip k-comp">${esc(typeLabel(e.type))}</span>`); if (e.home && e.type !== "tournament") c.push('<span class="chip k-home">Home</span>'); }
+  else if (e.type === "run") c.push('<span class="chip k-run">Run</span>');
+  if (e.bus) c.push(`<span class="chip bus">Bus ${esc(t12(e.bus))}</span>`);
+  return c.length ? `<div class="chips">${c.join("")}</div>` : "";
+}
+function whereHtml(e) {
+  if (!e.where) return "";
+  const away = COMP.has(e.type) || e.type === "travel" || /,/.test(e.where);
+  return `<div class="wh">${esc(e.where)}${away ? ` · <a href="${mapUrl(e.where)}" target="_blank" rel="noopener" data-stop>Directions</a>` : ""}</div>`;
+}
+function evHtml(e) {
+  const cls = ["ev", COMP.has(e.type) ? "comp" : "", e.type === "off" ? "off" : "", e.cancelled ? "cx" : ""].join(" ").trim();
+  const time = e.type === "off" ? "" : `<div class="tm">${esc(range(e.start, e.end))}<span class="edit-hint">Edit</span></div>`;
+  return `<div class="${cls}" data-id="${esc(e.id)}"${S.coach ? ' role="button" tabindex="0"' : ""}>
+    ${time}<div class="nm">${esc(nameOf(e))}${e.type === "off" ? '<span class="edit-hint">Edit</span>' : ""}</div>${chips(e)}${whereHtml(e)}${e.note ? `<div class="note">${esc(e.note)}</div>` : ""}</div>`;
+}
+function nextCards() {
+  const now = today(); const list = sorted().filter(e => teamOk(e) && !e.cancelled && e.type !== "off" && endOf(e) >= now);
+  if (!list.length) return "";
+  const nx = list[0]; const nm = list.find(e => COMP.has(e.type));
+  const card = (e, label, match) => {
+    const d = pdate(e.date), n = daysAway(d);
+    return `<div class="nx${match ? " match" : ""}">
+      <div class="lbl"><span>${label}</span>${match && n > 0 ? `<span class="nx-in">In ${n} ${n === 1 ? "day" : "days"}</span>` : ""}</div>
+      <div class="when">${esc(rel(d))}${e.start ? " · " + esc(range(e.start, e.end)) : ""}</div>
+      <h2>${esc(nameOf(e))}</h2>
+      ${e.where ? `<div class="sub">${esc(e.where)}</div>` : ""}
+      ${e.note ? `<div class="sub" style="font-weight:700">${esc(e.note)}</div>` : ""}
+      ${chips(e, {noKind: !match})}</div>`;
+  };
+  let h = card(nx, "Next up", COMP.has(nx.type));
+  if (nm && nm !== nx) h += card(nm, "Next match", true);
+  return `<section class="hero">${h}</section>`;
+}
+function listView() {
+  const now = today(); const tWeek = weekStart(now).getTime();
+  const evs = sorted().filter(teamOk);
+  if (!evs.length) return '<div class="empty">Nothing on the schedule yet.</div>';
+  const weeks = new Map();
+  for (const e of evs) { const ws = weekStart(pdate(e.date)).getTime(); if (!weeks.has(ws)) weeks.set(ws, []); weeks.get(ws).push(e); }
+  let past = 0, h = "";
+  for (const [ws, items] of weeks) {
+    if (ws < tWeek && !S.showPast) { past++; continue; }
+    const wsD = new Date(ws), weD = new Date(ws); weD.setDate(weD.getDate() + 6);
+    const diff = Math.round((ws - tWeek) / (7 * 864e5));
+    const title = diff === 0 ? "This week" : diff === 1 ? "Next week" : diff === -1 ? "Last week" : `Week of ${MON[wsD.getMonth()]} ${wsD.getDate()}`;
+    const span = `${MON[wsD.getMonth()]} ${wsD.getDate()} – ${wsD.getMonth() === weD.getMonth() ? "" : MON[weD.getMonth()] + " "}${weD.getDate()}`;
+    const days = new Map(); for (const e of items) { if (!days.has(e.date)) days.set(e.date, []); days.get(e.date).push(e); }
+    let dh = "";
+    for (const [ds, list] of days) {
+      const d = pdate(ds); const isT = ds === iso(now); const isP = d < new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      dh += `<div class="day${isT ? " today" : ""}${isP ? " past" : ""}" id="d-${ds}">
+        <div class="dt"><span class="dow">${isT ? "Today" : DOW[d.getDay()]}</span><span class="dn">${d.getDate()}</span><span class="mo">${MON[d.getMonth()]}</span></div>
+        <div class="evs">${list.map(evHtml).join("")}</div></div>`;
+    }
+    h += `<section class="wk${diff === 0 ? " now" : ""}"><div class="wk-h"><h3>${title}</h3><span>${span}</span></div><div class="wk-card">${dh}</div></section>`;
+  }
+  const more = past ? `<div class="more"><button type="button" class="btn ghost" id="pastBtn">Show ${past} earlier week${past > 1 ? "s" : ""}</button></div>` : "";
+  if (!h) h = '<div class="empty">The season is over. Great year, Konkrete Kids.</div>';
+  return more + h;
+}
+function monthView() {
+  const evs = sorted().filter(teamOk);
+  const now = today();
+  if (!S.month) {
+    const first = evs.length ? pdate(evs[0].date) : now, last = evs.length ? pdate(evs[evs.length - 1].date) : now;
+    const pick = now < first ? first : now > last ? last : now;
+    S.month = new Date(pick.getFullYear(), pick.getMonth(), 1);
+  }
+  const m = S.month, y = m.getFullYear(), mo = m.getMonth();
+  const by = new Map(); for (const e of evs) { if (!by.has(e.date)) by.set(e.date, []); by.get(e.date).push(e); }
+  if (!S.selDay || pdate(S.selDay).getMonth() !== mo || pdate(S.selDay).getFullYear() !== y) {
+    const t = iso(now); S.selDay = (now.getMonth() === mo && now.getFullYear() === y) ? t : ([...by.keys()].find(k => k.startsWith(`${y}-${pad(mo + 1)}`)) || `${y}-${pad(mo + 1)}-01`);
+  }
+  const dim = new Date(y, mo + 1, 0).getDate();
+  let sun = false; for (let d = 1; d <= dim; d++) if (new Date(y, mo, d).getDay() === 0 && by.has(`${y}-${pad(mo + 1)}-${pad(d)}`)) sun = true;
+  const heads = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].concat(sun ? ["Sun"] : []);
+  let cells = heads.map(d => `<div class="dh">${d}</div>`).join("");
+  const lead = (new Date(y, mo, 1).getDay() + 6) % 7; for (let i = 0; i < Math.min(lead, heads.length); i++) cells += '<div class="cell blank"></div>';
+  for (let d = 1; d <= dim; d++) {
+    const ds = `${y}-${pad(mo + 1)}-${pad(d)}`; const list = by.get(ds) || [];
+    if (!sun && new Date(y, mo, d).getDay() === 0) continue;
+    const labels = list.map(cellLabel).join("");
+    const cls = ["cell", ds === iso(now) ? "today" : "", ds === S.selDay ? "sel" : ""].join(" ").trim();
+    cells += `<button type="button" class="${cls}" data-day="${ds}" aria-label="${MONL[mo]} ${d}, ${list.length} event${list.length === 1 ? "" : "s"}"><span class="n">${d}</span>${labels}</button>`;
+  }
+  const sel = by.get(S.selDay) || []; const sd = pdate(S.selDay);
+  const panel = `<div class="daypanel"><h4>${DOWL[sd.getDay()]}, ${MONL[sd.getMonth()]} ${sd.getDate()}</h4>${sel.length ? `<div class="wk-card"><div class="day" style="grid-template-columns:1fr"><div class="evs">${sel.map(evHtml).join("")}</div></div></div>` : '<div class="empty">Nothing scheduled.</div>'}</div>`;
+  return `<div class="mon"><div class="mon-h"><button type="button" id="prevM" aria-label="Previous month">‹</button><h3>${MONL[mo]} ${y}</h3><button type="button" id="nextM" aria-label="Next month">›</button></div>
+    <div class="grid${sun ? "" : " six"}">${cells}</div>
+    ${sun ? "" : '<p class="helper" style="margin:8px 2px 0">No Sundays this month, so they’re hidden.</p>'}
+    <div class="legend"><span><i></i>Practice</span><span><i class="lift"></i>Practice + Lift</span><span><i class="run"></i>Morning run</span><span><i class="comp"></i>Match</span>${S.team === "all" ? "<span>V = Varsity only · JV = JV only</span>" : ""}<span>vs = home · @ = away</span><span>Tap a day for details</span></div></div>${panel}`;
+}
+const SHORT = {"Notre Dame-Green Pond": "ND-GP", "Pocono Mountain West": "PM West", "Bethlehem Catholic": "Becahi", "Bethlehem Liberty": "Liberty",
+  "Bethlehem Freedom": "Freedom", "King of the Mountain": "KOTM", "Mid-Winter Mayhem": "Mayhem", "Parkland Winter Duals": "Parkland", "Walsh Ironman": "Ironman",
+  "District XI Team Duals": "D-XI Duals", "District XI Championships": "Districts", "Northeast Regional Championships": "Regionals", "PIAA Championships": "States",
+  "North Penn JV Tournament": "North Penn", "Saucon Valley": "Saucon"};
+function shortName(e) {
+  const t = (e.title || "").trim(); if (SHORT[t]) return SHORT[t];
+  return t.replace(/^(Bethlehem|The)\s+/i, "").split(/\s+/)[0] || typeLabel(e.type);
+}
+const SPLIT = {Whitehall: "White|hall", Stroudsburg: "Strouds|burg", Nazareth: "Naza|reth", Regionals: "Region|als", Districts: "Dis|tricts", Parkland: "Park|land", Easton: "Easton"};
+function soft(name) {
+  return name.split(" ").map(w => { if (SPLIT[w]) return SPLIT[w].split("|").map(esc).join("&shy;"); if (w.length > 7) { const k = Math.ceil(w.length / 2); return esc(w.slice(0, k)) + "&shy;" + esc(w.slice(k)); } return esc(w); }).join(" ");
+}
+const tShort = hm => { if (!hm) return ""; let [h, m] = hm.split(":").map(Number); h = h % 12 || 12; return m ? `${h}:${pad(m)}` : `${h}`; };
+const apShort = hm => hm ? (+hm.split(":")[0] >= 12 ? "p" : "a") : "";
+function cellLabel(e) {
+  const who = S.team === "all" && e.team !== "all" && !(COMP.has(e.type) && e.team === "varsity") ? (e.team === "jv" ? "JV " : "V ") : "";
+  const tm = e.start ? tShort(e.start) + apShort(e.start) : "";
+  const cx = e.cancelled ? " cx" : ""; const tp = e.start ? tShort(e.start) : "";
+  if (COMP.has(e.type)) return `<span class="lb comp${cx}"><b>${e.type === "dual" ? (e.home ? "vs " : "@ ") : ""}${soft(shortName(e))}</b><i>${who}${tm || "TBA"}</i></span>`;
+  if (e.type === "run") return `<span class="lb run${cx}">${tp}<span class="rw"> Run</span></span>`;
+  if (e.type === "off") return `<span class="lb off${cx}">Off</span>`;
+  if (e.type === "practice") return `<span class="lb${e.lift ? " lift" : ""}${cx}">${who}${tp || "TBA"}</span>`;
+  if (e.type === "travel") return `<span class="lb${cx}">Bus ${tm}</span>`;
+  return `<span class="lb${cx}">${tm} ${esc(shortName(e))}</span>`;
+}
+function render() {
+  $$(".seg [data-team]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.team === S.team)));
+  $$(".seg [data-view]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.view === S.view)));
+  $("#seasonLbl").textContent = `${(S.data.season || "").replace("-", "–")} season`;
+  $("#main").innerHTML = (S.view === "list" ? nextCards() + listView() : monthView());
+  document.body.classList.toggle("coach", S.coach);
+  $("#coachBar").hidden = !S.coach;
+  $("#editBtn").hidden = S.coach || !(CFG.preview || token());
+  placeBar();
+}
+function placeBar() { const top = $("#stick").offsetHeight; const bar = $("#bar"); bar.style.top = top + "px"; }
+
+/* ---------- events ---------- */
+document.addEventListener("click", ev => {
+  const t = ev.target;
+  if (t.closest("[data-stop]")) return;
+  const tb = t.closest("[data-team]"); if (tb) { S.team = tb.dataset.team; ls.set(K.team, S.team); render(); return; }
+  const vb = t.closest("[data-view]"); if (vb) { S.view = vb.dataset.view; ls.set(K.view, S.view); render(); window.scrollTo(0, 0); return; }
+  if (t.closest("#pastBtn")) { S.showPast = true; render(); return; }
+  if (t.closest("#prevM")) { S.month = new Date(S.month.getFullYear(), S.month.getMonth() - 1, 1); S.selDay = null; render(); return; }
+  if (t.closest("#nextM")) { S.month = new Date(S.month.getFullYear(), S.month.getMonth() + 1, 1); S.selDay = null; render(); return; }
+  const cell = t.closest("[data-day]"); if (cell) { S.selDay = cell.dataset.day; render(); return; }
+  const evb = t.closest(".ev[data-id]"); if (evb && S.coach) { openEditor(S.data.events.find(e => e.id === evb.dataset.id)); return; }
+});
+document.addEventListener("keydown", ev => { if ((ev.key === "Enter" || ev.key === " ") && S.coach && ev.target.matches(".ev[data-id]")) { ev.preventDefault(); ev.target.click(); } if (ev.key === "Escape" && layer.innerHTML) closeSheet(); });
+window.addEventListener("resize", () => S.data && placeBar());
+
+/* ---------- lock ---------- */
+async function getPayload() {
+  if (CFG.preview) { const p = ls.get(K.pv); if (p) try { return JSON.parse(p); } catch (e) {} }
+  if (CFG.inline) return CFG.inline;
+  const r = await fetch("schedule.json?t=" + Date.now(), {cache: "no-store"});
+  if (!r.ok) throw new Error("load");
+  return r.json();
+}
+function showLock(msg) {
+  $("#app").hidden = true; $("#lock").hidden = false; $("#lockMsg").textContent = msg || "";
+  setTimeout(() => $("#pw").focus(), 50);
+}
+async function boot() {
+  try { S.payload = await getPayload(); }
+  catch (e) { showLock("Couldn’t load the schedule. Check your connection and refresh."); return; }
+  const k = await storedKey(S.payload.salt);
+  if (k) { try { S.data = await decrypt(S.payload, k); S.key = k; return openApp(); } catch (e) {} }
+  const had = ls.get(K.key); if (had) ls.del(K.key);
+  showLock(had ? "The team password changed. Enter the new one." : "");
+}
+$("#lockForm").addEventListener("submit", async ev => {
+  ev.preventDefault();
+  const pw = $("#pw").value; if (!pw.trim()) return;
+  const btn = $("#unlockBtn"); btn.disabled = true; btn.textContent = "Unlocking…"; $("#lockMsg").textContent = "";
+  try {
+    const key = await derive(pw, S.payload.salt, S.payload.iter);
+    S.data = await decrypt(S.payload, key); S.key = key; await rememberKey(key, S.payload.salt);
+    $("#pw").value = ""; openApp();
+  } catch (e) { $("#lockMsg").textContent = "That’s not the team password. Try again."; }
+  btn.disabled = false; btn.textContent = "Unlock schedule";
+});
+$("#lockBtn").addEventListener("click", () => { ls.del(K.key); S.key = null; S.data = null; S.coach = false; showLock("Locked. Enter the team password to open it again."); });
+function openApp() {
+  $("#lock").hidden = true; $("#app").hidden = false; $("#pvBanner").hidden = !CFG.preview;
+  if (!["all", "varsity", "jv"].includes(S.team)) S.team = "all";
+  if (!["list", "month"].includes(S.view)) S.view = "list";
+  render();
+}
+
+/* ---------- toast ---------- */
+let tt;
+function toast(html, kind = "", ms = 3200) { const el = $("#toast"); el.className = "toast " + kind; el.innerHTML = html; el.hidden = false; clearTimeout(tt); if (ms) tt = setTimeout(() => el.hidden = true, ms); }
+
+/* ---------- coach ---------- */
+const layer = $("#layer");
+function closeSheet() { layer.innerHTML = ""; document.body.style.overflow = ""; }
+function sheet(html) {
+  layer.innerHTML = `<div class="scrim" id="scrim"><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>${html}</div></div>`;
+  document.body.style.overflow = "hidden"; $("#toast").hidden = true;
+  $("#scrim").addEventListener("click", e => { if (e.target.id === "scrim") closeSheet(); });
+  const f = $(".sheet input:not([type=checkbox]), .sheet select", layer); if (f && !matchMedia("(pointer:coarse)").matches) f.focus();
+}
+const token = () => ls.get(K.token);
+function enterCoach() {
+  if (CFG.preview || token()) { S.coach = true; render(); window.scrollTo(0, 0); toast("Coach mode on. Tap any event to change it.", "ok", 2500); return; }
+  setupSheet();
+}
+$("#coachLink").addEventListener("click", enterCoach);
+$("#editBtn").addEventListener("click", enterCoach);
+$("#doneBtn").addEventListener("click", () => { S.coach = false; render(); });
+function setupSheet() {
+  sheet(`<h3>Connect your phone</h3>
+    <p class="lead">One time only. This lets this phone save schedule changes to the team website. Athletes never see this.</p>
+    <ol class="steps">
+      <li>On this phone, sign in to <b>github.com</b> as <b>kkidswrestling</b>.</li>
+      <li>Go to <b>Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token</b>.</li>
+      <li>Name it <b>Team schedule</b>. Expiration: <b>1 year</b>. Repository access: <b>Only select repositories → kkids-website</b>.</li>
+      <li>Under <b>Repository permissions</b>, set <b>Contents</b> to <b>Read and write</b>. Tap <b>Generate token</b> and copy it.</li>
+    </ol>
+    <div class="f"><label for="tok">Paste the key here</label><input id="tok" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="github_pat_…"></div>
+    <div class="sheet-acts"><button class="btn" id="tokSave" type="button">Connect this phone</button><button class="btn ghost" type="button" id="tokCancel">Cancel</button></div>
+    <p class="helper" id="tokMsg"></p>`);
+  $("#tokCancel").onclick = closeSheet;
+  $("#tokSave").onclick = async () => {
+    const v = $("#tok").value.trim(); if (!v) return;
+    $("#tokMsg").textContent = "Checking…";
+    try {
+      const r = await gh("GET", null, v);
+      if (!r.ok && r.status !== 404) throw new Error(r.status);
+      const j = await r.json().catch(() => ({}));
+      if (r.status === 404 && !(j.message || "").includes("Not Found")) throw new Error(404);
+      ls.set(K.token, v); closeSheet(); S.coach = true; render(); window.scrollTo(0, 0); toast("Phone connected. Tap any event to change it.", "ok", 4000);
+    } catch (e) { $("#tokMsg").textContent = "That key didn’t work. Check that it can read and write kkids-website, then try again."; }
+  };
+}
+function gh(method, body, tok = token()) {
+  const url = `https://api.github.com/repos/${CFG.repo}/contents/${CFG.path}` + (method === "GET" ? `?ref=${CFG.branch}&t=${Date.now()}` : "");
+  return fetch(url, {method, cache: "no-store", headers: {"Authorization": "Bearer " + tok, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", ...(body ? {"Content-Type": "application/json"} : {})}, body: body ? JSON.stringify(body) : undefined});
+}
+async function persist(msg) {
+  const payload = await encrypt(S.data, S.key, S.payload.salt, S.payload.iter);
+  S.payload = payload;
+  if (CFG.preview) { ls.set(K.pv, JSON.stringify(payload)); toast(`<b>Saved.</b> ${msg || ""}<br><span style="font-weight:500">Preview: on the real site, athletes see this within a few minutes.</span>`, "ok", 4200); return true; }
+  toast("Saving…", "", 0);
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const g = await gh("GET"); let sha;
+      if (g.status === 401 || g.status === 403) { toast("Your GitHub key stopped working. Tap Edit → More → Reconnect GitHub key.", "err", 7000); return false; }
+      if (g.ok) sha = (await g.json()).sha; else if (g.status !== 404) throw new Error(g.status);
+      const content = b64(te.encode(JSON.stringify(payload)));
+      const r = await gh("PUT", {message: "Team schedule update", content, sha, branch: CFG.branch});
+      if (r.status === 409 && attempt === 0) continue;
+      if (r.status === 401 || r.status === 403) { toast("Your GitHub key stopped working. Tap Edit → More → Reconnect GitHub key.", "err", 7000); return false; }
+      if (!r.ok) throw new Error(r.status);
+      toast(`<b>Saved.</b> ${msg || ""}<br><span style="font-weight:500">Athletes will see it within a few minutes.</span>`, "ok", 4500);
+      return true;
+    } catch (e) { if (attempt === 1) break; }
+  }
+  toast("Didn’t save. Check your signal and try again.", "err", 6000);
+  return false;
+}
+function openEditor(e) {
+  const isNew = !e;
+  const t0 = today();
+  const x = e ? {...e} : {id: "n" + Date.now().toString(36), date: iso(t0), start: "14:45", end: "17:00", team: "all", type: "practice", title: "", where: "Wrestling Room", bus: "", note: "", lift: false, cancelled: false, home: false, updated: null};
+  const opts = TYPES.map(([v, l]) => `<option value="${v}"${v === x.type ? " selected" : ""}>${l}</option>`).join("");
+  sheet(`<h3>${isNew ? "Add an event" : "Change event"}</h3>
+    ${isNew ? '<p class="lead">Fill in what you know. Leave anything blank that isn’t set yet.</p>' : `<p class="lead">${esc(DOWL[pdate(x.date).getDay()])}, ${esc(MON[pdate(x.date).getMonth()])} ${pdate(x.date).getDate()} · ${esc(nameOf(x))}</p>`}
+    ${isNew ? "" : `<label class="check cxl row-gap"><input type="checkbox" id="fCx"${x.cancelled ? " checked" : ""}> Canceled</label>`}
+    <div class="f"><label for="fType">What</label><select id="fType">${opts}</select></div>
+    <div class="f" id="wName"><label for="fTitle" id="lTitle">Name</label><input id="fTitle" type="text" value="${esc(x.title)}"></div>
+    <label class="check row-gap" id="wLift"><input type="checkbox" id="fLift"${x.lift ? " checked" : ""}> Includes lift</label>
+    <label class="check row-gap" id="wHome"><input type="checkbox" id="fHome"${x.home ? " checked" : ""}> Home (at Northampton)</label>
+    <div class="f"><span class="lab">Who</span><div class="seg full" id="fTeam">${[["all", "Everyone"], ["varsity", "Varsity"], ["jv", "JV"]].map(([v, l]) => `<button type="button" data-v="${v}" aria-pressed="${x.team === v}">${l}</button>`).join("")}</div></div>
+    <div class="f"><label for="fDate">Date</label><input id="fDate" type="date" value="${esc(x.date)}"></div>
+    <div class="two row-gap"><div class="f"><label for="fStart">Starts</label><input id="fStart" type="time" value="${esc(x.start || "")}"></div><div class="f"><label for="fEnd">Ends</label><input id="fEnd" type="time" value="${esc(x.end || "")}"></div></div>
+    <div class="f"><label for="fWhere">Where</label><input id="fWhere" type="text" value="${esc(x.where)}" list="places"></div>
+    <datalist id="places">${[...new Set(S.data.events.map(e => e.where).filter(Boolean))].map(w => `<option value="${esc(w)}">`).join("")}</datalist>
+    <div class="f"><label for="fBus">Bus leaves</label><input id="fBus" type="time" value="${esc(x.bus || "")}"></div>
+    <div class="f"><label for="fNote">Note for athletes</label><input id="fNote" type="text" value="${esc(x.note)}" placeholder="e.g. Bring singlets and both shoes"></div>
+    ${isNew ? "" : `<label class="check row-gap"><input type="checkbox" id="fFlag" checked> Show an “Updated” tag to athletes</label>`}
+    ${isNew ? "" : '<div class="split row-gap"><button class="btn ghost" type="button" id="fDup">Copy to another day</button><button class="btn danger" type="button" id="fDel">Delete</button></div>'}
+    <div class="savebar"><button class="btn ghost" type="button" id="fCancel">Close</button><button class="btn" type="button" id="fSave">${isNew ? "Add to schedule" : "Save change"}</button></div>`);
+  let team = x.team;
+  $$("#fTeam button").forEach(b => b.onclick = () => { team = b.dataset.v; $$("#fTeam button").forEach(o => o.setAttribute("aria-pressed", String(o === b))); });
+  const sync = () => {
+    const ty = $("#fType").value;
+    $("#wName").hidden = ty === "practice" || ty === "run";
+    $("#lTitle").textContent = ty === "dual" || ty === "scrimmage" ? "Opponent" : ty === "tournament" ? "Tournament name" : ty === "off" ? "Reason (e.g. Christmas)" : "Name";
+    $("#wLift").hidden = ty !== "practice";
+    $("#wHome").hidden = !(ty === "dual" || ty === "scrimmage");
+  };
+  $("#fType").onchange = sync; sync();
+  $("#fCancel").onclick = closeSheet;
+  const read = () => {
+    const ty = $("#fType").value;
+    return {...x, type: ty, title: $("#fTitle").value.trim() || (ty === "practice" ? "Practice" : ""), lift: ty === "practice" && $("#fLift").checked,
+      home: (ty === "dual" || ty === "scrimmage") && $("#fHome").checked, team, date: $("#fDate").value, start: $("#fStart").value || null, end: $("#fEnd").value || null,
+      where: $("#fWhere").value.trim(), bus: $("#fBus").value || "", note: $("#fNote").value.trim(), cancelled: !isNew && $("#fCx").checked};
+  };
+  $("#fSave").onclick = async () => {
+    const y = read();
+    if (!y.date) { toast("Pick a date first.", "err"); return; }
+    if (["dual", "tournament", "scrimmage"].includes(y.type) && !y.title) { toast("Add the opponent or tournament name.", "err"); return; }
+    if (isNew || $("#fFlag").checked) y.updated = new Date().toISOString();
+    const before = JSON.stringify(S.data.events);
+    if (isNew) S.data.events.push(y); else S.data.events[S.data.events.findIndex(o => o.id === x.id)] = y;
+    $("#fSave").disabled = true; $("#fSave").textContent = "Saving…";
+    const ok = await persist(isNew ? "Added." : y.cancelled && !x.cancelled ? "Marked canceled." : "");
+    if (!ok) { S.data.events = JSON.parse(before); $("#fSave").disabled = false; $("#fSave").textContent = "Try again"; return; }
+    closeSheet(); render();
+  };
+  if (!isNew) {
+    $("#fDup").onclick = () => { const y = read(); closeSheet(); openEditor(null); setTimeout(() => fillNew(y), 0); };
+    let armed = false;
+    $("#fDel").onclick = async () => {
+      if (!armed) { armed = true; $("#fDel").textContent = "Tap again to delete"; return; }
+      const before = JSON.stringify(S.data.events);
+      S.data.events = S.data.events.filter(o => o.id !== x.id);
+      const ok = await persist("Deleted.");
+      if (!ok) { S.data.events = JSON.parse(before); return; }
+      closeSheet(); render();
+    };
+  }
+}
+function fillNew(y) {
+  $("#fType").value = y.type; $("#fType").onchange();
+  $("#fTitle").value = y.title === "Practice" ? "" : y.title; $("#fLift").checked = y.lift; $("#fHome").checked = y.home;
+  $$("#fTeam button").forEach(b => { if (b.dataset.v === y.team) b.click(); });
+  $("#fStart").value = y.start || ""; $("#fEnd").value = y.end || ""; $("#fWhere").value = y.where; $("#fBus").value = y.bus || ""; $("#fNote").value = y.note;
+  $("#fDate").value = ""; $(".sheet h3").textContent = "Copy to another day"; $(".sheet .lead").textContent = "Same details. Pick the new date.";
+  $("#fDate").focus();
+}
+$("#addBtn").addEventListener("click", () => openEditor(null));
+$("#toolsBtn").addEventListener("click", () => {
+  sheet(`<h3>Coach tools</h3>
+    <div class="sheet-acts">
+      <button class="btn ghost" type="button" id="tPw">Change the team password</button>
+      ${CFG.preview ? '<button class="btn ghost" type="button" id="tReset">Reset the preview</button>' : '<button class="btn ghost" type="button" id="tRe">Reconnect GitHub key</button><button class="btn ghost" type="button" id="tOff">Disconnect this phone</button>'}
+      <button class="btn ghost" type="button" id="tClose">Close</button>
+    </div>`);
+  $("#tClose").onclick = closeSheet;
+  $("#tPw").onclick = pwSheet;
+  if (CFG.preview) $("#tReset").onclick = () => { ls.del(K.pv); ls.del(K.key); location.reload(); };
+  else {
+    $("#tRe").onclick = () => { ls.del(K.token); closeSheet(); setupSheet(); };
+    $("#tOff").onclick = () => { ls.del(K.token); S.coach = false; closeSheet(); render(); toast("This phone can no longer edit the schedule.", "ok"); };
+  }
+});
+function pwSheet() {
+  sheet(`<h3>New team password</h3>
+    <p class="lead">Everyone will need the new password to open the schedule. Use 3–4 words that are easy to say but hard to guess. Capitals and spaces don’t matter.</p>
+    <div class="f"><label for="np1">New password</label><input id="np1" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"></div>
+    <div class="f"><label for="np2">Type it again</label><input id="np2" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"></div>
+    <div class="sheet-acts"><button class="btn" type="button" id="npSave">Change password</button><button class="btn ghost" type="button" id="npCancel">Cancel</button></div>
+    <p class="helper" id="npMsg"></p>`);
+  $("#npCancel").onclick = closeSheet;
+  $("#npSave").onclick = async () => {
+    const a = $("#np1").value, b = $("#np2").value;
+    if (norm(a).length < 12) { $("#npMsg").textContent = "Make it at least 12 letters (not counting spaces)."; return; }
+    if (norm(a) !== norm(b)) { $("#npMsg").textContent = "Those don’t match."; return; }
+    $("#npMsg").textContent = "Changing…";
+    const old = {key: S.key, payload: S.payload};
+    const salt = b64(crypto.getRandomValues(new Uint8Array(16)));
+    S.key = await derive(a, salt, CFG.iter); S.payload = {...S.payload, salt, iter: CFG.iter};
+    const ok = await persist("Team password changed. Give everyone the new one.");
+    if (!ok) { S.key = old.key; S.payload = old.payload; $("#npMsg").textContent = "Didn’t save. Try again."; return; }
+    await rememberKey(S.key, salt); closeSheet();
+  };
+}
+
+if (!window.crypto || !crypto.subtle) { showLock("This browser can’t open the schedule. Update your phone or try Safari or Chrome."); return; }
+boot();
+})();
+</script>
+</body>
+</html>
