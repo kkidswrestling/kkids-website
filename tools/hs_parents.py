@@ -26,6 +26,9 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC_BUNDLE = os.path.join(ROOT, "tools", "hs-parents-source.json")
 OUT_DIR = os.path.join(ROOT, "hs-parents")
+# Joe, Nov. 18, 2026: the page is public (no password). Set LOCKED = True to put the
+# team-password lock back; the source bundle stays encrypted either way.
+LOCKED = False
 SOURCE_FILES = ["template.html", "honor-code.md", "build.py", "test.py", "make_pdf.py"]
 
 
@@ -167,6 +170,15 @@ def build(src=None):
         page = open(os.path.join(tmp, "site.html"), encoding="utf-8").read()
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+    if not LOCKED:
+        page = page.replace("<title>Family Information · Northampton Wrestling</title>", "<title>HS Parents · Northampton Wrestling</title>")
+        os.makedirs(OUT_DIR, exist_ok=True)
+        open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8").write(page)
+        old = os.path.join(OUT_DIR, "content.json")
+        if os.path.exists(old):
+            os.remove(old)
+        print("built hs-parents/index.html (public, no password)")
+        return
     head_end = page.index("</head>")
     body_start = page.index(">", page.index("<body")) + 1
     body_end = page.rindex("</body>")

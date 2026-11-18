@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-<script>if (location.protocol === "http:" && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) location.replace("https:" + location.href.slice(5));</script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
@@ -211,83 +209,756 @@ footer{background:var(--mat);color:var(--on-dark-2);text-align:center;font-size:
 footer b{display:block;color:var(--on-dark);font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:6px}
 .pv{background:#fff6d6;border-bottom:1px solid #e9d38f;color:#5a4300;font-size:13.5px;padding:8px 16px;text-align:center}
 </style>
-<style>
-.lock{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:32px 20px;background:#141414;color:#f4f3f0;
-  background-image:radial-gradient(ellipse at 50% 120%,rgba(242,106,27,.22),transparent 60%)}
-.lock-box{width:100%;max-width:380px;text-align:center}
-.lock-logo{width:96px;height:96px;margin:0 auto 18px;display:block}
-.lock h1{font-family:"Anton",Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1;font-size:40px;margin:0 0 6px}
-.lock p{color:#b9b5ad;margin:0 0 26px}
-.lock form{display:grid;gap:12px}
-.lock input{width:100%;padding:16px;border-radius:12px;border:2px solid #3a3b3f;background:#1f2023;color:#f4f3f0;font-size:18px;text-align:center}
-.lock input:focus{border-color:#f26a1b;outline:none}
-.lock button{min-height:48px;border-radius:12px;border:0;background:#f26a1b;color:#141414;font-weight:800;font-size:16px}
-.lock button[disabled]{opacity:.55}
-.lock .msg{min-height:24px;font-weight:700;color:#ffb38a;margin:4px 0 0}
-.lock .fine{font-size:14px;margin-top:22px}
-.lock a{color:#f4f3f0}
-</style>
 </head>
 <body>
-<div id="lock" class="lock" hidden>
-  <div class="lock-box">
-    <img class="lock-logo" src="../assets/img/logo-192.png" alt="Northampton Konkrete Kids">
-    <h1>HS Parents</h1>
-    <p>Northampton Wrestling · for families of our high school wrestlers</p>
-    <form id="lockForm" autocomplete="off">
-      <input id="pw" type="password" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="Team password" aria-label="Team password" required>
-      <button id="unlockBtn" type="submit">Open</button>
-      <p class="msg" id="lockMsg" role="alert"></p>
-    </form>
-    <p class="fine">Don’t have the password? Ask Coach Provini.<br><br><a href="../">Back to northamptonwrestling.org</a></p>
+
+<header class="top">
+  <div class="top-row">
+    <img src="../assets/img/logo-192.png" alt="Northampton Konkrete Kids">
+    <div><b>Family Information</b><span>Northampton Wrestling · High school · 2026–27</span></div>
+  </div>
+</header>
+<nav class="jump viewbar" id="viewbar" hidden aria-label="Topic">
+  <div class="jump-row"><a href="#" id="backBtn">‹ All topics</a><b id="viewTitle"></b></div>
+</nav>
+
+<main>
+<section id="home">
+  <a class="socard" id="soCard" href="#signoff">
+    <span class="kicker">Start of season · 2026–2027</span>
+    <b>Honor code sign-off</b>
+    <span class="sotext">Read the key rules, take a quick check, sign up to volunteer or donate, and sign. Wrestler and parent, about 15 minutes.</span>
+    <span class="progress"><span class="bar"><i id="soBar"></i></span><b id="soText">0 of 4 steps</b></span>
+    <span class="btn" id="soBtn">Start</span>
+  </a>
+  <a class="sosmall" id="soSmall" href="#signoff" hidden><span>✓</span> Honor code sign-off complete. Thank you! <u>View</u></a>
+  <div class="card intro">
+    <p><strong>Everything your family needs this season, in one place.</strong> Tap a topic to open it. Bookmark this page.</p>
+  </div>
+  <h3 class="homehead">Coming up</h3>
+  <div class="dates" id="dates" aria-label="Key dates">
+    <div class="date" data-end="2026-11-20"><div class="w">Fri</div><div class="d">Nov 20</div><p><b>First practice.</b> 2:55–5:15 p.m. In the room by 2:50.</p></div>
+    <div class="date" data-end="2026-11-27"><div class="w">Wed–Fri</div><div class="d">Nov 25–27</div><p><b>Thanksgiving week.</b> Wed. and Fri. 9:00–11:15 a.m. Thanksgiving Day 7:45–9:00 a.m. is optional.</p></div>
+    <div class="date" data-end="2026-11-28"><div class="w">Sat</div><div class="d">Nov 28</div><p><b>Scrimmage</b> at Saucon Valley.</p></div>
+    <div class="date" data-end="2026-12-05"><div class="w">Sat</div><div class="d">Dec 5</div><p><b>First home match.</b> JV 1:00, varsity 2:30.</p></div>
+    <div class="date" data-end="2026-12-13"><div class="w">Thu</div><div class="d">Dec 10</div><p><b>Varsity leaves 11:30 a.m.</b> for the Walsh Ironman in Ohio. Back Sun., Dec. 13.</p></div>
+    <div class="date" data-end="2026-12-20"><div class="w">Thu</div><div class="d">Dec 17</div><p><b>Varsity leaves 5:30 p.m.</b> for King of the Mountain. Back Sun., Dec. 20.</p></div>
+    <div class="date" data-end="2027-01-02"><div class="w">Winter break</div><div class="d">Dec 24–Jan 2</div><p><b>Practice 9:00–11:15 a.m.</b> No practice Christmas Day.</p></div>
+    <div class="date" data-end="2027-01-10"><div class="w">Thu</div><div class="d">Jan 7</div><p><b>Varsity leaves 3:00 p.m.</b> for Mid-Winter Mayhem at IUP. Back Sun., Jan. 10.</p></div>
+    <div class="date" data-end="2027-01-11"><div class="w">Mon</div><div class="d">Jan 11</div><p><b>Varsity morning runs</b> start. 6:20–6:50 a.m.</p></div>
+    <div class="date" data-end="2027-02-13"><div class="w">Sat</div><div class="d">Feb 13</div><p><b>JV leaves 6:00 a.m.</b> for the North Penn JV Tournament.</p></div>
+    <div class="date" data-end="2027-02-27"><div class="w">Fri</div><div class="d">Feb 26</div><p><b>District XI</b> at Liberty HS, Feb. 26–27. Wrestlers leave 1:00 p.m. Friday.</p></div>
+    <div class="date" data-end="2027-03-06"><div class="w">Fri</div><div class="d">Mar 5</div><p><b>Northeast Regional</b> at Liberty HS, Mar. 5–6. Wrestlers leave 1:00 p.m. Friday.</p></div>
+    <div class="date" data-end="2027-03-13"><div class="w">Wed</div><div class="d">Mar 10</div><p><b>State qualifiers leave 4:00 p.m.</b> for Hershey. States are Mar. 11–13.</p></div>
+  </div>
+
+  <h3 class="homehead">Topics</h3>
+  <div class="topics">
+    <a class="topic-card" href="#forms"><b>Forms</b><span>Skin form, travel release form and the full honor code, ready to print.</span><em>Open ›</em></a>
+    <a class="topic-card" href="#parents"><b>Parent guide</b><span>How to help your wrestler have a positive, successful season.</span><em>Open ›</em></a>
+    <a class="topic-card" href="#schedule"><b>Schedule</b><span>Practice times, dual meets and the full team schedule.</span><em>Open ›</em></a>
+    <a class="topic-card" href="#tournaments"><b>Tournaments</b><span>Tournament days, following your son live, and the postseason.</span><em>Open ›</em></a>
+    <a class="topic-card" href="#health"><b>Weight &amp; health</b><span>Weight certification, weight allowances, skin and injuries.</span><em>Open ›</em></a>
+    <a class="topic-card" href="#travel"><b>Travel</b><span>Overnight trips, travel rules and getting home.</span><em>Open ›</em></a>
+    <a class="topic-card" href="#gear"><b>Gear</b><span>What the program provides and what families buy.</span><em>Open ›</em></a>
+    <a class="topic-card" href="#volunteer"><b>Volunteer</b><span>What the booster club covers, and how your family volunteers or donates.</span><em>Open ›</em></a>
+    <a class="topic-card" href="#contact"><b>Contact</b><span>Who to contact and when, including the booster club.</span><em>Open ›</em></a>
+  </div>
+</section>
+
+
+<section id="forms" class="topic" data-title="Forms">
+  <h2>Forms</h2>
+  <p class="lead">Printable forms you may need during the season.</p>
+  <div class="card">
+    <ul class="forms">
+      <li><b>Skin form</b><span>A doctor must complete the NFHS Skin Lesion Form before a wrestler with a skin condition can compete.</span><a class="btn dark" href="../forms/skin-lesion-form.pdf" target="_blank" rel="noopener">Open the skin form (PDF)</a></li>
+      <li><b>Travel release form</b><span>Individual tournaments only. Speak with the head coach first, then sign this form before your son leaves with you.</span><a class="btn dark" href="../forms/travel-release-form.pdf" target="_blank" rel="noopener">Open the travel release form (PDF)</a></li>
+      <li><b>Full honor code</b><span>The complete 2026–2027 honor code, to read or print.</span><a class="btn dark" href="https://drive.google.com/file/d/1RCa3NW3yUhsPmgkf20NBID74IXoOFJz3/view?usp=sharing" target="_blank" rel="noopener">Open the honor code (PDF)</a></li>
+      <li><b>Honor code sign-off</b><span>Wrestler and parent, once a season.</span><a class="btn ghost" href="#signoff">Open the sign-off</a></li>
+    </ul>
+  </div>
+</section>
+
+
+
+<section id="parents" class="topic" data-title="Parent guide">
+  <h2>Parent guide</h2>
+  <p class="lead">We all share one goal: helping your child have a positive, successful experience in wrestling — this season and beyond.</p>
+  <div class="card">
+    <p>Our purpose is to support your wrestler’s growth not only in competition but in life — mentally, physically, emotionally, and morally. The following guidelines are designed to help parents help their athlete succeed.</p>
+      <h4 class="famhead">Keep it fun</h4>
+      <ul class="dots"><li>The #1 reason wrestlers quit: “It’s not fun anymore.”</li><li>Wrestling should be challenging, but it should also be enjoyable.</li><li>Encourage effort, improvement, and perseverance — not just wins and losses.</li><li>The more fun they have, the more they’ll improve.</li></ul>
+      <h4 class="famhead">Focus on growth, not results</h4>
+      <ul class="dots"><li>Winning doesn’t always equal progress.</li><li>A “good wrestler” is one who keeps improving, mastering skills, and learning discipline.</li><li>Support their long-term development — not just short-term results.</li></ul>
+      <h4 class="famhead">Be their support system</h4>
+      <ul class="dots"><li>Your role is to encourage, not critique.</li><li>After tough matches, avoid “teaching moments.” Let your child talk first — and mostly listen.</li><li>Your home should be an oasis where they can relax, recharge, and feel supported.</li><li>Say this often: “I love to watch you wrestle.”</li></ul>
+      <h4 class="famhead">Avoid common traps</h4>
+      <ul class="dots"><li>Don’t make excuses or blame officials, coaches, or others.</li><li>Don’t compare your child to teammates or other wrestlers.</li><li>Don’t pressure them about weight or performance.</li><li>Don’t coach from the stands or criticize other wrestlers or coaches — it hurts the team culture and your child’s confidence.</li></ul>
+      <h4 class="famhead">Model sportsmanship</h4>
+      <ul class="dots"><li>“Honor the game.” Be respectful toward referees, opponents, and coaches.</li><li>Cheer for our team — not against the other side.</li><li>Your attitude is contagious and sets the tone for your child’s behavior.</li></ul>
+      <h4 class="famhead">Support healthy habits</h4>
+      <ul class="dots"><li>Prioritize clean gear, good sleep, and strong nutrition.</li><li>Make academics a priority.</li><li>Help your wrestler arrive early and prepared.</li><li>Encourage self-reliance — they should learn to manage their responsibilities.</li></ul>
+      <h4 class="famhead">Communication</h4>
+      <ul class="dots"><li>If concerns arise, encourage your child to speak with the coaches first.</li><li>If the issue remains unresolved, please contact Coach Provini directly — privately and respectfully.</li></ul>
+      <h4 class="famhead">Get involved</h4>
+      <ul class="dots"><li>Join or support the Booster Club, attend matches, and contribute positively to the Northampton Wrestling community.</li><li>Your encouragement, positivity, and trust in the coaching process make all the difference.</li></ul>
+    <div class="callout"><span class="k">Remember</span><p><b>Wrestling belongs to the athletes — not the adults. It is their thing, not ours.</b></p></div>
+    <p class="note" style="margin-top:14px">Together, we can help our wrestlers grow into confident, resilient, and successful young people on and off the mat.</p>
+  </div>
+</section>
+
+<section id="schedule" class="topic" data-title="Schedule">
+  <h2>Schedule</h2>
+  <p class="lead">Practice or competition every day but Sunday.</p>
+  <div class="card">
+    <ul class="times">
+      <li><b>School days</b><span>2:55–5:15 p.m. In the room by 2:50.</span></li>
+      <li><b>Saturdays and days off from school</b><span>9:00–11:15 a.m. In the room by 8:55. This includes Thanksgiving week and winter break. No practice Christmas Day.</span></li>
+      <li><b>Dual meets</b><span>Varsity duals generally start at 7:00 p.m., mostly on Wednesdays or Saturdays.</span></li>
+      <li><b>Varsity morning runs</b><span>6:20–6:50 a.m., starting Mon., Jan. 11.</span></li>
+    </ul>
+    <a class="btn dark" href="../team/">Open the team schedule</a>
+    <p class="note">Exact times for every day, plus bus times, are on the team schedule. It uses the same password. On an iPhone, tap Share, then Add to Home Screen, so it opens like an app.</p>
+  </div>
+</section>
+
+<section id="tournaments" class="topic" data-title="Tournaments">
+  <h2>Tournaments</h2>
+  <p class="lead">Tournament days are long. Here’s how to plan, follow along, and join us for the postseason.</p>
+  <div class="card">
+    <h3>Tournament days</h3>
+    <ul class="dots">
+      <li><b>Plan for a full day.</b> Tournaments often run from morning into the evening. Start times are on the team schedule.</li>
+      <li><b>Get there early.</b> Seats fill up. Sit together as a team.</li>
+      <li><b>Bring</b> money for admission and concessions, plus water and snacks.</li>
+      <li><b>Stay in the stands.</b> Parents should remain in the stands during competitions. Please refrain from “coaching” at tournament sites.</li>
+      <li><b>Leaving with your son</b> (individual tournaments only): you must personally speak with the head coach first and sign the travel release form.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Follow your son live</h3>
+    <p>Brackets, mat assignments and results are posted on FloWrestling (which now runs Trackwrestling). Alerts are free.</p>
+    <ol class="olist">
+      <li>Create a free account at flowrestling.org or in the FloSports app.</li>
+      <li>Tap <b>Schedule</b> and find the tournament.</li>
+      <li>In the Event Hub, tap <b>Teams</b>, then <b>Northampton</b>, then your son’s name.</li>
+      <li>Tap the bell icon. Choose <b>Follow-on Bracket</b>, or <b>Get Alerts</b> for mat assignments and results by text or email.</li>
+    </ol>
+    <p class="note">Alerts only come when an event posts live results, so a few won’t have them. Watching live video takes a paid FloWrestling subscription.</p>
+  </div>
+  <div class="card">
+    <h3>Postseason</h3>
+    <table class="tbl">
+      <thead><tr><th>Tournament</th><th>Dates</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td>District XI</td><td class="nw">Feb. 26–27</td><td>Liberty HS</td></tr>
+        <tr><td>Northeast Regional</td><td class="nw">Mar. 5–6</td><td>Liberty HS</td></tr>
+        <tr><td>PIAA Championships</td><td class="nw">Mar. 11–13</td><td>Giant Center, Hershey</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><span class="k">States in Hershey</span><p>We place a group order for tickets and hotel rooms. <b>Please buy yours through us so our families sit together.</b> Ordering details come out closer to the tournament.</p></div>
+    <p class="note">Can’t make it? The state championships stream live on FloWrestling.</p>
+  </div>
+</section>
+
+<section id="health" class="topic" data-title="Weight &amp; health">
+  <h2>Weight &amp; health</h2>
+  <p class="lead">The coaching staff prioritizes safe, healthy weight management.</p>
+  <div class="card">
+    <h3>Weight certification</h3>
+    <p>Early in the season, every wrestler goes through the PIAA weight certification: a hydration test, then a body-fat measurement. Together they set the lowest weight class he can wrestle this season and a safe weekly descent plan.</p>
+    <ul class="dots">
+      <li>Wrestlers must weigh in with a coach every day before practice.</li>
+      <li>You must make your weight before getting on the bus or van for away competitions. You will not be permitted to compete if you are not on weight before departure time.</li>
+      <li>Plastic or rubber sweat suits are illegal and may not be used at any time.</li>
+      <li>Always plan to make weight for a competition unless explicitly told by Coach Provini of a cancellation or postponement.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Weight allowances</h3>
+    <p class="fine">Suggested fully hydrated weight allowances before practice. Two or more days before a match: no more than 4% over. The day before a match: no more than 2% over.</p>
+    <table class="tbl">
+      <thead><tr><th>Weight class</th><th class="n">Day before (2%)</th><th class="n">2+ days (4%)</th></tr></thead>
+      <tbody>
+        <tr><td>107</td><td class="n">109.1</td><td class="n">111.3</td></tr>
+        <tr><td>114</td><td class="n">116.3</td><td class="n">118.6</td></tr>
+        <tr><td>121</td><td class="n">123.4</td><td class="n">125.8</td></tr>
+        <tr><td>127</td><td class="n">129.5</td><td class="n">132.1</td></tr>
+        <tr><td>133</td><td class="n">135.6</td><td class="n">138.3</td></tr>
+        <tr><td>139</td><td class="n">141.8</td><td class="n">144.6</td></tr>
+        <tr><td>145</td><td class="n">147.9</td><td class="n">150.8</td></tr>
+        <tr><td>152</td><td class="n">155.0</td><td class="n">158.1</td></tr>
+        <tr><td>160</td><td class="n">163.2</td><td class="n">166.4</td></tr>
+        <tr><td>172</td><td class="n">175.4</td><td class="n">178.9</td></tr>
+        <tr><td>189</td><td class="n">192.8</td><td class="n">196.6</td></tr>
+        <tr><td>215</td><td class="n">219.3</td><td class="n">223.6</td></tr>
+        <tr><td>285</td><td class="n">290.7</td><td class="n">296.4</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Skin and injuries</h3>
+    <ul class="dots">
+      <li>Wrestlers must be checked daily for skin infections and report any suspected problems immediately. You must have the NFHS Skin Lesion Form completed by a doctor in order to compete in dual meets or tournaments.</li>
+      <li>Showering immediately after practice and competition is the single most effective way to prevent skin infections.</li>
+      <li>Report all injuries to coaches and the athletic trainer. Our athletic trainers work with the best sports doctors and can get appointments quickly.</li>
+      <li>Injured wrestlers must attend all practices and matches unless noted otherwise by a doctor or athletic trainer.</li>
+    </ul>
+    <a class="btn dark" style="margin-top:16px" href="../forms/skin-lesion-form.pdf" target="_blank" rel="noopener">Open the skin form (printable PDF)</a>
+  </div>
+</section>
+
+<section id="travel" class="topic" data-title="Travel">
+  <h2>Travel</h2>
+  <p class="lead">You must travel to and from competitions with the team.</p>
+  <div class="card">
+    <h3>Overnight tournaments (varsity)</h3>
+    <table class="tbl">
+      <thead><tr><th>Tournament</th><th>Dates</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td>Walsh Ironman</td><td class="nw">Dec. 11–12</td><td>Walsh Jesuit HS, Ohio</td></tr>
+        <tr><td>King of the Mountain</td><td class="nw">Dec. 18–19</td><td>Central Mountain HS</td></tr>
+        <tr><td>Mid-Winter Mayhem</td><td class="nw">Jan. 8–9</td><td>Kovalchik Center, IUP</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Departure times are on the team schedule. The booster club covers hotel costs.</p>
+  </div>
+  <div class="card">
+    <h3>Travel rules</h3>
+    <ul class="dots">
+      <li><b>Dual meets:</b> wrestlers travel to and from dual meets with the team. There is no going home with a parent unless there is an emergency or something arranged in advance.</li>
+      <li><b>Tournaments:</b> at individual tournaments, you may be allowed to leave the competition with your parents, who must sign a release form. You may not leave the competition site without the approval of, and personally speaking with, the head coach first.</li>
+      <li><b>Dress code:</b> the dress requirements for all away competitions are: dress shirt, tie, collared shirt, or sweater and slacks (no jeans or t-shirts).</li>
+      <li><b>Phones:</b> the coaching staff may collect cell phones at night during away competitions. If there is an emergency, parents should call Coach Provini.</li>
+      <li><b>Hotel rooms:</b> during overnight trips, only team personnel (team members on the trip, coaches, and athletic trainers) are permitted in your room.</li>
+      <li><b>Getting home:</b> make arrangements for transportation home from NAHS well in advance of arrival so that your ride is waiting when the bus arrives back at the school.</li>
+    </ul>
+    <a class="btn dark" style="margin-top:16px" href="../forms/travel-release-form.pdf" target="_blank" rel="noopener">Open the travel release form (printable PDF)</a>
+  </div>
+</section>
+
+<section id="gear" class="topic" data-title="Gear">
+  <h2>Gear</h2>
+  <p class="lead">What the program provides for competition, and what families buy.</p>
+  <div class="card">
+    <div class="gear2">
+      <div><span class="kicker">Program provides</span><ul class="dots"><li>Singlets</li><li>Warm-ups</li><li>Bags</li></ul></div>
+      <div><span class="kicker">Families buy</span><ul class="dots"><li>Wrestling shoes</li><li>Headgear</li><li>Practice clothes</li><li>A lock for the locker room</li></ul></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Taking care of team gear</h3>
+    <ul class="dots">
+      <li>Wash warm-ups and singlets separately in cold water and hang to dry. Do not use the dryer.</li>
+      <li>School-issued uniforms, bags, gear, etc. are not to be used for anything other than in-season competition.</li>
+      <li>You are responsible for any and all equipment and uniforms assigned to you and must pay for lost items that are not returned at the completion of the season.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="volunteer" class="topic" data-title="Volunteer">
+  <h2>Volunteer</h2>
+  <p class="lead">Our booster club works hard all season so every wrestler has the best experience possible.</p>
+  <div class="card">
+    <h3>What the booster club covers</h3>
+    <ul class="dots">
+      <li>Singlets, warm-ups, travel and hotel costs</li>
+      <li>Every wrestler’s banquet meal (about $30 each)</li>
+      <li>A t-shirt gift for every wrestler, plus other gifts and awards at the banquet</li>
+      <li>Registration fees for certain offseason tournaments</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>It takes every family</h3>
+    <p>All of this is raised and run by parent volunteers. When every family helps a little, the work doesn’t fall on the same few parents, and the club can do even more for every wrestler.</p>
+    <p><b>One volunteer per wrestling family, at least once during the season,</b> at the snack stand or another job. Any family member or friend can cover it.</p>
+    <p><b>Can’t volunteer?</b> Donating items from the booster club’s donation list (mostly food for the snack stand) also counts as your family’s volunteer requirement.</p>
+    <p>Families who volunteer or donate have their wrestler’s banquet meal, gifts and awards covered by the booster club. If your family does not volunteer or donate, the club does not cover banquet expenses for the wrestler. Your wrestler is also not eligible for tournament registration reimbursement the following offseason.</p>
+    <a class="btn dark" style="margin-top:14px" aria-disabled="true">Volunteer and donation sign-up coming soon</a>
+  </div>
+</section>
+
+<section id="contact" class="topic" data-title="Contact">
+  <h2>Contact</h2>
+  <p class="lead">Athletes are encouraged to advocate on their own behalf.</p>
+  <div class="card">
+    <ul class="dots">
+      <li><b>Questions or problems:</b> athletes should be the first to communicate with the coaching staff. If a satisfactory resolution is not reached, then parents should feel free to contact Coach Provini.</li>
+      <li><b>Illness:</b> if he is ill to the extent that he cannot attend school, he must text Coach Provini before 2:00 p.m.</li>
+      <li><b>Family emergency:</b> the wrestler contacts Coach Provini first. Parents are contacted only if confirmation is needed.</li>
+      <li><b>Emergency during an away competition:</b> parents should call Coach Provini.</li>
+    </ul>
+  </div>
+  <div class="card" id="booster">
+    <h3>Booster club</h3>
+    <p>The Northampton Area Wrestling Club is our booster club. Contact the club about volunteering, fundraisers, the banquet, and tournament registration reimbursement.</p>
+    <a class="btn dark" style="margin-top:14px" href="mailto:northamptonareawrestlingclub@gmail.com">Email the booster club</a>
+    <p class="note">northamptonareawrestlingclub@gmail.com</p>
+  </div>
+</section>
+</main>
+
+<div class="sheet" id="signoff" hidden role="dialog" aria-modal="true" aria-labelledby="soTitle">
+  <div class="sheet-top">
+    <div class="sheet-row"><div><span class="kicker">2026–2027</span><b id="soTitle">Honor code sign-off</b></div><a class="sheet-x" href="#" id="soClose" aria-label="Close">Close</a></div>
+  </div>
+  <div class="sheet-body">
+  <div class="sodone" id="soDone" hidden><b>You’re all set. Thank you!</b><span>Your sign-off is complete.</span><a class="btn dark" href="#" id="soBack">Back to the family page</a></div>
+  <div id="checklist">
+  <p class="lead">Four steps for the wrestler and a parent to do together. About 15 minutes.</p>
+  <div class="card">
+    <div class="progress"><div class="bar"><i id="pbar"></i></div><b id="ptext">0 of 4 done</b></div>
+    <ul class="checks" id="checks">
+      <li><input type="checkbox" id="c2"><label for="c2"><span class="t">Read the honor code together</span><span class="s">The key rules, together.</span></label><a class="go" href="#read" data-go="read">Go ›</a></li>
+      <li><input type="checkbox" id="c3"><label for="c3"><span class="t">Pass the quick check together</span><span class="s">Six questions. This checks itself off when you finish.</span></label><a class="go" href="#check" data-go="check">Go ›</a></li>
+      <li><input type="checkbox" id="c6"><label for="c6"><span class="t">Volunteer or donate</span><span class="s">One volunteer or donation per wrestling family. Do this before you sign.</span></label><a class="go" href="#volstep" data-go="volstep">Go ›</a></li>
+      <li><input type="checkbox" id="c4"><label for="c4"><span class="t">Sign the honor code</span><span class="s">Wrestler and parent sign in one form.</span></label><a class="go" href="#sign" data-go="sign">Go ›</a></li>
+    </ul>
+    <p class="note">Checkmarks save on this phone only. They don’t submit anything. <button class="linkbtn" type="button" id="clearChecks">Clear checkmarks</button></p>
   </div>
 </div>
-<div id="app" hidden></div>
+
+<section id="honor">
+  
+  <div class="card" id="read">
+    <div class="steps-head"><span class="num">1</span><h3>Read the honor code</h3></div>
+    <p class="fine sub">Key rules, in the honor code’s own words. The full honor code is below them.</p>
+    <div class="famgroups">
+      <h4 class="famhead">Prohibited conduct</h4>
+      <ol class="fam">
+        <li><b>Drugs, alcohol, and tobacco</b><span>The use, possession, or distribution of drugs, alcohol, or any illegal substance, or being under their influence, is strictly prohibited at all times, year-round. Athletes may not attend events where drugs or alcohol are being distributed to minors. Smoking, vaping, or the use of any form of tobacco is prohibited.</span></li>
+        <li><b>Hazing and bullying</b><span>Hazing, bullying, harassment, or any form of victimization of teammates or others is prohibited. This includes behavior in locker rooms (home and away), where respectful conduct is especially important.</span></li>
+        <li><b>Respect for coaches</b><span>Defiance, dishonesty, or disrespect toward any member of the coaching staff will not be tolerated. The coaching staff expects each team member to be honest and forthright.</span></li>
+        <li><b>Social media</b><span>Social media must be used responsibly and respectfully. Inappropriate posts, messages, or images — including those that are offensive, harmful, or reflect poorly on the team — will result in disciplinary action.</span></li>
+        <li><b>School rules</b><span>All Northampton Area School District rules apply at all times.</span></li>
+      </ol>
+      <h4 class="famhead">Academics and conduct</h4>
+      <ol class="fam">
+        <li><b>Grades</b><span>You are expected to keep a minimum of a passing average in every class. If you have a grade in a class that falls below passing, you have one week to improve (raise) that grade. If that grade does not improve or it drops after one week, you may receive positive reminders or lose the privilege to compete.</span></li>
+        <li><b>Sportsmanship</b><span>Good sportsmanship is expected in all situations at all times. Swearing, profanity, or inappropriate language will not be tolerated under any circumstances. Public displays of affection at the site of competitions are prohibited.</span></li>
+      </ol>
+      <h4 class="famhead">Practice and attendance</h4>
+      <ol class="fam">
+        <li><b>Practice times</b><span>Regular practice starts at 2:55 p.m. sharp and ends at 5:15 p.m. Wrestlers must be in the wrestling room by 2:50 p.m. Saturday and no-school practices begin at 9:00 a.m. sharp and end at 11:15 a.m. Wrestlers must be in the wrestling room by 8:55 a.m.</span></li>
+        <li><b>Attendance</b><span>Attendance at all practices, matches, and team events is mandatory. Unexcused absences are not permitted. Only the following absences are excused: missing school because of illness, a death in the family or a funeral, a family emergency, religious observance with advance notice, a required school activity, a court date or legal appointment, or anything else approved by Coach Provini ahead of time.</span></li>
+        <li><b>Appointments</b><span>Appointments scheduled during practice are not excused; emergencies are evaluated case by case. Families have the practice schedule, so please do not schedule appointments during practice except in extreme cases.</span></li>
+        <li><b>Illness and family emergencies</b><span>If you are ill to the extent that you cannot attend school, you must text Coach Provini before 2:00 p.m. For a family emergency, the wrestler contacts Coach Provini first. Parents are contacted only if confirmation is needed.</span></li>
+        <li><b>Injured wrestlers</b><span>Injured wrestlers must attend all practices and matches unless noted otherwise by a doctor or athletic trainer.</span></li>
+        <li><b>Bad weather</b><span>In the event of inclement weather, cancellations or changes to the competition or practice schedule will be communicated to you by Coach Provini as soon as he is made aware. Always plan to make weight for a competition unless explicitly told by Coach Provini of a cancellation or postponement.</span></li>
+      </ol>
+      <h4 class="famhead">Health and hygiene</h4>
+      <ol class="fam">
+        <li><b>Skin</b><span>Wrestlers must be checked daily for skin infections and report any suspected problems immediately. You must have the NFHS Skin Lesion Form completed by a doctor in order to compete in dual meets or tournaments. Wrestlers must shower immediately after practice and competitions.</span><a class="pdf" href="../forms/skin-lesion-form.pdf" target="_blank" rel="noopener">Printable skin form (PDF)</a></li>
+        <li><b>Clean gear</b><span>Wear clean workout gear for every practice. Shoes and knee pads must be dried by the next training session.</span></li>
+        <li><b>Headgear</b><span>Headgear must be worn at all times during practice while drilling and wrestling.</span></li>
+        <li><b>Weight</b><span>The coaching staff prioritizes safe, healthy weight management. Wrestlers must follow certification rules and descent plans responsibly. Stay hydrated! Wrestlers must weigh in with a coach every day before practice. You must make your weight before getting on the bus or van for away competitions. You will not be permitted to compete if you are not on weight before departure time. Plastic or rubber sweat suits are illegal and may not be used at any time.</span></li>
+        <li><b>Injuries and treatment</b><span>Report all injuries to coaches and the athletic trainer. Our athletic trainers work with the best sports doctors and can get appointments quickly. Have treatment completed before practice begins.</span></li>
+      </ol>
+      <h4 class="famhead">Competitions and travel</h4>
+      <ol class="fam">
+        <li><b>Travel</b><span>You must travel to and from competitions with the team. At dual meets, there is no going home with a parent unless there is an emergency or something arranged in advance. At individual tournaments, you may be allowed to leave the competition with your parents, who must sign a release form. You may not leave the competition site without the approval of, and personally speaking with, the head coach first.</span><a class="pdf" href="../forms/travel-release-form.pdf" target="_blank" rel="noopener">Printable travel release form (PDF)</a></li>
+        <li><b>Getting home</b><span>When returning home from away competitions, please make arrangements for transportation home from NAHS well in advance of arrival so that your ride is waiting when the bus arrives back at the school.</span></li>
+        <li><b>Bus and locker rooms</b><span>Following all school rules on the team bus is required. All wrestlers are responsible for making sure the locker room at away competitions is clean before leaving.</span></li>
+        <li><b>Hotel rooms</b><span>During overnight trips, only team personnel (team members on the trip, coaches, and athletic trainers) are permitted in your room.</span></li>
+        <li><b>Tournament warm-ups</b><span>When at a tournament, the coaching staff will indicate the time of the team warm-up. You must be dressed, have any taping or athletic treatments completed, have used the restroom, and have any other preparations completed before the warm-up begins.</span></li>
+        <li><b>Away competitions</b><span>The dress requirements for all away competitions are: dress shirt, tie, collared shirt, or sweater and slacks (no jeans or t-shirts). The coaching staff may collect cell phones at night during away competitions. If there is an emergency, parents should call Coach Provini.</span></li>
+        <li><b>Parents at competitions</b><span>Parents should remain in the stands during competitions. Parents should not be sitting with the team during competition. Parents should not be on the competition floor during competition nor in locker rooms at any time. Please refrain from “coaching” at tournament sites.</span></li>
+      </ol>
+      <h4 class="famhead">Communication</h4>
+      <ol class="fam">
+        <li><b>Questions and problems</b><span>Athletes are encouraged to advocate on their own behalf. In the event of questions or problems, athletes should be the first to communicate with the coaching staff. If a satisfactory resolution is not reached, then parents should feel free to contact Coach Provini.</span></li>
+        <li><b>Coaching decisions</b><span>Coach Provini and his staff will not discuss or justify coaching decisions, including lineups, roles, and other team matters, with parents. It is inappropriate for parents to question or seek explanations for these decisions. Athletes are encouraged to communicate directly with their coaches about their development and improvement.</span></li>
+      </ol>
+      <h4 class="famhead">Equipment and uniforms</h4>
+      <ol class="fam">
+        <li><b>Team gear</b><span>You are responsible for any and all equipment and uniforms assigned to you and must pay for lost items that are not returned at the completion of the season. School-issued uniforms, bags, gear, etc. are not to be used for anything other than in-season competition. Wash warm-ups and singlets separately in cold water and hang to dry. Do not use the dryer.</span></li>
+      </ol>
+      <h4 class="famhead">Varsity letter</h4>
+      <ol class="fam">
+        <li><b>Eligibility</b><span>To be eligible for a varsity letter, the athlete must complete the season, compete in a minimum of 50% of varsity competitions, score as many points as there are dual meets or place in a postseason tournament, and remain in good standing with the team.</span></li>
+      </ol>
+    </div>
+    <button class="btn dark" type="button" id="readBtn" style="margin-top:16px">We read the key rules</button>
+    <div class="code full">
+      <h3>The full honor code · 2026–2027</h3>
+    <details><summary>Purpose</summary><div class="body"><p>The Northampton Wrestling Honor Code exists to help each wrestler reach his full potential — not only as an athlete, but as a person. Our program emphasizes growth in four key areas: mental toughness, physical effort, emotional maturity, and moral integrity. Success in wrestling depends on all of these working together.</p>
+<p>Every member of our team is expected to uphold this code because both the success and the integrity of our program depend on it. By committing to these standards, our wrestlers demonstrate discipline, accountability, and pride in being part of something bigger than themselves. Without question, adopting this code of honor will make our student-athletes better wrestlers, and the coaching staff operates under the assumption that you want our assistance in helping them become better wrestlers.</p>
+<p>The coaching staff’s priority is the strength of the program as a whole. We will never sacrifice our values or the team’s reputation for the sake of individual interests. Our goal is to build and maintain a program that earns respect — not only today, but for generations to come.</p>
+<p>We want every Northampton wrestler to be proud of his role in this legacy. True excellence requires discipline, self-control, and character. These are the foundations of success on the mat and in life.</p>
+<p>With that in mind, each wrestler is expected to uphold the following standards of conduct and commitment.</p></div></details>
+    <details><summary>Team Rules and Expectations</summary><div class="body"><p>Violation of the following rules may result in suspension or dismissal from the team, as well as the forfeiture of a varsity letter or any team awards. These expectations are in place to protect your safety, your teammates, and the reputation of Northampton Wrestling.</p>
+<h3 id="substance-use">Substance Use</h3>
+<ol type="1">
+<li>The use, possession, or distribution of drugs, alcohol, or any illegal substance, or being under their influence, is strictly prohibited at all times, year-round.</li>
+<li>Athletes may not attend events where drugs or alcohol are being distributed to minors.</li>
+<li>Smoking, vaping, or the use of any form of tobacco is prohibited.</li>
+</ol>
+<h3 id="respect-and-conduct">Respect and Conduct</h3>
+<ol start="4" type="1">
+<li>Hazing, bullying, harassment, or any form of victimization of teammates or others is prohibited. This includes behavior in locker rooms (home and away), where respectful conduct is especially important.</li>
+<li>Defiance, dishonesty, or disrespect toward any member of the coaching staff will not be tolerated. The coaching staff expects each team member to be honest and forthright.</li>
+<li>Intentionally exposing others to bodily fluids is strictly prohibited.</li>
+<li>Any behavior or attitude deemed to be detrimental to the well-being of Northampton Wrestling is prohibited and can result in dismissal from the team. You are expected to do all that you can to contribute to the success, respectability, and positive image of Northampton Wrestling. This includes being supportive of teammates.</li>
+</ol>
+<h3 id="attendance-and-commitment">Attendance and Commitment</h3>
+<ol start="8" type="1">
+<li>Attendance at all practices, matches, and team events is mandatory. Unexcused absences are not permitted. Only the following absences are excused:
+<ol type="a">
+<li>Missing school because of illness. Text Coach Provini before 2:00 p.m.</li>
+<li>A death in the family or a funeral.</li>
+<li>A family emergency. The wrestler contacts Coach Provini first. Parents are contacted only if confirmation is needed.</li>
+<li>Religious observance, with advance notice.</li>
+<li>A required school activity, such as a field trip, a required test, or a teacher meeting with a pass. Come to practice afterward if possible.</li>
+<li>A court date or legal appointment.</li>
+<li>Anything else approved by Coach Provini ahead of time.</li>
+</ol>
+Appointments scheduled during practice are not excused; emergencies are evaluated case by case. Families have the practice schedule, so please do not schedule appointments during practice except in extreme cases.</li>
+</ol>
+<h3 id="legal-and-school-policy">Legal and School Policy</h3>
+<ol start="9" type="1">
+<li>Committing any local, state, or federal crime can result in dismissal from the team.</li>
+<li>All Northampton Area School District rules apply at all times. Please refer to the NASD Student Handbook for additional guidelines.</li>
+</ol>
+<h3 id="social-media-and-digital-conduct">Social Media and Digital Conduct</h3>
+<ol start="11" type="1">
+<li>Social media must be used responsibly and respectfully. Inappropriate posts, messages, or images — including those that are offensive, harmful, or reflect poorly on the team — will result in disciplinary action. Represent Northampton Wrestling with integrity online just as you would in person.</li>
+</ol>
+<p><strong>Remember:</strong> You represent Northampton Wrestling at all times — in school, in the community, and online. Your conduct reflects not only on you, but on your teammates, coaches, and everyone who has worn this uniform before you.</p></div></details>
+    <details><summary>General Rules</summary><div class="body"><p>Failure to abide by the following basic rules will result in disciplinary action which may include any or all of the following: “positive reminders,” temporary suspension from practice and/or competitions, or dismissal from the team.</p>
+<h3 id="attendance-and-punctuality">Attendance and Punctuality</h3>
+<ol type="1">
+<li>Above all else, the coaching staff and the entire team must be able to depend on you. You must be reliable and dependable in everything that affects the well-being of Northampton Wrestling. Your punctuality and attendance at school <strong>and</strong> practice are a must.</li>
+<li>If you are ill to the extent that you cannot attend school, you must text Coach Provini at 610-533-3355 before 2:00 p.m. You are also expected to communicate proactively with the coaching staff in the event of any other illness, emergency, or unavoidable conflict.</li>
+<li>You are expected to be on time for school <strong>every day</strong>. If you are unable to practice due to school policy regarding tardiness, your absence will be considered unexcused.</li>
+<li>Be a minimum of <strong>five (5) minutes early</strong> for all practices and matches.
+<ol type="a">
+<li>Regular practice starts at 2:55 p.m. sharp and ends at 5:15 p.m. Wrestlers must be in the wrestling room by 2:50 p.m.</li>
+<li>Saturday and no-school practices begin at 9:00 a.m. sharp and end at 11:15 a.m. Wrestlers must be in the wrestling room by 8:55 a.m.</li>
+</ol></li>
+<li>Injured wrestlers must attend all practices and matches unless noted otherwise by a doctor or athletic trainer.</li>
+</ol>
+<h3 id="health-safety-and-hygiene">Health, Safety, and Hygiene</h3>
+<ol start="6" type="1">
+<li>Wrestlers must be checked daily for skin infections and report any suspected problems immediately. If you have ringworm or any other infection, you might not be allowed to practice. You must also have the NFHS Skin Lesion Form completed by a doctor in order to compete in dual meets or tournaments. <a href="../forms/skin-lesion-form.pdf" target="_blank" rel="noopener">Open the printable skin form (PDF)</a></li>
+<li>Wrestlers <strong>must</strong> shower immediately after practice and competitions.</li>
+<li>Be polite and respectful toward our athletic trainers. Follow the rules of the athletic training room. Have treatment completed <strong>before</strong> practice begins. If you become aware of a medical problem when not in school, call the athletic trainer for advice before making any other decisions.</li>
+<li>Headgear must be worn at all times during practice while drilling and wrestling.</li>
+<li>The practice area must be kept clean. Make certain to clean up after home match weigh-ins.</li>
+</ol>
+<h3 id="weight-management">Weight Management</h3>
+<ol start="11" type="1">
+<li>Wrestlers must weigh in with a coach <strong>every day before practice</strong>.</li>
+<li>The coaching staff prioritizes safe, healthy weight management. Wrestlers must follow certification rules and descent plans responsibly. If you choose to reduce your weight, it must be done in a safe and sensible manner. <strong>Stay hydrated!</strong> You are fully responsible for making the weight you agreed to. You must know and understand the weight certification rules and your weight descent plan. If you are unable to abide by the following weight limits, you might not be allowed to compete at that weight class. Suggested fully hydrated weight allowances <strong>before</strong> practice are posted in the wrestling room:
+<ol type="a">
+<li>Two or more days before a match: no more than 4% over.</li>
+<li>The day before a match: no more than 2% over.</li>
+</ol></li>
+<li>You must make your weight <strong>before</strong> getting on the bus or van for away competitions. You will not be permitted to compete if you are not on weight before departure time.</li>
+<li>Plastic or rubber sweat suits are illegal and may not be used at any time.</li>
+</ol>
+<h3 id="equipment-and-uniforms">Equipment and Uniforms</h3>
+<ol start="15" type="1">
+<li>You are responsible for any and all equipment and uniforms assigned to you and must pay for lost items that are not returned at the completion of the season.</li>
+<li>Do not use or take anything that does not belong to you or has not been signed out to you without permission.</li>
+<li>School-issued uniforms, bags, gear, etc. are <strong>not</strong> to be used for anything other than in-season competition.</li>
+<li>During competition, only clothing that has been approved by the coaching staff (t-shirts, sweatshirts, sweatpants, shorts, etc.) is allowed. Everyone must wear the same singlet at the same time for both dual meets and tournaments. This requires planning by team members well before the event.</li>
+</ol>
+<h3 id="academics">Academics</h3>
+<ol start="19" type="1">
+<li>You are expected to keep a minimum of a passing average in <strong>every</strong> class. If you have a grade in a class that falls below passing, you have <strong>one week</strong> to improve (raise) that grade. If that grade does not improve or it drops after one week, you may receive positive reminders or lose the privilege to compete. This system stays in place until the grade improves to above passing.</li>
+</ol>
+<h3 id="conduct-and-behavior">Conduct and Behavior</h3>
+<ol start="20" type="1">
+<li>You are expected to exhibit exceptionally good behavior at all times (in school, out of school, in practice, at competitions, every day of the year). Good sportsmanship is expected in all situations at all times.</li>
+<li>Swearing, profanity, or inappropriate language will not be tolerated under any circumstances.</li>
+<li>Public displays of affection at the site of competitions are prohibited.</li>
+</ol>
+<h3 id="competitions-travel-and-overnight-trips">Competitions, Travel, and Overnight Trips</h3>
+<ol start="23" type="1">
+<li>The dress requirements for all <strong>away</strong> competitions are: dress shirt, tie, collared shirt, or sweater and slacks (no jeans or t-shirts).</li>
+<li>Cell phones should be used for necessary (i.e., emergency) communication only and not when in uniform or on the bench. The coaching staff may collect cell phones at night during away competitions. If there is an emergency, parents should call Coach Provini (610-533-3355).</li>
+<li>You must travel to and from competitions with the team. You also may not leave the competition site without the approval of, and personally speaking with, the head coach first. At individual tournaments and some other special circumstances, you may be allowed to leave the competition with your parents. If permission is granted, you may leave <strong>only</strong> with your parent(s), who must sign a release form (<a href="../forms/travel-release-form.pdf" target="_blank" rel="noopener">open the printable travel release form (PDF)</a>). Other arrangements must be made in advance.</li>
+<li>During overnight trips, only team personnel (team members on the trip, coaches, and athletic trainers) are permitted in your room. Anyone else must have approval in advance. In addition, team members are only allowed in the rooms of team personnel.</li>
+<li>All wrestlers are responsible for making sure the locker room at away competitions is clean before leaving.</li>
+<li>When at a tournament, the coaching staff will indicate the time of the team warm-up. You must be dressed, have any taping or athletic treatments completed, have used the restroom, and have any other preparations completed before the warm-up begins. Be prepared to meet with the coaching staff and team approximately 15 minutes before each round begins.</li>
+<li>Wrestlers who have been eliminated from competition on the first day of a two-day tournament should be prepared to participate in a workout before competition begins on the second day. Check with the coaching staff for the starting time of that workout.</li>
+<li>All team members must be continuously involved in the preparation for home wrestling events until their completion. When coaches indicate all tasks are finished, be prepared to meet briefly in the wrestling room. At the conclusion of <strong>all</strong> competitions, all team members will meet together with the coaching staff.</li>
+<li>Following all school rules on the team bus is required, including but not limited to:
+<ol type="a">
+<li>Keep hands and head inside the windows.</li>
+<li>Do not throw objects inside the bus or out the windows.</li>
+<li>Bags and equipment may not be in the aisle.</li>
+<li>No food or drink.</li>
+<li>Remain seated while the bus is in motion.</li>
+<li>Act appropriately.</li>
+</ol></li>
+<li>When returning home from away competitions, please make arrangements for transportation home from NAHS well in advance of arrival so that your ride is waiting when the bus arrives back at the school.</li>
+<li>In the event of inclement weather, cancellations or changes to the competition or practice schedule will be communicated to you by Coach Provini as soon as he is made aware. <strong>Always</strong> plan to make weight for a competition unless explicitly told by Coach Provini of a cancellation or postponement.</li>
+</ol>
+<h3 id="lineups-and-wrestle-offs">Lineups and Wrestle-offs</h3>
+<ol start="34" type="1">
+<li>In many cases, varsity and JV spots on the team are decided through indicator bouts. However, there are a number of considerations for the coaching staff when determining the starting lineup. Once a varsity or JV position is earned, a challenger must beat the established man two bouts in a row. In the event of a tournament where two varsity starters are competing for the same weight, the best two out of three wins the spot. The coaching staff reserves the right to make lineup changes at any time. Opportunities to “wrestle off” for a starting position can be negatively affected by poor attitude, effort, and/or reliability. Always ask the coaching staff to make sure you understand the situation. This includes (but is not limited to) the lineup and exactly how much you should weigh. Team members are expected to compete for the betterment of the team during the regular season. Wrestle-offs for the postseason may be held for those who wish to change weights <strong>and</strong> are in good standing (consistently reliable, hard-working, good attitude, etc.).</li>
+</ol>
+<p><strong>Remember:</strong> Following these rules is not about punishment — it is about preparing you to be the best wrestler and teammate possible while upholding the integrity and reputation of Northampton Wrestling. Excellence on and off the mat requires discipline, respect, and accountability.</p></div></details>
+    <details><summary>Expectations for Parents</summary><div class="body"><p>The coaching staff will always strive to make parents our partners in accomplishing our mission. We ask the following of every Northampton Wrestling parent and guardian:</p>
+<ol type="1">
+<li>Parents should remain in the stands during competitions. Parents should not be sitting with the team during competition. Parents should <strong>not</strong> be on the competition floor during competition nor in locker rooms at any time.</li>
+<li>Please refrain from “coaching” at tournament sites. If there is information you feel <strong>must</strong> be shared with your child, please contact Coach Provini first.</li>
+<li>Athletes are encouraged to advocate on their own behalf. Therefore, in the event of questions or problems, athletes should be the first to communicate with the coaching staff. If a satisfactory resolution is not reached, then parents should feel free to contact Coach Provini.</li>
+<li>Coach Provini and his staff will not discuss or justify coaching decisions, including lineups, roles, and other team matters, with parents. It is inappropriate for parents to question or seek explanations for these decisions. Athletes are encouraged to communicate directly with their coaches about their development and improvement.</li>
+</ol></div></details>
+    <details><summary>General Information and Helpful Suggestions</summary><div class="body"><ol type="1">
+<li>Be aware that attitudes and actions of <strong>both</strong> athletes and parents will always have an impact on others. Positive attitudes make a positive difference and help everyone. Our program should reflect this in all that we say and do.</li>
+<li>Wrestling is a contact sport with the risk of injury always being present. In order to minimize the risk of injury, please observe the following:
+<ol type="a">
+<li>Use proper techniques and refrain from using illegal, dangerous, or potentially dangerous techniques.</li>
+<li>No horseplay or “ultimate fighting” before, during, or after practice.</li>
+<li>A coach must be present during any activity or workout.</li>
+</ol></li>
+<li>It is common for our coaches to demonstrate wrestling technique on and wrestle with members of the team. If you are not comfortable with this, please inform Coach Provini immediately.</li>
+<li>In the event of an injury:
+<ol type="a">
+<li>Report all injuries to coaches and/or the athletic trainer.</li>
+<li>Taping is to be done by the athletic trainer <strong>before</strong> practice begins.</li>
+<li>It is not recommended that you call or see your own doctor without <strong>first</strong> notifying a coach or the athletic trainer.</li>
+</ol></li>
+<li>Showering immediately after practice and competition is critical to preventing skin infections. This is the single most effective way to prevent skin infections.</li>
+<li>Wear <strong>clean</strong> workout gear for <strong>every</strong> practice. Shoes and knee pads must be dried by the next training session. Wash knee pads regularly.</li>
+<li>Do <strong>not</strong> transport dirty, sweaty workout clothes and shoes in the same bag you use for clean ones. Use a separate plastic bag for both clean and dirty clothing, shoes, knee pads, etc.</li>
+<li>Clothing that advertises alcohol, drugs, or tobacco products, contains vulgarities or profanity, or would otherwise be considered inappropriate or does not project a positive or wholesome image is prohibited. Please wear Northampton Wrestling apparel in practice whenever possible.</li>
+<li>Uniforms need to be kept clean. When washing warm-ups and singlets, it is <strong>very important</strong> that the following washing instructions are followed:
+<ol type="a">
+<li>Wash separately in cold water.</li>
+<li>Hang to dry.</li>
+<li>Do <strong>not</strong> use the dryer to dry singlets or warm-ups.</li>
+</ol></li>
+<li>Exchange and/or repair equipment <strong>after</strong> practice.</li>
+<li>Keep our practice area and locker room neat and clean. Be sure to take all headgear, knee pads, clothing, etc. with you after practice. Never spit on floors, stairways, walls, etc.</li>
+<li>Bring a lock and secure your belongings during practice <strong>and</strong> matches (home and away). You may keep a lock permanently on a locker in the locker room for the season. <strong>Never</strong> leave jewelry, money, or any valuables unsecured in the locker room. Remove all items from the locker room at the season’s end.</li>
+<li>All required forms must be completed and returned before you may practice.</li>
+<li>To be eligible for a varsity letter, the athlete must:
+<ol type="a">
+<li>Complete the season.</li>
+<li>Compete in a minimum of 50% of varsity competitions.</li>
+<li>Score as many points as there are dual meets, or place in a postseason tournament.</li>
+<li>Remain in good standing with the team.</li>
+</ol></li>
+</ol></div></details>
+    </div>
+  </div>
+
+  <div class="card" id="check">
+    <div class="steps-head"><span class="num">2</span><h3>Quick check</h3></div>
+    <div class="qscore"><span>Answer together. Keep going until each one is right.</span><span id="qcount">0 of 6</span></div>
+    <div id="quiz"></div>
+    <div class="qdone" id="qdone" hidden>All six right. Next, volunteer or donate.</div>
+  </div>
+
+  <div class="card" id="volstep">
+    <div class="steps-head"><span class="num">3</span><h3>Volunteer or donate</h3></div>
+    <p><b>One volunteer per wrestling family, at least once during the season.</b> Any family member or friend can cover it.</p>
+    <p><b>Can’t volunteer?</b> Donating items from the booster club’s donation list (mostly food for the snack stand) also counts.</p>
+    <p>Families who volunteer or donate have their wrestler’s banquet meal, gifts and awards covered by the booster club. If your family does not volunteer or donate, the club does not cover banquet expenses for the wrestler. Your wrestler is also not eligible for tournament registration reimbursement the following offseason.</p>
+    <a class="btn dark" style="margin-top:14px" aria-disabled="true">Volunteer and donation sign-up coming soon</a>
+    <label class="volcheck"><input type="checkbox" id="volDone"> <span>Our family signed up to volunteer or donate.</span></label>
+    <p class="note">The sign-off form asks what your family signed up for.</p>
+  </div>
+
+  <div class="card" id="sign">
+    <div class="steps-head"><span class="num">4</span><h3>Sign the honor code</h3></div>
+    <p>The wrestler and a parent sign together in one short form. It also asks for each parent’s phone and email.</p>
+    <a class="btn" id="signBtn" href="https://docs.google.com/forms/d/e/1FAIpQLSeoJyTsRPvIuhGEEXNUzEcYQXY8T9U_YviPiYmyhd3h7q5R_w/viewform" target="_blank" rel="noopener" aria-disabled="true">Finish the quick check first</a>
+    <p class="note" id="signNote"></p>
+    <button class="btn ghost" type="button" id="submittedBtn" style="margin-top:12px" hidden>We submitted the form</button>
+  </div>
+</section>
+  </div>
+</div>
+
+<footer>
+  <b>Northampton Wrestling</b>
+  This page is for parents of Northampton high school and junior high wrestlers.
+  <a class="home-link" href="https://www.northamptonwrestling.org/">northamptonwrestling.org</a>
+</footer>
+
 <script>
 (() => {
   "use strict";
-  const KEY = "kk-team-key";
-  const ls = {get(k){try{return localStorage.getItem(k)}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,v)}catch(e){}}, del(k){try{localStorage.removeItem(k)}catch(e){}}};
-  const te = new TextEncoder(), td = new TextDecoder();
   const $ = s => document.querySelector(s);
-  function b64(u8){let s="";for(let i=0;i<u8.length;i+=0x8000)s+=String.fromCharCode.apply(null,u8.subarray(i,i+0x8000));return btoa(s)}
-  function unb64(s){const b=atob(s);const u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u}
-  const norm = pw => pw.toLowerCase().replace(/\s+/g, "");
-  async function derive(pw, salt, iter){
-    const base = await crypto.subtle.importKey("raw", te.encode(norm(pw)), "PBKDF2", false, ["deriveKey"]);
-    return crypto.subtle.deriveKey({name:"PBKDF2", salt:unb64(salt), iterations:iter, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, true, ["encrypt","decrypt"]);
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+  const CK = "kk-family-checks-2627", QK = "kk-family-quiz-2627-v2";
+
+  // ---------- Checklist ----------
+  const boxes = [...document.querySelectorAll("#checks input")];
+  const saved = store.get(CK) || {};
+  function paint() {
+    let n = 0;
+    boxes.forEach(b => { b.closest("li").classList.toggle("done", b.checked); if (b.checked) n++; });
+    $("#ptext").textContent = n + " of " + boxes.length + " done";
+    $("#pbar").style.width = (n / boxes.length * 100) + "%";
+    // Main-page sign-off card
+    const signed = $("#c4").checked;
+    $("#soText").textContent = n + " of " + boxes.length + " steps";
+    $("#soBar").style.width = (n / boxes.length * 100) + "%";
+    $("#soBtn").textContent = n ? "Continue" : "Start";
+    $("#soCard").hidden = signed;
+    $("#soSmall").hidden = !signed;
+    $("#soDone").hidden = !signed;
   }
-  async function decrypt(p, key){ return JSON.parse(td.decode(await crypto.subtle.decrypt({name:"AES-GCM", iv:unb64(p.iv)}, key, unb64(p.ct)))); }
-  async function remember(key, salt){ const raw = new Uint8Array(await crypto.subtle.exportKey("raw", key)); ls.set(KEY, JSON.stringify({salt, k:b64(raw)})); }
-  async function stored(salt){
-    try { const s = JSON.parse(ls.get(KEY) || "null"); if (!s || s.salt !== salt) return null;
-      return await crypto.subtle.importKey("raw", unb64(s.k), {name:"AES-GCM"}, true, ["encrypt","decrypt"]); } catch(e){ return null; }
-  }
-  let P = null;
-  function show(d){
-    $("#lock").hidden = true;
-    const app = $("#app"); app.innerHTML = d.html; app.hidden = false;
-    new Function(d.js)();
-  }
-  function lock(msg){ $("#lock").hidden = false; $("#lockMsg").textContent = msg || ""; }
-  async function boot(){
-    try { P = await (await fetch("content.json", {cache:"no-store"})).json(); }
-    catch(e){ lock("Couldn’t load the page. Check your connection and refresh."); return; }
-    const k = await stored(P.salt);
-    if (k) { try { return show(await decrypt(P, k)); } catch(e){} }
-    const had = ls.get(KEY);
-    lock(had ? "The team password changed. Enter the new one." : "");
-  }
-  $("#lockForm").addEventListener("submit", async ev => {
-    ev.preventDefault();
-    const pw = $("#pw").value; if (!pw.trim() || !P) return;
-    const btn = $("#unlockBtn"); btn.disabled = true; btn.textContent = "Opening…"; $("#lockMsg").textContent = "";
-    try { const key = await derive(pw, P.salt, P.iter); const d = await decrypt(P, key); await remember(key, P.salt); $("#pw").value = ""; show(d); }
-    catch(e){ $("#lockMsg").textContent = "That’s not the team password. Try again."; }
-    btn.disabled = false; btn.textContent = "Open";
+  boxes.forEach(b => {
+    b.checked = !!saved[b.id];
+    b.addEventListener("change", () => { const s = store.get(CK) || {}; s[b.id] = b.checked; store.set(CK, s); paint(); });
   });
-  boot();
+  $("#clearChecks").addEventListener("click", () => { boxes.forEach(b => b.checked = false); store.set(CK, {}); paint(); });
+  paint();
+
+  // ---------- Topic views ----------
+  try { history.scrollRestoration = "manual"; } catch (e) {}
+  const topics = [...document.querySelectorAll("section.topic")].map(t => t.id);
+  let homeY = 0;
+  function route() {
+    const id = location.hash.slice(1);
+    const showing = topics.includes(id);
+    if (showing && !document.body.classList.contains("viewing")) homeY = window.scrollY;
+    document.body.classList.toggle("viewing", showing);
+    document.querySelectorAll("section.topic").forEach(t => t.classList.toggle("active", t.id === id));
+    $("#viewbar").hidden = !showing;
+    if (showing) { $("#viewTitle").textContent = document.getElementById(id).dataset.title; window.scrollTo({top: 0, behavior: "instant"}); }
+    else if (id === "") { window.scrollTo({top: homeY, behavior: "instant"}); }
+  }
+  window.addEventListener("hashchange", route);
+  $("#backBtn").addEventListener("click", e => {
+    e.preventDefault();
+    history.replaceState(null, "", location.pathname + location.search);
+    route();
+  });
+  route();
+
+  // ---------- Sign-off sheet ----------
+  const sheet = $("#signoff");
+  function syncSheet() {
+    const open = location.hash === "#signoff";
+    sheet.hidden = !open;
+    document.body.classList.toggle("sheet-open", open);
+  }
+  function closeSheet(e) {
+    if (e) e.preventDefault();
+    history.replaceState(null, "", location.pathname + location.search);
+    syncSheet();
+  }
+  window.addEventListener("hashchange", syncSheet);
+  $("#soClose").addEventListener("click", closeSheet);
+  $("#soBack").addEventListener("click", closeSheet);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !sheet.hidden) closeSheet(); });
+  sheet.addEventListener("click", e => {
+    const a = e.target.closest("a[data-go]");
+    if (!a) return;
+    e.preventDefault();
+    const t = document.getElementById(a.dataset.go);
+    if (t) sheet.scrollTo({top: t.offsetTop - 70, behavior: "instant"});
+  });
+  function setCheck(id, v) {
+    const b = $("#" + id); if (b.checked === v) return;
+    b.checked = v; const s = store.get(CK) || {}; s[id] = v; store.set(CK, s); paint();
+  }
+  $("#readBtn").addEventListener("click", () => {
+    setCheck("c2", true);
+    const t = $("#check"); sheet.scrollTo({top: t.offsetTop - 70, behavior: "instant"});
+  });
+  syncSheet();
+
+  // ---------- Quick check ----------
+  const Q = [
+    {q: "Your son is too ill to attend school. What has to happen?",
+     o: ["Nothing. Missing school covers it.", "You email the athletic office.", "He texts Coach Provini before 2:00 p.m."], a: 2,
+     why: "A quick text before 2:00 lets the coaches know he’s taken care of and plan practice without him."},
+    {q: "Your son needs a dentist appointment. When is the best time to book it?",
+     o: ["During practice. Appointments count as excused.", "Outside of practice when you can, so he doesn’t miss training.", "Whenever is easiest. Practice is flexible."], a: 1,
+     why: "We know family schedules are busy. You have the practice schedule, so please book around it when you can. Appointments during practice aren’t excused, but emergencies are always handled case by case."},
+    {q: "He isn’t on weight when the bus leaves for an away competition. What happens?",
+     o: ["He weighs in again when the team gets there.", "He sits out that day’s competition.", "He moves up a weight class."], a: 1,
+     why: "Weight has to be made before the bus leaves. It’s a tough lesson when it happens, so the coaches help every wrestler plan ahead, and healthy habits at home make a big difference."},
+    {q: "He gets hurt at practice. Who should be told?",
+     o: ["Nobody, unless it still hurts tomorrow.", "The coaches and the athletic trainer, right away.", "Just his teammates."], a: 1,
+     why: "Tell us right away so he gets the right care. Our athletic trainers work with the best sports doctors and can get appointments quickly."},
+    {q: "After an away dual meet, can he ride home with you instead of the bus?",
+     o: ["Yes, if you tell a coach that night.", "Yes, if you sign a release form.", "He rides the bus, unless it’s an emergency or arranged ahead of time."], a: 2,
+     why: "The team travels to and from dual meets together. If something comes up, talk to Coach Provini ahead of time. The release form is only for individual tournaments."},
+    {q: "It’s July, and he’s invited to a party where alcohol is being given to minors. Can he go?",
+     o: ["Yes. The honor code only applies during the season.", "Yes, as long as he doesn’t drink.", "No. The honor code applies all year."], a: 2,
+     why: "We want our wrestlers safe all year, not just in season. Athletes may not attend events where drugs or alcohol are being given to minors."}
+  ];
+  const done = new Set(store.get(QK) || []);
+  const quiz = $("#quiz");
+  Q.forEach((item, i) => {
+    const wrap = document.createElement("div");
+    wrap.className = "q";
+    wrap.innerHTML = '<p class="p"><small>Question ' + (i + 1) + ' of ' + Q.length + '</small></p><div class="opts"></div><p class="fb" role="status" hidden></p>';
+    wrap.querySelector(".p").append(item.q);
+    const opts = wrap.querySelector(".opts"), fb = wrap.querySelector(".fb");
+    item.o.forEach((text, j) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "opt"; b.textContent = text;
+      b.addEventListener("click", () => {
+        if (j === item.a) {
+          b.classList.add("right"); wrap.classList.add("done");
+          fb.hidden = false; fb.className = "fb ok"; fb.textContent = "Right. " + item.why;
+          done.add(i); store.set(QK, [...done]); update();
+        } else {
+          b.classList.add("wrong");
+          fb.hidden = false; fb.className = "fb no"; fb.textContent = "Not quite. Try another answer.";
+        }
+      });
+      opts.append(b);
+    });
+    if (done.has(i)) {
+      opts.children[item.a].classList.add("right"); wrap.classList.add("done");
+      fb.hidden = false; fb.className = "fb ok"; fb.textContent = "Right. " + item.why;
+    }
+    quiz.append(wrap);
+  });
+  function update() {
+    $("#qcount").textContent = done.size + " of " + Q.length;
+    const all = done.size === Q.length;
+    $("#qdone").hidden = !all;
+    const vol = $("#c6").checked;
+    $("#volDone").checked = vol;
+    const sb = $("#signBtn");
+    const ready = all && vol;
+    sb.setAttribute("aria-disabled", ready ? "false" : "true");
+    sb.textContent = !all ? "Finish the quick check first" : !vol ? "Volunteer or donate first" : "Open the sign-off form";
+    $("#submittedBtn").hidden = !(ready && (opened || $("#c4").checked));
+    if (all) {
+      const c3 = $("#c3");
+      if (!c3.checked) { c3.checked = true; const s = store.get(CK) || {}; s.c3 = true; store.set(CK, s); paint(); }
+    }
+  }
+  let opened = false;
+  $("#signBtn").addEventListener("click", () => { opened = true; setTimeout(update, 300); });
+  $("#submittedBtn").addEventListener("click", () => {
+    setCheck("c4", true); update();
+    sheet.scrollTo({top: 0, behavior: "instant"});
+  });
+  $("#c4").addEventListener("change", update);
+  $("#volDone").addEventListener("change", e => {
+    const c6 = $("#c6"); c6.checked = e.target.checked;
+    const s = store.get(CK) || {}; s.c6 = c6.checked; store.set(CK, s); paint(); update();
+  });
+  $("#c6").addEventListener("change", update);
+  $("#clearChecks").addEventListener("click", update);
+  update();
 })();
+  (() => {
+    const strip = document.getElementById("dates");
+    if (!strip) return;
+    const t = new Date(); const today = t.getFullYear() + "-" + String(t.getMonth()+1).padStart(2,"0") + "-" + String(t.getDate()).padStart(2,"0");
+    const next = [...strip.querySelectorAll(".date")].find(c => c.dataset.end >= today);
+    if (next && next !== strip.firstElementChild) strip.scrollLeft = next.offsetLeft - strip.firstElementChild.offsetLeft;
+  })();
 </script>
 </body>
 </html>
