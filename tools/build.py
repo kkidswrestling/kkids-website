@@ -69,7 +69,7 @@ NAV_GROUPS = [
                    ("champions/#hundred-title", "100-Win Club"), ("champions/#lists-title", "Record Book"),
                    ("timeline/", "Timeline"), ("seasons/", "Past Seasons"), ("trivia/", "Trivia")]),
     ("Media", [("news/", "News"), ("videos/", "Videos"), ("follow/", "Follow & Email List")]),
-    ("Parents", [("family/", "Parent Information"), ("youth/", "Youth Program Guide"), ("family/#faq", "FAQs"), ("family/#booster", "Booster Club")]),
+    ("Parents", [("family/", "Parent Information"), ("hs-parents/", "HS Parents"), ("youth/", "Youth Program Guide"), ("family/#faq", "FAQs"), ("family/#booster", "Booster Club")]),
     ("Alumni", [("alumni/", "Where Are They Now"), ("alumni/#update", "Update Your Information"), ("alumni/#support", "Support the Program")]),
     ("Join", [("join/", "Why Wrestle?"), ("join/#path", "The Path"), ("youth/", "Youth Wrestling"), ("join/#start", "Start Wrestling")]),
 ]
@@ -2136,8 +2136,9 @@ def main():
         if "index.html" in files:
             rel = os.path.relpath(d, ROOT)
             with open(os.path.join(d, "index.html"), encoding="utf-8") as fh:
-                if 'http-equiv="refresh"' in fh.read(3000):
-                    continue
+                top = fh.read(3000)
+                if 'http-equiv="refresh"' in top or 'content="noindex' in top:
+                    continue  # redirect stubs and the locked pages (team/, hs-parents/) stay out
             u = SITE["domain"] + "/" + ("" if rel == "." else rel.replace(os.sep, "/") + "/")
             if u not in urls:
                 urls.append(u)
