@@ -518,7 +518,7 @@ function cellLabel(e) {
   if (e.type === "run") return `<span class="lb run${cx}">${tp}<span class="rw"> Run</span></span>`;
   if (e.type === "off") return `<span class="lb off${cx}">Off</span>`;
   if (e.type === "practice") return `<span class="lb${e.lift ? " lift" : ""}${cx}">${who}${tp || "TBA"}</span>`;
-  if (e.type === "travel") return `<span class="lb${cx}">Bus ${tm}</span>`;
+  if (e.type === "travel") return `<span class="lb${cx}">Leave ${tm}</span>`;
   return `<span class="lb${cx}">${tm} ${esc(shortName(e))}</span>`;
 }
 function render() {
