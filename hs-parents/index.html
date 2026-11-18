@@ -208,6 +208,25 @@ footer .home-link{display:block;margin-top:8px;color:inherit;font-weight:700}
 footer{background:var(--mat);color:var(--on-dark-2);text-align:center;font-size:14px;padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
 footer b{display:block;color:var(--on-dark);font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:6px}
 .pv{background:#fff6d6;border-bottom:1px solid #e9d38f;color:#5a4300;font-size:13.5px;padding:8px 16px;text-align:center}
+
+/* ---------- Desktop: use the screen, not a phone column ---------- */
+@media (min-width:900px){
+  .top-row,.jump-row,main{max-width:1120px}
+  .top{padding-left:0;padding-right:0}
+  .top-row{padding:0 32px}
+  .jump-row{padding:10px 32px}
+  main{padding:28px 32px 56px}
+  body.viewing main,body.viewing .jump-row,body.viewing .top-row{max-width:880px}
+  .topics{grid-template-columns:repeat(3,1fr);gap:16px}
+  .dates{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));overflow:visible;margin:12px 0 0;padding:0}
+  .date{flex:none}
+  .date.past{display:none}
+  .socard{display:grid;grid-template-columns:1fr 300px;column-gap:32px;align-items:center;padding:24px 28px}
+  .socard > *{grid-column:1}
+  .socard .progress{margin-bottom:0}
+  .socard #soBtn{grid-column:2;grid-row:1 / span 4}
+  .intro{padding:18px 24px}
+}
 </style>
 </head>
 <body>
@@ -956,6 +975,7 @@ Appointments scheduled during practice are not excused; emergencies are evaluate
     const strip = document.getElementById("dates");
     if (!strip) return;
     const t = new Date(); const today = t.getFullYear() + "-" + String(t.getMonth()+1).padStart(2,"0") + "-" + String(t.getDate()).padStart(2,"0");
+    strip.querySelectorAll(".date").forEach(c => c.classList.toggle("past", c.dataset.end < today));
     const next = [...strip.querySelectorAll(".date")].find(c => c.dataset.end >= today);
     if (next && next !== strip.firstElementChild) strip.scrollLeft = next.offsetLeft - strip.firstElementChild.offsetLeft;
   })();
