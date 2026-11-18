@@ -1,7 +1,8 @@
-# Returning varsity wrestlers for 2026-27, from the 2025-26 roster (seniors removed).
-# Update after wrestle-offs: add new wrestlers, remove anyone not returning.
+# 2026-27 HS boys roster, from the school's Winter Sports Sign-Up Sheet (Boys Wrestling - HS tab), Nov. 18, 2026.
+# Joe: nobody left off; no weight classes (not set). Returning wrestlers keep the short names they went by last season
+# (Gabe Ballard, Ben Schoeneberger, Zach Hartzell); new wrestlers use the sheet's names.
 # class = grade in 2026-27. stats_name = the name used in data/stats-2025-26.csv.
-# weight = the 2025-26 postseason weight, when known.
+# weight = optional; leave it off until Joe sets the lineup.
 # highlights = notable regular-season tournament finishes: [event, place, weight, when].
 #   Shown on roster cards and in profile Honors. Postseason finishes come from data/seasons.toml.
 #   2025-26 sources: King of the Mountain (Central Mountain HS, Dec. 2025) finals and place bouts in the
@@ -12,7 +13,6 @@ season = "2026–27"
 [[wrestler]]
 name = "Gabe Ballard"
 class = "Senior"
-weight = "152"
 photo = "portrait-ballard-2026"
 stats_name = "Gabe Ballard"
 highlights = [["King of the Mountain", "runner-up", "160", "Dec. 2025"], ["Mid-Winter Mayhem", "runner-up", "160", "Jan. 2026"]]
@@ -21,7 +21,6 @@ hall_name = "Gabriel Ballard"
 [[wrestler]]
 name = "Brayden Wenrich"
 class = "Junior"
-weight = "114"
 photo = "portrait-wenrich-2026"
 stats_name = "Brayden Wenrich"
 highlights = [["King of the Mountain", "Champion", "121", "Dec. 2025"], ["Mid-Winter Mayhem", "runner-up", "121", "Jan. 2026"]]
@@ -29,7 +28,6 @@ highlights = [["King of the Mountain", "Champion", "121", "Dec. 2025"], ["Mid-Wi
 [[wrestler]]
 name = "Carter Chlebove"
 class = "Junior"
-weight = "160"
 photo = "portrait-chlebove-2026"
 stats_name = "Carter Chlebove"
 highlights = [["King of the Mountain", "6th", "172", "Dec. 2025"], ["Mid-Winter Mayhem", "8th", "172", "Jan. 2026"]]
@@ -79,10 +77,6 @@ name = "Robert Wambold"
 class = "Senior"
 stats_name = "Robert Wambold"
 
-[[wrestler]]
-name = "Nick Harding"
-class = "Junior"
-stats_name = "Nick Harding"
 
 [[wrestler]]
 name = "Johan Santana"
@@ -100,3 +94,47 @@ class = "Junior"
 [[wrestler]]
 name = "Nour Zohir"
 class = "Junior"
+
+[[wrestler]]
+name = "Christopher Stumpf"
+class = "Senior"
+
+[[wrestler]]
+name = "Evan Roll"
+class = "Senior"
+
+[[wrestler]]
+name = "Ashton Shibla"
+class = "Senior"
+
+[[wrestler]]
+name = "Levi Gieske"
+class = "Junior"
+
+[[wrestler]]
+name = "John Heiter"
+class = "Junior"
+
+[[wrestler]]
+name = "Mason Derhammer"
+class = "Sophomore"
+
+[[wrestler]]
+name = "Jeyhis Kirk"
+class = "Sophomore"
+
+[[wrestler]]
+name = "Joshua Silfies"
+class = "Sophomore"
+
+[[wrestler]]
+name = "Yadiel Virella"
+class = "Sophomore"
+
+[[wrestler]]
+name = "Rocco Bara"
+class = "Freshman"
+
+[[wrestler]]
+name = "Logan Noe"
+class = "Freshman"

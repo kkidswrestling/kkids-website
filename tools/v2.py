@@ -224,7 +224,7 @@ def roster_carousel(R, roster):
         for w in roster)
     return f'''<div class="carousel" data-carousel>
   <div class="car-ctrl"><button type="button" class="car-btn" data-dir="-1" aria-label="Scroll left">‹</button><button type="button" class="car-btn" data-dir="1" aria-label="Scroll right">›</button></div>
-  <ul class="car-track" role="list" tabindex="0" aria-label="Returning wrestlers">{cards}</ul>
+  <ul class="car-track" role="list" tabindex="0" aria-label="Roster">{cards}</ul>
 </div>'''
 
 
@@ -305,7 +305,7 @@ def build_home():
 <section class="band dark" aria-labelledby="kids-title">
   <div class="wrap">
     <div class="sec-row"><h2 id="kids-title">Meet the Konkrete Kids</h2><a class="text-link" href="roster/">Full roster</a></div>
-    <p class="lede">Returning varsity wrestlers for {season}. Tap a wrestler for his record and honors.</p>
+    <p class="lede">The {season} high school roster. Tap a wrestler for his record and honors.</p>
     {roster_carousel(R, roster)}
   </div>
 </section>
@@ -348,15 +348,15 @@ def build_roster():
         f'<span class="wr-meta"><b>{e(w["name"])}</b>{e(w["class"])}{card_lines(w)}</span></a></li>'
         for w in roster)
     body = f"""
-{M.page_head(R, "Roster", f"Returning varsity wrestlers for {season}. The full lineup posts after wrestle-offs.", "team-mayhem-tight", "50% 22%", cls="fit-photo")}
+{M.page_head(R, "Roster", f"The {season} high school roster.", "team-mayhem-tight", "50% 22%", cls="fit-photo")}
 <section class="band">
   <div class="wrap">
     <ul class="roster-grid" role="list">{cards}</ul>
-    <p class="fine">Class is for the {season} season. Weights and varsity wins are from 2025–26. Junior high and youth rosters are not posted online.</p>
+    <p class="fine">Class is for the {season} season. Varsity wins are from 2025–26. Junior high and youth rosters are not posted online.</p>
   </div>
 </section>
 """
-    M.page("roster/index.html", "Roster", f"Northampton wrestling {season} returning varsity roster.", body, "roster/", og_image="team-mayhem")
+    M.page("roster/index.html", "Roster", f"Northampton wrestling {season} high school roster.", body, "roster/", og_image="team-mayhem")
     for w in roster:
         build_profile(w, season)
     return M.SITE["domain"] + "/roster/"
