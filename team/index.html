@@ -112,6 +112,15 @@ main{max-width:760px;margin:0 auto;padding:16px 16px 40px}
 .ev.comp .wh a{color:var(--blaze)}
 .ev.comp .nm{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:21px;letter-spacing:.015em;line-height:1.05;margin:2px 0}
 .ev.off .nm{color:var(--ink-2)}
+.ev.flag{border:2px dashed #e0675d;background:#fff6f5;padding:8px 10px;border-radius:10px}
+.ev.comp.flag{border:2px dashed #ff8a80;border-left:5px solid var(--blaze);background:var(--mat)}
+body.coach .ev.flag:not(.comp){margin:0;width:100%;padding:8px 10px;background:#fff6f5}
+.chip.hu{background:#fff;border:1.5px dashed #e0675d;color:#a8322a}
+.ev.comp .chip.hu,.nx.match .chip.hu{background:transparent;border-color:#ff8a80;color:#ffb3ab}
+.nx.flag{border:2px dashed #e0675d;background:#fff6f5}
+.nx.match.flag{border-color:#ff8a80;background:var(--mat)}
+.lb.flag{outline:1.5px dashed #e0675d;outline-offset:-1.5px}
+.legend i.flag{background:#fff6f5;border:1.5px dashed #e0675d}
 .ev.cx .nm,.ev.cx .tm{text-decoration:line-through;text-decoration-thickness:2px}
 .ev.cx{opacity:.8}
 .chips{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 2px}
@@ -392,6 +401,7 @@ function chips(e, opts = {}) {
   const c = [];
   if (e.cancelled) c.push('<span class="chip cx">Canceled</span>');
   else if (recent(e)) c.push('<span class="chip upd">Updated</span>');
+  if (e.flag && !e.cancelled) c.push('<span class="chip hu">Heads up</span>');
   if (e.team !== "all") c.push(`<span class="chip team">${e.team === "jv" ? "JV" : "Varsity"}</span>`);
   if (COMP.has(e.type)) { if (!opts.noKind) c.push(`<span class="chip k-comp">${esc(typeLabel(e.type))}</span>`); if (e.home && e.type !== "tournament") c.push('<span class="chip k-home">Home</span>'); }
   else if (e.type === "run") c.push('<span class="chip k-run">Run</span>');
@@ -404,7 +414,7 @@ function whereHtml(e) {
   return `<div class="wh">${esc(e.where)}${away ? ` · <a href="${mapUrl(e.where)}" target="_blank" rel="noopener" data-stop>Directions</a>` : ""}</div>`;
 }
 function evHtml(e) {
-  const cls = ["ev", COMP.has(e.type) ? "comp" : "", e.type === "off" ? "off" : "", e.cancelled ? "cx" : ""].join(" ").trim();
+  const cls = ["ev", COMP.has(e.type) ? "comp" : "", e.type === "off" ? "off" : "", e.cancelled ? "cx" : "", e.flag && !e.cancelled ? "flag" : ""].join(" ").trim();
   const time = e.type === "off" ? "" : `<div class="tm">${esc(range(e.start, e.end))}<span class="edit-hint">Edit</span></div>`;
   return `<div class="${cls}" data-id="${esc(e.id)}"${S.coach ? ' role="button" tabindex="0"' : ""}>
     ${time}<div class="nm">${esc(nameOf(e))}${e.type === "off" ? '<span class="edit-hint">Edit</span>' : ""}</div>${chips(e)}${whereHtml(e)}${e.note ? `<div class="note">${esc(e.note)}</div>` : ""}</div>`;
@@ -415,7 +425,7 @@ function nextCards() {
   const nx = list[0]; const nm = list.find(e => COMP.has(e.type));
   const card = (e, label, match) => {
     const d = pdate(e.date), n = daysAway(d);
-    return `<div class="nx${match ? " match" : ""}">
+    return `<div class="nx${match ? " match" : ""}${e.flag ? " flag" : ""}">
       <div class="lbl"><span>${label}</span>${match && n > 0 ? `<span class="nx-in">In ${n} ${n === 1 ? "day" : "days"}</span>` : ""}</div>
       <div class="when">${esc(rel(d))}${e.start ? " · " + esc(range(e.start, e.end)) : ""}</div>
       <h2>${esc(nameOf(e))}</h2>
@@ -484,7 +494,7 @@ function monthView() {
   return `<div class="mon"><div class="mon-h"><button type="button" id="prevM" aria-label="Previous month">‹</button><h3>${MONL[mo]} ${y}</h3><button type="button" id="nextM" aria-label="Next month">›</button></div>
     <div class="grid${sun ? "" : " six"}">${cells}</div>
     ${sun ? "" : '<p class="helper" style="margin:8px 2px 0">No Sundays this month, so they’re hidden.</p>'}
-    <div class="legend"><span><i></i>Practice</span><span><i class="lift"></i>Practice + Lift</span><span><i class="run"></i>Morning run</span><span><i class="comp"></i>Match</span>${S.team === "all" ? "<span>V = Varsity only · JV = JV only</span>" : ""}<span>vs = home · @ = away</span><span>Tap a day for details</span></div></div>${panel}`;
+    <div class="legend"><span><i></i>Practice</span><span><i class="lift"></i>Practice + Lift</span><span><i class="run"></i>Morning run</span><span><i class="comp"></i>Match</span><span><i class="flag"></i>Heads up: different than usual</span>${S.team === "all" ? "<span>V = Varsity only · JV = JV only</span>" : ""}<span>vs = home · @ = away</span><span>Tap a day for details</span></div></div>${panel}`;
 }
 const SHORT = {"Notre Dame-Green Pond": "ND-GP", "Pocono Mountain West": "PM West", "Bethlehem Catholic": "Becahi", "Bethlehem Liberty": "Liberty",
   "Bethlehem Freedom": "Freedom", "King of the Mountain": "KOTM", "Mid-Winter Mayhem": "Mayhem", "Parkland Winter Duals": "Parkland", "Walsh Ironman": "Ironman",
@@ -503,7 +513,7 @@ const apShort = hm => hm ? (+hm.split(":")[0] >= 12 ? "p" : "a") : "";
 function cellLabel(e) {
   const who = S.team === "all" && e.team !== "all" && !(COMP.has(e.type) && e.team === "varsity") ? (e.team === "jv" ? "JV " : "V ") : "";
   const tm = e.start ? tShort(e.start) + apShort(e.start) : "";
-  const cx = e.cancelled ? " cx" : ""; const tp = e.start ? tShort(e.start) : "";
+  const cx = (e.cancelled ? " cx" : "") + (e.flag && !e.cancelled ? " flag" : ""); const tp = e.start ? tShort(e.start) : "";
   if (COMP.has(e.type)) return `<span class="lb comp${cx}"><b>${e.type === "dual" ? (e.home ? "vs " : "@ ") : ""}${soft(shortName(e))}</b><i>${who}${tm || "TBA"}</i></span>`;
   if (e.type === "run") return `<span class="lb run${cx}">${tp}<span class="rw"> Run</span></span>`;
   if (e.type === "off") return `<span class="lb off${cx}">Off</span>`;
@@ -668,6 +678,7 @@ function openEditor(e) {
     <datalist id="places">${[...new Set(S.data.events.map(e => e.where).filter(Boolean))].map(w => `<option value="${esc(w)}">`).join("")}</datalist>
     <div class="f"><label for="fBus">Bus leaves</label><input id="fBus" type="time" value="${esc(x.bus || "")}"></div>
     <div class="f"><label for="fNote">Note for athletes</label><input id="fNote" type="text" value="${esc(x.note)}" placeholder="e.g. Bring singlets and both shoes"></div>
+    <label class="check row-gap"><input type="checkbox" id="fHu"${x.flag ? " checked" : ""}> Highlight as different than usual</label>
     ${isNew ? "" : `<label class="check row-gap"><input type="checkbox" id="fFlag" checked> Show an “Updated” tag to athletes</label>`}
     ${isNew ? "" : '<div class="split row-gap"><button class="btn ghost" type="button" id="fDup">Copy to another day</button><button class="btn danger" type="button" id="fDel">Delete</button></div>'}
     <div class="savebar"><button class="btn ghost" type="button" id="fCancel">Close</button><button class="btn" type="button" id="fSave">${isNew ? "Add to schedule" : "Save change"}</button></div>`);
@@ -686,7 +697,7 @@ function openEditor(e) {
     const ty = $("#fType").value;
     return {...x, type: ty, title: $("#fTitle").value.trim() || (ty === "practice" ? "Practice" : ""), lift: ty === "practice" && $("#fLift").checked,
       home: (ty === "dual" || ty === "scrimmage") && $("#fHome").checked, team, date: $("#fDate").value, start: $("#fStart").value || null, end: $("#fEnd").value || null,
-      where: $("#fWhere").value.trim(), bus: $("#fBus").value || "", note: $("#fNote").value.trim(), cancelled: !isNew && $("#fCx").checked};
+      where: $("#fWhere").value.trim(), bus: $("#fBus").value || "", note: $("#fNote").value.trim(), cancelled: !isNew && $("#fCx").checked, flag: $("#fHu").checked};
   };
   $("#fSave").onclick = async () => {
     const y = read();
@@ -717,7 +728,7 @@ function fillNew(y) {
   $("#fType").value = y.type; $("#fType").onchange();
   $("#fTitle").value = y.title === "Practice" ? "" : y.title; $("#fLift").checked = y.lift; $("#fHome").checked = y.home;
   $$("#fTeam button").forEach(b => { if (b.dataset.v === y.team) b.click(); });
-  $("#fStart").value = y.start || ""; $("#fEnd").value = y.end || ""; $("#fWhere").value = y.where; $("#fBus").value = y.bus || ""; $("#fNote").value = y.note;
+  $("#fStart").value = y.start || ""; $("#fEnd").value = y.end || ""; $("#fWhere").value = y.where; $("#fBus").value = y.bus || ""; $("#fNote").value = y.note; $("#fHu").checked = !!y.flag;
   $("#fDate").value = ""; $(".sheet h3").textContent = "Copy to another day"; $(".sheet .lead").textContent = "Same details. Pick the new date.";
   $("#fDate").focus();
 }
