@@ -2,14 +2,44 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HS Parents | Northampton Wrestling</title>
+<meta name="description" content="Information for Northampton high school wrestling families.">
+<link rel="canonical" href="https://www.northamptonwrestling.org/hs-parents/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Northampton Wrestling">
+<meta property="og:title" content="HS Parents | Northampton Wrestling">
+<meta property="og:description" content="Information for Northampton high school wrestling families.">
+<meta property="og:url" content="https://www.northamptonwrestling.org/hs-parents/">
+<meta property="og:image" content="https://www.northamptonwrestling.org/assets/img/photos/hero-circle.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="857">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#141414">
-<title>HS Parents · Northampton Wrestling</title>
+<link rel="icon" href="../assets/img/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Wrestling">
+<link rel="preload" href="../assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css?v=6a057346">
+<meta name="robots" content="noindex">
 <style>
+.hsp{font-size:16px;line-height:1.5}
+.hsp h1,.hsp h2,.hsp h3,.hsp h4{font-family:inherit;text-transform:none;letter-spacing:normal;line-height:1.2;margin:0;font-weight:700}
+.hsp p{margin:0 0 .8em}
+.hsp a{text-underline-offset:auto}
+.hsp table{font-size:inherit}
+.hsp th,.hsp td{padding:8px 6px;white-space:normal;border-bottom:1px solid var(--line)}
+.hsp thead th{position:static;background:none;color:inherit;font-size:inherit}
+.hsp tbody tr:hover{background:none}
+.hsp details{border:0;padding:0}
+.hsp summary{padding:0;font-weight:inherit}
+.hsp summary:hover{color:inherit}
 @font-face{font-family:"Anton";src:url("../assets/fonts/anton-400.woff2") format("woff2");font-display:swap}
 @font-face{font-family:"Inter";src:url("../assets/fonts/inter-var.woff2") format("woff2");font-weight:100 900;font-display:swap}
-:root{
+.hsp{
   --mat:#141414;--slab:#1f2022;--slab-2:#2a2b2e;--paper:#fff;--bg:#f4f3f0;
   --blaze:#f26a1b;--blaze-ink:#9c3d08;--blaze-soft:#fff1e7;--ink:#141414;--ink-2:#5c5a55;--on-dark:#f3f1ec;--on-dark-2:#c9c6bf;
   --line:#dedbd5;--line-dark:#3a3b3f;--red:#b3261e;--red-soft:#fdecea;--green:#156c4d;--green-soft:#e6f4ec;
@@ -17,231 +47,218 @@
   --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --r:14px;--gap:16px;
 }
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--body)}
-a{color:var(--blaze-ink)}
-button{font:inherit;color:inherit;cursor:pointer}
-:focus-visible{outline:3px solid var(--blaze);outline-offset:2px;border-radius:4px}
-.disp{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1}
-
-/* Header */
-.top{background:var(--mat);color:var(--on-dark);padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top))}
-.top-row{max-width:728px;margin:0 auto;display:flex;align-items:center;gap:12px}
-.top img{width:44px;height:44px;flex:none}
-.top b{display:block;font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:.03em;text-transform:uppercase;line-height:1.05}
-.top span{display:block;font-size:13px;color:var(--on-dark-2)}
-.jump{position:sticky;top:0;z-index:20;background:var(--mat);border-top:1px solid var(--line-dark);box-shadow:0 2px 10px rgba(0,0,0,.18)}
-.jump-row{max-width:728px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 16px;scrollbar-width:none}
-.jump-row::-webkit-scrollbar{display:none}
-.jump a{flex:none;color:var(--on-dark);text-decoration:none;font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px;border:1px solid var(--line-dark);background:var(--slab)}
-.jump a:active{background:var(--slab-2)}
-
-/* Layout */
-main{max-width:728px;margin:0 auto;padding:20px 16px 40px}
-section{margin-top:36px}
-section:first-child{margin-top:0}
-h2{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.02em;font-size:30px;line-height:1.05;margin:0 0 6px}
-h3{font-size:18px;line-height:1.3;margin:0 0 10px}
-.lead{color:var(--ink-2);margin:0 0 16px}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-top:12px}
-.card > :first-child{margin-top:0}
-.card > :last-child{margin-bottom:0}
-.kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blaze-ink);margin-bottom:6px}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:50px;padding:12px 18px;border-radius:12px;border:0;background:var(--blaze);color:#141414;font-weight:800;font-size:16px;text-decoration:none;text-align:center}
-.btn.dark{background:var(--ink);color:var(--on-dark)}
-.btn.ghost{background:transparent;border:2px solid var(--line);color:var(--ink)}
-.btn[aria-disabled="true"]{background:#e9e6e1;color:#8a877f;pointer-events:none}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.fine{font-size:14px;color:var(--ink-2)}
-.note{font-size:14px;color:var(--ink-2);margin:10px 0 0}
-
-/* Intro + dates */
-.intro{background:var(--mat);color:var(--on-dark);border-color:var(--mat)}
-.intro p{margin:0;color:var(--on-dark-2)}
-.intro strong{color:var(--on-dark)}
-.dates{display:flex;gap:10px;overflow-x:auto;margin:12px -16px 0;padding:0 16px 4px;scroll-snap-type:x mandatory;scroll-padding:0 16px;scrollbar-width:none}
-.dates::-webkit-scrollbar{display:none}
-.date{flex:0 0 156px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--blaze);border-radius:12px;padding:12px}
-.date .d{font-family:var(--display);font-size:22px;line-height:1;text-transform:uppercase}
-.date .w{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
-.forms{list-style:none;margin:0;padding:0}
-.forms li{padding:14px 0;border-top:1px solid var(--line)}
-.forms li:first-child{padding-top:0;border-top:0}
-.forms li:last-child{padding-bottom:0}
-.forms b{display:block;font-size:17px}
-.forms span{display:block;margin:4px 0 12px;color:var(--ink-2);line-height:1.45}
-.callout{margin-top:16px;padding:14px 16px;border-radius:12px;background:#fff1e6;border:2px solid var(--blaze)}
-.callout .k{display:block;font-family:var(--display);font-size:22px;line-height:1.1;text-transform:uppercase;color:var(--blaze-ink);margin-bottom:6px}
-.callout p{margin:0}
-.date p{margin:8px 0 0;font-size:14px;line-height:1.35}
-
-/* Checklist */
-.progress{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-.progress .bar{flex:1;height:10px;background:#ece9e4;border-radius:99px;overflow:hidden}
-.progress .bar i{display:block;height:100%;width:0;background:var(--blaze);transition:width .25s}
-.progress b{font-size:14px;white-space:nowrap}
-.checks{list-style:none;margin:0;padding:0}
-.checks li{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line)}
-.checks li:first-child{border-top:0}
-.checks input{appearance:none;-webkit-appearance:none;flex:none;width:26px;height:26px;margin:0;border:2px solid #b9b5ad;border-radius:8px;background:#fff;display:grid;place-items:center;cursor:pointer}
-.checks input:checked{background:var(--green);border-color:var(--green)}
-.checks input:checked::after{content:"";width:7px;height:13px;border:solid #fff;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg)}
-.checks label{flex:1;min-width:0;cursor:pointer}
-.checks .t{display:block;font-weight:700;line-height:1.35}
-.checks .s{display:block;font-size:14px;color:var(--ink-2);margin-top:2px}
-.checks li.done .t{color:var(--ink-2);text-decoration:line-through}
-.chip{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.04em;padding:3px 8px;border-radius:99px;background:var(--blaze-soft);color:var(--blaze-ink);margin-top:6px}
-.chip.soon{background:#ecebe8;color:var(--ink-2)}
-.checks a.go{flex:none;align-self:center;font-weight:800;font-size:14px;text-decoration:none;color:var(--blaze-ink);padding:8px 0 8px 6px}
-.linkbtn{background:none;border:0;padding:0;font-weight:700;color:var(--ink-2);text-decoration:underline;font-size:14px}
-
-/* Family list */
-.steps-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--on-dark);display:grid;place-items:center;font-weight:800;font-size:15px}
-.steps-head h3{margin:0}
-.fam{list-style:none;margin:0;padding:0;counter-reset:f}
-.famgroups{counter-reset:f}
-.famgroups .fam{counter-reset:none}
-.famhead{margin:20px 0 2px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blaze-ink)}
-.famgroups .famhead:first-child{margin-top:8px}
-.fam li{position:relative;padding:12px 0 12px 40px;border-top:1px solid var(--line);counter-increment:f}
-.fam li:first-child{border-top:0}
-.fam li::before{content:counter(f);position:absolute;left:0;top:12px;width:26px;height:26px;border-radius:8px;background:var(--blaze-soft);color:var(--blaze-ink);font-weight:800;font-size:14px;display:grid;place-items:center}
-.fam b{display:block;line-height:1.35}
-.fam span{display:block;color:var(--ink-2);font-size:15px;margin-top:2px}
-.pdf{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:7px 12px;border-radius:99px;background:var(--ink);color:var(--on-dark);font-size:13px;font-weight:800;text-decoration:none}
-.pdf::before{content:"";width:12px;height:14px;background:var(--blaze);clip-path:polygon(0 0,70% 0,100% 30%,100% 100%,0 100%)}
-
-/* Quiz */
-.q{border-top:1px solid var(--line);padding:16px 0}
-.q:first-of-type{border-top:0;padding-top:4px}
-.q p.p{font-weight:700;margin:0 0 10px;line-height:1.35}
-.q p.p small{display:block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-bottom:4px}
-.opts{display:grid;gap:8px}
-.opt{display:block;width:100%;text-align:left;min-height:48px;padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:#fff;font-size:15px;line-height:1.35}
-.opt:active{background:#f7f6f3}
-.opt.wrong{border-color:#f0b4ae;background:var(--red-soft);color:var(--red);pointer-events:none}
-.opt.right{border-color:var(--green);background:var(--green-soft);color:var(--green);font-weight:700}
-.q.done .opt:not(.right){opacity:.45;pointer-events:none}
-.fb{margin:10px 0 0;font-size:15px;line-height:1.4;padding:10px 12px;border-radius:10px}
-.fb.ok{background:var(--green-soft);color:#0f4f39}
-.fb.no{background:var(--red-soft);color:#8a1d17}
-.volcheck{display:flex;gap:10px;align-items:center;margin-top:14px;padding:14px;border:2px solid var(--line);border-radius:12px;font-weight:700;cursor:pointer}
-.volcheck input{width:22px;height:22px;accent-color:var(--blaze);flex:none}
-.socard{display:block;text-decoration:none;color:inherit;background:#fff1e6;border:2px solid var(--blaze);border-radius:var(--r);padding:18px;margin-bottom:12px}
-.socard > b{display:block;font-family:var(--display);font-size:26px;line-height:1.1;text-transform:uppercase;margin:2px 0 6px}
-.socard .sotext{display:block;color:var(--ink-2);margin-bottom:12px}
-.socard .progress{margin-bottom:14px}
-.sosmall{display:flex;gap:8px;align-items:center;text-decoration:none;color:var(--green);background:var(--green-soft);border-radius:12px;padding:12px 14px;margin-bottom:12px;font-weight:700;font-size:15px}
-.sosmall u{margin-left:auto;color:var(--ink-2);font-weight:700}
-.sheet{position:fixed;inset:0;z-index:60;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
-[hidden]{display:none!important}
-.sheet-top{position:sticky;top:0;z-index:2;background:var(--mat);color:#fff}
-.sheet-row{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px}
-.sheet-row .kicker{display:block;color:var(--blaze);margin:0}
-.sheet-row b{font-family:var(--display);font-size:22px;text-transform:uppercase;letter-spacing:.01em}
-.sheet-x{color:#fff;font-weight:800;text-decoration:none;border:2px solid #3a3b3f;border-radius:99px;padding:8px 14px;font-size:14px}
-.sheet-body{max-width:760px;margin:0 auto;padding:16px 16px 48px}
-.sheet-body #checklist .lead{margin-top:4px}
-.sodone{display:flex;flex-direction:column;gap:6px;background:var(--green-soft);border:2px solid var(--green);border-radius:var(--r);padding:18px;margin-bottom:12px}
-.sodone b{font-size:20px;color:var(--green)}
-.sodone .btn{margin-top:8px}
+.hsp *,.hsp *::before,.hsp *::after{box-sizing:border-box}
+.hsp{-webkit-text-size-adjust:100%}
+.hsp{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--body)}
+.hsp a{color:var(--blaze-ink)}
+.hsp button{font:inherit;color:inherit;cursor:pointer}
+.hsp :focus-visible{outline:3px solid var(--blaze);outline-offset:2px;border-radius:4px}
+.hsp .disp{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:1}
+.hsp .top{background:var(--mat);color:var(--on-dark);padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top))}
+.hsp .top-row{max-width:728px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.hsp .top img{width:44px;height:44px;flex:none}
+.hsp .top b{display:block;font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:.03em;text-transform:uppercase;line-height:1.05}
+.hsp .top span{display:block;font-size:13px;color:var(--on-dark-2)}
+.hsp .jump{position:sticky;top:0;z-index:20;background:var(--mat);border-top:1px solid var(--line-dark);box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.hsp .jump-row{max-width:728px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 16px;scrollbar-width:none}
+.hsp .jump-row::-webkit-scrollbar{display:none}
+.hsp .jump a{flex:none;color:var(--on-dark);text-decoration:none;font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px;border:1px solid var(--line-dark);background:var(--slab)}
+.hsp .jump a:active{background:var(--slab-2)}
+.hsp .hsp-main{max-width:728px;margin:0 auto;padding:20px 16px 40px}
+.hsp section{margin-top:36px}
+.hsp section:first-child{margin-top:0}
+.hsp h2{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.02em;font-size:30px;line-height:1.05;margin:0 0 6px}
+.hsp h3{font-size:18px;line-height:1.3;margin:0 0 10px}
+.hsp .lead{color:var(--ink-2);margin:0 0 16px}
+.hsp .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-top:12px}
+.hsp .card > :first-child{margin-top:0}
+.hsp .card > :last-child{margin-bottom:0}
+.hsp .kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blaze-ink);margin-bottom:6px}
+.hsp .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:50px;padding:12px 18px;border-radius:12px;border:0;background:var(--blaze);color:#141414;font-weight:800;font-size:16px;text-decoration:none;text-align:center}
+.hsp .btn.dark{background:var(--ink);color:var(--on-dark)}
+.hsp .btn.ghost{background:transparent;border:2px solid var(--line);color:var(--ink)}
+.hsp .btn[aria-disabled="true"]{background:#e9e6e1;color:#8a877f;pointer-events:none}
+.hsp .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hsp .fine{font-size:14px;color:var(--ink-2)}
+.hsp .note{font-size:14px;color:var(--ink-2);margin:10px 0 0}
+.hsp .intro{background:var(--mat);color:var(--on-dark);border-color:var(--mat)}
+.hsp .intro p{margin:0;color:var(--on-dark-2)}
+.hsp .intro strong{color:var(--on-dark)}
+.hsp .dates{display:flex;gap:10px;overflow-x:auto;margin:12px -16px 0;padding:0 16px 4px;scroll-snap-type:x mandatory;scroll-padding:0 16px;scrollbar-width:none}
+.hsp .dates::-webkit-scrollbar{display:none}
+.hsp .date{flex:0 0 156px;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--blaze);border-radius:12px;padding:12px}
+.hsp .date .d{font-family:var(--display);font-size:22px;line-height:1;text-transform:uppercase}
+.hsp .date .w{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
+.hsp .forms{list-style:none;margin:0;padding:0}
+.hsp .forms li{padding:14px 0;border-top:1px solid var(--line)}
+.hsp .forms li:first-child{padding-top:0;border-top:0}
+.hsp .forms li:last-child{padding-bottom:0}
+.hsp .forms b{display:block;font-size:17px}
+.hsp .forms span{display:block;margin:4px 0 12px;color:var(--ink-2);line-height:1.45}
+.hsp .callout{margin-top:16px;padding:14px 16px;border-radius:12px;background:#fff1e6;border:2px solid var(--blaze)}
+.hsp .callout .k{display:block;font-family:var(--display);font-size:22px;line-height:1.1;text-transform:uppercase;color:var(--blaze-ink);margin-bottom:6px}
+.hsp .callout p{margin:0}
+.hsp .date p{margin:8px 0 0;font-size:14px;line-height:1.35}
+.hsp .progress{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.hsp .progress .bar{flex:1;height:10px;background:#ece9e4;border-radius:99px;overflow:hidden}
+.hsp .progress .bar i{display:block;height:100%;width:0;background:var(--blaze);transition:width .25s}
+.hsp .progress b{font-size:14px;white-space:nowrap}
+.hsp .checks{list-style:none;margin:0;padding:0}
+.hsp .checks li{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line)}
+.hsp .checks li:first-child{border-top:0}
+.hsp .checks input{appearance:none;-webkit-appearance:none;flex:none;width:26px;height:26px;margin:0;border:2px solid #b9b5ad;border-radius:8px;background:#fff;display:grid;place-items:center;cursor:pointer}
+.hsp .checks input:checked{background:var(--green);border-color:var(--green)}
+.hsp .checks input:checked::after{content:"";width:7px;height:13px;border:solid #fff;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg)}
+.hsp .checks label{flex:1;min-width:0;cursor:pointer}
+.hsp .checks .t{display:block;font-weight:700;line-height:1.35}
+.hsp .checks .s{display:block;font-size:14px;color:var(--ink-2);margin-top:2px}
+.hsp .checks li.done .t{color:var(--ink-2);text-decoration:line-through}
+.hsp .chip{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.04em;padding:3px 8px;border-radius:99px;background:var(--blaze-soft);color:var(--blaze-ink);margin-top:6px}
+.hsp .chip.soon{background:#ecebe8;color:var(--ink-2)}
+.hsp .checks a.go{flex:none;align-self:center;font-weight:800;font-size:14px;text-decoration:none;color:var(--blaze-ink);padding:8px 0 8px 6px}
+.hsp .linkbtn{background:none;border:0;padding:0;font-weight:700;color:var(--ink-2);text-decoration:underline;font-size:14px}
+.hsp .steps-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.hsp .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--on-dark);display:grid;place-items:center;font-weight:800;font-size:15px}
+.hsp .steps-head h3{margin:0}
+.hsp .fam{list-style:none;margin:0;padding:0;counter-reset:f}
+.hsp .famgroups{counter-reset:f}
+.hsp .famgroups .fam{counter-reset:none}
+.hsp .famhead{margin:20px 0 2px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blaze-ink)}
+.hsp .famgroups .famhead:first-child{margin-top:8px}
+.hsp .fam li{position:relative;padding:12px 0 12px 40px;border-top:1px solid var(--line);counter-increment:f}
+.hsp .fam li:first-child{border-top:0}
+.hsp .fam li::before{content:counter(f);position:absolute;left:0;top:12px;width:26px;height:26px;border-radius:8px;background:var(--blaze-soft);color:var(--blaze-ink);font-weight:800;font-size:14px;display:grid;place-items:center}
+.hsp .fam b{display:block;line-height:1.35}
+.hsp .fam span{display:block;color:var(--ink-2);font-size:15px;margin-top:2px}
+.hsp .pdf{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:7px 12px;border-radius:99px;background:var(--ink);color:var(--on-dark);font-size:13px;font-weight:800;text-decoration:none}
+.hsp .pdf::before{content:"";width:12px;height:14px;background:var(--blaze);clip-path:polygon(0 0,70% 0,100% 30%,100% 100%,0 100%)}
+.hsp .q{border-top:1px solid var(--line);padding:16px 0}
+.hsp .q:first-of-type{border-top:0;padding-top:4px}
+.hsp .q p.p{font-weight:700;margin:0 0 10px;line-height:1.35}
+.hsp .q p.p small{display:block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-bottom:4px}
+.hsp .opts{display:grid;gap:8px}
+.hsp .opt{display:block;width:100%;text-align:left;min-height:48px;padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:#fff;font-size:15px;line-height:1.35}
+.hsp .opt:active{background:#f7f6f3}
+.hsp .opt.wrong{border-color:#f0b4ae;background:var(--red-soft);color:var(--red);pointer-events:none}
+.hsp .opt.right{border-color:var(--green);background:var(--green-soft);color:var(--green);font-weight:700}
+.hsp .q.done .opt:not(.right){opacity:.45;pointer-events:none}
+.hsp .fb{margin:10px 0 0;font-size:15px;line-height:1.4;padding:10px 12px;border-radius:10px}
+.hsp .fb.ok{background:var(--green-soft);color:#0f4f39}
+.hsp .fb.no{background:var(--red-soft);color:#8a1d17}
+.hsp .volcheck{display:flex;gap:10px;align-items:center;margin-top:14px;padding:14px;border:2px solid var(--line);border-radius:12px;font-weight:700;cursor:pointer}
+.hsp .volcheck input{width:22px;height:22px;accent-color:var(--blaze);flex:none}
+.hsp .socard{display:block;text-decoration:none;color:inherit;background:#fff1e6;border:2px solid var(--blaze);border-radius:var(--r);padding:18px;margin-bottom:12px}
+.hsp .socard > b{display:block;font-family:var(--display);font-size:26px;line-height:1.1;text-transform:uppercase;margin:2px 0 6px}
+.hsp .socard .sotext{display:block;color:var(--ink-2);margin-bottom:12px}
+.hsp .socard .progress{margin-bottom:14px}
+.hsp .sosmall{display:flex;gap:8px;align-items:center;text-decoration:none;color:var(--green);background:var(--green-soft);border-radius:12px;padding:12px 14px;margin-bottom:12px;font-weight:700;font-size:15px}
+.hsp .sosmall u{margin-left:auto;color:var(--ink-2);font-weight:700}
+.hsp .sheet{position:fixed;inset:0;z-index:60;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.hsp [hidden]{display:none!important}
+.hsp .sheet-top{position:sticky;top:0;z-index:2;background:var(--mat);color:#fff}
+.hsp .sheet-row{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px}
+.hsp .sheet-row .kicker{display:block;color:var(--blaze);margin:0}
+.hsp .sheet-row b{font-family:var(--display);font-size:22px;text-transform:uppercase;letter-spacing:.01em}
+.hsp .sheet-x{color:#fff;font-weight:800;text-decoration:none;border:2px solid #3a3b3f;border-radius:99px;padding:8px 14px;font-size:14px}
+.hsp .sheet-body{max-width:760px;margin:0 auto;padding:16px 16px 48px}
+.hsp .sheet-body #checklist .lead{margin-top:4px}
+.hsp .sodone{display:flex;flex-direction:column;gap:6px;background:var(--green-soft);border:2px solid var(--green);border-radius:var(--r);padding:18px;margin-bottom:12px}
+.hsp .sodone b{font-size:20px;color:var(--green)}
+.hsp .sodone .btn{margin-top:8px}
 body.sheet-open{overflow:hidden}
-.homehead{margin:22px 0 2px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
-.topics{display:grid;grid-template-columns:1fr;gap:12px;margin-top:10px}
-@media (min-width:640px){.topics{grid-template-columns:1fr 1fr}}
-.topic-card{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:inherit;background:var(--paper);border:1px solid var(--line);border-top:6px solid var(--blaze);border-radius:var(--r);padding:16px 18px}
-.topic-card:nth-child(even){border-top-color:var(--mat)}
-.topic-card b{font-family:var(--display);font-size:24px;line-height:1.1;text-transform:uppercase;letter-spacing:.01em}
-.topic-card span{color:var(--ink-2);line-height:1.45}
-.topic-card em{font-style:normal;font-weight:800;font-size:14px;color:var(--blaze-ink);margin-top:2px}
-.topic-card:active{transform:translateY(1px)}
-.viewbar .jump-row{align-items:center}
-.viewbar #viewTitle{color:var(--on-dark);font-weight:800;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-body:not(.viewing) .topic{display:none}
-body.viewing #home{display:none}
-body.viewing .topic:not(.active){display:none}
-body.viewing .topic.active{margin-top:8px}
-footer .home-link{display:block;margin-top:8px;color:inherit;font-weight:700}
-.qscore{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:14px;color:var(--ink-2);margin-bottom:4px}
-#qcount{white-space:nowrap;flex:none;margin-left:12px}
-.qdone{background:var(--green-soft);color:#0f4f39;border-radius:12px;padding:12px 14px;font-weight:700;margin-top:4px}
-
-/* Full code */
-.code.full{margin-top:18px;padding-top:16px;border-top:2px solid var(--line)}
-.code.full > h3{margin:0 0 4px}
-.sub{margin:0 0 8px}
-.code details{border-top:1px solid var(--line)}
-.code details:first-of-type{border-top:0}
-.code summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;font-weight:800;cursor:pointer}
-.code summary::-webkit-details-marker{display:none}
-.code summary::after{content:"";flex:none;width:10px;height:10px;border:solid var(--ink-2);border-width:0 2.5px 2.5px 0;transform:rotate(45deg);margin-right:4px;transition:transform .2s}
-.code details[open] summary::after{transform:rotate(-135deg)}
-.code .body{padding:0 0 14px;font-size:15px}
-.code .body h3{font-size:16px;margin:16px 0 6px}
-.code .body p{margin:0 0 10px}
-.code .body ol{margin:0 0 10px;padding-left:28px}
-.code .body li{margin:0 0 8px}
-.code .body ol ol{margin-top:6px;list-style-type:lower-alpha}
-
-/* Tables + lists */
-.tbl{width:100%;border-collapse:collapse;font-size:15px}
-.tbl th,.tbl td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-.tbl th{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
-.tbl td.n,.tbl th.n{text-align:right;font-variant-numeric:tabular-nums}
-.tbl tr:last-child td{border-bottom:0}
-.tbl .nw{white-space:nowrap}
-.dots{margin:0;padding-left:20px}
-.dots li{margin:0 0 8px}
-.dots li:last-child{margin-bottom:0}
-.olist{margin:0 0 4px;padding-left:22px}
-.olist li{margin:0 0 8px}
-.gear2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.gear2 .kicker{display:block;white-space:nowrap;margin-bottom:8px}
-.times{list-style:none;margin:0 0 14px;padding:0}
-.times li{padding:10px 0;border-top:1px solid var(--line)}
-.times li:first-child{border-top:0;padding-top:0}
-.times b{display:block}
-.times span{display:block;color:var(--ink-2)}
-
-footer{background:var(--mat);color:var(--on-dark-2);text-align:center;font-size:14px;padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
-footer b{display:block;color:var(--on-dark);font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:6px}
-.pv{background:#fff6d6;border-bottom:1px solid #e9d38f;color:#5a4300;font-size:13.5px;padding:8px 16px;text-align:center}
-
-/* ---------- Desktop: use the screen, not a phone column ---------- */
-@media (min-width:900px){
-  .top-row,.jump-row,main{max-width:1120px}
-  .top{padding-left:0;padding-right:0}
-  .top-row{padding:0 32px}
-  .jump-row{padding:10px 32px}
-  main{padding:28px 32px 56px}
-  body.viewing main,body.viewing .jump-row,body.viewing .top-row{max-width:880px}
-  .topics{grid-template-columns:repeat(3,1fr);gap:16px}
-  .dates{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));overflow:visible;margin:12px 0 0;padding:0}
-  .date{flex:none}
-  .date.past{display:none}
-  .socard{display:grid;grid-template-columns:1fr 300px;column-gap:32px;align-items:center;padding:24px 28px}
-  .socard > *{grid-column:1}
-  .socard .progress{margin-bottom:0}
-  .socard #soBtn{grid-column:2;grid-row:1 / span 4}
-  .intro{padding:18px 24px}
-}
+.hsp .homehead{margin:22px 0 2px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.hsp .topics{display:grid;grid-template-columns:1fr;gap:12px;margin-top:10px}
+@media (min-width:640px){.hsp .topics{grid-template-columns:1fr 1fr}}
+.hsp .topic-card{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:inherit;background:var(--paper);border:1px solid var(--line);border-top:6px solid var(--blaze);border-radius:var(--r);padding:16px 18px}
+.hsp .topic-card:nth-child(even){border-top-color:var(--mat)}
+.hsp .topic-card b{font-family:var(--display);font-size:24px;line-height:1.1;text-transform:uppercase;letter-spacing:.01em}
+.hsp .topic-card span{color:var(--ink-2);line-height:1.45}
+.hsp .topic-card em{font-style:normal;font-weight:800;font-size:14px;color:var(--blaze-ink);margin-top:2px}
+.hsp .topic-card:active{transform:translateY(1px)}
+.hsp .viewbar .jump-row{align-items:center}
+.hsp .viewbar #viewTitle{color:var(--on-dark);font-weight:800;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body:not(.viewing) .hsp .topic{display:none}
+body.viewing .hsp #home{display:none}
+body.viewing .hsp .topic:not(.active){display:none}
+body.viewing .hsp .topic.active{margin-top:8px}
+.hsp footer .home-link{display:block;margin-top:8px;color:inherit;font-weight:700}
+.hsp .qscore{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:14px;color:var(--ink-2);margin-bottom:4px}
+.hsp #qcount{white-space:nowrap;flex:none;margin-left:12px}
+.hsp .qdone{background:var(--green-soft);color:#0f4f39;border-radius:12px;padding:12px 14px;font-weight:700;margin-top:4px}
+.hsp .code.full{margin-top:18px;padding-top:16px;border-top:2px solid var(--line)}
+.hsp .code.full > h3{margin:0 0 4px}
+.hsp .sub{margin:0 0 8px}
+.hsp .code details{border-top:1px solid var(--line)}
+.hsp .code details:first-of-type{border-top:0}
+.hsp .code summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;font-weight:800;cursor:pointer}
+.hsp .code summary::-webkit-details-marker{display:none}
+.hsp .code summary::after{content:"";flex:none;width:10px;height:10px;border:solid var(--ink-2);border-width:0 2.5px 2.5px 0;transform:rotate(45deg);margin-right:4px;transition:transform .2s}
+.hsp .code details[open] summary::after{transform:rotate(-135deg)}
+.hsp .code .body{padding:0 0 14px;font-size:15px}
+.hsp .code .body h3{font-size:16px;margin:16px 0 6px}
+.hsp .code .body p{margin:0 0 10px}
+.hsp .code .body ol{margin:0 0 10px;padding-left:28px}
+.hsp .code .body li{margin:0 0 8px}
+.hsp .code .body ol ol{margin-top:6px;list-style-type:lower-alpha}
+.hsp .tbl{width:100%;border-collapse:collapse;font-size:15px}
+.hsp .tbl th,.hsp .tbl td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.hsp .tbl th{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.hsp .tbl td.n,.hsp .tbl th.n{text-align:right;font-variant-numeric:tabular-nums}
+.hsp .tbl tr:last-child td{border-bottom:0}
+.hsp .tbl .nw{white-space:nowrap}
+.hsp .dots{margin:0;padding-left:20px}
+.hsp .dots li{margin:0 0 8px}
+.hsp .dots li:last-child{margin-bottom:0}
+.hsp .olist{margin:0 0 4px;padding-left:22px}
+.hsp .olist li{margin:0 0 8px}
+.hsp .gear2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hsp .gear2 .kicker{display:block;white-space:nowrap;margin-bottom:8px}
+.hsp .times{list-style:none;margin:0 0 14px;padding:0}
+.hsp .times li{padding:10px 0;border-top:1px solid var(--line)}
+.hsp .times li:first-child{border-top:0;padding-top:0}
+.hsp .times b{display:block}
+.hsp .times span{display:block;color:var(--ink-2)}
+.hsp footer{background:var(--mat);color:var(--on-dark-2);text-align:center;font-size:14px;padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
+.hsp footer b{display:block;color:var(--on-dark);font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:6px}
+.hsp .pv{background:#fff6d6;border-bottom:1px solid #e9d38f;color:#5a4300;font-size:13.5px;padding:8px 16px;text-align:center}
+@media (min-width:900px){.hsp .top-row,.hsp .jump-row,.hsp .hsp-main{max-width:1120px}
+.hsp .top{padding-left:0;padding-right:0}
+.hsp .top-row{padding:0 32px}
+.hsp .jump-row{padding:10px 32px}
+.hsp .hsp-main{padding:28px 32px 56px}
+body.viewing .hsp main,body.viewing .hsp .jump-row,body.viewing .hsp .top-row{max-width:880px}
+.hsp .topics{grid-template-columns:repeat(3,1fr);gap:16px}
+.hsp .dates{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));overflow:visible;margin:12px 0 0;padding:0}
+.hsp .date{flex:none}
+.hsp .date.past{display:none}
+.hsp .socard{display:grid;grid-template-columns:1fr 300px;column-gap:32px;align-items:center;padding:24px 28px}
+.hsp .socard > *{grid-column:1}
+.hsp .socard .progress{margin-bottom:0}
+.hsp .socard #soBtn{grid-column:2;grid-row:1 / span 4}
+.hsp .intro{padding:18px 24px}}
+.hsp .hsp-main{max-width:var(--wrap);padding-left:var(--gutter);padding-right:var(--gutter)}
+.hsp .jump{top:var(--hsp-top,71px)}
+.hsp .sheet{z-index:200}
 </style>
 </head>
 <body>
-
-<header class="top">
-  <div class="top-row">
-    <img src="../assets/img/logo-192.png" alt="Northampton Konkrete Kids">
-    <div><b>Family Information</b><span>Northampton Wrestling · High school · 2026–27</span></div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="../" aria-label="Northampton Wrestling home"><img class="mark" src="../assets/img/logo-96.png" srcset="../assets/img/logo-96.png 1x, ../assets/img/logo-192.png 2x" width="56" height="48" alt=""><span>Northampton<br>Wrestling</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="bars" aria-hidden="true"></span><span class="label">Menu</span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Main"><ul class="top" role="list"><li class="has-sub"><button type="button" class="sub-btn" aria-expanded="false" aria-controls="sub-0">Program</button><ul class="sub" id="sub-0" role="list"><li><a href="../story/">Our Story</a></li><li><a href="../coaching-staff/">Coaches</a></li><li><a href="../facilities/">Our Home</a></li><li><a href="../high-school/">Varsity</a></li><li><a href="../junior-high/">Junior High</a></li><li><a href="../youth/">Youth</a></li></ul></li><li class="has-sub"><button type="button" class="sub-btn" aria-expanded="false" aria-controls="sub-1">Team</button><ul class="sub" id="sub-1" role="list"><li><a href="../roster/">Roster</a></li><li><a href="../schedule/">Schedule</a></li><li><a href="../results/">Results</a></li><li><a href="../high-school/#stats-title">Stats</a></li></ul></li><li class="has-sub"><button type="button" class="sub-btn" aria-expanded="false" aria-controls="sub-2">Tradition</button><ul class="sub" id="sub-2" role="list"><li><a href="../champions/">Hall of Champions</a></li><li><a href="../champions/#team-title">Team Titles</a></li><li><a href="../champions/#hundred-title">100-Win Club</a></li><li><a href="../champions/#lists-title">Record Book</a></li><li><a href="../timeline/">Timeline</a></li><li><a href="../seasons/">Past Seasons</a></li><li><a href="../trivia/">Trivia</a></li></ul></li><li class="has-sub"><button type="button" class="sub-btn" aria-expanded="false" aria-controls="sub-3">Media</button><ul class="sub" id="sub-3" role="list"><li><a href="../news/">News</a></li><li><a href="../videos/">Videos</a></li><li><a href="../follow/">Follow & Email List</a></li></ul></li><li class="has-sub is-active"><button type="button" class="sub-btn" aria-expanded="false" aria-controls="sub-4">Parents</button><ul class="sub" id="sub-4" role="list"><li><a href="../family/">Parent Information</a></li><li><a href="../hs-parents/" aria-current="page">HS Parents</a></li><li><a href="../youth/">Youth Program Guide</a></li><li><a href="../family/#faq">FAQs</a></li><li><a href="../family/#booster">Booster Club</a></li></ul></li><li class="has-sub"><button type="button" class="sub-btn" aria-expanded="false" aria-controls="sub-5">Alumni</button><ul class="sub" id="sub-5" role="list"><li><a href="../alumni/">Where Are They Now</a></li><li><a href="../alumni/#update">Update Your Information</a></li><li><a href="../alumni/#support">Support the Program</a></li></ul></li><li class="has-sub"><button type="button" class="sub-btn" aria-expanded="false" aria-controls="sub-6">Join</button><ul class="sub" id="sub-6" role="list"><li><a href="../join/">Why Wrestle?</a></li><li><a href="../join/#path">The Path</a></li><li><a href="../youth/">Youth Wrestling</a></li><li><a href="../join/#start">Start Wrestling</a></li></ul></li></ul><a class="follow-btn" href="../follow/">Follow</a></nav>
   </div>
 </header>
+<main id="main">
+<header class="page-head concrete"><div class="wrap"><p class="kicker">Parents</p><h1>HS Parents</h1><p class="lede">For parents of Northampton high school and junior high wrestlers. Everything your family needs this season, in one place. Tap a topic to open it.</p></div></header><div class="hsp">
+
+
 <nav class="jump viewbar" id="viewbar" hidden aria-label="Topic">
   <div class="jump-row"><a href="#" id="backBtn">‹ All topics</a><b id="viewTitle"></b></div>
 </nav>
 
-<main>
+<div class="hsp-main">
 <section id="home">
   <a class="socard" id="soCard" href="#signoff">
     <span class="kicker">Start of season · 2026–2027</span>
@@ -251,9 +268,6 @@ footer b{display:block;color:var(--on-dark);font-family:var(--display);font-weig
     <span class="btn" id="soBtn">Start</span>
   </a>
   <a class="sosmall" id="soSmall" href="#signoff" hidden><span>✓</span> Honor code sign-off complete. Thank you! <u>View</u></a>
-  <div class="card intro">
-    <p><strong>Everything your family needs this season, in one place.</strong> Tap a topic to open it. Bookmark this page.</p>
-  </div>
   <h3 class="homehead">Coming up</h3>
   <div class="dates" id="dates" aria-label="Key dates">
     <div class="date" data-end="2026-11-20"><div class="w">Fri</div><div class="d">Nov 20</div><p><b>First practice.</b> 2:55–5:15 p.m. In the room by 2:50.</p></div>
@@ -273,7 +287,7 @@ footer b{display:block;color:var(--on-dark);font-family:var(--display);font-weig
 
   <h3 class="homehead">Topics</h3>
   <div class="topics">
-    <a class="topic-card" href="#forms"><b>Forms</b><span>Skin form, travel release form and the full honor code, ready to print.</span><em>Open ›</em></a>
+    <a class="topic-card" href="#forms"><b>Forms</b><span>Skin form and travel release form, ready to print.</span><em>Open ›</em></a>
     <a class="topic-card" href="#parents"><b>Parent guide</b><span>How to help your wrestler have a positive, successful season.</span><em>Open ›</em></a>
     <a class="topic-card" href="#schedule"><b>Schedule</b><span>Practice times, dual meets and the full team schedule.</span><em>Open ›</em></a>
     <a class="topic-card" href="#tournaments"><b>Tournaments</b><span>Tournament days, following your son live, and the postseason.</span><em>Open ›</em></a>
@@ -293,8 +307,6 @@ footer b{display:block;color:var(--on-dark);font-family:var(--display);font-weig
     <ul class="forms">
       <li><b>Skin form</b><span>A doctor must complete the NFHS Skin Lesion Form before a wrestler with a skin condition can compete.</span><a class="btn dark" href="../forms/skin-lesion-form.pdf" target="_blank" rel="noopener">Open the skin form (PDF)</a></li>
       <li><b>Travel release form</b><span>Individual tournaments only. Speak with the head coach first, then sign this form before your son leaves with you.</span><a class="btn dark" href="../forms/travel-release-form.pdf" target="_blank" rel="noopener">Open the travel release form (PDF)</a></li>
-      <li><b>Full honor code</b><span>The complete 2026–2027 honor code, to read or print.</span><a class="btn dark" href="https://drive.google.com/file/d/1RCa3NW3yUhsPmgkf20NBID74IXoOFJz3/view?usp=sharing" target="_blank" rel="noopener">Open the honor code (PDF)</a></li>
-      <li><b>Honor code sign-off</b><span>Wrestler and parent, once a season.</span><a class="btn ghost" href="#signoff">Open the sign-off</a></li>
     </ul>
   </div>
 </section>
@@ -516,7 +528,7 @@ footer b{display:block;color:var(--on-dark);font-family:var(--display);font-weig
     <p class="note">northamptonareawrestlingclub@gmail.com</p>
   </div>
 </section>
-</main>
+</div>
 
 <div class="sheet" id="signoff" hidden role="dialog" aria-modal="true" aria-labelledby="soTitle">
   <div class="sheet-top">
@@ -795,13 +807,13 @@ Appointments scheduled during practice are not excused; emergencies are evaluate
   </div>
 </div>
 
-<footer>
-  <b>Northampton Wrestling</b>
-  This page is for parents of Northampton high school and junior high wrestlers.
-  <a class="home-link" href="https://www.northamptonwrestling.org/">northamptonwrestling.org</a>
-</footer>
 
-<script>
+
+</div><script>(() => {
+  const set = () => { const h = document.querySelector(".site-head"); if (h) document.documentElement.style.setProperty("--hsp-top", h.offsetHeight + "px"); };
+  set(); addEventListener("resize", set);
+})();
+
 (() => {
   "use strict";
   const $ = s => document.querySelector(s);
@@ -980,5 +992,34 @@ Appointments scheduled during practice are not excused; emergencies are evaluate
     if (next && next !== strip.firstElementChild) strip.scrollLeft = next.offsetLeft - strip.firstElementChild.offsetLeft;
   })();
 </script>
+</main>
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <img class="foot-logo" src="../assets/img/logo-192.png" srcset="../assets/img/logo-192.png 1x, ../assets/img/logo-400.png 2x" width="120" height="103" alt="Northampton Konkrete Kids logo" loading="lazy">
+      <p>Northampton wrestling since 1945. Eastern Pennsylvania Conference, PIAA District XI.</p>
+      <div class="social"><a href="https://instagram.com/kkids_wrestling" rel="noopener" aria-label="Northampton Wrestling on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4zm5.3-9.7a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM22 7c-.1-1.6-.4-3-1.6-4.2S17.6 1.2 16 1.1C14.4 1 9.6 1 8 1.1 6.4 1.2 5 1.5 3.8 2.7S2.2 5.4 2.1 7C2 8.6 2 15.4 2.1 17c.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.6.1 6.4.1 8 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.6.1-8.4.3-10zm-2 12.2a3.3 3.3 0 0 1-1.9 1.9c-1.3.5-4.4.4-5.9.4s-4.6.1-5.9-.4A3.3 3.3 0 0 1 4.4 19c-.5-1.3-.4-4.4-.4-5.9s-.1-4.6.4-5.9a3.3 3.3 0 0 1 1.9-1.9c1.3-.5 4.4-.4 5.9-.4s4.6-.1 5.9.4a3.3 3.3 0 0 1 1.9 1.9c.5 1.3.4 4.4.4 5.9s.1 4.6-.4 5.9z"/></svg></a><a href="https://twitter.com/KKidWrestling" rel="noopener" aria-label="Northampton Wrestling on X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9.1L1 2h7l4.8 6.4L18.2 2zm-1.2 18h1.9L7.1 3.9H5.1L17 20z"/></svg></a><a href="https://www.facebook.com/profile.php?id=100063592206225" rel="noopener" aria-label="Northampton Wrestling on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 8V6c0-.9.6-1.1 1-1.1h2.8V1H14C10.3 1 9.5 3.8 9.5 5.6V8H7v4h2.5v11H14V12h3.4l.5-4H14z"/></svg></a><a href="https://www.youtube.com/playlist?list=PLYJb_GgZKkU__A1iExzMBQgJrTBayur-0" rel="noopener" aria-label="Northampton Wrestling on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a></div>
+    </div>
+    <div>
+      <h2>Contact</h2>
+      <p><a href="mailto:northamptonareawrestlingclub@gmail.com">northamptonareawrestlingclub@gmail.com</a></p>
+      <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdPIe3gW-WFSa_6o134FyisO2H45XyV7UmX8Z9ah8pdw0AwMw/viewform" rel="noopener" target="_blank">Share photos &amp; video</a></p>
+      <p>Athletic office: <a href="tel:+16102627812">610-262-7812</a></p>
+      <p>Northampton Area High School<br>1619 Laubach Ave<br>Northampton, PA 18067</p>
+    </div>
+    <div>
+      <h2>Explore</h2>
+      <ul role="list" class="foot-links"><li><a href="../story/">Program</a></li><li><a href="../roster/">Team</a></li><li><a href="../champions/">Tradition</a></li><li><a href="../news/">Media</a></li><li><a href="../family/">Parents</a></li><li><a href="../alumni/">Alumni</a></li><li><a href="../join/">Join</a></li><li><a href="../follow/">Follow</a></li></ul>
+    </div>
+  </div>
+  <div class="wrap foot-base">
+    <div>
+      <p>&copy; <span data-year>2026</span> Northampton Area Wrestling Club</p>
+      <p>*The Northampton Area School District does not sponsor or sanction this program/event/activity.</p>
+    </div>
+    <p class="foot-note">Parents: to have a photo or your wrestler’s name removed, email <a href="mailto:northamptonareawrestlingclub@gmail.com?subject=Photo%20removal%20request">northamptonareawrestlingclub@gmail.com</a>.</p>
+  </div>
+</footer>
+<script src="../assets/js/site.js?v=d1fcd672" defer></script>
 </body>
 </html>

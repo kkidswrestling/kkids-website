@@ -29,6 +29,7 @@ OUT_DIR = os.path.join(ROOT, "hs-parents")
 # Joe, Nov. 18, 2026: the page is public (no password). Set LOCKED = True to put the
 # team-password lock back; the source bundle stays encrypted either way.
 LOCKED = False
+PARTS_DIR = os.path.join(ROOT, "data", "hs-parents")  # public page parts, wrapped by build.py (unlocked only)
 SOURCE_FILES = ["template.html", "honor-code.md", "build.py", "test.py", "make_pdf.py"]
 
 
@@ -171,14 +172,16 @@ def build(src=None):
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
     if not LOCKED:
-        page = page.replace("<title>Family Information · Northampton Wrestling</title>", "<title>HS Parents · Northampton Wrestling</title>")
-        os.makedirs(OUT_DIR, exist_ok=True)
-        open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8").write(page)
+        write_public_parts(page)
         old = os.path.join(OUT_DIR, "content.json")
         if os.path.exists(old):
             os.remove(old)
-        print("built hs-parents/index.html (public, no password)")
+        subprocess.run([sys.executable, os.path.join(ROOT, "tools", "build.py")], check=True, stdout=subprocess.DEVNULL)
+        print("built hs-parents/index.html (public, inside the site's header and footer)")
         return
+    for f in ("body.html", "page.css", "page.js"):
+        if os.path.exists(os.path.join(PARTS_DIR, f)):
+            os.remove(os.path.join(PARTS_DIR, f))
     head_end = page.index("</head>")
     body_start = page.index(">", page.index("<body")) + 1
     body_end = page.rindex("</body>")
@@ -198,6 +201,100 @@ def build(src=None):
     open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8").write(shell)
     json.dump(seal({"html": html, "js": js}, k, salt, it), open(os.path.join(OUT_DIR, "content.json"), "w"))
     print("built hs-parents/index.html (public lock screen) and hs-parents/content.json (encrypted)")
+
+
+# ---------- public (unlocked) page: fit it inside the site's own header, menu and footer ----------
+import re as _re
+
+def _split_rules(css):
+    """Top-level CSS rules as (prelude, body) pairs; body is the text inside the braces."""
+    out, i, n = [], 0, len(css)
+    while i < n:
+        j = css.find("{", i)
+        if j < 0:
+            break
+        prelude = css[i:j].strip()
+        depth, k = 1, j + 1
+        while k < n and depth:
+            if css[k] == "{": depth += 1
+            elif css[k] == "}": depth -= 1
+            k += 1
+        out.append((prelude, css[j + 1:k - 1]))
+        i = k
+    return out
+
+def _scope_sel(sel):
+    sel = sel.strip()
+    if not sel:
+        return sel
+    m = _re.match(r"^(body|html)((?:[.:\[][^\s>+~]*)*)(.*)$", sel)
+    if m:
+        tag, quals, rest = m.groups()
+        rest = rest.strip()
+        if tag == "html" and not quals:
+            return ".hsp" + ((" " + rest) if rest else "")
+        if not quals:
+            return ".hsp" + ((" " + rest) if rest else "")
+        # body.viewing .topic -> body.viewing .hsp .topic ; body.sheet-open stays on body
+        return "body" + quals + ((" .hsp " + rest) if rest else "")
+    if sel.startswith(":root"):
+        return ".hsp" + sel[5:]
+    sel = _re.sub(r"(^|[\s>+~,(])main(?=$|[\s.:#\[>+~,{)])", r"\1.hsp-main", sel)
+    return ".hsp " + sel
+
+def scope_css(css):
+    out = []
+    for prelude, body in _split_rules(_re.sub(r"/\*.*?\*/", "", css, flags=_re.S)):
+        if prelude.startswith("@media") or prelude.startswith("@supports"):
+            out.append(prelude + "{" + scope_css(body) + "}")
+        elif prelude.startswith("@"):
+            out.append(prelude + "{" + body + "}")
+        else:
+            out.append(",".join(_scope_sel(x) for x in prelude.split(",")) + "{" + body + "}")
+    return "\n".join(out)
+
+# Undo the site stylesheet's element-wide rules inside the page (they come first, the page's own rules win).
+RESET = """
+.hsp{font-size:16px;line-height:1.5}
+.hsp h1,.hsp h2,.hsp h3,.hsp h4{font-family:inherit;text-transform:none;letter-spacing:normal;line-height:1.2;margin:0;font-weight:700}
+.hsp p{margin:0 0 .8em}
+.hsp a{text-underline-offset:auto}
+.hsp table{font-size:inherit}
+.hsp th,.hsp td{padding:8px 6px;white-space:normal;border-bottom:1px solid var(--line)}
+.hsp thead th{position:static;background:none;color:inherit;font-size:inherit}
+.hsp tbody tr:hover{background:none}
+.hsp details{border:0;padding:0}
+.hsp summary{padding:0;font-weight:inherit}
+.hsp summary:hover{color:inherit}
+"""
+
+AFTER = """
+.hsp .hsp-main{max-width:var(--wrap);padding-left:var(--gutter);padding-right:var(--gutter)}
+.hsp .jump{top:var(--hsp-top,71px)}
+.hsp .sheet{z-index:200}
+"""
+
+TOP_JS = """(() => {
+  const set = () => { const h = document.querySelector(".site-head"); if (h) document.documentElement.style.setProperty("--hsp-top", h.offsetHeight + "px"); };
+  set(); addEventListener("resize", set);
+})();
+"""
+
+def write_public_parts(page):
+    css = page[page.index("<style>") + 7:page.index("</style>")]
+    b0 = page.index(">", page.index("<body")) + 1
+    body = page[b0:page.rindex("</body>")]
+    js_at = body.rindex("<script>")
+    html, js = body[:js_at], body[js_at + 8:body.rindex("</script>")]
+    html = _re.sub(r'<header class="top">.*?</header>', "", html, count=1, flags=_re.S)
+    html = _re.sub(r"<footer>.*?</footer>", "", html, count=1, flags=_re.S)
+    html = _re.sub(r'\s*<div class="card intro">.*?</div>', "", html, count=1, flags=_re.S)  # the site page head says it
+    html = html.replace("<main>", '<div class="hsp-main">', 1).replace("</main>", "</div>", 1)
+    assert "<main" not in html and "<script" not in html
+    os.makedirs(PARTS_DIR, exist_ok=True)
+    open(os.path.join(PARTS_DIR, "body.html"), "w", encoding="utf-8").write('<div class="hsp">' + html + "</div>")
+    open(os.path.join(PARTS_DIR, "page.css"), "w", encoding="utf-8").write(RESET + scope_css(css) + AFTER)
+    open(os.path.join(PARTS_DIR, "page.js"), "w", encoding="utf-8").write(TOP_JS + js)
 
 
 if __name__ == "__main__":

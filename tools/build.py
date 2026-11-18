@@ -2110,6 +2110,20 @@ def redirect(path, target):
 """)
 
 
+def build_hs_parents():
+    """HS Parents page (hs-parents/) inside the site's header and footer (Joe, Nov. 18, 2026).
+    Its parts come from tools/hs_parents.py (data/hs-parents/); when the page is locked those
+    files don't exist and hs_parents.py writes its own lock-screen page instead."""
+    d = os.path.join(ROOT, "data", "hs-parents")
+    if not os.path.exists(os.path.join(d, "body.html")):
+        return None
+    rd = lambda f: open(os.path.join(d, f), encoding="utf-8").read()
+    head = page_head("../", "HS Parents", "For parents of Northampton high school and junior high wrestlers. Everything your family needs this season, in one place. Tap a topic to open it.", kicker="Parents")
+    body = head + rd("body.html") + "<script>" + rd("page.js") + "</script>"
+    return page("hs-parents/index.html", "HS Parents", "Information for Northampton high school wrestling families.",
+                body, active="hs-parents/", extra_head='<meta name="robots" content="noindex">\n<style>' + rd("page.css") + "</style>\n")
+
+
 def main():
     import sys
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -2120,6 +2134,7 @@ def main():
         urls.append(build_youth_coaches())
     urls += [build_coaches(), build_champions(), build_trivia()] + build_seasons()
     urls += v2.build_all(sys.modules[__name__])
+    hsp = build_hs_parents()
     build_404()
     # Old Wix addresses keep working
     redirect("schedule-1/index.html", "schedule/")
