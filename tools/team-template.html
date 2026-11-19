@@ -498,7 +498,7 @@ function monthView() {
 const SHORT = {"Notre Dame-Green Pond": "ND-GP", "Pocono Mountain West": "PM West", "Bethlehem Catholic": "Becahi", "Bethlehem Liberty": "Liberty",
   "Bethlehem Freedom": "Freedom", "King of the Mountain": "KOTM", "Mid-Winter Mayhem": "Mayhem", "Parkland Winter Duals": "Parkland", "Walsh Ironman": "Ironman",
   "District XI Team Duals": "D-XI Duals", "District XI Championships": "Districts", "Northeast Regional Championships": "Regionals", "PIAA Championships": "States",
-  "North Penn JV Tournament": "North Penn", "Saucon Valley": "Saucon"};
+  "North Penn JV Tournament": "North Penn", "Team Pictures": "Pics", "Team Picture": "Pics", "Saucon Valley": "Saucon"};
 function shortName(e) {
   const t = (e.title || "").trim(); if (SHORT[t]) return SHORT[t];
   return t.replace(/^(Bethlehem|The)\s+/i, "").split(/\s+/)[0] || typeLabel(e.type);
@@ -518,7 +518,7 @@ function cellLabel(e) {
   if (e.type === "off") return `<span class="lb off${cx}">Off</span>`;
   if (e.type === "practice") return `<span class="lb${e.lift ? " lift" : ""}${cx}">${who}${tp || "TBA"}</span>`;
   if (e.type === "travel") return `<span class="lb${cx}">Leave ${tm}</span>`;
-  return `<span class="lb${cx}">${tm} ${esc(shortName(e))}</span>`;
+  return `<span class="lb${cx}">${tp} ${esc(shortName(e))}</span>`;
 }
 function render() {
   $$(".seg [data-team]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.team === S.team)));
