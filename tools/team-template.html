@@ -151,6 +151,7 @@ body.coach .ev.flag:not(.comp){margin:0;width:100%;padding:8px 10px;background:#
 .cell.blank{border:0;background:transparent}
 .cell .n{font-weight:700;font-size:13px;line-height:1.2;text-align:center;margin-bottom:1px}
 .lb{display:block;border-radius:4px;padding:2px 3px 2px;font-size:10px;line-height:1.15;font-weight:700;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;background:#ecebe7;color:#33312d}
+.lb.ot{white-space:normal;line-height:1.1}
 .lb.lift{background:#cbc4b4}
 .lb.run{background:#e3ecf5;color:#1f4f7a}
 .lb.comp{background:var(--blaze);color:#141414;white-space:normal}
@@ -517,8 +518,8 @@ function cellLabel(e) {
   if (e.type === "run") return `<span class="lb run${cx}">${tp}<span class="rw"> Run</span></span>`;
   if (e.type === "off") return `<span class="lb off${cx}">Off</span>`;
   if (e.type === "practice") return `<span class="lb${e.lift ? " lift" : ""}${cx}">${who}${tp || "TBA"}</span>`;
-  if (e.type === "travel") return `<span class="lb${cx}">Leave ${tm}</span>`;
-  return `<span class="lb${cx}">${tp} ${esc(shortName(e))}</span>`;
+  if (e.type === "travel") return `<span class="lb ot${cx}">Leave ${tm}</span>`;
+  return `<span class="lb ot${cx}">${tp} ${esc(shortName(e))}</span>`;
 }
 function render() {
   $$(".seg [data-team]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.team === S.team)));
