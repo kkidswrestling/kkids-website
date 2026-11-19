@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coaches' Room · Northampton Wrestling</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../assets/img/icon-32.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Concrete-grey workroom, safety-orange accent, black for match days. Layout: season grid -> day sheet. */
+  --bg: #ebe9e5;
+  --paper: #ffffff;
+  --ink: #18191b;
+  --muted: #6c6a65;
+  --line: #d8d4cd;
+  --accent: #e2570f;
+  --accent-soft: #fbe6d9;
+  --black: #151617;
+  --good: #2f7d4f;
+  --warn: #b7791f;
+  --bad: #b3261e;
+  --font-display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --font-body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --r: 10px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.4; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: .01em; text-wrap: balance; margin: 0; }
+
+/* ---------- top bar ---------- */
+.top { background: var(--black); color: #fff; position: sticky; top: 0; z-index: 20; }
+.top-in { max-width: 1240px; margin: 0 auto; padding: 10px 16px 0; display: flex; flex-direction: column; gap: 8px; }
+.brand { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.brand b { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: .04em; text-transform: uppercase; }
+.brand b span { color: var(--accent); }
+.brand small { color: #b9b6b0; font-size: 13px; }
+.brand .status { margin-left: auto; font-size: 12px; color: #b9b6b0; }
+nav.tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+nav.tabs::-webkit-scrollbar { display: none; }
+nav.tabs a { color: #d6d3cd; text-decoration: none; padding: 9px 14px 11px; font-weight: 600; font-size: 14px; border-bottom: 3px solid transparent; white-space: nowrap; }
+nav.tabs a[aria-current="page"] { color: #fff; border-bottom-color: var(--accent); }
+main { max-width: 1240px; margin: 0 auto; padding: 18px 16px 60px; }
+
+/* ---------- shared ---------- */
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.btn { border: 1px solid var(--line); background: var(--paper); border-radius: 8px; padding: 8px 14px; font-weight: 600; font-size: 14px; display: inline-flex; gap: 6px; align-items: center; }
+.btn:hover { border-color: #b8b3aa; }
+a.btn { text-decoration: none; color: var(--ink); }
+a.btn.dark, a.btn.primary { color: #fff; }
+a.btn[aria-disabled="true"] { opacity: .35; pointer-events: none; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.dark { background: var(--black); border-color: var(--black); color: #fff; }
+.btn.ghost { background: transparent; }
+.btn[disabled] { opacity: .5; cursor: default; }
+.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 99px; background: #f1efeb; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+.chip.lift { background: var(--accent-soft); color: #a63c06; }
+.chip.match { background: var(--black); color: #fff; }
+.chip.pre { background: #eef2f6; color: #3b5b7a; }
+.chip.opt { background: #f3efe2; color: #7a6223; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); }
+.muted { color: var(--muted); }
+.pagehead { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.pagehead h1 { font-size: 34px; font-weight: 800; text-transform: uppercase; line-height: 1; }
+.pagehead p { margin: 0; color: var(--muted); }
+.pagehead .right { margin-left: auto; }
+.toast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); background: var(--black); color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 600; z-index: 50; max-width: 90vw; }
+.empty { padding: 28px; text-align: left; }
+.empty h3 { font-size: 22px; margin-bottom: 6px; }
+
+/* ---------- season ---------- */
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 5px; }
+.dow { display: grid; grid-template-columns: 150px repeat(7, 1fr); gap: 6px; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; padding: 0 0 6px; }
+.dow span { padding-left: 4px; }
+.week { display: grid; grid-template-columns: 150px repeat(7, 1fr); gap: 6px; margin-bottom: 6px; }
+.wlabel { border-radius: 8px; padding: 8px 10px; color: #fff; display: flex; flex-direction: column; gap: 2px; min-height: 96px; }
+.wlabel .wn { font-family: var(--font-display); font-weight: 800; font-size: 20px; line-height: 1; }
+.wlabel .wd { font-size: 12px; opacity: .85; }
+.wlabel .wp { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; opacity: .85; margin-top: auto; }
+.pillar { font-weight: 700; font-size: 13px; background: rgba(255,255,255,.16); border: 0; color: #fff; border-radius: 5px; padding: 3px 8px; text-align: left; }
+.pillar.blank { opacity: .75; font-weight: 500; font-style: italic; }
+.cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px 7px; min-height: 96px; display: flex; flex-direction: column; gap: 3px; text-align: left; position: relative; overflow: hidden; }
+button.cell:hover { border-color: #a9a39a; box-shadow: 0 1px 0 rgba(0,0,0,.04); }
+.cell .dn { font-weight: 700; font-size: 13px; display: flex; gap: 6px; align-items: center; }
+.cell .dn em { font-style: normal; color: var(--muted); font-weight: 600; font-size: 12px; }
+.cell .sum { font-size: 12px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.cell.lift { box-shadow: inset 0 4px 0 var(--accent); }
+.cell.match { background: var(--black); border-color: var(--black); color: #fff; }
+.cell.match .sum { color: #d6d3cd; }
+.cell.match .dn em { color: #b9b6b0; }
+.cell.none { background: transparent; border-style: dashed; }
+.cell.none .dn { color: #a29e97; }
+.cell.off { background: repeating-linear-gradient(135deg, #f4f2ee 0 6px, #ebe8e3 6px 12px); }
+.cell.today { outline: 3px solid var(--accent); outline-offset: -1px; }
+.cell .tag { font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.cell .tag.l { color: var(--accent); }
+.cell .tag.m { color: var(--accent); }
+.cell .tag.p { color: #3b5b7a; }
+.cell .att { position: absolute; right: 7px; top: 7px; font-size: 11px; font-weight: 700; color: var(--good); }
+
+/* phone agenda */
+.agenda { display: none; }
+@media (max-width: 760px) {
+  .dow, .week { display: none; }
+  .agenda { display: flex; flex-direction: column; gap: 14px; }
+  .pagehead h1 { font-size: 28px; }
+}
+.aweek { overflow: hidden; }
+.aweek header { color: #fff; padding: 10px 12px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.aweek header b { font-family: var(--font-display); font-size: 20px; font-weight: 800; }
+.aweek header .pillar { margin-left: auto; }
+.arow { display: grid; grid-template-columns: 54px 1fr auto; gap: 10px; padding: 10px 12px; border-top: 1px solid var(--line); align-items: center; text-align: left; background: var(--paper); border-left: 0; border-right: 0; border-bottom: 0; width: 100%; }
+.arow .ad { font-family: var(--font-display); font-weight: 700; font-size: 15px; line-height: 1.05; }
+.arow .ad small { display: block; color: var(--muted); font-family: var(--font-body); font-weight: 600; font-size: 11px; text-transform: uppercase; }
+.arow .at { font-size: 14px; }
+.arow .at span { color: var(--muted); display: block; font-size: 12.5px; }
+.arow.match { background: var(--black); color: #fff; }
+.arow.match .at span, .arow.match .ad small { color: #c9c6c0; }
+.arow.lift { box-shadow: inset 4px 0 0 var(--accent); }
+
+/* ---------- day sheet ---------- */
+.daynav { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+.daynav .spacer { flex: 1; }
+.sheet { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.sheethead { padding: 18px 22px 16px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; align-items: end; }
+.eyebrow { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+.sheethead h1 { font-size: 38px; font-weight: 800; line-height: 1; text-transform: uppercase; }
+.sheethead .sub { color: var(--muted); font-weight: 500; }
+.sheethead .chips { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.pillarband { background: var(--black); color: #fff; padding: 9px 22px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.pillarband b { font-family: var(--font-display); font-size: 20px; letter-spacing: .03em; text-transform: uppercase; }
+.pillarband span { color: #b9b6b0; font-size: 13px; }
+.pillarband .win { margin-left: auto; color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: .04em; }
+.note { margin: 14px 22px 0; padding: 10px 12px; border-radius: 8px; background: #f3efe2; color: #6a5420; font-size: 14px; }
+.timeline { display: flex; margin: 16px 22px 4px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+.tblock { padding: 8px 9px; border-right: 1px solid var(--line); min-width: 0; background: #faf9f7; }
+.tblock:last-child { border-right: 0; }
+.tblock .tt { font-size: 11.5px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tblock .tn { font-family: var(--font-display); font-weight: 700; font-size: 16px; line-height: 1.1; }
+.tblock .tx { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.tblock.hot { background: var(--accent-soft); }
+.tblock.water { background: #e7f1fb; } .tblock.water .tn { color: #2e5f8a; }
+.tblock.hot .tn { color: #a63c06; }
+@media (max-width: 760px) {
+  .timeline { flex-direction: column; }
+  .tblock { flex: none !important; border-right: 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 92px 1fr; gap: 0 8px; }
+  .tblock:last-child { border-bottom: 0; }
+  .tblock .tt { grid-row: span 2; padding-top: 2px; }
+  .sheethead { grid-template-columns: 1fr; }
+  .sheethead .chips { justify-content: flex-start; }
+  .sheethead h1 { font-size: 30px; }
+}
+.cols { columns: 2; column-gap: 34px; padding: 14px 22px 24px; }
+@media (max-width: 860px) { .cols { columns: 1; } .sec .two { columns: 1 !important; } }
+.sec { break-inside: avoid; margin: 12px 0 4px; }
+.sec.long { break-inside: auto; }
+.sec h3 { font-family: var(--font-body); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; padding-bottom: 4px; border-bottom: 2px solid var(--ink); display: flex; gap: 8px; align-items: baseline; }
+.sec h3 small { white-space: nowrap; font-weight: 600; color: var(--muted); letter-spacing: .02em; text-transform: none; font-size: 12px; margin-left: auto; font-variant-numeric: tabular-nums; }
+.sec ul { margin: 6px 0 0; padding-left: 18px; }
+.sec ul ul { padding-left: 18px; margin-top: 2px; list-style: circle; }
+.sec ul ul ul { list-style: square; }
+.sec li { margin: 2px 0; }
+.sec ul.check { list-style: none; padding-left: 0; }
+.sec ul.check > li { display: grid; grid-template-columns: 26px 1fr; gap: 0 8px; align-items: start; margin: 5px 0; }
+.sec ul.check > li > ul { grid-column: 2; }
+.box { width: 22px; height: 22px; border: 2px solid #9e988e; border-radius: 5px; background: #fff; padding: 0; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 14px; line-height: 1; margin-top: 1px; }
+.box.on { background: var(--good); border-color: var(--good); }
+.box[disabled] { cursor: default; }
+li.done > .txt { color: var(--muted); }
+.carry { margin: 8px 0 4px; padding: 6px 10px 4px; background: #fff6ec; border: 1px dashed #e9b48f; border-radius: 8px; }
+.carry .cl { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: #a63c06; }
+.prog { font-size: 12px; font-weight: 700; color: var(--good); margin-left: 8px; letter-spacing: 0; text-transform: none; }
+.sec li.rot { list-style: none; margin-left: -18px; font-weight: 700; color: #a63c06; background: var(--accent-soft); border-radius: 6px; padding: 3px 8px; margin-bottom: 6px; }
+.sec li.why { list-style: none; margin-left: -18px; color: var(--muted); font-style: italic; }
+.sec .two { columns: 2; column-gap: 18px; }
+.sec .emptyline { color: #a8a39b; font-style: italic; margin-top: 6px; }
+.sec textarea { width: 100%; min-height: 120px; margin-top: 6px; border: 1px solid #c9c3b9; border-radius: 8px; padding: 8px 10px; font-size: 14px; line-height: 1.45; resize: vertical; background: #fffdf9; }
+.edithint { margin: 12px 22px 0; padding: 10px 12px; border-radius: 8px; background: var(--accent-soft); color: #7a3206; font-size: 14px; }
+.edited { font-size: 12px; color: var(--muted); }
+
+/* ---------- attendance ---------- */
+.toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+select.pick { padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); font-weight: 600; max-width: 100%; }
+.tally { display: flex; gap: 8px; flex-wrap: wrap; }
+.tally div { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; font-size: 13px; color: var(--muted); }
+.tally b { font-family: var(--font-display); font-size: 22px; color: var(--ink); margin-right: 4px; font-variant-numeric: tabular-nums; }
+.roll { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 8px; }
+.rollrow { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.rollrow .nm { flex: 1; min-width: 0; font-weight: 600; }
+.rollrow .nm small { display: block; color: var(--muted); font-weight: 500; font-size: 12px; }
+.seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; background: #faf9f7; padding: 7px 10px; font-weight: 700; font-size: 13px; color: var(--muted); min-width: 38px; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button.on.P { background: var(--good); color: #fff; }
+.seg button.on.L { background: var(--warn); color: #fff; }
+.seg button.on.E { background: #3b5b7a; color: #fff; }
+.seg button.on.A { background: var(--bad); color: #fff; }
+table.grid { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.grid th, table.grid td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+table.grid th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+table.grid a { color: var(--ink); font-weight: 600; text-decoration-color: #c9c3b9; }
+table.grid td.num { font-variant-numeric: tabular-nums; }
+.tablewrap { overflow-x: auto; }
+.bar { height: 6px; background: #eeeae4; border-radius: 99px; overflow: hidden; min-width: 80px; }
+.bar i { display: block; height: 100%; background: var(--good); }
+h2.sect { font-size: 22px; font-weight: 800; text-transform: uppercase; margin: 26px 0 10px; }
+
+/* ---------- lifts ---------- */
+.stations { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 13px; }
+.stations span { background: var(--paper); border: 1px solid var(--line); border-radius: 99px; padding: 4px 10px; font-weight: 600; }
+.stations span.first { background: var(--accent); border-color: var(--accent); color: #fff; }
+.lifter { padding: 12px 14px; display: grid; grid-template-columns: 180px repeat(5, 1fr); gap: 10px; align-items: start; }
+.lifter + .lifter { border-top: 1px solid var(--line); }
+.lifter .who { font-weight: 700; }
+.lifter .who a { color: inherit; text-decoration-color: #c9c3b9; }
+.lifter .who small { display: block; font-weight: 500; color: var(--muted); font-size: 12px; }
+.liftbox { display: flex; flex-direction: column; gap: 4px; }
+.liftbox label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.liftbox .ins { display: flex; gap: 4px; align-items: center; }
+.liftbox input { width: 100%; min-width: 0; padding: 7px 6px; border: 1px solid var(--line); border-radius: 6px; font-variant-numeric: tabular-nums; text-align: center; background: #fff; }
+.liftbox .x { color: var(--muted); font-size: 12px; }
+.liftbox .last { font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.liftbox .last.up { color: var(--good); font-weight: 700; }
+.fran { display: flex; gap: 6px; align-items: center; grid-column: 2 / -1; font-size: 13px; }
+.fran input { width: 90px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; text-align: center; }
+@media (max-width: 860px) {
+  .lifter { grid-template-columns: 1fr 1fr; }
+  .lifter .who { grid-column: 1 / -1; }
+  .fran { grid-column: 1 / -1; }
+}
+
+/* ---------- roster ---------- */
+.formrow { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 8px; align-items: end; }
+.formrow label, .stack label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; display: flex; flex-direction: column; gap: 4px; }
+.formrow input, .formrow select, .stack textarea { padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--ink); font-size: 15px; }
+.stack textarea { min-height: 120px; width: 100%; }
+@media (max-width: 760px) { .formrow { grid-template-columns: 1fr 1fr; } .formrow label:first-child { grid-column: 1 / -1; } }
+.pad { padding: 16px; }
+.inactive td { color: #aaa49b; }
+.linkbtn { background: none; border: 0; color: var(--accent); font-weight: 700; padding: 0; }
+
+/* ---------- library ---------- */
+.libgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+.libcard { padding: 12px 14px; border-left: 5px solid var(--accent); }
+.libcard.Finisher { border-left-color: var(--black); }
+.libcard.Light { border-left-color: #3b5b7a; }
+.libcard h3 { font-size: 20px; font-weight: 700; }
+.libcard p { margin: 4px 0 6px; font-size: 14px; }
+.libcard .used { font-size: 12px; color: var(--muted); }
+.libcard .used a { color: var(--ink); text-decoration-color: #c9c3b9; }
+.phases { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.phase { padding: 12px 14px; color: #fff; border-radius: var(--r); }
+.phase h3 { font-size: 22px; font-weight: 800; text-transform: uppercase; }
+.phase .dates { font-size: 13px; opacity: .85; }
+.phase p { margin: 6px 0 0; font-size: 14px; }
+.rules { margin: 0; padding: 12px 18px 14px 36px; }
+.rules li { margin: 6px 0; }
+
+
+.draft { margin: 14px 22px 0; padding: 12px 14px; border-radius: 8px; background: #eef2f6; border: 1px solid #c9d5e2; display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; font-size: 14px; }
+.cell .tag.d { color: #3b5b7a; }
+.cell .rec { margin-top: auto; font-family: var(--font-display); font-weight: 800; font-size: 18px; color: var(--accent); }
+button.cell.match:hover { border-color: var(--accent); }
+.report { padding: 14px 18px; margin-bottom: 16px; border-left: 5px solid var(--accent); }
+.report h2 { font-size: 24px; font-weight: 800; text-transform: uppercase; margin: 2px 0 4px; }
+.report ul { margin: 4px 0 6px; padding-left: 18px; }
+.evrow { display: grid; grid-template-columns: 74px 1fr auto; gap: 12px; align-items: center; width: 100%; text-align: left; background: var(--paper); border: 0; border-top: 1px solid var(--line); padding: 11px 14px; }
+.evrow:first-child { border-top: 0; }
+.evrow:hover { background: #faf9f7; }
+.evrow .ad { font-family: var(--font-display); font-weight: 700; font-size: 16px; }
+.evrow .at { font-weight: 600; } .evrow .at span { display: block; color: var(--muted); font-weight: 500; font-size: 12.5px; }
+.evrow .evr b { font-family: var(--font-display); font-size: 20px; color: var(--accent); }
+.evrow.today { box-shadow: inset 4px 0 0 var(--accent); }
+.duel { height: 8px; border-radius: 99px; background: #e9d4d2; overflow: hidden; } .duel i { display: block; height: 100%; background: var(--good); }
+.res { display: inline-block; font-weight: 800; font-size: 12px; padding: 2px 7px; border-radius: 5px; color: #fff; background: #999; } .res.W { background: var(--good); } .res.L { background: var(--bad); }
+.bouts { display: flex; flex-direction: column; gap: 6px; }
+.bout { display: grid; grid-template-columns: 50px 1fr auto auto; grid-template-areas: "w n r h" "w s s s"; gap: 2px 10px; align-items: center; text-align: left; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; }
+.bout:hover { border-color: #a9a39a; }
+.bout .bw { grid-area: w; font-family: var(--font-display); font-weight: 800; font-size: 20px; }
+.bout .bn { grid-area: n; font-weight: 700; } .bout .bn small { display: block; font-weight: 500; color: var(--muted); font-size: 12px; }
+.bout .res { grid-area: r; } .bout .bh { grid-area: h; font-weight: 600; font-variant-numeric: tabular-nums; }
+.bout .bs { grid-area: s; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bmodal { width: min(560px, 100%); }
+.formrow.b2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; margin-bottom: 8px; }
+.formrow input, .formrow select { width: 100%; min-width: 0; }
+.pick2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+.wl { padding: 12px; font-family: var(--font-display); font-weight: 800; font-size: 22px; text-transform: uppercase; border-radius: 8px; border: 2px solid var(--line); background: #fff; }
+.wl.W.on { background: var(--good); border-color: var(--good); color: #fff; } .wl.L.on { background: var(--bad); border-color: var(--bad); color: #fff; }
+.hows { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.hows button { border: 1px solid var(--line); background: #fff; border-radius: 99px; padding: 6px 12px; font-weight: 700; font-size: 13px; }
+.hows button.on { background: var(--black); border-color: var(--black); color: #fff; }
+.steps { border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; }
+.steprow { display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center; padding: 5px 0; }
+.steprow.head { font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; } .steprow.head span:nth-child(2), .steprow.head span:nth-child(3) { width: 112px; text-align: center; }
+.stepper { display: flex; align-items: center; width: 112px; justify-content: space-between; }
+.stepper button { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--line); background: #faf9f7; font-size: 20px; font-weight: 700; }
+.stepper b { font-family: var(--font-display); font-size: 22px; min-width: 24px; text-align: center; }
+.stepper.them b { color: var(--bad); }
+.wgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 6px; }
+.wgrid label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; display: flex; flex-direction: column; gap: 4px; }
+.wgrid label.wide { grid-column: 1 / -1; }
+.wgrid input, .wgrid textarea { width: 100%; min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font-size: 15px; text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--ink); background: #fff; }
+@media (max-width: 760px) { .formrow.b2 label:first-child { grid-column: auto; } .steprow { gap: 8px; } .steprow span { font-size: 14px; } .stepper, .steprow.head span:nth-child(2), .steprow.head span:nth-child(3) { width: 100px; } .stepper button { width: 32px; height: 32px; } .modal { padding: 16px 14px; } .scrim { padding: 12px 8px; }
+  .wgrid { gap: 8px; } .wgrid label { font-size: 11px; letter-spacing: .02em; } .evrow { grid-template-columns: 60px 1fr; } .evrow .evr { grid-column: 2; } }
+/* practice mode */
+html.running, body.running { background: var(--black); }
+body.running main { max-width: 1240px; padding-top: 10px; }
+.run { color: #fff; }
+.runtop { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.runtop .rt { font-weight: 700; color: #c9c6c0; }
+.btn.light { background: #26282b; border-color: #3a3c40; color: #fff; }
+a.btn.light { color: #fff; }
+.follow { margin-left: auto; display: flex; gap: 6px; align-items: center; color: #c9c6c0; font-weight: 600; font-size: 14px; }
+.runmain { text-align: center; padding: 8px 0 14px; }
+.rtime { color: #a19e98; font-weight: 700; font-variant-numeric: tabular-nums; }
+.rblock { font-family: var(--font-display); font-weight: 800; font-size: clamp(34px, 7vw, 64px); text-transform: uppercase; line-height: 1; margin-top: 4px; }
+.rclock { font-family: var(--font-display); font-weight: 800; font-size: clamp(80px, 22vw, 200px); line-height: .95; color: var(--accent); font-variant-numeric: tabular-nums; letter-spacing: .01em; }
+.rclock.soon { color: #f4c542; } .rclock.over { color: #ff6b5e; } .rclock.wait { color: #c9c6c0; }
+.rsub { color: #c9c6c0; font-size: 16px; min-height: 22px; }
+.segs { display: flex; gap: 3px; margin: 16px 0 12px; }
+.seg2 { position: relative; height: 40px; border: 0; border-radius: 6px; background: #2a2c30; color: #a19e98; overflow: hidden; padding: 0 6px; text-align: left; font-size: 11px; font-weight: 700; min-width: 0; }
+.seg2 span { position: relative; z-index: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.seg2.past { background: #3d4045; color: #d6d3cd; }
+.seg2.water { background: #1f2f3d; color: #9cc3e6; }
+.seg2.cur { background: #3a2a20; color: #fff; outline: 2px solid var(--accent); }
+.seg2 i { position: absolute; inset: 0 auto 0 0; width: 0; background: rgba(226, 87, 15, .45); }
+.rnav { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
+.rnext { color: #c9c6c0; } .rnext b { color: #fff; }
+.runbody { background: var(--paper); color: var(--ink); border-radius: 12px; padding: 6px 20px 18px; }
+.runbody .sec { break-inside: auto; }
+.runbody .box { width: 30px; height: 30px; font-size: 18px; }
+.runbody ul.check > li { grid-template-columns: 36px 1fr; font-size: 17px; }
+@media (max-width: 760px) { .segs span { display: none; } .seg2 { height: 14px; } }
+
+.cfres { margin-top: 10px; background: #faf9f7; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; }
+.cfres .cl { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.cfres ol { margin: 6px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 3px 28px; }
+.cfres li { display: flex; gap: 8px; align-items: baseline; } .cfres li .rk { width: 18px; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; } .cfres li a { color: var(--ink); text-decoration: none; flex: 1; } .cfres li b { font-variant-numeric: tabular-nums; }
+.better { font-weight: 700; color: var(--good); }
+.weighlist { overflow: hidden; }
+.wrow { display: grid; grid-template-columns: 1fr 120px 220px; gap: 12px; align-items: center; padding: 10px 14px; border-top: 1px solid var(--line); }
+.wrow:first-child { border-top: 0; }
+.wrow .wn a { font-weight: 700; color: var(--ink); text-decoration: none; } .wrow .wn small { display: block; color: var(--muted); font-size: 12px; }
+.win { font-family: var(--font-display); font-size: 26px; font-weight: 800; text-align: center; padding: 6px 8px; border: 2px solid var(--line); border-radius: 8px; width: 100%; font-variant-numeric: tabular-nums; background: #fff; }
+.win:focus { border-color: var(--accent); outline: none; }
+.wrow.good .win { border-color: #9cc9ab; } .wrow.ok .win { border-color: #e2c47a; } .wrow.ok .wst { color: #8a6514; } .wrow.bad .win { border-color: var(--bad); background: #fdf0ef; }
+.wst { font-size: 13px; font-weight: 700; } .wrow.good .wst { color: var(--good); } .wrow.bad .wst { color: var(--bad); }
+.wst .chg { display: block; font-weight: 500; color: var(--muted); }
+@media (max-width: 760px) { .wrow { grid-template-columns: 1fr 96px; } .wrow .wst { grid-column: 1 / -1; } .win { font-size: 22px; } }
+.pl { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--muted); }
+table.sheet th, table.sheet td { text-align: center; padding: 6px 6px; font-size: 13px; font-variant-numeric: tabular-nums; border-left: 1px solid var(--line); white-space: nowrap; }
+table.sheet th.sn, table.sheet td.sn { text-align: left; border-left: 0; position: sticky; left: 0; background: var(--paper); z-index: 1; }
+table.sheet th { font-size: 11px; line-height: 1.2; } table.sheet th.pre { color: var(--bad); }
+td.c-good { background: #e5f4e4; } td.c-ok { background: #f9eeda; } td.c-bad { background: #fbdcda; font-weight: 700; color: var(--bad); }
+.lrow { display: grid; grid-template-columns: 1fr auto 16px; gap: 10px; align-items: center; width: 100%; text-align: left; background: var(--paper); border: 0; border-top: 1px solid var(--line); padding: 11px 14px; }
+.lrow:first-child { border-top: 0; } .lrow:hover { background: #faf9f7; }
+.lrow .ln { font-weight: 700; } .lrow .ln small { display: block; font-weight: 500; color: var(--muted); font-size: 12px; } .lrow .upn { color: var(--good); }
+.lrow .ls { font-size: 12px; font-weight: 700; color: var(--muted); background: #f1efeb; border-radius: 99px; padding: 3px 10px; white-space: nowrap; }
+.lrow .ls.some { background: #f9eeda; color: #8a6514; } .lrow .ls.all { background: #e5f4e4; color: var(--good); }
+.lrow .chev { color: #a29e97; font-size: 20px; }
+.lmodal { width: min(520px, 100%); }
+.lrowe { display: grid; grid-template-columns: 1fr 84px 12px 70px; gap: 6px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+.lrowe small { display: block; color: var(--muted); font-size: 12px; } .lrowe small.up { color: var(--good); font-weight: 700; }
+.lrowe input { width: 100%; min-width: 0; padding: 9px 6px; border: 1px solid var(--line); border-radius: 8px; text-align: center; font-size: 17px; font-variant-numeric: tabular-nums; }
+.lrowe .x { color: var(--muted); text-align: center; }
+/* ---------- modal ---------- */
+.scrim { position: fixed; inset: 0; background: rgba(20,20,20,.45); z-index: 40; display: flex; align-items: flex-start; justify-content: center; padding: 40px 12px; overflow-y: auto; }
+.modal { background: var(--paper); border-radius: 12px; width: min(720px, 100%); padding: 18px 20px; }
+.modal h2 { font-size: 28px; font-weight: 800; text-transform: uppercase; }
+[hidden] { display: none !important; }
+.gate { max-width: 420px; margin: 8vh auto 0; padding: 26px 22px; }
+.gate h1 { font-family: var(--font-display); font-size: 34px; text-transform: uppercase; margin: 0 0 4px; letter-spacing: .5px; }
+.gate label { display: block; font-weight: 600; font-size: 14px; margin-top: 14px; }
+.gate input { width: 100%; font: inherit; font-size: 17px; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; margin-top: 5px; background: #fff; }
+.gate .btn { width: 100%; justify-content: center; margin-top: 18px; padding: 12px; font-size: 16px; }
+.gate .err { color: var(--bad); font-weight: 600; min-height: 20px; margin: 10px 0 0; font-size: 14px; }
+.sync { margin-left: 8px; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #2a2b2d; color: #cfcac2; white-space: nowrap; }
+.sync.wait { background: var(--warn); color: #fff; }
+.sync.off { background: var(--bad); color: #fff; }
+.cfin { max-height: 60vh; overflow: auto; }
+.who { background: none; border: 0; color: #b9b6b0; font: inherit; font-size: 12px; margin-left: 8px; text-decoration: underline; cursor: pointer; padding: 0; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="brand"><b>Konkrete <span>Kids</span></b><small>Northampton Wrestling · 2026–27 season</small><span class="status" id="status">Loading…</span><span class="sync" id="sync" hidden></span><button class="who" id="who" hidden></button></div>
+    <nav class="tabs" id="tabs">
+      <a href="#season">Season</a>
+      <a href="#today">Today</a>
+      <a href="#weighin">Weigh-in</a>
+      <a href="#matches">Matches</a>
+      <a href="#lifts">Lifts</a>
+      <a href="#attendance">Attendance</a>
+      <a href="#roster">Roster</a>
+      <a href="#library">Library</a>
+    </nav>
+  </div>
+</header>
+<main id="app"><p class="muted">Loading the season…</p></main>
+<div id="layer"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(() => {
+'use strict';
+const BACKBONE_URL = 'https://claude.ai/artifact/BVgtXG3v7zjYTpk3i2bfZv';
+const PHASE_COLORS = { 'Build': '#d4500c', 'Top + early duals': '#3b5b7a', 'Winter camp': '#2c7a73', 'Compete': '#2a2b2d', 'Sharpen': '#a8701a', 'Peak': '#9c1f24' };
+const LIFTS = [['chin', 'Chin-up'], ['press', 'Shoulder press'], ['dip', 'Dip'], ['fsq', 'Front squat'], ['dl', 'Deadlift']];
+const SEC = [
+  ['announce', 'Announcements'], ['warm', 'Warmup / Lift'], ['twotwo', '2&2 Drill (review principles)'],
+  ['teach', 'New Technique · Situations/Moments'], ['live', 'Situational Live'], ['cond', 'CrossFit / Finisher'],
+  ['end', 'Announcements (end of practice)'], ['culture', 'Team Culture']
+];
+const DEFAULT_PILLARS = { '1': '1% better', '2': 'W.I.N.' };
+const FRAN_DAYS = ['2026-11-21', '2026-11-30', '2027-01-02', '2027-02-01'];
+
+let DATA = null;
+const st = { plans: {}, attendance: {}, roster: {}, lifts: {}, pillars: {}, progress: {}, matches: {}, reports: {}, cf: {}, weighins: {}, loaded: false };
+let canEdit = false, canEnter = false, db = null, downloads = null, local = false;
+let editing = null; // date being edited
+let selAttDate = null, selLiftDate = null;
+let sheetFrom = null, sheetTo = null, sheetLift = 'all'; let selWeighDate = null; let weighFilter = ''; let isOwner = true;
+let run = null; let runTimer = null; let wakeLock = null;
+
+/* ---------------- helpers ---------------- */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const D = s => new Date(s + 'T12:00:00');
+const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+const addDays = (s, n) => { const d = D(s); d.setDate(d.getDate() + n); return iso(d); };
+const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const DOWL = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const MONL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const short = s => { const d = D(s); return DOW[d.getDay()] + ' ' + (d.getMonth() + 1) + '/' + d.getDate(); };
+const long = s => { const d = D(s); return DOWL[d.getDay()] + ', ' + MONL[d.getMonth()] + ' ' + d.getDate(); };
+const todayIso = () => iso(new Date());
+function toast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2600); }
+const uid = () => Math.random().toString(36).slice(2, 10);
+
+function weekOf(s) { return Math.floor((D(s) - D(DATA.start)) / 864e5 / 7) + 1; }
+function phaseOf(s) { return DATA.phases.find(p => s >= p[1] && s <= p[2]) || (s < DATA.phases[0][1] ? DATA.phases[0] : DATA.phases[DATA.phases.length - 1]); }
+function pillar(w) { const p = st.pillars[String(w)]; return (p !== undefined ? p : DEFAULT_PILLARS[String(w)]) || ''; }
+const dayByDate = {};
+function rawPlan(date) { const base = dayByDate[date]; if (!base) return null; const ov = st.plans[date]; return ov ? Object.assign({}, base, { sections: Object.assign({}, base.sections, ov.sections || {}), clock: ov.clock || base.clock, edited: ov.updatedAt }) : base; }
+function firstOfWeek(date) { const w = weekOf(date); return DATA.days.find(d => weekOf(d.date) === w).date === date; }
+function taughtNames(s) {
+  const out = [];
+  for (const d of DATA.days) {
+    if (d.date >= s || !d.adds || !d.adds.length) continue;
+    const done = (st.progress[d.date] && st.progress[d.date].done) || {};
+    const tracked = Object.keys(done).length > 0;
+    for (const a of d.adds) {
+      let ok = !tracked || !!done[a.src];
+      if (!ok) ok = DATA.days.some(e => e.date > d.date && e.date < s && st.progress[e.date] && st.progress[e.date].done && st.progress[e.date].done['c:' + a.src]);
+      if (ok && !out.includes(a.n)) out.push(a.n);
+    }
+  }
+  return out;
+}
+function plan(date, noAuto) {
+  let p = rawPlan(date); if (!p) return null;
+  const ov = st.plans[date];
+  if (p.kind !== 'scrimmage' && !(ov && ov.sections && ov.sections.twotwo)) {
+    const rot = (p.sections.twotwo || []).filter(n => /^TOP ROTATION:/.test(n.t));
+    p = Object.assign({}, p, { sections: Object.assign({}, p.sections, { twotwo: rot.concat(taughtNames(date).map(n => ({ t: n, c: [] }))) }) });
+  }
+  if (noAuto || !firstOfWeek(date)) return p;
+  const pl = pillar(weekOf(date));
+  const ann = p.sections.announce || [];
+  if (pl && JSON.stringify(ann).toLowerCase().includes(pl.toLowerCase())) return p;
+  const line = { t: 'Pillar of the week: ' + (pl || '___ (set it on the Season page)'), c: [], auto: true };
+  return Object.assign({}, p, { sections: Object.assign({}, p.sections, { announce: [line].concat(ann) }) });
+}
+function carryMap() {
+  const out = {}; let left = [];
+  for (const d of DATA.days.map(x => x.date)) {
+    out[d] = left;
+    const items = (rawPlan(d).sections.teach || []);
+    const done = (st.progress[d] && st.progress[d].done) || {};
+    if (Object.keys(done).length) left = left.filter(c => !done['c:' + c.node.t]).concat(items.filter(n => !done[n.t]).map(n => ({ node: n, from: d })));
+  }
+  return out;
+}
+function practiceDates() { return DATA.days.map(d => d.date); }
+function liftDates() { return DATA.days.filter(d => d.kind === 'lift' || d.kind === 'scrimmage').map(d => d.date); }
+function nearest(list) { const t = todayIso(); return list.find(d => d >= t) || list[list.length - 1]; }
+function roster(activeOnly = true) { return Object.entries(st.roster).map(([id, r]) => Object.assign({ id }, r)).filter(r => !activeOnly || r.active !== false).sort((a, b) => (parseFloat(a.wt) || 999) - (parseFloat(b.wt) || 999) || a.name.split(' ').slice(-1)[0].localeCompare(b.name.split(' ').slice(-1)[0])); }
+function summary(day) {
+  if (day.focus) return day.focus;
+  const t = (day.sections.teach || []).map(n => n.t).filter(x => !/^(Weight check|Review)$/i.test(x));
+  return t.slice(0, 2).join(' · ');
+}
+
+/* ---------------- storage: Google Sheet via Apps Script ---------------- */
+const COLS = { plans: 'plans', attendance: 'attendance', roster: 'roster', lifts: 'lifts', settings: 'settings', progress: 'progress', matches: 'matches', reports: 'reports', cf: 'cf', weighins: 'weighins' };
+const API = new URLSearchParams(location.search).get('api') || '__API_URL__';
+const LS = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
+const store = {}; Object.keys(COLS).forEach(c => { store[c] = {}; });
+let passcode = LS.get('kk_code'), role = LS.get('kk_role'), coachName = LS.get('kk_name') || '';
+let since = 0, polling = false, sending = false, retryMs = 0, lastOk = 0, failing = false;
+let outbox = []; try { outbox = JSON.parse(LS.get('kk_outbox') || '[]'); } catch (e) { outbox = []; }
+const saveOutbox = () => LS.set('kk_outbox', JSON.stringify(outbox));
+
+async function api(body) {
+  const r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(Object.assign({ key: passcode }, body)), redirect: 'follow', cache: 'no-store' });
+  if (!r.ok) throw new Error('http ' + r.status);
+  return r.json();
+}
+function setIn(obj, keys, val) {
+  let o = obj;
+  for (let i = 0; i < keys.length - 1; i++) { const k = String(keys[i]); if (o[k] === null || typeof o[k] !== 'object' || Array.isArray(o[k])) o[k] = {}; o = o[k]; }
+  const last = String(keys[keys.length - 1]);
+  if (val === null || val === undefined) delete o[last]; else o[last] = val;
+}
+function normDoc(c, d) {
+  if (c === 'matches' && d && d.bm) d.bouts = Object.values(d.bm).sort((x, y) => (x.n || 0) - (y.n || 0));
+  return d;
+}
+function splitPath(p) { const i = p.indexOf('/'); return [p.slice(0, i), p.slice(i + 1)]; }
+function applyLocal(op) {
+  const [c, id] = splitPath(op.path); if (!store[c]) return;
+  if (op.op === 'set') store[c][id] = normDoc(c, JSON.parse(JSON.stringify(op.data)));
+  else if (op.op === 'del') delete store[c][id];
+  else if (op.op === 'patch') { const d = store[c][id] && typeof store[c][id] === 'object' ? store[c][id] : {}; op.sets.forEach(s => setIn(d, s[0], s[1])); store[c][id] = normDoc(c, d); }
+  return c;
+}
+function applyCol(name, map) {
+  if (name === 'settings') st.pillars = (map.pillars && map.pillars.weeks) || {};
+  else st[name] = map;
+  scheduleRender();
+}
+function applyRows(rows) {
+  const touched = new Set();
+  rows.forEach(([p, j]) => {
+    const [c, id] = splitPath(p); if (!store[c]) return;
+    if (j === '') delete store[c][id]; else { try { store[c][id] = normDoc(c, JSON.parse(j)); } catch (e) {} }
+    touched.add(c);
+  });
+  outbox.forEach(op => { const c = applyLocal(op); if (c) touched.add(c); }); // my unsent entries stay on screen
+  touched.forEach(c => applyCol(c, store[c]));
+  if (touched.has('weighins')) liveWeighPatch();
+  return touched.size;
+}
+function queue(op) {
+  const c = applyLocal(op); if (c) applyCol(c, store[c]);
+  if (op.op !== 'patch') outbox = outbox.filter(o => !(o.path === op.path && o.op !== 'patch')); // newer whole-doc save replaces an older one
+  outbox.push(op); saveOutbox(); syncPill(); flush();
+}
+async function write(path, data) {
+  if (!canEnter) { toast('Sign in to save.'); throw new Error('readonly'); }
+  queue({ op: 'set', path, data });
+}
+async function remove(path) { queue({ op: 'del', path }); }
+async function patch(path, sets) { queue({ op: 'patch', path, sets }); }
+async function flush() {
+  if (sending || !outbox.length || !passcode) return;
+  sending = true;
+  const batch = outbox.slice(0, 100);
+  try {
+    const res = await api({ action: 'write', ops: batch, by: coachName || role });
+    if (!res.ok) {
+      if (res.error === 'passcode') { signOut('That passcode was changed. Sign in with the new one.'); return; }
+      if (res.error === 'head_only') toast('Only Coach Provini can change that.');
+      else toast('Couldn’t save one entry (' + res.error + ').');
+      outbox = outbox.slice(batch.length); saveOutbox(); // drop what the server refused so the rest can go
+    } else {
+      outbox = outbox.slice(batch.length); saveOutbox();
+      applyRows(res.rows || []);
+    }
+    retryMs = 0; failing = false; lastOk = Date.now();
+  } catch (e) {
+    failing = true; retryMs = Math.min(30000, (retryMs || 1500) * 2);
+    setTimeout(() => { sending = false; flush(); }, retryMs); syncPill(); return;
+  } finally { if (!failing) sending = false; }
+  syncPill();
+  if (outbox.length) flush();
+}
+async function poll() {
+  if (polling || !passcode) return;
+  polling = true;
+  try {
+    const res = await api({ action: 'list', since });
+    if (!res.ok) { if (res.error === 'passcode') signOut('That passcode was changed. Sign in with the new one.'); return; }
+    const first = !since; since = Math.max(1, res.now - 15000);
+    applyRows(res.rows || []);
+    if (first) { st.loaded = true; Object.keys(COLS).forEach(c => applyCol(c, store[c])); await seedIfEmpty(); }
+    failing = false; lastOk = Date.now();
+  } catch (e) { failing = true; }
+  finally { polling = false; syncPill(); }
+}
+function syncPill() {
+  const el = $('#sync'); if (!el) return; el.hidden = !passcode;
+  el.className = 'sync' + (failing ? ' off' : outbox.length ? ' wait' : '');
+  el.textContent = failing ? (outbox.length ? `No signal · ${outbox.length} waiting` : 'No signal') : outbox.length ? `Saving ${outbox.length}…` : 'All saved';
+}
+function subscribe() {
+  poll();
+  setInterval(() => { if (document.visibilityState === 'visible') { poll(); if (outbox.length && !sending) flush(); } }, +(new URLSearchParams(location.search).get('poll')) || 10000);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { poll(); flush(); } });
+  window.addEventListener('online', () => { retryMs = 0; flush(); poll(); });
+}
+async function seedIfEmpty() {
+  if (role !== 'head' || !SEED || Object.keys(store.roster).length) return;
+  Object.entries(SEED.roster || {}).forEach(([id, r]) => queue({ op: 'set', path: 'roster/' + id, data: r }));
+  Object.entries(SEED.reports || {}).forEach(([id, r]) => queue({ op: 'set', path: 'reports/' + id, data: r }));
+}
+// Another coach's weights show up even while you're typing in a different box.
+function liveWeighPatch() {
+  if (route() !== 'weighin' || !selWeighDate) return;
+  document.querySelectorAll('[data-weigh]').forEach(inp => {
+    if (inp === document.activeElement) return;
+    const w = weightOf(selWeighDate, inp.dataset.weigh); const v = w !== null ? String(w) : '';
+    if (inp.value !== v) inp.value = v;
+  });
+}
+function setStatus(t) { $('#status').textContent = t || (canEdit ? 'Head coach' : canEnter ? 'Coach' : ''); }
+
+/* ---------------- outline text <-> nodes ---------------- */
+function toText(nodes, depth = 0) { return (nodes || []).map(n => '  '.repeat(depth) + n.t + (n.c && n.c.length ? '\n' + toText(n.c, depth + 1) : '')).join('\n'); }
+function fromText(txt) {
+  const root = { c: [] }; const stack = [{ d: -1, n: root }];
+  txt.split('\n').forEach(raw => {
+    if (!raw.trim()) return;
+    const exp = raw.replace(/\t/g, '  ');
+    const d = Math.floor((exp.length - exp.trimStart().length) / 2);
+    const t = exp.trim().replace(/^[-*•]\s*/, '');
+    const node = { t, c: [] };
+    while (stack.length > 1 && stack[stack.length - 1].d >= d) stack.pop();
+    stack[stack.length - 1].n.c.push(node); stack.push({ d, n: node });
+  });
+  return root.c;
+}
+function clockToText(cl) { return cl.map(b => b.join(' | ')).join('\n'); }
+function clockFromText(t) { return t.split('\n').filter(x => x.trim()).map(l => { const p = l.split('|').map(s => s.trim()); return [p[0] || '', p[1] || '', p[2] || '']; }); }
+function ul(nodes, cls) {
+  if (!nodes || !nodes.length) return '';
+  return '<ul>' + nodes.map(n => {
+    let c = '';
+    if (/^TOP ROTATION:/.test(n.t)) c = ' class="rot"';
+    else if (/^Why:/.test(n.t)) c = ' class="why"';
+    return '<li' + c + '>' + esc(n.t) + (n.c && n.c.length ? ul(n.c) : '') + '</li>';
+  }).join('') + '</ul>';
+}
+
+/* ---------------- routing ---------------- */
+let renderQueued = false;
+function scheduleRender() {
+  if (renderQueued) return; renderQueued = true;
+  requestAnimationFrame(() => { renderQueued = false; const a = document.activeElement; if (a && a.closest && a.closest('#app') && /INPUT|TEXTAREA|SELECT/.test(a.tagName)) { deferRender = true; return; } render(); });
+}
+let deferRender = false;
+document.addEventListener('focusout', () => { if (deferRender) { deferRender = false; setTimeout(() => { const a = document.activeElement; if (!(a && /INPUT|TEXTAREA|SELECT/.test(a.tagName))) render(); else deferRender = true; }, 50); } });
+function route() { const h = (location.hash || '#season').slice(1); return h; }
+window.addEventListener('hashchange', () => { editing = null; closeLayer(); render(); window.scrollTo(0, 0); });
+function render() {
+  if (!DATA) return;
+  const r = route();
+  if (!r.startsWith('run-')) stopRun();
+  const tab = r.startsWith('day-') || r.startsWith('run-') ? (r.slice(4) === nearest(practiceDates()) ? 'today' : 'season') : r.startsWith('w-') ? 'roster' : r.startsWith('m-') ? 'matches' : r === 'weighsheet' ? 'weighin' : r === 'liftsheet' ? 'lifts' : r;
+  document.querySelectorAll('#tabs a').forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === '#' + tab ? 'page' : 'false'));
+  const app = $('#app');
+  if (r === 'today') { location.hash = 'day-' + nearest(practiceDates()); return; }
+  document.body.classList.toggle('running', r.startsWith('run-')); document.documentElement.classList.toggle('running', r.startsWith('run-'));
+  if (r.startsWith('day-')) app.innerHTML = viewDay(r.slice(4));
+  else if (r.startsWith('run-')) { app.innerHTML = viewRun(r.slice(4)); startRun(); }
+  else if (r === 'weighin') app.innerHTML = viewWeighin();
+  else if (r === 'weighsheet') app.innerHTML = viewWeighSheet();
+  else if (r === 'liftsheet') app.innerHTML = viewLiftSheet();
+  else if (r === 'matches') app.innerHTML = viewMatches();
+  else if (r.startsWith('m-')) app.innerHTML = viewEvent(r.slice(2));
+  else if (r.startsWith('w-')) app.innerHTML = viewWrestler(r.slice(2));
+  else if (r === 'attendance') app.innerHTML = viewAttendance();
+  else if (r === 'lifts') app.innerHTML = viewLifts();
+  else if (r === 'roster') app.innerHTML = viewRoster();
+  else if (r === 'library') app.innerHTML = viewLibrary();
+  else app.innerHTML = viewSeason();
+}
+
+/* ---------------- season view ---------------- */
+function viewSeason() {
+  const t = todayIso();
+  let html = '<div class="pagehead"><div><h1>Season</h1><p>Click any day to open its practice plan. Click a competition to enter matches.</p></div></div>';
+  html += reportCard();
+  html += '<div class="legend">' + Object.entries(PHASE_COLORS).map(([k, v]) => `<span><i style="background:${v}"></i>${esc(k)}</span>`).join('') +
+    '<span><i style="background:var(--accent);height:4px;vertical-align:3px"></i>Lift day</span><span><i style="background:var(--black)"></i>Competition</span></div>';
+  html += '<div class="dow"><span></span>' + ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(d => `<span>${d}</span>`).join('') + '</div>';
+  let agenda = '<div class="agenda">';
+  for (let w = 1; w <= 17; w++) {
+    const mon = addDays(DATA.start, (w - 1) * 7);
+    const ph = phaseOf(addDays(mon, 3));
+    const col = PHASE_COLORS[ph[0]];
+    const pl = pillar(w);
+    const pbtn = `<button class="pillar ${pl ? '' : 'blank'}" data-pillar="${w}" ${canEdit ? '' : 'disabled'} title="${canEdit ? 'Set this week’s pillar' : ''}">${pl ? esc(pl) : 'Pillar ___'}</button>`;
+    html += `<div class="week"><div class="wlabel" style="background:${col}"><span class="wn">Week ${w}</span><span class="wd">${MON[D(mon).getMonth()]} ${D(mon).getDate()} – ${MON[D(addDays(mon, 6)).getMonth()]} ${D(addDays(mon, 6)).getDate()}</span>${pbtn}<span class="wp">${esc(ph[0])}</span></div>`;
+    agenda += `<section class="card aweek"><header style="background:${col}"><b>Week ${w}</b><span>${short(mon)} – ${short(addDays(mon, 6))} · ${esc(ph[0])}</span>${pbtn}</header>`;
+    for (let i = 0; i < 7; i++) {
+      const s = addDays(mon, i), d = D(s), dd = dayByDate[s], ev = DATA.events[s], off = DATA.offdays[s];
+      const isToday = s === t ? ' today' : '';
+      const att = st.attendance[s] && st.attendance[s].marks ? Object.values(st.attendance[s].marks).filter(m => m === 'P' || m === 'L').length : 0;
+      if (dd) {
+        const p = plan(s);
+        const tags = [];
+        if (dd.kind === 'lift') tags.push('<span class="tag l">Lift</span>');
+        if (dd.pre) tags.push('<span class="tag p">Day before</span>');
+        if (dd.kind === 'optional') tags.push('<span class="tag p">Optional</span>');
+        if (ev) tags.push(`<span class="tag m">${esc(ev[1])}</span>`);
+        if (st.plans[s] && st.plans[s].by === 'claude' && !st.plans[s].approved) tags.push('<span class="tag d">Draft</span>');
+        const sum = dd.kind === 'scrimmage' ? (DATA.scrimTime || 'Scrimmage') : summary(p);
+        html += `<button class="cell ${dd.kind === 'lift' ? 'lift' : ''}${isToday}" data-go="day-${s}"><span class="dn">${d.getDate()}${dd.label ? ` <em>${esc(dd.label)}</em>` : ''}</span>${tags.join(' ')}<span class="sum">${esc(sum)}</span>${att ? `<span class="att">${att} ✓</span>` : ''}</button>`;
+        agenda += `<button class="arow ${dd.kind === 'lift' ? 'lift' : ''}" data-go="day-${s}"><span class="ad">${DOW[d.getDay()]}<small>${MON[d.getMonth()]} ${d.getDate()}</small></span><span class="at">${dd.label ? esc(dd.label) + ': ' : ''}${esc(sum || 'Practice')}<span>${dd.kind === 'lift' ? 'Lift · ' : ''}${dd.pre ? 'Day before competition · ' : ''}${esc(p.clock[0][0].split('-')[0])}${ev ? ' · ' + esc(ev[1]) : ''}</span></span><span class="chip">Plan</span></button>`;
+      } else if (ev) {
+        const rec = eventRecord(s);
+        html += `<button class="cell match${isToday}" data-go="m-${s}"><span class="dn">${d.getDate()} <em>${esc(ev[2])}</em></span><span class="tag m">${esc(ev[0])}</span><span class="sum">${esc(ev[1])}</span>${rec ? `<span class="rec">${rec}</span>` : ''}</button>`;
+        agenda += `<button class="arow match" data-go="m-${s}"><span class="ad">${DOW[d.getDay()]}<small>${MON[d.getMonth()]} ${d.getDate()}</small></span><span class="at">${esc(ev[1])}<span>${esc(ev[0])} · ${esc(ev[2])}${rec ? ' · ' + rec : ''}</span></span><span class="chip">Matches</span></button>`;
+      } else if (off) {
+        html += `<div class="cell off${isToday}"><span class="dn">${d.getDate()}</span><span class="sum">${esc(off)}</span></div>`;
+        agenda += `<div class="arow"><span class="ad">${DOW[d.getDay()]}<small>${MON[d.getMonth()]} ${d.getDate()}</small></span><span class="at">${esc(off)}<span>Off</span></span><span></span></div>`;
+      } else {
+        html += `<div class="cell none${isToday}"><span class="dn">${d.getDate()}</span></div>`;
+      }
+    }
+    html += '</div>';
+    agenda += '</section>';
+  }
+  return html + agenda + '</div>';
+}
+
+/* ---------------- day view ---------------- */
+function viewDay(s) {
+  const p = plan(s, editing === s);
+  if (!p) return '<div class="card empty"><h3>No practice on this day</h3><p><a href="#season">Back to the season</a></p></div>';
+  const dates = practiceDates(); const i = dates.indexOf(s);
+  const w = weekOf(s), ph = phaseOf(s), ev = DATA.events[s], pl = pillar(w);
+  const isEdit = editing === s;
+  const chips = [];
+  chips.push(`<span class="chip">${esc(p.clock[0][0].split('-')[0])}–${esc((p.clock[p.clock.length - 1][0].split('-')[1] || p.clock[p.clock.length - 1][0]))}</span>`);
+  if (p.kind === 'lift') chips.push('<span class="chip lift">Lift day</span>');
+  if (p.pre) chips.push('<span class="chip pre">Day before competition</span>');
+  if (p.kind === 'optional') chips.push('<span class="chip opt">Optional</span>');
+  if (p.run) chips.push('<span class="chip">Morning run ' + esc(DATA.runTime || '') + '</span>');
+  if (ev) chips.push(`<span class="chip match">${esc(ev[1])}</span>`);
+  let h = '<div class="daynav">';
+  h += `<a class="btn ghost" href="#season">← Season</a>`;
+  h += `<a class="btn" ${i > 0 ? `href="#day-${dates[i - 1]}"` : 'aria-disabled="true"'}>‹ ${i > 0 ? esc(short(dates[i - 1])) : ''}</a>`;
+  h += `<a class="btn" ${i < dates.length - 1 ? `href="#day-${dates[i + 1]}"` : 'aria-disabled="true"'}>${i < dates.length - 1 ? esc(short(dates[i + 1])) : ''} ›</a>`;
+  h += '<span class="spacer"></span>';
+  if (isEdit) {
+    h += '<button class="btn ghost" data-act="cancel">Cancel</button>';
+    if (st.plans[s]) h += '<button class="btn ghost" data-act="reset">Reset to original</button>';
+    h += '<button class="btn primary" data-act="save">Save changes</button>';
+  } else {
+    h += `<a class="btn" href="#attendance" data-att="${s}">Attendance</a>`;
+    if (p.kind === 'lift' || p.kind === 'scrimmage') h += `<a class="btn" href="#lifts" data-liftd="${s}">Log lifts</a>`;
+    if (canEdit) h += '<button class="btn" data-act="edit">Edit plan</button>';
+    h += '<button class="btn dark" data-act="pdf">Download PDF</button>';
+    h += `<a class="btn primary" href="#run-${s}">▶ Practice mode</a>`;
+  }
+  h += '</div>';
+  h += '<article class="sheet">';
+  h += `<div class="sheethead"><div><div class="eyebrow">Practice plan${p.label ? ' · ' + esc(p.label) : ''}</div><h1>${esc(long(s))}</h1><div class="sub">Week ${w} · ${esc(ph[0])} phase${p.edited ? ` · <span class="edited">${st.plans[s] && st.plans[s].by === 'claude' ? 'Claude draft' : 'edited'}</span>` : ''}</div></div><div class="chips">${chips.join('')}</div></div>`;
+  h += `<div class="pillarband"><span>Pillar of the week</span><b>${pl ? esc(pl) : '___'}</b><span class="win">W.I.N. · What’s important now?</span></div>`;
+  const ov = st.plans[s];
+  if (ov && ov.by === 'claude' && !ov.approved && !isEdit) h += `<div class="draft"><div><b>Claude’s draft from the Sunday review.</b> ${esc(ov.why || '')}</div>${canEdit ? '<div class="row"><button class="btn primary" data-act="approve">Approve</button><button class="btn" data-act="edit">Edit</button><button class="btn ghost" data-act="reset">Use the original</button></div>' : ''}</div>`;
+  else if (ov && ov.by === 'claude' && ov.approved && !isEdit) h += `<div class="note">Built from the Sunday review. ${esc(ov.why || '')}</div>`;
+  else if (p.tentative && !ov && !isEdit) h += '<div class="note">Tentative. The Sunday review rebuilds this plan from the week before’s results.</div>';
+  if (p.note) h += `<div class="note">${esc(p.note)}</div>`;
+  if (DATA.jv[s] && !isEdit) h += `<div class="note"><b>${esc(DATA.jv[s].title)}:</b> ${esc(DATA.jv[s].teach.join(' '))} Live: ${esc(DATA.jv[s].live.join(', '))}. Finisher: ${esc(DATA.jv[s].cond)}</div>`;
+  if (isEdit) {
+    h += '<div class="edithint">One bullet per line. Start a line with two spaces to make it a sub-bullet. Schedule lines are <b>time | block | note</b>.</div>';
+    h += `<div class="cols"><div class="sec"><h3>Schedule</h3><textarea id="ed-clock" rows="${p.clock.length + 1}">${esc(clockToText(p.clock))}</textarea></div>`;
+    for (const [k, title] of secOrder(p)) {
+      const nodes = p.sections[k] || [];
+      const lines = toText(nodes).split('\n').length;
+      h += `<div class="sec"><h3>${esc(secTitle(k, title, p))}</h3><textarea id="ed-${k}" rows="${Math.min(22, Math.max(3, lines + 1))}">${esc(toText(nodes))}</textarea></div>`;
+    }
+    h += '</div>';
+  } else {
+    const total = p.clock.reduce((a, b) => a + mins(b[0]), 0) || 1;
+    h += '<div class="timeline">' + p.clock.map(b => { const m = mins(b[0]); const hot = /Lift|CrossFit|Finisher|Light finisher/.test(b[1]); const wat = /Water/.test(b[1]); return `<div class="tblock ${hot ? 'hot' : ''} ${wat ? 'water' : ''}" style="flex:${Math.max(m, 11)} 1 0"><div class="tt">${esc(b[0])}</div><div class="tn">${esc(b[1])}</div><div class="tx">${esc(blockNote(b, p))}</div></div>`; }).join('') + '</div>';
+    h += '<div class="cols">';
+    for (const [k, title] of secOrder(p)) {
+      const nodes = p.sections[k] || [];
+      const isLong = k === 'twotwo' || k === 'teach';
+      const tm = timeFor(k, p);
+      if (!nodes.length && (k === 'end')) { h += `<div class="sec"><h3>${esc(secTitle(k, title, p))}${tm}</h3><div class="emptyline">Add end-of-practice announcements</div></div>`; continue; }
+      let body = ul(nodes);
+      if (k === 'twotwo' && nodes.length > 8) body = '<div class="two">' + body + '</div>';
+      if (k === 'cond') { const rows = cfRows(s); if (canEnter) body += `<div class="row" style="margin:10px 0 4px"><button class="btn" data-act="cftimes">${rows.length ? 'Edit times' : 'Enter times'}</button></div>`; if (rows.length) body += `<div class="cfres"><div class="cl">Times (${rows.length})${(st.cf[s] && st.cf[s].score) ? ' · ' + esc(st.cf[s].score) : ''}</div><ol>${rows.map((r, i) => `<li><span class="rk">${i + 1}</span><a href="#w-${r.id}">${esc(rosterName(r.id))}</a><b>${esc(r.t)}</b></li>`).join('')}</ol></div>`; }
+      if (k === 'teach') {
+        const tt = teachHtml(s, nodes);
+        h += `<div class="sec long"><h3>${esc(secTitle(k, title, p))}${tt.n ? `<span class="prog">${tt.n} of ${tt.all} taught</span>` : ''}${tm}</h3>${tt.html}</div>`;
+        continue;
+      }
+      h += `<div class="sec ${isLong ? 'long' : ''}"><h3>${esc(secTitle(k, title, p))}${tm}</h3>${body || '<div class="emptyline">Nothing yet</div>'}</div>`;
+    }
+    h += '</div>';
+  }
+  h += '</article>';
+  return h;
+}
+function teachHtml(s, nodes) {
+  const done = (st.progress[s] && st.progress[s].done) || {};
+  const carried = carryMap()[s] || [];
+  const all = carried.length + nodes.length, n = carried.filter(c => done['c:' + c.node.t]).length + nodes.filter(x => done[x.t]).length;
+  const li = (node, key, extra) => `<li class="${done[key] ? 'done' : ''}"><button class="box ${done[key] ? 'on' : ''}" data-chk="${esc(key)}" aria-pressed="${!!done[key]}" aria-label="Taught: ${esc(node.t)}" ${canEdit ? '' : 'disabled'}>${done[key] ? '✓' : ''}</button><span class="txt">${esc(node.t)}${extra || ''}</span>${node.c && node.c.length ? ul(node.c) : ''}</li>`;
+  let html = '';
+  if (carried.length) html += `<div class="carry"><div class="cl">Not finished last time</div><ul class="check">${carried.map(c => li(c.node, 'c:' + c.node.t, ` <span class="muted" style="font-size:12px">(from ${esc(short(c.from))})</span>`)).join('')}</ul></div>`;
+  html += `<ul class="check">${nodes.map(x => li(x, x.t)).join('')}</ul>`;
+  return { html, n, all };
+}
+function secStart(k, p) {
+  const map = { warm: /Warm-up|^Lift/, announce: /Huddle|First-day talk/, twotwo: /2&2/, teach: /Teach|Review/, live: /live|Short goes|matches/i, cond: /CrossFit|Finisher/i, end: /Close/ };
+  if (!map[k]) return null; const b = p.clock.find(x => map[k].test(x[1])); if (!b) return null;
+  const m = String(b[0]).match(/^(\d{1,2}):(\d{2})/); if (!m) return null; let h = +m[1]; if (h < 7) h += 12; return h * 60 + +m[2];
+}
+function secOrder(p) {
+  const base = SEC.map((x, i) => ({ x, i, t: secStart(x[0], p) }));
+  let last = -1; base.forEach(o => { if (o.t === null) o.t = last + 0.5; else last = o.t; });
+  return base.sort((a, b) => a.t - b.t || a.i - b.i).map(o => o.x);
+}
+function secTitle(k, title, p) {
+  if (k === 'cond') { const n = p.condName || ''; if (!n) return 'CrossFit / Finisher'; const lib = DATA.library.find(x => x.name === n); return lib ? lib.type : title; }
+  if (k === 'warm') return p.kind === 'lift' ? 'Lift' : 'Warmup';
+  if (k === 'announce' && p.clock.some(b => b[1] === 'First-day talk')) return 'First-day talk';
+  return title;
+}
+function mins(r) { const m = String(r).match(/(\d+):(\d+)\s*-\s*(\d+):(\d+)/); if (!m) return 5; let a = +m[1] * 60 + +m[2], b = +m[3] * 60 + +m[4]; if (b < a) b += 12 * 60; return b - a; }
+function blockNote(b, p) { if (b[2]) return b[2]; if (/CrossFit|Finisher/i.test(b[1])) return p.condName || ''; return ''; }
+function timeFor(k, p) {
+  const map = { warm: /Warm-up|Lift/, twotwo: /2&2/, teach: /Teach|Review/, live: /live|Short goes/i, cond: /CrossFit|Finisher/, end: /Close/, announce: /Huddle|First-day talk/ };
+  if (!map[k]) return '';
+  const b = p.clock.find(x => map[k].test(x[1]));
+  return b ? `<small>${esc(b[0])}</small>` : '';
+}
+
+/* ---------------- PDF ---------------- */
+function pdfSafe(s) { return String(s).replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/[–—]/g, '-').replace(/…/g, '...').replace(/[^\x00-\xff]/g, ''); }
+async function makePdf(s) {
+  const p = plan(s);
+  if (!window.jspdf) { toast('The PDF tool didn’t load. Reload the page and try again.'); return; }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+  const W = 612, H = 792, M = 36, GAP = 22, CW = (W - 2 * M - GAP) / 2;
+  const w = weekOf(s), ph = phaseOf(s), pl = pillar(w);
+  // header
+  doc.setFillColor(21, 22, 23); doc.rect(0, 0, W, 64, 'F');
+  doc.setTextColor(226, 87, 15); doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+  doc.text(pdfSafe('KONKRETE KIDS WRESTLING  ·  PRACTICE PLAN' + (p.label ? '  ·  ' + p.label.toUpperCase() : '')), M, 24);
+  doc.setTextColor(255, 255, 255); doc.setFontSize(20);
+  doc.text(pdfSafe(long(s) + ', ' + D(s).getFullYear()), M, 47);
+  doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.setTextColor(200, 197, 191);
+  const meta = ['Week ' + w, ph[0], p.kind === 'lift' ? 'Lift day' : '', p.pre ? 'Day before competition' : '', p.run ? 'Morning run ' + (DATA.runTime || '') : ''].filter(Boolean).join('  ·  ');
+  doc.text(pdfSafe(meta), W - M, 24, { align: 'right' });
+  doc.setFont('helvetica', 'bold'); doc.setTextColor(255, 255, 255); doc.setFontSize(11);
+  doc.text(pdfSafe('Pillar: ' + (pl || '______')), W - M, 47, { align: 'right' });
+  let y = 84;
+  // schedule table
+  doc.setFontSize(8.5); doc.setTextColor(24, 25, 27);
+  const colT = 78, colB = 110;
+  doc.setFont('helvetica', 'bold'); doc.text('SCHEDULE', M, y); y += 6;
+  doc.setDrawColor(24, 25, 27); doc.setLineWidth(1.2); doc.line(M, y, W - M, y); y += 11;
+  doc.setLineWidth(0.4); doc.setDrawColor(216, 212, 205);
+  for (const b of p.clock) {
+    doc.setFont('helvetica', 'bold'); doc.text(pdfSafe(b[0]), M, y);
+    doc.text(pdfSafe(b[1]), M + colT, y);
+    doc.setFont('helvetica', 'normal');
+    const note = pdfSafe(blockNote(b, p));
+    const lines = doc.splitTextToSize(note, W - 2 * M - colT - colB);
+    doc.text(lines, M + colT + colB, y);
+    y += Math.max(1, lines.length) * 10.5 + 2;
+    doc.line(M, y - 8, W - M, y - 8);
+  }
+  if (p.note) { y += 4; doc.setFont('helvetica', 'italic'); const nl = doc.splitTextToSize(pdfSafe(p.note), W - 2 * M); doc.text(nl, M, y); y += nl.length * 10.5; }
+  y += 8;
+  // two-column flow
+  const top0 = y; let col = 0, cy = y; const bottom = H - 40;
+  const FS = 9, LH = 11.2;
+  function newCol() { if (col === 0) { col = 1; cy = curTop; } else { doc.addPage(); col = 0; curTop = 40; cy = 40; } }
+  let curTop = top0;
+  function x0() { return M + col * (CW + GAP); }
+  function need(h) { if (cy + h > bottom) newCol(); }
+  function heading(t, time) {
+    need(LH * 3);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(9.5); doc.setTextColor(24, 25, 27);
+    doc.text(pdfSafe(t.toUpperCase()), x0(), cy);
+    if (time) { doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(108, 106, 101); doc.text(pdfSafe(time), x0() + CW, cy, { align: 'right' }); }
+    cy += 4; doc.setDrawColor(24, 25, 27); doc.setLineWidth(1.2); doc.line(x0(), cy, x0() + CW, cy); cy += LH;
+    doc.setTextColor(24, 25, 27);
+  }
+  function bullets(nodes, depth, boxes) {
+    for (const n of nodes) {
+      const ind = 10 + depth * 12 + (boxes ? 5 : 0);
+      const rot = /^TOP ROTATION:/.test(n.t), why = /^Why:/.test(n.t);
+      doc.setFont('helvetica', rot ? 'bold' : why ? 'italic' : 'normal'); doc.setFontSize(FS);
+      if (rot) doc.setTextColor(166, 60, 6); else if (why) doc.setTextColor(108, 106, 101); else doc.setTextColor(24, 25, 27);
+      const lines = doc.splitTextToSize(pdfSafe(n.t), CW - ind - 2);
+      for (let li = 0; li < lines.length; li++) {
+        need(LH);
+        if (li === 0 && boxes && depth === 0) { doc.setDrawColor(24, 25, 27); doc.setLineWidth(0.7); doc.rect(x0() + 1, cy - 7, 7, 7); }
+        else if (li === 0 && !rot && !why) doc.text(depth === 0 ? '•' : depth === 1 ? 'o' : '-', x0() + ind - 8, cy);
+        doc.text(lines[li], x0() + ind, cy); cy += LH;
+      }
+      if (n.c && n.c.length) bullets(n.c, depth + 1, false);
+    }
+  }
+  for (const [k, title] of secOrder(p)) {
+    const nodes = p.sections[k] || [];
+    const tb = (timeFor(k, p).match(/<small>(.*)<\/small>/) || [])[1];
+    heading(secTitle(k, title, p), tb ? tb.replace(/&amp;/g, '&') : '');
+    if (k === 'teach') {
+      const carried = carryMap()[s] || [];
+      if (carried.length) bullets(carried.map(c => ({ t: c.node.t + '  (carried over from ' + short(c.from) + ')', c: c.node.c })), 0, true);
+      bullets(nodes, 0, true);
+    } else if (nodes.length) bullets(nodes, 0); else { cy += LH * (k === 'end' || k === 'culture' ? 2 : 1); }
+    cy += 6;
+  }
+  // footer
+  const n = doc.getNumberOfPages();
+  for (let i = 1; i <= n; i++) { doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor(150, 146, 140); doc.text(pdfSafe('Northampton Wrestling  ·  ' + short(s) + (n > 1 ? '  ·  page ' + i + ' of ' + n : '')), M, H - 20); }
+  const blob = doc.output('blob');
+  const name = `Practice Plan ${s}${p.label ? ' ' + p.label : ''}.pdf`;
+  if (downloads) {
+    try { await downloads.save({ filename: name, data: blob }); toast('PDF ready'); }
+    catch (e) { if (e && e.code !== 'declined') toast('Download isn’t available here. Try again.'); }
+  } else if (local) { window.__lastPdf = blob; toast('PDF built (' + Math.round(blob.size / 1024) + ' KB)'); }
+  else toast('Download isn’t available on this device.');
+}
+
+/* ---------------- attendance ---------------- */
+function viewAttendance() {
+  const dates = practiceDates();
+  if (!selAttDate || !dates.includes(selAttDate)) selAttDate = nearest(dates);
+  const s = selAttDate, r = roster();
+  const marks = (st.attendance[s] && st.attendance[s].marks) || {};
+  let h = `<div class="pagehead"><div><h1>Attendance</h1><p>Tap a button to mark each wrestler. It saves as you go.</p></div></div>`;
+  h += `<div class="toolbar"><select class="pick" id="attdate" aria-label="Practice date">${dates.map(d => `<option value="${d}" ${d === s ? 'selected' : ''}>${esc(short(d))}${dayByDate[d].label ? ' · ' + esc(dayByDate[d].label) : ''}${dayByDate[d].kind === 'lift' ? ' · Lift' : ''}</option>`).join('')}</select>`;
+  h += `<a class="btn" href="#day-${s}">Open plan</a>`;
+  if (canEnter && r.length) h += '<button class="btn" data-act="allP">Mark everyone present</button>';
+  h += '</div>';
+  if (!r.length) return h + emptyRoster();
+  const cnt = { P: 0, L: 0, E: 0, A: 0 }; r.forEach(x => { const m = marks[x.id]; if (m) cnt[m]++; });
+  const un = r.length - cnt.P - cnt.L - cnt.E - cnt.A;
+  h += `<div class="tally" style="margin-bottom:12px"><div><b>${cnt.P + cnt.L}</b>here</div><div><b>${cnt.L}</b>late</div><div><b>${cnt.E}</b>excused</div><div><b>${cnt.A}</b>absent</div><div><b>${un}</b>not marked</div></div>`;
+  h += '<div class="roll">' + r.map(x => {
+    const m = marks[x.id] || '';
+    const b = k => `<button class="${k} ${m === k ? 'on' : ''}" data-mark="${x.id}" data-v="${k}" ${canEnter ? '' : 'disabled'} aria-pressed="${m === k}" title="${{ P: 'Present', L: 'Late', E: 'Excused', A: 'Absent' }[k]}">${k}</button>`;
+    return `<div class="rollrow"><div class="nm">${esc(x.name)}<small>${esc([x.wt, x.level, x.grade ? 'Gr ' + x.grade : ''].filter(Boolean).join(' · '))}</small></div><div class="seg">${b('P')}${b('L')}${b('E')}${b('A')}</div></div>`;
+  }).join('') + '</div>';
+  // season summary
+  const past = dates.filter(d => d <= todayIso() || st.attendance[d]);
+  const held = past.filter(d => st.attendance[d] && Object.keys(st.attendance[d].marks || {}).length);
+  h += `<h2 class="sect">Season so far</h2>`;
+  if (!held.length) h += '<p class="muted">Totals show up here after the first practice is marked.</p>';
+  else {
+    h += '<div class="card tablewrap"><table class="grid"><thead><tr><th>Wrestler</th><th>Here</th><th>Absent</th><th>Excused</th><th style="width:30%">Rate</th><th>Last missed</th></tr></thead><tbody>';
+    for (const x of r) {
+      let here = 0, ab = 0, ex = 0, last = '';
+      held.forEach(d => { const m = (st.attendance[d].marks || {})[x.id]; if (m === 'P' || m === 'L') here++; else if (m === 'A') { ab++; last = d; } else if (m === 'E') { ex++; last = d; } });
+      const tot = here + ab; const pct = tot ? Math.round(here / tot * 100) : 0;
+      h += `<tr><td><a href="#w-${x.id}">${esc(x.name)}</a></td><td class="num">${here}</td><td class="num">${ab}</td><td class="num">${ex}</td><td><div class="row"><div class="bar" style="flex:1"><i style="width:${pct}%"></i></div><span class="num">${tot ? pct + '%' : '–'}</span></div></td><td>${last ? esc(short(last)) : '–'}</td></tr>`;
+    }
+    h += '</tbody></table></div>';
+  }
+  return h;
+}
+function emptyRoster() { return `<div class="card empty"><h3>Add your roster first</h3><p class="muted">Attendance and lifts use your roster. You can paste the whole team at once.</p><a class="btn primary" href="#roster">Go to Roster</a></div>`; }
+
+/* ---------------- lifts ---------------- */
+const STATION_START = { 1: 'chin', 4: 'fsq', 6: 'press' };
+function viewLifts() {
+  const dates = liftDates();
+  if (!selLiftDate || !dates.includes(selLiftDate)) selLiftDate = nearest(dates);
+  const s = selLiftDate, r = roster();
+  let h = `<div class="pagehead"><div><h1>Lifts</h1><p>Weight and reps for each station. Green means he hit 12 last time: add weight.</p></div><div class="right"><a class="btn dark" href="#liftsheet">Lift sheet</a></div></div>`;
+  h += `<div class="toolbar"><select class="pick" id="liftdate" aria-label="Lift date">${dates.map(d => `<option value="${d}" ${d === s ? 'selected' : ''}>${esc(short(d))}${dayByDate[d].label ? ' · ' + esc(dayByDate[d].label) : ''}${FRAN_DAYS.includes(d) ? ' · Fran' : ''}</option>`).join('')}</select>`;
+  const start = STATION_START[D(s).getDay()] || 'chin';
+  const order = LIFTS.slice(LIFTS.findIndex(l => l[0] === start)).concat(LIFTS.slice(0, LIFTS.findIndex(l => l[0] === start)));
+  h += `<div class="stations"><span class="muted" style="border:0;background:none;padding:0">Stations:</span>${order.map((l, i) => `<span class="${i === 0 ? 'first' : ''}">${esc(l[1])}</span>`).join('')}</div></div>`;
+  h += `<p class="muted" style="margin:-4px 0 14px;font-size:13px">Chin-up, press, dip: 6-second reps (4 down, 2 up) to failure, then one 10-second negative. Front squat, deadlift: standard reps. 8–12 reps; at 12, add weight.</p>`;
+  if (!r.length) return h + emptyRoster();
+  const isFran = FRAN_DAYS.includes(s);
+  const doneN = r.filter(x => Object.values(((st.lifts[x.id] || {}).log || {})[s] || {}).some(v => v && (v.w || v.r))).length;
+  h += `<p class="muted" style="margin:0 0 10px">${doneN} of ${r.length} logged for ${esc(short(s))}. Tap a name to enter or change his lifts.</p>`;
+  h += '<div class="card">' + r.map(x => {
+    const log = (st.lifts[x.id] || {}).log || {}; const cur = log[s] || {};
+    const n = LIFTS.filter(([k]) => cur[k] && (cur[k].w || cur[k].r)).length;
+    const prev = Object.keys(log).filter(d => d < s).sort();
+    const ups = LIFTS.filter(([k]) => { for (let i = prev.length - 1; i >= 0; i--) { const v = log[prev[i]][k]; if (v && (v.w || v.r)) return +v.r >= 12; } return false; }).map(l => l[1]);
+    const ft = isFran ? ((st.cf[s] || {}).times || {})[x.id] : '';
+    return `<button class="lrow" data-lifter="${x.id}" ${canEnter ? '' : 'disabled'}><span class="ln">${esc(x.name)}<small>${esc([x.wt, x.level].filter(Boolean).join(' · '))}${ups.length ? ` · <b class="upn">add weight: ${esc(ups.join(', '))}</b>` : ''}</small></span><span class="ls ${n === 5 ? 'all' : n ? 'some' : ''}">${n === 5 ? 'Done' : n ? n + ' of 5' : 'Not logged'}${ft ? ' · Fran ' + esc(ft) : ''}</span><span class="chev">›</span></button>`;
+  }).join('') + '</div>';
+  return h;
+}
+function openLifter(id) {
+  const x = st.roster[id]; const s = selLiftDate; const log = (st.lifts[id] || {}).log || {}; const cur = log[s] || {};
+  const prev = Object.keys(log).filter(d => d < s).sort(); const isFran = FRAN_DAYS.includes(s);
+  const start = STATION_START[D(s).getDay()] || 'chin'; const si = LIFTS.findIndex(l => l[0] === start); const order = LIFTS.slice(si).concat(LIFTS.slice(0, si));
+  const rows = order.map(([k, nm]) => {
+    let last = null; for (let i = prev.length - 1; i >= 0; i--) { const v = log[prev[i]][k]; if (v && (v.w || v.r)) { last = v; break; } }
+    const v = cur[k] || {}; const up = last && +last.r >= 12;
+    return `<div class="lrowe"><div><b>${esc(nm)}</b><small class="${up ? 'up' : ''}">${last ? `Last: ${esc(last.w || 'BW')} × ${esc(last.r || '?')}${up ? ' · add weight' : ''}` : 'No history yet'}</small></div><input inputmode="decimal" id="lw-${k}" value="${esc(v.w || '')}" placeholder="${last && last.w ? esc(last.w) : 'lb'}" aria-label="${esc(nm)} weight"><span class="x">×</span><input inputmode="numeric" id="lr-${k}" value="${esc(v.r || '')}" placeholder="reps" aria-label="${esc(nm)} reps"></div>`;
+  }).join('');
+  const ft = isFran ? (((st.cf[s] || {}).times || {})[id] || '') : '';
+  $('#layer').innerHTML = `<div class="scrim"><div class="modal lmodal" role="dialog" aria-modal="true" aria-labelledby="lt"><h2 id="lt">${esc(x.name)}</h2><p class="muted" style="margin:2px 0 10px">${esc(short(s))} · stations in today's order. BW = bodyweight.</p>${rows}${isFran ? `<div class="lrowe"><div><b>Fran time</b><small>m:ss</small></div><input id="lfran" value="${esc(ft)}" placeholder="m:ss" style="grid-column:2 / -1"></div>` : ''}<div class="row" style="margin-top:14px;justify-content:space-between"><button class="btn ghost" id="lnext">Save and next ›</button><div class="row"><button class="btn ghost" data-close="1">Cancel</button><button class="btn primary" id="lsave">Save</button></div></div></div></div>`;
+  const first = $('#lw-' + order[0][0]); if (first) first.focus();
+  const save = async () => {
+    const rec = JSON.parse(JSON.stringify(st.lifts[id] || {})); rec.log = rec.log || {}; const day = {};
+    LIFTS.forEach(([k]) => { const w = $('#lw-' + k).value.trim(), r = $('#lr-' + k).value.trim(); if (w || r) day[k] = { w, r }; });
+    if (Object.keys(day).length) rec.log[s] = day; else delete rec.log[s];
+    st.lifts[id] = rec; const writes = [patch('lifts/' + id, [[['log', s], Object.keys(day).length ? day : null]])];
+    if (isFran) { const v = $('#lfran').value.trim(); writes.push(patch('cf/' + s, [[['workout'], (st.cf[s] || {}).workout || 'Fran'], [['times', id], v || null]])); }
+    await Promise.all(writes);
+  };
+  $('#lsave').onclick = async () => { await save(); closeLayer(); render(); toast('Saved'); };
+  $('#lnext').onclick = async () => { await save(); const r = roster(); const i = r.findIndex(z => z.id === id); closeLayer(); render(); if (r[i + 1]) openLifter(r[i + 1].id); else toast('That was the last wrestler'); };
+}
+
+
+/* CrossFit times: one box per wrestler, saves as you go, every coach can enter at once. */
+function openCF(s) {
+  const day = dayByDate[s] || {}; const name = (st.cf[s] && st.cf[s].workout) || day.condName || 'CrossFit';
+  const r = roster(); const times = (st.cf[s] && st.cf[s].times) || {};
+  $('#layer').innerHTML = `<div class="scrim"><div class="modal lmodal" role="dialog" aria-modal="true" aria-labelledby="cft"><h2 id="cft">${esc(name)}</h2><p class="muted" style="margin:2px 0 10px">${esc(short(s))} · type m:ss (or rounds + reps). Saves as you go. Enter jumps to the next kid.</p>
+    <div class="cfin">${r.map(x => `<label class="lrowe"><div><b>${esc(x.name)}</b><small>${esc(x.wt ? 'Class ' + x.wt : '')}</small></div><input data-cft="${x.id}" value="${esc(times[x.id] || '')}" placeholder="m:ss" enterkeyhint="next" autocomplete="off" style="grid-column:2 / -1"></label>`).join('')}</div>
+    <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn primary" data-close="1">Done</button></div></div></div>`;
+  const ins = [...$('#layer').querySelectorAll('[data-cft]')];
+  ins.forEach((inp, i) => {
+    inp.onchange = () => patch('cf/' + s, [[['workout'], name], [['times', inp.dataset.cft], inp.value.trim() || null]]);
+    inp.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); inp.blur(); const nx = ins[i + 1]; if (nx) { nx.focus(); nx.select(); } } };
+  });
+  if (ins[0]) ins[0].focus();
+}
+/* ---------------- wrestler ---------------- */
+function viewWrestler(id) {
+  const x = st.roster[id]; if (!x) return '<div class="card empty"><h3>Wrestler not found</h3><a href="#roster">Back to roster</a></div>';
+  const rec = st.lifts[id] || {}; const log = rec.log || {};
+  let h = `<div class="daynav"><a class="btn ghost" href="#roster">← Roster</a></div><div class="pagehead"><div><h1>${esc(x.name)}</h1><p>${esc([x.wt, x.level, x.grade ? 'Grade ' + x.grade : ''].filter(Boolean).join(' · '))}</p></div></div>`;
+  const bouts = allBouts().filter(b => b.w === id);
+  const t = tally(bouts);
+  h += `<div class="tally" style="margin-bottom:10px"><div><b>${t.W}-${t.L}</b>record</div><div><b>${t.bonus}</b>bonus wins</div><div><b>${t.falls}</b>pins</div><div><b>${t.tdF}-${t.tdA}</b>takedowns</div><div><b>${t.escF}-${t.escA}</b>escapes</div><div><b>${t.nfF}-${t.nfA}</b>near falls</div></div>`;
+  h += `<div class="card pad wgrid"><label>Class<input data-wf="wt" data-id="${id}" value="${esc(x.wt || '')}" inputmode="numeric" ${canEdit ? '' : 'disabled'}></label><label>Certified<input data-wf="certWt" data-id="${id}" value="${esc(x.certWt || '')}" inputmode="decimal" placeholder="PIAA cert" ${canEdit ? '' : 'disabled'}></label><label>Lowest allowed<input data-wf="minWt" data-id="${id}" value="${esc(x.minWt || '')}" inputmode="decimal" placeholder="PIAA cert" ${canEdit ? '' : 'disabled'}></label><label class="wide">Coach notes<textarea data-wf="notes" data-id="${id}" rows="3" placeholder="What he needs, what's working, goals" ${canEdit ? '' : 'disabled'}>${esc(x.notes || '')}</textarea></label></div>`;
+  h += '<h2 class="sect">Weight</h2>' + weightChart(id, x);
+  h += '<h2 class="sect">Matches</h2>';
+  if (!bouts.length) h += '<p class="muted">No matches entered yet.</p>';
+  else h += '<div class="card tablewrap"><table class="grid"><thead><tr><th>Date</th><th>Event</th><th>Opponent</th><th>Result</th><th>TD</th><th>Esc</th><th>NF</th></tr></thead><tbody>' + bouts.sort((a, b) => a.date < b.date ? -1 : 1).map(b => `<tr><td>${esc(short(b.date))}</td><td><a href="#m-${b.ev}">${esc(b.evTitle)}</a></td><td>${esc([b.opp, b.oppSchool].filter(Boolean).join(', '))}</td><td><span class="res ${b.res}">${b.res}</span> ${esc(b.how || '')} ${esc(b.score || '')}</td><td class="num">${b.tdF || 0}-${b.tdA || 0}</td><td class="num">${b.escF || 0}-${b.escA || 0}</td><td class="num">${b.nfF || 0}-${b.nfA || 0}</td></tr>`).join('') + '</tbody></table></div>';
+  const mine = Object.keys(st.cf).sort().filter(d => st.cf[d].times && st.cf[d].times[id] !== undefined);
+  h += '<h2 class="sect">CrossFit times</h2>';
+  if (!mine.length) h += '<p class="muted">No times yet. Tap Enter times on that day’s practice plan.</p>';
+  else {
+    h += '<div class="card tablewrap"><table class="grid"><thead><tr><th>Date</th><th>Workout</th><th>Time</th><th>Team rank</th></tr></thead><tbody>';
+    for (const d of mine) { const rows = cfRows(d); const rk = rows.findIndex(r => r.id === id) + 1; const wk = (st.cf[d].workout) || (dayByDate[d] && dayByDate[d].condName) || ''; h += `<tr><td><a href="#day-${d}">${esc(short(d))}</a></td><td>${esc(wk)}</td><td class="num"><b>${esc(st.cf[d].times[id])}</b></td><td class="num">${rk} of ${rows.length}</td></tr>`; }
+    h += '</tbody></table></div>';
+    const fr = mine.filter(d => /Fran/i.test((st.cf[d].workout) || (dayByDate[d] && dayByDate[d].condName) || ''));
+    if (fr.length > 1) { const a = secs(st.cf[fr[0]].times[id]), b = secs(st.cf[fr[fr.length - 1]].times[id]); if (a && b) h += `<p class="better">Fran: ${esc(st.cf[fr[0]].times[id])} → ${esc(st.cf[fr[fr.length - 1]].times[id])} (${a - b >= 0 ? fmt(a - b) + ' faster' : fmt(b - a) + ' slower'})</p>`; }
+  }
+  const rec2 = st.lifts[id] || {}; const log2 = rec2.log || {}; const lds = Object.keys(log2).sort();
+  if (lds.length) {
+    h += '<h2 class="sect">Lift numbers</h2><div class="card tablewrap"><table class="grid"><thead><tr><th>Date</th>' + LIFTS.map(l => `<th>${esc(l[1])}</th>`).join('') + '</tr></thead><tbody>';
+    for (const d of lds) h += `<tr><td>${esc(short(d))}</td>` + LIFTS.map(([k]) => { const v = log2[d][k]; return `<td class="num">${v && (v.w || v.r) ? esc((v.w || 'BW') + ' × ' + (v.r || '?')) : '–'}</td>`; }).join('') + '</tr>';
+    h += '</tbody></table></div>';
+  }
+  h += '<h2 class="sect">Attendance</h2>';
+  const held = practiceDates().filter(d => st.attendance[d] && Object.keys(st.attendance[d].marks || {}).length);
+  let here = 0, ab = 0, ex = 0; const missed = [];
+  held.forEach(d => { const m = st.attendance[d].marks[id]; if (m === 'P' || m === 'L') here++; else if (m === 'A') { ab++; missed.push(d); } else if (m === 'E') { ex++; missed.push(d); } });
+  h += `<div class="tally"><div><b>${here}</b>practices</div><div><b>${ab}</b>absent</div><div><b>${ex}</b>excused</div></div>`;
+  if (missed.length) h += `<p class="muted">Missed: ${missed.map(short).join(', ')}</p>`;
+  return h;
+}
+
+
+/* ---------------- matches ---------------- */
+const HOW = ['Fall', 'Tech fall', 'Major', 'Decision', 'Forfeit', 'Inj/DQ'];
+const BONUS = ['Fall', 'Tech fall', 'Major', 'Forfeit', 'Inj/DQ'];
+function secs(t) { const m = String(t).trim().match(/^(\d+):(\d{1,2})$/); return m ? +m[1] * 60 + +m[2] : (/^\d+(\.\d+)?$/.test(String(t).trim()) ? +t : null); }
+function cfRows(date) { const c = st.cf[date]; if (!c || !c.times) return []; return Object.entries(c.times).map(([id, t]) => ({ id, t, v: secs(t) })).sort((a, b) => (a.v ?? 1e9) - (b.v ?? 1e9)); }
+function eventsList() {
+  const evs = Object.entries(DATA.events).map(([d, e]) => ({ id: d, date: d, title: e[1], kind: e[0], time: e[2] }));
+  Object.entries(st.matches).forEach(([id, m]) => { if (m.custom && !evs.find(e => e.id === id)) evs.push({ id, date: m.date, title: m.title, kind: 'Other', time: '' }); });
+  return evs.sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
+}
+function eventById(id) { return eventsList().find(e => e.id === id); }
+function allBouts() { const out = []; for (const e of eventsList()) { const m = st.matches[e.id]; if (m && m.bouts) m.bouts.forEach(b => out.push(Object.assign({ ev: e.id, evTitle: e.title, date: e.date }, b))); } return out; }
+function tally(bs) {
+  const t = { W: 0, L: 0, bonus: 0, falls: 0, tdF: 0, tdA: 0, escF: 0, escA: 0, revF: 0, revA: 0, nfF: 0, nfA: 0, n: bs.length };
+  bs.forEach(b => { if (b.res === 'W') { t.W++; if (BONUS.includes(b.how)) t.bonus++; if (b.how === 'Fall') t.falls++; } else if (b.res === 'L') t.L++; ['tdF', 'tdA', 'escF', 'escA', 'revF', 'revA', 'nfF', 'nfA'].forEach(k => { t[k] += +b[k] || 0; }); });
+  return t;
+}
+function eventRecord(id) { const m = st.matches[id]; if (!m || !m.bouts || !m.bouts.length) return ''; const t = tally(m.bouts); return `${t.W}-${t.L}`; }
+function rosterName(id) { return (st.roster[id] && st.roster[id].name) || 'Removed wrestler'; }
+function statTable(t) {
+  const row = (lab, f, a, note) => `<tr><td>${lab}</td><td class="num"><b>${f}</b></td><td class="num">${a}</td><td><div class="duel"><i style="width:${f + a ? Math.round(f / (f + a) * 100) : 50}%"></i></div></td><td class="muted">${note}</td></tr>`;
+  return `<div class="card tablewrap"><table class="grid"><thead><tr><th>Position</th><th>Us</th><th>Them</th><th style="width:28%"></th><th></th></tr></thead><tbody>
+    ${row('Neutral: takedowns', t.tdF, t.tdA, t.n ? (t.tdF / t.n).toFixed(1) + ' per match' : '')}
+    ${row('Bottom: escapes', t.escF, t.escA, 'Them = escapes we gave up on top')}
+    ${row('Bottom: reversals', t.revF, t.revA, '')}
+    ${row('Top: near falls', t.nfF, t.nfA, 'Them = times we got put on our back')}
+  </tbody></table></div>`;
+}
+function viewMatches() {
+  const evs = eventsList(); const bs = allBouts(); const t = tally(bs);
+  let h = `<div class="pagehead"><div><h1>Matches</h1><p>Tap a competition to enter results. About 30 seconds a match.</p></div>${canEnter ? '<div class="right"><button class="btn" data-act="newevent">Add another event</button></div>' : ''}</div>`;
+  if (bs.length) {
+    h += `<div class="tally" style="margin-bottom:12px"><div><b>${t.W}-${t.L}</b>individual record</div><div><b>${t.W ? Math.round(t.bonus / t.W * 100) : 0}%</b>of wins with bonus</div><div><b>${t.falls}</b>pins</div><div><b>${t.n}</b>matches entered</div></div>`;
+    h += '<h2 class="sect" style="margin-top:8px">Where we score and where we give it up</h2>' + statTable(t);
+  } else h += '<div class="card empty" style="margin-bottom:14px"><h3>No matches entered yet</h3><p class="muted">Start with the Saucon Valley scrimmage on 11/28. The team summary fills in as you go.</p></div>';
+  h += '<h2 class="sect">Competitions</h2><div class="card">';
+  const t0 = todayIso();
+  h += evs.map(e => { const m = st.matches[e.id]; const n = m && m.bouts ? m.bouts.length : 0; const tt = n ? tally(m.bouts) : null; return `<button class="evrow ${e.date === t0 ? 'today' : ''}" data-go="m-${e.id}"><span class="ad">${esc(short(e.date))}</span><span class="at">${esc(e.title)}<span>${esc(e.kind)}${e.time ? ' · ' + esc(e.time) : ''}</span></span><span class="evr">${n ? `<b>${tt.W}-${tt.L}</b> · ${n} matches` : '<span class="muted">Not entered</span>'}</span></button>`; }).join('');
+  return h + '</div>';
+}
+function viewEvent(id) {
+  const e = eventById(id); if (!e) return '<div class="card empty"><h3>Event not found</h3><a href="#matches">Back to matches</a></div>';
+  const m = st.matches[id] || { bouts: [] }; const bs = (m.bouts || []).slice().sort((a, b) => (parseFloat(a.wt) || 999) - (parseFloat(b.wt) || 999));
+  let h = `<div class="daynav"><a class="btn ghost" href="#matches">← Matches</a>${dayByDate[e.date] ? '' : ''}<span class="spacer"></span>${canEnter ? '<button class="btn primary" data-act="addbout">+ Add a match</button>' : ''}</div>`;
+  h += `<div class="pagehead"><div><div class="eyebrow">${esc(e.kind)} · ${esc(long(e.date))}</div><h1>${esc(e.title)}</h1></div></div>`;
+  if (!bs.length) return h + `<div class="card empty"><h3>No matches entered</h3><p class="muted">Tap “Add a match” after each bout, or enter them all after the event.</p>${canEnter ? '<button class="btn primary" data-act="addbout">+ Add a match</button>' : ''}</div>`;
+  const t = tally(bs);
+  h += `<div class="tally" style="margin-bottom:12px"><div><b>${t.W}-${t.L}</b>record</div><div><b>${t.bonus}</b>bonus wins</div><div><b>${t.falls}</b>pins</div></div>`;
+  h += '<div class="bouts">' + bs.map(b => `<button class="bout" data-bout="${esc(b.id)}" ${canEnter ? '' : 'disabled'}><span class="bw">${esc(b.wt || '')}</span><span class="bn">${esc(rosterName(b.w))}<small>${esc([b.opp, b.oppSchool].filter(Boolean).join(', ') || 'Opponent not entered')}</small></span><span class="res ${b.res}">${b.res}</span><span class="bh">${esc(b.how || '')} ${esc(b.score || '')}</span><span class="bs">TD ${b.tdF || 0}-${b.tdA || 0} · E ${b.escF || 0}-${b.escA || 0} · R ${b.revF || 0}-${b.revA || 0} · NF ${b.nfF || 0}-${b.nfA || 0}</span></button>`).join('') + '</div>';
+  h += '<h2 class="sect">This event by position</h2>' + statTable(t);
+  return h;
+}
+function openBout(evId, boutId) {
+  const e = eventById(evId); const m = st.matches[evId] || { bouts: [] };
+  const b = boutId ? Object.assign({}, (m.bouts || []).find(x => x.id === boutId)) : { id: uid(), res: '', how: '', tdF: 0, tdA: 0, escF: 0, escA: 0, revF: 0, revA: 0, nfF: 0, nfA: 0, oppSchool: /Match|Scrimmage/.test(e.kind) ? (e.title || '').replace(/^(vs\.|@)\s*/, '').replace(/\s*scrimmage$/i, '').replace(/\s*\(.*\)$/, '') : '' };
+  const r = roster();
+  const step = (k, lab) => `<div class="steprow"><span>${lab}</span><div class="stepper"><button type="button" data-step="${k}F" data-d="-1" aria-label="Fewer ${lab} for us">−</button><b id="v-${k}F">${b[k + 'F'] || 0}</b><button type="button" data-step="${k}F" data-d="1" aria-label="More ${lab} for us">+</button></div><div class="stepper them"><button type="button" data-step="${k}A" data-d="-1" aria-label="Fewer ${lab} for them">−</button><b id="v-${k}A">${b[k + 'A'] || 0}</b><button type="button" data-step="${k}A" data-d="1" aria-label="More ${lab} for them">+</button></div></div>`;
+  $('#layer').innerHTML = `<div class="scrim"><div class="modal bmodal" role="dialog" aria-modal="true" aria-labelledby="bt"><h2 id="bt">${boutId ? 'Edit match' : 'Add a match'}</h2><p class="muted" style="margin:2px 0 10px">${esc(e.title)} · ${esc(short(e.date))}</p>
+    <div class="formrow b2"><label>Our wrestler<select id="b-w"><option value="">Pick a wrestler</option>${r.map(x => `<option value="${x.id}" ${b.w === x.id ? 'selected' : ''}>${esc(x.wt ? x.wt + ' · ' : '')}${esc(x.name)}</option>`).join('')}</select></label><label>Weight<input id="b-wt" inputmode="numeric" value="${esc(b.wt || '')}"></label></div>
+    <div class="formrow b2"><label>Opponent<input id="b-opp" value="${esc(b.opp || '')}" autocomplete="off"></label><label>School<input id="b-school" value="${esc(b.oppSchool || '')}" autocomplete="off"></label></div>
+    <div class="pick2"><button type="button" class="wl W ${b.res === 'W' ? 'on' : ''}" data-res="W">Won</button><button type="button" class="wl L ${b.res === 'L' ? 'on' : ''}" data-res="L">Lost</button></div>
+    <div class="hows">${HOW.map(x => `<button type="button" class="${b.how === x ? 'on' : ''}" data-how="${x}">${x}</button>`).join('')}</div>
+    <div class="formrow b2"><label>Score (us)<input id="b-su" inputmode="numeric" value="${esc((b.score || '').split('-')[0] || '')}"></label><label>Score (them)<input id="b-st" inputmode="numeric" value="${esc((b.score || '').split('-')[1] || '')}"></label></div>
+    <div class="steps"><div class="steprow head"><span></span><span>Us</span><span>Them</span></div>${step('td', 'Takedowns')}${step('esc', 'Escapes')}${step('rev', 'Reversals')}${step('nf', 'Near falls')}</div>
+    <label class="stack" style="margin-top:8px">Note<textarea id="b-note" rows="2" style="min-height:60px">${esc(b.note || '')}</textarea></label>
+    <div class="row" style="margin-top:14px;justify-content:space-between">${boutId ? '<button class="btn ghost" id="b-del" style="color:var(--bad)">Delete</button>' : '<span></span>'}<div class="row"><button class="btn ghost" data-close="1">Cancel</button><button class="btn primary" id="b-save">Save match</button></div></div></div></div>`;
+  const cur = b;
+  $('#b-w').onchange = () => { const x = st.roster[$('#b-w').value]; if (x && !$('#b-wt').value) $('#b-wt').value = x.wt || ''; };
+  $('#layer').querySelectorAll('[data-step]').forEach(btn => btn.onclick = () => { const k = btn.dataset.step; cur[k] = Math.max(0, (+cur[k] || 0) + +btn.dataset.d); $('#v-' + k).textContent = cur[k]; });
+  $('#layer').querySelectorAll('[data-res]').forEach(btn => btn.onclick = () => { cur.res = btn.dataset.res; $('#layer').querySelectorAll('[data-res]').forEach(x => x.classList.toggle('on', x === btn)); });
+  $('#layer').querySelectorAll('[data-how]').forEach(btn => btn.onclick = () => { cur.how = btn.dataset.how; $('#layer').querySelectorAll('[data-how]').forEach(x => x.classList.toggle('on', x === btn)); });
+  $('#b-save').onclick = async () => {
+    cur.w = $('#b-w').value; if (!cur.w) { toast('Pick our wrestler first'); return; }
+    if (!cur.res) { toast('Pick won or lost'); return; }
+    cur.wt = $('#b-wt').value.trim(); cur.opp = $('#b-opp').value.trim(); cur.oppSchool = $('#b-school').value.trim(); cur.note = $('#b-note').value.trim();
+    const su = $('#b-su').value.trim(), stt = $('#b-st').value.trim(); cur.score = su || stt ? `${su || 0}-${stt || 0}` : '';
+    cur.n = cur.n || Date.now();
+    closeLayer(); await patch('matches/' + evId, [[['title'], e.title], [['date'], e.date], [['bm', cur.id], JSON.parse(JSON.stringify(cur))]]); render(); toast('Match saved');
+  };
+  if (boutId) $('#b-del').onclick = async () => { closeLayer(); await patch('matches/' + evId, [[['bm', boutId], null]]); render(); toast('Match deleted'); };
+}
+function openNewEvent() {
+  $('#layer').innerHTML = `<div class="scrim"><div class="modal" role="dialog" aria-modal="true"><h2>Add an event</h2><p class="muted">For anything not on the schedule: an extra tournament, a makeup dual, wrestle-offs.</p><div class="formrow b2"><label>Name<input id="ne-t" autocomplete="off"></label><label>Date<input id="ne-d" type="date" value="${todayIso()}"></label></div><div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn ghost" data-close="1">Cancel</button><button class="btn primary" id="ne-s">Add</button></div></div></div>`;
+  $('#ne-s').onclick = async () => { const t = $('#ne-t').value.trim(), d = $('#ne-d').value; if (!t || !d) { toast('Add a name and a date'); return; } const id = d + '-' + uid().slice(0, 4); const doc = { title: t, date: d, custom: true, bouts: [] }; closeLayer(); st.matches[id] = doc; await write('matches/' + id, doc); location.hash = 'm-' + id; };
+}
+
+/* ---------------- Sunday review card ---------------- */
+function reportCard() {
+  const ks = Object.keys(st.reports).sort(); if (!ks.length) return '';
+  const r = st.reports[ks[ks.length - 1]];
+  return `<section class="card report"><div class="eyebrow">Sunday review · week of ${esc(short(r.week || ks[ks.length - 1]))}</div><h2>${esc(r.title || 'What the numbers said')}</h2>${ul((r.lines || []).map(t => ({ t, c: [] })))}${r.drafted ? `<p class="muted">Drafted plans: ${r.drafted.map(d => `<a href="#day-${d}">${esc(short(d))}</a>`).join(', ')}. Open each one to approve or change it.</p>` : ''}</section>`;
+}
+
+/* ---------------- practice mode ---------------- */
+function parseT(str, date) { const m = String(str).trim().match(/^(\d{1,2}):(\d{2})/); if (!m) return null; let hh = +m[1]; if (hh < 7) hh += 12; const d = D(date); d.setHours(hh, +m[2], 0, 0); return d; }
+function blockSpans(p, date) { return p.clock.map(b => { const [a, z] = String(b[0]).split('-'); const s0 = parseT(a, date); const e0 = z ? parseT(z, date) : s0; return { s: s0, e: e0, b }; }); }
+function blockSecs(b) { const sp = String(b.b[0]).split('-'); return b.s && b.e ? Math.max(0, (b.e - b.s) / 1000) : 0; }
+function blockKeys(name) {
+  if (/Warm-up|^Lift/i.test(name)) return ['warm'];
+  if (/Huddle|First-day talk/i.test(name)) return ['announce'];
+  if (/2&2/.test(name)) return ['twotwo'];
+  if (/Teach|Review/i.test(name)) return ['teach'];
+  if (/live|Short goes|matches/i.test(name)) return ['live'];
+  if (/CrossFit|Finisher/i.test(name)) return ['cond'];
+  if (/Close/i.test(name)) return ['end', 'culture'];
+  return [];
+}
+function viewRun(s) {
+  const p = plan(s); if (!p) return '<div class="card empty"><h3>No practice on this day</h3><a href="#season">Back</a></div>';
+  if (!run || run.s !== s) run = { s, follow: s === todayIso(), idx: 0, started: Date.now() };
+  const spans = blockSpans(p, s);
+  if (run.follow) run.idx = currentIdx(spans);
+  const cur = spans[run.idx] || spans[0], nxt = spans[run.idx + 1];
+  let body = '';
+  const isWater = /Water/.test(cur.b[1]);
+  if (isWater && nxt) body += `<p class="muted" style="margin:12px 0 0;font-weight:700">Up next: ${esc(nxt.b[1])}</p>`;
+  for (const k of blockKeys(isWater && nxt ? nxt.b[1] : cur.b[1])) {
+    const nodes = p.sections[k] || [];
+    if (k === 'teach') { const tt = teachHtml(s, nodes); body += `<div class="sec"><h3>New technique${tt.n ? `<span class="prog">${tt.n} of ${tt.all} taught</span>` : ''}</h3>${tt.html}</div>`; }
+    else if (nodes.length) body += `<div class="sec"><h3>${esc(secTitle(k, SEC.find(x => x[0] === k)[1], p))}</h3>${k === 'twotwo' && nodes.length > 8 ? '<div class="two">' + ul(nodes) + '</div>' : ul(nodes)}</div>`;
+  }
+  if (!body) body = `<p class="muted">${esc(cur.b[2] || 'Nothing written for this block.')}</p>`;
+  const segs = spans.map((x, i) => `<button class="seg2 ${/Water/.test(x.b[1]) ? 'water' : ''} ${i === run.idx ? 'cur' : i < run.idx ? 'past' : ''}" style="flex:${Math.max(blockSecs(x), 120)} 1 0" data-runto="${i}" title="${esc(x.b[0] + ' ' + x.b[1])}"><i id="${i === run.idx ? 'rfill' : ''}"></i><span>${esc(x.b[1])}</span></button>`).join('');
+  return `<div class="run">
+    <div class="runtop"><a class="btn ghost light" href="#day-${s}">← Plan</a><span class="rt">${esc(short(s))}${p.label ? ' · ' + esc(p.label) : ''}</span><label class="follow"><input type="checkbox" id="follow" ${run.follow ? 'checked' : ''}> Follow the clock</label></div>
+    <div class="runmain">
+      <div class="rtime">${esc(cur.b[0])}</div>
+      <div class="rblock">${esc(cur.b[1])}</div>
+      <div class="rclock" id="rclock">--:--</div>
+      <div class="rsub" id="rsub">${esc(cur.b[2] || '')}</div>
+      <div class="segs">${segs}</div>
+      <div class="rnav"><button class="btn light" data-act="runprev" ${run.idx === 0 ? 'disabled' : ''}>‹ Back</button><div class="rnext">${nxt ? `Next: <b>${esc(nxt.b[1])}</b> at ${esc(String(nxt.b[0]).split('-')[0])}` : 'Last block'}</div><button class="btn primary" data-act="runnext" ${nxt ? '' : 'disabled'}>Next ›</button></div>
+    </div>
+    <div class="runbody">${body}</div>
+  </div>`;
+}
+function currentIdx(spans) { const now = new Date(); for (let i = 0; i < spans.length; i++) { if (spans[i].e && now < spans[i].e) return i; } return spans.length - 1; }
+function fmt(sec) { const neg = sec < 0; sec = Math.abs(Math.round(sec)); return (neg ? '+' : '') + Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0'); }
+function tickRun() {
+  if (!run) return; const p = plan(run.s); if (!p) return; const spans = blockSpans(p, run.s);
+  if (run.follow) { const i = currentIdx(spans); if (i !== run.idx) { run.idx = i; render(); return; } }
+  const cur = spans[run.idx]; const el = $('#rclock'); if (!el || !cur) return;
+  const now = new Date(); let left, total = blockSecs(cur) || 1;
+  if (run.follow) {
+    if (now < spans[0].s) { el.textContent = fmt((spans[0].s - now) / 1000); $('#rsub').textContent = 'Practice starts in'; el.className = 'rclock wait'; return; }
+    left = (cur.e - now) / 1000;
+  } else left = total - (Date.now() - run.started) / 1000;
+  el.textContent = left < 0 ? 'Over ' + fmt(left).slice(1) : fmt(left);
+  el.className = 'rclock' + (left < 0 ? ' over' : left < 60 ? ' soon' : '');
+  const f = $('#rfill'); if (f) f.style.width = Math.min(100, Math.max(0, (1 - left / total) * 100)) + '%';
+}
+async function startRun() { clearInterval(runTimer); runTimer = setInterval(tickRun, 1000); tickRun(); try { if (!wakeLock && navigator.wakeLock) wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {} }
+function stopRun() { clearInterval(runTimer); runTimer = null; if (wakeLock) { try { wakeLock.release(); } catch (e) {} wakeLock = null; } }
+
+
+/* ---------------- weigh-in ---------------- */
+function wKey(d, id) { return d + '_' + id; }
+function weightOf(d, id) { const x = st.weighins[wKey(d, id)]; return x && x.w !== undefined && x.w !== '' ? +x.w : null; }
+function lastWeight(id, before) { const ks = Object.values(st.weighins).filter(x => x.id === id && x.d < before && x.w !== '').sort((a, b) => a.d < b.d ? 1 : -1); return ks.length ? ks[0] : null; }
+function flagPct(d) { return dayByDate[d] && dayByDate[d].pre ? 2 : 4; }
+function weighStatus(x, w, d) {
+  if (w === null) return { cls: '', txt: '' };
+  const cls = parseFloat(x.wt), min = parseFloat(x.minWt), lim = flagPct(d || selWeighDate);
+  if (min && w < min) return { cls: 'bad', txt: `Below lowest allowed (${min})` };
+  if (!cls) return { cls: '', txt: 'No weight class set' };
+  if (w <= cls) return { cls: 'good', txt: `Makes ${cls} (${(cls - w).toFixed(1)} under)` };
+  const pct = (w - cls) / cls * 100;
+  const txt = `+${(w - cls).toFixed(1)} over ${cls} (${pct.toFixed(1)}%)`;
+  return pct > lim ? { cls: 'bad', txt } : { cls: 'ok', txt: txt + ' · under the ' + lim + '% line' };
+}
+function viewWeighin() {
+  const dates = practiceDates(); const t = todayIso();
+  if (!selWeighDate) selWeighDate = dates.includes(t) ? t : nearest(dates);
+  const s = selWeighDate, r = roster();
+  let h = `<div class="pagehead"><div><h1>Weigh-in</h1><p>Type each weight as he steps off the scale. It saves right away, and every coach sees it within seconds. Enter jumps to the next kid.</p></div><div class="right row"><a class="btn dark" href="#weighsheet">Weigh-in history</a></div></div>`;
+  h += `<div class="toolbar"><select class="pick" id="wdate" aria-label="Weigh-in date">${dates.map(d => `<option value="${d}" ${d === s ? 'selected' : ''}>${esc(short(d))}${dayByDate[d].label ? ' · ' + esc(dayByDate[d].label) : ''}${dayByDate[d].pre ? ' · day before' : ''}</option>`).join('')}</select><input class="pick" id="wfind" placeholder="Find a wrestler" value="${esc(weighFilter)}" autocomplete="off" aria-label="Find a wrestler"></div>`;
+  if (!r.length) return h + emptyRoster();
+  const done = r.filter(x => weightOf(s, x.id) !== null);
+  h += `<p class="muted" style="margin:-4px 0 12px;font-size:13px">${flagPct(s) === 2 ? '<b style="color:var(--bad)">Day before a competition:</b> flags anyone more than 2% over his class.' : 'Flags anyone more than 4% over his class. The day before a competition it flags at 2%.'} Anyone under his lowest allowed weight is always flagged.</p>`;
+  const over = r.filter(x => weighStatus(x, weightOf(s, x.id)).cls === 'bad');
+  h += `<div class="tally" style="margin-bottom:12px"><div><b>${done.length}</b>of ${r.length} weighed</div><div><b style="color:${over.length ? 'var(--bad)' : 'inherit'}">${over.length}</b>flagged</div>${over.length ? `<div>${over.map(x => esc(x.name.split(' ')[0] + ' ' + x.name.split(' ').slice(-1)[0][0] + '.')).join(', ')}</div>` : ''}</div>`;
+  const shown = r.filter(x => !weighFilter || x.name.toLowerCase().includes(weighFilter.toLowerCase()));
+  h += '<div class="card weighlist">' + shown.map(x => {
+    const w = weightOf(s, x.id), st0 = weighStatus(x, w), last = lastWeight(x.id, s);
+    const chg = w !== null && last ? (w - +last.w) : null;
+    return `<div class="wrow ${st0.cls}"><div class="wn"><a href="#w-${x.id}">${esc(x.name)}</a><small>${x.wt ? 'Class ' + esc(x.wt) : 'No class'}${x.minWt ? ' · lowest ' + esc(x.minWt) : ''}${last ? ' · last ' + esc(last.w) + ' (' + esc(short(last.d)) + ')' : ''}</small></div><input class="win" inputmode="decimal" enterkeyhint="next" data-weigh="${x.id}" value="${w !== null ? w : ''}" placeholder="—" aria-label="${esc(x.name)} weight"><div class="wst">${esc(st0.txt)}${chg !== null && Math.abs(chg) >= 0.1 ? `<span class="chg">${chg > 0 ? '+' : ''}${chg.toFixed(1)} since last</span>` : ''}</div></div>`;
+  }).join('') + '</div>';
+  return h;
+}
+function weightChart(id, x) {
+  const pts = Object.values(st.weighins).filter(v => v.id === id && v.w !== '' && v.w !== undefined).sort((a, b) => a.d < b.d ? -1 : 1).slice(-40);
+  if (pts.length < 2) return pts.length ? `<p class="muted">One weigh-in so far: ${esc(pts[0].w)} on ${esc(short(pts[0].d))}.</p>` : '<p class="muted">No weigh-ins yet.</p>';
+  const W = 640, H = 160, P = 28; const ws = pts.map(p => +p.w); const cls = parseFloat(x.wt), min = parseFloat(x.minWt);
+  let lo = Math.min(...ws, min || Infinity, cls || Infinity) - 1, hi = Math.max(...ws, cls || -Infinity) + 1;
+  const X = i => P + i * (W - 2 * P) / (pts.length - 1), Y = v => H - P + 6 - (v - lo) / (hi - lo) * (H - 2 * P);
+  const line = (v, c, lab) => v ? `<line x1="${P}" x2="${W - P}" y1="${Y(v)}" y2="${Y(v)}" stroke="${c}" stroke-dasharray="4 4"/><text x="${W - P + 4}" y="${Y(v) + 4}" font-size="11" fill="${c}">${lab}</text>` : '';
+  const path = pts.map((p, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(+p.w).toFixed(1)).join(' ');
+  const area = path + ` L${X(pts.length - 1).toFixed(1)} ${H - P + 6} L${P} ${H - P + 6} Z`;
+  return `<div class="card pad" style="max-width:760px"><svg viewBox="0 0 ${W + 30} ${H}" width="100%" role="img" aria-label="Weight trend"><path d="${area}" fill="var(--accent-soft)"/><path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2.5"/>${line(cls, '#2f7d4f', cls)}${line(min, '#b3261e', 'min ' + min)}<circle cx="${X(pts.length - 1)}" cy="${Y(ws[ws.length - 1])}" r="4.5" fill="var(--accent)"/><text x="${X(pts.length - 1) - 4}" y="${Y(ws[ws.length - 1]) - 10}" font-size="12" font-weight="700" text-anchor="end" fill="var(--ink)">${ws[ws.length - 1]}</text><text x="${P}" y="${H - 4}" font-size="11" fill="var(--muted)">${esc(short(pts[0].d))}</text><text x="${W - P}" y="${H - 4}" font-size="11" text-anchor="end" fill="var(--muted)">${esc(short(pts[pts.length - 1].d))}</text></svg></div>`;
+}
+
+
+/* ---------------- sheets ---------------- */
+function weekRange() {
+  const cur = Math.min(17, Math.max(1, weekOf(todayIso())));
+  if (!sheetFrom) { sheetTo = cur; sheetFrom = Math.max(1, cur - 1); }
+  if (sheetFrom > sheetTo) { const t = sheetFrom; sheetFrom = sheetTo; sheetTo = t; }
+  return [sheetFrom, sheetTo];
+}
+function weekPickers() {
+  const [a, b] = weekRange();
+  const opt = (v) => Array.from({ length: 17 }, (_, i) => i + 1).map(w => { const mon = addDays(DATA.start, (w - 1) * 7); return `<option value="${w}" ${w === v ? 'selected' : ''}>Week ${w} · ${esc(short(mon))}</option>`; }).join('');
+  return `<label class="pl">From<select class="pick" id="sfrom">${opt(a)}</select></label><label class="pl">To<select class="pick" id="sto">${opt(b)}</select></label>`;
+}
+function datesInWeeks(list) { const [a, b] = weekRange(); return list.filter(d => weekOf(d) >= a && weekOf(d) <= b); }
+function viewWeighSheet() {
+  const ds = datesInWeeks(practiceDates()); const r = roster();
+  let h = `<div class="daynav"><a class="btn ghost" href="#weighin">← Weigh-in</a></div><div class="pagehead"><div><h1>Weigh-in sheet</h1><p>Every weigh-in for the weeks you pick, with the same flags as the weigh-in page.</p></div></div>`;
+  h += `<div class="toolbar">${weekPickers()}<button class="btn dark" data-act="weighpdf">Download PDF</button></div>`;
+  h += `<div class="legend"><span><i style="background:#e5f4e4"></i>Makes weight</span><span><i style="background:#f9eeda"></i>Over, under the line</span><span><i style="background:#fbdcda"></i>Flagged: over 4% (2% day before a competition) or below lowest allowed</span><span><i style="background:#fff;border:1px solid var(--line)"></i>Not weighed</span></div>`;
+  if (!r.length) return h + emptyRoster();
+  h += '<div class="card tablewrap"><table class="grid sheet"><thead><tr><th class="sn">Wrestler</th><th>Class</th><th>Low</th>' + ds.map(d => `<th class="${dayByDate[d].pre ? 'pre' : ''}">${esc(DOW[D(d).getDay()])}<br>${D(d).getMonth() + 1}/${D(d).getDate()}${dayByDate[d].pre ? '<br><small>2%</small>' : ''}</th>`).join('') + '<th>Change</th></tr></thead><tbody>';
+  for (const x of r) {
+    let first = null, last = null;
+    const cells = ds.map(d => { const w = weightOf(d, x.id); if (w === null) return '<td></td>'; if (first === null) first = w; last = w; const st0 = weighStatus(x, w, d); return `<td class="c-${st0.cls || 'none'}" title="${esc(st0.txt)}">${w}</td>`; }).join('');
+    const chg = first !== null && last !== null && first !== last ? (last - first) : null;
+    h += `<tr><td class="sn"><a href="#w-${x.id}">${esc(x.name)}</a></td><td class="num">${esc(x.wt || '')}</td><td class="num">${esc(x.minWt || '')}</td>${cells}<td class="num">${chg === null ? '' : (chg > 0 ? '+' : '') + chg.toFixed(1)}</td></tr>`;
+  }
+  return h + '</tbody></table></div>';
+}
+const LIFTCOLS = { chin: 'Chin-up', press: 'Shoulder press', dip: 'Dip', fsq: 'Front squat', dl: 'Deadlift' };
+function viewLiftSheet() {
+  const ds = datesInWeeks(liftDates()); const r = roster();
+  let h = `<div class="daynav"><a class="btn ghost" href="#lifts">← Lifts</a></div><div class="pagehead"><div><h1>Lift sheet</h1><p>Weight × reps for each lift day in the weeks you pick. Green means he hit 12: add weight next time.</p></div></div>`;
+  h += `<div class="toolbar">${weekPickers()}<label class="pl">Lift<select class="pick" id="slift"><option value="all" ${sheetLift === 'all' ? 'selected' : ''}>All five</option>${LIFTS.map(([k, n]) => `<option value="${k}" ${sheetLift === k ? 'selected' : ''}>${esc(n)}</option>`).join('')}</select></label><button class="btn dark" data-act="liftpdf">Download PDF</button></div>`;
+  if (!r.length) return h + emptyRoster();
+  const lifts = sheetLift === 'all' ? LIFTS : LIFTS.filter(l => l[0] === sheetLift);
+  for (const [k, n] of lifts) {
+    h += `<h2 class="sect">${esc(n)}</h2><div class="card tablewrap"><table class="grid sheet"><thead><tr><th class="sn">Wrestler</th>` + ds.map(d => `<th>${esc(DOW[D(d).getDay()])}<br>${D(d).getMonth() + 1}/${D(d).getDate()}</th>`).join('') + '</tr></thead><tbody>';
+    for (const x of r) { const log = (st.lifts[x.id] || {}).log || {}; h += `<tr><td class="sn"><a href="#w-${x.id}">${esc(x.name)}</a></td>` + ds.map(d => { const v = (log[d] || {})[k]; if (!v || !(v.w || v.r)) return '<td></td>'; return `<td class="${+v.r >= 12 ? 'c-good' : 'c-none'}">${esc((v.w || 'BW') + '×' + (v.r || '?'))}</td>`; }).join('') + '</tr>'; }
+    h += '</tbody></table></div>';
+  }
+  return h;
+}
+async function sheetPdf(kind) {
+  if (!window.jspdf) { toast('The PDF tool didn’t load. Reload and try again.'); return; }
+  const { jsPDF } = window.jspdf; const doc = new jsPDF({ unit: 'pt', format: 'letter', orientation: 'landscape' });
+  const W = 792, H = 612, M = 30; const r = roster(); const [a, b] = weekRange();
+  const pages = [];
+  if (kind === 'weigh') {
+    const ds = datesInWeeks(practiceDates());
+    for (let i = 0; i < Math.max(ds.length, 1); i += 12) pages.push({ title: 'Weigh-in sheet', ds: ds.slice(i, i + 12), lift: null });
+  } else {
+    const ds = datesInWeeks(liftDates()); const lifts = sheetLift === 'all' ? LIFTS : LIFTS.filter(l => l[0] === sheetLift);
+    for (const [k, n] of lifts) for (let i = 0; i < Math.max(ds.length, 1); i += 12) pages.push({ title: 'Lift sheet · ' + n, ds: ds.slice(i, i + 12), lift: k });
+  }
+  const FILL = { good: [229, 244, 228], ok: [249, 238, 218], bad: [251, 220, 218] };
+  pages.forEach((pg, pi) => {
+    if (pi) doc.addPage();
+    doc.setFillColor(21, 22, 23); doc.rect(0, 0, W, 44, 'F');
+    doc.setTextColor(226, 87, 15); doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5); doc.text('KONKRETE KIDS WRESTLING', M, 18);
+    doc.setTextColor(255, 255, 255); doc.setFontSize(15); doc.text(pdfSafe(pg.title), M, 36);
+    doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.setTextColor(200, 197, 191); doc.text(pdfSafe(`Weeks ${a}-${b}`), W - M, 36, { align: 'right' });
+    const isW = !pg.lift; const nameW = 140, fixW = isW ? 72 : 0, chgW = isW ? 44 : 0;
+    const colW = Math.min(52, (W - 2 * M - nameW - fixW - chgW) / Math.max(pg.ds.length, 1));
+    const rowH = Math.min(17, (H - 100 - 30) / Math.max(r.length, 1)); let y = 62;
+    doc.setTextColor(24, 25, 27); doc.setFont('helvetica', 'bold'); doc.setFontSize(8);
+    let x = M; doc.text('Wrestler', x + 3, y + 12); x += nameW;
+    if (isW) { doc.text('Class', x + 3, y + 12); x += 36; doc.text('Low', x + 3, y + 12); x += 36; }
+    pg.ds.forEach(d => { doc.text(pdfSafe(DOW[D(d).getDay()] + ' ' + (D(d).getMonth() + 1) + '/' + D(d).getDate() + (isW && dayByDate[d].pre ? '*' : '')), x + colW / 2, y + 12, { align: 'center' }); x += colW; });
+    if (isW) doc.text('Change', x + chgW / 2, y + 12, { align: 'center' });
+    y += 18; doc.setDrawColor(24, 25, 27); doc.setLineWidth(1); doc.line(M, y, W - M, y);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setLineWidth(0.3); doc.setDrawColor(210, 206, 199);
+    r.forEach((w, ri) => {
+      let x = M; doc.setTextColor(24, 25, 27); doc.text(pdfSafe(w.name), x + 3, y + rowH - 5); x += nameW;
+      if (isW) { doc.text(pdfSafe(w.wt || ''), x + 3, y + rowH - 5); x += 36; doc.text(pdfSafe(w.minWt || ''), x + 3, y + rowH - 5); x += 36; }
+      let first = null, last = null;
+      pg.ds.forEach(d => {
+        let txt = '', fill = null;
+        if (isW) { const v = weightOf(d, w.id); if (v !== null) { txt = String(v); if (first === null) first = v; last = v; const s0 = weighStatus(w, v, d); fill = FILL[s0.cls]; } }
+        else { const v = (((st.lifts[w.id] || {}).log || {})[d] || {})[pg.lift]; if (v && (v.w || v.r)) { txt = (v.w || 'BW') + 'x' + (v.r || '?'); if (+v.r >= 12) fill = FILL.good; } }
+        if (fill) { doc.setFillColor(...fill); doc.rect(x, y, colW, rowH, 'F'); }
+        if (txt) doc.text(pdfSafe(txt), x + colW / 2, y + rowH - 5, { align: 'center' });
+        x += colW;
+      });
+      if (isW && first !== null && last !== null && first !== last) { const c = last - first; doc.text((c > 0 ? '+' : '') + c.toFixed(1), x + chgW / 2, y + rowH - 5, { align: 'center' }); }
+      y += rowH; doc.line(M, y, W - M, y);
+    });
+    doc.setFontSize(7.5); doc.setTextColor(120, 116, 110);
+    doc.text(pdfSafe(isW ? 'Green: makes weight. Tan: over, under the line. Red: over 4% (* = day before a competition, 2%) or below lowest allowed.' : 'Green: hit 12 reps, add weight next time.'), M, H - 18);
+  });
+  const blob = doc.output('blob'); const name = (kind === 'weigh' ? 'Weigh-in sheet' : 'Lift sheet') + ` weeks ${a}-${b}.pdf`;
+  if (downloads) { try { await downloads.save({ filename: name, data: blob }); toast('PDF ready'); } catch (e) { if (e && e.code !== 'declined') toast('Download didn’t start. Try again.'); } }
+  else if (local) { window.__lastPdf = blob; toast('PDF built'); }
+  else toast('Download isn’t available on this device.');
+}
+
+
+async function blankWeighPdf(d) {
+  if (!window.jspdf) { toast('The PDF tool didn’t load. Reload and try again.'); return; }
+  const { jsPDF } = window.jspdf; const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+  const W = 612, H = 792, M = 32; const r = roster(); const pct = flagPct(d); const ev = DATA.events[addDays(d, 1)];
+  doc.setFillColor(21, 22, 23); doc.rect(0, 0, W, 58, 'F');
+  doc.setTextColor(226, 87, 15); doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5); doc.text('KONKRETE KIDS WRESTLING  ·  WEIGH-IN SHEET', M, 20);
+  doc.setTextColor(255, 255, 255); doc.setFontSize(17); doc.text(pdfSafe(long(d) + ', ' + D(d).getFullYear()), M, 44);
+  doc.setFontSize(10); doc.setTextColor(pct === 2 ? 255 : 200, pct === 2 ? 150 : 197, pct === 2 ? 120 : 191);
+  doc.text(pdfSafe(pct === 2 ? 'DAY BEFORE ' + (ev ? ev[1].toUpperCase() : 'COMPETITION') + ': 2% LINE' : 'Normal day: 4% line'), W - M, 44, { align: 'right' });
+  const cols = [['Wrestler', 150], ['Class', 46], [pct + '% line', 56], ['Lowest', 48], ['Last', 70], ['Today', 84], ['Flag', 58]];
+  let y = 82; doc.setTextColor(24, 25, 27); doc.setFontSize(8.5); let x = M;
+  cols.forEach(([t, w]) => { doc.text(t.toUpperCase(), x + 4, y); x += w; });
+  y += 6; doc.setDrawColor(24, 25, 27); doc.setLineWidth(1); doc.line(M, y, W - M, y);
+  const rowH = Math.min(22, (H - 60 - y) / Math.max(r.length, 1)); doc.setLineWidth(0.4); doc.setDrawColor(200, 196, 189);
+  r.forEach((w, i) => {
+    const cls = parseFloat(w.wt); const line = cls ? (cls * (1 + pct / 100)).toFixed(1) : ''; const last = lastWeight(w.id, d);
+    if (i % 2) { doc.setFillColor(246, 245, 242); doc.rect(M, y, W - 2 * M, rowH, 'F'); }
+    let x = M; const ty = y + rowH - 7; doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+    doc.text(pdfSafe(w.name), x + 4, ty); x += 150;
+    doc.text(pdfSafe(w.wt || ''), x + 4, ty); x += 46;
+    doc.setFont('helvetica', 'bold'); doc.text(line, x + 4, ty); doc.setFont('helvetica', 'normal'); x += 56;
+    doc.text(pdfSafe(w.minWt || ''), x + 4, ty); x += 48;
+    doc.setFontSize(9); doc.setTextColor(110, 106, 100); doc.text(pdfSafe(last ? last.w + ' (' + (D(last.d).getMonth() + 1) + '/' + D(last.d).getDate() + ')' : ''), x + 4, ty); doc.setTextColor(24, 25, 27); x += 70;
+    doc.setDrawColor(150, 146, 140); doc.rect(x + 4, y + 3, 72, rowH - 6); x += 84;
+    doc.rect(x + 20, y + rowH / 2 - 5, 10, 10); doc.setDrawColor(200, 196, 189);
+    y += rowH; doc.line(M, y, W - M, y);
+  });
+  doc.setFontSize(8); doc.setTextColor(110, 106, 100);
+  doc.text(pdfSafe(`Check Flag if today's weight is over the ${pct}% line or under Lowest. Photo this sheet to Claude to save the weights.`), M, H - 24);
+  const blob = doc.output('blob'); const name = `Weigh-in sheet ${d}.pdf`;
+  if (downloads) { try { await downloads.save({ filename: name, data: blob }); toast('PDF ready'); } catch (e) { if (e && e.code !== 'declined') toast('Download isn’t available here.'); } }
+  else if (local) { window.__lastPdf = blob; toast('PDF built'); }
+}
+
+/* ---------------- roster ---------------- */
+function viewRoster() {
+  const all = roster(false);
+  let h = `<div class="pagehead"><div><h1>Roster</h1><p>${all.filter(x => x.active !== false).length} active wrestlers.</p></div></div>`;
+  if (canEdit) {
+    h += `<div class="card pad" style="margin-bottom:14px"><form id="addw" class="formrow"><label>Name<input id="nw-name" required autocomplete="off"></label><label>Weight<input id="nw-wt" inputmode="numeric" placeholder="e.g. 132"></label><label>Grade<input id="nw-grade" inputmode="numeric" placeholder="9-12"></label><label>Level<select id="nw-level"><option>Varsity</option><option selected>JV</option></select></label><button class="btn primary" type="submit">Add</button></form>
+    <details style="margin-top:12px"><summary style="cursor:pointer;font-weight:700">Paste the whole team at once</summary><div class="stack" style="margin-top:8px"><label for="bulk">One wrestler per line: name, weight, grade, level</label><textarea id="bulk" placeholder="Smith, John, 132, 11, Varsity"></textarea><div class="row" style="margin-top:8px"><button class="btn primary" data-act="bulk">Add these wrestlers</button><span class="muted" style="font-size:13px">Only the name is required.</span></div></div></details></div>`;
+  }
+  if (!all.length) return h + '<div class="card empty"><h3>No wrestlers yet</h3><p class="muted">Add them above. Attendance and lifts fill in from this list.</p></div>';
+  h += '<div class="card tablewrap"><table class="grid"><thead><tr><th>Name</th><th>Weight</th><th>Grade</th><th>Level</th><th></th></tr></thead><tbody>';
+  for (const x of all) h += `<tr class="${x.active === false ? 'inactive' : ''}"><td><a href="#w-${x.id}">${esc(x.name)}</a></td><td class="num">${esc(x.wt || '')}</td><td class="num">${esc(x.grade || '')}</td><td>${esc(x.level || '')}</td><td style="text-align:right">${canEdit ? `<button class="linkbtn" data-toggle="${x.id}">${x.active === false ? 'Reactivate' : 'Mark inactive'}</button>` : ''}</td></tr>`;
+  return h + '</tbody></table></div>';
+}
+
+/* ---------------- library ---------------- */
+function viewLibrary() {
+  const used = {}; DATA.days.forEach(d => { if (d.condName) (used[d.condName] = used[d.condName] || []).push(d.date); });
+  let h = `<div class="pagehead"><div><h1>Library</h1><p>Phases, rules, and every CrossFit and finisher in the plan.</p></div></div>`;
+  h += '<h2 class="sect">Phases</h2><div class="phases">' + DATA.phases.map(p => `<div class="phase" style="background:${PHASE_COLORS[p[0]]}"><h3>${esc(p[0])}</h3><div class="dates">${esc(short(p[1]))} – ${esc(short(p[2]))}</div><p>${esc(p[3])}</p></div>`).join('') + '</div>';
+  h += `<h2 class="sect">Rules</h2><div class="card"><ul class="rules">
+    ${DATA.timesRule ? '<li>' + esc(DATA.timesRule) + '</li>' : ''}
+    <li>Warm-up is capped at 15 minutes. On lift days the lift is the warm-up.</li>
+    <li>Lift days end with a CrossFit, non-lift days with a finisher. No format repeats in a week without a reason.</li>
+    <li>No lifting the day before a competition. The day before: short goes, weight check, light finisher.</li>
+    <li>Pieces get shorter as the season goes: Build 10–15 min, Compete 6–10, Peak 4–8.</li>
+    <li>Nothing new is taught without varsity in the room.</li>
+    <li>Top rotation in the 2&2s from 12/21: wrist tilt, cradle, half, repeat. Never resets.</li></ul></div>`;
+  for (const [type, label] of [['CrossFit', 'CrossFits (lift days)'], ['Finisher', 'Finishers (non-lift days)'], ['Light finisher', 'Light finishers (day before competition)']]) {
+    h += `<h2 class="sect">${esc(label)}</h2><div class="libgrid">` + DATA.library.filter(x => x.type === type).map(x => `<div class="card libcard ${type.split(' ')[0]}"><h3>${esc(x.name)}</h3><p>${esc(x.desc)}</p><div class="used">${used[x.name] ? 'Used ' + used[x.name].map(d => `<a href="#day-${d}">${esc(short(d))}</a>`).join(', ') : 'Not scheduled'}</div></div>`).join('') + '</div>';
+  }
+  return h;
+}
+
+/* ---------------- events ---------------- */
+document.addEventListener('click', async e => {
+  const rt = e.target.closest('[data-runto]');
+  if (rt && run) { run.follow = false; run.idx = +rt.dataset.runto; run.started = Date.now(); render(); return; }
+  const lf = e.target.closest('[data-lifter]');
+  if (lf) { openLifter(lf.dataset.lifter); return; }
+  const bt = e.target.closest('[data-bout]');
+  if (bt) { openBout(route().slice(2), bt.dataset.bout); return; }
+  const t = e.target.closest('[data-chk],[data-go],[data-act],[data-mark],[data-pillar],[data-toggle],[data-att],[data-liftd]');
+  if (!t) return;
+  if (t.dataset.go) { location.hash = t.dataset.go; return; }
+  if (t.dataset.att) { selAttDate = t.dataset.att; return; }
+  if (t.dataset.liftd) { selLiftDate = t.dataset.liftd; return; }
+  if (t.dataset.pillar) { openPillar(+t.dataset.pillar); return; }
+  if (t.dataset.toggle) { const x = st.roster[t.dataset.toggle]; await write('roster/' + t.dataset.toggle, Object.assign({}, x, { active: x.active === false })); return; }
+  if (t.dataset.chk !== undefined) {
+    const s = route().slice(4); const done = Object.assign({}, (st.progress[s] && st.progress[s].done) || {});
+    if (done[t.dataset.chk]) delete done[t.dataset.chk]; else done[t.dataset.chk] = true;
+    st.progress[s] = { done }; render(); await patch('progress/' + s, [[['done', t.dataset.chk], done[t.dataset.chk] ? true : null]]); return;
+  }
+  if (t.dataset.mark) {
+    const s = selAttDate; const cur = Object.assign({}, (st.attendance[s] && st.attendance[s].marks) || {});
+    if (cur[t.dataset.mark] === t.dataset.v) delete cur[t.dataset.mark]; else cur[t.dataset.mark] = t.dataset.v;
+    st.attendance[s] = { marks: cur }; render();
+    await patch('attendance/' + s, [[['marks', t.dataset.mark], cur[t.dataset.mark] || null]]); return;
+  }
+  const act = t.dataset.act; const s = route().slice(4);
+  if (act === 'blankweigh') { t.disabled = true; try { await blankWeighPdf(selWeighDate); } finally { t.disabled = false; } return; }
+  if (act === 'weighpdf' || act === 'liftpdf') { t.disabled = true; try { await sheetPdf(act === 'weighpdf' ? 'weigh' : 'lift'); } finally { t.disabled = false; } return; }
+  if (act === 'addbout') { openBout(route().slice(2)); return; }
+  if (act === 'cftimes') { openCF(route().slice(4)); return; }
+  if (act === 'newevent') { openNewEvent(); return; }
+  if (act === 'runnext' && run) { run.follow = false; run.idx++; run.started = Date.now(); render(); return; }
+  if (act === 'runprev' && run) { run.follow = false; run.idx = Math.max(0, run.idx - 1); run.started = Date.now(); render(); return; }
+  if (act === 'edit') { editing = s; render(); }
+  else if (act === 'cancel') { editing = null; render(); }
+  else if (act === 'save') {
+    const p = rawPlan(s); const sections = {};
+    for (const [k] of SEC) sections[k] = fromText($('#ed-' + k).value);
+    const clk = clockFromText($('#ed-clock').value);
+    editing = null; st.plans[s] = { sections, clock: clk.length ? clk : p.clock, updatedAt: new Date().toISOString() }; render();
+    await write('plans/' + s, st.plans[s]); toast('Plan saved');
+  }
+  else if (act === 'approve') { const ov = Object.assign({}, st.plans[s], { approved: true }); st.plans[s] = ov; render(); await write('plans/' + s, ov); toast('Approved'); }
+  else if (act === 'reset') { openConfirm('Reset this plan?', 'Your changes to this day go away and the original plan comes back.', async () => { editing = null; delete st.plans[s]; render(); await remove('plans/' + s); toast('Plan reset'); }); }
+  else if (act === 'pdf') { t.disabled = true; try { await makePdf(s); } finally { t.disabled = false; } }
+  else if (act === 'allP') {
+    const had = (st.attendance[selAttDate] || {}).marks || {}; const sets = roster().filter(x => !had[x.id]).map(x => [['marks', x.id], 'P']);
+    if (sets.length) await patch('attendance/' + selAttDate, sets);
+  }
+  else if (act === 'bulk') {
+    const lines = $('#bulk').value.split('\n').map(l => l.trim()).filter(Boolean); let n = 0;
+    for (const l of lines) {
+      const parts = l.split(/\t|,/).map(s => s.trim());
+      let name = parts[0], rest = parts.slice(1);
+      if (rest.length && !/\d/.test(rest[0]) && !/^(varsity|jv)$/i.test(rest[0])) { name = rest[0] + ' ' + parts[0]; rest = rest.slice(1); }
+      const nums = rest.filter(x => /^\d+$/.test(x)); const lvl = rest.find(x => /^(varsity|jv|v)$/i.test(x));
+      const id = uid(); const rec = { name, wt: nums[0] || '', grade: nums[1] || '', level: lvl ? (/^jv$/i.test(lvl) ? 'JV' : 'Varsity') : '', active: true };
+      st.roster[id] = rec; await write('roster/' + id, rec); n++;
+    }
+    toast(n + ' wrestlers added'); render();
+  }
+});
+document.addEventListener('input', e => { if (e.target.id === 'wfind') { weighFilter = e.target.value; const pos = e.target.selectionStart; render(); const f = $('#wfind'); if (f) { f.focus(); f.setSelectionRange(pos, pos); } } });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.dataset && e.target.dataset.weigh) {
+    e.preventDefault(); const all = [...document.querySelectorAll('[data-weigh]')]; const i = all.indexOf(e.target);
+    e.target.blur(); setTimeout(() => { const nx = [...document.querySelectorAll('[data-weigh]')][i + 1]; if (nx) { nx.focus(); nx.select(); } }, 60);
+  }
+});
+document.addEventListener('submit', async e => {
+  if (e.target.id !== 'addw') return; e.preventDefault();
+  const name = $('#nw-name').value.trim(); if (!name) return;
+  const id = uid(); const rec = { name, wt: $('#nw-wt').value.trim(), grade: $('#nw-grade').value.trim(), level: $('#nw-level').value, active: true };
+  st.roster[id] = rec; render(); await write('roster/' + id, rec); setTimeout(() => { const n = $('#nw-name'); if (n) n.focus(); }, 30);
+});
+document.addEventListener('change', async e => {
+  const t = e.target;
+  if (t.id === 'follow' && run) { run.follow = t.checked; run.started = Date.now(); render(); return; }
+  if (t.id === 'sfrom') { sheetFrom = +t.value; render(); return; }
+  if (t.id === 'sto') { sheetTo = +t.value; render(); return; }
+  if (t.id === 'slift') { sheetLift = t.value; render(); return; }
+  if (t.id === 'wdate') { selWeighDate = t.value; render(); return; }
+  if (t.dataset.weigh) {
+    const id = t.dataset.weigh, s = selWeighDate, v = t.value.trim().replace(/[^0-9.]/g, '');
+    const key = wKey(s, id); const doc = { d: s, id, w: v, at: new Date().toISOString() };
+    st.weighins[key] = doc;
+    try { if (v === '') await remove('weighins/' + key); else await write('weighins/' + key, doc); } catch (e) {}
+    if (!$('#app').contains(document.activeElement) || !/INPUT/.test(document.activeElement.tagName)) render(); else deferRender = true;
+    return;
+  }
+  if (t.id === 'attdate') { selAttDate = t.value; render(); return; }
+  if (t.id === 'liftdate') { selLiftDate = t.value; render(); return; }
+  if (t.dataset.lift) {
+    const id = t.dataset.lift, s = selLiftDate; const rec = JSON.parse(JSON.stringify(st.lifts[id] || {})); rec.log = rec.log || {}; rec.log[s] = rec.log[s] || {};
+    const v = rec.log[s][t.dataset.k] = rec.log[s][t.dataset.k] || {}; v[t.dataset.f] = t.value.trim();
+    await patch('lifts/' + id, [[['log', s, t.dataset.k, t.dataset.f], t.value.trim()]]); return;
+  }
+  if (t.dataset.wf) {
+    const id = t.dataset.id; const rec = Object.assign({}, st.roster[id]); rec[t.dataset.wf] = t.value.trim(); st.roster[id] = rec; await write('roster/' + id, rec); toast('Saved'); return;
+  }
+  if (t.dataset.fran) {
+    const id = t.dataset.fran, s = selLiftDate; const doc = JSON.parse(JSON.stringify(st.cf[s] || { workout: 'Fran', times: {} })); doc.times = doc.times || {}; if (t.value.trim()) doc.times[id] = t.value.trim(); else delete doc.times[id];
+    await patch('cf/' + s, [[['workout'], doc.workout || 'Fran'], [['times', id], t.value.trim() || null]]);
+  }
+});
+
+/* ---------------- dialogs ---------------- */
+function closeLayer() { $('#layer').innerHTML = ''; }
+function openPillar(w) {
+  $('#layer').innerHTML = `<div class="scrim" data-close="1"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="pt"><h2 id="pt">Week ${w} pillar</h2><p class="muted">Shows on every practice plan this week.</p><div class="stack"><label for="pv">Pillar</label><input id="pv" value="${esc(pillar(w))}" style="padding:10px;border:1px solid var(--line);border-radius:8px;width:100%;font-size:16px"></div><div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn ghost" data-close="1">Cancel</button><button class="btn primary" id="psave">Save</button></div></div></div>`;
+  $('#pv').focus();
+  $('#psave').onclick = async () => { const v = $('#pv').value.trim(); const weeks = Object.assign({}, DEFAULT_PILLARS, st.pillars); weeks[String(w)] = v; closeLayer(); st.pillars = weeks; render(); await write('settings/pillars', { weeks }); };
+}
+function openConfirm(title, body, ok) {
+  $('#layer').innerHTML = `<div class="scrim" data-close="1"><div class="modal" role="dialog" aria-modal="true"><h2>${esc(title)}</h2><p>${esc(body)}</p><div class="row" style="justify-content:flex-end"><button class="btn ghost" data-close="1">Cancel</button><button class="btn primary" id="cok">Yes, reset</button></div></div></div>`;
+  $('#cok').onclick = () => { closeLayer(); ok(); };
+}
+$('#layer').addEventListener('click', e => { if (e.target.dataset.close) closeLayer(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer(); });
+
+/* ---------------- boot ---------------- */
+let SEED = null;
+const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function openSeason(k) {
+  const enc = await (await fetch('season.json?v=31b6b3436f', { cache: 'no-cache' })).json();
+  const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
+  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+function gate(msg) {
+  $('#tabs').hidden = true; $('#who').hidden = true; $('#sync').hidden = true; $('#status').textContent = '';
+  $('#app').innerHTML = `<form class="card gate" id="gate" autocomplete="off"><h1>Coaches’ Room</h1><p class="muted" style="margin:0">Northampton Wrestling coaches only. Practice plans, weigh-ins, attendance, lifts, CrossFit times and matches, all in one place.</p>
+    <label>Your name<input id="g-name" placeholder="Coach Derr" value="${esc(coachName)}" autocomplete="name"></label>
+    <label>Coach passcode<input id="g-code" type="password" autocomplete="current-password" required></label>
+    <p class="err" id="g-err">${esc(msg || '')}</p><button class="btn primary" type="submit" id="g-go">Sign in</button>
+    <p class="muted" style="font-size:13px;margin:14px 0 0">Ask Coach Provini for the passcode. This phone stays signed in.</p></form>`;
+  $('#gate').onsubmit = async ev => {
+    ev.preventDefault(); const btn = $('#g-go'); btn.disabled = true; btn.textContent = 'Checking…'; $('#g-err').textContent = '';
+    passcode = $('#g-code').value; coachName = $('#g-name').value.trim();
+    try {
+      const res = await api({ action: 'login' });
+      if (!res.ok) { passcode = null; $('#g-err').textContent = res.error === 'passcode' ? 'That passcode isn’t right.' : 'Something went wrong. Try again.'; btn.disabled = false; btn.textContent = 'Sign in'; return; }
+      LS.set('kk_code', passcode); LS.set('kk_role', res.role); LS.set('kk_k', res.k); LS.set('kk_name', coachName); role = res.role;
+      start(res.k);
+    } catch (e) { passcode = null; $('#g-err').textContent = 'Can’t reach the team’s data. Check the signal and try again.'; btn.disabled = false; btn.textContent = 'Sign in'; }
+  };
+  setTimeout(() => { const n = $(coachName ? '#g-code' : '#g-name'); if (n) n.focus(); }, 50);
+}
+function signOut(msg) {
+  if (outbox.length && !msg && !confirm(outbox.length + ' entries haven’t reached the team’s data yet. Sign out anyway?')) return;
+  ['kk_code', 'kk_role', 'kk_k', 'kk_outbox'].forEach(LS.del); location.hash = ''; passcode = null;
+  if (msg) { outbox = []; } location.reload();
+}
+async function start(k) {
+  try { const all = await openSeason(k); SEED = all.seed || null; delete all.seed; DATA = all; }
+  catch (e) { gate('The season didn’t open. Sign in again.'); return; }
+  DATA.days.forEach(d => { dayByDate[d.date] = d; });
+  canEdit = role === 'head'; canEnter = true; isOwner = canEdit;
+  $('#tabs').hidden = false;
+  const who = $('#who'); who.hidden = false; who.textContent = 'Sign out'; who.onclick = () => signOut();
+  setStatus(); syncPill(); render(); subscribe();
+}
+downloads = { save: async ({ filename, data }) => { const u = URL.createObjectURL(data); const a = document.createElement('a'); a.href = u; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 60000); } };
+function boot() {
+  const k = LS.get('kk_k');
+  if (passcode && role && k) start(k); else gate();
+}
+boot();
+})();
+</script>
+</body>
+</html>
