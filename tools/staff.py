@@ -33,7 +33,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUNDLE = os.path.join(ROOT, "tools", "staff-source.json")
 OUT = os.path.join(ROOT, "staff")
 # The Apps Script web app address (Deploy > Web app URL). Not a secret: the passcode protects the data.
-API_URL = "__API_URL__"
+API_URL = "https://script.google.com/macros/s/AKfycbwDdDHH7jGcbx8ctDN6TC0F_hRkuJyspxLf45ikHzSXj46FDLrNPns6d5N-sNi9JVSg/exec"
 FILES = ["app.html", "season.py", "master.py", "master.txt", "data.json", "seed.json", "port.py", "post.py",
          "seal.py", "Code.gs.tpl", "mock.js", "t1.js", "e2e.js"]
 

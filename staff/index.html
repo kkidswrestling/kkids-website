@@ -505,7 +505,7 @@ function summary(day) {
 
 /* ---------------- storage: Google Sheet via Apps Script ---------------- */
 const COLS = { plans: 'plans', attendance: 'attendance', roster: 'roster', lifts: 'lifts', settings: 'settings', progress: 'progress', matches: 'matches', reports: 'reports', cf: 'cf', weighins: 'weighins' };
-const API = new URLSearchParams(location.search).get('api') || '__API_URL__';
+const API = new URLSearchParams(location.search).get('api') || 'https://script.google.com/macros/s/AKfycbwDdDHH7jGcbx8ctDN6TC0F_hRkuJyspxLf45ikHzSXj46FDLrNPns6d5N-sNi9JVSg/exec';
 const LS = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
 const store = {}; Object.keys(COLS).forEach(c => { store[c] = {}; });
 let passcode = LS.get('kk_code'), role = LS.get('kk_role'), coachName = LS.get('kk_name') || '';
@@ -1571,7 +1571,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=31b6b3436f', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=66577fcceb', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
