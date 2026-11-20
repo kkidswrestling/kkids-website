@@ -770,7 +770,7 @@ function viewDay(s) {
   h += '</div>';
   h += '<article class="sheet">';
   h += `<div class="sheethead"><div><div class="eyebrow">Practice plan${p.label ? ' · ' + esc(p.label) : ''}</div><h1>${esc(long(s))}</h1><div class="sub">Week ${w} · ${esc(ph[0])} phase${p.edited ? ` · <span class="edited">${st.plans[s] && st.plans[s].by === 'claude' ? 'Claude draft' : 'edited'}</span>` : ''}</div></div><div class="chips">${chips.join('')}</div></div>`;
-  h += `<div class="pillarband"><span>Foundation block of the week</span><b>${pl ? esc(pl) : '___'}</b><span class="win">W.I.N. · What’s important now?</span></div>`;
+  h += `<div class="pillarband"><span>Foundation block of the week</span><b>${pl ? esc(pl) : '___'}</b></div>`;
   const ov = st.plans[s];
   if (ov && ov.by === 'claude' && !ov.approved && !isEdit) h += `<div class="draft"><div><b>Claude’s draft from the Sunday review.</b> ${esc(ov.why || '')}</div>${canEdit ? '<div class="row"><button class="btn primary" data-act="approve">Approve</button><button class="btn" data-act="edit">Edit</button><button class="btn ghost" data-act="reset">Use the original</button></div>' : ''}</div>`;
   else if (ov && ov.by === 'claude' && ov.approved && !isEdit) h += `<div class="note">Built from the Sunday review. ${esc(ov.why || '')}</div>`;
@@ -1571,7 +1571,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=487c9a6907', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=f92d2aa76f', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
