@@ -1571,7 +1571,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=66577fcceb', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=639d73583f', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
@@ -1602,7 +1602,7 @@ function signOut(msg) {
 }
 async function start(k) {
   try { const all = await openSeason(k); SEED = all.seed || null; delete all.seed; DATA = all; }
-  catch (e) { gate('The season didn’t open. Sign in again.'); return; }
+  catch (e) { gate(!(window.crypto && crypto.subtle) ? 'This page needs a secure connection. Open https://www.northamptonwrestling.org/staff/' : 'The season didn’t open (' + ((e && e.message) || e) + '). Sign in again.'); return; }
   DATA.days.forEach(d => { dayByDate[d.date] = d; });
   canEdit = role === 'head'; canEnter = true; isOwner = canEdit;
   $('#tabs').hidden = false;
@@ -1611,6 +1611,7 @@ async function start(k) {
 }
 downloads = { save: async ({ filename, data }) => { const u = URL.createObjectURL(data); const a = document.createElement('a'); a.href = u; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 60000); } };
 function boot() {
+  if (location.protocol === 'http:' && !/^(localhost|127\.)/.test(location.hostname)) { location.replace('https://' + location.host + location.pathname + location.search + location.hash); return; }
   const k = LS.get('kk_k');
   if (passcode && role && k) start(k); else gate();
 }
