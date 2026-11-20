@@ -480,7 +480,7 @@ function plan(date, noAuto) {
   const pl = pillar(weekOf(date));
   const ann = p.sections.announce || [];
   if (pl && JSON.stringify(ann).toLowerCase().includes(pl.toLowerCase())) return p;
-  const line = { t: 'Pillar of the week: ' + (pl || '___ (set it on the Season page)'), c: [], auto: true };
+  const line = { t: 'Foundation block of the week: ' + (pl || '___ (set it on the Season page)'), c: [], auto: true };
   return Object.assign({}, p, { sections: Object.assign({}, p.sections, { announce: [line].concat(ann) }) });
 }
 function carryMap() {
@@ -702,7 +702,7 @@ function viewSeason() {
     const ph = phaseOf(addDays(mon, 3));
     const col = PHASE_COLORS[ph[0]];
     const pl = pillar(w);
-    const pbtn = `<button class="pillar ${pl ? '' : 'blank'}" data-pillar="${w}" ${canEdit ? '' : 'disabled'} title="${canEdit ? 'Set this week’s pillar' : ''}">${pl ? esc(pl) : 'Pillar ___'}</button>`;
+    const pbtn = `<button class="pillar ${pl ? '' : 'blank'}" data-pillar="${w}" ${canEdit ? '' : 'disabled'} title="${canEdit ? 'Set this week’s Foundation block' : ''}">${pl ? esc(pl) : 'Block ___'}</button>`;
     html += `<div class="week"><div class="wlabel" style="background:${col}"><span class="wn">Week ${w}</span><span class="wd">${MON[D(mon).getMonth()]} ${D(mon).getDate()} – ${MON[D(addDays(mon, 6)).getMonth()]} ${D(addDays(mon, 6)).getDate()}</span>${pbtn}<span class="wp">${esc(ph[0])}</span></div>`;
     agenda += `<section class="card aweek"><header style="background:${col}"><b>Week ${w}</b><span>${short(mon)} – ${short(addDays(mon, 6))} · ${esc(ph[0])}</span>${pbtn}</header>`;
     for (let i = 0; i < 7; i++) {
@@ -770,7 +770,7 @@ function viewDay(s) {
   h += '</div>';
   h += '<article class="sheet">';
   h += `<div class="sheethead"><div><div class="eyebrow">Practice plan${p.label ? ' · ' + esc(p.label) : ''}</div><h1>${esc(long(s))}</h1><div class="sub">Week ${w} · ${esc(ph[0])} phase${p.edited ? ` · <span class="edited">${st.plans[s] && st.plans[s].by === 'claude' ? 'Claude draft' : 'edited'}</span>` : ''}</div></div><div class="chips">${chips.join('')}</div></div>`;
-  h += `<div class="pillarband"><span>Pillar of the week</span><b>${pl ? esc(pl) : '___'}</b><span class="win">W.I.N. · What’s important now?</span></div>`;
+  h += `<div class="pillarband"><span>Foundation block of the week</span><b>${pl ? esc(pl) : '___'}</b><span class="win">W.I.N. · What’s important now?</span></div>`;
   const ov = st.plans[s];
   if (ov && ov.by === 'claude' && !ov.approved && !isEdit) h += `<div class="draft"><div><b>Claude’s draft from the Sunday review.</b> ${esc(ov.why || '')}</div>${canEdit ? '<div class="row"><button class="btn primary" data-act="approve">Approve</button><button class="btn" data-act="edit">Edit</button><button class="btn ghost" data-act="reset">Use the original</button></div>' : ''}</div>`;
   else if (ov && ov.by === 'claude' && ov.approved && !isEdit) h += `<div class="note">Built from the Sunday review. ${esc(ov.why || '')}</div>`;
@@ -864,7 +864,7 @@ async function makePdf(s) {
   const meta = ['Week ' + w, ph[0], p.kind === 'lift' ? 'Lift day' : '', p.pre ? 'Day before competition' : '', p.run ? 'Morning run ' + (DATA.runTime || '') : ''].filter(Boolean).join('  ·  ');
   doc.text(pdfSafe(meta), W - M, 24, { align: 'right' });
   doc.setFont('helvetica', 'bold'); doc.setTextColor(255, 255, 255); doc.setFontSize(11);
-  doc.text(pdfSafe('Pillar: ' + (pl || '______')), W - M, 47, { align: 'right' });
+  doc.text(pdfSafe('Block: ' + (pl || '______')), W - M, 47, { align: 'right' });
   let y = 84;
   // schedule table
   doc.setFontSize(8.5); doc.setTextColor(24, 25, 27);
@@ -1556,7 +1556,7 @@ document.addEventListener('change', async e => {
 /* ---------------- dialogs ---------------- */
 function closeLayer() { $('#layer').innerHTML = ''; }
 function openPillar(w) {
-  $('#layer').innerHTML = `<div class="scrim" data-close="1"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="pt"><h2 id="pt">Week ${w} pillar</h2><p class="muted">Shows on every practice plan this week.</p><div class="stack"><label for="pv">Pillar</label><input id="pv" value="${esc(pillar(w))}" style="padding:10px;border:1px solid var(--line);border-radius:8px;width:100%;font-size:16px"></div><div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn ghost" data-close="1">Cancel</button><button class="btn primary" id="psave">Save</button></div></div></div>`;
+  $('#layer').innerHTML = `<div class="scrim" data-close="1"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="pt"><h2 id="pt">Week ${w} Foundation block</h2><p class="muted">Shows on every practice plan this week.</p><div class="stack"><label for="pv">Foundation block</label><input id="pv" value="${esc(pillar(w))}" style="padding:10px;border:1px solid var(--line);border-radius:8px;width:100%;font-size:16px"></div><div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn ghost" data-close="1">Cancel</button><button class="btn primary" id="psave">Save</button></div></div></div>`;
   $('#pv').focus();
   $('#psave').onclick = async () => { const v = $('#pv').value.trim(); const weeks = Object.assign({}, DEFAULT_PILLARS, st.pillars); weeks[String(w)] = v; closeLayer(); st.pillars = weeks; render(); await write('settings/pillars', { weeks }); };
 }
@@ -1571,7 +1571,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=639d73583f', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=487c9a6907', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
