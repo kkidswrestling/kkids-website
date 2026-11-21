@@ -1743,8 +1743,8 @@ def build_champions():
 </section>
 <section class="band" aria-labelledby="hundred-title">
   <div class="wrap">
-    {section_head(f'<span id="hundred-title">The 100-Win Club</span>', f'{TOTALS["hundred"]} Konkrete Kids have won at least 100 varsity matches, as listed on the banners in the gym. Josh Haines holds the career record with 157.')}
-    <ol class="hundred" role="list">{"".join(f'<li{" class=\"active\"" if r["status"] == "active" else ""}><span class="nm">{e(r["wrestler"])}</span><span class="yrs">{e(r["years"].replace("-", "–")) + ("present" if r["status"] == "active" else "")}</span><b>{r["wins"]}{"<sup>*</sup>" if r["status"] == "active" else ""}</b></li>' for r in HUNDRED)}</ol>
+    {section_head(f'<span id="hundred-title">The 100-Win Club</span>', f'{TOTALS["hundred"]} Konkrete Kids have won at least 100 varsity matches, as listed on the banners in the gym, ranked by career wins. Josh Haines holds the career record with 157.')}
+    <ol class="hundred" role="list">{"".join(f'<li{" class=\"active\"" if r["status"] == "active" else ""}><span class="rk">{1 + sum(1 for x in HUNDRED if int(x["wins"]) > int(r["wins"]))}</span><span class="nm">{e(r["wrestler"])}</span><span class="yrs">{e(r["years"].replace("-", "–")) + ("present" if r["status"] == "active" else "")}</span><b>{r["wins"]}{"<sup>*</sup>" if r["status"] == "active" else ""}</b></li>' for r in sorted(HUNDRED, key=lambda x: -int(x["wins"])))}</ol>
     <p class="fine">* Still wrestling. Career wins through the 2025–26 season.</p>
   </div>
 </section>

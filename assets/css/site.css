@@ -477,8 +477,9 @@ blockquote.arena footer { font-weight: 700; font-size: 17px; }
 @media (max-width: 560px) { .team-banners { grid-template-columns: repeat(2, 1fr); } .tbanner { min-height: 180px; } }
 /* 100-win club */
 .hundred { list-style: none; margin: 0 0 12px; padding: 0; columns: 3 280px; column-gap: 32px; }
-.hundred li { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); break-inside: avoid; }
+.hundred li { display: grid; grid-template-columns: 2em 1fr auto auto; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); break-inside: avoid; }
 .hundred .nm { font-weight: 600; }
+.hundred .rk { color: var(--ink-2); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .hundred .yrs { color: var(--ink-2); font-size: 14px; font-variant-numeric: tabular-nums; }
 .hundred b { font-family: var(--display); font-weight: 400; font-size: 24px; min-width: 2.2em; text-align: right; color: var(--ink); }
 .hundred li.active b { color: var(--blaze-ink); }
