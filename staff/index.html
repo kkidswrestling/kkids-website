@@ -329,7 +329,20 @@ a.btn.light { color: #fff; }
 .rtime { color: #a19e98; font-weight: 700; font-variant-numeric: tabular-nums; }
 .rblock { font-family: var(--font-display); font-weight: 800; font-size: clamp(34px, 7vw, 64px); text-transform: uppercase; line-height: 1; margin-top: 4px; }
 .rclock { font-family: var(--font-display); font-weight: 800; font-size: clamp(80px, 22vw, 200px); line-height: .95; color: var(--accent); font-variant-numeric: tabular-nums; letter-spacing: .01em; }
-.rclock.soon { color: #f4c542; } .rclock.over { color: #ff6b5e; } .rclock.wait { color: #c9c6c0; }
+.rclock.soon { color: #f4c542; } .rclock.over { color: #ff6b5e; } .rclock.wait { color: #c9c6c0; } .rclock.paused { opacity: .55; }
+.rctl { display: flex; gap: 10px; justify-content: center; margin: 14px 0 2px; }
+.rctl .btn { min-height: 56px; font-size: 18px; padding: 0 22px; display: inline-flex; align-items: center; justify-content: center; }
+.rctl .btn.big { min-width: 170px; font-size: 22px; letter-spacing: .02em; }
+.rctl .btn.big.on { background: #3a3c40; border-color: #55585d; color: #fff; }
+.rmini { position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: flex; align-items: center; gap: 10px; padding: 8px max(12px, env(safe-area-inset-right)) 8px max(12px, env(safe-area-inset-left)); padding-top: max(8px, env(safe-area-inset-top)); background: #151618; border-bottom: 2px solid var(--accent); transform: translateY(-110%); transition: transform .15s; }
+.rmini.show { transform: none; }
+.rmini .mb { flex: 1; min-width: 0; font-weight: 800; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rmini .mc { font-family: var(--font-display); font-weight: 800; font-size: 30px; color: var(--accent); font-variant-numeric: tabular-nums; } .rmini .mc.soon { color: #f4c542; } .rmini .mc.over { color: #ff6b5e; }
+.rmini .btn.sm { min-height: 40px; padding: 0 14px; } .rmini .btn.on { background: #3a3c40; border-color: #55585d; color: #fff; }
+#runpill { position: fixed; right: 14px; bottom: max(14px, env(safe-area-inset-bottom)); z-index: 40; display: flex; gap: 10px; align-items: baseline; background: #151618; color: #fff; border: 2px solid var(--accent); border-radius: 999px; padding: 10px 16px; text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,.25); max-width: calc(100vw - 28px); }
+#runpill span { font-weight: 700; font-size: 13px; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#runpill b { font-family: var(--font-display); font-size: 22px; color: var(--accent); font-variant-numeric: tabular-nums; } #runpill.over b { color: #ff6b5e; }
+@media print { #runpill, .rmini { display: none !important; } }
 .rsub { color: #c9c6c0; font-size: 16px; min-height: 22px; }
 .segs { display: flex; gap: 3px; margin: 16px 0 12px; }
 .seg2 { position: relative; height: 40px; border: 0; border-radius: 6px; background: #2a2c30; color: #a19e98; overflow: hidden; padding: 0 6px; text-align: left; font-size: 11px; font-weight: 700; min-width: 0; }
@@ -1192,11 +1205,22 @@ function blockKeys(name) {
   if (/Close/i.test(name)) return ['end', 'culture'];
   return [];
 }
+const RUNKEY = 'kk-run';
+function saveRun() { try { localStorage.setItem(RUNKEY, JSON.stringify(run)); } catch (e) {} }
+try { const r0 = JSON.parse(localStorage.getItem(RUNKEY) || 'null'); if (r0 && r0.s) run = r0; } catch (e) {}
+function runSpans() { const p = run && plan(run.s); return p ? blockSpans(p, run.s) : []; }
+function runTotal(spans) { const c = spans[run.idx]; return c ? blockSecs(c) : 0; }
+function runLeft(spans) { return run.on ? (run.endAt - Date.now()) / 1000 : (run.left != null ? run.left : runTotal(spans)); }
+function runSet(i) { const spans = runSpans(); run.idx = Math.max(0, Math.min(spans.length - 1, i)); run.on = false; run.left = runTotal(spans); saveRun(); render(); }
+function runToggle() { const spans = runSpans(); if (run.on) { run.left = runLeft(spans); run.on = false; } else { run.endAt = Date.now() + runLeft(spans) * 1000; run.on = true; } saveRun(); runButtons(); }
+function runReset() { run.on = false; run.left = runTotal(runSpans()); saveRun(); runButtons(); }
+function runButtons() { document.querySelectorAll('[data-act="runtoggle"]').forEach(x => { x.textContent = run.on ? 'Stop' : 'Start'; x.classList.toggle('on', run.on); }); tickRun(); }
+function runText(left, total) { if (!total) return fmt(-left); return left < 0 ? 'Over ' + fmt(left).slice(1) : fmt(left); }
 function viewRun(s) {
   const p = plan(s); if (!p) return '<div class="card empty"><h3>No practice on this day</h3><a href="#season">Back</a></div>';
-  if (!run || run.s !== s) run = { s, follow: s === todayIso(), idx: 0, started: Date.now() };
   const spans = blockSpans(p, s);
-  if (run.follow) run.idx = currentIdx(spans);
+  if (!run || run.s !== s) { const now = new Date(); run = { s, idx: s === todayIso() && now >= spans[0].s ? currentIdx(spans) : 0, on: false, left: null }; run.left = runTotal(spans); saveRun(); }
+  if (run.idx >= spans.length) run.idx = spans.length - 1;
   const cur = spans[run.idx] || spans[0], nxt = spans[run.idx + 1];
   let body = '';
   const isWater = /Water/.test(cur.b[1]);
@@ -1208,15 +1232,18 @@ function viewRun(s) {
   }
   if (!body) body = `<p class="muted">${esc(cur.b[2] || 'Nothing written for this block.')}</p>`;
   const segs = spans.map((x, i) => `<button class="seg2 ${/Water/.test(x.b[1]) ? 'water' : ''} ${i === run.idx ? 'cur' : i < run.idx ? 'past' : ''}" style="flex:${Math.max(blockSecs(x), 120)} 1 0" data-runto="${i}" title="${esc(x.b[0] + ' ' + x.b[1])}"><i id="${i === run.idx ? 'rfill' : ''}"></i><span>${esc(x.b[1])}</span></button>`).join('');
+  const go = run.on ? 'Stop' : 'Start';
   return `<div class="run">
-    <div class="runtop"><a class="btn ghost light" href="#day-${s}">← Plan</a><span class="rt">${esc(short(s))}${p.label ? ' · ' + esc(p.label) : ''}</span><label class="follow"><input type="checkbox" id="follow" ${run.follow ? 'checked' : ''}> Follow the clock</label></div>
+    <div class="rmini" id="rmini" aria-hidden="true"><span class="mb">${esc(cur.b[1])}</span><span class="mc" id="rmc">--:--</span><button class="btn primary sm ${run.on ? 'on' : ''}" data-act="runtoggle" tabindex="-1">${go}</button><button class="btn light sm" data-act="runnext" tabindex="-1" ${nxt ? '' : 'disabled'}>Next ›</button></div>
+    <div class="runtop"><a class="btn ghost light" href="#day-${s}">← Plan</a><span class="rt">${esc(short(s))}${p.label ? ' · ' + esc(p.label) : ''}</span></div>
     <div class="runmain">
       <div class="rtime">${esc(cur.b[0])}</div>
       <div class="rblock">${esc(cur.b[1])}</div>
       <div class="rclock" id="rclock">--:--</div>
       <div class="rsub" id="rsub">${esc(cur.b[2] || '')}</div>
+      <div class="rctl"><button class="btn light" data-act="runreset">Reset</button><button class="btn primary big ${run.on ? 'on' : ''}" data-act="runtoggle">${go}</button></div>
       <div class="segs">${segs}</div>
-      <div class="rnav"><button class="btn light" data-act="runprev" ${run.idx === 0 ? 'disabled' : ''}>‹ Back</button><div class="rnext">${nxt ? `Next: <b>${esc(nxt.b[1])}</b> at ${esc(String(nxt.b[0]).split('-')[0])}` : 'Last block'}</div><button class="btn primary" data-act="runnext" ${nxt ? '' : 'disabled'}>Next ›</button></div>
+      <div class="rnav"><button class="btn light" data-act="runprev" ${run.idx === 0 ? 'disabled' : ''}>‹ Back</button><div class="rnext">${nxt ? `Next: <b>${esc(nxt.b[1])}</b>` : 'Last block'}</div><button class="btn light" data-act="runnext" ${nxt ? '' : 'disabled'}>Next ›</button></div>
     </div>
     <div class="runbody">${body}</div>
   </div>`;
@@ -1224,20 +1251,34 @@ function viewRun(s) {
 function currentIdx(spans) { const now = new Date(); for (let i = 0; i < spans.length; i++) { if (spans[i].e && now < spans[i].e) return i; } return spans.length - 1; }
 function fmt(sec) { const neg = sec < 0; sec = Math.abs(Math.round(sec)); return (neg ? '+' : '') + Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0'); }
 function tickRun() {
-  if (!run) return; const p = plan(run.s); if (!p) return; const spans = blockSpans(p, run.s);
-  if (run.follow) { const i = currentIdx(spans); if (i !== run.idx) { run.idx = i; render(); return; } }
-  const cur = spans[run.idx]; const el = $('#rclock'); if (!el || !cur) return;
-  const now = new Date(); let left, total = blockSecs(cur) || 1;
-  if (run.follow) {
-    if (now < spans[0].s) { el.textContent = fmt((spans[0].s - now) / 1000); $('#rsub').textContent = 'Practice starts in'; el.className = 'rclock wait'; return; }
-    left = (cur.e - now) / 1000;
-  } else left = total - (Date.now() - run.started) / 1000;
-  el.textContent = left < 0 ? 'Over ' + fmt(left).slice(1) : fmt(left);
-  el.className = 'rclock' + (left < 0 ? ' over' : left < 60 ? ' soon' : '');
-  const f = $('#rfill'); if (f) f.style.width = Math.min(100, Math.max(0, (1 - left / total) * 100)) + '%';
+  if (!run) return; const spans = runSpans(); if (!spans.length) return;
+  const total = runTotal(spans), left = runLeft(spans), txt = runText(left, total);
+  const cls = 'rclock' + (!run.on ? ' paused' : '') + (total && left < 0 ? ' over' : total && left < 60 ? ' soon' : '');
+  const el = $('#rclock'); if (el) { el.textContent = txt; el.className = cls; }
+  const mc = $('#rmc'); if (mc) { mc.textContent = txt; mc.className = 'mc' + (total && left < 0 ? ' over' : total && left < 60 ? ' soon' : ''); }
+  const f = $('#rfill'); if (f) f.style.width = (total ? Math.min(100, Math.max(0, (1 - left / total) * 100)) : 0) + '%';
 }
-async function startRun() { clearInterval(runTimer); runTimer = setInterval(tickRun, 1000); tickRun(); try { if (!wakeLock && navigator.wakeLock) wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {} }
-function stopRun() { clearInterval(runTimer); runTimer = null; if (wakeLock) { try { wakeLock.release(); } catch (e) {} wakeLock = null; } }
+let runObs = null;
+async function startRun() {
+  clearInterval(runTimer); runTimer = setInterval(tickRun, 250); tickRun();
+  if (runObs) runObs.disconnect();
+  const big = $('#rclock'), mini = $('#rmini');
+  if (big && mini && 'IntersectionObserver' in window) { runObs = new IntersectionObserver(es => { const show = !es[0].isIntersecting; mini.classList.toggle('show', show); mini.setAttribute('aria-hidden', String(!show)); mini.querySelectorAll('button').forEach(b => b.tabIndex = show ? 0 : -1); }); runObs.observe(big); }
+  try { if (!wakeLock && navigator.wakeLock) wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {}
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && wakeLock && route().startsWith('run-')) { wakeLock = null; startRun(); } });
+function stopRun() { clearInterval(runTimer); runTimer = null; if (runObs) { runObs.disconnect(); runObs = null; } if (wakeLock) { try { wakeLock.release(); } catch (e) {} wakeLock = null; } }
+// While the timer runs, a pill on every other page shows it; tap it to go back to practice mode.
+setInterval(() => {
+  let pill = document.getElementById('runpill');
+  const show = run && run.on && DATA && st.loaded && !route().startsWith('run-');
+  if (!show) { if (pill) pill.hidden = true; return; }
+  if (!pill) { pill = document.createElement('a'); pill.id = 'runpill'; document.body.appendChild(pill); }
+  const spans = runSpans(); const c = spans[run.idx]; if (!c) { pill.hidden = true; return; }
+  const total = runTotal(spans), left = runLeft(spans);
+  pill.href = '#run-' + run.s; pill.hidden = false; pill.className = total && left < 0 ? 'over' : '';
+  pill.innerHTML = `<span>${esc(c.b[1])}</span><b>${esc(runText(left, total))}</b>`;
+}, 500);
 
 
 /* ---------------- weigh-in ---------------- */
@@ -1463,7 +1504,7 @@ function viewLibrary() {
 /* ---------------- events ---------------- */
 document.addEventListener('click', async e => {
   const rt = e.target.closest('[data-runto]');
-  if (rt && run) { run.follow = false; run.idx = +rt.dataset.runto; run.started = Date.now(); render(); return; }
+  if (rt && run) { runSet(+rt.dataset.runto); return; }
   const lf = e.target.closest('[data-lifter]');
   if (lf) { openLifter(lf.dataset.lifter); return; }
   const bt = e.target.closest('[data-bout]');
@@ -1486,14 +1527,16 @@ document.addEventListener('click', async e => {
     st.attendance[s] = { marks: cur }; render();
     await patch('attendance/' + s, [[['marks', t.dataset.mark], cur[t.dataset.mark] || null]]); return;
   }
-  const act = t.dataset.act; const s = route().slice(4);
+  const act = t.dataset.act; const s = route().slice(4); if (/^run(toggle|reset|next|prev)$/.test(act) && !route().startsWith('run-')) return;
   if (act === 'blankweigh') { t.disabled = true; try { await blankWeighPdf(selWeighDate); } finally { t.disabled = false; } return; }
   if (act === 'weighpdf' || act === 'liftpdf') { t.disabled = true; try { await sheetPdf(act === 'weighpdf' ? 'weigh' : 'lift'); } finally { t.disabled = false; } return; }
   if (act === 'addbout') { openBout(route().slice(2)); return; }
   if (act === 'cftimes') { openCF(route().slice(4)); return; }
   if (act === 'newevent') { openNewEvent(); return; }
-  if (act === 'runnext' && run) { run.follow = false; run.idx++; run.started = Date.now(); render(); return; }
-  if (act === 'runprev' && run) { run.follow = false; run.idx = Math.max(0, run.idx - 1); run.started = Date.now(); render(); return; }
+  if (act === 'runnext' && run) { runSet(run.idx + 1); return; }
+  if (act === 'runtoggle' && run) { runToggle(); return; }
+  if (act === 'runreset' && run) { runReset(); return; }
+  if (act === 'runprev' && run) { runSet(run.idx - 1); return; }
   if (act === 'edit') { editing = s; render(); }
   else if (act === 'cancel') { editing = null; render(); }
   else if (act === 'save') {
@@ -1585,7 +1628,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=9b10d4c60b', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=1f47a33bb4', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
