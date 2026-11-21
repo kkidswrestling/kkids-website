@@ -343,6 +343,8 @@ a.btn.light { color: #fff; }
 .seg2 i { position: absolute; inset: 0 auto 0 0; width: 0; background: rgba(226, 87, 15, .45); }
 .rnav { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
 .rnext { color: #c9c6c0; } .rnext b { color: #fff; }
+.runfull { margin-top: 6px; }
+.runfull .sheet { color: var(--ink); }
 .runbody { background: var(--paper); color: var(--ink); border-radius: 12px; padding: 6px 20px 18px; }
 .runbody .sec { break-inside: auto; }
 .runbody .box { width: 30px; height: 30px; font-size: 18px; }
@@ -1241,7 +1243,7 @@ function viewRun(s) {
       <div class="segs">${segs}</div>
       <div class="rnav"><button class="btn light" data-act="runprev" ${run.idx === 0 ? 'disabled' : ''}>‹ Back</button><div class="rnext">${nxt ? `Next: <b>${esc(nxt.b[1])}</b> at ${esc(String(nxt.b[0]).split('-')[0])}` : 'Last block'}</div><button class="btn primary" data-act="runnext" ${nxt ? '' : 'disabled'}>Next ›</button></div>
     </div>
-    <div class="runbody">${body}</div>
+    <div class="runfull">${(() => { const f = viewDay(s); const i = f.indexOf('<article class="sheet">'); return i < 0 ? '' : f.slice(i); })()}</div>
   </div>`;
 }
 function currentIdx(spans) { const now = new Date(); for (let i = 0; i < spans.length; i++) { if (spans[i].e && now < spans[i].e) return i; } return spans.length - 1; }
@@ -1617,7 +1619,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=0af33eee23', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=1e0c4a750e', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
