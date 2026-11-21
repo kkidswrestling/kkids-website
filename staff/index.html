@@ -309,6 +309,10 @@ button.cell.match:hover { border-color: var(--accent); }
 .wgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 6px; }
 .wgrid label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; display: flex; flex-direction: column; gap: 4px; }
 .wgrid label.wide { grid-column: 1 / -1; }
+.wgrid label:not(.wide) { justify-content: space-between; }
+.wgrid select { width: 100%; min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font-size: 15px; text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--ink); background: #fff; }
+.wgrid input:not(textarea), .wgrid select { height: 40px; }
+.lvlpick { padding: 5px 6px; border: 1px solid var(--line); border-radius: 6px; font-size: 14px; background: #fff; }
 .wgrid input, .wgrid textarea { width: 100%; min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font-size: 15px; text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--ink); background: #fff; }
 @media (max-width: 760px) { .formrow.b2 label:first-child { grid-column: auto; } .steprow { gap: 8px; } .steprow span { font-size: 14px; } .stepper, .steprow.head span:nth-child(2), .steprow.head span:nth-child(3) { width: 100px; } .stepper button { width: 32px; height: 32px; } .modal { padding: 16px 14px; } .scrim { padding: 12px 8px; }
   .wgrid { gap: 8px; } .wgrid label { font-size: 11px; letter-spacing: .02em; } .evrow { grid-template-columns: 60px 1fr; } .evrow .evr { grid-column: 2; } }
@@ -1050,7 +1054,7 @@ function viewWrestler(id) {
   const bouts = allBouts().filter(b => b.w === id);
   const t = tally(bouts);
   h += `<div class="tally" style="margin-bottom:10px"><div><b>${t.W}-${t.L}</b>record</div><div><b>${t.bonus}</b>bonus wins</div><div><b>${t.falls}</b>pins</div><div><b>${t.tdF}-${t.tdA}</b>takedowns</div><div><b>${t.escF}-${t.escA}</b>escapes</div><div><b>${t.nfF}-${t.nfA}</b>near falls</div></div>`;
-  h += `<div class="card pad wgrid"><label>Class<input data-wf="wt" data-id="${id}" value="${esc(x.wt || '')}" inputmode="numeric" ${canEdit ? '' : 'disabled'}></label><label>Certified<input data-wf="certWt" data-id="${id}" value="${esc(x.certWt || '')}" inputmode="decimal" placeholder="PIAA cert" ${canEdit ? '' : 'disabled'}></label><label>Lowest allowed<input data-wf="minWt" data-id="${id}" value="${esc(x.minWt || '')}" inputmode="decimal" placeholder="PIAA cert" ${canEdit ? '' : 'disabled'}></label><label class="wide">Coach notes<textarea data-wf="notes" data-id="${id}" rows="3" placeholder="What he needs, what's working, goals" ${canEdit ? '' : 'disabled'}>${esc(x.notes || '')}</textarea></label></div>`;
+  h += `<div class="card pad wgrid">${canEdit ? `<label>Name<input data-wf="name" data-id="${id}" value="${esc(x.name || '')}" autocomplete="off"></label><label>Grade<input data-wf="grade" data-id="${id}" value="${esc(x.grade || '')}" inputmode="numeric" placeholder="9-12"></label><label>Level<select data-wf="level" data-id="${id}">${['', 'Varsity', 'JV'].map(v => `<option value="${v}" ${(x.level || '') === v ? 'selected' : ''}>${v || 'Not set'}</option>`).join('')}</select></label>` : ''}<label>Class<input data-wf="wt" data-id="${id}" value="${esc(x.wt || '')}" inputmode="numeric" ${canEdit ? '' : 'disabled'}></label><label>Certified<input data-wf="certWt" data-id="${id}" value="${esc(x.certWt || '')}" inputmode="decimal" placeholder="PIAA cert" ${canEdit ? '' : 'disabled'}></label><label>Lowest allowed<input data-wf="minWt" data-id="${id}" value="${esc(x.minWt || '')}" inputmode="decimal" placeholder="PIAA cert" ${canEdit ? '' : 'disabled'}></label><label class="wide">Coach notes<textarea data-wf="notes" data-id="${id}" rows="3" placeholder="What he needs, what's working, goals" ${canEdit ? '' : 'disabled'}>${esc(x.notes || '')}</textarea></label></div>`;
   h += '<h2 class="sect">Weight</h2>' + weightChart(id, x);
   h += '<h2 class="sect">Matches</h2>';
   if (!bouts.length) h += '<p class="muted">No matches entered yet.</p>';
@@ -1251,6 +1255,16 @@ function weighStatus(x, w, d) {
   const txt = `+${(w - cls).toFixed(1)} over ${cls} (${pct.toFixed(1)}%)`;
   return pct > lim ? { cls: 'bad', txt } : { cls: 'ok', txt: txt + ' · under the ' + lim + '% line' };
 }
+let openedOn = todayIso();
+function dayRollover() {
+  const t = todayIso(); if (t === openedOn) return;
+  if (!st.loaded) { openedOn = t; return; }
+  const oldPlan = '#day-' + (practiceDates().find(d => d >= openedOn) || '');
+  openedOn = t; selAttDate = null; selLiftDate = null; selWeighDate = null;
+  if (location.hash === oldPlan) location.hash = 'today'; else render();
+}
+setInterval(dayRollover, 60000);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') dayRollover(); });
 function viewWeighin() {
   const dates = practiceDates(); const t = todayIso();
   if (!selWeighDate) selWeighDate = dates.includes(t) ? t : nearest(dates);
@@ -1416,14 +1430,14 @@ async function blankWeighPdf(d) {
 /* ---------------- roster ---------------- */
 function viewRoster() {
   const all = roster(false);
-  let h = `<div class="pagehead"><div><h1>Roster</h1><p>${all.filter(x => x.active !== false).length} active wrestlers.</p></div></div>`;
+  let h = `<div class="pagehead"><div><h1>Roster</h1><p>${all.filter(x => x.active !== false).length} active wrestlers.${canEdit ? ' Tap a name to change his name, grade, weight or notes.' : ''}</p></div></div>`;
   if (canEdit) {
-    h += `<div class="card pad" style="margin-bottom:14px"><form id="addw" class="formrow"><label>Name<input id="nw-name" required autocomplete="off"></label><label>Weight<input id="nw-wt" inputmode="numeric" placeholder="e.g. 132"></label><label>Grade<input id="nw-grade" inputmode="numeric" placeholder="9-12"></label><label>Level<select id="nw-level"><option>Varsity</option><option selected>JV</option></select></label><button class="btn primary" type="submit">Add</button></form>
+    h += `<div class="card pad" style="margin-bottom:14px"><form id="addw" class="formrow"><label>Name<input id="nw-name" required autocomplete="off"></label><label>Weight<input id="nw-wt" inputmode="numeric" placeholder="e.g. 132"></label><label>Grade<input id="nw-grade" inputmode="numeric" placeholder="9-12"></label><label>Level<select id="nw-level"><option value="" selected>Not set</option><option>Varsity</option><option>JV</option></select></label><button class="btn primary" type="submit">Add</button></form>
     <details style="margin-top:12px"><summary style="cursor:pointer;font-weight:700">Paste the whole team at once</summary><div class="stack" style="margin-top:8px"><label for="bulk">One wrestler per line: name, weight, grade, level</label><textarea id="bulk" placeholder="Smith, John, 132, 11, Varsity"></textarea><div class="row" style="margin-top:8px"><button class="btn primary" data-act="bulk">Add these wrestlers</button><span class="muted" style="font-size:13px">Only the name is required.</span></div></div></details></div>`;
   }
   if (!all.length) return h + '<div class="card empty"><h3>No wrestlers yet</h3><p class="muted">Add them above. Attendance and lifts fill in from this list.</p></div>';
   h += '<div class="card tablewrap"><table class="grid"><thead><tr><th>Name</th><th>Weight</th><th>Grade</th><th>Level</th><th></th></tr></thead><tbody>';
-  for (const x of all) h += `<tr class="${x.active === false ? 'inactive' : ''}"><td><a href="#w-${x.id}">${esc(x.name)}</a></td><td class="num">${esc(x.wt || '')}</td><td class="num">${esc(x.grade || '')}</td><td>${esc(x.level || '')}</td><td style="text-align:right">${canEdit ? `<button class="linkbtn" data-toggle="${x.id}">${x.active === false ? 'Reactivate' : 'Mark inactive'}</button>` : ''}</td></tr>`;
+  for (const x of all) h += `<tr class="${x.active === false ? 'inactive' : ''}"><td><a href="#w-${x.id}">${esc(x.name)}</a></td><td class="num">${esc(x.wt || '')}</td><td class="num">${esc(x.grade || '')}</td><td>${canEdit ? `<select class="lvlpick" data-wf="level" data-id="${x.id}" aria-label="Level for ${esc(x.name)}">${['', 'Varsity', 'JV'].map(v => `<option value="${v}" ${(x.level || '') === v ? 'selected' : ''}>${v || '–'}</option>`).join('')}</select>` : esc(x.level || '')}</td><td style="text-align:right">${canEdit ? `<button class="linkbtn" data-toggle="${x.id}">${x.active === false ? 'Reactivate' : 'Mark inactive'}</button>` : ''}</td></tr>`;
   return h + '</tbody></table></div>';
 }
 
@@ -1545,7 +1559,7 @@ document.addEventListener('change', async e => {
     await patch('lifts/' + id, [[['log', s, t.dataset.k, t.dataset.f], t.value.trim()]]); return;
   }
   if (t.dataset.wf) {
-    const id = t.dataset.id; const rec = Object.assign({}, st.roster[id]); rec[t.dataset.wf] = t.value.trim(); st.roster[id] = rec; await write('roster/' + id, rec); toast('Saved'); return;
+    const id = t.dataset.id; if (t.dataset.wf === 'name' && !t.value.trim()) { t.value = st.roster[id].name; toast('A name is required'); return; } const rec = Object.assign({}, st.roster[id]); rec[t.dataset.wf] = t.value.trim(); st.roster[id] = rec; await write('roster/' + id, rec); toast('Saved'); return;
   }
   if (t.dataset.fran) {
     const id = t.dataset.fran, s = selLiftDate; const doc = JSON.parse(JSON.stringify(st.cf[s] || { workout: 'Fran', times: {} })); doc.times = doc.times || {}; if (t.value.trim()) doc.times[id] = t.value.trim(); else delete doc.times[id];
@@ -1571,7 +1585,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=f92d2aa76f', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=9b10d4c60b', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
