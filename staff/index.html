@@ -373,6 +373,7 @@ a.btn.light { color: #fff; }
 .wst .chg { display: block; font-weight: 500; color: var(--muted); }
 @media (max-width: 760px) { .wrow { grid-template-columns: 1fr 96px; } .wrow .wst { grid-column: 1 / -1; } .win { font-size: 22px; } }
 .pl { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--muted); }
+table.sheet { overflow: visible; border: 0; border-radius: 0; background: none; }
 table.sheet th, table.sheet td { text-align: center; padding: 6px 6px; font-size: 13px; font-variant-numeric: tabular-nums; border-left: 1px solid var(--line); white-space: nowrap; }
 table.sheet th.sn, table.sheet td.sn { text-align: left; border-left: 0; position: sticky; left: 0; background: var(--paper); z-index: 1; }
 table.sheet th { font-size: 11px; line-height: 1.2; } table.sheet th.pre { color: var(--bad); }
@@ -403,6 +404,17 @@ td.c-good { background: #e5f4e4; } td.c-ok { background: #f9eeda; } td.c-bad { b
 .sync.wait { background: var(--warn); color: #fff; }
 .sync.off { background: var(--bad); color: #fff; }
 .cfin { max-height: 60vh; overflow: auto; }
+.lrowe.cf { grid-template-columns: 1fr 96px 64px; }
+.modb { height: 42px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font-weight: 800; font-size: 14px; color: var(--muted); cursor: pointer; }
+.modb.on { background: #fdece1; border-color: var(--accent); color: var(--accent); }
+.modnote { width: 100%; margin: 0 0 8px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font-size: 15px; }
+table.cfgrid th.cfh { text-align: center; cursor: pointer; vertical-align: bottom; min-width: 84px; white-space: normal; }
+table.cfgrid th.cfh span { display: block; } table.cfgrid th.cfh .d { color: var(--ink); } table.cfgrid th.cfh .n { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 12px; }
+table.cfgrid th.cfh .ar { color: var(--accent); font-size: 10px; margin-top: 2px; }
+table.cfgrid th.cfh.sorted { box-shadow: inset 0 -3px 0 var(--accent); }
+table.cfgrid td.sortcol { box-shadow: inset 2px 0 0 #f3d2bd, inset -2px 0 0 #f3d2bd; }
+table.cfgrid td.num { text-align: center; } table.cfgrid td.modc { cursor: pointer; } table.cfgrid .t { position: relative; } table.cfgrid sup { position: absolute; left: 100%; top: -3px; line-height: 1; color: var(--accent); font-weight: 800; }
+table.cfgrid td.sn .rk { display: inline-block; width: 22px; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 .who { background: none; border: 0; color: #b9b6b0; font: inherit; font-size: 12px; margin-left: 8px; text-decoration: underline; cursor: pointer; padding: 0; }
 </style>
 </head>
@@ -416,6 +428,7 @@ td.c-good { background: #e5f4e4; } td.c-ok { background: #f9eeda; } td.c-bad { b
       <a href="#weighin">Weigh-in</a>
       <a href="#matches">Matches</a>
       <a href="#lifts">Lifts</a>
+      <a href="#crossfit">CrossFit</a>
       <a href="#attendance">Attendance</a>
       <a href="#roster">Roster</a>
       <a href="#library">Library</a>
@@ -698,6 +711,7 @@ function render() {
   else if (r.startsWith('w-')) app.innerHTML = viewWrestler(r.slice(2));
   else if (r === 'attendance') app.innerHTML = viewAttendance();
   else if (r === 'lifts') app.innerHTML = viewLifts();
+  else if (r === 'crossfit') { app.innerHTML = viewCF(); const th = $('th.cfh.sorted'), wrap = th && th.closest('.tablewrap'); if (wrap && wrap.scrollWidth > wrap.clientWidth) { const sn = wrap.querySelector('th.sn'); const want = th.offsetLeft + th.offsetWidth - wrap.clientWidth; if (want > wrap.scrollLeft || th.offsetLeft - (sn ? sn.offsetWidth : 0) < wrap.scrollLeft) wrap.scrollLeft = Math.max(0, want); } }
   else if (r === 'roster') app.innerHTML = viewRoster();
   else if (r === 'library') app.innerHTML = viewLibrary();
   else app.innerHTML = viewSeason();
@@ -843,7 +857,7 @@ function viewDay(s) {
       if (!nodes.length && (k === 'end')) { h += `<div class="sec"><h3>${esc(secTitle(k, title, p))}${tm}</h3><div class="emptyline">Add end-of-practice announcements</div></div>`; continue; }
       let body = ul(nodes);
       if (k === 'twotwo' && nodes.length > 8) body = '<div class="two">' + body + '</div>';
-      if (k === 'cond') { const rows = cfRows(s); if (canEnter) body += `<div class="row" style="margin:10px 0 4px"><button class="btn" data-act="cftimes">${rows.length ? 'Edit times' : 'Enter times'}</button></div>`; if (rows.length) body += `<div class="cfres"><div class="cl">Times (${rows.length})${(st.cf[s] && st.cf[s].score) ? ' · ' + esc(st.cf[s].score) : ''}</div><ol>${rows.map((r, i) => `<li><span class="rk">${i + 1}</span><a href="#w-${r.id}">${esc(rosterName(r.id))}</a><b>${esc(r.t)}</b></li>`).join('')}</ol></div>`; }
+      if (k === 'cond') { const rows = cfRows(s); if (canEnter) body += `<div class="row" style="margin:10px 0 4px"><button class="btn" data-act="cftimes">${rows.length ? 'Edit times' : 'Enter times'}</button></div>`; if (rows.length) body += `<div class="cfres"><div class="cl">Times (${rows.length})${(st.cf[s] && st.cf[s].score) ? ' · ' + esc(st.cf[s].score) : ''}</div><ol>${rows.map((r, i) => `<li><span class="rk">${i + 1}</span><a href="#w-${r.id}">${esc(rosterName(r.id))}</a><b>${esc(r.t)}${r.mod ? '*' : ''}</b></li>`).join('')}</ol></div>`; }
       if (k === 'teach') {
         const tt = teachHtml(s, nodes);
         h += `<div class="sec long"><h3>${esc(secTitle(k, title, p))}${tt.n ? `<span class="prog">${tt.n} of ${tt.all} taught</span>` : ''}${tm}</h3>${tt.html}</div>`;
@@ -1037,6 +1051,77 @@ function emptyRoster() { return `<div class="card empty"><h3>Add your roster fir
 
 /* ---------------- lifts ---------------- */
 const STATION_START = { 1: 'chin', 4: 'fsq', 6: 'press' };
+let cfSort = null, cfShow = 'all';
+function cfName(d) { return (st.cf[d] && st.cf[d].workout) || (dayByDate[d] && dayByDate[d].condName) || 'CrossFit'; }
+function cfIsCF(d) { const n = dayByDate[d] && dayByDate[d].condName; const lib = n && DATA.library.find(x => x.name === n); return !!(lib && lib.type === 'CrossFit'); }
+function cfDates() { const t = todayIso(); return [...new Set(Object.keys(dayByDate).filter(d => cfIsCF(d) && d <= t).concat(Object.keys(st.cf).filter(d => st.cf[d] && st.cf[d].times && Object.keys(st.cf[d].times).length)))].sort(); }
+function cfScore(t) { t = String(t || '').trim(); let m = t.match(/^(\d+):(\d{1,2})$/); if (m) return { v: +m[1] * 60 + +m[2] }; m = t.match(/^(\d+)\s*\+\s*(\d+)$/); if (m) return { v: +m[1] * 1000 + +m[2] }; if (/^\d+(\.\d+)?$/.test(t)) return { v: +t }; return null; }
+function cfHigh(d) { const n = cfName(d); const lib = DATA.library.find(x => x.name === n); if (/AMRAP|as many/i.test(n + ' ' + (lib ? lib.desc : ''))) return true; return Object.values((st.cf[d] || {}).times || {}).some(t => /\+/.test(t)); }
+function cfMod(d, id) { return ((st.cf[d] || {}).mod || {})[id] || ''; }
+function cfBeat(d, id) {
+  const t = ((st.cf[d] || {}).times || {})[id]; const sc = cfScore(t); if (!sc) return false;
+  const n = cfName(d), md = !!cfMod(d, id), hi = cfHigh(d);
+  const prev = cfDates().filter(x => x < d && cfName(x) === n).reverse().find(x => { const pt = ((st.cf[x] || {}).times || {})[id]; return cfScore(pt) && !!cfMod(x, id) === md; });
+  if (!prev) return false; const pv = cfScore(st.cf[prev].times[id]).v; return hi ? sc.v > pv : sc.v < pv;
+}
+function cfView() {
+  const all = cfDates(); const names = [...new Set(all.map(cfName))];
+  if (cfShow !== 'all' && !names.includes(cfShow)) cfShow = 'all';
+  const ds = cfShow === 'all' ? all : all.filter(d => cfName(d) === cfShow);
+  const scored = ds.filter(d => cfRows(d).length);
+  if (!cfSort || !ds.includes(cfSort)) cfSort = scored.length ? scored[scored.length - 1] : (ds[ds.length - 1] || null);
+  const r = roster(); const rows = cfSort ? cfRows(cfSort) : []; const at = new Map(rows.map((x, i) => [x.id, i]));
+  const ord = r.slice().sort((a, b) => (at.has(a.id) ? at.get(a.id) : 1e6) - (at.has(b.id) ? at.get(b.id) : 1e6));
+  return { all, names, ds, ord, at };
+}
+function viewCF() {
+  const { all, names, ds, ord, at } = cfView(); const r = roster();
+  let h = `<div class="pagehead"><div><h1>CrossFit</h1><p>Every wrestler on every CrossFit, oldest on the left. Sorted best to worst by the workout you pick. Tap any workout to sort by it.</p></div>${ds.length && r.length ? '<div class="right"><button class="btn dark" data-act="cfpdf">Download PDF</button></div>' : ''}</div>`;
+  if (!all.length) return h + '<div class="card empty"><h3>No CrossFits yet</h3><p class="muted">Scores show up here once they’re entered on a practice plan.</p></div>';
+  h += `<div class="toolbar"><label class="pl">Show<select class="pick" id="cfshow"><option value="all" ${cfShow === 'all' ? 'selected' : ''}>All workouts</option>${names.map(n => { const c = all.filter(d => cfName(d) === n).length; return `<option value="${esc(n)}" ${cfShow === n ? 'selected' : ''}>${esc(n)}${c > 1 ? ' (' + c + ')' : ''}</option>`; }).join('')}</select></label>`;
+  h += `<label class="pl">Sort by<select class="pick" id="cfsort">${ds.map(d => `<option value="${d}" ${d === cfSort ? 'selected' : ''}>${esc(short(d))} · ${esc(cfName(d))}</option>`).join('')}</select></label>`;
+  if (canEnter && cfSort) h += `<button class="btn" data-act="cfenter">Enter times · ${esc(short(cfSort))}</button>`;
+  h += '</div>';
+  h += '<div class="legend"><span><i style="background:#e5f4e4"></i>Beat his last score on this workout (done the same way)</span><span><b>*</b> Modified. Ranked after full scores. Tap it to see what changed.</span></div>';
+  if (!r.length) return h + emptyRoster();
+  h += '<div class="card tablewrap"><table class="grid sheet cfgrid"><thead><tr><th class="sn">Wrestler</th>' + ds.map(d => `<th class="cfh ${d === cfSort ? 'sorted' : ''}" data-cfsort="${d}" tabindex="0" role="button" aria-label="Sort by ${esc(short(d))} ${esc(cfName(d))}"><span class="d">${esc(DOW[D(d).getDay()])} ${D(d).getMonth() + 1}/${D(d).getDate()}</span><span class="n">${esc(cfName(d))}</span>${d === cfSort ? '<span class="ar">Sorted ▼</span>' : ''}</th>`).join('') + '</tr></thead><tbody>';
+  ord.forEach(x => {
+    const rk = at.has(x.id) ? at.get(x.id) + 1 : '';
+    h += `<tr><td class="sn"><span class="rk">${rk}</span><a href="#w-${x.id}">${esc(x.name)}</a></td>` + ds.map(d => { const t = ((st.cf[d] || {}).times || {})[x.id]; if (!t) return `<td class="${d === cfSort ? 'sortcol' : ''}"></td>`; const m = cfMod(d, x.id); return `<td class="num ${cfBeat(d, x.id) ? 'c-good' : ''} ${d === cfSort ? 'sortcol' : ''} ${m ? 'modc' : ''}" ${m ? `data-cfnote="${esc(x.name + ': ' + m)}" title="${esc(m)}"` : ''}><span class="t">${esc(t)}${m ? '<sup>*</sup>' : ''}</span></td>`; }).join('') + '</tr>';
+  });
+  return h + '</tbody></table></div>';
+}
+async function cfPdf() {
+  if (!window.jspdf) { toast('The PDF tool didn’t load. Reload and try again.'); return; }
+  const { jsPDF } = window.jspdf; const doc = new jsPDF({ unit: 'pt', format: 'letter', orientation: 'landscape' });
+  const W = 792, H = 612, M = 30; const { ds, ord } = cfView(); const per = 11; const pages = [];
+  for (let i = 0; i < Math.max(ds.length, 1); i += per) pages.push(ds.slice(i, i + per));
+  pages.forEach((pd, pi) => {
+    if (pi) doc.addPage();
+    doc.setFillColor(21, 22, 23); doc.rect(0, 0, W, 44, 'F');
+    doc.setTextColor(226, 87, 15); doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5); doc.text('KONKRETE KIDS WRESTLING', M, 18);
+    doc.setTextColor(255, 255, 255); doc.setFontSize(15); doc.text(pdfSafe('CrossFit' + (cfShow !== 'all' ? ' · ' + cfShow : '')), M, 36);
+    doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.setTextColor(200, 197, 191); doc.text(pdfSafe('Sorted by ' + short(cfSort) + ' ' + cfName(cfSort)), W - M, 36, { align: 'right' });
+    const nameW = 150, colW = Math.min(56, (W - 2 * M - nameW) / Math.max(pd.length, 1)); const rowH = Math.min(17, (H - 112 - 30) / Math.max(ord.length, 1)); let y = 58;
+    doc.setTextColor(24, 25, 27); doc.setFont('helvetica', 'bold'); doc.setFontSize(8);
+    let x = M; doc.text('Wrestler', x + 3, y + 22); x += nameW;
+    pd.forEach(d => { if (d === cfSort) { doc.setFillColor(253, 236, 225); doc.rect(x, y, colW, 28, 'F'); } doc.setFont('helvetica', 'bold'); doc.text(pdfSafe(DOW[D(d).getDay()] + ' ' + (D(d).getMonth() + 1) + '/' + D(d).getDate()), x + colW / 2, y + 11, { align: 'center' }); doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.text(pdfSafe(doc.splitTextToSize(cfName(d), colW - 4)[0]), x + colW / 2, y + 22, { align: 'center' }); doc.setFontSize(8); x += colW; });
+    y += 30; doc.setDrawColor(24, 25, 27); doc.setLineWidth(1); doc.line(M, y, W - M, y);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setLineWidth(0.3); doc.setDrawColor(210, 206, 199);
+    const rows = cfRows(cfSort); const at = new Map(rows.map((q, i) => [q.id, i]));
+    ord.forEach(w => {
+      let x = M; doc.setTextColor(24, 25, 27); doc.text(pdfSafe((at.has(w.id) ? (at.get(w.id) + 1) + '. ' : '') + w.name), x + 3, y + rowH - 5); x += nameW;
+      pd.forEach(d => { const t = ((st.cf[d] || {}).times || {})[w.id]; if (t) { if (cfBeat(d, w.id)) { doc.setFillColor(229, 244, 228); doc.rect(x, y, colW, rowH, 'F'); } doc.text(pdfSafe(t + (cfMod(d, w.id) ? '*' : '')), x + colW / 2, y + rowH - 5, { align: 'center' }); } x += colW; });
+      y += rowH; doc.line(M, y, W - M, y);
+    });
+    doc.setFontSize(7.5); doc.setTextColor(120, 116, 110);
+    doc.text(pdfSafe('Green: beat his last score on that workout, done the same way. * Modified (ranked after full scores).'), M, H - 18);
+  });
+  const blob = doc.output('blob'); const fname = 'CrossFit' + (cfShow !== 'all' ? ' - ' + cfShow : '') + '.pdf';
+  if (downloads) { try { await downloads.save({ filename: fname, data: blob }); toast('PDF ready'); } catch (e) { if (e && e.code !== 'declined') toast('Download didn’t start. Try again.'); } }
+  else if (local) { window.__lastPdf = blob; toast('PDF built'); }
+  else toast('Download isn’t available on this device.');
+}
 function viewLifts() {
   const dates = liftDates();
   if (!selLiftDate || !dates.includes(selLiftDate)) selLiftDate = nearest(dates);
@@ -1089,15 +1174,26 @@ function openLifter(id) {
 /* CrossFit times: one box per wrestler, saves as you go, every coach can enter at once. */
 function openCF(s) {
   const day = dayByDate[s] || {}; const name = (st.cf[s] && st.cf[s].workout) || day.condName || 'CrossFit';
-  const r = roster(); const times = (st.cf[s] && st.cf[s].times) || {};
-  $('#layer').innerHTML = `<div class="scrim"><div class="modal lmodal" role="dialog" aria-modal="true" aria-labelledby="cft"><h2 id="cft">${esc(name)}</h2><p class="muted" style="margin:2px 0 10px">${esc(short(s))} · type m:ss (or rounds + reps). Saves as you go. Enter jumps to the next kid.</p>
-    <div class="cfin">${r.map(x => `<label class="lrowe"><div><b>${esc(x.name)}</b><small>${esc(x.wt ? 'Class ' + x.wt : '')}</small></div><input data-cft="${x.id}" value="${esc(times[x.id] || '')}" placeholder="m:ss" enterkeyhint="next" autocomplete="off" style="grid-column:2 / -1"></label>`).join('')}</div>
+  const r = roster(); const doc0 = st.cf[s] || {}; const times = doc0.times || {}; const mod = doc0.mod || {};
+  const noteOf = id => (mod[id] && mod[id] !== 'Modified') ? mod[id] : '';
+  $('#layer').innerHTML = `<div class="scrim"><div class="modal lmodal" role="dialog" aria-modal="true" aria-labelledby="cft"><h2 id="cft">${esc(name)}</h2><p class="muted" style="margin:2px 0 10px">${esc(short(s))} · type m:ss (or rounds + reps). Tap <b>Mod</b> if he did a modified version. Saves as you go. Enter jumps to the next kid.</p>
+    <div class="cfin">${r.map(x => `<div class="cfr"><div class="lrowe cf"><div><b>${esc(x.name)}</b><small>${esc(x.wt ? 'Class ' + x.wt : '')}</small></div><input data-cft="${x.id}" value="${esc(times[x.id] || '')}" placeholder="m:ss" enterkeyhint="next" autocomplete="off" aria-label="${esc(x.name)} score"><button type="button" class="modb ${mod[x.id] ? 'on' : ''}" data-mod="${x.id}" aria-pressed="${!!mod[x.id]}">Mod</button></div><input class="modnote" data-modnote="${x.id}" value="${esc(noteOf(x.id))}" placeholder="What was modified? (e.g., reverse rows for pull-ups)" aria-label="What ${esc(x.name)} modified" ${mod[x.id] ? '' : 'hidden'}></div>`).join('')}</div>
     <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn primary" data-close="1">Done</button></div></div></div>`;
-  const ins = [...$('#layer').querySelectorAll('[data-cft]')];
+  const L = $('#layer');
+  const ins = [...L.querySelectorAll('[data-cft]')];
   ins.forEach((inp, i) => {
     inp.onchange = () => patch('cf/' + s, [[['workout'], name], [['times', inp.dataset.cft], inp.value.trim() || null]]);
     inp.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); inp.blur(); const nx = ins[i + 1]; if (nx) { nx.focus(); nx.select(); } } };
   });
+  const lastNote = () => { const vals = [...L.querySelectorAll('[data-modnote]')].filter(n => !n.hidden && n.value.trim()); return vals.length ? vals[vals.length - 1].value.trim() : (Object.values(mod).filter(v => v && v !== 'Modified').pop() || ''); };
+  L.querySelectorAll('[data-mod]').forEach(b => {
+    b.onclick = () => {
+      const id = b.dataset.mod, note = L.querySelector(`[data-modnote="${id}"]`), on = !b.classList.contains('on');
+      if (on) { if (!note.value.trim()) note.value = lastNote(); note.hidden = false; b.classList.add('on'); b.setAttribute('aria-pressed', 'true'); patch('cf/' + s, [[['workout'], name], [['mod', id], note.value.trim() || 'Modified']]); }
+      else { note.hidden = true; b.classList.remove('on'); b.setAttribute('aria-pressed', 'false'); patch('cf/' + s, [[['mod', id], null]]); }
+    };
+  });
+  L.querySelectorAll('[data-modnote]').forEach(n => { n.onchange = () => { if (!n.hidden) patch('cf/' + s, [[['workout'], name], [['mod', n.dataset.modnote], n.value.trim() || 'Modified']]); }; });
   if (ins[0]) ins[0].focus();
 }
 /* ---------------- wrestler ---------------- */
@@ -1118,7 +1214,7 @@ function viewWrestler(id) {
   if (!mine.length) h += '<p class="muted">No times yet. Tap Enter times on that day’s practice plan.</p>';
   else {
     h += '<div class="card tablewrap"><table class="grid"><thead><tr><th>Date</th><th>Workout</th><th>Time</th><th>Team rank</th></tr></thead><tbody>';
-    for (const d of mine) { const rows = cfRows(d); const rk = rows.findIndex(r => r.id === id) + 1; const wk = (st.cf[d].workout) || (dayByDate[d] && dayByDate[d].condName) || ''; h += `<tr><td><a href="#day-${d}">${esc(short(d))}</a></td><td>${esc(wk)}</td><td class="num"><b>${esc(st.cf[d].times[id])}</b></td><td class="num">${rk} of ${rows.length}</td></tr>`; }
+    for (const d of mine) { const rows = cfRows(d); const rk = rows.findIndex(r => r.id === id) + 1; const wk = (st.cf[d].workout) || (dayByDate[d] && dayByDate[d].condName) || ''; h += `<tr><td><a href="#day-${d}">${esc(short(d))}</a></td><td>${esc(wk)}</td><td class="num"><b>${esc(st.cf[d].times[id])}${cfMod(d, id) ? '*' : ''}</b></td><td class="num">${rk} of ${rows.length}</td></tr>`; }
     h += '</tbody></table></div>';
     const fr = mine.filter(d => /Fran/i.test((st.cf[d].workout) || (dayByDate[d] && dayByDate[d].condName) || ''));
     if (fr.length > 1) { const a = secs(st.cf[fr[0]].times[id]), b = secs(st.cf[fr[fr.length - 1]].times[id]); if (a && b) h += `<p class="better">Fran: ${esc(st.cf[fr[0]].times[id])} → ${esc(st.cf[fr[fr.length - 1]].times[id])} (${a - b >= 0 ? fmt(a - b) + ' faster' : fmt(b - a) + ' slower'})</p>`; }
@@ -1143,7 +1239,7 @@ function viewWrestler(id) {
 const HOW = ['Fall', 'Tech fall', 'Major', 'Decision', 'Forfeit', 'Inj/DQ'];
 const BONUS = ['Fall', 'Tech fall', 'Major', 'Forfeit', 'Inj/DQ'];
 function secs(t) { const m = String(t).trim().match(/^(\d+):(\d{1,2})$/); return m ? +m[1] * 60 + +m[2] : (/^\d+(\.\d+)?$/.test(String(t).trim()) ? +t : null); }
-function cfRows(date) { const c = st.cf[date]; if (!c || !c.times) return []; return Object.entries(c.times).map(([id, t]) => ({ id, t, v: secs(t) })).sort((a, b) => (a.v ?? 1e9) - (b.v ?? 1e9)); }
+function cfRows(date) { const c = st.cf[date]; if (!c || !c.times) return []; const hi = cfHigh(date); return Object.entries(c.times).map(([id, t]) => { const sc = cfScore(t); return { id, t, v: sc ? sc.v : null, mod: !!(c.mod && c.mod[id]) }; }).sort((a, b) => (a.mod - b.mod) || ((a.v === null) - (b.v === null)) || ((hi ? b.v - a.v : a.v - b.v) || 0)); }
 function eventsList() {
   const evs = Object.entries(DATA.events).map(([d, e]) => ({ id: d, date: d, title: e[1], kind: e[0], time: e[2] }));
   Object.entries(st.matches).forEach(([id, m]) => { if (m.custom && !evs.find(e => e.id === id)) evs.push({ id, date: m.date, title: m.title, kind: 'Other', time: '' }); });
@@ -1522,6 +1618,10 @@ function viewLibrary() {
 document.addEventListener('click', async e => {
   const rt = e.target.closest('[data-runto]');
   if (rt && run) { run.follow = false; run.idx = +rt.dataset.runto; run.started = Date.now(); render(); return; }
+  const cs = e.target.closest('[data-cfsort]');
+  if (cs) { cfSort = cs.dataset.cfsort; render(); return; }
+  const cn = e.target.closest('[data-cfnote]');
+  if (cn) { toast(cn.dataset.cfnote); return; }
   const lf = e.target.closest('[data-lifter]');
   if (lf) { openLifter(lf.dataset.lifter); return; }
   const bt = e.target.closest('[data-bout]');
@@ -1557,6 +1657,8 @@ document.addEventListener('click', async e => {
   if (act === 'weighpdf' || act === 'liftpdf') { t.disabled = true; try { await sheetPdf(act === 'weighpdf' ? 'weigh' : 'lift'); } finally { t.disabled = false; } return; }
   if (act === 'addbout') { openBout(route().slice(2)); return; }
   if (act === 'cftimes') { openCF(route().slice(4)); return; }
+  if (act === 'cfenter' && cfSort) { openCF(cfSort); return; }
+  if (act === 'cfpdf') { t.disabled = true; try { await cfPdf(); } finally { t.disabled = false; } return; }
   if (act === 'newevent') { openNewEvent(); return; }
   if (act === 'swtoggle') { if (sw.on) { sw.acc += Date.now() - sw.t0; sw.on = false; } else { sw.t0 = Date.now(); sw.on = true; } swSave(); return; }
   if (act === 'swreset') { sw = { on: false, acc: 0, t0: 0 }; swSave(); return; }
@@ -1622,6 +1724,8 @@ document.addEventListener('change', async e => {
   }
   if (t.id === 'attdate') { selAttDate = t.value; render(); return; }
   if (t.id === 'liftdate') { selLiftDate = t.value; render(); return; }
+  if (t.id === 'cfshow') { cfShow = t.value; cfSort = null; render(); return; }
+  if (t.id === 'cfsort') { cfSort = t.value; render(); return; }
   if (t.dataset.lift) {
     const id = t.dataset.lift, s = selLiftDate; const rec = JSON.parse(JSON.stringify(st.lifts[id] || {})); rec.log = rec.log || {}; rec.log[s] = rec.log[s] || {};
     const v = rec.log[s][t.dataset.k] = rec.log[s][t.dataset.k] || {}; v[t.dataset.f] = t.value.trim();
@@ -1654,7 +1758,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=4d74582c85', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=c440d4e6cb', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
