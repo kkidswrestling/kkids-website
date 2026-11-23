@@ -208,6 +208,22 @@ select.pick { padding: 9px 12px; border-radius: 8px; border: 1px solid var(--lin
 .seg button.on.L { background: var(--warn); color: #fff; }
 .seg button.on.E { background: #3b5b7a; color: #fff; }
 .seg button.on.A { background: var(--bad); color: #fff; }
+.rollrow { flex-wrap: wrap; }
+.rollrow .attn { display: block; margin-top: 3px; padding: 2px 0; border: 0; background: none; font: inherit; font-size: 13px; font-weight: 600; color: #9a958c; text-align: left; cursor: pointer; max-width: 100%; overflow-wrap: anywhere; }
+.rollrow .attn.want { color: var(--accent); }
+.rollrow .attn.has { color: #6b4a1f; font-weight: 500; font-style: italic; }
+.rollrow .attn.has::before { content: '✎ '; font-style: normal; }
+.rollrow.open { border-color: var(--accent); }
+.attedit { flex-basis: 100%; display: grid; gap: 8px; padding-top: 6px; }
+.attedit .attin { width: 100%; font: inherit; font-size: 16px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.attedit .attin:focus { outline: none; border-color: var(--accent); }
+.attedit .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.attedit .chip { border: 1px solid var(--line); background: #faf9f7; border-radius: 99px; padding: 6px 11px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ink); cursor: pointer; }
+.attedit .chip:active { background: #f1ece4; }
+ul.attlog { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 6px; }
+ul.attlog li { display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; padding: 8px 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
+ul.attlog .mk { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+ul.attlog .mk.L { color: var(--warn); } ul.attlog .mk.A { color: var(--bad); } ul.attlog .mk.E { color: #3b5b7a; }
 table.grid { width: 100%; border-collapse: collapse; font-size: 14px; }
 table.grid th, table.grid td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; }
 table.grid th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
@@ -1051,7 +1067,8 @@ function viewAttendance() {
   if (!selAttDate || !dates.includes(selAttDate)) selAttDate = nearest(dates);
   const s = selAttDate, r = roster();
   const marks = (st.attendance[s] && st.attendance[s].marks) || {};
-  let h = `<div class="pagehead"><div><h1>Attendance</h1><p>Tap a button to mark each wrestler. It saves as you go.</p></div></div>`;
+  const notes = (st.attendance[s] && st.attendance[s].notes) || {};
+  let h = `<div class="pagehead"><div><h1>Attendance</h1><p>Tap a button to mark each wrestler. Tap <b>+ Note</b> to write why (late, unexcused, sick...). It saves as you go.</p></div></div>`;
   h += `<div class="toolbar"><select class="pick" id="attdate" aria-label="Practice date">${dates.map(d => `<option value="${d}" ${d === s ? 'selected' : ''}>${esc(short(d))}${dayByDate[d].label ? ' · ' + esc(dayByDate[d].label) : ''}${dayByDate[d].kind === 'lift' ? ' · Lift' : ''}</option>`).join('')}</select>`;
   h += `<a class="btn" href="#day-${s}">Open plan</a>`;
   if (canEnter && r.length) h += '<button class="btn" data-act="allP">Mark everyone present</button>';
@@ -1063,7 +1080,10 @@ function viewAttendance() {
   h += '<div class="roll">' + r.map(x => {
     const m = marks[x.id] || '';
     const b = k => `<button class="${k} ${m === k ? 'on' : ''}" data-mark="${x.id}" data-v="${k}" ${canEnter ? '' : 'disabled'} aria-pressed="${m === k}" title="${{ P: 'Present', L: 'Late', E: 'Excused', A: 'Absent' }[k]}">${k}</button>`;
-    return `<div class="rollrow"><div class="nm">${esc(x.name)}<small>${esc([x.wt, x.level, x.grade ? 'Gr ' + x.grade : ''].filter(Boolean).join(' · '))}</small></div><div class="seg">${b('P')}${b('L')}${b('E')}${b('A')}</div></div>`;
+    const note = notes[x.id] || '', open = attNoteOpen === x.id, want = !note && (m === 'L' || m === 'E' || m === 'A');
+    const nb = canEnter ? `<button class="attn${note ? ' has' : ''}${want ? ' want' : ''}" data-act="attnote" data-id="${x.id}">${note ? esc(note) : want ? '+ Add why' : '+ Note'}</button>` : (note ? `<span class="attn has">${esc(note)}</span>` : '');
+    const ed = open && canEnter ? `<div class="attedit"><input class="attin" data-id="${x.id}" value="${esc(note)}" placeholder="Why? e.g. late from class, unexcused" enterkeyhint="done" maxlength="200" aria-label="Note for ${esc(x.name)}"><div class="chips">${ATT_CHIPS.map(c => `<button class="chip" data-act="attchip" data-id="${x.id}" data-v="${esc(c)}">${esc(c)}</button>`).join('')}</div><div class="row"><button class="btn primary" data-act="attnoteclose" data-id="${x.id}">Done</button>${note ? `<button class="btn ghost" data-act="attnoteclear" data-id="${x.id}">Clear note</button>` : ''}</div></div>` : '';
+    return `<div class="rollrow${open ? ' open' : ''}"><div class="nm">${esc(x.name)}<small>${esc([x.wt, x.level, x.grade ? 'Gr ' + x.grade : ''].filter(Boolean).join(' · '))}</small>${nb}</div><div class="seg">${b('P')}${b('L')}${b('E')}${b('A')}</div>${ed}</div>`;
   }).join('') + '</div>';
   // season summary
   const past = dates.filter(d => d <= todayIso() || st.attendance[d]);
@@ -1231,6 +1251,21 @@ function openCF(s) {
   L.querySelectorAll('[data-modnote]').forEach(n => { n.onchange = () => { if (!n.hidden) patch('cf/' + s, [[['workout'], name], [['mod', n.dataset.modnote], n.value.trim() || 'Modified']]); }; });
   if (ins[0]) ins[0].focus();
 }
+
+/* ---------------- attendance notes ---------------- */
+let attNoteOpen = null;
+const ATT_CHIPS = ['Unexcused', 'No text before 2 pm', 'Sick', 'Appointment', 'Late from class', 'Left early'];
+async function saveAttNote(id, text) {
+  const s = selAttDate; text = String(text || '').replace(/\s+/g, ' ').trim();
+  const a = st.attendance[s] || {}; const notes = Object.assign({}, a.notes || {});
+  if ((notes[id] || '') === text) return;
+  if (text) notes[id] = text; else delete notes[id];
+  st.attendance[s] = Object.assign({}, a, { notes });
+  await patch('attendance/' + s, [[['notes', id], text || null]]);
+}
+document.addEventListener('pointerdown', e => { if (e.target.closest && e.target.closest('.attedit button')) e.preventDefault(); });
+document.addEventListener('change', e => { const t = e.target; if (t.classList && t.classList.contains('attin')) saveAttNote(t.dataset.id, t.value); });
+document.addEventListener('keydown', e => { const t = e.target; if (e.key === 'Enter' && t.classList && t.classList.contains('attin')) { e.preventDefault(); attNoteOpen = null; saveAttNote(t.dataset.id, t.value).then(() => { t.blur(); render(); }); } });
 
 /* ---------------- outline editor ---------------- */
 const OL_MAX = 3;
@@ -1440,9 +1475,11 @@ function viewWrestler(id) {
   h += '<h2 class="sect">Attendance</h2>';
   const held = practiceDates().filter(d => st.attendance[d] && Object.keys(st.attendance[d].marks || {}).length);
   let here = 0, ab = 0, ex = 0; const missed = [];
-  held.forEach(d => { const m = st.attendance[d].marks[id]; if (m === 'P' || m === 'L') here++; else if (m === 'A') { ab++; missed.push(d); } else if (m === 'E') { ex++; missed.push(d); } });
-  h += `<div class="tally"><div><b>${here}</b>practices</div><div><b>${ab}</b>absent</div><div><b>${ex}</b>excused</div></div>`;
-  if (missed.length) h += `<p class="muted">Missed: ${missed.map(short).join(', ')}</p>`;
+  let late = 0;
+  held.forEach(d => { const m = st.attendance[d].marks[id]; if (m === 'P' || m === 'L') here++; if (m === 'L') late++; if (m === 'A') ab++; else if (m === 'E') ex++; });
+  practiceDates().forEach(d => { const a = st.attendance[d]; if (!a) return; const m = (a.marks || {})[id], n = (a.notes || {})[id]; if ((m && m !== 'P') || n) missed.push({ d, m, n }); });
+  h += `<div class="tally"><div><b>${here}</b>practices</div><div><b>${late}</b>late</div><div><b>${ab}</b>absent</div><div><b>${ex}</b>excused</div></div>`;
+  if (missed.length) h += '<ul class="attlog">' + missed.map(x => `<li><b>${esc(short(x.d))}</b><span class="mk ${x.m || ''}">${esc({ P: 'Present', L: 'Late', E: 'Excused', A: 'Absent' }[x.m] || 'Note')}</span>${x.n ? `<span>${esc(x.n)}</span>` : ''}</li>`).join('') + '</ul>';
   return h;
 }
 
@@ -1861,7 +1898,7 @@ document.addEventListener('click', async e => {
   if (t.dataset.mark) {
     const s = selAttDate; const cur = Object.assign({}, (st.attendance[s] && st.attendance[s].marks) || {});
     if (cur[t.dataset.mark] === t.dataset.v) delete cur[t.dataset.mark]; else cur[t.dataset.mark] = t.dataset.v;
-    st.attendance[s] = { marks: cur }; render();
+    st.attendance[s] = Object.assign({}, st.attendance[s], { marks: cur }); render();
     await patch('attendance/' + s, [[['marks', t.dataset.mark], cur[t.dataset.mark] || null]]); return;
   }
   const act = t.dataset.act; const s = route().slice(4);
@@ -1877,6 +1914,10 @@ document.addEventListener('click', async e => {
   if (act === 'runnext' && run) { run.follow = false; run.idx++; run.started = Date.now(); render(); return; }
   if (act === 'runprev' && run) { run.follow = false; run.idx = Math.max(0, run.idx - 1); run.started = Date.now(); render(); return; }
   if (act === 'mv') { moveSec(t.dataset.k, +t.dataset.d); return; }
+  if (act === 'attnote') { attNoteOpen = t.dataset.id; render(); const i = document.querySelector('.attin[data-id="' + t.dataset.id + '"]'); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } return; }
+  if (act === 'attchip') { const i = document.querySelector('.attin[data-id="' + t.dataset.id + '"]'); const v = i && i.value.trim() ? i.value.trim() + '; ' + t.dataset.v : t.dataset.v; if (i) i.value = v; await saveAttNote(t.dataset.id, v); render(); return; }
+  if (act === 'attnoteclose') { const i = document.querySelector('.attin[data-id="' + t.dataset.id + '"]'); attNoteOpen = null; if (i) await saveAttNote(t.dataset.id, i.value); render(); return; }
+  if (act === 'attnoteclear') { attNoteOpen = null; await saveAttNote(t.dataset.id, ''); render(); return; }
   if (act === 'oladd') { const ol = document.querySelector('[data-ol="' + t.dataset.k + '"]'); if (ol) { const rows = ol.querySelectorAll('.olr'); const last = rows[rows.length - 1]; const ta = last && last.querySelector('.olt'); if (ta && !ta.value.trim()) { ta.focus(); return; } const r = olMake(0, ''); ol.appendChild(r); olFit(r); r.querySelector('.olt').focus(); } return; }
   if (act === 'cadd' || act === 'cskip') { await claudeAdd(s, t.dataset.id, act === 'cadd'); return; }
   if (act === 'copyplan') { await copyPlan(s); return; }
@@ -1974,7 +2015,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=d4ea4d343e', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=15a60660a6', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
