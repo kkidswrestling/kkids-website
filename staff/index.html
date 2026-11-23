@@ -512,7 +512,7 @@ function weekOf(s) { return Math.floor((D(s) - D(DATA.start)) / 864e5 / 7) + 1; 
 function phaseOf(s) { return DATA.phases.find(p => s >= p[1] && s <= p[2]) || (s < DATA.phases[0][1] ? DATA.phases[0] : DATA.phases[DATA.phases.length - 1]); }
 function pillar(w) { const p = st.pillars[String(w)]; return (p !== undefined ? p : DEFAULT_PILLARS[String(w)]) || ''; }
 const dayByDate = {};
-function rawPlan(date) { const base = dayByDate[date]; if (!base) return null; const ov = st.plans[date]; return ov ? Object.assign({}, base, { sections: Object.assign({}, base.sections, ov.sections || {}), clock: ov.clock || base.clock, edited: ov.updatedAt }) : base; }
+function rawPlan(date) { const base = dayByDate[date]; if (!base) return null; const ov = st.plans[date]; if (!ov) return base; const sec = Object.assign({}, base.sections, ov.sections || {}); for (const [k, was] of Object.entries(base.claudeFixes || {})) if (ov.sections && ov.sections[k] && sameLines(ov.sections[k], was)) sec[k] = base.sections[k]; return Object.assign({}, base, { sections: sec, clock: ov.clock || base.clock, edited: ov.updatedAt }); }
 function firstOfWeek(date) { const w = weekOf(date); return DATA.days.find(d => weekOf(d.date) === w).date === date; }
 function taughtNames(s) {
   const out = [];
@@ -1974,7 +1974,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=50d70ed62c', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=d4ea4d343e', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
