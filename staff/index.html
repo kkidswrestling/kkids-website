@@ -438,6 +438,8 @@ body.olon .toast { bottom: 84px; z-index: 61; }
 .cadd .caddh { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 16px; }
 .caddtag { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 2px 7px; border-radius: 99px; }
 .cadd .caddsec { margin-top: 8px; font-size: 13px; color: #6c6a65; }
+.cadd details.caddsec { font-size: 15px; color: var(--ink); }
+.cadd details.caddsec summary { cursor: pointer; color: var(--accent); font-weight: 700; font-size: 14px; padding: 4px 0; }
 .cadd ul { margin: 6px 0 10px; padding-left: 20px; }
 .cadd ul ul { list-style: circle; margin: 2px 0; }
 .cadd li { margin: 3px 0; }
@@ -543,6 +545,8 @@ function plan(date, noAuto) {
 function carryMap() {
   const out = {}; let left = [];
   for (const d of DATA.days.map(x => x.date)) {
+    const have = new Set(); const rp0 = rawPlan(d).sections; ['teach', 'twotwo'].forEach(k => olFlat(rp0[k] || [], 0, []).forEach(r => have.add(lineKey(r.t))));
+    left = left.filter(c => !have.has(lineKey(c.node.t)));
     out[d] = left;
     const items = (rawPlan(d).sections.teach || []);
     const done = (st.progress[d] && st.progress[d].done) || {};
@@ -1366,9 +1370,16 @@ document.addEventListener('paste', e => {
 new MutationObserver(() => { const ols = document.querySelectorAll('.ol:not([data-fit])'); ols.forEach(o => { o.dataset.fit = '1'; olFit(o); }); }).observe(document.getElementById('app'), { childList: true, subtree: true });
 
 /* ---------------- Claude's additions ---------------- */
+function lineKey(t) { return String(t || '').toLowerCase().replace(/\((new|carried over[^)]*)\)/g, '').replace(/[^a-z0-9&/]+/g, ' ').trim(); }
+function sameLines(a, b) { const f = n => olFlat(n || [], 0, []).map(r => lineKey(r.t)).filter(Boolean).sort().join('|'); return f(a) === f(b); }
 function claudeAddsHtml(s) {
   const day = dayByDate[s]; const adds = (day && day.claudeAdds) || []; const ov = st.plans[s]; const done = (ov && ov.addsDone) || [];
-  return adds.filter(a => !done.includes(a.id)).map(a => {
+  const cur = rawPlan(s).sections;
+  return adds.filter(a => !done.includes(a.id) && (!a.replace || Object.entries(a.sections || {}).every(([k, n]) => sameLines(cur[k], n)))).map(a => {
+    if (a.replace) {
+      const parts = Object.entries(a.sections || {}).map(([k, nodes]) => { const sec = SEC.find(x => x[0] === k); return `<details class="caddsec"><summary>See the new <b>${esc(sec ? secTitle(k, sec[1], rawPlan(s)) : k)}</b></summary>${ul(nodes)}</details>`; }).join('');
+      return `<div class="cadd"><div class="caddh"><span class="caddtag">From Claude</span><b>${esc(a.title)}</b></div>${a.why ? `<p class="muted">${esc(a.why)}</p>` : ''}${parts}<div class="row"><button class="btn primary" data-act="cadd" data-id="${esc(a.id)}">Use this version</button><button class="btn ghost" data-act="cskip" data-id="${esc(a.id)}">No thanks</button></div></div>`;
+    }
     const parts = Object.entries(a.sections || {}).map(([k, nodes]) => { const sec = SEC.find(x => x[0] === k); return `<div class="caddsec">Goes at the end of <b>${esc(sec ? secTitle(k, sec[1], rawPlan(s)) : k)}</b>, under what you already have:</div>${ul(nodes)}`; }).join('');
     return `<div class="cadd"><div class="caddh"><span class="caddtag">From Claude</span><b>${esc(a.title)}</b></div>${a.why ? `<p class="muted">${esc(a.why)}</p>` : ''}${parts}<div class="row"><button class="btn primary" data-act="cadd" data-id="${esc(a.id)}">Add to plan</button><button class="btn ghost" data-act="cskip" data-id="${esc(a.id)}">No thanks</button></div></div>`;
   }).join('');
@@ -1377,10 +1388,10 @@ async function claudeAdd(s, id, add) {
   const day = dayByDate[s]; const a = ((day && day.claudeAdds) || []).find(x => x.id === id); if (!a) return;
   const p = rawPlan(s); const ov = st.plans[s] || {};
   const sections = {}; for (const [k] of SEC) sections[k] = (p.sections[k] || []).slice();
-  if (add) for (const [k, nodes] of Object.entries(a.sections || {})) sections[k] = (sections[k] || []).concat(JSON.parse(JSON.stringify(nodes)));
+  if (add) for (const [k, nodes] of Object.entries(a.sections || {})) sections[k] = a.replace ? JSON.parse(JSON.stringify(nodes)) : (sections[k] || []).concat(JSON.parse(JSON.stringify(nodes)));
   const rec = Object.assign({}, ov, { addsDone: ((ov.addsDone) || []).concat(id) });
   if (add || st.plans[s]) Object.assign(rec, { sections, clock: (ov.clock || p.clock), updatedAt: new Date().toISOString() });
-  st.plans[s] = rec; render(); await write('plans/' + s, rec); toast(add ? 'Added to the plan' : 'Okay, left it off');
+  st.plans[s] = rec; render(); await write('plans/' + s, rec); toast(add ? (a.replace ? 'Updated the plan' : 'Added to the plan') : 'Okay, left it off');
 }
 
 /* ---------------- copy the plan as text ---------------- */
@@ -1963,7 +1974,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=ee2ee5d98d', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=50d70ed62c', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
