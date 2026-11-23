@@ -415,6 +415,35 @@ table.cfgrid th.cfh.sorted { box-shadow: inset 0 -3px 0 var(--accent); }
 table.cfgrid td.sortcol { box-shadow: inset 2px 0 0 #f3d2bd, inset -2px 0 0 #f3d2bd; }
 table.cfgrid td.num { text-align: center; } table.cfgrid td.modc { cursor: pointer; } table.cfgrid .t { position: relative; } table.cfgrid sup { position: absolute; left: 100%; top: -3px; line-height: 1; color: var(--accent); font-weight: 800; }
 table.cfgrid td.sn .rk { display: inline-block; width: 22px; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+.ol { margin-top: 6px; }
+.olr { display: flex; align-items: flex-start; gap: 2px; padding-left: calc(var(--lv, 0) * 22px); }
+.olr .dot { flex: 0 0 16px; text-align: center; line-height: 36px; color: #8a847a; font-size: 15px; user-select: none; }
+.olr .dot::before { content: '•'; }
+.olr[data-lv="1"] .dot::before { content: '◦'; font-size: 18px; }
+.olr[data-lv="2"] .dot::before { content: '▪'; font-size: 11px; }
+.olr[data-lv="3"] .dot::before { content: '–'; }
+.sec .olr textarea.olt { flex: 1; min-width: 0; min-height: 0; height: 36px; margin: 0; resize: none; overflow: hidden; border: 1px solid transparent; border-radius: 6px; padding: 7px 8px; font: inherit; font-size: 16px; line-height: 1.3; background: transparent; color: var(--ink); }
+.sec .olr textarea.olt:hover { background: #faf7f2; }
+.sec .olr textarea.olt:focus { border-color: var(--accent); background: #fff; outline: none; }
+.oladd { margin: 6px 0 0 16px; border: 0; background: none; color: var(--accent); font: inherit; font-size: 14px; font-weight: 700; padding: 6px 4px; cursor: pointer; }
+.olbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: flex; gap: 6px; padding: 8px max(8px, env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom)); background: #18191b; box-shadow: 0 -4px 14px rgba(0,0,0,.18); justify-content: center; }
+.olbar button { flex: 1 1 0; max-width: 140px; min-height: 42px; border: 0; border-radius: 8px; background: #2c2d30; color: #fff; font: inherit; font-size: 15px; font-weight: 700; padding: 0 6px; white-space: nowrap; cursor: pointer; }
+.olbar button:active { background: #44464a; }
+.olbar button.del { background: #3a2a28; color: #ffb4a8; }
+body.olon { padding-bottom: 70px; }
+body.olon .toast { bottom: 84px; z-index: 61; }
+.runfull .cadd { display: none; }
+.cadd { margin: 14px 22px 0; padding: 14px 16px; border-radius: 10px; background: #fff7f0; border: 1.5px solid #f3c4a2; }
+.cadd .caddh { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 16px; }
+.caddtag { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 2px 7px; border-radius: 99px; }
+.cadd .caddsec { margin-top: 8px; font-size: 13px; color: #6c6a65; }
+.cadd ul { margin: 6px 0 10px; padding-left: 20px; }
+.cadd ul ul { list-style: circle; margin: 2px 0; }
+.cadd li { margin: 3px 0; }
+.copyrow { display: flex; justify-content: flex-end; margin-top: 10px; }
+@media (max-width: 600px) { .cadd { margin: 12px 12px 0; } .olbar button { font-size: 14px; } }
+@media print { .olbar, .copyrow, .cadd { display: none !important; } }
 .who { background: none; border: 0; color: #b9b6b0; font: inherit; font-size: 12px; margin-left: 8px; text-decoration: underline; cursor: pointer; padding: 0; }
 </style>
 </head>
@@ -834,16 +863,17 @@ function viewDay(s) {
   if (ov && ov.by === 'claude' && !ov.approved && !isEdit) h += `<div class="draft"><div><b>Claude’s draft from the Sunday review.</b> ${esc(ov.why || '')}</div>${canEdit ? '<div class="row"><button class="btn primary" data-act="approve">Approve</button><button class="btn" data-act="edit">Edit</button><button class="btn ghost" data-act="reset">Use the original</button></div>' : ''}</div>`;
   else if (ov && ov.by === 'claude' && ov.approved && !isEdit) h += `<div class="note">Built from the Sunday review. ${esc(ov.why || '')}</div>`;
   else if (p.tentative && !ov && !isEdit) h += '<div class="note">Tentative. The Sunday review rebuilds this plan from the week before’s results.</div>';
+  if (!isEdit && canEdit) h += claudeAddsHtml(s);
   if (p.note) h += `<div class="note">${esc(p.note)}</div>`;
   if (DATA.jv[s] && !isEdit) h += `<div class="note"><b>${esc(DATA.jv[s].title)}:</b> ${esc(DATA.jv[s].teach.join(' '))} Live: ${esc(DATA.jv[s].live.join(', '))}. Finisher: ${esc(DATA.jv[s].cond)}</div>`;
   if (isEdit) {
-    h += '<div class="edithint">One bullet per line. Start a line with two spaces to make it a sub-bullet. Schedule lines are <b>time | block | note</b>.</div>';
+    h += '<div class="edithint">Each line is a bullet. To make a sub-bullet, tap <b>In →</b> on the bar at the bottom (Tab on a computer); <b>← Out</b> (Shift+Tab) moves it back. Pasting from Word or Google Docs keeps the levels. Schedule lines are <b>time | block | note</b>.</div>';
     h += `<div class="cols"><div class="sec"><h3>Schedule</h3><textarea id="ed-clock" rows="${p.clock.length + 1}">${esc(clockToText(p.clock))}</textarea></div>`;
     for (const [k, title] of secOrder(p)) {
       const nodes = p.sections[k] || [];
       const lines = toText(nodes).split('\n').length;
       const mv = secBlock(p.clock, k) >= 0 ? `<span class="mv"><button type="button" class="mvb" data-act="mv" data-k="${k}" data-d="-1" aria-label="Move ${esc(secTitle(k, title, p))} earlier">↑</button><button type="button" class="mvb" data-act="mv" data-k="${k}" data-d="1" aria-label="Move ${esc(secTitle(k, title, p))} later">↓</button></span>` : '';
-      h += `<div class="sec" data-sec="${k}"><h3>${esc(secTitle(k, title, p))}${mv}</h3><textarea id="ed-${k}" rows="${Math.min(22, Math.max(3, lines + 1))}">${esc(toText(nodes))}</textarea></div>`;
+      h += `<div class="sec" data-sec="${k}"><h3>${esc(secTitle(k, title, p))}${mv}</h3>${olHtml(k, nodes)}</div>`;
     }
     h += '</div>';
   } else {
@@ -868,6 +898,7 @@ function viewDay(s) {
     h += '</div>';
   }
   h += '</article>';
+  if (!isEdit) h += '<div class="copyrow"><button class="btn ghost" data-act="copyplan">Copy plan as text</button></div>';
   return h;
 }
 const SUBSEP = ' › ';
@@ -1195,6 +1226,176 @@ function openCF(s) {
   });
   L.querySelectorAll('[data-modnote]').forEach(n => { n.onchange = () => { if (!n.hidden) patch('cf/' + s, [[['workout'], name], [['mod', n.dataset.modnote], n.value.trim() || 'Modified']]); }; });
   if (ins[0]) ins[0].focus();
+}
+
+/* ---------------- outline editor ---------------- */
+const OL_MAX = 3;
+function olFlat(nodes, lv, out) { for (const n of nodes || []) { out.push({ lv, t: n.t }); olFlat(n.c, lv + 1, out); } return out; }
+function olRowHtml(lv, t) { return `<div class="olr" data-lv="${lv}" style="--lv:${lv}"><span class="dot" aria-hidden="true"></span><textarea class="olt" rows="1" autocapitalize="sentences" aria-label="Bullet, level ${lv + 1}">${esc(t)}</textarea></div>`; }
+function olHtml(k, nodes) {
+  const rows = olFlat(nodes, 0, []); if (!rows.length) rows.push({ lv: 0, t: '' });
+  return `<div class="ol" data-ol="${k}">${rows.map(r => olRowHtml(r.lv, r.t)).join('')}</div><button type="button" class="oladd" data-act="oladd" data-k="${k}">+ Add a bullet</button>`;
+}
+function olMake(lv, t) { const d = document.createElement('div'); d.innerHTML = olRowHtml(lv, t); return d.firstChild; }
+function olLv(r) { return +r.dataset.lv; }
+function olSet(r, lv) { r.dataset.lv = lv; r.style.setProperty('--lv', lv); r.querySelector('.olt').setAttribute('aria-label', 'Bullet, level ' + (lv + 1)); }
+function olKids(r) { const out = [], lv = olLv(r); let n = r.nextElementSibling; while (n && olLv(n) > lv) { out.push(n); n = n.nextElementSibling; } return out; }
+function olFit(root) { (root.matches && root.matches('.olt') ? [root] : [...(root.querySelectorAll ? root.querySelectorAll('.olt') : [])]).forEach(ta => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 2 + 'px'; }); }
+function fromOl(k) {
+  const rows = [...document.querySelectorAll('[data-ol="' + k + '"] .olr')].map(r => ({ lv: olLv(r), t: r.querySelector('.olt').value.replace(/\s+/g, ' ').trim() })).filter(r => r.t);
+  const root = { c: [] }, stack = [{ lv: -1, n: root }];
+  for (const r of rows) { const node = { t: r.t, c: [] }; while (stack.length > 1 && stack[stack.length - 1].lv >= r.lv) stack.pop(); stack[stack.length - 1].n.c.push(node); stack.push({ lv: r.lv, n: node }); }
+  return root.c;
+}
+function olIndent(r) {
+  const prev = r.previousElementSibling; const lv = olLv(r); if (!prev) { toast('The first bullet can’t be a sub-bullet'); return; }
+  if (lv + 1 > olLv(prev) + 1) return;
+  const grp = [r, ...olKids(r)]; if (grp.some(x => olLv(x) + 1 > OL_MAX)) { toast('That’s as deep as bullets go'); return; }
+  grp.forEach(x => olSet(x, olLv(x) + 1));
+}
+function olOutdent(r) { if (!olLv(r)) return; [r, ...olKids(r)].forEach(x => olSet(x, olLv(x) - 1)); }
+function olMove(r, d) {
+  const lv = olLv(r), grp = [r, ...olKids(r)];
+  if (d < 0) {
+    let q = r.previousElementSibling; while (q && olLv(q) > lv) q = q.previousElementSibling;
+    if (!q || olLv(q) < lv) { toast('Already first'); return; }
+    grp.forEach(x => q.parentNode.insertBefore(x, q));
+  } else {
+    const n = grp[grp.length - 1].nextElementSibling;
+    if (!n || olLv(n) < lv) { toast('Already last'); return; }
+    const ng = [n, ...olKids(n)]; ng.forEach(x => r.parentNode.insertBefore(x, r));
+  }
+  r.scrollIntoView({ block: 'nearest' });
+}
+function olDelete(r) {
+  const ol = r.parentNode; const kids = olKids(r); kids.forEach(x => olSet(x, Math.max(0, olLv(x) - 1)));
+  const focusTo = r.previousElementSibling || r.nextElementSibling;
+  if (!focusTo) { r.querySelector('.olt').value = ''; olSet(r, 0); return; }
+  r.remove(); const ta = focusTo.querySelector('.olt'); ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length);
+}
+function olRowOf(el) { return el && el.closest ? el.closest('.olr') : null; }
+// paste: Word / Google Docs lists keep their levels
+function olParseHtml(html) {
+  const doc = new DOMParser().parseFromString(html, 'text/html'); const out = [];
+  doc.querySelectorAll('[style*="mso-list:Ignore"],[style*="mso-list: Ignore"]').forEach(x => x.remove());
+  const els = [...doc.body.querySelectorAll('li, p, h1, h2, h3, h4, div')].filter(e => !e.querySelector('li, p, div, h1, h2, h3, h4') || e.tagName === 'LI');
+  let listy = false;
+  for (const e of els) {
+    if (e.tagName !== 'LI' && e.closest('li')) continue;
+    const t = e.textContent.replace(/ /g, ' ').replace(/\s+/g, ' ').trim().replace(/^[•●○◦▪■§·]\s*/, ''); if (!t) continue;
+    let lv = 0;
+    if (e.tagName === 'LI') { listy = true; const al = +e.getAttribute('aria-level'); if (al) lv = al - 1; else { let a = e.parentElement, n = -1; while (a) { if (a.tagName === 'UL' || a.tagName === 'OL') n++; a = a.parentElement; } lv = Math.max(0, n); } }
+    else { const m = (e.getAttribute('style') || '').match(/mso-list:\s*\w+\s+level(\d)/); if (m) { listy = true; lv = +m[1] - 1; } else { const ml = (e.getAttribute('style') || '').match(/margin-left:\s*([\d.]+)(pt|px|in)/); if (ml && e.closest('li') === null) { /* plain paragraph */ } } }
+    out.push({ lv: Math.min(OL_MAX, lv), t });
+  }
+  return listy && out.length ? out : null;
+}
+function olParseText(txt) {
+  const out = [];
+  for (const raw of txt.replace(/\r/g, '').split('\n')) {
+    if (!raw.trim()) continue;
+    const lead = raw.match(/^[ \t ]*/)[0]; let lv = 0; for (const ch of lead) lv += ch === '\t' ? 2 : 1; lv = Math.floor(lv / 2);
+    let t = raw.trim(); let g = -1;
+    const m = t.match(/^([•●·*\-–]|[○◦o]|[■▪§])[\t ]+/);
+    if (m) { g = /[○◦o]/.test(m[1]) ? 1 : /[■▪§]/.test(m[1]) ? 2 : 0; t = t.slice(m[0].length); }
+    out.push({ lv: Math.min(OL_MAX, Math.max(lv, g)), t: t.trim() });
+  }
+  return out;
+}
+function olInsert(r, items) {
+  const ta = r.querySelector('.olt'); const base = olLv(r); const min = Math.min(...items.map(x => x.lv));
+  let at = r, first = 0;
+  if (!ta.value.trim()) { ta.value = items[0].t; first = 1; }
+  else at = olKids(r).pop() || r;
+  let prevLv = base, last = r;
+  for (const it of items.slice(first)) {
+    const lv = Math.min(OL_MAX, Math.max(0, Math.min(base + it.lv - min, prevLv + 1)));
+    const nr = olMake(lv, it.t); at.after(nr); at = nr; last = nr; prevLv = lv; olFit(nr);
+  }
+  olFit(r); const lt = last.querySelector('.olt'); lt.focus(); lt.setSelectionRange(lt.value.length, lt.value.length);
+}
+document.addEventListener('keydown', e => {
+  const ta = e.target; if (!ta.classList || !ta.classList.contains('olt') || e.isComposing) return;
+  const r = olRowOf(ta);
+  if (e.key === 'Tab') { e.preventDefault(); if (e.shiftKey) olOutdent(r); else olIndent(r); return; }
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    if (!ta.value.trim() && olLv(r) > 0) { olOutdent(r); return; }
+    const a = ta.selectionStart, b = ta.selectionEnd, before = ta.value.slice(0, a), after = ta.value.slice(b);
+    ta.value = before.replace(/\s+$/, ''); olFit(ta);
+    const kids = olKids(r); const lv = kids.length && !after.trim() ? olLv(r) + 1 : olLv(r);
+    const nr = olMake(lv, after.trim()); r.after(nr);
+    olFit(nr); const nt = nr.querySelector('.olt'); nt.focus(); nt.setSelectionRange(0, 0); return;
+  }
+  if (e.key === 'Backspace' && ta.selectionStart === 0 && ta.selectionEnd === 0) {
+    if (olLv(r) > 0) { e.preventDefault(); olOutdent(r); return; }
+    const prev = r.previousElementSibling; if (!prev) return;
+    e.preventDefault(); const pt = prev.querySelector('.olt'); const at = pt.value.length;
+    pt.value += (pt.value && ta.value ? ' ' : '') + ta.value; r.remove(); olFit(pt); pt.focus(); pt.setSelectionRange(at, at);
+  }
+});
+document.addEventListener('input', e => { if (e.target.classList && e.target.classList.contains('olt')) olFit(e.target); });
+document.addEventListener('paste', e => {
+  const ta = e.target; if (!ta.classList || !ta.classList.contains('olt')) return;
+  const cd = e.clipboardData; if (!cd) return;
+  const html = cd.getData('text/html'), txt = cd.getData('text/plain');
+  let items = html ? olParseHtml(html) : null;
+  if (!items) { if (!/\n/.test(txt.trim())) return; items = olParseText(txt); }
+  if (!items || !items.length) return;
+  e.preventDefault(); olInsert(olRowOf(ta), items);
+});
+// the In / Out / Move bar: sits on top of the phone keyboard while a bullet is being typed
+(function () {
+  const bar = document.createElement('div'); bar.className = 'olbar'; bar.hidden = true;
+  bar.innerHTML = '<button type="button" data-ol-do="out">← Out</button><button type="button" data-ol-do="in">In →</button><button type="button" data-ol-do="up" aria-label="Move up">Move ↑</button><button type="button" data-ol-do="down" aria-label="Move down">Move ↓</button><button type="button" data-ol-do="del" class="del">Delete</button>';
+  document.body.appendChild(bar);
+  let cur = null;
+  const place = () => { const vv = window.visualViewport; bar.style.bottom = vv ? Math.max(0, window.innerHeight - vv.height - vv.offsetTop) + 'px' : '0px'; };
+  if (window.visualViewport) { visualViewport.addEventListener('resize', place); visualViewport.addEventListener('scroll', place); }
+  document.addEventListener('focusin', e => { if (e.target.classList && e.target.classList.contains('olt')) { cur = e.target; bar.hidden = false; document.body.classList.add('olon'); place(); } });
+  document.addEventListener('focusout', e => { if (e.target === cur) setTimeout(() => { if (!document.activeElement || !document.activeElement.classList.contains('olt')) { bar.hidden = true; document.body.classList.remove('olon'); cur = null; } }, 120); });
+  bar.addEventListener('pointerdown', e => e.preventDefault());
+  bar.addEventListener('mousedown', e => e.preventDefault());
+  bar.addEventListener('click', e => {
+    const b = e.target.closest('[data-ol-do]'); if (!b || !cur) return; const r = olRowOf(cur); if (!r) return;
+    const d = b.dataset.olDo, keep = cur;
+    if (d === 'in') olIndent(r); else if (d === 'out') olOutdent(r); else if (d === 'up') olMove(r, -1); else if (d === 'down') olMove(r, 1); else if (d === 'del') { olDelete(r); return; }
+    keep.focus();
+  });
+})();
+new MutationObserver(() => { const ols = document.querySelectorAll('.ol:not([data-fit])'); ols.forEach(o => { o.dataset.fit = '1'; olFit(o); }); }).observe(document.getElementById('app'), { childList: true, subtree: true });
+
+/* ---------------- Claude's additions ---------------- */
+function claudeAddsHtml(s) {
+  const day = dayByDate[s]; const adds = (day && day.claudeAdds) || []; const ov = st.plans[s]; const done = (ov && ov.addsDone) || [];
+  return adds.filter(a => !done.includes(a.id)).map(a => {
+    const parts = Object.entries(a.sections || {}).map(([k, nodes]) => { const sec = SEC.find(x => x[0] === k); return `<div class="caddsec">Goes at the end of <b>${esc(sec ? secTitle(k, sec[1], rawPlan(s)) : k)}</b>, under what you already have:</div>${ul(nodes)}`; }).join('');
+    return `<div class="cadd"><div class="caddh"><span class="caddtag">From Claude</span><b>${esc(a.title)}</b></div>${a.why ? `<p class="muted">${esc(a.why)}</p>` : ''}${parts}<div class="row"><button class="btn primary" data-act="cadd" data-id="${esc(a.id)}">Add to plan</button><button class="btn ghost" data-act="cskip" data-id="${esc(a.id)}">No thanks</button></div></div>`;
+  }).join('');
+}
+async function claudeAdd(s, id, add) {
+  const day = dayByDate[s]; const a = ((day && day.claudeAdds) || []).find(x => x.id === id); if (!a) return;
+  const p = rawPlan(s); const ov = st.plans[s] || {};
+  const sections = {}; for (const [k] of SEC) sections[k] = (p.sections[k] || []).slice();
+  if (add) for (const [k, nodes] of Object.entries(a.sections || {})) sections[k] = (sections[k] || []).concat(JSON.parse(JSON.stringify(nodes)));
+  const rec = Object.assign({}, ov, { addsDone: ((ov.addsDone) || []).concat(id) });
+  if (add || st.plans[s]) Object.assign(rec, { sections, clock: (ov.clock || p.clock), updatedAt: new Date().toISOString() });
+  st.plans[s] = rec; render(); await write('plans/' + s, rec); toast(add ? 'Added to the plan' : 'Okay, left it off');
+}
+
+/* ---------------- copy the plan as text ---------------- */
+function planText(s) {
+  const p = plan(s); const lines = [long(s) + (p.label ? ' · ' + p.label : ''), ''];
+  lines.push('SCHEDULE'); p.clock.forEach(b => lines.push(b.filter(Boolean).join('  ·  '))); lines.push('');
+  const walk = (nodes, d) => (nodes || []).forEach(n => { lines.push('    '.repeat(d) + '- ' + n.t); walk(n.c, d + 1); });
+  for (const [k, title] of secOrder(p)) { const nodes = p.sections[k] || []; if (!nodes.length) continue; lines.push(secTitle(k, title, p).toUpperCase()); walk(nodes, 0); lines.push(''); }
+  return lines.join('\n').trim() + '\n';
+}
+async function copyPlan(s) {
+  const txt = planText(s);
+  try { await navigator.clipboard.writeText(txt); toast('Copied. Paste it anywhere.'); return; } catch (e) {}
+  const ta = document.createElement('textarea'); ta.value = txt; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.top = '-1000px'; document.body.appendChild(ta); ta.select();
+  let ok = false; try { ok = document.execCommand('copy'); } catch (e) {} ta.remove(); toast(ok ? 'Copied. Paste it anywhere.' : 'Copy didn’t work on this device.');
 }
 /* ---------------- wrestler ---------------- */
 function viewWrestler(id) {
@@ -1665,13 +1866,17 @@ document.addEventListener('click', async e => {
   if (act === 'runnext' && run) { run.follow = false; run.idx++; run.started = Date.now(); render(); return; }
   if (act === 'runprev' && run) { run.follow = false; run.idx = Math.max(0, run.idx - 1); run.started = Date.now(); render(); return; }
   if (act === 'mv') { moveSec(t.dataset.k, +t.dataset.d); return; }
+  if (act === 'oladd') { const ol = document.querySelector('[data-ol="' + t.dataset.k + '"]'); if (ol) { const rows = ol.querySelectorAll('.olr'); const last = rows[rows.length - 1]; const ta = last && last.querySelector('.olt'); if (ta && !ta.value.trim()) { ta.focus(); return; } const r = olMake(0, ''); ol.appendChild(r); olFit(r); r.querySelector('.olt').focus(); } return; }
+  if (act === 'cadd' || act === 'cskip') { await claudeAdd(s, t.dataset.id, act === 'cadd'); return; }
+  if (act === 'copyplan') { await copyPlan(s); return; }
   if (act === 'edit') { editing = s; render(); }
   else if (act === 'cancel') { editing = null; render(); }
   else if (act === 'save') {
     const p = rawPlan(s); const sections = {};
-    for (const [k] of SEC) sections[k] = fromText($('#ed-' + k).value);
+    for (const [k] of SEC) sections[k] = document.querySelector('[data-ol="' + k + '"]') ? fromOl(k) : (p.sections[k] || []);
     const clk = clockFromText($('#ed-clock').value);
-    editing = null; st.plans[s] = { sections, clock: clk.length ? clk : p.clock, updatedAt: new Date().toISOString() }; render();
+    const keep = st.plans[s] && st.plans[s].addsDone ? { addsDone: st.plans[s].addsDone } : {};
+    editing = null; st.plans[s] = Object.assign(keep, { sections, clock: clk.length ? clk : p.clock, updatedAt: new Date().toISOString() }); render();
     await write('plans/' + s, st.plans[s]); toast('Plan saved');
   }
   else if (act === 'approve') { const ov = Object.assign({}, st.plans[s], { approved: true }); st.plans[s] = ov; render(); await write('plans/' + s, ov); toast('Approved'); }
@@ -1758,7 +1963,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=c440d4e6cb', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=ee2ee5d98d', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
