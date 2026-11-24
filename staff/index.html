@@ -462,6 +462,20 @@ body.olon .toast { bottom: 84px; z-index: 61; }
 .copyrow { display: flex; justify-content: flex-end; margin-top: 10px; }
 @media (max-width: 600px) { .cadd { margin: 12px 12px 0; } .olbar button { font-size: 14px; } }
 @media print { .olbar, .copyrow, .cadd { display: none !important; } }
+.ldtop td { background: var(--accent-soft); }
+.ldtop td:first-child { color: var(--accent); font-weight: 800; }
+.ldcut td { text-align: center; font-size: 12px; color: var(--muted); background: #f4f2ee; letter-spacing: .02em; }
+.ldpod { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.ldpod .card { display: grid; gap: 2px; border-top: 4px solid var(--accent); }
+.ldpod .ldn { font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--accent); line-height: 1; }
+.ldgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.ldgrid h3 { font-size: 18px; margin-bottom: 6px; }
+.ldgrid ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.ldgrid li span { display: block; font-weight: 700; color: var(--accent); }
+.ldgrid li small { display: block; }
+.ldhow { margin-top: 16px; } .ldhow p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+@media (max-width: 760px) { .ldgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .ldgrid, .ldpod { grid-template-columns: minmax(0, 1fr); } }
 .who { background: none; border: 0; color: #b9b6b0; font: inherit; font-size: 12px; margin-left: 8px; text-decoration: underline; cursor: pointer; padding: 0; }
 </style>
 </head>
@@ -476,6 +490,7 @@ body.olon .toast { bottom: 84px; z-index: 61; }
       <a href="#matches">Matches</a>
       <a href="#lifts">Lifts</a>
       <a href="#crossfit">CrossFit</a>
+      <a href="#leaders">Leaders</a>
       <a href="#attendance">Attendance</a>
       <a href="#roster">Roster</a>
       <a href="#library">Library</a>
@@ -762,6 +777,7 @@ function render() {
   else if (r === 'attendance') app.innerHTML = viewAttendance();
   else if (r === 'lifts') app.innerHTML = viewLifts();
   else if (r === 'crossfit') { app.innerHTML = viewCF(); const th = $('th.cfh.sorted'), wrap = th && th.closest('.tablewrap'); if (wrap && wrap.scrollWidth > wrap.clientWidth) { const sn = wrap.querySelector('th.sn'); const want = th.offsetLeft + th.offsetWidth - wrap.clientWidth; if (want > wrap.scrollLeft || th.offsetLeft - (sn ? sn.offsetWidth : 0) < wrap.scrollLeft) wrap.scrollLeft = Math.max(0, want); } }
+  else if (r === 'leaders') app.innerHTML = viewLeaders();
   else if (r === 'roster') app.innerHTML = viewRoster();
   else if (r === 'library') app.innerHTML = viewLibrary();
   else app.innerHTML = viewSeason();
@@ -1308,6 +1324,104 @@ function applyClaudeRoster() {
     const rec = Object.assign({}, r, c.set || {}, { claudeDone: (r.claudeDone || []).concat(c.key) });
     st.roster[id] = rec; write('roster/' + id, rec).then(() => toast(c.toast || 'Roster updated'));
   }
+}
+
+/* ---------------- leaders ---------------- */
+const PR_BONUS = 20;
+function shareAvg(list, ptsAt) { // list sorted best->worst with .v; ties share the average of their places' points
+  const out = new Map(); let i = 0;
+  while (i < list.length) { let j = i; while (j + 1 < list.length && list[j + 1].v === list[i].v) j++;
+    let sum = 0; for (let k = i; k <= j; k++) sum += ptsAt(k + 1); const each = Math.round(sum / (j - i + 1));
+    for (let k = i; k <= j; k++) out.set(list[k].id, { pts: each, place: i + 1 }); i = j + 1; }
+  return out;
+}
+function cfPrBonus(d, id) {
+  if (cfMod(d, id)) return 0; const sc = cfScore(((st.cf[d] || {}).times || {})[id]); if (!sc) return 0;
+  const n = cfName(d), hi = cfHigh(d); const prev = cfDates().filter(x => x < d && cfName(x) === n);
+  const full = prev.filter(x => cfScore(((st.cf[x] || {}).times || {})[id]) && !cfMod(x, id));
+  if (full.length) { const pv = cfScore(st.cf[full[full.length - 1]].times[id]).v; return (hi ? sc.v > pv : sc.v < pv) ? PR_BONUS : 0; }
+  return prev.some(x => cfScore(((st.cf[x] || {}).times || {})[id]) && cfMod(x, id)) ? PR_BONUS : 0;
+}
+function cfPointsFor(d) {
+  const rows = cfRows(d).filter(r => r.v !== null); const full = rows.filter(r => !r.mod), mods = rows.filter(r => r.mod); const N = full.length;
+  const fp = shareAvg(full, p => N === 1 ? 100 : 10 + 90 * (N - p) / (N - 1)); const mp = shareAvg(mods, p => Math.max(1, 10 - p));
+  const out = {}; fp.forEach((v, id) => { const b = cfPrBonus(d, id); out[id] = { pts: v.pts + b, base: v.pts, pr: b, place: v.place, mod: false }; });
+  mp.forEach((v, id) => { out[id] = { pts: v.pts, base: v.pts, pr: 0, place: v.place, mod: true }; });
+  return out;
+}
+function leaderData() {
+  const active = new Set(roster(true).map(x => x.id)); const tot = {};
+  const ds = cfDates().filter(d => cfRows(d).some(r => r.v !== null));
+  for (const d of ds) { const pts = cfPointsFor(d); for (const [id, v] of Object.entries(pts)) { if (!active.has(id)) continue; const t = tot[id] = tot[id] || { id, pts: 0, n: 0, prs: 0 }; t.pts += v.pts; t.n++; if (v.pr) t.prs++; } }
+  const stand = Object.values(tot).sort((a, b) => b.pts - a.pts || b.n - a.n); stand.forEach((x, i) => { x.rank = i && stand[i - 1].pts === x.pts ? stand[i - 1].rank : i + 1; });
+  const lastD = ds[ds.length - 1]; const latest = lastD ? cfRows(lastD).filter(r => r.v !== null && !r.mod && active.has(r.id)).slice(0, 3) : [];
+  const prs = Object.values(tot).filter(x => x.prs).sort((a, b) => b.prs - a.prs || b.pts - a.pts).slice(0, 3);
+  const lifts = LIFTS.map(([k, name]) => {
+    const best = [];
+    for (const id of active) { const log = (st.lifts[id] || {}).log || {}; let top = null;
+      for (const [d, day] of Object.entries(log)) { const v = day[k]; if (!v) continue; const reps = parseFloat(v.r); if (!(reps > 0)) continue;
+        const bw = weightOf(d, id) || +((lastWeight(id, d) || {}).w || 0) || parseFloat((st.roster[id] || {}).wt) || 0; if (!bw) continue;
+        const add = parseFloat(v.w) || 0; const load = (k === 'chin' || k === 'dip') ? bw + add : add; if (!(load > 0)) continue;
+        const ratio = load * (1 + reps / 30) / bw; if (!top || ratio > top.ratio) top = { id, ratio, w: v.w, r: v.r, d }; }
+      if (top) best.push(top); }
+    return { k, name, top: best.sort((a, b) => b.ratio - a.ratio).slice(0, 3) };
+  });
+  return { stand, ds, lastD, latest, prs, lifts };
+}
+function viewLeaders() {
+  const L = leaderData();
+  let h = `<div class="pagehead"><div><h1>Leaders</h1><p>CrossFit standings and lift leaders. Share the image with the team; it shows the top 15.</p></div><div class="right"><button class="btn primary" data-act="shareboard">Share image</button></div></div>`;
+  h += '<h2 class="sect">CrossFit standings</h2>';
+  if (!L.stand.length) h += '<div class="card empty"><h3>No CrossFit scores yet</h3><p class="muted">Standings fill in once times are entered.</p></div>';
+  else { h += '<div class="card tablewrap"><table class="grid"><thead><tr><th>#</th><th>Wrestler</th><th class="num">Points</th><th class="num">CrossFits</th><th class="num">PRs</th></tr></thead><tbody>';
+    L.stand.forEach((x, i) => { if (i === 15) h += '<tr class="ldcut"><td colspan="5">Shared image stops here (top 15)</td></tr>'; h += `<tr class="${x.rank <= 3 ? 'ldtop' : ''}"><td>${x.rank}</td><td><a href="#w-${x.id}">${esc(rosterName(x.id))}</a></td><td class="num"><b>${x.pts}</b></td><td class="num">${x.n}</td><td class="num">${x.prs || ''}</td></tr>`; });
+    h += '</tbody></table></div>'; }
+  if (L.lastD) { const pts = cfPointsFor(L.lastD); h += `<h2 class="sect">Latest: ${esc(cfName(L.lastD))} · ${esc(short(L.lastD))}</h2><div class="ldpod">` + L.latest.map((r, i) => `<div class="card pad"><span class="ldn">${i + 1}</span><b>${esc(rosterName(r.id))}</b><span class="muted">${esc(r.t)} · ${pts[r.id] ? pts[r.id].pts : 0} pts${pts[r.id] && pts[r.id].pr ? ' (PR)' : ''}</span></div>`).join('') + '</div>'; }
+  h += '<h2 class="sect">Lift leaders · pound for pound</h2><div class="ldgrid">' + L.lifts.map(l => `<div class="card pad"><h3>${esc(l.name)}</h3>${l.top.length ? '<ol>' + l.top.map(t => `<li><b>${esc(rosterName(t.id))}</b><span>${t.ratio.toFixed(2)}× body weight</span><small class="muted">${esc((t.w || 'BW') + ' × ' + t.r)} on ${esc(short(t.d))}</small></li>`).join('') + '</ol>' : '<p class="muted">No sets with a body weight yet.</p>'}</div>`).join('') +
+    `<div class="card pad"><h3>Most CrossFit PRs</h3>${L.prs.length ? '<ol>' + L.prs.map(x => `<li><b>${esc(rosterName(x.id))}</b><span>${x.prs} PR${x.prs > 1 ? 's' : ''}</span></li>`).join('') + '</ol>' : '<p class="muted">No PRs yet.</p>'}</div></div>`;
+  h += `<div class="card pad ldhow"><h3>How points work</h3><p>Every CrossFit, full finishers get 100 points for 1st down to 10 for last, spaced evenly. Modified finishers get 9, 8, 7… down to 1, always below the last full finisher. Absent = 0. Ties share. Beat your last full score on the same workout, or finish it full for the first time after doing it modified: +${PR_BONUS}. The standings add up every CrossFit, so showing up matters. Lifts: best set this season, as an estimated 1-rep max divided by body weight that day (chin-ups and dips count body weight plus added weight).</p></div>`;
+  return h;
+}
+async function shareBoard() {
+  const L = leaderData(); const W = 1080, H = 1920; const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
+  try { await Promise.all(['800 60px "Barlow Condensed"', '700 36px "Barlow Condensed"', '600 30px Barlow', '500 26px Barlow'].map(f => document.fonts.load(f))); } catch (e) {}
+  const D = '"Barlow Condensed", "Arial Narrow", Arial, sans-serif', B = 'Barlow, Arial, sans-serif', OR = '#e2570f';
+  g.fillStyle = '#151617'; g.fillRect(0, 0, W, H);
+  g.fillStyle = OR; g.fillRect(0, 0, W, 10);
+  const logo = await new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = '../assets/img/logo-192.png'; });
+  if (logo) g.drawImage(logo, 56, 50, 120, 120);
+  g.fillStyle = '#fff'; g.font = `800 70px ${D}`; g.textBaseline = 'alphabetic'; g.fillText('LEADERBOARD', 200, 118);
+  g.fillStyle = '#b9b5ae'; g.font = `500 30px ${B}`; g.fillText('Konkrete Kids Wrestling · ' + (L.lastD ? 'through ' + short(L.lastD) : '2026–27'), 202, 162);
+  const label = (t, y) => { g.fillStyle = OR; g.font = `800 34px ${D}`; g.fillText(t.toUpperCase(), 56, y); g.fillStyle = '#34363a'; g.fillRect(56, y + 14, W - 112, 2); };
+  const fit = (t, max, font) => { g.font = font; if (g.measureText(t).width <= max) return t; while (t.length > 3 && g.measureText(t + '…').width > max) t = t.slice(0, -1); return t + '…'; };
+  let y = 240; label('CrossFit standings', y); y += 36;
+  const top = L.stand.slice(0, 15); const rowH = 46;
+  if (!top.length) { g.fillStyle = '#b9b5ae'; g.font = `500 30px ${B}`; g.fillText('No CrossFit scores yet.', 56, y + 40); y += 80; }
+  top.forEach((x, i) => { const ry = y + i * rowH;
+    if (x.rank <= 3) { g.fillStyle = x.rank === 1 ? 'rgba(226,87,15,.28)' : 'rgba(226,87,15,.13)'; g.fillRect(48, ry, W - 96, rowH - 6); }
+    g.fillStyle = x.rank <= 3 ? OR : '#8a867f'; g.font = `800 32px ${D}`; g.textAlign = 'right'; g.fillText(String(x.rank), 112, ry + 32);
+    g.textAlign = 'left'; g.fillStyle = '#fff'; const nf = `${x.rank <= 3 ? 700 : 600} 31px ${B}`; g.fillText(fit(rosterName(x.id), 680, nf), 140, ry + 32);
+    g.textAlign = 'right'; g.font = `800 34px ${D}`; g.fillStyle = '#fff'; g.fillText(String(x.pts), W - 64, ry + 32); g.textAlign = 'left'; });
+  y += Math.max(top.length, 1) * rowH + 62;
+  if (L.lastD) { label('Latest · ' + cfName(L.lastD) + ' · ' + short(L.lastD), y); y += 40; const cw = (W - 112 - 40) / 3;
+    L.latest.forEach((r, i) => { const x0 = 56 + i * (cw + 20); g.fillStyle = '#222427'; g.fillRect(x0, y, cw, 120); g.fillStyle = OR; g.fillRect(x0, y, cw, 6);
+      g.fillStyle = OR; g.font = `800 40px ${D}`; g.fillText(String(i + 1), x0 + 18, y + 58); g.fillStyle = '#fff'; g.fillText(fit(r.t, cw - 80, `800 40px ${D}`), x0 + 60, y + 58);
+      g.fillStyle = '#d9d5ce'; g.fillText(fit(rosterName(r.id), cw - 36, `600 26px ${B}`), x0 + 18, y + 98); });
+    y += 190; }
+  label('Lift leaders · pound for pound', y); y += 40;
+  const cards = L.lifts.map(l => ({ title: l.name, rows: l.top.map(t => [rosterName(t.id), t.ratio.toFixed(2) + '×']) })).concat([{ title: 'Most CrossFit PRs', rows: L.prs.map(x => [rosterName(x.id), String(x.prs)]) }]);
+  const cw2 = (W - 112 - 24) / 2, chh = Math.min(200, Math.floor((H - 104 - y - 2 * 18) / 3));
+  cards.forEach((cd, i) => { const x0 = 56 + (i % 2) * (cw2 + 24), y0 = y + Math.floor(i / 2) * (chh + 18);
+    g.fillStyle = '#222427'; g.fillRect(x0, y0, cw2, chh); g.fillStyle = OR; g.font = `800 30px ${D}`; g.fillText(cd.title.toUpperCase(), x0 + 20, y0 + 42);
+    if (!cd.rows.length) { g.fillStyle = '#8a867f'; g.font = `500 24px ${B}`; g.fillText('No entries yet', x0 + 20, y0 + 86); }
+    const lh = Math.min(44, (chh - 60) / 3);
+    cd.rows.forEach((r, j) => { const ry = y0 + 60 + (j + 1) * lh - 8; const rk = cd.rows.findIndex(q => q[1] === r[1]) + 1; g.fillStyle = rk === 1 ? OR : '#8a867f'; g.font = `800 28px ${D}`; g.fillText(String(rk), x0 + 20, ry);
+      g.fillStyle = '#fff'; g.fillText(fit(r[0], cw2 - 170, `600 26px ${B}`), x0 + 52, ry); g.textAlign = 'right'; g.font = `800 30px ${D}`; g.fillText(r[1], x0 + cw2 - 20, ry); g.textAlign = 'left'; }); });
+  g.fillStyle = '#8a867f'; g.font = `500 22px ${B}`; g.fillText(`CrossFit points: 100 for 1st down to 10 for last · modified 9 to 1 · beat your last score +${PR_BONUS}`, 56, H - 58); g.fillText('Lifts: best set this season, estimated max ÷ body weight', 56, H - 26);
+  const blob = await new Promise(r => c.toBlob(r, 'image/png')); if (!blob) { toast('Couldn’t make the image on this device.'); return; }
+  const file = new File([blob], 'leaderboard-' + todayIso() + '.png', { type: 'image/png' });
+  try { if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: 'Leaderboard' }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = file.name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast('Image saved. Post it in the team chat.');
 }
 
 /* ---------------- attendance notes ---------------- */
@@ -1976,6 +2090,7 @@ document.addEventListener('click', async e => {
   if (act === 'attchip') { const i = document.querySelector('.attin[data-id="' + t.dataset.id + '"]'); const v = i && i.value.trim() ? i.value.trim() + '; ' + t.dataset.v : t.dataset.v; if (i) i.value = v; await saveAttNote(t.dataset.id, v); render(); return; }
   if (act === 'attnoteclose') { const i = document.querySelector('.attin[data-id="' + t.dataset.id + '"]'); attNoteOpen = null; if (i) await saveAttNote(t.dataset.id, i.value); render(); return; }
   if (act === 'attnoteclear') { attNoteOpen = null; await saveAttNote(t.dataset.id, ''); render(); return; }
+  if (act === 'shareboard') { await shareBoard(); return; }
   if (act === 'oladd') { const ol = document.querySelector('[data-ol="' + t.dataset.k + '"]'); if (ol) { const rows = ol.querySelectorAll('.olr'); const last = rows[rows.length - 1]; const ta = last && last.querySelector('.olt'); if (ta && !ta.value.trim()) { ta.focus(); return; } const r = olMake(0, ''); ol.appendChild(r); olFit(r); r.querySelector('.olt').focus(); } return; }
   if (act === 'cadd' || act === 'cskip') { await claudeAdd(s, t.dataset.id, act === 'cadd'); return; }
   if (act === 'copyplan') { await copyPlan(s); return; }
@@ -2074,7 +2189,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=f167121364', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=d61b8881a4', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
