@@ -1368,7 +1368,7 @@ function leaderData() {
   });
   return { stand, ds, lastD, latest, prs, lifts };
 }
-function liftDetail(t) { const w = parseFloat(t.w) || 0, bw = Math.round(t.bw); return (t.bwLift ? (w > 0 ? `+${w} lbs × ${t.r} reps` : `${t.r} reps`) : `${w} lbs × ${t.r} reps`) + ` · weighed ${bw}`; }
+function liftDetail(t, noBw) { const w = parseFloat(t.w) || 0, bw = Math.round(t.bw); return (t.bwLift ? (w > 0 ? `+${w} lbs × ${t.r} reps` : `${t.r} reps`) : `${w} lbs × ${t.r} reps`) + (noBw ? '' : ` · weighed ${bw}`); }
 function liftVal(t) { return t.ratio > 0 ? `${t.ratio.toFixed(2)}× body weight` : `Body weight × ${esc(t.r)}`; }
 function viewLeaders() {
   const L = leaderData();
@@ -1411,7 +1411,7 @@ async function shareBoard() {
       g.fillStyle = '#d9d5ce'; g.fillText(fit(rosterName(r.id), cw - 36, `600 25px ${B}`), x0 + 18, y + 78); });
     y += 140; }
   label('Lift leaders · weight lifted ÷ body weight', y); y += 36;
-  const cards = L.lifts.map(l => ({ title: l.name, rows: l.top.map(t => [rosterName(t.id), t.ratio > 0 ? t.ratio.toFixed(2) + '×' : 'BW × ' + t.r, t.ratio + '|' + t.r, liftDetail(t)]) })).concat([{ title: 'Most CrossFit PRs', rows: L.prs.map(x => [rosterName(x.id), String(x.prs)]) }]);
+  const cards = L.lifts.map(l => ({ title: l.name, rows: l.top.map(t => [rosterName(t.id), t.ratio > 0 ? t.ratio.toFixed(2) + '×' : 'BW × ' + t.r, t.ratio + '|' + t.r, liftDetail(t, true)]) })).concat([{ title: 'Most CrossFit PRs', rows: L.prs.map(x => [rosterName(x.id), String(x.prs)]) }]);
   const cw2 = (W - 112 - 24) / 2, chh = Math.min(266, Math.floor((H - 64 - y - 2 * 16) / 3));
   cards.forEach((cd, i) => { const x0 = 56 + (i % 2) * (cw2 + 24), y0 = y + Math.floor(i / 2) * (chh + 16);
     g.fillStyle = '#222427'; g.fillRect(x0, y0, cw2, chh); g.fillStyle = OR; g.font = `800 30px ${D}`; g.fillText(cd.title.toUpperCase(), x0 + 20, y0 + 40);
@@ -2192,7 +2192,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=bba5b0b2fc', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=a73f745111', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
