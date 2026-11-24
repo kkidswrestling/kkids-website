@@ -743,6 +743,7 @@ function route() { const h = (location.hash || '#season').slice(1); return h; }
 window.addEventListener('hashchange', () => { editing = null; closeLayer(); render(); window.scrollTo(0, 0); });
 function render() {
   if (!DATA) return;
+  if (canEdit) applyClaudeRoster();
   const r = route();
   if (!r.startsWith('run-')) stopRun();
   const tab = r.startsWith('day-') || r.startsWith('run-') ? (r.slice(4) === nearest(practiceDates()) ? 'today' : 'season') : r.startsWith('w-') ? 'roster' : r.startsWith('m-') ? 'matches' : r === 'weighsheet' ? 'weighin' : r === 'liftsheet' ? 'lifts' : r;
@@ -1293,6 +1294,20 @@ function printPlan(s) {
   document.body.appendChild(f);
   const d = f.contentDocument; d.open(); d.write(printPlanHtml(s)); d.close();
   setTimeout(() => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) { toast('Printing isn’t available here. Use Download PDF.'); } }, 250);
+}
+
+/* ---------------- Claude roster changes ---------------- */
+const claudeRosterBusy = new Set();
+function applyClaudeRoster() {
+  const list = DATA.claudeRoster || []; if (!list.length || !Object.keys(st.roster).length) return;
+  const key = n => String(n || '').toLowerCase().replace(/[^a-z]/g, '');
+  for (const c of list) {
+    const hit = Object.entries(st.roster).find(([, r]) => key(r.name) === key(c.name)); if (!hit) continue;
+    const [id, r] = hit; if ((r.claudeDone || []).includes(c.key) || claudeRosterBusy.has(c.key)) continue;
+    claudeRosterBusy.add(c.key);
+    const rec = Object.assign({}, r, c.set || {}, { claudeDone: (r.claudeDone || []).concat(c.key) });
+    st.roster[id] = rec; write('roster/' + id, rec).then(() => toast(c.toast || 'Roster updated'));
+  }
 }
 
 /* ---------------- attendance notes ---------------- */
@@ -2059,7 +2074,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=adbfd3c419', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=f167121364', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
