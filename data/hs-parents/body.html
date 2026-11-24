@@ -10,8 +10,8 @@
   <a class="socard" id="soCard" href="#signoff">
     <span class="kicker">Start of season · 2026–2027</span>
     <b>Honor code sign-off</b>
-    <span class="sotext">Read the key rules, take a quick check, sign up to volunteer or donate, and sign. Wrestler and parent, about 15 minutes.</span>
-    <span class="progress"><span class="bar"><i id="soBar"></i></span><b id="soText">0 of 4 steps</b></span>
+    <span class="sotext">Read the key rules, volunteer or donate, and sign. Wrestler and parent, about 15 minutes.</span>
+    <span class="progress"><span class="bar"><i id="soBar"></i></span><b id="soText">0 of 3 steps</b></span>
     <span class="btn" id="soBtn">Start</span>
   </a>
   <a class="sosmall" id="soSmall" href="#signoff" hidden><span>✓</span> Honor code sign-off complete. Thank you! <u>View</u></a>
@@ -289,12 +289,11 @@
   <div class="sheet-body">
   <div class="sodone" id="soDone" hidden><b>You’re all set. Thank you!</b><span>Your sign-off is complete.</span><a class="btn dark" href="#" id="soBack">Back to the family page</a></div>
   <div id="checklist">
-  <p class="lead">Four steps for the wrestler and a parent to do together. About 15 minutes.</p>
+  <p class="lead">Three steps for the wrestler and a parent to do together. About 15 minutes.</p>
   <div class="card">
-    <div class="progress"><div class="bar"><i id="pbar"></i></div><b id="ptext">0 of 4 done</b></div>
+    <div class="progress"><div class="bar"><i id="pbar"></i></div><b id="ptext">0 of 3 done</b></div>
     <ul class="checks" id="checks">
       <li><input type="checkbox" id="c2"><label for="c2"><span class="t">Read the honor code together</span><span class="s">The key rules, together.</span></label><a class="go" href="#read" data-go="read">Go ›</a></li>
-      <li><input type="checkbox" id="c3"><label for="c3"><span class="t">Pass the quick check together</span><span class="s">Six questions. This checks itself off when you finish.</span></label><a class="go" href="#check" data-go="check">Go ›</a></li>
       <li><input type="checkbox" id="c6"><label for="c6"><span class="t">Volunteer or donate</span><span class="s">One shift or food donation per family, by Jan. 20. Do this before you sign.</span></label><a class="go" href="#volstep" data-go="volstep">Go ›</a></li>
       <li><input type="checkbox" id="c4"><label for="c4"><span class="t">Sign the honor code</span><span class="s">Wrestler and parent sign in one form.</span></label><a class="go" href="#sign" data-go="sign">Go ›</a></li>
     </ul>
@@ -532,14 +531,19 @@ Appointments scheduled during practice are not excused; emergencies are evaluate
   </div>
 
   <div class="card" id="check">
-    <div class="steps-head"><span class="num">2</span><h3>Quick check</h3></div>
-    <div class="qscore"><span>Answer together. Keep going until each one is right.</span><span id="qcount">0 of 6</span></div>
-    <div id="quiz"></div>
-    <div class="qdone" id="qdone" hidden>All six right. Next, volunteer or donate.</div>
+    <h3>Questions families ask most</h3>
+    <div class="qas">
+      <div class="qa"><b>Your son is too ill to attend school. What has to happen?</b><p><strong>He texts Coach Provini before 2:00 p.m.</strong> A quick text lets the coaches know he’s taken care of and plan practice without him.</p></div>
+      <div class="qa"><b>Your son needs a dentist appointment. When should it be?</b><p><strong>Outside of practice when you can, so he doesn’t miss training.</strong> We know family schedules are busy. You have the practice schedule, so please book around it when you can. Appointments during practice aren’t excused, but emergencies are always handled case by case.</p></div>
+      <div class="qa"><b>He isn’t on weight when the bus leaves for an away competition. What happens?</b><p><strong>He sits out that day’s competition.</strong> Weight has to be made before the bus leaves. The coaches help every wrestler plan ahead, and healthy habits at home make a big difference.</p></div>
+      <div class="qa"><b>He gets hurt at practice. Who should be told?</b><p><strong>The coaches and the athletic trainer, right away.</strong> That way he gets the right care. Our athletic trainers work with the best sports doctors and can get appointments quickly.</p></div>
+      <div class="qa"><b>After an away dual meet, can he ride home with you instead of the bus?</b><p><strong>He rides the bus, unless it’s an emergency or arranged ahead of time.</strong> The team travels to and from dual meets together. If something comes up, talk to Coach Provini ahead of time. The release form is only for individual tournaments.</p></div>
+      <div class="qa"><b>It’s July, and he’s invited to a party where alcohol is being given to minors. Can he go?</b><p><strong>No. The honor code applies all year.</strong> We want our wrestlers safe all year, not just in season. Athletes may not attend events where drugs or alcohol are being given to minors.</p></div>
+    </div>
   </div>
 
   <div class="card" id="volstep">
-    <div class="steps-head"><span class="num">3</span><h3>Volunteer or donate</h3></div>
+    <div class="steps-head"><span class="num">2</span><h3>Volunteer or donate</h3></div>
     <p><b>Each wrestling family does one of these by the last home match, Wed., Jan. 20.</b> Families with more than one wrestler do it once. Any family member or friend can cover a shift.</p>
     <ul class="dots">
       <li><b>Work 1 snack stand shift</b> at a home match, or</li>
@@ -554,9 +558,9 @@ Appointments scheduled during practice are not excused; emergencies are evaluate
   </div>
 
   <div class="card" id="sign">
-    <div class="steps-head"><span class="num">4</span><h3>Sign the honor code</h3></div>
+    <div class="steps-head"><span class="num">3</span><h3>Sign the honor code</h3></div>
     <p>The wrestler and a parent sign together in one short form. It also asks for each parent’s phone and email.</p>
-    <a class="btn" id="signBtn" href="https://docs.google.com/forms/d/e/1FAIpQLSeoJyTsRPvIuhGEEXNUzEcYQXY8T9U_YviPiYmyhd3h7q5R_w/viewform" target="_blank" rel="noopener" aria-disabled="true">Finish the quick check first</a>
+    <a class="btn" id="signBtn" href="https://docs.google.com/forms/d/e/1FAIpQLSeoJyTsRPvIuhGEEXNUzEcYQXY8T9U_YviPiYmyhd3h7q5R_w/viewform" target="_blank" rel="noopener" aria-disabled="true">Read the key rules first</a>
     <p class="note" id="signNote"></p>
     <button class="btn ghost" type="button" id="submittedBtn" style="margin-top:12px" hidden>We submitted the form</button>
   </div>

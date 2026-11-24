@@ -157,6 +157,12 @@ body.viewing .hsp .topic.active{margin-top:8px}
 .hsp footer .home-link{display:block;margin-top:8px;color:inherit;font-weight:700}
 .hsp .qscore{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:14px;color:var(--ink-2);margin-bottom:4px}
 .hsp #qcount{white-space:nowrap;flex:none;margin-left:12px}
+.hsp .qas{display:grid;gap:12px;margin-top:10px}
+.hsp .qa{border-top:1px solid var(--line);padding-top:12px}
+.hsp .qa:first-child{border-top:0;padding-top:0}
+.hsp .qa b{display:block;margin-bottom:4px}
+.hsp .qa p{margin:0;color:var(--ink-2)}
+.hsp .qa strong{color:var(--ink)}
 .hsp .qdone{background:var(--green-soft);color:#0f4f39;border-radius:12px;padding:12px 14px;font-weight:700;margin-top:4px}
 .hsp .code.full{margin-top:18px;padding-top:16px;border-top:2px solid var(--line)}
 .hsp .code.full > h3{margin:0 0 4px}

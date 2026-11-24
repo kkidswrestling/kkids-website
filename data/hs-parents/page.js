@@ -10,7 +10,7 @@
     get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
   };
-  const CK = "kk-family-checks-2627", QK = "kk-family-quiz-2627-v2";
+  const CK = "kk-family-checks-2627";
 
   // ---------- Checklist ----------
   const boxes = [...document.querySelectorAll("#checks input")];
@@ -86,76 +86,20 @@
     b.checked = v; const s = store.get(CK) || {}; s[id] = v; store.set(CK, s); paint();
   }
   $("#readBtn").addEventListener("click", () => {
-    setCheck("c2", true);
-    const t = $("#check"); sheet.scrollTo({top: t.offsetTop - 70, behavior: "instant"});
+    setCheck("c2", true); update();
+    const t = $("#volstep"); sheet.scrollTo({top: t.offsetTop - 70, behavior: "instant"});
   });
   syncSheet();
 
-  // ---------- Quick check ----------
-  const Q = [
-    {q: "Your son is too ill to attend school. What has to happen?",
-     o: ["Nothing. Missing school covers it.", "You email the athletic office.", "He texts Coach Provini before 2:00 p.m."], a: 2,
-     why: "A quick text before 2:00 lets the coaches know he’s taken care of and plan practice without him."},
-    {q: "Your son needs a dentist appointment. When is the best time to book it?",
-     o: ["During practice. Appointments count as excused.", "Outside of practice when you can, so he doesn’t miss training.", "Whenever is easiest. Practice is flexible."], a: 1,
-     why: "We know family schedules are busy. You have the practice schedule, so please book around it when you can. Appointments during practice aren’t excused, but emergencies are always handled case by case."},
-    {q: "He isn’t on weight when the bus leaves for an away competition. What happens?",
-     o: ["He weighs in again when the team gets there.", "He sits out that day’s competition.", "He moves up a weight class."], a: 1,
-     why: "Weight has to be made before the bus leaves. It’s a tough lesson when it happens, so the coaches help every wrestler plan ahead, and healthy habits at home make a big difference."},
-    {q: "He gets hurt at practice. Who should be told?",
-     o: ["Nobody, unless it still hurts tomorrow.", "The coaches and the athletic trainer, right away.", "Just his teammates."], a: 1,
-     why: "Tell us right away so he gets the right care. Our athletic trainers work with the best sports doctors and can get appointments quickly."},
-    {q: "After an away dual meet, can he ride home with you instead of the bus?",
-     o: ["Yes, if you tell a coach that night.", "Yes, if you sign a release form.", "He rides the bus, unless it’s an emergency or arranged ahead of time."], a: 2,
-     why: "The team travels to and from dual meets together. If something comes up, talk to Coach Provini ahead of time. The release form is only for individual tournaments."},
-    {q: "It’s July, and he’s invited to a party where alcohol is being given to minors. Can he go?",
-     o: ["Yes. The honor code only applies during the season.", "Yes, as long as he doesn’t drink.", "No. The honor code applies all year."], a: 2,
-     why: "We want our wrestlers safe all year, not just in season. Athletes may not attend events where drugs or alcohol are being given to minors."}
-  ];
-  const done = new Set(store.get(QK) || []);
-  const quiz = $("#quiz");
-  Q.forEach((item, i) => {
-    const wrap = document.createElement("div");
-    wrap.className = "q";
-    wrap.innerHTML = '<p class="p"><small>Question ' + (i + 1) + ' of ' + Q.length + '</small></p><div class="opts"></div><p class="fb" role="status" hidden></p>';
-    wrap.querySelector(".p").append(item.q);
-    const opts = wrap.querySelector(".opts"), fb = wrap.querySelector(".fb");
-    item.o.forEach((text, j) => {
-      const b = document.createElement("button");
-      b.type = "button"; b.className = "opt"; b.textContent = text;
-      b.addEventListener("click", () => {
-        if (j === item.a) {
-          b.classList.add("right"); wrap.classList.add("done");
-          fb.hidden = false; fb.className = "fb ok"; fb.textContent = "Right. " + item.why;
-          done.add(i); store.set(QK, [...done]); update();
-        } else {
-          b.classList.add("wrong");
-          fb.hidden = false; fb.className = "fb no"; fb.textContent = "Not quite. Try another answer.";
-        }
-      });
-      opts.append(b);
-    });
-    if (done.has(i)) {
-      opts.children[item.a].classList.add("right"); wrap.classList.add("done");
-      fb.hidden = false; fb.className = "fb ok"; fb.textContent = "Right. " + item.why;
-    }
-    quiz.append(wrap);
-  });
   function update() {
-    $("#qcount").textContent = done.size + " of " + Q.length;
-    const all = done.size === Q.length;
-    $("#qdone").hidden = !all;
+    const all = $("#c2").checked;
     const vol = $("#c6").checked;
     $("#volDone").checked = vol;
     const sb = $("#signBtn");
     const ready = all && vol;
     sb.setAttribute("aria-disabled", ready ? "false" : "true");
-    sb.textContent = !all ? "Finish the quick check first" : !vol ? "Volunteer or donate first" : "Open the sign-off form";
+    sb.textContent = !all ? "Read the key rules first" : !vol ? "Volunteer or donate first" : "Open the sign-off form";
     $("#submittedBtn").hidden = !(ready && (opened || $("#c4").checked));
-    if (all) {
-      const c3 = $("#c3");
-      if (!c3.checked) { c3.checked = true; const s = store.get(CK) || {}; s.c3 = true; store.set(CK, s); paint(); }
-    }
   }
   let opened = false;
   $("#signBtn").addEventListener("click", () => { opened = true; setTimeout(update, 300); });
@@ -164,6 +108,7 @@
     sheet.scrollTo({top: 0, behavior: "instant"});
   });
   $("#c4").addEventListener("change", update);
+  $("#c2").addEventListener("change", update);
   $("#volDone").addEventListener("change", e => {
     const c6 = $("#c6"); c6.checked = e.target.checked;
     const s = store.get(CK) || {}; s.c6 = c6.checked; store.set(CK, s); paint(); update();
