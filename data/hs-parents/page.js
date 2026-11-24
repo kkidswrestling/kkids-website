@@ -85,35 +85,37 @@
     const b = $("#" + id); if (b.checked === v) return;
     b.checked = v; const s = store.get(CK) || {}; s[id] = v; store.set(CK, s); paint();
   }
-  $("#readBtn").addEventListener("click", () => {
-    setCheck("c2", true); update();
-    const t = $("#volstep"); sheet.scrollTo({top: t.offsetTop - 70, behavior: "instant"});
+  // Each step ends with its own box, kept in step with the checklist at the top.
+  [["readDone", "c2"], ["volDone", "c6"], ["signDone", "c4"]].forEach(([box, ck]) => {
+    $("#" + box).addEventListener("change", e => { setCheck(ck, e.target.checked); update(); });
+  });
+  const openAll = $("#openAll");
+  const secs = [...document.querySelectorAll(".code.full details")];
+  openAll.addEventListener("click", () => {
+    const open = !secs.every(d => d.open);
+    secs.forEach(d => d.open = open);
+    openAll.textContent = (open ? "Close all " : "Open all ") + secs.length + " sections";
   });
   syncSheet();
 
   function update() {
-    const all = $("#c2").checked;
-    const vol = $("#c6").checked;
-    $("#volDone").checked = vol;
+    const read = $("#c2").checked, vol = $("#c6").checked, signed = $("#c4").checked;
+    [["readDone", "readBox", read], ["volDone", "volBox", vol], ["signDone", "signBox", signed]].forEach(([box, wrap, on]) => {
+      $("#" + box).checked = on;
+      $("#" + wrap).classList.toggle("done", on);
+    });
+    $("#readBox small").textContent = read ? "✓ Step 1 done" : "Check this box to finish step 1.";
+    $("#volBox small").textContent = vol ? "✓ Step 2 done" : "Check this box to finish step 2.";
+    $("#signBox small").textContent = signed ? "✓ Step 3 done. Thank you!" : "Check this box after you tap Submit on the form.";
+    const ready = read && vol;
     const sb = $("#signBtn");
-    const ready = all && vol;
     sb.setAttribute("aria-disabled", ready ? "false" : "true");
-    sb.textContent = !all ? "Read the key rules first" : !vol ? "Volunteer or donate first" : "Open the sign-off form";
-    $("#submittedBtn").hidden = !(ready && (opened || $("#c4").checked));
+    sb.textContent = ready ? "Open the sign-off form" : !read && !vol ? "Finish steps 1 and 2 first" : !read ? "Finish step 1 first" : "Finish step 2 first";
+    $("#signNote").textContent = ready ? "The form opens in a new tab. Come back to this page when you’re done."
+      : "This button unlocks when the boxes at the end of steps 1 and 2 are checked.";
+    $("#signBox").hidden = !(ready || signed);
   }
-  let opened = false;
-  $("#signBtn").addEventListener("click", () => { opened = true; setTimeout(update, 300); });
-  $("#submittedBtn").addEventListener("click", () => {
-    setCheck("c4", true); update();
-    sheet.scrollTo({top: 0, behavior: "instant"});
-  });
-  $("#c4").addEventListener("change", update);
-  $("#c2").addEventListener("change", update);
-  $("#volDone").addEventListener("change", e => {
-    const c6 = $("#c6"); c6.checked = e.target.checked;
-    const s = store.get(CK) || {}; s.c6 = c6.checked; store.set(CK, s); paint(); update();
-  });
-  $("#c6").addEventListener("change", update);
+  ["c2", "c6", "c4"].forEach(id => $("#" + id).addEventListener("change", update));
   $("#clearChecks").addEventListener("click", update);
   update();
 })();
@@ -122,6 +124,4 @@
     if (!strip) return;
     const t = new Date(); const today = t.getFullYear() + "-" + String(t.getMonth()+1).padStart(2,"0") + "-" + String(t.getDate()).padStart(2,"0");
     strip.querySelectorAll(".date").forEach(c => c.classList.toggle("past", c.dataset.end < today));
-    const next = [...strip.querySelectorAll(".date")].find(c => c.dataset.end >= today);
-    if (next && next !== strip.firstElementChild) strip.scrollLeft = next.offsetLeft - strip.firstElementChild.offsetLeft;
   })();
