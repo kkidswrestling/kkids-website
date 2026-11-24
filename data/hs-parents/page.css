@@ -94,10 +94,7 @@
 .hsp .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--on-dark);display:grid;place-items:center;font-weight:800;font-size:15px}
 .hsp .steps-head h3{margin:0}
 .hsp .fam{list-style:none;margin:0;padding:0;counter-reset:f}
-.hsp .famgroups{counter-reset:f}
-.hsp .famgroups .fam{counter-reset:none}
 .hsp .famhead{margin:20px 0 2px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blaze-ink)}
-.hsp .famgroups .famhead:first-child{margin-top:8px}
 .hsp .fam li{position:relative;padding:12px 0 12px 40px;border-top:1px solid var(--line);counter-increment:f}
 .hsp .fam li:first-child{border-top:0}
 .hsp .fam li::before{content:counter(f);position:absolute;left:0;top:12px;width:26px;height:26px;border-radius:8px;background:var(--blaze-soft);color:var(--blaze-ink);font-weight:800;font-size:14px;display:grid;place-items:center}
@@ -162,13 +159,24 @@ body.viewing .hsp .topic.active{margin-top:8px}
 .hsp .qa p{margin:0;color:var(--ink-2)}
 .hsp .qa strong{color:var(--ink)}
 .hsp .qdone{background:var(--green-soft);color:#0f4f39;border-radius:12px;padding:12px 14px;font-weight:700;margin-top:4px}
-.hsp .code.full{margin-top:10px;padding:2px 16px;border:2px solid var(--line);border-radius:12px;background:#fff}
-.hsp .part{margin:26px 0 8px}
-.hsp .part.first{margin-top:16px}
-.hsp .partlabel{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:#fff;border-radius:6px;padding:3px 8px}
-.hsp .part h4{margin:8px 0 2px;font-size:19px;line-height:1.25}
-.hsp .part p{margin:0;font-size:15px;color:var(--ink-2)}
-.hsp .part .linkbtn{margin-top:8px;font-size:15px;color:var(--blaze-ink)}
+.hsp .purpose .kicker{display:block;margin-bottom:4px}
+.hsp .purpose h3{margin:0 0 8px;font-size:22px}
+.hsp .purpose p{margin:0 0 12px;font-size:16px;line-height:1.55}
+.hsp .purpose p:last-child{margin-bottom:0}
+.hsp .codefull{margin-top:6px}
+.hsp .csec{margin-top:26px}
+.hsp .csec-h{margin:0 0 6px;padding-bottom:8px;border-bottom:3px solid var(--blaze);font-size:20px}
+.hsp .cintro{margin:10px 0 4px;font-size:15px;color:var(--ink-2)}
+.hsp .codefull .famhead{margin-top:20px}
+.hsp .fam.rules li::before{content:attr(data-n)}
+.hsp .fam.rules li{color:var(--ink);font-size:16px;line-height:1.5}
+.hsp .fam.rules li p{margin:0 0 8px}
+.hsp .fam.rules li p:last-child{margin-bottom:0}
+.hsp .fam.rules .letters{margin:2px 0 10px;padding-left:24px}
+.hsp .fam.rules .letters li{padding:3px 0;border:0;font-size:15px;color:var(--ink-2)}
+.hsp .fam.rules .letters li::before{content:none}
+.hsp .fam.rules a{color:var(--blaze-ink);font-weight:700}
+.hsp .codefull .callout{margin-top:14px}
 .hsp .stepintro{margin:6px 0 0;font-size:16px}
 .hsp .stepdone{display:flex;gap:14px;align-items:center;margin-top:20px;padding:16px;border:2px solid var(--blaze);border-radius:12px;background:var(--blaze-soft);cursor:pointer}
 .hsp .stepdone input{appearance:none;-webkit-appearance:none;flex:none;width:30px;height:30px;margin:0;border:2px solid #b9b5ad;border-radius:8px;background:#fff;display:grid;place-items:center;cursor:pointer}
@@ -180,18 +188,6 @@ body.viewing .hsp .topic.active{margin-top:8px}
 .hsp .stepdone.done small{color:var(--green);font-weight:700}
 .hsp .signwait{margin:8px 0 0}
 .hsp .sub{margin:0 0 8px}
-.hsp .code details{border-top:1px solid var(--line)}
-.hsp .code details:first-of-type{border-top:0}
-.hsp .code summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;font-weight:800;cursor:pointer}
-.hsp .code summary::-webkit-details-marker{display:none}
-.hsp .code summary::after{content:"";flex:none;width:10px;height:10px;border:solid var(--ink-2);border-width:0 2.5px 2.5px 0;transform:rotate(45deg);margin-right:4px;transition:transform .2s}
-.hsp .code details[open] summary::after{transform:rotate(-135deg)}
-.hsp .code .body{padding:0 0 14px;font-size:15px}
-.hsp .code .body h3{font-size:16px;margin:16px 0 6px}
-.hsp .code .body p{margin:0 0 10px}
-.hsp .code .body ol{margin:0 0 10px;padding-left:28px}
-.hsp .code .body li{margin:0 0 8px}
-.hsp .code .body ol ol{margin-top:6px;list-style-type:lower-alpha}
 .hsp .tbl{width:100%;border-collapse:collapse;font-size:15px}
 .hsp .tbl th,.hsp .tbl td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 .hsp .tbl th{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}

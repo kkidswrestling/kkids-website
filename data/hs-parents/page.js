@@ -89,13 +89,6 @@
   [["readDone", "c2"], ["volDone", "c6"], ["signDone", "c4"]].forEach(([box, ck]) => {
     $("#" + box).addEventListener("change", e => { setCheck(ck, e.target.checked); update(); });
   });
-  const openAll = $("#openAll");
-  const secs = [...document.querySelectorAll(".code.full details")];
-  openAll.addEventListener("click", () => {
-    const open = !secs.every(d => d.open);
-    secs.forEach(d => d.open = open);
-    openAll.textContent = (open ? "Close all " : "Open all ") + secs.length + " sections";
-  });
   syncSheet();
 
   function update() {
