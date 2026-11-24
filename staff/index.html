@@ -1362,12 +1362,13 @@ function leaderData() {
       for (const [d, day] of Object.entries(log)) { const v = day[k]; if (!v) continue; const reps = parseFloat(v.r); if (!(reps > 0)) continue;
         const bw = weightOf(d, id) || +((lastWeight(id, d) || {}).w || 0) || parseFloat((st.roster[id] || {}).wt) || 0; if (!bw) continue;
         const add = parseFloat(v.w) || 0; const bwLift = k === 'chin' || k === 'dip'; if (!bwLift && !(add > 0)) continue;
-        const ratio = add / bw; if (!top || ratio > top.ratio || (ratio === top.ratio && reps > +top.r)) top = { id, ratio, w: v.w, r: v.r, d, bwLift }; }
+        const ratio = add / bw; if (!top || ratio > top.ratio || (ratio === top.ratio && reps > +top.r)) top = { id, ratio, w: v.w, r: v.r, d, bwLift, bw }; }
       if (top) best.push(top); }
     return { k, name, top: best.sort((a, b) => b.ratio - a.ratio || (+b.r) - (+a.r)).slice(0, 3) };
   });
   return { stand, ds, lastD, latest, prs, lifts };
 }
+function liftDetail(t) { const w = parseFloat(t.w) || 0, bw = Math.round(t.bw); return (t.bwLift ? (w > 0 ? `+${w} lbs × ${t.r} reps` : `${t.r} reps`) : `${w} lbs × ${t.r} reps`) + ` · weighed ${bw}`; }
 function liftVal(t) { return t.ratio > 0 ? `${t.ratio.toFixed(2)}× body weight` : `Body weight × ${esc(t.r)}`; }
 function viewLeaders() {
   const L = leaderData();
@@ -1378,7 +1379,7 @@ function viewLeaders() {
     L.stand.forEach((x, i) => { if (i === 15) h += '<tr class="ldcut"><td colspan="5">Shared image stops here (top 15)</td></tr>'; h += `<tr class="${x.rank <= 3 ? 'ldtop' : ''}"><td>${x.rank}</td><td><a href="#w-${x.id}">${esc(rosterName(x.id))}</a></td><td class="num"><b>${x.pts}</b></td><td class="num">${x.n}</td><td class="num">${x.prs || ''}</td></tr>`; });
     h += '</tbody></table></div>'; }
   if (L.lastD) { const pts = cfPointsFor(L.lastD); h += `<h2 class="sect">Latest: ${esc(cfName(L.lastD))} · ${esc(short(L.lastD))}</h2><div class="ldpod">` + L.latest.map((r, i) => `<div class="card pad"><span class="ldn">${i + 1}</span><b>${esc(rosterName(r.id))}</b><span class="muted">${esc(r.t)} · ${pts[r.id] ? pts[r.id].pts : 0} pts${pts[r.id] && pts[r.id].pr ? ' (PR)' : ''}</span></div>`).join('') + '</div>'; }
-  h += '<h2 class="sect">Lift leaders · pound for pound</h2><div class="ldgrid">' + L.lifts.map(l => `<div class="card pad"><h3>${esc(l.name)}</h3>${l.top.length ? '<ol>' + l.top.map(t => `<li><b>${esc(rosterName(t.id))}</b><span>${liftVal(t)}</span><small class="muted">${esc((t.w || 'BW') + ' × ' + t.r)} on ${esc(short(t.d))}</small></li>`).join('') + '</ol>' : '<p class="muted">No sets with a body weight yet.</p>'}</div>`).join('') +
+  h += '<h2 class="sect">Lift leaders · pound for pound</h2><div class="ldgrid">' + L.lifts.map(l => `<div class="card pad"><h3>${esc(l.name)}</h3>${l.top.length ? '<ol>' + l.top.map(t => `<li><b>${esc(rosterName(t.id))}</b><span>${liftVal(t)}</span><small class="muted">${esc(liftDetail(t))} · ${esc(short(t.d))}</small></li>`).join('') + '</ol>' : '<p class="muted">No sets with a body weight yet.</p>'}</div>`).join('') +
     `<div class="card pad"><h3>Most CrossFit PRs</h3>${L.prs.length ? '<ol>' + L.prs.map(x => `<li><b>${esc(rosterName(x.id))}</b><span>${x.prs} PR${x.prs > 1 ? 's' : ''}</span></li>`).join('') + '</ol>' : '<p class="muted">No PRs yet.</p>'}</div></div>`;
   h += `<div class="card pad ldhow"><h3>How points work</h3><p>Every CrossFit, full finishers get 100 points for 1st down to 10 for last, spaced evenly. Modified finishers get 9, 8, 7… down to 1, always below the last full finisher. Absent = 0. Ties share. Beat your last full score on the same workout, or finish it full for the first time after doing it modified: +${PR_BONUS}. The standings add up every CrossFit, so showing up matters. Lifts: the heaviest weight he has used this season divided by his body weight that day (weigh-in, else his last one). Chin-ups and dips: added weight divided by body weight. Ties go to more reps.</p></div>`;
   return h;
@@ -1395,30 +1396,31 @@ async function shareBoard() {
   g.fillStyle = '#b9b5ae'; g.font = `500 30px ${B}`; g.fillText('Konkrete Kids Wrestling · ' + (L.lastD ? 'through ' + short(L.lastD) : '2026–27'), 202, 162);
   const label = (t, y) => { g.fillStyle = OR; g.font = `800 34px ${D}`; g.fillText(t.toUpperCase(), 56, y); g.fillStyle = '#34363a'; g.fillRect(56, y + 14, W - 112, 2); };
   const fit = (t, max, font) => { g.font = font; if (g.measureText(t).width <= max) return t; while (t.length > 3 && g.measureText(t + '…').width > max) t = t.slice(0, -1); return t + '…'; };
-  let y = 240; label('CrossFit standings', y); y += 36;
-  const top = L.stand.slice(0, 15); const rowH = 46;
+  let y = 214; label('CrossFit standings', y); y += 32;
+  const top = L.stand.slice(0, 15); const rowH = 37;
   if (!top.length) { g.fillStyle = '#b9b5ae'; g.font = `500 30px ${B}`; g.fillText('No CrossFit scores yet.', 56, y + 40); y += 80; }
   top.forEach((x, i) => { const ry = y + i * rowH;
-    if (x.rank <= 3) { g.fillStyle = x.rank === 1 ? 'rgba(226,87,15,.28)' : 'rgba(226,87,15,.13)'; g.fillRect(48, ry, W - 96, rowH - 6); }
-    g.fillStyle = x.rank <= 3 ? OR : '#8a867f'; g.font = `800 32px ${D}`; g.textAlign = 'right'; g.fillText(String(x.rank), 112, ry + 32);
-    g.textAlign = 'left'; g.fillStyle = '#fff'; const nf = `${x.rank <= 3 ? 700 : 600} 31px ${B}`; g.fillText(fit(rosterName(x.id), 680, nf), 140, ry + 32);
-    g.textAlign = 'right'; g.font = `800 34px ${D}`; g.fillStyle = '#fff'; g.fillText(String(x.pts), W - 64, ry + 32); g.textAlign = 'left'; });
-  y += Math.max(top.length, 1) * rowH + 62;
+    if (x.rank <= 3) { g.fillStyle = x.rank === 1 ? 'rgba(226,87,15,.28)' : 'rgba(226,87,15,.13)'; g.fillRect(48, ry, W - 96, rowH - 5); }
+    g.fillStyle = x.rank <= 3 ? OR : '#8a867f'; g.font = `800 28px ${D}`; g.textAlign = 'right'; g.fillText(String(x.rank), 112, ry + 26);
+    g.textAlign = 'left'; g.fillStyle = '#fff'; const nf = `${x.rank <= 3 ? 700 : 600} 26px ${B}`; g.fillText(fit(rosterName(x.id), 680, nf), 140, ry + 26);
+    g.textAlign = 'right'; g.font = `800 29px ${D}`; g.fillStyle = '#fff'; g.fillText(String(x.pts), W - 64, ry + 26); g.textAlign = 'left'; });
+  y += Math.max(top.length, 1) * rowH + 52;
   if (L.lastD) { label('Latest · ' + cfName(L.lastD) + ' · ' + short(L.lastD), y); y += 40; const cw = (W - 112 - 40) / 3;
-    L.latest.forEach((r, i) => { const x0 = 56 + i * (cw + 20); g.fillStyle = '#222427'; g.fillRect(x0, y, cw, 120); g.fillStyle = OR; g.fillRect(x0, y, cw, 6);
-      g.fillStyle = OR; g.font = `800 40px ${D}`; g.fillText(String(i + 1), x0 + 18, y + 58); g.fillStyle = '#fff'; g.fillText(fit(r.t, cw - 80, `800 40px ${D}`), x0 + 60, y + 58);
-      g.fillStyle = '#d9d5ce'; g.fillText(fit(rosterName(r.id), cw - 36, `600 26px ${B}`), x0 + 18, y + 98); });
-    y += 190; }
-  label('Lift leaders · pound for pound', y); y += 40;
-  const cards = L.lifts.map(l => ({ title: l.name, rows: l.top.map(t => [rosterName(t.id), t.ratio > 0 ? t.ratio.toFixed(2) + '×' : 'BW × ' + t.r, t.ratio + '|' + t.r]) })).concat([{ title: 'Most CrossFit PRs', rows: L.prs.map(x => [rosterName(x.id), String(x.prs)]) }]);
-  const cw2 = (W - 112 - 24) / 2, chh = Math.min(200, Math.floor((H - 104 - y - 2 * 18) / 3));
-  cards.forEach((cd, i) => { const x0 = 56 + (i % 2) * (cw2 + 24), y0 = y + Math.floor(i / 2) * (chh + 18);
-    g.fillStyle = '#222427'; g.fillRect(x0, y0, cw2, chh); g.fillStyle = OR; g.font = `800 30px ${D}`; g.fillText(cd.title.toUpperCase(), x0 + 20, y0 + 42);
+    L.latest.forEach((r, i) => { const x0 = 56 + i * (cw + 20); g.fillStyle = '#222427'; g.fillRect(x0, y, cw, 90); g.fillStyle = OR; g.fillRect(x0, y, cw, 6);
+      g.fillStyle = OR; g.font = `800 36px ${D}`; g.fillText(String(i + 1), x0 + 18, y + 46); g.fillStyle = '#fff'; g.fillText(fit(r.t, cw - 80, `800 36px ${D}`), x0 + 58, y + 46);
+      g.fillStyle = '#d9d5ce'; g.fillText(fit(rosterName(r.id), cw - 36, `600 25px ${B}`), x0 + 18, y + 78); });
+    y += 140; }
+  label('Lift leaders · weight lifted ÷ body weight', y); y += 36;
+  const cards = L.lifts.map(l => ({ title: l.name, rows: l.top.map(t => [rosterName(t.id), t.ratio > 0 ? t.ratio.toFixed(2) + '×' : 'BW × ' + t.r, t.ratio + '|' + t.r, liftDetail(t)]) })).concat([{ title: 'Most CrossFit PRs', rows: L.prs.map(x => [rosterName(x.id), String(x.prs)]) }]);
+  const cw2 = (W - 112 - 24) / 2, chh = Math.min(266, Math.floor((H - 64 - y - 2 * 16) / 3));
+  cards.forEach((cd, i) => { const x0 = 56 + (i % 2) * (cw2 + 24), y0 = y + Math.floor(i / 2) * (chh + 16);
+    g.fillStyle = '#222427'; g.fillRect(x0, y0, cw2, chh); g.fillStyle = OR; g.font = `800 30px ${D}`; g.fillText(cd.title.toUpperCase(), x0 + 20, y0 + 40);
     if (!cd.rows.length) { g.fillStyle = '#8a867f'; g.font = `500 24px ${B}`; g.fillText('No entries yet', x0 + 20, y0 + 86); }
-    const lh = Math.min(44, (chh - 60) / 3);
-    cd.rows.forEach((r, j) => { const ry = y0 + 60 + (j + 1) * lh - 8; const rk = cd.rows.findIndex(q => (q[2] ?? q[1]) === (r[2] ?? r[1])) + 1; g.fillStyle = rk === 1 ? OR : '#8a867f'; g.font = `800 28px ${D}`; g.fillText(String(rk), x0 + 20, ry);
-      g.fillStyle = '#fff'; g.fillText(fit(r[0], cw2 - 170, `600 26px ${B}`), x0 + 52, ry); g.textAlign = 'right'; g.font = `800 30px ${D}`; g.fillText(r[1], x0 + cw2 - 20, ry); g.textAlign = 'left'; }); });
-  g.fillStyle = '#8a867f'; g.font = `500 22px ${B}`; g.fillText(`CrossFit points: 100 for 1st down to 10 for last · modified 9 to 1 · beat your last score +${PR_BONUS}`, 56, H - 58); g.fillText('Lifts: heaviest weight used ÷ body weight · chin-up and dip: added weight ÷ body weight', 56, H - 26);
+    const two = cd.rows.some(r => r[3]); const lh = two ? (chh - 56) / 3 : Math.min(44, (chh - 60) / 3);
+    cd.rows.forEach((r, j) => { const ry = two ? y0 + 54 + j * lh + 30 : y0 + 60 + (j + 1) * lh - 8; const rk = cd.rows.findIndex(q => (q[2] ?? q[1]) === (r[2] ?? r[1])) + 1; g.fillStyle = rk === 1 ? OR : '#8a867f'; g.font = `800 28px ${D}`; g.fillText(String(rk), x0 + 20, ry);
+      g.fillStyle = '#fff'; g.fillText(fit(r[0], cw2 - 170, `600 26px ${B}`), x0 + 52, ry); g.textAlign = 'right'; g.font = `800 30px ${D}`; g.fillText(r[1], x0 + cw2 - 20, ry); g.textAlign = 'left';
+      if (r[3]) { g.fillStyle = '#a9a59e'; g.fillText(fit(r[3], cw2 - 72, `500 21px ${B}`), x0 + 52, ry + 27); } }); });
+  g.fillStyle = '#8a867f'; g.font = `500 22px ${B}`; g.fillText(`CrossFit points: 100 for 1st down to 10 for last · modified 9 to 1 · beat your last score +${PR_BONUS}`, 56, H - 28);
   const blob = await new Promise(r => c.toBlob(r, 'image/png')); if (!blob) { toast('Couldn’t make the image on this device.'); return; }
   const file = new File([blob], 'leaderboard-' + todayIso() + '.png', { type: 'image/png' });
   try { if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: 'Leaderboard' }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
@@ -2190,7 +2192,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=fcedfeefe2', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=bba5b0b2fc', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
