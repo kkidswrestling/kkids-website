@@ -1361,13 +1361,14 @@ function leaderData() {
     for (const id of active) { const log = (st.lifts[id] || {}).log || {}; let top = null;
       for (const [d, day] of Object.entries(log)) { const v = day[k]; if (!v) continue; const reps = parseFloat(v.r); if (!(reps > 0)) continue;
         const bw = weightOf(d, id) || +((lastWeight(id, d) || {}).w || 0) || parseFloat((st.roster[id] || {}).wt) || 0; if (!bw) continue;
-        const add = parseFloat(v.w) || 0; const load = (k === 'chin' || k === 'dip') ? bw + add : add; if (!(load > 0)) continue;
-        const ratio = load * (1 + reps / 30) / bw; if (!top || ratio > top.ratio) top = { id, ratio, w: v.w, r: v.r, d }; }
+        const add = parseFloat(v.w) || 0; const bwLift = k === 'chin' || k === 'dip'; if (!bwLift && !(add > 0)) continue;
+        const ratio = add / bw; if (!top || ratio > top.ratio || (ratio === top.ratio && reps > +top.r)) top = { id, ratio, w: v.w, r: v.r, d, bwLift }; }
       if (top) best.push(top); }
-    return { k, name, top: best.sort((a, b) => b.ratio - a.ratio).slice(0, 3) };
+    return { k, name, top: best.sort((a, b) => b.ratio - a.ratio || (+b.r) - (+a.r)).slice(0, 3) };
   });
   return { stand, ds, lastD, latest, prs, lifts };
 }
+function liftVal(t) { return t.ratio > 0 ? `${t.ratio.toFixed(2)}× body weight` : `Body weight × ${esc(t.r)}`; }
 function viewLeaders() {
   const L = leaderData();
   let h = `<div class="pagehead"><div><h1>Leaders</h1><p>CrossFit standings and lift leaders. Share the image with the team; it shows the top 15.</p></div><div class="right"><button class="btn primary" data-act="shareboard">Share image</button></div></div>`;
@@ -1377,9 +1378,9 @@ function viewLeaders() {
     L.stand.forEach((x, i) => { if (i === 15) h += '<tr class="ldcut"><td colspan="5">Shared image stops here (top 15)</td></tr>'; h += `<tr class="${x.rank <= 3 ? 'ldtop' : ''}"><td>${x.rank}</td><td><a href="#w-${x.id}">${esc(rosterName(x.id))}</a></td><td class="num"><b>${x.pts}</b></td><td class="num">${x.n}</td><td class="num">${x.prs || ''}</td></tr>`; });
     h += '</tbody></table></div>'; }
   if (L.lastD) { const pts = cfPointsFor(L.lastD); h += `<h2 class="sect">Latest: ${esc(cfName(L.lastD))} · ${esc(short(L.lastD))}</h2><div class="ldpod">` + L.latest.map((r, i) => `<div class="card pad"><span class="ldn">${i + 1}</span><b>${esc(rosterName(r.id))}</b><span class="muted">${esc(r.t)} · ${pts[r.id] ? pts[r.id].pts : 0} pts${pts[r.id] && pts[r.id].pr ? ' (PR)' : ''}</span></div>`).join('') + '</div>'; }
-  h += '<h2 class="sect">Lift leaders · pound for pound</h2><div class="ldgrid">' + L.lifts.map(l => `<div class="card pad"><h3>${esc(l.name)}</h3>${l.top.length ? '<ol>' + l.top.map(t => `<li><b>${esc(rosterName(t.id))}</b><span>${t.ratio.toFixed(2)}× body weight</span><small class="muted">${esc((t.w || 'BW') + ' × ' + t.r)} on ${esc(short(t.d))}</small></li>`).join('') + '</ol>' : '<p class="muted">No sets with a body weight yet.</p>'}</div>`).join('') +
+  h += '<h2 class="sect">Lift leaders · pound for pound</h2><div class="ldgrid">' + L.lifts.map(l => `<div class="card pad"><h3>${esc(l.name)}</h3>${l.top.length ? '<ol>' + l.top.map(t => `<li><b>${esc(rosterName(t.id))}</b><span>${liftVal(t)}</span><small class="muted">${esc((t.w || 'BW') + ' × ' + t.r)} on ${esc(short(t.d))}</small></li>`).join('') + '</ol>' : '<p class="muted">No sets with a body weight yet.</p>'}</div>`).join('') +
     `<div class="card pad"><h3>Most CrossFit PRs</h3>${L.prs.length ? '<ol>' + L.prs.map(x => `<li><b>${esc(rosterName(x.id))}</b><span>${x.prs} PR${x.prs > 1 ? 's' : ''}</span></li>`).join('') + '</ol>' : '<p class="muted">No PRs yet.</p>'}</div></div>`;
-  h += `<div class="card pad ldhow"><h3>How points work</h3><p>Every CrossFit, full finishers get 100 points for 1st down to 10 for last, spaced evenly. Modified finishers get 9, 8, 7… down to 1, always below the last full finisher. Absent = 0. Ties share. Beat your last full score on the same workout, or finish it full for the first time after doing it modified: +${PR_BONUS}. The standings add up every CrossFit, so showing up matters. Lifts: best set this season, as an estimated 1-rep max divided by body weight that day (chin-ups and dips count body weight plus added weight).</p></div>`;
+  h += `<div class="card pad ldhow"><h3>How points work</h3><p>Every CrossFit, full finishers get 100 points for 1st down to 10 for last, spaced evenly. Modified finishers get 9, 8, 7… down to 1, always below the last full finisher. Absent = 0. Ties share. Beat your last full score on the same workout, or finish it full for the first time after doing it modified: +${PR_BONUS}. The standings add up every CrossFit, so showing up matters. Lifts: the heaviest weight he has used this season divided by his body weight that day (weigh-in, else his last one). Chin-ups and dips: added weight divided by body weight. Ties go to more reps.</p></div>`;
   return h;
 }
 async function shareBoard() {
@@ -1409,15 +1410,15 @@ async function shareBoard() {
       g.fillStyle = '#d9d5ce'; g.fillText(fit(rosterName(r.id), cw - 36, `600 26px ${B}`), x0 + 18, y + 98); });
     y += 190; }
   label('Lift leaders · pound for pound', y); y += 40;
-  const cards = L.lifts.map(l => ({ title: l.name, rows: l.top.map(t => [rosterName(t.id), t.ratio.toFixed(2) + '×']) })).concat([{ title: 'Most CrossFit PRs', rows: L.prs.map(x => [rosterName(x.id), String(x.prs)]) }]);
+  const cards = L.lifts.map(l => ({ title: l.name, rows: l.top.map(t => [rosterName(t.id), t.ratio > 0 ? t.ratio.toFixed(2) + '×' : 'BW × ' + t.r, t.ratio + '|' + t.r]) })).concat([{ title: 'Most CrossFit PRs', rows: L.prs.map(x => [rosterName(x.id), String(x.prs)]) }]);
   const cw2 = (W - 112 - 24) / 2, chh = Math.min(200, Math.floor((H - 104 - y - 2 * 18) / 3));
   cards.forEach((cd, i) => { const x0 = 56 + (i % 2) * (cw2 + 24), y0 = y + Math.floor(i / 2) * (chh + 18);
     g.fillStyle = '#222427'; g.fillRect(x0, y0, cw2, chh); g.fillStyle = OR; g.font = `800 30px ${D}`; g.fillText(cd.title.toUpperCase(), x0 + 20, y0 + 42);
     if (!cd.rows.length) { g.fillStyle = '#8a867f'; g.font = `500 24px ${B}`; g.fillText('No entries yet', x0 + 20, y0 + 86); }
     const lh = Math.min(44, (chh - 60) / 3);
-    cd.rows.forEach((r, j) => { const ry = y0 + 60 + (j + 1) * lh - 8; const rk = cd.rows.findIndex(q => q[1] === r[1]) + 1; g.fillStyle = rk === 1 ? OR : '#8a867f'; g.font = `800 28px ${D}`; g.fillText(String(rk), x0 + 20, ry);
+    cd.rows.forEach((r, j) => { const ry = y0 + 60 + (j + 1) * lh - 8; const rk = cd.rows.findIndex(q => (q[2] ?? q[1]) === (r[2] ?? r[1])) + 1; g.fillStyle = rk === 1 ? OR : '#8a867f'; g.font = `800 28px ${D}`; g.fillText(String(rk), x0 + 20, ry);
       g.fillStyle = '#fff'; g.fillText(fit(r[0], cw2 - 170, `600 26px ${B}`), x0 + 52, ry); g.textAlign = 'right'; g.font = `800 30px ${D}`; g.fillText(r[1], x0 + cw2 - 20, ry); g.textAlign = 'left'; }); });
-  g.fillStyle = '#8a867f'; g.font = `500 22px ${B}`; g.fillText(`CrossFit points: 100 for 1st down to 10 for last · modified 9 to 1 · beat your last score +${PR_BONUS}`, 56, H - 58); g.fillText('Lifts: best set this season, estimated max ÷ body weight', 56, H - 26);
+  g.fillStyle = '#8a867f'; g.font = `500 22px ${B}`; g.fillText(`CrossFit points: 100 for 1st down to 10 for last · modified 9 to 1 · beat your last score +${PR_BONUS}`, 56, H - 58); g.fillText('Lifts: heaviest weight used ÷ body weight · chin-up and dip: added weight ÷ body weight', 56, H - 26);
   const blob = await new Promise(r => c.toBlob(r, 'image/png')); if (!blob) { toast('Couldn’t make the image on this device.'); return; }
   const file = new File([blob], 'leaderboard-' + todayIso() + '.png', { type: 'image/png' });
   try { if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: 'Leaderboard' }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
@@ -2189,7 +2190,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=d61b8881a4', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=fcedfeefe2', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
