@@ -559,7 +559,21 @@ function taughtNames(s) {
   }
   return out;
 }
-function plan(date, noAuto) {
+function plan(date, noAuto) { const p0 = plan0(date, noAuto); return p0 ? withCond(p0, date) : p0; }
+function withCond(p, date) {
+  const ov = st.plans[date]; if (!ov || !ov.sections || !ov.sections.cond) return p;
+  const base = dayByDate[date] && dayByDate[date].sections ? dayByDate[date].sections.cond : null;
+  if (base && JSON.stringify(base) === JSON.stringify(ov.sections.cond)) return p;
+  const line = String(((p.sections.cond || [])[0] || {}).t || ''); if (!line.trim()) return p;
+  const low = line.toLowerCase();
+  const lib = DATA.library.slice().sort((a, b) => b.name.length - a.name.length).find(l => low.includes(l.name.toLowerCase()));
+  let n = null, cf = false;
+  if (lib) { n = lib.name; cf = lib.type === 'CrossFit'; }
+  else if (/crossfit/i.test(line) || (p.clock || []).some(b => /CrossFit/i.test(b[1]))) { const clean = x => x.replace(/crossfit/ig, '').replace(/^[\s\-–—:]+|[\s\-–—:]+$/g, ''); const parts = line.split(':'); n = (clean(parts[0]) || clean(parts.slice(1).join(':')).split(/[.,;(]/)[0].trim()).slice(0, 40) || 'CrossFit'; cf = true; }
+  if (!n) return p;
+  return Object.assign({}, p, { condName: n, condCF: cf });
+}
+function plan0(date, noAuto) {
   let p = rawPlan(date); if (!p) return null;
   const ov = st.plans[date];
   if (p.kind !== 'scrimmage' && !(ov && ov.sections && ov.sections.twotwo)) {
@@ -1124,9 +1138,11 @@ function emptyRoster() { return `<div class="card empty"><h3>Add your roster fir
 /* ---------------- lifts ---------------- */
 const STATION_START = { 1: 'chin', 4: 'fsq', 6: 'press' };
 let cfSort = null, cfShow = 'all';
-function cfName(d) { return (st.cf[d] && st.cf[d].workout) || (dayByDate[d] && dayByDate[d].condName) || 'CrossFit'; }
-function cfIsCF(d) { const n = dayByDate[d] && dayByDate[d].condName; const lib = n && DATA.library.find(x => x.name === n); return !!(lib && lib.type === 'CrossFit'); }
-function cfDates() { const t = todayIso(); return [...new Set(Object.keys(dayByDate).filter(d => cfIsCF(d) && d <= t).concat(Object.keys(st.cf).filter(d => st.cf[d] && st.cf[d].times && Object.keys(st.cf[d].times).length)))].sort(); }
+function cfName(d) { const p = plan(d); return (st.cf[d] && st.cf[d].workout) || (p && p.condName) || 'CrossFit'; }
+function cfIsCF(d) { const p = plan(d); if (!p) return false; if (p.condCF) return true; const lib = p.condName && DATA.library.find(x => x.name === p.condName); return !!(lib && lib.type === 'CrossFit'); }
+let cfDatesMemo = null;
+function cfDates() { if (cfDatesMemo && Date.now() - cfDatesMemo.at < 500) return cfDatesMemo.v.slice(); const v = cfDates0(); cfDatesMemo = { at: Date.now(), v }; return v.slice(); }
+function cfDates0() { const t = todayIso(); return [...new Set(Object.keys(dayByDate).filter(d => d <= t && cfIsCF(d)).concat(Object.keys(st.cf).filter(d => st.cf[d] && st.cf[d].times && Object.keys(st.cf[d].times).length)))].sort(); }
 function cfScore(t) { t = String(t || '').trim(); let m = t.match(/^(\d+):(\d{1,2})$/); if (m) return { v: +m[1] * 60 + +m[2] }; m = t.match(/^(\d+)\s*\+\s*(\d+)$/); if (m) return { v: +m[1] * 1000 + +m[2] }; if (/^\d+(\.\d+)?$/.test(t)) return { v: +t }; return null; }
 function cfHigh(d) { const n = cfName(d); const lib = DATA.library.find(x => x.name === n); if (/AMRAP|as many/i.test(n + ' ' + (lib ? lib.desc : ''))) return true; return Object.values((st.cf[d] || {}).times || {}).some(t => /\+/.test(t)); }
 function cfMod(d, id) { return ((st.cf[d] || {}).mod || {})[id] || ''; }
@@ -1245,7 +1261,7 @@ function openLifter(id) {
 
 /* CrossFit times: one box per wrestler, saves as you go, every coach can enter at once. */
 function openCF(s) {
-  const day = dayByDate[s] || {}; const name = (st.cf[s] && st.cf[s].workout) || day.condName || 'CrossFit';
+  const name = cfName(s);
   const r = roster(); const doc0 = st.cf[s] || {}; const times = doc0.times || {}; const mod = doc0.mod || {};
   const noteOf = id => (mod[id] && mod[id] !== 'Modified') ? mod[id] : '';
   $('#layer').innerHTML = `<div class="scrim"><div class="modal lmodal" role="dialog" aria-modal="true" aria-labelledby="cft"><h2 id="cft">${esc(name)}</h2><p class="muted" style="margin:2px 0 10px">${esc(short(s))} · type m:ss (or rounds + reps). Tap <b>Mod</b> if he did a modified version. Saves as you go. Enter jumps to the next kid.</p>
@@ -1644,9 +1660,9 @@ function viewWrestler(id) {
   if (!mine.length) h += '<p class="muted">No times yet. Tap Enter times on that day’s practice plan.</p>';
   else {
     h += '<div class="card tablewrap"><table class="grid"><thead><tr><th>Date</th><th>Workout</th><th>Time</th><th>Team rank</th></tr></thead><tbody>';
-    for (const d of mine) { const rows = cfRows(d); const rk = rows.findIndex(r => r.id === id) + 1; const wk = (st.cf[d].workout) || (dayByDate[d] && dayByDate[d].condName) || ''; h += `<tr><td><a href="#day-${d}">${esc(short(d))}</a></td><td>${esc(wk)}</td><td class="num"><b>${esc(st.cf[d].times[id])}${cfMod(d, id) ? '*' : ''}</b></td><td class="num">${rk} of ${rows.length}</td></tr>`; }
+    for (const d of mine) { const rows = cfRows(d); const rk = rows.findIndex(r => r.id === id) + 1; const wk = cfName(d); h += `<tr><td><a href="#day-${d}">${esc(short(d))}</a></td><td>${esc(wk)}</td><td class="num"><b>${esc(st.cf[d].times[id])}${cfMod(d, id) ? '*' : ''}</b></td><td class="num">${rk} of ${rows.length}</td></tr>`; }
     h += '</tbody></table></div>';
-    const fr = mine.filter(d => /Fran/i.test((st.cf[d].workout) || (dayByDate[d] && dayByDate[d].condName) || ''));
+    const fr = mine.filter(d => /Fran/i.test(cfName(d)));
     if (fr.length > 1) { const a = secs(st.cf[fr[0]].times[id]), b = secs(st.cf[fr[fr.length - 1]].times[id]); if (a && b) h += `<p class="better">Fran: ${esc(st.cf[fr[0]].times[id])} → ${esc(st.cf[fr[fr.length - 1]].times[id])} (${a - b >= 0 ? fmt(a - b) + ' faster' : fmt(b - a) + ' slower'})</p>`; }
   }
   const rec2 = st.lifts[id] || {}; const log2 = rec2.log || {}; const lds = Object.keys(log2).sort();
@@ -2200,7 +2216,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=c107548cf2', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=52aa57085e', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
