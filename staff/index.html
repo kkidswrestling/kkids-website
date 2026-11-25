@@ -603,6 +603,13 @@ function carryMap() {
   return out;
 }
 function practiceDates() { return DATA.days.map(d => d.date); }
+function dd(d) { return dayByDate[d] || {}; }
+function eventDates() { return eventsList().map(e => e.date).filter(Boolean); }
+function evTitle(d) { const e = eventsList().find(x => x.date === d); return e ? e.title : ''; }
+function realDates(extra) { const set = new Set(practiceDates().concat(eventDates())); const t = todayIso(); set.add(t); (extra || []).forEach(d => set.add(d)); return [...set].filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d)).sort(); }
+function weighDates() { return realDates(Object.keys(st.weighins || {}).map(k => k.slice(0, 10))); }
+function attDates() { return realDates(Object.keys(st.attendance || {})); }
+function dateLabel(d) { const p = dd(d); return p.label ? ' · ' + p.label : (evTitle(d) ? ' · ' + evTitle(d) : (p.date ? '' : ' · no practice planned')); }
 function liftDates() { const set = new Set(DATA.days.filter(d => d.kind === 'lift' || d.kind === 'scrimmage').map(d => d.date)); const t = todayIso(); if (dayByDate[t]) set.add(t); for (const w of Object.values(st.lifts || {})) for (const [d, v] of Object.entries((w && w.log) || {})) if (v && Object.keys(v).length) set.add(d); return [...set].sort(); }
 function nearest(list) { const t = todayIso(); return list.find(d => d >= t) || list[list.length - 1]; }
 function roster(activeOnly = true) { return Object.entries(st.roster).map(([id, r]) => Object.assign({ id }, r)).filter(r => !activeOnly || r.active !== false).sort((a, b) => (parseFloat(a.wt) || 999) - (parseFloat(b.wt) || 999) || a.name.split(' ').slice(-1)[0].localeCompare(b.name.split(' ').slice(-1)[0])); }
@@ -1097,13 +1104,13 @@ async function makePdf(s) {
 
 /* ---------------- attendance ---------------- */
 function viewAttendance() {
-  const dates = practiceDates();
+  const dates = attDates();
   if (!selAttDate || !dates.includes(selAttDate)) selAttDate = nearest(dates);
   const s = selAttDate, r = roster();
   const marks = (st.attendance[s] && st.attendance[s].marks) || {};
   const notes = (st.attendance[s] && st.attendance[s].notes) || {};
   let h = `<div class="pagehead"><div><h1>Attendance</h1><p>Tap a button to mark each wrestler. Tap <b>+ Note</b> to write why (late, unexcused, sick...). It saves as you go.</p></div></div>`;
-  h += `<div class="toolbar"><select class="pick" id="attdate" aria-label="Practice date">${dates.map(d => `<option value="${d}" ${d === s ? 'selected' : ''}>${esc(short(d))}${dayByDate[d].label ? ' · ' + esc(dayByDate[d].label) : ''}${dayByDate[d].kind === 'lift' ? ' · Lift' : ''}</option>`).join('')}</select>`;
+  h += `<div class="toolbar"><select class="pick" id="attdate" aria-label="Practice date">${dates.map(d => `<option value="${d}" ${d === s ? 'selected' : ''}>${esc(short(d))}${esc(dateLabel(d))}${dd(d).kind === 'lift' ? ' · Lift' : ''}</option>`).join('')}</select>`;
   h += `<a class="btn" href="#day-${s}">Open plan</a>`;
   if (canEnter && r.length) h += '<button class="btn" data-act="allP">Mark everyone present</button>';
   h += '</div>';
@@ -1218,7 +1225,7 @@ function viewLifts() {
   if (!selLiftDate || !dates.includes(selLiftDate)) selLiftDate = nearest(dates);
   const s = selLiftDate, r = roster();
   let h = `<div class="pagehead"><div><h1>Lifts</h1><p>Weight and reps for each station. Green means he hit 12 last time: add weight.</p></div><div class="right"><a class="btn dark" href="#liftsheet">Lift sheet</a></div></div>`;
-  h += `<div class="toolbar"><select class="pick" id="liftdate" aria-label="Lift date">${dates.map(d => `<option value="${d}" ${d === s ? 'selected' : ''}>${esc(short(d))}${dayByDate[d].label ? ' · ' + esc(dayByDate[d].label) : ''}${FRAN_DAYS.includes(d) ? ' · Fran' : ''}</option>`).join('')}</select>`;
+  h += `<div class="toolbar"><select class="pick" id="liftdate" aria-label="Lift date">${dates.map(d => `<option value="${d}" ${d === s ? 'selected' : ''}>${esc(short(d))}${esc(dateLabel(d))}${FRAN_DAYS.includes(d) ? ' · Fran' : ''}</option>`).join('')}</select>`;
   const start = STATION_START[D(s).getDay()] || 'chin';
   const order = LIFTS.slice(LIFTS.findIndex(l => l[0] === start)).concat(LIFTS.slice(0, LIFTS.findIndex(l => l[0] === start)));
   h += `<div class="stations"><span class="muted" style="border:0;background:none;padding:0">Stations:</span>${order.map((l, i) => `<span class="${i === 0 ? 'first' : ''}">${esc(l[1])}</span>`).join('')}</div></div>`;
@@ -1851,7 +1858,7 @@ function stopRun() { clearInterval(runTimer); runTimer = null; if (wakeLock) { t
 function wKey(d, id) { return d + '_' + id; }
 function weightOf(d, id) { const x = st.weighins[wKey(d, id)]; return x && x.w !== undefined && x.w !== '' ? +x.w : null; }
 function lastWeight(id, before) { const ks = Object.values(st.weighins).filter(x => x.id === id && x.d < before && x.w !== '').sort((a, b) => a.d < b.d ? 1 : -1); return ks.length ? ks[0] : null; }
-function flagPct(d) { return dayByDate[d] && dayByDate[d].pre ? 2 : 4; }
+function flagPct(d) { return dayByDate[d] && dd(d).pre ? 2 : 4; }
 function weighStatus(x, w, d) {
   if (w === null) return { cls: '', txt: '' };
   const cls = parseFloat(x.wt), min = parseFloat(x.minWt), lim = flagPct(d || selWeighDate);
@@ -1873,11 +1880,11 @@ function dayRollover() {
 setInterval(dayRollover, 60000);
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') dayRollover(); });
 function viewWeighin() {
-  const dates = practiceDates(); const t = todayIso();
+  const dates = weighDates(); const t = todayIso();
   if (!selWeighDate) selWeighDate = dates.includes(t) ? t : nearest(dates);
   const s = selWeighDate, r = roster();
   let h = `<div class="pagehead"><div><h1>Weigh-in</h1><p>Type each weight as he steps off the scale. It saves right away, and every coach sees it within seconds. Enter jumps to the next kid.</p></div><div class="right row"><a class="btn dark" href="#weighsheet">Weigh-in history</a></div></div>`;
-  h += `<div class="toolbar"><select class="pick" id="wdate" aria-label="Weigh-in date">${dates.map(d => `<option value="${d}" ${d === s ? 'selected' : ''}>${esc(short(d))}${dayByDate[d].label ? ' · ' + esc(dayByDate[d].label) : ''}${dayByDate[d].pre ? ' · day before' : ''}</option>`).join('')}</select><input class="pick" id="wfind" placeholder="Find a wrestler" value="${esc(weighFilter)}" autocomplete="off" aria-label="Find a wrestler"></div>`;
+  h += `<div class="toolbar"><select class="pick" id="wdate" aria-label="Weigh-in date">${dates.map(d => `<option value="${d}" ${d === s ? 'selected' : ''}>${esc(short(d))}${esc(dateLabel(d))}${dd(d).pre ? ' · day before' : ''}</option>`).join('')}</select><input class="pick" id="wfind" placeholder="Find a wrestler" value="${esc(weighFilter)}" autocomplete="off" aria-label="Find a wrestler"></div>`;
   if (!r.length) return h + emptyRoster();
   const done = r.filter(x => weightOf(s, x.id) !== null);
   h += `<p class="muted" style="margin:-4px 0 12px;font-size:13px">${flagPct(s) === 2 ? '<b style="color:var(--bad)">Day before a competition:</b> flags anyone more than 2% over his class.' : 'Flags anyone more than 4% over his class. The day before a competition it flags at 2%.'} Anyone under his lowest allowed weight is always flagged.</p>`;
@@ -1916,14 +1923,15 @@ function weekPickers() {
   const opt = (v) => Array.from({ length: 17 }, (_, i) => i + 1).map(w => { const mon = addDays(DATA.start, (w - 1) * 7); return `<option value="${w}" ${w === v ? 'selected' : ''}>Week ${w} · ${esc(short(mon))}</option>`; }).join('');
   return `<label class="pl">From<select class="pick" id="sfrom">${opt(a)}</select></label><label class="pl">To<select class="pick" id="sto">${opt(b)}</select></label>`;
 }
+function r0has(d) { return Object.keys(st.weighins || {}).some(k => k.slice(0, 10) === d); }
 function datesInWeeks(list) { const [a, b] = weekRange(); return list.filter(d => weekOf(d) >= a && weekOf(d) <= b); }
 function viewWeighSheet() {
-  const ds = datesInWeeks(practiceDates()); const r = roster();
+  const ds = datesInWeeks(weighDates().filter(d => d <= todayIso() || r0has(d))); const r = roster();
   let h = `<div class="daynav"><a class="btn ghost" href="#weighin">← Weigh-in</a></div><div class="pagehead"><div><h1>Weigh-in sheet</h1><p>Every weigh-in for the weeks you pick, with the same flags as the weigh-in page.</p></div></div>`;
   h += `<div class="toolbar">${weekPickers()}<button class="btn dark" data-act="weighpdf">Download PDF</button></div>`;
   h += `<div class="legend"><span><i style="background:#e5f4e4"></i>Makes weight</span><span><i style="background:#f9eeda"></i>Over, under the line</span><span><i style="background:#fbdcda"></i>Flagged: over 4% (2% day before a competition) or below lowest allowed</span><span><i style="background:#fff;border:1px solid var(--line)"></i>Not weighed</span></div>`;
   if (!r.length) return h + emptyRoster();
-  h += '<div class="card tablewrap"><table class="grid sheet"><thead><tr><th class="sn">Wrestler</th><th>Class</th><th>Low</th>' + ds.map(d => `<th class="${dayByDate[d].pre ? 'pre' : ''}">${esc(DOW[D(d).getDay()])}<br>${D(d).getMonth() + 1}/${D(d).getDate()}${dayByDate[d].pre ? '<br><small>2%</small>' : ''}</th>`).join('') + '<th>Change</th></tr></thead><tbody>';
+  h += '<div class="card tablewrap"><table class="grid sheet"><thead><tr><th class="sn">Wrestler</th><th>Class</th><th>Low</th>' + ds.map(d => `<th class="${dd(d).pre ? 'pre' : ''}">${esc(DOW[D(d).getDay()])}<br>${D(d).getMonth() + 1}/${D(d).getDate()}${dd(d).pre ? '<br><small>2%</small>' : ''}</th>`).join('') + '<th>Change</th></tr></thead><tbody>';
   for (const x of r) {
     let first = null, last = null;
     const cells = ds.map(d => { const w = weightOf(d, x.id); if (w === null) return '<td></td>'; if (first === null) first = w; last = w; const st0 = weighStatus(x, w, d); return `<td class="c-${st0.cls || 'none'}" title="${esc(st0.txt)}">${w}</td>`; }).join('');
@@ -1971,7 +1979,7 @@ async function sheetPdf(kind) {
     doc.setTextColor(24, 25, 27); doc.setFont('helvetica', 'bold'); doc.setFontSize(8);
     let x = M; doc.text('Wrestler', x + 3, y + 12); x += nameW;
     if (isW) { doc.text('Class', x + 3, y + 12); x += 36; doc.text('Low', x + 3, y + 12); x += 36; }
-    pg.ds.forEach(d => { doc.text(pdfSafe(DOW[D(d).getDay()] + ' ' + (D(d).getMonth() + 1) + '/' + D(d).getDate() + (isW && dayByDate[d].pre ? '*' : '')), x + colW / 2, y + 12, { align: 'center' }); x += colW; });
+    pg.ds.forEach(d => { doc.text(pdfSafe(DOW[D(d).getDay()] + ' ' + (D(d).getMonth() + 1) + '/' + D(d).getDate() + (isW && dd(d).pre ? '*' : '')), x + colW / 2, y + 12, { align: 'center' }); x += colW; });
     if (isW) doc.text('Change', x + chgW / 2, y + 12, { align: 'center' });
     y += 18; doc.setDrawColor(24, 25, 27); doc.setLineWidth(1); doc.line(M, y, W - M, y);
     doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setLineWidth(0.3); doc.setDrawColor(210, 206, 199);
@@ -2221,7 +2229,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=7c2d3cec4a', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=3623203198', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
