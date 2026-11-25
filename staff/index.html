@@ -586,7 +586,7 @@ function carryMap() {
   return out;
 }
 function practiceDates() { return DATA.days.map(d => d.date); }
-function liftDates() { return DATA.days.filter(d => d.kind === 'lift' || d.kind === 'scrimmage').map(d => d.date); }
+function liftDates() { const set = new Set(DATA.days.filter(d => d.kind === 'lift' || d.kind === 'scrimmage').map(d => d.date)); const t = todayIso(); if (dayByDate[t]) set.add(t); for (const w of Object.values(st.lifts || {})) for (const [d, v] of Object.entries((w && w.log) || {})) if (v && Object.keys(v).length) set.add(d); return [...set].sort(); }
 function nearest(list) { const t = todayIso(); return list.find(d => d >= t) || list[list.length - 1]; }
 function roster(activeOnly = true) { return Object.entries(st.roster).map(([id, r]) => Object.assign({ id }, r)).filter(r => !activeOnly || r.active !== false).sort((a, b) => (parseFloat(a.wt) || 999) - (parseFloat(b.wt) || 999) || a.name.split(' ').slice(-1)[0].localeCompare(b.name.split(' ').slice(-1)[0])); }
 function summary(day) {
@@ -887,7 +887,7 @@ function viewDay(s) {
     h += '<button class="btn primary" data-act="save">Save changes</button>';
   } else {
     h += `<a class="btn" href="#attendance" data-att="${s}">Attendance</a>`;
-    if (p.kind === 'lift' || p.kind === 'scrimmage') h += `<a class="btn" href="#lifts" data-liftd="${s}">Log lifts</a>`;
+    if (p.kind === 'lift' || p.kind === 'scrimmage' || s === todayIso() || liftDates().includes(s)) h += `<a class="btn" href="#lifts" data-liftd="${s}">Log lifts</a>`;
     if (canEdit) h += '<button class="btn" data-act="edit">Edit plan</button>';
     h += '<button class="btn dark" data-act="print">Print</button><button class="btn" data-act="pdf">Download PDF</button>';
     h += `<a class="btn primary" href="#run-${s}">▶ Practice mode</a>`;
@@ -2200,7 +2200,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=bed85c13b1', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=c107548cf2', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
