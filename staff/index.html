@@ -1318,7 +1318,15 @@ function applyClaudeRoster() {
   const list = DATA.claudeRoster || []; if (!list.length || !Object.keys(st.roster).length) return;
   const key = n => String(n || '').toLowerCase().replace(/[^a-z]/g, '');
   for (const c of list) {
-    const hit = Object.entries(st.roster).find(([, r]) => key(r.name) === key(c.name)); if (!hit) continue;
+    const hit = Object.entries(st.roster).find(([, r]) => key(r.name) === key(c.name));
+    if (!hit) {
+      const nid = 'claude-' + c.key;
+      if (!c.add || st.roster[nid] || claudeRosterBusy.has(c.key) || (c.until && todayIso() > c.until)) continue;
+      claudeRosterBusy.add(c.key);
+      const rec = Object.assign({ name: c.name, wt: '', grade: '', level: '', active: true }, c.set || {}, { claudeDone: [c.key] });
+      st.roster[nid] = rec; write('roster/' + nid, rec).then(() => toast(c.toast || (c.name + ' added to the roster')));
+      continue;
+    }
     const [id, r] = hit; if ((r.claudeDone || []).includes(c.key) || claudeRosterBusy.has(c.key)) continue;
     claudeRosterBusy.add(c.key);
     const rec = Object.assign({}, r, c.set || {}, { claudeDone: (r.claudeDone || []).concat(c.key) });
@@ -2192,7 +2200,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=a73f745111', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=bed85c13b1', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
