@@ -421,6 +421,9 @@ td.c-good { background: #e5f4e4; } td.c-ok { background: #f9eeda; } td.c-bad { b
 .sync.off { background: var(--bad); color: #fff; }
 .cfin { max-height: 60vh; overflow: auto; }
 .lrowe.cf { grid-template-columns: 1fr 96px 64px; }
+.cfdir { display: flex; gap: 8px; align-items: center; margin: 0 0 12px; flex-wrap: wrap; } .cfdir span { font-size: 13px; color: var(--muted); font-weight: 700; }
+.cfdir button { flex: 1 1 0; min-width: 130px; height: 40px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font-weight: 700; font-size: 14px; color: var(--ink); cursor: pointer; }
+.cfdir button.on { background: var(--ink); border-color: var(--ink); color: #fff; }
 .modb { height: 42px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font-weight: 800; font-size: 14px; color: var(--muted); cursor: pointer; }
 .modb.on { background: #fdece1; border-color: var(--accent); color: var(--accent); }
 .modnote { width: 100%; margin: 0 0 8px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font-size: 15px; }
@@ -1144,7 +1147,7 @@ let cfDatesMemo = null;
 function cfDates() { if (cfDatesMemo && Date.now() - cfDatesMemo.at < 500) return cfDatesMemo.v.slice(); const v = cfDates0(); cfDatesMemo = { at: Date.now(), v }; return v.slice(); }
 function cfDates0() { const t = todayIso(); return [...new Set(Object.keys(dayByDate).filter(d => d <= t && cfIsCF(d)).concat(Object.keys(st.cf).filter(d => st.cf[d] && st.cf[d].times && Object.keys(st.cf[d].times).length)))].sort(); }
 function cfScore(t) { t = String(t || '').trim(); let m = t.match(/^(\d+):(\d{1,2})$/); if (m) return { v: +m[1] * 60 + +m[2] }; m = t.match(/^(\d+)\s*\+\s*(\d+)$/); if (m) return { v: +m[1] * 1000 + +m[2] }; if (/^\d+(\.\d+)?$/.test(t)) return { v: +t }; return null; }
-function cfHigh(d) { const n = cfName(d); const lib = DATA.library.find(x => x.name === n); if (/AMRAP|as many/i.test(n + ' ' + (lib ? lib.desc : ''))) return true; return Object.values((st.cf[d] || {}).times || {}).some(t => /\+/.test(t)); }
+function cfHigh(d) { const c = st.cf[d] || {}; if (c.dir) return c.dir === 'high'; const n = cfName(d); const lib = DATA.library.find(x => x.name === n); if (/AMRAP|as many|max reps|most reps|tabata/i.test(n + ' ' + (lib ? lib.desc : ''))) return true; const ts = Object.values(c.times || {}).map(t => String(t).trim()).filter(Boolean); if (ts.some(t => /\+/.test(t))) return true; return ts.length > 0 && ts.every(t => /^\d+(\.\d+)?$/.test(t)); }
 function cfMod(d, id) { return ((st.cf[d] || {}).mod || {})[id] || ''; }
 function cfBeat(d, id) {
   const t = ((st.cf[d] || {}).times || {})[id]; const sc = cfScore(t); if (!sc) return false;
@@ -1265,12 +1268,13 @@ function openCF(s) {
   const r = roster(); const doc0 = st.cf[s] || {}; const times = doc0.times || {}; const mod = doc0.mod || {};
   const noteOf = id => (mod[id] && mod[id] !== 'Modified') ? mod[id] : '';
   $('#layer').innerHTML = `<div class="scrim"><div class="modal lmodal" role="dialog" aria-modal="true" aria-labelledby="cft"><h2 id="cft">${esc(name)}</h2><p class="muted" style="margin:2px 0 10px">${esc(short(s))} · type m:ss (or rounds + reps). Tap <b>Mod</b> if he did a modified version. Saves as you go. Enter jumps to the next kid.</p>
-    <div class="cfin">${r.map(x => `<div class="cfr"><div class="lrowe cf"><div><b>${esc(x.name)}</b><small>${esc(x.wt ? 'Class ' + x.wt : '')}</small></div><input data-cft="${x.id}" value="${esc(times[x.id] || '')}" placeholder="m:ss" enterkeyhint="next" autocomplete="off" aria-label="${esc(x.name)} score"><button type="button" class="modb ${mod[x.id] ? 'on' : ''}" data-mod="${x.id}" aria-pressed="${!!mod[x.id]}">Mod</button></div><input class="modnote" data-modnote="${x.id}" value="${esc(noteOf(x.id))}" placeholder="What was modified? (e.g., reverse rows for pull-ups)" aria-label="What ${esc(x.name)} modified" ${mod[x.id] ? '' : 'hidden'}></div>`).join('')}</div>
+    <div class="cfdir" role="group" aria-label="How this workout is scored"><span>Scored by</span><button type="button" data-cfdir="low" class="${cfHigh(s) ? '' : 'on'}">Time · lower wins</button><button type="button" data-cfdir="high" class="${cfHigh(s) ? 'on' : ''}">Reps · higher wins</button></div>
+    <div class="cfin">${r.map(x => `<div class="cfr"><div class="lrowe cf"><div><b>${esc(x.name)}</b><small>${esc(x.wt ? 'Class ' + x.wt : '')}</small></div><input data-cft="${x.id}" value="${esc(times[x.id] || '')}" placeholder="${cfHigh(s) ? 'reps' : 'm:ss'}" enterkeyhint="next" autocomplete="off" aria-label="${esc(x.name)} score"><button type="button" class="modb ${mod[x.id] ? 'on' : ''}" data-mod="${x.id}" aria-pressed="${!!mod[x.id]}">Mod</button></div><input class="modnote" data-modnote="${x.id}" value="${esc(noteOf(x.id))}" placeholder="What was modified? (e.g., reverse rows for pull-ups)" aria-label="What ${esc(x.name)} modified" ${mod[x.id] ? '' : 'hidden'}></div>`).join('')}</div>
     <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="btn primary" data-close="1">Done</button></div></div></div>`;
   const L = $('#layer');
   const ins = [...L.querySelectorAll('[data-cft]')];
   ins.forEach((inp, i) => {
-    inp.onchange = () => patch('cf/' + s, [[['workout'], name], [['times', inp.dataset.cft], inp.value.trim() || null]]);
+    inp.onchange = () => { const tm = Object.assign({}, (st.cf[s] || {}).times || {}); if (inp.value.trim()) tm[inp.dataset.cft] = inp.value.trim(); else delete tm[inp.dataset.cft]; st.cf[s] = Object.assign({}, st.cf[s] || {}, { times: tm }); const hi = cfHigh(s); L.querySelectorAll('[data-cfdir]').forEach(x => x.classList.toggle('on', (x.dataset.cfdir === 'high') === hi)); patch('cf/' + s, [[['workout'], name], [['times', inp.dataset.cft], inp.value.trim() || null]]); };
     inp.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); inp.blur(); const nx = ins[i + 1]; if (nx) { nx.focus(); nx.select(); } } };
   });
   const lastNote = () => { const vals = [...L.querySelectorAll('[data-modnote]')].filter(n => !n.hidden && n.value.trim()); return vals.length ? vals[vals.length - 1].value.trim() : (Object.values(mod).filter(v => v && v !== 'Modified').pop() || ''); };
@@ -1282,6 +1286,7 @@ function openCF(s) {
     };
   });
   L.querySelectorAll('[data-modnote]').forEach(n => { n.onchange = () => { if (!n.hidden) patch('cf/' + s, [[['workout'], name], [['mod', n.dataset.modnote], n.value.trim() || 'Modified']]); }; });
+  L.querySelectorAll('[data-cfdir]').forEach(bt => { bt.onclick = () => { L.querySelectorAll('[data-cfdir]').forEach(x => x.classList.toggle('on', x === bt)); st.cf[s] = Object.assign({}, st.cf[s] || {}, { dir: bt.dataset.cfdir }); patch('cf/' + s, [[['workout'], name], [['dir'], bt.dataset.cfdir]]); toast(bt.dataset.cfdir === 'high' ? 'Higher scores rank first' : 'Faster times rank first'); }; });
   if (ins[0]) ins[0].focus();
 }
 
@@ -2216,7 +2221,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=52aa57085e', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=7c2d3cec4a', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
