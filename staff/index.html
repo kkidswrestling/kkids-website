@@ -351,6 +351,15 @@ a.btn.light { color: #fff; }
 .rclock.soon { color: #f4c542; } .rclock.over { color: #ff6b5e; } .rclock.wait { color: #c9c6c0; }
 .rctl { display: flex; gap: 10px; justify-content: center; margin: 12px 0 6px; }
 .rctl .btn { flex: 0 0 160px; min-height: 56px; padding: 0 12px; font-size: 20px; display: inline-flex; align-items: center; justify-content: center; }
+.drillbtn { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 8px 0 4px; min-height: 44px; padding: 0 14px; border-radius: 10px; background: var(--ink); color: #fff; font-weight: 800; font-size: 15px; text-decoration: none; }
+.drill .dtop { position: sticky; top: 0; z-index: 25; background: var(--black); padding: 6px 0 10px; text-align: center; }
+.drill .dtop .runtop { margin-bottom: 0; }
+.drill .dclock { font-size: clamp(64px, 18vw, 150px); }
+.drill .rctl { margin: 8px 0 0; }
+.drill .dlist { color: var(--ink); padding: 14px 16px 18px; margin-top: 4px; }
+.drill .dlist .sec { font-size: 18px; line-height: 1.45; }
+.drill .dlist .sec h3 { font-size: 14px; }
+.drill .dlist .sec li { margin: 6px 0; }
 .rctl .btn.big.on { background: #3a3c40; border-color: #55585d; color: #fff; }
 .rsub { color: #c9c6c0; font-size: 16px; min-height: 22px; }
 .segs { display: flex; gap: 3px; margin: 16px 0 12px; }
@@ -779,19 +788,21 @@ function scheduleRender() {
 let deferRender = false;
 document.addEventListener('focusout', () => { if (deferRender && editing && route() === 'day-' + editing) { deferRender = false; return; } if (deferRender) { deferRender = false; setTimeout(() => { const a = document.activeElement; if (!(a && /INPUT|TEXTAREA|SELECT/.test(a.tagName))) render(); else deferRender = true; }, 50); } });
 function route() { const h = (location.hash || '#season').slice(1); return h; }
-window.addEventListener('hashchange', () => { editing = null; closeLayer(); render(); window.scrollTo(0, 0); });
+window.addEventListener('hashchange', () => { editing = null; closeLayer(); render(); window.scrollTo(0, 0); if (drillBack && route().startsWith('run-')) { const el = document.getElementById('go-' + drillBack); if (el) { const h = el.closest('.sec').querySelector('h3') || el; const top = document.querySelector('.top'); window.scrollTo(0, h.getBoundingClientRect().top + scrollY - (top ? top.offsetHeight : 0) - 10); } } if (!route().startsWith('drill-')) drillBack = null; });
 function render() {
   if (!DATA) return;
   if (canEdit) applyClaudeRoster();
   const r = route();
-  if (!r.startsWith('run-')) stopRun();
-  const tab = r.startsWith('day-') || r.startsWith('run-') ? (r.slice(4) === nearest(practiceDates()) ? 'today' : 'season') : r.startsWith('w-') ? 'roster' : r.startsWith('m-') ? 'matches' : r === 'weighsheet' ? 'weighin' : r === 'liftsheet' ? 'lifts' : r;
+  const runLike = r.startsWith('run-') || r.startsWith('drill-');
+  if (!runLike) stopRun();
+  const tab = r.startsWith('drill-') ? (r.slice(6, 16) === nearest(practiceDates()) ? 'today' : 'season') : r.startsWith('day-') || r.startsWith('run-') ? (r.slice(4) === nearest(practiceDates()) ? 'today' : 'season') : r.startsWith('w-') ? 'roster' : r.startsWith('m-') ? 'matches' : r === 'weighsheet' ? 'weighin' : r === 'liftsheet' ? 'lifts' : r;
   document.querySelectorAll('#tabs a').forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === '#' + tab ? 'page' : 'false'));
   const app = $('#app');
   if (r === 'today') { location.hash = 'day-' + nearest(practiceDates()); return; }
-  document.body.classList.toggle('running', r.startsWith('run-')); document.documentElement.classList.toggle('running', r.startsWith('run-'));
+  document.body.classList.toggle('running', runLike); document.documentElement.classList.toggle('running', runLike);
   if (r.startsWith('day-')) app.innerHTML = viewDay(r.slice(4));
   else if (r.startsWith('run-')) { app.innerHTML = viewRun(r.slice(4)); startRun(); }
+  else if (r.startsWith('drill-')) { drillBack = r.slice(17); app.innerHTML = viewDrill(r.slice(6)); startRun(); }
   else if (r === 'weighin') app.innerHTML = viewWeighin();
   else if (r === 'weighsheet') app.innerHTML = viewWeighSheet();
   else if (r === 'liftsheet') app.innerHTML = viewLiftSheet();
@@ -951,10 +962,10 @@ function viewDay(s) {
       if (k === 'cond') { const rows = cfRows(s); if (canEnter) body += `<div class="row" style="margin:10px 0 4px"><button class="btn" data-act="cftimes">${rows.length ? 'Edit times' : 'Enter times'}</button></div>`; if (rows.length) body += `<div class="cfres"><div class="cl">Times (${rows.length})${(st.cf[s] && st.cf[s].score) ? ' · ' + esc(st.cf[s].score) : ''}</div><ol>${rows.map((r, i) => `<li><span class="rk">${i + 1}</span><a href="#w-${r.id}">${esc(rosterName(r.id))}</a><b>${esc(r.t)}${r.mod ? '*' : ''}</b></li>`).join('')}</ol></div>`; }
       if (k === 'teach') {
         const tt = teachHtml(s, nodes);
-        h += `<div class="sec long"><h3>${esc(secTitle(k, title, p))}${tt.n ? `<span class="prog">${tt.n} of ${tt.all} taught</span>` : ''}${tm}</h3>${tt.html}</div>`;
+        h += `<div class="sec long"><h3>${esc(secTitle(k, title, p))}${tt.n ? `<span class="prog">${tt.n} of ${tt.all} taught</span>` : ''}${tm}</h3>${drillBtn(s, k)}${tt.html}</div>`;
         continue;
       }
-      h += `<div class="sec ${isLong ? 'long' : ''}"><h3>${esc(secTitle(k, title, p))}${tm}</h3>${body || '<div class="emptyline">Nothing yet</div>'}</div>`;
+      h += `<div class="sec ${isLong ? 'long' : ''}"><h3>${esc(secTitle(k, title, p))}${tm}</h3>${nodes.length ? drillBtn(s, k) : ''}${body || '<div class="emptyline">Nothing yet</div>'}</div>`;
     }
     h += '</div>';
   }
@@ -1833,12 +1844,32 @@ function viewRun(s) {
       <div class="segs">${segs}</div>
       <div class="rnav"><button class="btn light" data-act="runprev" ${run.idx === 0 ? 'disabled' : ''}>‹ Back</button><div class="rnext">${nxt ? `Next: <b>${esc(nxt.b[1])}</b> at ${esc(String(nxt.b[0]).split('-')[0])}` : 'Last block'}</div><button class="btn primary" data-act="runnext" ${nxt ? '' : 'disabled'}>Next ›</button></div>
     </div>
-    <div class="runfull">${(() => { const f = viewDay(s); const i = f.indexOf('<article class="sheet">'); return i < 0 ? '' : f.slice(i); })()}</div>
+    <div class="runfull">${(() => { inRun = true; let f; try { f = viewDay(s); } finally { inRun = false; } const i = f.indexOf('<article class="sheet">'); return i < 0 ? '' : f.slice(i); })()}</div>
   </div>`;
 }
 function currentIdx(spans) { const now = new Date(); for (let i = 0; i < spans.length; i++) { if (spans[i].e && now < spans[i].e) return i; } return spans.length - 1; }
+let inRun = false, drillBack = null;
+const DRILL = { twotwo: '⏱ Run 2&2s with the clock', teach: '⏱ Teach with the clock' };
+function drillBtn(s, k) { return inRun && DRILL[k] ? `<a class="drillbtn" id="go-${k}" href="#drill-${s}-${k}">${DRILL[k]}</a>` : ''; }
+function viewDrill(arg) {
+  const s = arg.slice(0, 10), k = arg.slice(11); const p = plan(s);
+  if (!p || !DRILL[k]) return '<div class="card empty"><h3>Nothing to show</h3><a href="#season">Back</a></div>';
+  const nodes = p.sections[k] || [];
+  let body, title = secTitle(k, SEC.find(x => x[0] === k)[1], p), prog = '';
+  if (k === 'teach') { const tt = teachHtml(s, nodes); body = tt.html; if (tt.n) prog = `<span class="prog">${tt.n} of ${tt.all} taught</span>`; }
+  else body = ul(nodes);
+  return `<div class="run drill">
+    <div class="dtop">
+      <div class="runtop"><a class="btn ghost light" href="#run-${s}">← Practice</a><span class="rt">${esc(title)}</span></div>
+      <div class="rclock dclock" id="rclock">${fmt(swElapsed())}</div>
+      <div class="rctl"><button class="btn primary big ${sw.on ? 'on' : ''}" data-act="swtoggle">${sw.on ? 'Stop' : 'Start'}</button><button class="btn light" data-act="swreset">Reset</button></div>
+    </div>
+    <div class="sheet dlist"><div class="sec long"><h3>${esc(title)}${prog}</h3>${body || '<div class="emptyline">Nothing yet</div>'}</div></div>
+  </div>`;
+}
 function fmt(sec) { const neg = sec < 0; sec = Math.abs(Math.round(sec)); return (neg ? '+' : '') + Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0'); }
 function tickRun() {
+  if (route().startsWith('drill-')) { const c = $('#rclock'); if (c) c.textContent = fmt(swElapsed()); return; }
   if (!run) return; const p = plan(run.s); if (!p) return; const spans = blockSpans(p, run.s);
   if (run.follow) { const i = currentIdx(spans); if (i !== run.idx) { run.idx = i; render(); return; } }
   const cur = spans[run.idx]; const el = $('#rclock'); if (!el || !cur) return;
@@ -2095,7 +2126,7 @@ document.addEventListener('click', async e => {
   if (t.dataset.pillar) { openPillar(+t.dataset.pillar); return; }
   if (t.dataset.toggle) { const x = st.roster[t.dataset.toggle]; await write('roster/' + t.dataset.toggle, Object.assign({}, x, { active: x.active === false })); return; }
   if (t.dataset.chk !== undefined) {
-    const s = route().slice(4); const done = Object.assign({}, (st.progress[s] && st.progress[s].done) || {});
+    const s = (route().match(/\d{4}-\d{2}-\d{2}/) || [''])[0]; const done = Object.assign({}, (st.progress[s] && st.progress[s].done) || {});
     const k0 = t.dataset.chk, sets = [];
     const eff = k => !!done[k] || !!(CHK[k] && CHK[k].parent && eff(CHK[k].parent));
     let root = k0; while (CHK[root] && CHK[root].parent) root = CHK[root].parent;
@@ -2229,7 +2260,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLayer()
 let SEED = null;
 const b64u = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 async function openSeason(k) {
-  const enc = await (await fetch('season.json?v=3623203198', { cache: 'no-cache' })).json();
+  const enc = await (await fetch('season.json?v=573f15be8a', { cache: 'no-cache' })).json();
   const key = await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
   const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64u(enc.iv) }, key, b64u(enc.ct));
   return JSON.parse(new TextDecoder().decode(pt));
