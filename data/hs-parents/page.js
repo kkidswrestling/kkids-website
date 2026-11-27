@@ -20,13 +20,8 @@
     boxes.forEach(b => { b.closest("li").classList.toggle("done", b.checked); if (b.checked) n++; });
     $("#ptext").textContent = n + " of " + boxes.length + " done";
     $("#pbar").style.width = (n / boxes.length * 100) + "%";
-    // Main-page sign-off card
+    // The sign-off box came off the home screen Nov. 27 (Joe). The sign-off itself still opens at #signoff.
     const signed = $("#c4").checked;
-    $("#soText").textContent = n + " of " + boxes.length + " steps";
-    $("#soBar").style.width = (n / boxes.length * 100) + "%";
-    $("#soBtn").textContent = n ? "Continue" : "Start";
-    $("#soCard").hidden = signed;
-    $("#soSmall").hidden = !signed;
     $("#soDone").hidden = !signed;
   }
   boxes.forEach(b => {
